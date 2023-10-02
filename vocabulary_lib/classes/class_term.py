@@ -177,5 +177,4 @@ class OUTerm(DefinedNamespace):
 
     _NS = Namespace(ONTOUML_NAMESPACE)
 
-
 # 17 classes 93 att

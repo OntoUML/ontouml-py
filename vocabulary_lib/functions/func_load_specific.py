@@ -29,7 +29,7 @@ def create_list_ou_cardinality(ontouml_graph: Graph) -> list[OUCardinality]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Cardinality)
     for element in all_elements:
-        element_obj = OUCardinality(element)
+        element_obj = OUCardinality(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -38,7 +38,7 @@ def create_list_ou_class(ontouml_graph: Graph) -> list[OUClass]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Class)
     for element in all_elements:
-        element_obj = OUClass(element)
+        element_obj = OUClass(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -47,7 +47,7 @@ def create_list_ou_classview(ontouml_graph: Graph) -> list[OUClassView]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.ClassView)
     for element in all_elements:
-        element_obj = OUClassView(element)
+        element_obj = OUClassView(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -56,7 +56,7 @@ def create_list_ou_diagram(ontouml_graph: Graph) -> list[OUDiagram]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Diagram)
     for element in all_elements:
-        element_obj = OUDiagram(element)
+        element_obj = OUDiagram(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -65,7 +65,7 @@ def create_list_ou_generalization(ontouml_graph: Graph) -> list[OUGeneralization
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Generalization)
     for element in all_elements:
-        element_obj = OUGeneralization(element)
+        element_obj = OUGeneralization(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -74,7 +74,7 @@ def create_list_ou_generalizationset(ontouml_graph: Graph) -> list[OUGeneralizat
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationSet)
     for element in all_elements:
-        element_obj = OUGeneralizationSet(element)
+        element_obj = OUGeneralizationSet(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -83,7 +83,7 @@ def create_list_ou_generalizationsetview(ontouml_graph: Graph) -> list[OUGeneral
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationSetView)
     for element in all_elements:
-        element_obj = OUGeneralizationSetView(element)
+        element_obj = OUGeneralizationSetView(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -92,7 +92,7 @@ def create_list_ou_generalizationview(ontouml_graph: Graph) -> list[OUGeneraliza
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationView)
     for element in all_elements:
-        element_obj = OUGeneralizationView(element)
+        element_obj = OUGeneralizationView(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -101,7 +101,7 @@ def create_list_ou_note(ontouml_graph: Graph) -> list[OUNote]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Note)
     for element in all_elements:
-        element_obj = OUNote(element)
+        element_obj = OUNote(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -110,7 +110,7 @@ def create_list_ou_noteview(ontouml_graph: Graph) -> list[OUNoteView]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.NoteView)
     for element in all_elements:
-        element_obj = OUNoteView(element)
+        element_obj = OUNoteView(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -119,7 +119,7 @@ def create_list_ou_package(ontouml_graph: Graph) -> list[OUPackage]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Package)
     for element in all_elements:
-        element_obj = OUPackage(element)
+        element_obj = OUPackage(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -128,7 +128,7 @@ def create_list_ou_path(ontouml_graph: Graph) -> list[OUPath]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Path)
     for element in all_elements:
-        element_obj = OUPath(element)
+        element_obj = OUPath(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -137,7 +137,7 @@ def create_list_ou_point(ontouml_graph: Graph) -> list[OUPoint]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Point)
     for element in all_elements:
-        element_obj = OUPoint(element)
+        element_obj = OUPoint(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -146,7 +146,7 @@ def create_list_ou_project(ontouml_graph: Graph) -> list[OUProject]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Project)
     for element in all_elements:
-        element_obj = OUProject(element)
+        element_obj = OUProject(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -155,7 +155,7 @@ def create_list_ou_property(ontouml_graph: Graph) -> list[OUProperty]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Property)
     for element in all_elements:
-        element_obj = OUProperty(element)
+        element_obj = OUProperty(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -164,7 +164,7 @@ def create_list_ou_rectangle(ontouml_graph: Graph) -> list[OURectangle]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Rectangle)
     for element in all_elements:
-        element_obj = OURectangle(element)
+        element_obj = OURectangle(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -173,7 +173,7 @@ def create_list_ou_relation(ontouml_graph: Graph) -> list[OURelation]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Relation)
     for element in all_elements:
-        element_obj = OURelation(element)
+        element_obj = OURelation(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -182,7 +182,7 @@ def create_list_ou_relationview(ontouml_graph: Graph) -> list[OURelationView]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.RelationView)
     for element in all_elements:
-        element_obj = OURelationView(element)
+        element_obj = OURelationView(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
 
@@ -191,6 +191,6 @@ def create_list_ou_text(ontouml_graph: Graph) -> list[OUText]:
     list_elements = []
     all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Text)
     for element in all_elements:
-        element_obj = OUText(element)
+        element_obj = OUText(ontouml_graph, element)
         list_elements.append(element_obj)
     return list_elements
