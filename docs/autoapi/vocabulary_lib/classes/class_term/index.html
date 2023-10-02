@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vocabulary_lib.classes.class_term &mdash; ontouml-vocabulary-lib  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="vocabulary_lib.constants" href="../../constants/index.html" />
+    <link rel="prev" title="vocabulary_lib.classes.class_graph" href="../class_graph/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ontouml-vocabulary-lib
+              <img src="../../../../_static/logo-vocabulary-lib-reduced.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../constants/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.constants</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../functions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ontouml-vocabulary-lib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.classes</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.classes.class_term</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/vocabulary_lib/classes/class_term/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-vocabulary_lib.classes.class_term">
+<span id="vocabulary-lib-classes-class-term"></span><h1><a class="reference internal" href="#module-vocabulary_lib.classes.class_term" title="vocabulary_lib.classes.class_term"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.classes.class_term</span></code></a><a class="headerlink" href="#module-vocabulary_lib.classes.class_term" title="Link to this heading"></a></h1>
+<p>Module for the ONTOUML namespace mapping to the OntoUML vocabulary.</p>
+<p>This module defines the ONTOUML class, which serves as a convenient way to access OntoUML terms and concepts in Python
+code. It complies with the OntoUML vocabulary version 1.1.0 available at <a class="reference external" href="https://w3id.org/ontouml/vocabulary/v1.1.0">https://w3id.org/ontouml/vocabulary/v1.1.0</a>.</p>
+<dl>
+<dt>Usage:</dt><dd><ul class="simple">
+<li><p>Import the ONTOUML class from this module to access OntoUML terms with their associated URIs.</p></li>
+<li><p>Use ONTOUML.term_name to access specific OntoUML terms.</p></li>
+</ul>
+</dd>
+<dt>Example:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+from ontouml_namespace import ONTOUML</p>
+<p>my_ontouml_term = ONTOUML.term_name
+<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+</dd>
+</dl>
+<p>For more information about the OntoUML vocabulary,
+refer to the official documentation at: <a class="reference external" href="https://w3id.org/ontouml/vocabulary">https://w3id.org/ontouml/vocabulary</a></p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.classes.class_term.OUTerm" title="vocabulary_lib.classes.class_term.OUTerm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUTerm</span></code></a></p></td>
+<td><p>Class to provide terms from the OntoUML vocabulary in an easy way.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vocabulary_lib.classes.class_term.</span></span><span class="sig-name descname"><span class="pre">OUTerm</span></span><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">rdflib.namespace.DefinedNamespace</span></code></p>
+<p>Class to provide terms from the OntoUML vocabulary in an easy way.</p>
+<p>All vocabulary concepts and their return values (as comments).
+Complies with <a class="reference external" href="https://w3id.org/ontouml/vocabulary/v1.1.0">https://w3id.org/ontouml/vocabulary/v1.1.0</a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.abstract">
+<span class="sig-name descname"><span class="pre">abstract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.abstract" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.abstractNature">
+<span class="sig-name descname"><span class="pre">abstractNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.abstractNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.aggregationKind">
+<span class="sig-name descname"><span class="pre">aggregationKind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.aggregationKind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.AggregationKind">
+<span class="sig-name descname"><span class="pre">AggregationKind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.AggregationKind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.attribute">
+<span class="sig-name descname"><span class="pre">attribute</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.attribute" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.begin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.bringsAbout">
+<span class="sig-name descname"><span class="pre">bringsAbout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.bringsAbout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.cardinality">
+<span class="sig-name descname"><span class="pre">cardinality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.cardinality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Cardinality">
+<span class="sig-name descname"><span class="pre">Cardinality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Cardinality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.cardinalityValue">
+<span class="sig-name descname"><span class="pre">cardinalityValue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.cardinalityValue" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.categorizer">
+<span class="sig-name descname"><span class="pre">categorizer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.categorizer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.category">
+<span class="sig-name descname"><span class="pre">category</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.category" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.characterization">
+<span class="sig-name descname"><span class="pre">characterization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.characterization" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Class" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Classifier">
+<span class="sig-name descname"><span class="pre">Classifier</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Classifier" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.ClassStereotype">
+<span class="sig-name descname"><span class="pre">ClassStereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.ClassStereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.ClassView">
+<span class="sig-name descname"><span class="pre">ClassView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.ClassView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.collective">
+<span class="sig-name descname"><span class="pre">collective</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.collective" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.collectiveNature">
+<span class="sig-name descname"><span class="pre">collectiveNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.collectiveNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.comparative">
+<span class="sig-name descname"><span class="pre">comparative</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.comparative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.componentOf">
+<span class="sig-name descname"><span class="pre">componentOf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.componentOf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.composite">
+<span class="sig-name descname"><span class="pre">composite</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.composite" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.ConnectorView">
+<span class="sig-name descname"><span class="pre">ConnectorView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.ConnectorView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.containsModelElement">
+<span class="sig-name descname"><span class="pre">containsModelElement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.containsModelElement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.containsView">
+<span class="sig-name descname"><span class="pre">containsView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.containsView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.creation">
+<span class="sig-name descname"><span class="pre">creation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.creation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.datatype">
+<span class="sig-name descname"><span class="pre">datatype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.datatype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.DecoratableElement">
+<span class="sig-name descname"><span class="pre">DecoratableElement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.DecoratableElement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.derivation">
+<span class="sig-name descname"><span class="pre">derivation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.derivation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.diagram">
+<span class="sig-name descname"><span class="pre">diagram</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.diagram" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Diagram">
+<span class="sig-name descname"><span class="pre">Diagram</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Diagram" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.DiagramElement">
+<span class="sig-name descname"><span class="pre">DiagramElement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.DiagramElement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.ElementView">
+<span class="sig-name descname"><span class="pre">ElementView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.ElementView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.end">
+<span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.end" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.enumeration">
+<span class="sig-name descname"><span class="pre">enumeration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.enumeration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.event">
+<span class="sig-name descname"><span class="pre">event</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.event" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.eventNature">
+<span class="sig-name descname"><span class="pre">eventNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.eventNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.externalDependence">
+<span class="sig-name descname"><span class="pre">externalDependence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.externalDependence" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.extrinsicModeNature">
+<span class="sig-name descname"><span class="pre">extrinsicModeNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.extrinsicModeNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.functionalComplexNature">
+<span class="sig-name descname"><span class="pre">functionalComplexNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.functionalComplexNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.general">
+<span class="sig-name descname"><span class="pre">general</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.generalization">
+<span class="sig-name descname"><span class="pre">generalization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.generalization" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Generalization">
+<span class="sig-name descname"><span class="pre">Generalization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Generalization" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.GeneralizationSet">
+<span class="sig-name descname"><span class="pre">GeneralizationSet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.GeneralizationSet" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.GeneralizationSetView">
+<span class="sig-name descname"><span class="pre">GeneralizationSetView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.GeneralizationSetView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.GeneralizationView">
+<span class="sig-name descname"><span class="pre">GeneralizationView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.GeneralizationView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.height" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.historicalDependence">
+<span class="sig-name descname"><span class="pre">historicalDependence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.historicalDependence" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.historicalRole">
+<span class="sig-name descname"><span class="pre">historicalRole</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.historicalRole" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.historicalRoleMixin">
+<span class="sig-name descname"><span class="pre">historicalRoleMixin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.historicalRoleMixin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.instantiation">
+<span class="sig-name descname"><span class="pre">instantiation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.instantiation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.intrinsicModeNature">
+<span class="sig-name descname"><span class="pre">intrinsicModeNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.intrinsicModeNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isAbstract">
+<span class="sig-name descname"><span class="pre">isAbstract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isAbstract" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isComplete">
+<span class="sig-name descname"><span class="pre">isComplete</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isComplete" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isDerived">
+<span class="sig-name descname"><span class="pre">isDerived</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isDerived" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isDisjoint">
+<span class="sig-name descname"><span class="pre">isDisjoint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isDisjoint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isExtensional">
+<span class="sig-name descname"><span class="pre">isExtensional</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isExtensional" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isOrdered">
+<span class="sig-name descname"><span class="pre">isOrdered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isOrdered" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isPowertype">
+<span class="sig-name descname"><span class="pre">isPowertype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isPowertype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isReadOnly">
+<span class="sig-name descname"><span class="pre">isReadOnly</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isReadOnly" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.isViewOf">
+<span class="sig-name descname"><span class="pre">isViewOf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.isViewOf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.kind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.literal">
+<span class="sig-name descname"><span class="pre">literal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.literal" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Literal">
+<span class="sig-name descname"><span class="pre">Literal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Literal" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.lowerBound">
+<span class="sig-name descname"><span class="pre">lowerBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.lowerBound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.manifestation">
+<span class="sig-name descname"><span class="pre">manifestation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.manifestation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.material">
+<span class="sig-name descname"><span class="pre">material</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.material" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.mediation">
+<span class="sig-name descname"><span class="pre">mediation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.mediation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.memberOf">
+<span class="sig-name descname"><span class="pre">memberOf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.memberOf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.mixin">
+<span class="sig-name descname"><span class="pre">mixin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.mixin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.ModelElement">
+<span class="sig-name descname"><span class="pre">ModelElement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.ModelElement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.NodeView">
+<span class="sig-name descname"><span class="pre">NodeView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.NodeView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.none">
+<span class="sig-name descname"><span class="pre">none</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.none" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Note">
+<span class="sig-name descname"><span class="pre">Note</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Note" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.NoteView">
+<span class="sig-name descname"><span class="pre">NoteView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.NoteView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.OntologicalNature">
+<span class="sig-name descname"><span class="pre">OntologicalNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.OntologicalNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.OntoumlElement">
+<span class="sig-name descname"><span class="pre">OntoumlElement</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.OntoumlElement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.order">
+<span class="sig-name descname"><span class="pre">order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.order" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.owner">
+<span class="sig-name descname"><span class="pre">owner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.owner" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Package">
+<span class="sig-name descname"><span class="pre">Package</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Package" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.PackageView">
+<span class="sig-name descname"><span class="pre">PackageView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.PackageView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.participation">
+<span class="sig-name descname"><span class="pre">participation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.participation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.participational">
+<span class="sig-name descname"><span class="pre">participational</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.participational" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Path">
+<span class="sig-name descname"><span class="pre">Path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.phase">
+<span class="sig-name descname"><span class="pre">phase</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.phase" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.phaseMixin">
+<span class="sig-name descname"><span class="pre">phaseMixin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.phaseMixin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.point">
+<span class="sig-name descname"><span class="pre">point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.point" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Point">
+<span class="sig-name descname"><span class="pre">Point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Point" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.project">
+<span class="sig-name descname"><span class="pre">project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.project" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Project">
+<span class="sig-name descname"><span class="pre">Project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Project" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.property">
+<span class="sig-name descname"><span class="pre">property</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.property" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Property">
+<span class="sig-name descname"><span class="pre">Property</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Property" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.PropertyStereotype">
+<span class="sig-name descname"><span class="pre">PropertyStereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.PropertyStereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.propertyType">
+<span class="sig-name descname"><span class="pre">propertyType</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.propertyType" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.quality">
+<span class="sig-name descname"><span class="pre">quality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.qualityNature">
+<span class="sig-name descname"><span class="pre">qualityNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.qualityNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.quantity">
+<span class="sig-name descname"><span class="pre">quantity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.quantity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.quantityNature">
+<span class="sig-name descname"><span class="pre">quantityNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.quantityNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Rectangle">
+<span class="sig-name descname"><span class="pre">Rectangle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Rectangle" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.RectangularShape">
+<span class="sig-name descname"><span class="pre">RectangularShape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.RectangularShape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.redefinesProperty">
+<span class="sig-name descname"><span class="pre">redefinesProperty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.redefinesProperty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Relation">
+<span class="sig-name descname"><span class="pre">Relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Relation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.relationEnd">
+<span class="sig-name descname"><span class="pre">relationEnd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.relationEnd" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.RelationStereotype">
+<span class="sig-name descname"><span class="pre">RelationStereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.RelationStereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.RelationView">
+<span class="sig-name descname"><span class="pre">RelationView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.RelationView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.relator">
+<span class="sig-name descname"><span class="pre">relator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.relator" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.relatorNature">
+<span class="sig-name descname"><span class="pre">relatorNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.relatorNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.restrictedTo">
+<span class="sig-name descname"><span class="pre">restrictedTo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.restrictedTo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.role" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.roleMixin">
+<span class="sig-name descname"><span class="pre">roleMixin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.roleMixin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.shape">
+<span class="sig-name descname"><span class="pre">shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Shape">
+<span class="sig-name descname"><span class="pre">Shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.shared">
+<span class="sig-name descname"><span class="pre">shared</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.shared" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.situation">
+<span class="sig-name descname"><span class="pre">situation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.situation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.situationNature">
+<span class="sig-name descname"><span class="pre">situationNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.situationNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.sourceEnd">
+<span class="sig-name descname"><span class="pre">sourceEnd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.sourceEnd" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.sourceView">
+<span class="sig-name descname"><span class="pre">sourceView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.sourceView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.specific">
+<span class="sig-name descname"><span class="pre">specific</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.specific" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.stereotype">
+<span class="sig-name descname"><span class="pre">stereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.stereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Stereotype">
+<span class="sig-name descname"><span class="pre">Stereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Stereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.subCollectionOf">
+<span class="sig-name descname"><span class="pre">subCollectionOf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.subCollectionOf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.subkind">
+<span class="sig-name descname"><span class="pre">subkind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.subkind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.subQuantityOf">
+<span class="sig-name descname"><span class="pre">subQuantityOf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.subQuantityOf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.subsetsProperty">
+<span class="sig-name descname"><span class="pre">subsetsProperty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.subsetsProperty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.targetEnd">
+<span class="sig-name descname"><span class="pre">targetEnd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.targetEnd" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.targetView">
+<span class="sig-name descname"><span class="pre">targetView</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.targetView" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.termination">
+<span class="sig-name descname"><span class="pre">termination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.termination" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.text">
+<span class="sig-name descname"><span class="pre">text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.Text">
+<span class="sig-name descname"><span class="pre">Text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.Text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.topLeftPosition">
+<span class="sig-name descname"><span class="pre">topLeftPosition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.topLeftPosition" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.triggers">
+<span class="sig-name descname"><span class="pre">triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.triggers" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.typeNature">
+<span class="sig-name descname"><span class="pre">typeNature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.typeNature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.upperBound">
+<span class="sig-name descname"><span class="pre">upperBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.upperBound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.xCoordinate">
+<span class="sig-name descname"><span class="pre">xCoordinate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.xCoordinate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm.yCoordinate">
+<span class="sig-name descname"><span class="pre">yCoordinate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">rdflib.URIRef</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm.yCoordinate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm._fail">
+<span class="sig-name descname"><span class="pre">_fail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm._fail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vocabulary_lib.classes.class_term.OUTerm._NS">
+<span class="sig-name descname"><span class="pre">_NS</span></span><a class="headerlink" href="#vocabulary_lib.classes.class_term.OUTerm._NS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../class_graph/index.html" class="btn btn-neutral float-left" title="vocabulary_lib.classes.class_graph" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../constants/index.html" class="btn btn-neutral float-right" title="vocabulary_lib.constants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente, the Netherlands.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+:py:mod:`vocabulary_lib.functions.func_load_specific`
+=====================================================
+
+.. py:module:: vocabulary_lib.functions.func_load_specific
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality
+   vocabulary_lib.functions.func_load_specific.create_list_ou_class
+   vocabulary_lib.functions.func_load_specific.create_list_ou_classview
+   vocabulary_lib.functions.func_load_specific.create_list_ou_diagram
+   vocabulary_lib.functions.func_load_specific.create_list_ou_generalization
+   vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset
+   vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview
+   vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview
+   vocabulary_lib.functions.func_load_specific.create_list_ou_note
+   vocabulary_lib.functions.func_load_specific.create_list_ou_noteview
+   vocabulary_lib.functions.func_load_specific.create_list_ou_package
+   vocabulary_lib.functions.func_load_specific.create_list_ou_path
+   vocabulary_lib.functions.func_load_specific.create_list_ou_point
+   vocabulary_lib.functions.func_load_specific.create_list_ou_project
+   vocabulary_lib.functions.func_load_specific.create_list_ou_property
+   vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle
+   vocabulary_lib.functions.func_load_specific.create_list_ou_relation
+   vocabulary_lib.functions.func_load_specific.create_list_ou_relationview
+   vocabulary_lib.functions.func_load_specific.create_list_ou_text
+
+
+
+.. py:function:: create_list_ou_cardinality(ontouml_graph)
+
+
+.. py:function:: create_list_ou_class(ontouml_graph)
+
+
+.. py:function:: create_list_ou_classview(ontouml_graph)
+
+
+.. py:function:: create_list_ou_diagram(ontouml_graph)
+
+
+.. py:function:: create_list_ou_generalization(ontouml_graph)
+
+
+.. py:function:: create_list_ou_generalizationset(ontouml_graph)
+
+
+.. py:function:: create_list_ou_generalizationsetview(ontouml_graph)
+
+
+.. py:function:: create_list_ou_generalizationview(ontouml_graph)
+
+
+.. py:function:: create_list_ou_note(ontouml_graph)
+
+
+.. py:function:: create_list_ou_noteview(ontouml_graph)
+
+
+.. py:function:: create_list_ou_package(ontouml_graph)
+
+
+.. py:function:: create_list_ou_path(ontouml_graph)
+
+
+.. py:function:: create_list_ou_point(ontouml_graph)
+
+
+.. py:function:: create_list_ou_project(ontouml_graph)
+
+
+.. py:function:: create_list_ou_property(ontouml_graph)
+
+
+.. py:function:: create_list_ou_rectangle(ontouml_graph)
+
+
+.. py:function:: create_list_ou_relation(ontouml_graph)
+
+
+.. py:function:: create_list_ou_relationview(ontouml_graph)
+
+
+.. py:function:: create_list_ou_text(ontouml_graph)
+
+

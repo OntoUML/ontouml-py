@@ -34,7 +34,7 @@ github_username = "pedropaulofb"
 github_repository = "ontouml/ontouml-vocabulary-lib"
 
 autoapi_dirs = [
-    "../vocabulary-lib/",
+    "../vocabulary_lib/",
 ]
 
 templates_path = ["_templates"]

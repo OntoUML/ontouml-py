@@ -1,0 +1,123 @@
+:py:mod:`vocabulary_lib.classes.class_elements`
+===============================================
+
+.. py:module:: vocabulary_lib.classes.class_elements
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   vocabulary_lib.classes.class_elements.OUCardinality
+   vocabulary_lib.classes.class_elements.OUClass
+   vocabulary_lib.classes.class_elements.OUClassView
+   vocabulary_lib.classes.class_elements.OUDiagram
+   vocabulary_lib.classes.class_elements.OUGeneralization
+   vocabulary_lib.classes.class_elements.OUGeneralizationSet
+   vocabulary_lib.classes.class_elements.OUGeneralizationSetView
+   vocabulary_lib.classes.class_elements.OULiteral
+   vocabulary_lib.classes.class_elements.OUGeneralizationView
+   vocabulary_lib.classes.class_elements.OUNote
+   vocabulary_lib.classes.class_elements.OUNoteView
+   vocabulary_lib.classes.class_elements.OUPackage
+   vocabulary_lib.classes.class_elements.OUPackageView
+   vocabulary_lib.classes.class_elements.OUPath
+   vocabulary_lib.classes.class_elements.OUPoint
+   vocabulary_lib.classes.class_elements.OUProject
+   vocabulary_lib.classes.class_elements.OUProperty
+   vocabulary_lib.classes.class_elements.OURectangle
+   vocabulary_lib.classes.class_elements.OURelation
+   vocabulary_lib.classes.class_elements.OURelationView
+   vocabulary_lib.classes.class_elements.OUText
+
+
+
+
+.. py:class:: OUCardinality(ontouml_model, object_id)
+
+
+
+.. py:class:: OUClass(ontouml_model, object_id)
+
+
+
+.. py:class:: OUClassView(ontouml_model, object_id)
+
+
+
+.. py:class:: OUDiagram(ontouml_model, object_id)
+
+
+
+.. py:class:: OUGeneralization(ontouml_model, object_id)
+
+
+
+.. py:class:: OUGeneralizationSet(ontouml_model, object_id)
+
+
+
+.. py:class:: OUGeneralizationSetView(ontouml_model, object_id)
+
+
+
+.. py:class:: OULiteral(ontouml_model, object_id)
+
+
+
+.. py:class:: OUGeneralizationView(ontouml_model, object_id)
+
+
+
+.. py:class:: OUNote(ontouml_model, object_id)
+
+
+
+.. py:class:: OUNoteView(ontouml_model, object_id)
+
+
+
+.. py:class:: OUPackage(ontouml_model, object_id)
+
+
+
+.. py:class:: OUPackageView(ontouml_model, object_id)
+
+
+
+.. py:class:: OUPath(ontouml_model, object_id)
+
+
+
+.. py:class:: OUPoint(ontouml_model, object_id)
+
+
+
+.. py:class:: OUProject(ontouml_model, object_id)
+
+
+
+.. py:class:: OUProperty(ontouml_model, object_id)
+
+
+
+.. py:class:: OURectangle(ontouml_model, object_id)
+
+
+
+.. py:class:: OURelation(ontouml_model, object_id)
+
+
+
+.. py:class:: OURelationView(ontouml_model, object_id)
+
+
+
+.. py:class:: OUText(ontouml_model, object_id)
+
+
+
