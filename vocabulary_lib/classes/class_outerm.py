@@ -21,7 +21,7 @@ refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
-from ..constants.const_general import ONTOUML_NAMESPACE
+from vocabulary_lib.constants.const_prefix import ONTOUML_NAMESPACE
 
 
 class OUTerm(DefinedNamespace):

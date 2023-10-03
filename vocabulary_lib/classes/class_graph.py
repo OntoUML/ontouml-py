@@ -53,7 +53,7 @@ from vocabulary_lib.classes.class_elements import (
     OUNoteView,
     OULiteral,
 )
-from vocabulary_lib.classes.class_term import OUTerm
+from vocabulary_lib.classes.class_outerm import OUTerm
 
 
 class OUGraph:

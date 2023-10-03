@@ -1,16 +1,20 @@
-from rdflib import Graph, RDF
+from rdflib import Graph, RDF, URIRef
 
 from vocabulary_lib.classes.class_elements import (
+    OUElement,
     OUCardinality,
     OUClass,
     OUClassView,
     OUDiagram,
     OUGeneralization,
     OUGeneralizationSet,
-    OUGeneralizationView,
     OUGeneralizationSetView,
+    OUGeneralizationView,
+    OULiteral,
     OUNote,
+    OUNoteView,
     OUPackage,
+    OUPackageView,
     OUPath,
     OUPoint,
     OUProject,
@@ -19,178 +23,60 @@ from vocabulary_lib.classes.class_elements import (
     OURelation,
     OURelationView,
     OUText,
-    OUNoteView,
 )
-from vocabulary_lib.classes.class_term import OUTerm
-from vocabulary_lib.functions.func_rdf_utils import create_list_subjects
+from vocabulary_lib.classes.class_outerm import OUTerm
 
 
-def create_list_ou_cardinality(ontouml_graph: Graph) -> list[OUCardinality]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Cardinality)
-    for element in all_elements:
-        element_obj = OUCardinality(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
+class InvalidOntoUMLTypeException(Exception):
+    """Exception raised when an individual is not from a valid OntoUML type."""
+
+    pass
 
 
-def create_list_ou_class(ontouml_graph: Graph) -> list[OUClass]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Class)
-    for element in all_elements:
-        element_obj = OUClass(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
+def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> OUElement:
+    map_type_element = {
+        OUTerm.Cardinality: OUCardinality,
+        OUTerm.Class: OUClass,
+        OUTerm.ClassView: OUClassView,
+        OUTerm.Diagram: OUDiagram,
+        OUTerm.Generalization: OUGeneralization,
+        OUTerm.GeneralizationSet: OUGeneralizationSet,
+        OUTerm.GeneralizationSetView: OUGeneralizationSetView,
+        OUTerm.GeneralizationView: OUGeneralizationView,
+        OUTerm.Literal: OULiteral,
+        OUTerm.Note: OUNote,
+        OUTerm.NoteView: OUNoteView,
+        OUTerm.Package: OUPackage,
+        OUTerm.PackageView: OUPackageView,
+        OUTerm.Path: OUPath,
+        OUTerm.Point: OUPoint,
+        OUTerm.Project: OUProject,
+        OUTerm.Property: OUProperty,
+        OUTerm.Rectangle: OURectangle,
+        OUTerm.Relation: OURelation,
+        OUTerm.RelationView: OURelationView,
+        OUTerm.Text: OUText,
+    }
+
+    individual_type = ontouml_graph.value(individual_id, RDF.type)
+    if individual_type in map_type_element.keys():
+        individual_obj = map_type_element[individual_type](individual_id)
+    else:
+        raise InvalidOntoUMLTypeException("Individual is not from valid OntoUML type.")
+    return individual_obj
 
 
-def create_list_ou_classview(ontouml_graph: Graph) -> list[OUClassView]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.ClassView)
-    for element in all_elements:
-        element_obj = OUClassView(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
+def create_list_uriref(ontouml_graph: Graph, object_type: URIRef) -> list[URIRef]:
+    return_list = []
+    for element in ontouml_graph.subjects(RDF.type, object_type):
+        return_list.append(element)
+    return return_list
 
 
-def create_list_ou_diagram(ontouml_graph: Graph) -> list[OUDiagram]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Diagram)
-    for element in all_elements:
-        element_obj = OUDiagram(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
+def create_list_ouelement_from_graph(ontouml_graph: Graph, object_type: URIRef) -> list[OUElement]:
+    return_list = []
 
-
-def create_list_ou_generalization(ontouml_graph: Graph) -> list[OUGeneralization]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Generalization)
-    for element in all_elements:
-        element_obj = OUGeneralization(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_generalizationset(ontouml_graph: Graph) -> list[OUGeneralizationSet]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationSet)
-    for element in all_elements:
-        element_obj = OUGeneralizationSet(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_generalizationsetview(ontouml_graph: Graph) -> list[OUGeneralizationSetView]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationSetView)
-    for element in all_elements:
-        element_obj = OUGeneralizationSetView(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_generalizationview(ontouml_graph: Graph) -> list[OUGeneralizationView]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.GeneralizationView)
-    for element in all_elements:
-        element_obj = OUGeneralizationView(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_note(ontouml_graph: Graph) -> list[OUNote]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Note)
-    for element in all_elements:
-        element_obj = OUNote(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_noteview(ontouml_graph: Graph) -> list[OUNoteView]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.NoteView)
-    for element in all_elements:
-        element_obj = OUNoteView(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_package(ontouml_graph: Graph) -> list[OUPackage]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Package)
-    for element in all_elements:
-        element_obj = OUPackage(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_path(ontouml_graph: Graph) -> list[OUPath]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Path)
-    for element in all_elements:
-        element_obj = OUPath(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_point(ontouml_graph: Graph) -> list[OUPoint]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Point)
-    for element in all_elements:
-        element_obj = OUPoint(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_project(ontouml_graph: Graph) -> list[OUProject]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Project)
-    for element in all_elements:
-        element_obj = OUProject(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_property(ontouml_graph: Graph) -> list[OUProperty]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Property)
-    for element in all_elements:
-        element_obj = OUProperty(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_rectangle(ontouml_graph: Graph) -> list[OURectangle]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Rectangle)
-    for element in all_elements:
-        element_obj = OURectangle(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_relation(ontouml_graph: Graph) -> list[OURelation]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Relation)
-    for element in all_elements:
-        element_obj = OURelation(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_relationview(ontouml_graph: Graph) -> list[OURelationView]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.RelationView)
-    for element in all_elements:
-        element_obj = OURelationView(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
-
-
-def create_list_ou_text(ontouml_graph: Graph) -> list[OUText]:
-    list_elements = []
-    all_elements = create_list_subjects(ontouml_graph, RDF.type, OUTerm.Text)
-    for element in all_elements:
-        element_obj = OUText(ontouml_graph, element)
-        list_elements.append(element_obj)
-    return list_elements
+    for element in ontouml_graph.subjects(RDF.type, object_type):
+        element_obj = create_ouelement(ontouml_graph, element)
+        return_list.append(element_obj)
+    return return_list

@@ -1,10 +1,11 @@
 from rdflib import Graph, URIRef
 
-from vocabulary_lib.classes.class_term import OUTerm
+from vocabulary_lib.classes.class_outerm import OUTerm
 
 
 def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:
-    """Retrieve a list of IDs (as URIRefs) of the direct superclasses of a specified OntoUML class from a given OntoUML RDF graph.
+    """Retrieve a list of IDs (as URIRefs) of the direct superclasses of a specified OntoUML class from a \
+    given OntoUML RDF graph.
 
     Allows the user to specify a list of restricted types.
     Superclasses of those types will not be included in the returned list.
@@ -13,7 +14,8 @@ def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> lis
     :type ontouml_graph: rdflib.Graph
     :param ou_class_id: The URI of the OntoUML class for which to retrieve superclasses.
     :type ou_class_id: str
-    :return: A list of URIRefs representing the direct superclasses of the specified OntoUML class. The list may be empty.
+    :return: A list of URIRefs representing the direct superclasses of the specified OntoUML class. The list \
+    may be empty.
     :rtype: list[URIRef]
     """
     superclasses: list[URIRef] = []
@@ -26,7 +28,8 @@ def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> lis
 
 
 def ou_get_direct_subclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:
-    """Retrieve a list of IDs (as URIRefs) of the direct subclasses of a specified OntoUML class from a given OntoUML RDF graph.
+    """Retrieve a list of IDs (as URIRefs) of the direct subclasses of a specified OntoUML class from a given \
+    OntoUML RDF graph.
 
     :param ontouml_graph: The RDF graph containing OntoUML model data.
     :type ontouml_graph: rdflib.Graph
@@ -45,7 +48,8 @@ def ou_get_direct_subclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[
 
 
 def ou_get_all_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:
-    """Retrieve a list of IDs (as URIRefs) of the all (direct and indirect) superclasses of a specified OntoUML class from a given OntoUML RDF graph.
+    """Retrieve a list of IDs (as URIRefs) of the all (direct and indirect) superclasses of a specified OntoUML \
+    class from a given OntoUML RDF graph.
 
     :param ontouml_graph: The RDF graph containing OntoUML model data.
     :type ontouml_graph: Graph
@@ -66,7 +70,8 @@ def ou_get_all_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[U
 
 
 def ou_get_all_subclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:
-    """Retrieve a list of IDs (as URIRefs) of the all (direct and indirect) subclasses of a specified OntoUML class from a given OntoUML RDF graph.
+    """Retrieve a list of IDs (as URIRefs) of the all (direct and indirect) subclasses of a specified OntoUML \
+    class from a given OntoUML RDF graph.
 
     :param ontouml_graph: The RDF graph containing OntoUML model data.
     :type ontouml_graph: rdflib.Graph
@@ -84,3 +89,17 @@ def ou_get_all_subclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URI
         all_subclasses.extend(sub_direct)
 
     return all_subclasses
+
+
+def ou_create_list_classes_sts(ontouml_graph: Graph, include_st: URIRef | list[URIRef]) -> list[URIRef]:
+    list_classes_st = []
+
+    # Case a single stereotype is received as argument
+    if type(include_st) is str:
+        list_stereotypes = [include_st]
+
+    for stereotype in list_stereotypes:
+        for ou_class in ontouml_graph.subjects(None, OUTerm.stereotype, stereotype):
+            list_classes_st.append(ou_class)
+
+    return list_classes_st

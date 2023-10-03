@@ -1,440 +1,850 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8"/>
+    <meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vocabulary_lib.functions.func_load_specific &mdash; ontouml-vocabulary-lib  documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
-  <!--[if lt IE 9]>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>vocabulary_lib.functions.func_load_specific &mdash; ontouml-vocabulary-lib documentation</title>
+    <link href="../../../../_static/pygments.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../_static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../_static/css/sphinx_rtd_size.css" rel="stylesheet" type="text/css"/>
+    <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <![endif]-->
+
+    <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="vocabulary_lib.functions.func_rdf_utils" href="../func_rdf_utils/index.html" />
-    <link rel="prev" title="vocabulary_lib.functions.func_class" href="../func_class/index.html" /> 
+    <link href="../../../../genindex.html" rel="index" title="Index"/>
+    <link href="../../../../search.html" rel="search" title="Search"/>
+    <link href="../func_rdf_utils/index.html" rel="next" title="vocabulary_lib.functions.func_rdf_utils"/>
+    <link href="../func_class/index.html" rel="prev" title="vocabulary_lib.functions.func_class"/>
 </head>
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+    <nav class="wy-nav-side" data-toggle="wy-nav-shift">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
 
-          
-          
-          <a href="../../../../index.html" class="icon icon-home">
-            ontouml-vocabulary-lib
-              <img src="../../../../_static/logo-vocabulary-lib-reduced.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib</span></code></a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../../classes/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.classes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../constants/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.constants</span></code></a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
+                <a class="icon icon-home" href="../../../../index.html">
+                    ontouml-vocabulary-lib
+                    <img alt="Logo" class="logo" src="../../../../_static/logo-vocabulary-lib-reduced.png"/>
+                </a>
+                <div role="search">
+                    <form action="../../../../search.html" class="wy-form" id="rtd-search-form" method="get">
+                        <input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
+                        <input name="check_keywords" type="hidden" value="yes"/>
+                        <input name="area" type="hidden" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API
+                        Reference</a>
+                        <ul class="current">
+                            <li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code
+                                    class="xref py py-mod docutils literal notranslate"><span
+                                    class="pre">vocabulary_lib</span></code></a>
+                                <ul class="current">
+                                    <li class="toctree-l3 current"><a class="reference internal"
+                                                                      href="../../index.html#subpackages">Subpackages</a>
+                                        <ul class="current">
+                                            <li class="toctree-l4"><a class="reference internal"
+                                                                      href="../../classes/index.html"><code
+                                                    class="xref py py-mod docutils literal notranslate"><span
+                                                    class="pre">vocabulary_lib.classes</span></code></a></li>
+                                            <li class="toctree-l4"><a class="reference internal"
+                                                                      href="../../constants/index.html"><code
+                                                    class="xref py py-mod docutils literal notranslate"><span
+                                                    class="pre">vocabulary_lib.constants</span></code></a></li>
+                                            <li class="toctree-l4 current"><a class="reference internal"
+                                                                              href="../index.html"><code
+                                                    class="xref py py-mod docutils literal notranslate"><span
+                                                    class="pre">vocabulary_lib.functions</span></code></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
         </div>
-      </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ontouml-vocabulary-lib</a>
-      </nav>
+    <section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+        <nav aria-label="Mobile navigation menu" class="wy-nav-top">
+            <i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+            <a href="../../../../index.html">ontouml-vocabulary-lib</a>
+        </nav>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions.func_load_specific</span></code></li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/autoapi/vocabulary_lib/functions/func_load_specific/index.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="module-vocabulary_lib.functions.func_load_specific">
-<span id="vocabulary-lib-functions-func-load-specific"></span><h1><a class="reference internal" href="#module-vocabulary_lib.functions.func_load_specific" title="vocabulary_lib.functions.func_load_specific"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions.func_load_specific</span></code></a><a class="headerlink" href="#module-vocabulary_lib.functions.func_load_specific" title="Link to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality" title="vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_cardinality</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_class" title="vocabulary_lib.functions.func_load_specific.create_list_ou_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_class</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_classview" title="vocabulary_lib.functions.func_load_specific.create_list_ou_classview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_classview</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_diagram" title="vocabulary_lib.functions.func_load_specific.create_list_ou_diagram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_diagram</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalization" title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_generalization</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset" title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_generalizationset</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview" title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_generalizationsetview</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview" title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_generalizationview</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_note" title="vocabulary_lib.functions.func_load_specific.create_list_ou_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_note</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_noteview" title="vocabulary_lib.functions.func_load_specific.create_list_ou_noteview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_noteview</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_package" title="vocabulary_lib.functions.func_load_specific.create_list_ou_package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_package</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_path" title="vocabulary_lib.functions.func_load_specific.create_list_ou_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_path</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_point" title="vocabulary_lib.functions.func_load_specific.create_list_ou_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_point</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_project" title="vocabulary_lib.functions.func_load_specific.create_list_ou_project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_project</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_property" title="vocabulary_lib.functions.func_load_specific.create_list_ou_property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_property</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle" title="vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_rectangle</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relation" title="vocabulary_lib.functions.func_load_specific.create_list_ou_relation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_relation</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relationview" title="vocabulary_lib.functions.func_load_specific.create_list_ou_relationview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_relationview</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_text" title="vocabulary_lib.functions.func_load_specific.create_list_ou_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_list_ou_text</span></code></a>(ontouml_graph)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_cardinality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUCardinality" title="vocabulary_lib.classes.class_elements.OUCardinality">vocabulary_lib.classes.class_elements.OUCardinality</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div aria-label="Page navigation" role="navigation">
+                    <ul class="wy-breadcrumbs">
+                        <li><a aria-label="Home" class="icon icon-home" href="../../../../index.html"></a></li>
+                        <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+                        <li class="breadcrumb-item"><a href="../../index.html"><code
+                                class="xref py py-mod docutils literal notranslate"><span
+                                class="pre">vocabulary_lib</span></code></a></li>
+                        <li class="breadcrumb-item"><a href="../index.html"><code
+                                class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions</span></code></a>
+                        </li>
+                        <li class="breadcrumb-item active"><code
+                                class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions.func_load_specific</span></code>
+                        </li>
+                        <li class="wy-breadcrumbs-aside">
+                            <a href="../../../../_sources/autoapi/vocabulary_lib/functions/func_load_specific/index.rst.txt"
+                               rel="nofollow"> View page source</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+                <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+                    <div itemprop="articleBody">
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_class">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_class" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUClass" title="vocabulary_lib.classes.class_elements.OUClass">vocabulary_lib.classes.class_elements.OUClass</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                        <section id="module-vocabulary_lib.functions.func_load_specific">
+                            <span id="vocabulary-lib-functions-func-load-specific"></span>
+                            <h1><a class="reference internal" href="#module-vocabulary_lib.functions.func_load_specific"
+                                   title="vocabulary_lib.functions.func_load_specific"><code
+                                    class="xref py py-mod docutils literal notranslate"><span class="pre">vocabulary_lib.functions.func_load_specific</span></code></a><a
+                                    class="headerlink" href="#module-vocabulary_lib.functions.func_load_specific"
+                                    title="Link to this heading"></a></h1>
+                            <section id="module-contents">
+                                <h2>Module Contents<a class="headerlink" href="#module-contents"
+                                                      title="Link to this heading"></a></h2>
+                                <section id="functions">
+                                    <h3>Functions<a class="headerlink" href="#functions"
+                                                    title="Link to this heading"></a></h3>
+                                    <table class="autosummary longtable docutils align-default">
+                                        <tbody>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_cardinality</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_class"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_class"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_class</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_classview"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_classview"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_classview</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_diagram"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_diagram"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_diagram</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalization"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalization"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_generalization</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_generalizationset</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_generalizationsetview</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_generalizationview</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_note"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_note"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_note</span></code></a>(ontouml_graph)</p>
+                                            </td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_noteview"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_noteview"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_noteview</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_package"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_package"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_package</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_path"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_path"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_path</span></code></a>(ontouml_graph)</p>
+                                            </td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_point"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_point"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_point</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_project"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_project"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_project</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_property"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_property"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_property</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_rectangle</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relation"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_relation"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_relation</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-even">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relationview"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_relationview"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_relationview</span></code></a>(ontouml_graph)
+                                            </p></td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        <tr class="row-odd">
+                                            <td><p><a class="reference internal"
+                                                      href="#vocabulary_lib.functions.func_load_specific.create_list_ou_text"
+                                                      title="vocabulary_lib.functions.func_load_specific.create_list_ou_text"><code
+                                                    class="xref py py-obj docutils literal notranslate"><span
+                                                    class="pre">create_list_ou_text</span></code></a>(ontouml_graph)</p>
+                                            </td>
+                                            <td><p></p></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_cardinality</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_cardinality"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUCardinality"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUCardinality">vocabulary_lib.classes.class_elements.OUCardinality</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_classview">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_classview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_classview" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUClassView" title="vocabulary_lib.classes.class_elements.OUClassView">vocabulary_lib.classes.class_elements.OUClassView</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_class">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_class</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_class"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUClass"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUClass">vocabulary_lib.classes.class_elements.OUClass</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_diagram">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_diagram" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUDiagram" title="vocabulary_lib.classes.class_elements.OUDiagram">vocabulary_lib.classes.class_elements.OUDiagram</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_classview">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_classview</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_classview"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUClassView"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUClassView">vocabulary_lib.classes.class_elements.OUClassView</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalization">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_generalization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalization" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralization" title="vocabulary_lib.classes.class_elements.OUGeneralization">vocabulary_lib.classes.class_elements.OUGeneralization</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_diagram">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_diagram</span></span><span class="sig-paren">(</span><em
+                                                class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_diagram"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUDiagram"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUDiagram">vocabulary_lib.classes.class_elements.OUDiagram</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_generalizationset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationSet" title="vocabulary_lib.classes.class_elements.OUGeneralizationSet">vocabulary_lib.classes.class_elements.OUGeneralizationSet</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalization">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_generalization</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalization"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralization"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUGeneralization">vocabulary_lib.classes.class_elements.OUGeneralization</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_generalizationsetview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationSetView" title="vocabulary_lib.classes.class_elements.OUGeneralizationSetView">vocabulary_lib.classes.class_elements.OUGeneralizationSetView</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_generalizationset</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationset"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationSet"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUGeneralizationSet">vocabulary_lib.classes.class_elements.OUGeneralizationSet</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_generalizationview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationView" title="vocabulary_lib.classes.class_elements.OUGeneralizationView">vocabulary_lib.classes.class_elements.OUGeneralizationView</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_generalizationsetview</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationsetview"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationSetView"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUGeneralizationSetView">vocabulary_lib.classes.class_elements.OUGeneralizationSetView</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_note">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_note" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUNote" title="vocabulary_lib.classes.class_elements.OUNote">vocabulary_lib.classes.class_elements.OUNote</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_generalizationview</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_generalizationview"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUGeneralizationView"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUGeneralizationView">vocabulary_lib.classes.class_elements.OUGeneralizationView</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_noteview">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_noteview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_noteview" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUNoteView" title="vocabulary_lib.classes.class_elements.OUNoteView">vocabulary_lib.classes.class_elements.OUNoteView</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_note">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_note</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_note"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUNote"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUNote">vocabulary_lib.classes.class_elements.OUNote</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_package">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_package" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPackage" title="vocabulary_lib.classes.class_elements.OUPackage">vocabulary_lib.classes.class_elements.OUPackage</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_noteview">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_noteview</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_noteview"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUNoteView"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUNoteView">vocabulary_lib.classes.class_elements.OUNoteView</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_path">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_path" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPath" title="vocabulary_lib.classes.class_elements.OUPath">vocabulary_lib.classes.class_elements.OUPath</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_package">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_package</span></span><span class="sig-paren">(</span><em
+                                                class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_package"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPackage"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUPackage">vocabulary_lib.classes.class_elements.OUPackage</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_point">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_point" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPoint" title="vocabulary_lib.classes.class_elements.OUPoint">vocabulary_lib.classes.class_elements.OUPoint</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_path">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_path</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_path"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPath"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUPath">vocabulary_lib.classes.class_elements.OUPath</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_project">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_project" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUProject" title="vocabulary_lib.classes.class_elements.OUProject">vocabulary_lib.classes.class_elements.OUProject</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_point">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span class="pre">create_list_ou_point</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_point"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUPoint"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUPoint">vocabulary_lib.classes.class_elements.OUPoint</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_property">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_property" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUProperty" title="vocabulary_lib.classes.class_elements.OUProperty">vocabulary_lib.classes.class_elements.OUProperty</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_project">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_project</span></span><span class="sig-paren">(</span><em
+                                                class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_project"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUProject"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUProject">vocabulary_lib.classes.class_elements.OUProject</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURectangle" title="vocabulary_lib.classes.class_elements.OURectangle">vocabulary_lib.classes.class_elements.OURectangle</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_property">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_property</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_property"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUProperty"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUProperty">vocabulary_lib.classes.class_elements.OUProperty</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_relation">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_relation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relation" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURelation" title="vocabulary_lib.classes.class_elements.OURelation">vocabulary_lib.classes.class_elements.OURelation</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_rectangle</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_rectangle"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURectangle"
+                                                                                  title="vocabulary_lib.classes.class_elements.OURectangle">vocabulary_lib.classes.class_elements.OURectangle</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_relationview">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_relationview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relationview" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURelationView" title="vocabulary_lib.classes.class_elements.OURelationView">vocabulary_lib.classes.class_elements.OURelationView</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_relation">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_relation</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relation"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURelation"
+                                                                                  title="vocabulary_lib.classes.class_elements.OURelation">vocabulary_lib.classes.class_elements.OURelation</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="vocabulary_lib.functions.func_load_specific.create_list_ou_text">
-<span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span class="sig-name descname"><span class="pre">create_list_ou_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vocabulary_lib.functions.func_load_specific.create_list_ou_text" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUText" title="vocabulary_lib.classes.class_elements.OUText">vocabulary_lib.classes.class_elements.OUText</a>]</p>
-</dd>
-</dl>
-</dd></dl>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_relationview">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_relationview</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_relationview"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OURelationView"
+                                                                                  title="vocabulary_lib.classes.class_elements.OURelationView">vocabulary_lib.classes.class_elements.OURelationView</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
 
-</section>
-</section>
-</section>
+                                    <dl class="py function">
+                                        <dt class="sig sig-object py"
+                                            id="vocabulary_lib.functions.func_load_specific.create_list_ou_text">
+                                            <span class="sig-prename descclassname"><span class="pre">vocabulary_lib.functions.func_load_specific.</span></span><span
+                                                class="sig-name descname"><span
+                                                class="pre">create_list_ou_text</span></span><span
+                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                                class="pre">ontouml_graph</span></span></em><span
+                                                class="sig-paren">)</span><a class="headerlink"
+                                                                             href="#vocabulary_lib.functions.func_load_specific.create_list_ou_text"
+                                                                             title="Link to this definition"></a></dt>
+                                        <dd>
+                                            <dl class="field-list simple">
+                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+                                                <dd class="field-odd"><p><strong>ontouml_graph</strong> (<em>rdflib.Graph</em>)
+                                                    – </p>
+                                                </dd>
+                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
+                                                <dd class="field-even"><p>list[<a class="reference internal"
+                                                                                  href="../../classes/class_elements/index.html#vocabulary_lib.classes.class_elements.OUText"
+                                                                                  title="vocabulary_lib.classes.class_elements.OUText">vocabulary_lib.classes.class_elements.OUText</a>]
+                                                </p>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                    </dl>
+
+                                </section>
+                            </section>
+                        </section>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../func_class/index.html" class="btn btn-neutral float-left" title="vocabulary_lib.functions.func_class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../func_rdf_utils/index.html" class="btn btn-neutral float-right" title="vocabulary_lib.functions.func_rdf_utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+                    </div>
+                </div>
+                <footer>
+                    <div aria-label="Footer" class="rst-footer-buttons" role="navigation">
+                        <a accesskey="p" class="btn btn-neutral float-left"
+                           href="../func_class/index.html" rel="prev" title="vocabulary_lib.functions.func_class"><span
+                                aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
+                        <a accesskey="n" class="btn btn-neutral float-right"
+                           href="../func_rdf_utils/index.html" rel="next"
+                           title="vocabulary_lib.functions.func_rdf_utils">Next <span
+                                aria-hidden="true" class="fa fa-arrow-circle-right"></span></a>
+                    </div>
 
-  <hr/>
+                    <hr/>
 
-  <div role="contentinfo">
-    <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente, the Netherlands.</p>
-  </div>
+                    <div role="contentinfo">
+                        <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente,
+                            the Netherlands.</p>
+                    </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-</footer>
+
+                </footer>
+            </div>
         </div>
-      </div>
     </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+</div>
+<script>
+    jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+    });
+</script>
 
 </body>
 </html>
