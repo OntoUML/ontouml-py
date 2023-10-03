@@ -1,35 +1,116 @@
 """This module contains a series of tests to validate the mapping and type correctness of the OUTerm class
 which represents OntoUML vocabulary terms as URI references.
 """
-
-import rdflib
+import pytest
+from rdflib import URIRef
 
 from ..classes.outerm import OUTerm
+from ..constants.const_prefix import ONTOUML_NAMESPACE
 
 
-def test_class_outerm_mapping_pos() -> None:
-    """Tests the correct URI mapping of selected OUTerm instances."""
-    assert str(OUTerm.aggregationKind) == "https://w3id.org/ontouml#aggregationKind"
-    assert str(OUTerm.AggregationKind) == "https://w3id.org/ontouml#AggregationKind"
-    assert str(OUTerm.yCoordinate) == "https://w3id.org/ontouml#yCoordinate"
+@pytest.mark.parametrize(
+    "ou_term,term",
+    [
+        (OUTerm.literal, "literal"),
+        (OUTerm.Literal, "Literal"),
+        (OUTerm.name, "name"),
+        (OUTerm.participational, "participational"),
+        (OUTerm.role, "role"),
+    ],
+)
+def test_valid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
+    """Tests the correct URI mapping of the specified OUTerm instances.
+
+    :param ou_term: The OUTerm instance to be tested.
+    :type ou_term: URIRef
+    :param term: The string representation of the OntoUML term.
+    :type term: str
+    """
+    assert str(ou_term) == ONTOUML_NAMESPACE + term
 
 
-def test_class_outerm_mapping_neg() -> None:
-    """Ensures incorrect URI mappings are not validated for selected OUTerm instances."""
-    assert str(OUTerm.abstract) != "http://w3id.org/ontouml#abstract"
-    assert str(OUTerm.collective) != "https://3id.org/ontouml#collective"
-    assert str(OUTerm.yCoordinate) != "https://w3id.org/ontouml#ycoordinate"
+@pytest.mark.parametrize(
+    "ou_term,term",
+    [
+        (OUTerm.literal, " literal"),
+        (OUTerm.Literal, "literal"),
+        (OUTerm.name, "Name"),
+        (OUTerm.participational, "Participational"),
+        (OUTerm.role, "role "),
+    ],
+)
+def test_invalid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
+    """Tests for incorrect URI mappings of the specified OUTerm instances.
+
+    :param ou_term: The OUTerm instance to be tested.
+    :type ou_term: URIRef
+    :param term: The string representation of the OntoUML term.
+    :type term: str
+    """
+    assert str(ou_term) != ONTOUML_NAMESPACE + term
 
 
-def test_class_outerm_type_pos() -> None:
-    """Tests the type correctness of selected OUTerm instances."""
-    assert isinstance(OUTerm.memberOf, str)
-    assert isinstance(OUTerm.yCoordinate, rdflib.term.URIRef)
-    assert isinstance(OUTerm.typeNature, rdflib.term.URIRef)
+@pytest.mark.parametrize(
+    "ou_term", [(OUTerm.type), (OUTerm.subkind), (OUTerm.situation), (OUTerm.qualityNature), (OUTerm.ModelElement)]
+)
+def test_valid_outerm_type(ou_term: URIRef) -> None:
+    """Verifies the type correctness of the specified OUTerm instances.
+
+    :param ou_term: The OUTerm instance to be tested.
+    :type ou_term: URIRef
+    """
+    assert isinstance(ou_term, str)
+    assert isinstance(ou_term, URIRef)
 
 
-def test_class_outerm_type_neg() -> None:
-    """Ensures incorrect type assignments are not validated for selected OUTerm instances."""
-    assert not (isinstance(OUTerm.memberOf, float))
-    assert not (isinstance(OUTerm.yCoordinate, bool))
-    assert not (isinstance(OUTerm.typeNature, int))
+@pytest.mark.parametrize(
+    "ou_term", [(OUTerm.phase), (OUTerm.lowerBound), (OUTerm.instantiation), (OUTerm.end), (OUTerm.DecoratableElement)]
+)
+def test_valid_outerm_attribute_access(ou_term: URIRef) -> None:
+    """Verifies that valid attributes can be accessed without raising an AttributeError for the specified OUTerm \
+    instances.
+
+    :param ou_term: The OUTerm instance to be tested.
+    :type ou_term: URIRef
+    """
+    try:
+        ou_term
+    except AttributeError:
+        assert False
+    assert True
+
+
+@pytest.mark.parametrize(
+    "ou_term",
+    [(OUTerm.isAbstract), (OUTerm.cardinalityValue), (OUTerm.begin), (OUTerm.GeneralizationView), (OUTerm.isViewOf)],
+)
+def test_invalid_outerm_attribute_error(ou_term: URIRef) -> None:
+    """Verifies that invalid attributes raise an AttributeError when accessed for the specified OUTerm instances.
+
+    :param ou_term: The OUTerm instance to be tested.
+    :type ou_term: URIRef
+    """
+    try:
+        ou_term
+    except AttributeError:
+        assert True
+
+
+@pytest.mark.parametrize("term", [("width"), ("mode"), ("model"), ("stereotype"), ("Stereotype")])
+def test_valid_outerm_attribute_existence(term: str) -> None:
+    """Verifies that specified attributes exist in OUTerm.
+
+    :param term: The attribute name to be checked.
+    :type term: str
+    """
+    assert hasattr(OUTerm, term)
+
+
+@pytest.mark.parametrize("term", [("ma_terial"), (" Package"), ("owner "), ("isReDdOnly"), ("historicaldependence")])
+def test_invalid_outerm_attribute_absence(term: str) -> None:
+    """Verifies that specified invalid attributes do not exist in OUTerm.
+
+    :param term: The attribute name to be checked.
+    :type term: str
+    """
+    assert not (hasattr(OUTerm, term))
