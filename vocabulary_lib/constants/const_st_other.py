@@ -1,5 +1,9 @@
+"""The `class_st_other` module defines lists of OntoUML Stereotypes that categorize relations and properties.
+"""
+
 from vocabulary_lib.classes.class_term import OUTerm
 
+# List of OntoUML stereotypes associated with relations.
 OU_RELATION_STS = [
     OUTerm.bringsAbout,
     OUTerm.characterization,
@@ -22,4 +26,5 @@ OU_RELATION_STS = [
     OUTerm.triggers,
 ]
 
+# List of OntoUML stereotypes associated with properties.
 OU_PROPERTY_STS = [OUTerm.begin, OUTerm.end]
