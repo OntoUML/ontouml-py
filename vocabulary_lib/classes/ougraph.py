@@ -27,7 +27,6 @@ Example:
     generalization_elements = ou_graph.list_OUGeneralization
 
     # Process and analyze OntoUML data"""
-
 from loguru import logger
 from rdflib import Graph, RDF
 
