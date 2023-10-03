@@ -1,6 +1,6 @@
 from rdflib import Graph, URIRef
 
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 
 def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:

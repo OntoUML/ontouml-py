@@ -31,7 +31,7 @@ Example:
 from loguru import logger
 from rdflib import Graph, RDF
 
-from vocabulary_lib.classes.class_elements import (
+from vocabulary_lib.classes.ouelement import (
     OUCardinality,
     OUClass,
     OUClassView,
@@ -53,7 +53,7 @@ from vocabulary_lib.classes.class_elements import (
     OUNoteView,
     OULiteral,
 )
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 
 class OUGraph:
@@ -177,12 +177,12 @@ class OUGraph:
                 elif o == OUTerm.RelationView:
                     self.list_OURelationView.append(OURelationView(ontouml_graph, s))
                 else:
-                    logger.warning(
+                    logger.debug(
                         f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
                         f"because it is not an OntoUML element."
                     )
             else:
-                logger.warning(
+                logger.debug(
                     f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
                     f"because it is part of the OntoUML's concrete syntax or it is not an OntoUML element."
                 )

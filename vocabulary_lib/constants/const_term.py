@@ -1,4 +1,4 @@
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 ONTOUML_VOCABULARY_TERMS = [
     OUTerm.abstract,

@@ -1,7 +1,7 @@
 """The `class_st_other` module defines lists of OntoUML Stereotypes that categorize relations and properties.
 """
 
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 # List of OntoUML stereotypes associated with relations.
 OU_RELATION_STS = [

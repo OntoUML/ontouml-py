@@ -1,6 +1,6 @@
 from rdflib import Graph, RDF, URIRef
 
-from vocabulary_lib.classes.class_elements import (
+from vocabulary_lib.classes.ouelement import (
     OUElement,
     OUCardinality,
     OUClass,
@@ -24,7 +24,7 @@ from vocabulary_lib.classes.class_elements import (
     OURelationView,
     OUText,
 )
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 
 class InvalidOntoUMLTypeException(Exception):

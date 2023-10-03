@@ -2,7 +2,7 @@
 Each list represents a specific grouping of stereotypes, providing a convenient way to access.
 """
 
-from ..classes.class_outerm import OUTerm
+from ..classes.outerm import OUTerm
 
 # List of stereotypes that define OntoUML classes as base sortals
 OU_CLASS_ST_BASE_SORTALS = [OUTerm.historicalRole, OUTerm.phase, OUTerm.role, OUTerm.subkind]

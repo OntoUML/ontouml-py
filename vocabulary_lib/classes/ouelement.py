@@ -17,7 +17,7 @@ You can perform similar operations for other OntoUML concepts using their respec
 
 from rdflib import URIRef, Graph
 
-from vocabulary_lib.classes.class_outerm import OUTerm
+from vocabulary_lib.classes.outerm import OUTerm
 
 
 class OUElement:

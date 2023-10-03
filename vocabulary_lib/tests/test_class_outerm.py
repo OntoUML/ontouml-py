@@ -4,7 +4,7 @@ which represents OntoUML vocabulary terms as URI references.
 
 import rdflib
 
-from ..classes.class_outerm import OUTerm
+from ..classes.outerm import OUTerm
 
 
 def test_class_outerm_pos_mapping() -> None:
