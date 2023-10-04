@@ -30,7 +30,7 @@ Example:
 from loguru import logger
 from rdflib import Graph, RDF
 
-from vocabulary_lib.classes.ouelement import (
+from vocabulary_lib.classes._ouelement import (
     OUCardinality,
     OUClass,
     OUClassView,

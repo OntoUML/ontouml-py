@@ -1,7 +1,7 @@
 from rdflib import Graph, RDF, URIRef
 
-from vocabulary_lib.classes.ouelement import (
-    OUElement,
+from vocabulary_lib.classes._ouelement import (
+    _OUElement,
     OUCardinality,
     OUClass,
     OUClassView,
@@ -33,7 +33,7 @@ class InvalidOntoUMLTypeException(Exception):
     pass
 
 
-def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> OUElement:
+def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> _OUElement:
     map_type_element = {
         OUTerm.Cardinality: OUCardinality,
         OUTerm.Class: OUClass,
@@ -73,7 +73,7 @@ def create_list_uriref(ontouml_graph: Graph, object_type: URIRef) -> list[URIRef
     return return_list
 
 
-def create_list_ouelement_from_graph(ontouml_graph: Graph, object_type: URIRef) -> list[OUElement]:
+def create_list_ouelement_from_graph(ontouml_graph: Graph, object_type: URIRef) -> list[_OUElement]:
     return_list = []
 
     for element in ontouml_graph.subjects(RDF.type, object_type):
