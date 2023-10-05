@@ -6,17 +6,28 @@ code. It complies with the OntoUML vocabulary version 1.1.0 available at https:/
 Usage:
     - Import the ONTOUML class from this module to access OntoUML terms with their associated URIs.
     - Use ONTOUML.term_name to access specific OntoUML terms.
+    - Use ONTOUML.all() to access all OntoUML terms defined in the OntoUML Vocabulary as a list of URIRefs.
 
 Example:
     ```
     from ontouml_namespace import ONTOUML
 
-    my_ontouml_term = ONTOUML.term_name
+    my_ontouml_class = OUTerm.Class
+    ic(my_ontouml_class)
+    all_terms = OUTerm.all()
+    ic(all_terms)
+
+    # Results:
+    ic| my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
+    ic| all_terms: [rdflib.term.URIRef('https://w3id.org/ontouml#AggregationKind'),
+                rdflib.term.URIRef('https://w3id.org/ontouml#Cardinality'),
+                rdflib.term.URIRef('https://w3id.org/ontouml#Class'), ...]
     ```
 
 For more information about the OntoUML vocabulary,
 refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 """
+from icecream import ic
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
