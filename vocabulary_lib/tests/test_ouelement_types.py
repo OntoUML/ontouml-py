@@ -20,8 +20,11 @@ def test_class_OUCardinality() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.cardinalityValue,URIRef)
     assert str(elem.cardinalityValue) == "x1"
+    assert isinstance(elem.lowerBound,URIRef)
     assert str(elem.lowerBound) == "x2"
+    assert isinstance(elem.upperBound,URIRef)
     assert str(elem.upperBound) == "x3"
 
 
@@ -33,7 +36,6 @@ def test_class_OUClass() -> None:
     elem_id = URIRef("elem")
 
     g.add((elem_id, OUTerm.name, URIRef("x1")))
-    # g.add((elem_id, OUTerm.attribute, URIRef("x2")))
     g.add((elem_id, OUTerm.description, URIRef("x3")))
     g.add((elem_id, OUTerm.isAbstract, URIRef("x4")))
     g.add((elem_id, OUTerm.isDerived, URIRef("x5")))
@@ -41,22 +43,28 @@ def test_class_OUClass() -> None:
     g.add((elem_id, OUTerm.literal, URIRef("x7")))
     g.add((elem_id, OUTerm.order, URIRef("x8")))
     g.add((elem_id, OUTerm.project, URIRef("x9")))
-    # g.add((elem_id, OUTerm.restrictedTo, URIRef("x10")))
     g.add((elem_id, OUTerm.stereotype, URIRef("x11")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x1"
-    # assert str(elem.attribute) == "x2"
+    assert isinstance(elem.description,URIRef)
     assert str(elem.description) == "x3"
+    assert isinstance(elem.isAbstract,URIRef)
     assert str(elem.isAbstract) == "x4"
+    assert isinstance(elem.isDerived,URIRef)
     assert str(elem.isDerived) == "x5"
+    assert isinstance(elem.isPowertype,URIRef)
     assert str(elem.isPowertype) == "x6"
+    assert isinstance(elem.literal,URIRef)
     assert str(elem.literal) == "x7"
+    assert isinstance(elem.order,URIRef)
     assert str(elem.order) == "x8"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x9"
-    # assert str(elem.restrictedTo) == "x10"
+    assert isinstance(elem.stereotype,URIRef)
     assert str(elem.stereotype) == "x11"
 
 
@@ -74,8 +82,11 @@ def test_class_OUClassView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
 
 
@@ -87,16 +98,17 @@ def test_class_OUDiagram() -> None:
     elem_id = URIRef("elem")
 
     g.add((elem_id, OUTerm.name, URIRef("x1")))
-    # g.add((elem_id, OUTerm.containsView, URIRef("x2")))
     g.add((elem_id, OUTerm.owner, URIRef("x3")))
     g.add((elem_id, OUTerm.project, URIRef("x4")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x1"
-    # assert str(elem.containsView) == "x2"
+    assert isinstance(elem.owner,URIRef)
     assert str(elem.owner) == "x3"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x4"
 
 
@@ -114,8 +126,11 @@ def test_class_OUGeneralization() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.general,URIRef)
     assert str(elem.general) == "x1"
+    assert isinstance(elem.specific,URIRef)
     assert str(elem.specific) == "x2"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x3"
 
 
@@ -126,7 +141,6 @@ def test_class_OUGeneralizationSet() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    # g.add((elem_id, OUTerm.generalization, URIRef("x1")))
     g.add((elem_id, OUTerm.isComplete, URIRef("x2")))
     g.add((elem_id, OUTerm.isDisjoint, URIRef("x3")))
     g.add((elem_id, OUTerm.name, URIRef("x4")))
@@ -135,10 +149,13 @@ def test_class_OUGeneralizationSet() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
-    # assert str(elem.generalization) == "x1"
+    assert isinstance(elem.isComplete,URIRef)
     assert str(elem.isComplete) == "x2"
+    assert isinstance(elem.isDisjoint,URIRef)
     assert str(elem.isDisjoint) == "x3"
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x4"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x5"
 
 
@@ -156,8 +173,11 @@ def test_class_OUGeneralizationSetView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
 
 
@@ -177,10 +197,15 @@ def test_class_OUGeneralizationView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
+    assert isinstance(elem.sourceView,URIRef)
     assert str(elem.sourceView) == "x4"
+    assert isinstance(elem.targetView,URIRef)
     assert str(elem.targetView) == "x5"
 
 
@@ -196,6 +221,7 @@ def test_class_OULiteral() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.project, URIRef)
     assert str(elem.project) == "x1"
 
 
@@ -211,6 +237,7 @@ def test_class_OULiteral() -> None:
 #     g.add((elem_id, RDF.type, term))
 #     elem = elem_type(g, elem_id)
 #
+#     assert isinstance(elem.text,URIRef)
 #     assert str(elem.text) == "x1"
 
 
@@ -230,10 +257,15 @@ def test_class_OUNoteView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
+    assert isinstance(elem.sourceView,URIRef)
     assert str(elem.sourceView) == "x4"
+    assert isinstance(elem.targetView,URIRef)
     assert str(elem.targetView) == "x5"
 
 
@@ -244,15 +276,15 @@ def test_class_OUPackage() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    # g.add((elem_id, OUTerm.containsModelElement, URIRef("x1")))
     g.add((elem_id, OUTerm.name, URIRef("x2")))
     g.add((elem_id, OUTerm.project, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
-    # assert str(elem.containsModelElement) == "x1"
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x2"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x3"
 
 
@@ -272,10 +304,15 @@ def test_class_OUPackageView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
+    assert isinstance(elem.sourceView,URIRef)
     assert str(elem.sourceView) == "x4"
+    assert isinstance(elem.targetView,URIRef)
     assert str(elem.targetView) == "x5"
 
 
@@ -286,13 +323,12 @@ def test_class_OUPath() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    # g.add((elem_id, OUTerm.point, URIRef("x1")))
     g.add((elem_id, OUTerm.project, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
-    # assert str(elem.point) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
 
 
@@ -309,7 +345,9 @@ def test_class_OUPoint() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.xCoordinate,URIRef)
     assert str(elem.xCoordinate) == "x1"
+    assert isinstance(elem.yCoordinate,URIRef)
     assert str(elem.yCoordinate) == "x2"
 
 
@@ -321,14 +359,14 @@ def test_class_OUProject() -> None:
     elem_id = URIRef("elem")
 
     g.add((elem_id, OUTerm.name, URIRef("x1")))
-    # g.add((elem_id, OUTerm.diagram, URIRef("x2")))
     g.add((elem_id, OUTerm.model, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x1"
-    # assert str(elem.diagram) == "x2"
+    assert isinstance(elem.model,URIRef)
     assert str(elem.model) == "x3"
 
 
@@ -351,13 +389,21 @@ def test_class_OUProperty() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.aggregationKind,URIRef)
     assert str(elem.aggregationKind) == "x1"
+    assert isinstance(elem.cardinality,URIRef)
     assert str(elem.cardinality) == "x2"
+    assert isinstance(elem.isDerived,URIRef)
     assert str(elem.isDerived) == "x3"
+    assert isinstance(elem.isOrdered,URIRef)
     assert str(elem.isOrdered) == "x4"
+    assert isinstance(elem.isReadOnly,URIRef)
     assert str(elem.isReadOnly) == "x5"
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x6"
+    assert isinstance(elem.propertyType,URIRef)
     assert str(elem.propertyType) == "x7"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x8"
 
 
@@ -376,9 +422,13 @@ def test_class_OURectangle() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.topLeftPosition,URIRef)
     assert str(elem.topLeftPosition) == "x1"
+    assert isinstance(elem.height,URIRef)
     assert str(elem.height) == "x2"
+    assert isinstance(elem.width,URIRef)
     assert str(elem.width) == "x3"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x4"
 
 
@@ -393,7 +443,6 @@ def test_class_OURelation() -> None:
     g.add((elem_id, OUTerm.isAbstract, URIRef("x2")))
     g.add((elem_id, OUTerm.isDerived, URIRef("x3")))
     g.add((elem_id, OUTerm.name, URIRef("x4")))
-    # g.add((elem_id, OUTerm.relationEnd, URIRef("x5")))
     g.add((elem_id, OUTerm.sourceEnd, URIRef("x6")))
     g.add((elem_id, OUTerm.stereotype, URIRef("x7")))
     g.add((elem_id, OUTerm.targetEnd, URIRef("x8")))
@@ -402,14 +451,21 @@ def test_class_OURelation() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.description,URIRef)
     assert str(elem.description) == "x1"
+    assert isinstance(elem.isAbstract,URIRef)
     assert str(elem.isAbstract) == "x2"
+    assert isinstance(elem.isDerived,URIRef)
     assert str(elem.isDerived) == "x3"
+    assert isinstance(elem.name,URIRef)
     assert str(elem.name) == "x4"
-    # assert str(elem.relationEnd) == "x5"
+    assert isinstance(elem.sourceEnd,URIRef)
     assert str(elem.sourceEnd) == "x6"
+    assert isinstance(elem.stereotype,URIRef)
     assert str(elem.stereotype) == "x7"
+    assert isinstance(elem.targetEnd,URIRef)
     assert str(elem.targetEnd) == "x8"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x9"
 
 
@@ -429,10 +485,15 @@ def test_class_OURelationView() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.isViewOf,URIRef)
     assert str(elem.isViewOf) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.shape,URIRef)
     assert str(elem.shape) == "x3"
+    assert isinstance(elem.sourceView,URIRef)
     assert str(elem.sourceView) == "x4"
+    assert isinstance(elem.targetView,URIRef)
     assert str(elem.targetView) == "x5"
 
 
@@ -452,8 +513,13 @@ def test_class_OUText() -> None:
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
 
+    assert isinstance(elem.height,URIRef)
     assert str(elem.height) == "x1"
+    assert isinstance(elem.project,URIRef)
     assert str(elem.project) == "x2"
+    assert isinstance(elem.text,URIRef)
     assert str(elem.text) == "x3"
+    assert isinstance(elem.topLeftPosition,URIRef)
     assert str(elem.topLeftPosition) == "x4"
+    assert isinstance(elem.width,URIRef)
     assert str(elem.width) == "x5"
