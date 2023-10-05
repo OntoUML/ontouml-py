@@ -2,6 +2,7 @@
 which represents OntoUML vocabulary terms as URI references.
 """
 import pytest
+from icecream import ic
 from rdflib import URIRef
 
 from ..classes.outerm import OUTerm
@@ -105,7 +106,6 @@ def test_valid_outerm_attribute_existence(term: str) -> None:
     """
 
     assert hasattr(OUTerm, term)
-    assert isinstance(term, URIRef)
 
 
 @pytest.mark.parametrize("term", [("ma_terial"), (" Package"), ("owner "), ("isReDdOnly"), ("historicaldependence")])

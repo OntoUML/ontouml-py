@@ -128,13 +128,13 @@ def test_ou_invalid_attribute_valid_access() -> None:
 
     try:
         x1 = OUCardinality(graph, elem_id1)
-        x1.lower_bound
+        x1.lowerBound
         x2 = OURectangle(graph, elem_id2)
         x2.width
         x3 = OUPath(graph, elem_id3)
         x3.point
         x4 = OUNoteView(graph, elem_id4)
-        x4.is_view_of
+        x4.isViewOf
         x5 = OUText(graph, elem_id5)
         x5.project
         assert True

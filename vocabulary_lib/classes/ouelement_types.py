@@ -16,14 +16,29 @@ from vocabulary_lib.classes._ouelement import _OUElement
 from vocabulary_lib.classes.ouexception import OUInvalidAttribute
 from vocabulary_lib.classes.outerm import OUTerm
 
-class_map = {"OUCardinality": OUTerm.Cardinality, "OUClass": OUTerm.Class, "OUClassView": OUTerm.ClassView,
-    "OUDiagram": OUTerm.Diagram, "OUGeneralization": OUTerm.Generalization,
-    "OUGeneralizationSet": OUTerm.GeneralizationSet, "OUGeneralizationSetView": OUTerm.GeneralizationSetView,
-    "OUGeneralizationView": OUTerm.GeneralizationView, "OULiteral": OUTerm.Literal, "OUNote": OUTerm.Note,
-    "OUNoteView": OUTerm.NoteView, "OUPackage": OUTerm.Package, "OUPackageView": OUTerm.PackageView,
-    "OUPath": OUTerm.Path, "OUPoint": OUTerm.Point, "OUProject": OUTerm.Project, "OUProperty": OUTerm.Property,
-    "OURectangle": OUTerm.Rectangle, "OURelation": OUTerm.Relation, "OURelationView": OUTerm.RelationView,
-    "OUText": OUTerm.Text, }
+class_map = {
+    "OUCardinality": OUTerm.Cardinality,
+    "OUClass": OUTerm.Class,
+    "OUClassView": OUTerm.ClassView,
+    "OUDiagram": OUTerm.Diagram,
+    "OUGeneralization": OUTerm.Generalization,
+    "OUGeneralizationSet": OUTerm.GeneralizationSet,
+    "OUGeneralizationSetView": OUTerm.GeneralizationSetView,
+    "OUGeneralizationView": OUTerm.GeneralizationView,
+    "OULiteral": OUTerm.Literal,
+    "OUNote": OUTerm.Note,
+    "OUNoteView": OUTerm.NoteView,
+    "OUPackage": OUTerm.Package,
+    "OUPackageView": OUTerm.PackageView,
+    "OUPath": OUTerm.Path,
+    "OUPoint": OUTerm.Point,
+    "OUProject": OUTerm.Project,
+    "OUProperty": OUTerm.Property,
+    "OURectangle": OUTerm.Rectangle,
+    "OURelation": OUTerm.Relation,
+    "OURelationView": OUTerm.RelationView,
+    "OUText": OUTerm.Text,
+}
 
 
 class OUCardinality(_OUElement):
