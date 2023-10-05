@@ -2,7 +2,6 @@
 which represents OntoUML vocabulary terms as URI references.
 """
 import pytest
-from icecream import ic
 from rdflib import URIRef
 
 from ..classes.outerm import OUTerm

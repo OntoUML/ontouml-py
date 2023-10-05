@@ -53,7 +53,7 @@ def test_ou_element_id_not_in_graph() -> None:
     onto_graph = Graph()
     elem_uri = URIRef("https://example.org/my_elem")
     try:
-        elem_obj = _OUElement(onto_graph, elem_uri, "OUElement", "")
+        _OUElement(onto_graph, elem_uri, "OUElement", "")
         assert False
     except OUIDNotInGraph:
         assert True
@@ -71,7 +71,7 @@ def test_ou_element_id_type_mismatch_error() -> None:
     onto_graph.add((elem_uri, RDF.type, elem_type))
 
     try:
-        elem_obj = _OUElement(onto_graph, elem_uri, "OUElement", OUTerm.Class)
+        _OUElement(onto_graph, elem_uri, "OUElement", OUTerm.Class)
         assert False
     except OUIDTypeMismatchError:
         assert True

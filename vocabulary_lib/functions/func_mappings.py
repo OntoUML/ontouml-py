@@ -2,7 +2,6 @@
 
 It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
 """
-from icecream import ic
 from rdflib import URIRef
 
 from vocabulary_lib.classes._ouelement import _OUElement

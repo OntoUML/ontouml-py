@@ -27,8 +27,8 @@ class _OUElement:
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef, class_name: str, related_type: URIRef):
-        """
-        Initializes an instance of the _OUElement class, verifying the existence and type of the object in the OntoUML graph.
+        """Initializes an instance of the _OUElement class, verifying the existence and type of the object in \
+        the OntoUML graph.
 
         This constructor method performs two main checks on the provided object_id:
         1. Checks if the object_id exists in the ontouml_graph.
@@ -47,7 +47,8 @@ class _OUElement:
         :type related_type: URIRef
 
         :raises OUIDNotInGraph: If the object_id does not exist in the ontouml_graph.
-        :raises OUIDTypeMismatchError: If the object_id exists but does not have the expected related_type in the ontouml_graph.
+        :raises OUIDTypeMismatchError: If the object_id exists but does not have the expected related_type in the \
+        ontouml_graph.
 
         :ivar id: The URI reference of the object, initialized to `object_id`.
         :vartype id: URIRef

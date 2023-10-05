@@ -26,7 +26,7 @@ def test_ouid_not_in_graph_absent_id() -> None:
     graph = Graph()
 
     try:
-        x = OUClass(graph, absent_id)
+        OUClass(graph, absent_id)
         assert False
     except OUIDNotInGraph:
         assert True
@@ -44,7 +44,7 @@ def test_ouid_not_in_graph_present_id() -> None:
     graph.add((present_id, RDF.type, OUTerm.Class))
 
     try:
-        x = OUClass(graph, present_id)
+        OUClass(graph, present_id)
         assert True
     except OUIDNotInGraph:
         assert False
@@ -70,7 +70,7 @@ def test_ouid_type_mismatch_error_mismatched_type(ouclass, outerm) -> None:
     graph = Graph()
     graph.add((elem_id, RDF.type, outerm))
     try:
-        x = ouclass(graph, elem_id)
+        ouclass(graph, elem_id)
         assert False
     except OUIDTypeMismatchError:
         assert True
@@ -96,11 +96,11 @@ def test_ouid_type_mismatch_error_matched_type() -> None:
     graph.add((elem_id5, RDF.type, OUTerm.Text))
 
     try:
-        x1 = OUCardinality(graph, elem_id1)
-        x2 = OURectangle(graph, elem_id2)
-        x3 = OUPath(graph, elem_id3)
-        x4 = OUNoteView(graph, elem_id4)
-        x5 = OUText(graph, elem_id5)
+        OUCardinality(graph, elem_id1)
+        OURectangle(graph, elem_id2)
+        OUPath(graph, elem_id3)
+        OUNoteView(graph, elem_id4)
+        OUText(graph, elem_id5)
         assert True
     except OUIDTypeMismatchError:
         assert False
