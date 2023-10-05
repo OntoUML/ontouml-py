@@ -10,6 +10,7 @@ class OUIDNotInGraph(ValueError):
     :param ou_class_name: The name of the OntoUML class being instantiated.
     :type ou_class_name: str
     """
+
     def __init__(self, absent_ou_id: URIRef, ou_class_name: str):
         message = (
             f"The id '{absent_ou_id}' used to instantiate '{ou_class_name}' does not exist in the OntoUML graph. "
@@ -28,6 +29,7 @@ class OUIDTypeMismatchError(ValueError):
     :param related_type: The expected type for the ID.
     :type related_type: URIRef
     """
+
     def __init__(self, absent_ou_id: URIRef, ou_class_name: str, related_type: URIRef):
         message = (
             f"The id '{absent_ou_id}' used to instantiate '{ou_class_name}' is not an element of type '{related_type}'."
@@ -44,10 +46,9 @@ class OUInvalidAttribute(NameError):
     :param invalid_att_name: The name of the invalid attribute that was accessed.
     :type invalid_att_name: str
     """
+
     def __init__(self, ou_class_name: str, invalid_att_name: str):
-        message = (
-            f"The '{ou_class_name}' does not have an attribute '{invalid_att_name}'. Software execution aborted."
-        )
+        message = f"The '{ou_class_name}' does not have an attribute '{invalid_att_name}'. Software execution aborted."
         super().__init__(message)
 
 
@@ -57,6 +58,7 @@ class OUUnmappedOUElement(KeyError):
     :param ouelement: The OUElement that does not have a mapped OUTerm.
     :type ouelement: str
     """
+
     def __init__(self, ouelement):
         message = f"The OUElement '{ouelement}' does not have a mapped OUTerm. Software execution aborted."
         super().__init__(message)
@@ -65,9 +67,10 @@ class OUUnmappedOUElement(KeyError):
 class OUUnmappedOUTerm(Exception):
     """Custom exception for handling cases where an OUTerm does not have a mapped OUElement.
 
-     :param outerm: The OUTerm that does not have a mapped OUElement.
-     :type outerm: str
-     """
+    :param outerm: The OUTerm that does not have a mapped OUElement.
+    :type outerm: str
+    """
+
     def __init__(self, outerm):
         message = f"The OUTerm '{outerm}' does not have a mapped OUElement. Software execution aborted."
         super().__init__(message)

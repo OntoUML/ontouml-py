@@ -8,9 +8,16 @@ from ..classes.outerm import OUTerm
 from ..constants.const_prefix import ONTOUML_NAMESPACE
 
 
-@pytest.mark.parametrize("ou_term,term",
-    [(OUTerm.literal, "literal"), (OUTerm.Literal, "Literal"), (OUTerm.name, "name"),
-        (OUTerm.participational, "participational"), (OUTerm.role, "role"), ], )
+@pytest.mark.parametrize(
+    "ou_term,term",
+    [
+        (OUTerm.literal, "literal"),
+        (OUTerm.Literal, "Literal"),
+        (OUTerm.name, "name"),
+        (OUTerm.participational, "participational"),
+        (OUTerm.role, "role"),
+    ],
+)
 def test_valid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
     """Tests the correct URI mapping of the specified OUTerm instances.
 
@@ -22,9 +29,16 @@ def test_valid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
     assert str(ou_term) == ONTOUML_NAMESPACE + term
 
 
-@pytest.mark.parametrize("ou_term,term",
-    [(OUTerm.literal, " literal"), (OUTerm.Literal, "literal"), (OUTerm.name, "Name"),
-        (OUTerm.participational, "Participational"), (OUTerm.role, "role "), ], )
+@pytest.mark.parametrize(
+    "ou_term,term",
+    [
+        (OUTerm.literal, " literal"),
+        (OUTerm.Literal, "literal"),
+        (OUTerm.name, "Name"),
+        (OUTerm.participational, "Participational"),
+        (OUTerm.role, "role "),
+    ],
+)
 def test_invalid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
     """Tests for incorrect URI mappings of the specified OUTerm instances.
 
@@ -36,8 +50,9 @@ def test_invalid_outerm_uri_mapping(ou_term: URIRef, term: str) -> None:
     assert str(ou_term) != ONTOUML_NAMESPACE + term
 
 
-@pytest.mark.parametrize("ou_term",
-    [(OUTerm.type), (OUTerm.subkind), (OUTerm.situation), (OUTerm.qualityNature), (OUTerm.ModelElement)])
+@pytest.mark.parametrize(
+    "ou_term", [(OUTerm.type), (OUTerm.subkind), (OUTerm.situation), (OUTerm.qualityNature), (OUTerm.ModelElement)]
+)
 def test_valid_outerm_type(ou_term: URIRef) -> None:
     """Verifies the type correctness of the specified OUTerm instances.
 
@@ -48,8 +63,9 @@ def test_valid_outerm_type(ou_term: URIRef) -> None:
     assert isinstance(ou_term, URIRef)
 
 
-@pytest.mark.parametrize("ou_term",
-    [(OUTerm.phase), (OUTerm.lowerBound), (OUTerm.instantiation), (OUTerm.end), (OUTerm.DecoratableElement)])
+@pytest.mark.parametrize(
+    "ou_term", [(OUTerm.phase), (OUTerm.lowerBound), (OUTerm.instantiation), (OUTerm.end), (OUTerm.DecoratableElement)]
+)
 def test_valid_outerm_attribute_access(ou_term: URIRef) -> None:
     """Verifies that valid attributes can be accessed without raising an AttributeError for the specified OUTerm \
     instances.
@@ -64,8 +80,10 @@ def test_valid_outerm_attribute_access(ou_term: URIRef) -> None:
     assert True
 
 
-@pytest.mark.parametrize("ou_term",
-    [(OUTerm.isAbstract), (OUTerm.cardinalityValue), (OUTerm.begin), (OUTerm.GeneralizationView), (OUTerm.isViewOf)], )
+@pytest.mark.parametrize(
+    "ou_term",
+    [(OUTerm.isAbstract), (OUTerm.cardinalityValue), (OUTerm.begin), (OUTerm.GeneralizationView), (OUTerm.isViewOf)],
+)
 def test_invalid_outerm_attribute_error(ou_term: URIRef) -> None:
     """Verifies that invalid attributes raise an AttributeError when accessed for the specified OUTerm instances.
 
@@ -107,7 +125,7 @@ def test_all_method_valid_outerm_attribute_existence() -> None:
 
     for term in list_terms:
         assert hasattr(OUTerm, term)
-        assert isinstance(term,URIRef)
+        assert isinstance(term, URIRef)
 
 
 def test_all_method_is_empty() -> None:

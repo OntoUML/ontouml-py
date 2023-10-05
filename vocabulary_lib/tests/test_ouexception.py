@@ -2,8 +2,17 @@
 import pytest
 from rdflib import Graph, URIRef, RDF
 
-from vocabulary_lib.classes.ouelement_types import OUCardinality, OURectangle, OUPath, OUNoteView, OUText, OUClass, \
-    OUDiagram, OUGeneralizationSetView, OUPoint
+from vocabulary_lib.classes.ouelement_types import (
+    OUCardinality,
+    OURectangle,
+    OUPath,
+    OUNoteView,
+    OUText,
+    OUClass,
+    OUDiagram,
+    OUGeneralizationSetView,
+    OUPoint,
+)
 from vocabulary_lib.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError, OUInvalidAttribute
 from vocabulary_lib.classes.outerm import OUTerm
 
@@ -43,8 +52,15 @@ def test_ouid_not_in_graph_present_id() -> None:
         assert False
 
 
-@pytest.mark.parametrize("ouclass, outerm", [(OUClass, OUTerm.Cardinality), (OUDiagram, OUTerm.Shape),
-                                             (OUGeneralizationSetView, OUTerm.point), (OUPoint, OUTerm.RelationView)])
+@pytest.mark.parametrize(
+    "ouclass, outerm",
+    [
+        (OUClass, OUTerm.Cardinality),
+        (OUDiagram, OUTerm.Shape),
+        (OUGeneralizationSetView, OUTerm.point),
+        (OUPoint, OUTerm.RelationView),
+    ],
+)
 def test_ouid_type_mismatch_error_mismatched_type(ouclass, outerm) -> None:
     """Test case for the 'OUIDTypeMismatchError' exception when the ID has a type mismatch.
 
