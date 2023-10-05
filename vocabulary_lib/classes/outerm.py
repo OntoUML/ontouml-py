@@ -13,13 +13,11 @@ Example:
     from ontouml_namespace import ONTOUML
 
     my_ontouml_class = OUTerm.Class
-    ic(my_ontouml_class)
     all_terms = OUTerm.all()
-    ic(all_terms)
 
     # Results:
-    ic| my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
-    ic| all_terms: [rdflib.term.URIRef('https://w3id.org/ontouml#AggregationKind'),
+    my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
+    all_terms: [rdflib.term.URIRef('https://w3id.org/ontouml#AggregationKind'),
                 rdflib.term.URIRef('https://w3id.org/ontouml#Cardinality'),
                 rdflib.term.URIRef('https://w3id.org/ontouml#Class'), ...]
     ```

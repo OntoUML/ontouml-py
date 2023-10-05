@@ -2,6 +2,7 @@
 
 It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
 """
+from icecream import ic
 from rdflib import URIRef
 
 from vocabulary_lib.classes._ouelement import _OUElement
@@ -89,13 +90,15 @@ def get_outerm_from_ouelement(ouelement: _OUElement | str) -> URIRef:
     :return: The corresponding OUTerm object.
     :rtype: URIRef
     """
+
     if isinstance(ouelement, str):
         for key, value in _MAP_OUTERM_OUELEMENT.items():
             if value.__name__ == ouelement:
                 return key
-    else:
+    elif isinstance(ouelement, type):
+        ouelement_class_name = ouelement.__name__
         for key, value in _MAP_OUTERM_OUELEMENT.items():
-            if value == ouelement.__class__:
+            if value.__name__ == ouelement_class_name:
                 return key
 
     # Every OUElement is mapped to an OUTerm, hence, this exception must never happen.

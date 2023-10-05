@@ -49,12 +49,12 @@ class OUCardinality(_OUElement):
     :param object_id: The URI reference of the cardinality object.
     :type object_id: URIRef
 
-    :ivar cardinality_value: The cardinality value.
-    :vartype cardinality_value: URIRef
-    :ivar lower_bound: The lower bound of the cardinality.
-    :vartype lower_bound: URIRef
-    :ivar upper_bound: The upper bound of the cardinality.
-    :vartype upper_bound: URIRef
+    :ivar cardinalityValue: The cardinality value.
+    :vartype cardinalityValue: URIRef
+    :ivar lowerBound: The lower bound of the cardinality.
+    :vartype lowerBound: URIRef
+    :ivar upperBound: The upper bound of the cardinality.
+    :vartype upperBound: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -62,9 +62,9 @@ class OUCardinality(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.cardinality_value: URIRef = ontouml_graph.value(object_id, OUTerm.cardinalityValue)
-        self.lower_bound: URIRef = ontouml_graph.value(object_id, OUTerm.lowerBound)
-        self.upper_bound: URIRef = ontouml_graph.value(object_id, OUTerm.upperBound)
+        self.cardinalityValue: URIRef = ontouml_graph.value(object_id, OUTerm.cardinalityValue)
+        self.lowerBound: URIRef = ontouml_graph.value(object_id, OUTerm.lowerBound)
+        self.upperBound: URIRef = ontouml_graph.value(object_id, OUTerm.upperBound)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -84,20 +84,20 @@ class OUClass(_OUElement):
     :vartype attribute: List[URIRef]
     :ivar description: The description of the class.
     :vartype description: URIRef
-    :ivar is_abstract: Indicates if the class is abstract.
-    :vartype is_abstract: URIRef
-    :ivar is_derived: Indicates if the class is derived.
-    :vartype is_derived: URIRef
-    :ivar is_powertype: Indicates if the class is a powertype.
-    :vartype is_powertype: URIRef
+    :ivar isAbstract: Indicates if the class is abstract.
+    :vartype isAbstract: URIRef
+    :ivar isDerived: Indicates if the class is derived.
+    :vartype isDerived: URIRef
+    :ivar isPowertype: Indicates if the class is a powertype.
+    :vartype isPowertype: URIRef
     :ivar literal: The literal associated with the class.
     :vartype literal: URIRef
     :ivar order: The order of the class.
     :vartype order: URIRef
     :ivar project: The project to which the class belongs.
     :vartype project: URIRef
-    :ivar restricted_to: A list of classes restricted to this class.
-    :vartype restricted_to: List[URIRef]
+    :ivar restrictedTo: A list of classes restricted to this class.
+    :vartype restrictedTo: List[URIRef]
     :ivar stereotype: The stereotype of the class.
     :vartype stereotype: URIRef
     """
@@ -110,13 +110,13 @@ class OUClass(_OUElement):
         self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
         self.attribute: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.attribute)
         self.description: URIRef = ontouml_graph.value(object_id, OUTerm.description)
-        self.is_abstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
-        self.is_derived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
-        self.is_powertype: URIRef = ontouml_graph.value(object_id, OUTerm.isPowertype)
+        self.isAbstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
+        self.isPowertype: URIRef = ontouml_graph.value(object_id, OUTerm.isPowertype)
         self.literal: URIRef = ontouml_graph.value(object_id, OUTerm.literal)
         self.order: URIRef = ontouml_graph.value(object_id, OUTerm.order)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.restricted_to: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.restrictedTo)
+        self.restrictedTo: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.restrictedTo)
         self.stereotype: URIRef = ontouml_graph.value(object_id, OUTerm.stereotype)
 
     def __getattr__(self, invalid_att_name):
@@ -131,8 +131,8 @@ class OUClassView(_OUElement):
     :param object_id: The URI reference of the class view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The class that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The class that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the class view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the class view.
@@ -144,7 +144,7 @@ class OUClassView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
 
@@ -223,10 +223,10 @@ class OUGeneralizationSet(_OUElement):
 
     :ivar generalization: A list of generalizations included in the set.
     :vartype generalization: List[URIRef]
-    :ivar is_complete: Indicates if the generalization set is complete.
-    :vartype is_complete: URIRef
-    :ivar is_disjoint: Indicates if the generalization set is disjoint.
-    :vartype is_disjoint: URIRef
+    :ivar isComplete: Indicates if the generalization set is complete.
+    :vartype isComplete: URIRef
+    :ivar isDisjoint: Indicates if the generalization set is disjoint.
+    :vartype isDisjoint: URIRef
     :ivar name: The name of the generalization set.
     :vartype name: URIRef
     :ivar project: The project to which the generalization set belongs.
@@ -239,8 +239,8 @@ class OUGeneralizationSet(_OUElement):
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
         self.generalization: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.generalization)
-        self.is_complete: URIRef = ontouml_graph.value(object_id, OUTerm.isComplete)
-        self.is_disjoint: URIRef = ontouml_graph.value(object_id, OUTerm.isDisjoint)
+        self.isComplete: URIRef = ontouml_graph.value(object_id, OUTerm.isComplete)
+        self.isDisjoint: URIRef = ontouml_graph.value(object_id, OUTerm.isDisjoint)
         self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
 
@@ -256,8 +256,8 @@ class OUGeneralizationSetView(_OUElement):
     :param object_id: The URI reference of the generalization set view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The generalization set that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The generalization set that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the generalization set view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the generalization set view.
@@ -269,7 +269,7 @@ class OUGeneralizationSetView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
 
@@ -285,16 +285,16 @@ class OUGeneralizationView(_OUElement):
     :param object_id: The URI reference of the generalization view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The generalization that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The generalization that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the generalization view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the generalization view.
     :vartype shape: URIRef
-    :ivar source_view: The source view of the generalization.
-    :vartype source_view: URIRef
-    :ivar target_view: The target view of the generalization.
-    :vartype target_view: URIRef
+    :ivar sourceView: The source view of the generalization.
+    :vartype sourceView: URIRef
+    :ivar targetView: The target view of the generalization.
+    :vartype targetView: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -302,11 +302,11 @@ class OUGeneralizationView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.source_view: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.target_view: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -366,16 +366,16 @@ class OUNoteView(_OUElement):
     :param object_id: The URI reference of the note view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The note that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The note that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the note view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the note view.
     :vartype shape: URIRef
-    :ivar source_view: The source view of the note.
-    :vartype source_view: URIRef
-    :ivar target_view: The target view of the note.
-    :vartype target_view: URIRef
+    :ivar sourceView: The source view of the note.
+    :vartype sourceView: URIRef
+    :ivar targetView: The target view of the note.
+    :vartype targetView: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -383,11 +383,11 @@ class OUNoteView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.source_view: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.target_view: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -401,8 +401,8 @@ class OUPackage(_OUElement):
     :param object_id: The URI reference of the package.
     :type object_id: URIRef
 
-    :ivar contains_model_element: A list of model elements contained within the package.
-    :vartype contains_model_element: List[URIRef]
+    :ivar containsModelElement: A list of model elements contained within the package.
+    :vartype containsModelElement: List[URIRef]
     :ivar name: The name of the package.
     :vartype name: URIRef
     :ivar project: The project to which the package belongs.
@@ -414,7 +414,7 @@ class OUPackage(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.contains_model_element: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.containsModelElement)
+        self.containsModelElement: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.containsModelElement)
         self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
 
@@ -430,16 +430,16 @@ class OUPackageView(_OUElement):
     :param object_id: The URI reference of the package view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The package that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The package that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the package view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the package view.
     :vartype shape: URIRef
-    :ivar source_view: The source view of the package.
-    :vartype source_view: URIRef
-    :ivar target_view: The target view of the package.
-    :vartype target_view: URIRef
+    :ivar sourceView: The source view of the package.
+    :vartype sourceView: URIRef
+    :ivar targetView: The target view of the package.
+    :vartype targetView: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -447,11 +447,11 @@ class OUPackageView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.source_view: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.target_view: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -491,10 +491,10 @@ class OUPoint(_OUElement):
     :param object_id: The URI reference of the point.
     :type object_id: URIRef
 
-    :ivar x_coordinate: The x-coordinate of the point.
-    :vartype x_coordinate: URIRef
-    :ivar y_coordinate: The y-coordinate of the point.
-    :vartype y_coordinate: URIRef
+    :ivar xCoordinate: The x-coordinate of the point.
+    :vartype xCoordinate: URIRef
+    :ivar yCoordinate: The y-coordinate of the point.
+    :vartype yCoordinate: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -502,8 +502,8 @@ class OUPoint(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.x_coordinate: URIRef = ontouml_graph.value(object_id, OUTerm.xCoordinate)
-        self.y_coordinate: URIRef = ontouml_graph.value(object_id, OUTerm.yCoordinate)
+        self.xCoordinate: URIRef = ontouml_graph.value(object_id, OUTerm.xCoordinate)
+        self.yCoordinate: URIRef = ontouml_graph.value(object_id, OUTerm.yCoordinate)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -546,20 +546,20 @@ class OUProperty(_OUElement):
     :param object_id: The URI reference of the property.
     :type object_id: URIRef
 
-    :ivar aggregation_kind: The aggregation kind of the property.
-    :vartype aggregation_kind: URIRef
+    :ivar aggregationKind: The aggregation kind of the property.
+    :vartype aggregationKind: URIRef
     :ivar cardinality: The cardinality of the property.
     :vartype cardinality: URIRef
-    :ivar is_derived: Indicates if the property is derived.
-    :vartype is_derived: URIRef
-    :ivar is_ordered: Indicates if the property is ordered.
-    :vartype is_ordered: URIRef
-    :ivar is_read_only: Indicates if the property is read-only.
-    :vartype is_read_only: URIRef
+    :ivar isDerived: Indicates if the property is derived.
+    :vartype isDerived: URIRef
+    :ivar isOrdered: Indicates if the property is ordered.
+    :vartype isOrdered: URIRef
+    :ivar isReadOnly: Indicates if the property is read-only.
+    :vartype isReadOnly: URIRef
     :ivar name: The name of the property.
     :vartype name: URIRef
-    :ivar property_type: The type of the property.
-    :vartype property_type: URIRef
+    :ivar propertyType: The type of the property.
+    :vartype propertyType: URIRef
     :ivar project: The project to which the property belongs.
     :vartype project: URIRef
     """
@@ -569,13 +569,13 @@ class OUProperty(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.aggregation_kind: URIRef = ontouml_graph.value(object_id, OUTerm.aggregationKind)
+        self.aggregationKind: URIRef = ontouml_graph.value(object_id, OUTerm.aggregationKind)
         self.cardinality: URIRef = ontouml_graph.value(object_id, OUTerm.cardinality)
-        self.is_derived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
-        self.is_ordered: URIRef = ontouml_graph.value(object_id, OUTerm.isOrdered)
-        self.is_read_only: URIRef = ontouml_graph.value(object_id, OUTerm.isReadOnly)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
+        self.isOrdered: URIRef = ontouml_graph.value(object_id, OUTerm.isOrdered)
+        self.isReadOnly: URIRef = ontouml_graph.value(object_id, OUTerm.isReadOnly)
         self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.property_type: URIRef = ontouml_graph.value(object_id, OUTerm.propertyType)
+        self.propertyType: URIRef = ontouml_graph.value(object_id, OUTerm.propertyType)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
 
     def __getattr__(self, invalid_att_name):
@@ -590,8 +590,8 @@ class OURectangle(_OUElement):
     :param object_id: The URI reference of the rectangle.
     :type object_id: URIRef
 
-    :ivar top_left_position: The top-left position of the rectangle.
-    :vartype top_left_position: URIRef
+    :ivar topLeftPosition: The top-left position of the rectangle.
+    :vartype topLeftPosition: URIRef
     :ivar height: The height of the rectangle.
     :vartype height: URIRef
     :ivar width: The width of the rectangle.
@@ -605,7 +605,7 @@ class OURectangle(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.top_left_position: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
+        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
         self.height: URIRef = ontouml_graph.value(object_id, OUTerm.height)
         self.width: URIRef = ontouml_graph.value(object_id, OUTerm.width)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
@@ -624,20 +624,20 @@ class OURelation(_OUElement):
 
     :ivar description: The description of the relation.
     :vartype description: URIRef
-    :ivar is_abstract: Indicates if the relation is abstract.
-    :vartype is_abstract: URIRef
-    :ivar is_derived: Indicates if the relation is derived.
-    :vartype is_derived: URIRef
+    :ivar isAbstract: Indicates if the relation is abstract.
+    :vartype isAbstract: URIRef
+    :ivar isDerived: Indicates if the relation is derived.
+    :vartype isDerived: URIRef
     :ivar name: The name of the relation.
     :vartype name: URIRef
-    :ivar relation_end: A list of ends associated with the relation.
-    :vartype relation_end: List[URIRef]
-    :ivar source_end: The source end of the relation.
-    :vartype source_end: URIRef
+    :ivar relationEnd: A list of ends associated with the relation.
+    :vartype relationEnd: List[URIRef]
+    :ivar sourceEnd: The source end of the relation.
+    :vartype sourceEnd: URIRef
     :ivar stereotype: The stereotype of the relation.
     :vartype stereotype: URIRef
-    :ivar target_end: The target end of the relation.
-    :vartype target_end: URIRef
+    :ivar targetEnd: The target end of the relation.
+    :vartype targetEnd: URIRef
     :ivar project: The project to which the relation belongs.
     :vartype project: URIRef
     """
@@ -648,13 +648,13 @@ class OURelation(_OUElement):
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
         self.description: URIRef = ontouml_graph.value(object_id, OUTerm.description)
-        self.is_abstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
-        self.is_derived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
+        self.isAbstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
         self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.relation_end: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.relationEnd)
-        self.source_end: URIRef = ontouml_graph.value(object_id, OUTerm.sourceEnd)
+        self.relationEnd: list[URIRef] = ontouml_graph.objects(object_id, OUTerm.relationEnd)
+        self.sourceEnd: URIRef = ontouml_graph.value(object_id, OUTerm.sourceEnd)
         self.stereotype: URIRef = ontouml_graph.value(object_id, OUTerm.stereotype)
-        self.target_end: URIRef = ontouml_graph.value(object_id, OUTerm.targetEnd)
+        self.targetEnd: URIRef = ontouml_graph.value(object_id, OUTerm.targetEnd)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
 
     def __getattr__(self, invalid_att_name):
@@ -669,16 +669,16 @@ class OURelationView(_OUElement):
     :param object_id: The URI reference of the relation view.
     :type object_id: URIRef
 
-    :ivar is_view_of: The relation that this view is associated with.
-    :vartype is_view_of: URIRef
+    :ivar isViewOf: The relation that this view is associated with.
+    :vartype isViewOf: URIRef
     :ivar project: The project to which the relation view belongs.
     :vartype project: URIRef
     :ivar shape: The shape of the relation view.
     :vartype shape: URIRef
-    :ivar source_view: The source view associated with the relation view.
-    :vartype source_view: URIRef
-    :ivar target_view: The target view associated with the relation view.
-    :vartype target_view: URIRef
+    :ivar sourceView: The source view associated with the relation view.
+    :vartype sourceView: URIRef
+    :ivar targetView: The target view associated with the relation view.
+    :vartype targetView: URIRef
     """
 
     def __init__(self, ontouml_graph: Graph, object_id: URIRef):
@@ -686,11 +686,11 @@ class OURelationView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.is_view_of: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.source_view: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.target_view: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -710,8 +710,8 @@ class OUText(_OUElement):
     :vartype project: URIRef
     :ivar text: The text content.
     :vartype text: URIRef
-    :ivar top_left_position: The top-left position of the text.
-    :vartype top_left_position: URIRef
+    :ivar topLeftPosition: The top-left position of the text.
+    :vartype topLeftPosition: URIRef
     :ivar width: The width of the text.
     :vartype width: URIRef
     """
@@ -724,7 +724,7 @@ class OUText(_OUElement):
         self.height: URIRef = ontouml_graph.value(object_id, OUTerm.height)
         self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
         self.text: URIRef = ontouml_graph.value(object_id, OUTerm.text)
-        self.top_left_position: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
+        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
         self.width: URIRef = ontouml_graph.value(object_id, OUTerm.width)
 
     def __getattr__(self, invalid_att_name):
