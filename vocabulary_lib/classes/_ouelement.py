@@ -19,3 +19,4 @@ class _OUElement:
             raise OUIDTypeMismatchError(object_id, class_name, related_type)
         else:
             self.id: URIRef = object_id
+            self.type: URIRef = related_type

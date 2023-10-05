@@ -1,5 +1,4 @@
-"""
-Module for the ONTOUML namespace mapping to the OntoUML vocabulary.
+"""Module for the ONTOUML namespace mapping to the OntoUML vocabulary.
 
 This module defines the ONTOUML class, which serves as a convenient way to access OntoUML terms and concepts in Python
 code. It complies with the OntoUML vocabulary version 1.1.0 available at https://w3id.org/ontouml/vocabulary/v1.1.0.
@@ -324,3 +323,19 @@ class OUTerm(DefinedNamespace):
     _fail = True
 
     _NS = Namespace(ONTOUML_NAMESPACE)
+
+    @classmethod
+    def all(cls) -> list[URIRef]:
+        """
+        Retrieves a list of all public attributes of the OUTerm class, i.e., all terms contained in the OntoUML \
+        Vocabulary.
+
+        This method uses introspection to find all attributes and methods of the OUTerm
+        class that do not begin with an underscore (which by convention are considered private),
+        and returns a list containing the names of these attributes and methods.
+
+        :return: A list containing the names of all public attributes and methods of the OUTerm class.
+        :rtype: list[URIRef]
+        """
+        all_dict = {k: getattr(OUTerm, k) for k in dir(OUTerm) if not k.startswith("_")}
+        return list(all_dict.keys())
