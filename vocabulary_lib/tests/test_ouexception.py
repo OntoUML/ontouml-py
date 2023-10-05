@@ -1,7 +1,9 @@
 """Module for testing custom exceptions related to OntoUML."""
+import pytest
+from icecream import ic
 from rdflib import Graph, URIRef, RDF
 
-from vocabulary_lib.classes._ouelement import OUClass, OUDiagram, OUCardinality, OURectangle, OUPath, OUNoteView, OUText
+from vocabulary_lib.classes.ouelement_types import OUCardinality, OURectangle, OUPath, OUNoteView, OUText, OUClass
 from vocabulary_lib.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
 from vocabulary_lib.classes.outerm import OUTerm
 
@@ -22,6 +24,7 @@ def test_ouid_not_in_graph_exception_positive() -> None:
     except Exception:
         assert False
 
+
 def test_ouid_not_in_graph_exception_negative() -> None:
     """Test case for the 'OUIDNotInGraph' exception when the ID exists in the OntoUML graph.
 
@@ -40,22 +43,27 @@ def test_ouid_not_in_graph_exception_negative() -> None:
         assert False
 
 
-def test_ouid_type_mismatch_error_positive() -> None:
+@pytest.mark.parametrize("ouclass, outerm", [(OUClass, OUTerm.Cardinality), (), (), (), ()])
+def test_ouid_type_mismatch_error_positive(ouclass, outerm) -> None:
     """Test case for the 'OUIDTypeMismatchError' exception when the ID has a type mismatch.
 
     :raises OUIDTypeMismatchError: When the provided ID has a type mismatch with the expected type.
     """
     elem_id = URIRef("http://example.com/elem_id")
     graph = Graph()
-    graph.add((elem_id, RDF.type, OUTerm.Class))
+    graph.add((elem_id, RDF.type, outerm))
+
+    ic(ouclass)
+    ic(outerm)
 
     try:
-        x = OUCardinality(graph, elem_id)
+        x = ouclass(graph, elem_id)
         assert False
     except OUIDTypeMismatchError:
         assert True
     except Exception:
         assert False
+
 
 def test_ouid_type_mismatch_error_negative() -> None:
     """Test case for the 'OUIDTypeMismatchError' exception when the ID has the expected type.
@@ -86,8 +94,10 @@ def test_ouid_type_mismatch_error_negative() -> None:
     except Exception:
         assert False
 
+
 def test_ou_invalid_attribute_positive() -> None:
     pass
+
 
 def test_ou_invalid_attribute_negative() -> None:
     pass

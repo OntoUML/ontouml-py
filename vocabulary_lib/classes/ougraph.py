@@ -30,27 +30,27 @@ Example:
 from loguru import logger
 from rdflib import Graph, RDF
 
-from vocabulary_lib.classes._ouelement import (
+from vocabulary_lib.classes.ouelement_types import (
     OUCardinality,
     OUClass,
-    OUClassView,
-    OUDiagram,
     OUGeneralization,
     OUGeneralizationSet,
-    OUGeneralizationSetView,
-    OUGeneralizationView,
+    OULiteral,
     OUNote,
     OUPackage,
-    OUPath,
-    OUPoint,
     OUProject,
     OUProperty,
-    OURectangle,
     OURelation,
-    OURelationView,
     OUText,
+    OUClassView,
+    OUDiagram,
+    OUGeneralizationSetView,
+    OUGeneralizationView,
     OUNoteView,
-    OULiteral,
+    OUPath,
+    OUPoint,
+    OURectangle,
+    OURelationView,
 )
 from vocabulary_lib.classes.outerm import OUTerm
 
