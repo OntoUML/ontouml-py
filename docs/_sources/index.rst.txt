@@ -1,9 +1,9 @@
-.. ontouml-vocabulary-lib code documentation master file
+.. ontouml-py code documentation master file
 
-Welcome to ontouml-vocabulary-lib's code documentation!
+Welcome to ontouml-py's code documentation!
 =============================================
 
-.. image:: ../resources/logo-vocabulary-lib-reduced.png
+.. image:: ../resources/logo-ontouml-py-reduced.png
 
 .. toctree::
    :maxdepth: 2

@@ -15,11 +15,11 @@ authors:
     orcid: 'https://orcid.org/0000-0003-2736-7817'
 identifiers:
   - type: url
-    value: 'https://w3id.org/ontouml/vocabulary-lib'
+    value: 'https://w3id.org/ontouml/ontouml-py'
     description: Git repository
-repository-code: 'https://w3id.org/ontouml/vocabulary-lib'
-url: 'https://w3id.org/ontouml/vocabulary-lib/docs'
-repository-artifact: 'https://pypi.org/project/ontouml-vocabulary-lib/'
+repository-code: 'https://w3id.org/ontouml/ontouml-py'
+url: 'https://w3id.org/ontouml/ontouml-py/docs'
+repository-artifact: 'https://pypi.org/project/ontouml-py/'
 abstract: A Python library designed to simplify the development of software applications using the OntoUML vocabulary.
 keywords:
   - ontouml

@@ -1,19 +1,19 @@
 [tool.poetry]
-name = "ontouml-vocabulary-lib"
+name = "ontouml-py"
 version = "1.0.0a0"
-description = "OntoUML Vocabulary Library"
+description = "OntoUML Python Library"
 license = "Apache-2.0"
 authors = ["Pedro Paulo F. Barcelos <p.p.favatobarcelos@utwente.nl>"]
 readme = "README.md"
-homepage = "https://w3id.org/ontouml/vocabulary-lib"
-repository = "https://w3id.org/ontouml/vocabulary-lib"
-documentation = "https://w3id.org/ontouml/vocabulary-lib/docs"
+homepage = "https://w3id.org/ontouml/ontouml-py"
+repository = "https://w3id.org/ontouml/ontouml-py"
+documentation = "https://w3id.org/ontouml/ontouml-py/docs"
 keywords = ["semantic-web", "knowledge-graph", "ontouml", "ontology-driven-development", "ontouml-vocabulary", "ontouml-metamodel"]
-packages = [{ include = "ontouml-vocabulary-lib" }]
-exclude = ["ontouml-vocabulary-lib/tests"]
+packages = [{ include = "ontouml-py" }]
+exclude = ["ontouml-py/tests"]
 
 [tool.poetry.urls]
-"PyPi Project" = "https://pypi.org/project/ontouml-vocabulary-lib/"
+"PyPi Project" = "https://pypi.org/project/ontouml-py/"
 
 [tool.poetry.dependencies]
 importlib = "^1.0.4"
