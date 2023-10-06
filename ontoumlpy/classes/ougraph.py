@@ -23,38 +23,16 @@ Example:
     ou_graph = OUGraph(ontouml_graph)
 
     # Access OntoUML element lists
-    class_elements = ou_graph.list_OUClass
-    generalization_elements = ou_graph.list_OUGeneralization
+    class_elements = ou_graph.all_OUClass
+    generalization_elements = ou_graph.all_OUGeneralization
 
     # Process and analyze OntoUML data"""
 from loguru import logger
 from rdflib import Graph, RDF
 
 from ontoumlpy.classes._ouelement import _OUElement
-from ontoumlpy.classes.ouelement_types import (
-    OUCardinality,
-    OUClass,
-    OUGeneralization,
-    OUGeneralizationSet,
-    OULiteral,
-    OUNote,
-    OUPackage,
-    OUProject,
-    OUProperty,
-    OURelation,
-    OUText,
-    OUClassView,
-    OUDiagram,
-    OUGeneralizationSetView,
-    OUGeneralizationView,
-    OUNoteView,
-    OUPath,
-    OUPoint,
-    OURectangle,
-    OURelationView,
-)
 from ontoumlpy.classes.outerm import OUTerm
-from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement
+from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement, get_ouelement_from_outerm
 
 
 class OUGraph:
@@ -68,128 +46,90 @@ class OUGraph:
     :param include_concrete: Flag indicating whether to include concrete syntax elements.
     :type include_concrete: bool, optional
 
-    :ivar list_OUCardinality: A list of OntoUML Cardinality objects.
-    :vartype list_OUCardinality: list
-    :ivar list_OUClass: A list of OntoUML Class objects.
-    :vartype list_OUClass: list
-    :ivar list_OUClassView: A list of OntoUML ClassView objects.
-    :vartype list_OUClassView: list
-    :ivar list_OUDiagram: A list of OntoUML Diagram objects.
-    :vartype list_OUDiagram: list
-    :ivar list_OUGeneralization: A list of OntoUML Generalization objects.
-    :vartype list_OUGeneralization: list
-    :ivar list_OUGeneralizationSet: A list of OntoUML GeneralizationSet objects.
-    :vartype list_OUGeneralizationSet: list
-    :ivar list_OUGeneralizationSetView: A list of OntoUML GeneralizationSetView objects.
-    :vartype list_OUGeneralizationSetView: list
-    :ivar list_OUGeneralizationView: A list of OntoUML GeneralizationView objects.
-    :vartype list_OUGeneralizationView: list
-    :ivar list_OULiteral: A list of OntoUML Literal objects.
-    :vartype list_OULiteral: list
-    :ivar list_OUNote: A list of OntoUML Note objects.
-    :vartype list_OUNote: list
-    :ivar list_OUNoteView: A list of OntoUML NoteView objects.
-    :vartype list_OUNoteView: list
-    :ivar list_OUPackage: A list of OntoUML Package objects.
-    :vartype list_OUPackage: list
-    :ivar list_OUPath: A list of OntoUML Path objects.
-    :vartype list_OUPath: list
-    :ivar list_OUPoint: A list of OntoUML Point objects.
-    :vartype list_OUPoint: list
-    :ivar list_OUProject: A list of OntoUML Project objects.
-    :vartype list_OUProject: list
-    :ivar list_OUProperty: A list of OntoUML Property objects.
-    :vartype list_OUProperty: list
-    :ivar list_OURectangle: A list of OntoUML Rectangle objects.
-    :vartype list_OURectangle: list
-    :ivar list_OURelation: A list of OntoUML Relation objects.
-    :vartype list_OURelation: list
-    :ivar list_OURelationView: A list of OntoUML RelationView objects.
-    :vartype list_OURelationView: list
-    :ivar list_OUText: A list of OntoUML Text objects.
-    :vartype list_OUText: list
+    :ivar all_OUCardinality: A list of OntoUML Cardinality objects.
+    :vartype all_OUCardinality: list
+    :ivar all_OUClass: A list of OntoUML Class objects.
+    :vartype all_OUClass: list
+    :ivar all_OUClassView: A list of OntoUML ClassView objects.
+    :vartype all_OUClassView: list
+    :ivar all_OUDiagram: A list of OntoUML Diagram objects.
+    :vartype all_OUDiagram: list
+    :ivar all_OUGeneralization: A list of OntoUML Generalization objects.
+    :vartype all_OUGeneralization: list
+    :ivar all_OUGeneralizationSet: A list of OntoUML GeneralizationSet objects.
+    :vartype all_OUGeneralizationSet: list
+    :ivar all_OUGeneralizationSetView: A list of OntoUML GeneralizationSetView objects.
+    :vartype all_OUGeneralizationSetView: list
+    :ivar all_OUGeneralizationView: A list of OntoUML GeneralizationView objects.
+    :vartype all_OUGeneralizationView: list
+    :ivar all_OULiteral: A list of OntoUML Literal objects.
+    :vartype all_OULiteral: list
+    :ivar all_OUNote: A list of OntoUML Note objects.
+    :vartype all_OUNote: list
+    :ivar all_OUNoteView: A list of OntoUML NoteView objects.
+    :vartype all_OUNoteView: list
+    :ivar all_OUPackage: A list of OntoUML Package objects.
+    :vartype all_OUPackage: list
+    :ivar all_OUPath: A list of OntoUML Path objects.
+    :vartype all_OUPath: list
+    :ivar all_OUPoint: A list of OntoUML Point objects.
+    :vartype all_OUPoint: list
+    :ivar all_OUProject: A list of OntoUML Project objects.
+    :vartype all_OUProject: list
+    :ivar all_OUProperty: A list of OntoUML Property objects.
+    :vartype all_OUProperty: list
+    :ivar all_OURectangle: A list of OntoUML Rectangle objects.
+    :vartype all_OURectangle: list
+    :ivar all_OURelation: A list of OntoUML Relation objects.
+    :vartype all_OURelation: list
+    :ivar all_OURelationView: A list of OntoUML RelationView objects.
+    :vartype all_OURelationView: list
+    :ivar all_OUText: A list of OntoUML Text objects.
+    :vartype all_OUText: list
     """
 
     def __init__(self, ontouml_graph: Graph, include_concrete: bool = True) -> None:
-        self.list_OUCardinality = []
-        self.list_OUClass = []
-        self.list_OUClassView = []
-        self.list_OUDiagram = []
-        self.list_OUGeneralization = []
-        self.list_OUGeneralizationSet = []
-        self.list_OUGeneralizationSetView = []
-        self.list_OUGeneralizationView = []
-        self.list_OULiteral = []
-        self.list_OUNote = []
-        self.list_OUNoteView = []
-        self.list_OUPackage = []
-        self.list_OUPath = []
-        self.list_OUPoint = []
-        self.list_OUProject = []
-        self.list_OUProperty = []
-        self.list_OURectangle = []
-        self.list_OURelation = []
-        self.list_OURelationView = []
-        self.list_OUText = []
+        self.all_OUCardinality = []
+        self.all_OUClass = []
+        self.all_OUClassView = []
+        self.all_OUDiagram = []
+        self.all_OUGeneralization = []
+        self.all_OUGeneralizationSet = []
+        self.all_OUGeneralizationSetView = []
+        self.all_OUGeneralizationView = []
+        self.all_OULiteral = []
+        self.all_OUNote = []
+        self.all_OUNoteView = []
+        self.all_OUPackage = []
+        self.all_OUPath = []
+        self.all_OUPoint = []
+        self.all_OUProject = []
+        self.all_OUProperty = []
+        self.all_OURectangle = []
+        self.all_OURelation = []
+        self.all_OURelationView = []
+        self.all_OUText = []
 
         for s, _, o in ontouml_graph.triples((None, RDF.type, None)):
             # ABSTRACT SYNTAX ELEMENTS
-            if o == OUTerm.Cardinality:
-                elem = OUCardinality(ontouml_graph, s)
-            elif o == OUTerm.Class:
-                elem = OUClass(ontouml_graph, s)
-            elif o == OUTerm.Generalization:
-                elem = OUGeneralization(ontouml_graph, s)
-            elif o == OUTerm.GeneralizationSet:
-                elem = OUGeneralizationSet(ontouml_graph, s)
-            elif o == OUTerm.Literal:
-                elem = OULiteral(ontouml_graph, s)
-            elif o == OUTerm.Note:
-                elem = OUNote(ontouml_graph, s)
-            elif o == OUTerm.Package:
-                elem = OUPackage(ontouml_graph, s)
-            elif o == OUTerm.Project:
-                elem = OUProject(ontouml_graph, s)
-            elif o == OUTerm.Property:
-                elem = OUProperty(ontouml_graph, s)
-            elif o == OUTerm.Relation:
-                elem = OURelation(ontouml_graph, s)
-            elif o == OUTerm.Text:
-                elem = OUText(ontouml_graph, s)
 
-            # CONCRETE SYNTAX ELEMENTS
-            elif include_concrete:
-                if o == OUTerm.ClassView:
-                    elem = OUClassView(ontouml_graph, s)
-                elif o == OUTerm.Diagram:
-                    elem = OUDiagram(ontouml_graph, s)
-                elif o == OUTerm.GeneralizationSetView:
-                    elem = OUGeneralizationSetView(ontouml_graph, s)
-                elif o == OUTerm.GeneralizationView:
-                    elem = OUGeneralizationView(ontouml_graph, s)
-                elif o == OUTerm.NoteView:
-                    elem = OUNoteView(ontouml_graph, s)
-                elif o == OUTerm.Path:
-                    elem = OUPath(ontouml_graph, s)
-                elif o == OUTerm.Point:
-                    elem = OUPoint(ontouml_graph, s)
-                elif o == OUTerm.Rectangle:
-                    elem = OURectangle(ontouml_graph, s)
-                elif o == OUTerm.RelationView:
-                    elem = OURelationView(ontouml_graph, s)
+            elem_type = get_ouelement_from_outerm(o)
+
+            # TODO(@pedropaulofb): create list of syntax elements (Conc vs Abst) and filter before attributing type.
+
+            if elem_type in list_abstract_types:
+                elem_inst = elem_type(ontouml_graph, s)
+                self.add_element(elem_inst)
+            elif elem_type in list_concrete_types:
+                if include_concrete:
+                    elem_inst = elem_type(ontouml_graph, s)
+                    self.add_element(elem_inst)
                 else:
-                    logger.debug(
-                        f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
-                        f"because it is not an OntoUML element."
-                    )
+                    logger.debug(f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
+                                 f"because it is not an OntoUML element.")
             else:
-                logger.debug(
-                    f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
-                    f"because it is part of the OntoUML's concrete syntax or it is not an OntoUML element."
-                )
-
-            if elem is not None:
-                self.add_element(elem, include_concrete)
+                logger.debug(f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
+                             f"because it is part of the OntoUML's concrete syntax or it is not an OntoUML element.")
 
     def update(self, ontouml_graph: Graph, include_concrete: bool = False) -> None:
         """Calls the __init__ method to re-initialize the OUGraph instance with the new parameters.
@@ -201,60 +141,50 @@ class OUGraph:
         """
         self.__init__(ontouml_graph, include_concrete)
 
-    def add_element(self, element: _OUElement, include_concrete: bool = False) -> None:
+    def add_element(self, element: _OUElement) -> None:
         term = get_outerm_from_ouelement(element)
 
         # ABSTRACT SYNTAX ELEMENTS
         if term == OUTerm.Cardinality:
-            self.list_OUCardinality.append(element)
+            self.all_OUCardinality.append(element)
         elif term == OUTerm.Class:
-            self.list_OUClass.append(element)
+            self.all_OUClass.append(element)
         elif term == OUTerm.Generalization:
-            self.list_OUGeneralization.append(element)
+            self.all_OUGeneralization.append(element)
         elif term == OUTerm.GeneralizationSet:
-            self.list_OUGeneralizationSet.append(element)
+            self.all_OUGeneralizationSet.append(element)
         elif term == OUTerm.Literal:
-            self.list_OULiteral.append(element)
+            self.all_OULiteral.append(element)
         elif term == OUTerm.Note:
-            self.list_OUNote.append(element)
+            self.all_OUNote.append(element)
         elif term == OUTerm.Package:
-            self.list_OUPackage.append(element)
+            self.all_OUPackage.append(element)
         elif term == OUTerm.Project:
-            self.list_OUProject.append(element)
+            self.all_OUProject.append(element)
         elif term == OUTerm.Property:
-            self.list_OUProperty.append(element)
+            self.all_OUProperty.append(element)
         elif term == OUTerm.Relation:
-            self.list_OURelation.append(element)
+            self.all_OURelation.append(element)
         elif term == OUTerm.Text:
-            self.list_OUText.append(element)
+            self.all_OUText.append(element)
 
         # CONCRETE SYNTAX ELEMENTS
         elif include_concrete:
             if term == OUTerm.ClassView:
-                self.list_OUClassView.append(element)
+                self.all_OUClassView.append(element)
             elif term == OUTerm.Diagram:
-                self.list_OUDiagram.append(element)
+                self.all_OUDiagram.append(element)
             elif term == OUTerm.GeneralizationSetView:
-                self.list_OUGeneralizationSetView.append(element)
+                self.all_OUGeneralizationSetView.append(element)
             elif term == OUTerm.GeneralizationView:
-                self.list_OUGeneralizationView.append(element)
+                self.all_OUGeneralizationView.append(element)
             elif term == OUTerm.NoteView:
-                self.list_OUNoteView.append(element)
+                self.all_OUNoteView.append(element)
             elif term == OUTerm.Path:
-                self.list_OUPath.append(element)
+                self.all_OUPath.append(element)
             elif term == OUTerm.Point:
-                self.list_OUPoint.append(element)
+                self.all_OUPoint.append(element)
             elif term == OUTerm.Rectangle:
-                self.list_OURectangle.append(element)
+                self.all_OURectangle.append(element)
             elif term == OUTerm.RelationView:
-                self.list_OURelationView.append(element)
-            else:
-                logger.debug(
-                    f"Graph'element element {element} of type {term} was not loaded into any OUGraph'element list "
-                    f"because it is not an OntoUML element."
-                )
-        else:
-            logger.debug(
-                f"Graph'element element {element} of type {term} was not loaded into any OUGraph'element list "
-                f"because it is part of the OntoUML'element concrete syntax or it is not an OntoUML element."
-            )
+                self.all_OURelationView.append(element)
