@@ -28,8 +28,6 @@ Example:
 
     # Process and analyze OntoUML data"""
 from loguru import logger
-from rdflib import Graph, RDF
-
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
     OUClass,
@@ -53,6 +51,7 @@ from ontoumlpy.classes.ouelement_types import (
     OURelationView,
 )
 from ontoumlpy.classes.outerm import OUTerm
+from rdflib import Graph, RDF
 
 
 class OUGraph:

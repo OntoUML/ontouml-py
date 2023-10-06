@@ -25,10 +25,9 @@ Example:
 For more information about the OntoUML vocabulary,
 refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 """
+from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
-
-from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
 
 
 class OUTerm(DefinedNamespace):

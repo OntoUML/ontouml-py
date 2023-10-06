@@ -9,9 +9,8 @@ and performs checks to ensure that the ID exists in the provided OntoUML graph a
 valid type. It raises exceptions (`OUIDNotInGraph`, `OUIDTypeMismatchError`) when these
 checks fail, providing informative error messages to facilitate debugging.
 """
-from rdflib import URIRef, Graph
-
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
+from rdflib import URIRef, Graph
 
 
 class _OUElement:

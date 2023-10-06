@@ -5,8 +5,6 @@ This module provides tests for the classes defined in the ontouml-py classes/oue
 
 
 """
-from rdflib import RDF, URIRef, Graph
-
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
     OUClass,
@@ -32,6 +30,7 @@ from ontoumlpy.classes.ouelement_types import (
 )
 from ontoumlpy.classes.outerm import OUTerm
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement
+from rdflib import RDF, URIRef, Graph
 
 
 def test_class_OUCardinality() -> None:

@@ -2,8 +2,6 @@
 
 It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
 """
-from rdflib import URIRef
-
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
@@ -30,6 +28,7 @@ from ontoumlpy.classes.ouelement_types import (
 )
 from ontoumlpy.classes.ouexception import OUUnmappedOUElement, OUUnmappedOUTerm
 from ontoumlpy.classes.outerm import OUTerm
+from rdflib import URIRef
 
 _MAP_OUTERM_OUELEMENT = {
     OUTerm.Cardinality: OUCardinality,
