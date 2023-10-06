@@ -10,10 +10,11 @@ print(f"Description: {person_class.description}")
 print(f"Attributes: {person_class.attribute}")
 You can perform similar operations for other OntoUML concepts using their respective classes.
 """
+from rdflib import URIRef, Graph
+
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouexception import OUInvalidAttribute
 from ontoumlpy.classes.outerm import OUTerm
-from rdflib import URIRef, Graph
 
 class_map = {
     "OUCardinality": OUTerm.Cardinality,

@@ -18,10 +18,11 @@ Functions:
         Tests the instantiation of all OntoUML element types, except OUCardinality, against the OUCardinality type.
 """
 import pytest
+from rdflib import Graph, URIRef, RDF
+
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouelement_types import OUCardinality
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement, get_ouelement_from_outerm
-from rdflib import Graph, URIRef, RDF
 
 
 def create_ouelement(ou_elem: str) -> _OUElement:

@@ -1,5 +1,7 @@
 """Module for testing custom exceptions related to OntoUML."""
 import pytest
+from rdflib import Graph, URIRef, RDF
+
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
     OURectangle,
@@ -13,7 +15,6 @@ from ontoumlpy.classes.ouelement_types import (
 )
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError, OUInvalidAttribute
 from ontoumlpy.classes.outerm import OUTerm
-from rdflib import Graph, URIRef, RDF
 
 
 def test_ouid_not_in_graph_absent_id() -> None:

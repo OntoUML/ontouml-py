@@ -2,6 +2,8 @@
 
 It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
 """
+from rdflib import URIRef
+
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
@@ -28,7 +30,6 @@ from ontoumlpy.classes.ouelement_types import (
 )
 from ontoumlpy.classes.ouexception import OUUnmappedOUElement, OUUnmappedOUTerm
 from ontoumlpy.classes.outerm import OUTerm
-from rdflib import URIRef
 
 _MAP_OUTERM_OUELEMENT = {
     OUTerm.Cardinality: OUCardinality,
@@ -93,10 +94,10 @@ def get_outerm_from_ouelement(ouelement: _OUElement | str) -> URIRef:
         for key, value in _MAP_OUTERM_OUELEMENT.items():
             if value.__name__ == ouelement:
                 return key
-    elif isinstance(ouelement, type):
-        ouelement_class_name = ouelement.__name__
+    elif isinstance(ouelement, _OUElement):
+        ouelement_class = type(ouelement)  # Get the class of the ouelement instance
         for key, value in _MAP_OUTERM_OUELEMENT.items():
-            if value.__name__ == ouelement_class_name:
+            if value == ouelement_class:
                 return key
 
     # Every OUElement is mapped to an OUTerm, hence, this exception must never happen.

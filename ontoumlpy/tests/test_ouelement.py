@@ -3,10 +3,11 @@
 Each function in this module tests a different aspect of the _OUElement class, including positive cases,
 negative cases, and error handling.
 """
+from rdflib import Graph, RDF, URIRef
+
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
 from ontoumlpy.classes.outerm import OUTerm
-from rdflib import Graph, RDF, URIRef
 
 
 def test_ou_element_creation_positive() -> None:
