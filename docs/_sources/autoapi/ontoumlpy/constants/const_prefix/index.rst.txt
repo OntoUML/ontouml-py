@@ -1,0 +1,19 @@
+:py:mod:`ontouml-py.constants.const_prefix`
+===========================================
+
+.. py:module:: ontouml-py.constants.const_prefix
+
+
+Module Contents
+---------------
+
+.. py:data:: ONTOUML_NAMESPACE
+   :value: 'https://w3id.org/ontouml#'
+
+   
+
+.. py:data:: ONTOUML_SPARQL_PREFIX
+   :value: 'PREFIX ontouml: <https://w3id.org/ontouml#> '
+
+   
+

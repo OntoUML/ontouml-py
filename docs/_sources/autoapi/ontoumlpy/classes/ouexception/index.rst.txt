@@ -1,0 +1,77 @@
+:py:mod:`ontouml-py.classes.ouexception`
+========================================
+
+.. py:module:: ontouml-py.classes.ouexception
+
+.. autoapi-nested-parse::
+
+   Module for handling custom exceptions related to OntoUML.
+
+
+
+Module Contents
+---------------
+
+.. py:exception:: OUIDNotInGraph(absent_ou_id, ou_class_name)
+
+
+   Bases: :py:obj:`ValueError`
+
+   Custom exception for handling cases where the provided ID does not exist in the OntoUML graph.
+
+   :param absent_ou_id: The ID that does not exist in the OntoUML graph.
+   :type absent_ou_id: URIRef
+   :param ou_class_name: The name of the OntoUML class being instantiated.
+   :type ou_class_name: str
+
+
+.. py:exception:: OUIDTypeMismatchError(absent_ou_id, ou_class_name, related_type)
+
+
+   Bases: :py:obj:`ValueError`
+
+   Custom exception for handling cases where the provided ID exists but has a type mismatch with the expected type.
+
+   :param absent_ou_id: The ID that exists but has a type mismatch.
+   :type absent_ou_id: URIRef
+   :param ou_class_name: The name of the OntoUML class being instantiated.
+   :type ou_class_name: str
+   :param related_type: The expected type for the ID.
+   :type related_type: URIRef
+
+
+.. py:exception:: OUInvalidAttribute(ou_class_name, invalid_att_name)
+
+
+   Bases: :py:obj:`NameError`
+
+   Custom exception for handling cases where an invalid attribute is accessed on an OntoUML class.
+
+   :param ou_class_name: The name of the OntoUML class where the invalid attribute was accessed.
+   :type ou_class_name: str
+   :param invalid_att_name: The name of the invalid attribute that was accessed.
+   :type invalid_att_name: str
+
+
+.. py:exception:: OUUnmappedOUElement(ouelement)
+
+
+   Bases: :py:obj:`KeyError`
+
+   Custom exception for handling cases where an OUElement does not have a mapped OUTerm.
+
+   :param ouelement: The OUElement that does not have a mapped OUTerm.
+   :type ouelement: str
+
+
+.. py:exception:: OUUnmappedOUTerm(outerm)
+
+
+   Bases: :py:obj:`Exception`
+
+   Custom exception for handling cases where an OUTerm does not have a mapped OUElement.
+
+   :param outerm: The OUTerm that does not have a mapped OUElement.
+   :type outerm: str
+
+

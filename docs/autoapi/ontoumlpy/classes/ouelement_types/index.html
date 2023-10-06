@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ontouml-py.classes.ouelement_types &mdash; ontouml-py  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ontouml-py.classes.ouexception" href="../ouexception/index.html" />
+    <link rel="prev" title="ontouml-py.classes._ouelement" href="../_ouelement/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ontouml-py
+              <img src="../../../../_static/logo-ontouml-py-reduced.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../constants/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.constants</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../functions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.functions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tests/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.tests</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ontouml-py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.classes</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.classes.ouelement_types</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/ontoumlpy/classes/ouelement_types/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ontouml-py.classes.ouelement_types">
+<span id="ontouml-py-classes-ouelement-types"></span><h1><a class="reference internal" href="#module-ontouml-py.classes.ouelement_types" title="ontouml-py.classes.ouelement_types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.classes.ouelement_types</span></code></a><a class="headerlink" href="#module-ontouml-py.classes.ouelement_types" title="Link to this heading"></a></h1>
+<p>This module provides Python classes that represent concepts defined in the OntoUML Vocabulary.
+This module provides Python classes for representing and manipulating concepts from the OntoUML Vocabulary.
+These Python classes facilitate working with OntoUML concepts and enable you to interact with OntoUML-based data.
+Usage:
+# Instantiate a class concept from the OntoUML model
+person_class = OUClass(ontouml_graph, URIRef(”<a class="reference external" href="https://example.org/Person">https://example.org/Person</a>”))
+# Access attributes of the class
+print(f”Class Name: {person_class.name}”)
+print(f”Description: {person_class.description}”)
+print(f”Attributes: {person_class.attribute}”)
+You can perform similar operations for other OntoUML concepts using their respective classes.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUCardinality" title="ontouml-py.classes.ouelement_types.OUCardinality"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUCardinality</span></code></a></p></td>
+<td><p>Represents cardinality information for a property.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUClass" title="ontouml-py.classes.ouelement_types.OUClass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUClass</span></code></a></p></td>
+<td><p>Represents a class in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUClassView" title="ontouml-py.classes.ouelement_types.OUClassView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUClassView</span></code></a></p></td>
+<td><p>Represents a view of a class in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUDiagram" title="ontouml-py.classes.ouelement_types.OUDiagram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUDiagram</span></code></a></p></td>
+<td><p>Represents a diagram in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUGeneralization" title="ontouml-py.classes.ouelement_types.OUGeneralization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUGeneralization</span></code></a></p></td>
+<td><p>Represents a generalization relationship in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSet" title="ontouml-py.classes.ouelement_types.OUGeneralizationSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUGeneralizationSet</span></code></a></p></td>
+<td><p>Represents a generalization set in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSetView" title="ontouml-py.classes.ouelement_types.OUGeneralizationSetView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUGeneralizationSetView</span></code></a></p></td>
+<td><p>Represents a view of a generalization set in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUGeneralizationView" title="ontouml-py.classes.ouelement_types.OUGeneralizationView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUGeneralizationView</span></code></a></p></td>
+<td><p>Represents a view of a generalization in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OULiteral" title="ontouml-py.classes.ouelement_types.OULiteral"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OULiteral</span></code></a></p></td>
+<td><p>Represents a literal in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUNote" title="ontouml-py.classes.ouelement_types.OUNote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUNote</span></code></a></p></td>
+<td><p>Represents a note in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUNoteView" title="ontouml-py.classes.ouelement_types.OUNoteView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUNoteView</span></code></a></p></td>
+<td><p>Represents a view of a note in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUPackage" title="ontouml-py.classes.ouelement_types.OUPackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUPackage</span></code></a></p></td>
+<td><p>Represents a package in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUPackageView" title="ontouml-py.classes.ouelement_types.OUPackageView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUPackageView</span></code></a></p></td>
+<td><p>Represents a view of a package in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUPath" title="ontouml-py.classes.ouelement_types.OUPath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUPath</span></code></a></p></td>
+<td><p>Represents a path in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUPoint" title="ontouml-py.classes.ouelement_types.OUPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUPoint</span></code></a></p></td>
+<td><p>Represents a point in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUProject" title="ontouml-py.classes.ouelement_types.OUProject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUProject</span></code></a></p></td>
+<td><p>Represents a project in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUProperty" title="ontouml-py.classes.ouelement_types.OUProperty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUProperty</span></code></a></p></td>
+<td><p>Represents a property in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OURectangle" title="ontouml-py.classes.ouelement_types.OURectangle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OURectangle</span></code></a></p></td>
+<td><p>Represents a rectangle in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OURelation" title="ontouml-py.classes.ouelement_types.OURelation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OURelation</span></code></a></p></td>
+<td><p>Represents a relation in OntoUML.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OURelationView" title="ontouml-py.classes.ouelement_types.OURelationView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OURelationView</span></code></a></p></td>
+<td><p>Represents a view of a relation in OntoUML.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.OUText" title="ontouml-py.classes.ouelement_types.OUText"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OUText</span></code></a></p></td>
+<td><p>Represents text in OntoUML.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml-py.classes.ouelement_types.class_map" title="ontouml-py.classes.ouelement_types.class_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">class_map</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.class_map">
+<span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">class_map</span></span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.class_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUCardinality">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUCardinality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUCardinality" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents cardinality information for a property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the cardinality object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>cardinalityValue</strong> (<em>URIRef</em>) – The cardinality value.</p></li>
+<li><p><strong>lowerBound</strong> (<em>URIRef</em>) – The lower bound of the cardinality.</p></li>
+<li><p><strong>upperBound</strong> (<em>URIRef</em>) – The upper bound of the cardinality.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUCardinality.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUCardinality.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUClass" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a class in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the class.</p></li>
+<li><p><strong>attribute</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of attributes associated with the class.</p></li>
+<li><p><strong>description</strong> (<em>URIRef</em>) – The description of the class.</p></li>
+<li><p><strong>isAbstract</strong> (<em>URIRef</em>) – Indicates if the class is abstract.</p></li>
+<li><p><strong>isDerived</strong> (<em>URIRef</em>) – Indicates if the class is derived.</p></li>
+<li><p><strong>isPowertype</strong> (<em>URIRef</em>) – Indicates if the class is a powertype.</p></li>
+<li><p><strong>literal</strong> (<em>URIRef</em>) – The literal associated with the class.</p></li>
+<li><p><strong>order</strong> (<em>URIRef</em>) – The order of the class.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the class belongs.</p></li>
+<li><p><strong>restrictedTo</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of classes restricted to this class.</p></li>
+<li><p><strong>stereotype</strong> (<em>URIRef</em>) – The stereotype of the class.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUClass.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUClass.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUClassView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUClassView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUClassView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a class in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the class view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The class that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the class view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the class view.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUClassView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUClassView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUDiagram">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUDiagram" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a diagram in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the diagram.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the diagram.</p></li>
+<li><p><strong>containsView</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of views contained within the diagram.</p></li>
+<li><p><strong>owner</strong> (<em>URIRef</em>) – The owner of the diagram.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the diagram belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUDiagram.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUDiagram.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralization">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUGeneralization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralization" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a generalization relationship in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the generalization.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>general</strong> (<em>URIRef</em>) – The general class in the generalization.</p></li>
+<li><p><strong>specific</strong> (<em>URIRef</em>) – The specific class in the generalization.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the generalization belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralization.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralization.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUGeneralizationSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a generalization set in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the generalization set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>generalization</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of generalizations included in the set.</p></li>
+<li><p><strong>isComplete</strong> (<em>URIRef</em>) – Indicates if the generalization set is complete.</p></li>
+<li><p><strong>isDisjoint</strong> (<em>URIRef</em>) – Indicates if the generalization set is disjoint.</p></li>
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the generalization set.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the generalization set belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationSet.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSet.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationSetView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUGeneralizationSetView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSetView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a generalization set in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the generalization set view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The generalization set that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the generalization set view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the generalization set view.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationSetView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationSetView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUGeneralizationView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a generalization in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the generalization view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The generalization that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the generalization view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the generalization view.</p></li>
+<li><p><strong>sourceView</strong> (<em>URIRef</em>) – The source view of the generalization.</p></li>
+<li><p><strong>targetView</strong> (<em>URIRef</em>) – The target view of the generalization.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUGeneralizationView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUGeneralizationView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OULiteral">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OULiteral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OULiteral" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a literal in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the literal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>project</strong> (<em>URIRef</em>) – The project to which the literal belongs.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OULiteral.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OULiteral.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUNote">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUNote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUNote" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a note in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the note.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>text</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – The text content of the note.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUNote.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUNote.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUNoteView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUNoteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUNoteView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a note in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the note view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The note that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the note view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the note view.</p></li>
+<li><p><strong>sourceView</strong> (<em>URIRef</em>) – The source view of the note.</p></li>
+<li><p><strong>targetView</strong> (<em>URIRef</em>) – The target view of the note.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUNoteView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUNoteView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPackage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUPackage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPackage" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a package in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the package.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>containsModelElement</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of model elements contained within the package.</p></li>
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the package.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the package belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPackage.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPackage.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPackageView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUPackageView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPackageView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a package in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the package view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The package that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the package view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the package view.</p></li>
+<li><p><strong>sourceView</strong> (<em>URIRef</em>) – The source view of the package.</p></li>
+<li><p><strong>targetView</strong> (<em>URIRef</em>) – The target view of the package.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPackageView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPackageView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPath" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a path in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>point</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of points that make up the path.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the path belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPath.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPath.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPoint" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a point in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>xCoordinate</strong> (<em>URIRef</em>) – The x-coordinate of the point.</p></li>
+<li><p><strong>yCoordinate</strong> (<em>URIRef</em>) – The y-coordinate of the point.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUPoint.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUPoint.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUProject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUProject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUProject" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a project in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the project.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the project.</p></li>
+<li><p><strong>diagram</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of diagrams associated with the project.</p></li>
+<li><p><strong>model</strong> (<em>URIRef</em>) – The model associated with the project.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUProject.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUProject.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUProperty" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a property in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the property.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>aggregationKind</strong> (<em>URIRef</em>) – The aggregation kind of the property.</p></li>
+<li><p><strong>cardinality</strong> (<em>URIRef</em>) – The cardinality of the property.</p></li>
+<li><p><strong>isDerived</strong> (<em>URIRef</em>) – Indicates if the property is derived.</p></li>
+<li><p><strong>isOrdered</strong> (<em>URIRef</em>) – Indicates if the property is ordered.</p></li>
+<li><p><strong>isReadOnly</strong> (<em>URIRef</em>) – Indicates if the property is read-only.</p></li>
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the property.</p></li>
+<li><p><strong>propertyType</strong> (<em>URIRef</em>) – The type of the property.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the property belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUProperty.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUProperty.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OURectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURectangle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a rectangle in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the rectangle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>topLeftPosition</strong> (<em>URIRef</em>) – The top-left position of the rectangle.</p></li>
+<li><p><strong>height</strong> (<em>URIRef</em>) – The height of the rectangle.</p></li>
+<li><p><strong>width</strong> (<em>URIRef</em>) – The width of the rectangle.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the rectangle belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURectangle.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURectangle.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURelation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OURelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURelation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a relation in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the relation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>description</strong> (<em>URIRef</em>) – The description of the relation.</p></li>
+<li><p><strong>isAbstract</strong> (<em>URIRef</em>) – Indicates if the relation is abstract.</p></li>
+<li><p><strong>isDerived</strong> (<em>URIRef</em>) – Indicates if the relation is derived.</p></li>
+<li><p><strong>name</strong> (<em>URIRef</em>) – The name of the relation.</p></li>
+<li><p><strong>relationEnd</strong> (<em>List</em><em>[</em><em>URIRef</em><em>]</em>) – A list of ends associated with the relation.</p></li>
+<li><p><strong>sourceEnd</strong> (<em>URIRef</em>) – The source end of the relation.</p></li>
+<li><p><strong>stereotype</strong> (<em>URIRef</em>) – The stereotype of the relation.</p></li>
+<li><p><strong>targetEnd</strong> (<em>URIRef</em>) – The target end of the relation.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the relation belongs.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURelation.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURelation.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURelationView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OURelationView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURelationView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents a view of a relation in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the relation view.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isViewOf</strong> (<em>URIRef</em>) – The relation that this view is associated with.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the relation view belongs.</p></li>
+<li><p><strong>shape</strong> (<em>URIRef</em>) – The shape of the relation view.</p></li>
+<li><p><strong>sourceView</strong> (<em>URIRef</em>) – The source view associated with the relation view.</p></li>
+<li><p><strong>targetView</strong> (<em>URIRef</em>) – The target view associated with the relation view.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OURelationView.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OURelationView.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml-py.classes.ouelement_types.</span></span><span class="sig-name descname"><span class="pre">OUText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ontouml_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUText" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ontoumlpy.classes._ouelement._OUElement</span></code></p>
+<p>Represents text in OntoUML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ontouml_graph</strong> (<em>Graph</em>) – The OntoUML model graph.</p></li>
+<li><p><strong>object_id</strong> (<em>URIRef</em>) – The URI reference of the text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>height</strong> (<em>URIRef</em>) – The height of the text.</p></li>
+<li><p><strong>project</strong> (<em>URIRef</em>) – The project to which the text belongs.</p></li>
+<li><p><strong>text</strong> (<em>URIRef</em>) – The text content.</p></li>
+<li><p><strong>topLeftPosition</strong> (<em>URIRef</em>) – The top-left position of the text.</p></li>
+<li><p><strong>width</strong> (<em>URIRef</em>) – The width of the text.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml-py.classes.ouelement_types.OUText.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_att_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml-py.classes.ouelement_types.OUText.__getattr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../_ouelement/index.html" class="btn btn-neutral float-left" title="ontouml-py.classes._ouelement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ouexception/index.html" class="btn btn-neutral float-right" title="ontouml-py.classes.ouexception" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente, the Netherlands.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

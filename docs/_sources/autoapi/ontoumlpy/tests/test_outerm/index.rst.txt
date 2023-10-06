@@ -1,0 +1,103 @@
+:py:mod:`ontouml-py.tests.test_outerm`
+======================================
+
+.. py:module:: ontouml-py.tests.test_outerm
+
+.. autoapi-nested-parse::
+
+   This module contains a series of tests to validate the mapping and type correctness of the OUTerm class
+   which represents OntoUML vocabulary terms as URI references.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml-py.tests.test_outerm.test_valid_outerm_uri_mapping
+   ontouml-py.tests.test_outerm.test_invalid_outerm_uri_mapping
+   ontouml-py.tests.test_outerm.test_valid_outerm_type
+   ontouml-py.tests.test_outerm.test_valid_outerm_attribute_access
+   ontouml-py.tests.test_outerm.test_invalid_outerm_attribute_error
+   ontouml-py.tests.test_outerm.test_valid_outerm_attribute_existence
+   ontouml-py.tests.test_outerm.test_invalid_outerm_attribute_absence
+   ontouml-py.tests.test_outerm.test_all_method_valid_outerm_attribute_existence
+   ontouml-py.tests.test_outerm.test_all_method_is_empty
+
+
+
+.. py:function:: test_valid_outerm_uri_mapping(ou_term, term)
+
+   Tests the correct URI mapping of the specified OUTerm instances.
+
+   :param ou_term: The OUTerm instance to be tested.
+   :type ou_term: URIRef
+   :param term: The string representation of the OntoUML term.
+   :type term: str
+
+
+.. py:function:: test_invalid_outerm_uri_mapping(ou_term, term)
+
+   Tests for incorrect URI mappings of the specified OUTerm instances.
+
+   :param ou_term: The OUTerm instance to be tested.
+   :type ou_term: URIRef
+   :param term: The string representation of the OntoUML term.
+   :type term: str
+
+
+.. py:function:: test_valid_outerm_type(ou_term)
+
+   Verifies the type correctness of the specified OUTerm instances.
+
+   :param ou_term: The OUTerm instance to be tested.
+   :type ou_term: URIRef
+
+
+.. py:function:: test_valid_outerm_attribute_access(ou_term)
+
+   Verifies that valid attributes can be accessed without raising an AttributeError for the specified OUTerm     instances.
+
+   :param ou_term: The OUTerm instance to be tested.
+   :type ou_term: URIRef
+
+
+.. py:function:: test_invalid_outerm_attribute_error(ou_term)
+
+   Verifies that invalid attributes raise an AttributeError when accessed for the specified OUTerm instances.
+
+   :param ou_term: The OUTerm instance to be tested.
+   :type ou_term: URIRef
+
+
+.. py:function:: test_valid_outerm_attribute_existence(term)
+
+   Verifies that specified attributes exist in OUTerm and that they have the expected type.
+
+   :param term: The attribute name to be checked.
+   :type term: str
+
+
+.. py:function:: test_invalid_outerm_attribute_absence(term)
+
+   Verifies that specified invalid attributes do not exist in OUTerm.
+
+   :param term: The attribute name to be checked.
+   :type term: str
+
+
+.. py:function:: test_all_method_valid_outerm_attribute_existence()
+
+   Verifies if the all method returns valid terms and that these terms have the expected type.
+
+
+.. py:function:: test_all_method_is_empty()
+
+   Verifies if the all method returns is empty.
+
+

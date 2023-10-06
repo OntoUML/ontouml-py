@@ -1,0 +1,66 @@
+:py:mod:`ontouml-py.functions.func_mappings`
+============================================
+
+.. py:module:: ontouml-py.functions.func_mappings
+
+.. autoapi-nested-parse::
+
+   This module handles the mapping between OUTerm and OUElement objects.
+
+   It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml-py.functions.func_mappings.get_ouelement_from_outerm
+   ontouml-py.functions.func_mappings.get_outerm_from_ouelement
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT
+
+
+.. py:data:: _MAP_OUTERM_OUELEMENT
+
+   
+
+.. py:function:: get_ouelement_from_outerm(outerm)
+
+   Return the corresponding OUElement object for a given OUTerm or URIRef/str object.
+
+   If the input is a string, it's converted to a URIRef object before lookup.
+
+   :param outerm: The OUTerm object or URIRef/str representing the term.
+   :type outerm: Union[URIRef, str]
+   :raises OUUnmappedOUTerm: If the OUTerm object is not found in the mapping.
+   :return: The corresponding OUElement object.
+   :rtype: _OUElement
+
+
+.. py:function:: get_outerm_from_ouelement(ouelement)
+
+   Return the corresponding OUTerm object for a given OUElement object or its class name as a string.
+
+   This function iterates through the mapping dictionary to find the corresponding OUTerm object.
+   Every OUElement object is assumed to be mapped to an OUTerm object.
+
+   :param ouelement: The OUElement object or its class name as a string.
+   :type ouelement: Union[_OUElement, str]
+   :raises OUUnmappedOUElement: If the OUElement object is not found in the mapping.
+   :return: The corresponding OUTerm object.
+   :rtype: URIRef
+
+

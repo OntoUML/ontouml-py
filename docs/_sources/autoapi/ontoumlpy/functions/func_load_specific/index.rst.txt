@@ -1,0 +1,38 @@
+:py:mod:`ontouml-py.functions.func_load_specific`
+=================================================
+
+.. py:module:: ontouml-py.functions.func_load_specific
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml-py.functions.func_load_specific.create_ouelement
+   ontouml-py.functions.func_load_specific.create_list_uriref
+   ontouml-py.functions.func_load_specific.create_list_ouelement_from_graph
+
+
+
+.. py:exception:: InvalidOntoUMLTypeException
+
+
+   Bases: :py:obj:`Exception`
+
+   Exception raised when an individual is not from a valid OntoUML type.
+
+
+.. py:function:: create_ouelement(ontouml_graph, individual_id)
+
+
+.. py:function:: create_list_uriref(ontouml_graph, object_type)
+
+
+.. py:function:: create_list_ouelement_from_graph(ontouml_graph, object_type)
+
+

@@ -1,0 +1,51 @@
+:py:mod:`ontouml-py.constants.const_st_class`
+=============================================
+
+.. py:module:: ontouml-py.constants.const_st_class
+
+.. autoapi-nested-parse::
+
+   This module defines various lists of OntoUML Class Stereotypes used in OntoUML modeling.
+   Each list represents a specific grouping of stereotypes, providing a convenient way to access.
+
+
+
+Module Contents
+---------------
+
+.. py:data:: OU_CLASS_ST_BASE_SORTALS
+
+   
+
+.. py:data:: OU_CLASS_ULTIMATE_SORTALS
+
+   
+
+.. py:data:: OU_CLASS_ST_SORTALS
+
+   
+
+.. py:data:: OU_CLASS_ST_NON_SORTALS
+
+   
+
+.. py:data:: OU_CLASS_ST_ABSTRACTS
+
+   
+
+.. py:data:: OU_CLASS_ST_RIGIDS
+
+   
+
+.. py:data:: OU_CLASS_ST_ANTI_RIGIDS
+
+   
+
+.. py:data:: OU_CLASS_ST_SEMI_RIGIDS
+
+   
+
+.. py:data:: OU_CLASS_ST_ALL
+
+   
+
