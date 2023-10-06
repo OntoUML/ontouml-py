@@ -1,3 +1,10 @@
+"""
+Module for testing classes related to the each specific type ou OUElement.
+
+This module provides tests for the classes defined in the vocabulary_lib classes/ouelement_types module.
+
+
+"""
 from rdflib import RDF, URIRef, Graph
 
 from vocabulary_lib.classes.ouelement_types import (
@@ -28,6 +35,7 @@ from vocabulary_lib.functions.func_mappings import get_outerm_from_ouelement
 
 
 def test_class_OUCardinality() -> None:
+    """Test the OUCardinality class by creating a new instance and verifying its attributes."""
     elem_type = OUCardinality
     term = get_outerm_from_ouelement(elem_type)
 
@@ -50,6 +58,7 @@ def test_class_OUCardinality() -> None:
 
 
 def test_class_OUClass() -> None:
+    """Test the OUClass class by creating a new instance and verifying its attributes."""
     elem_type = OUClass
     term = get_outerm_from_ouelement(elem_type)
 
@@ -90,6 +99,7 @@ def test_class_OUClass() -> None:
 
 
 def test_class_OUClass_lists() -> None:
+    """Test the list attributes of the OUClass class by creating a new instance and verifying its attributes."""
     elem_type = OUClass
     term = get_outerm_from_ouelement(elem_type)
 
@@ -114,6 +124,7 @@ def test_class_OUClass_lists() -> None:
 
 
 def test_class_OUClassView() -> None:
+    """Test the OUClassView class by creating a new instance and verifying its attributes."""
     elem_type = OUClassView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -136,6 +147,7 @@ def test_class_OUClassView() -> None:
 
 
 def test_class_OUDiagram() -> None:
+    """Test the OUDiagram class by creating a new instance and verifying its attributes."""
     elem_type = OUDiagram
     term = get_outerm_from_ouelement(elem_type)
 
@@ -158,6 +170,7 @@ def test_class_OUDiagram() -> None:
 
 
 def test_class_OUDiagram_list() -> None:
+    """Test the list attributes of the OUDiagram class by creating a new instance and verifying its attributes."""
     elem_type = OUDiagram
     term = get_outerm_from_ouelement(elem_type)
 
@@ -178,6 +191,7 @@ def test_class_OUDiagram_list() -> None:
 
 
 def test_class_OUGeneralization() -> None:
+    """Test the OUGeneralization class by creating a new instance and verifying its attributes."""
     elem_type = OUGeneralization
     term = get_outerm_from_ouelement(elem_type)
 
@@ -200,6 +214,7 @@ def test_class_OUGeneralization() -> None:
 
 
 def test_class_OUGeneralizationSet() -> None:
+    """Test the OUGeneralizationSet class by creating a new instance and verifying its attributes."""
     elem_type = OUGeneralizationSet
     term = get_outerm_from_ouelement(elem_type)
 
@@ -225,6 +240,8 @@ def test_class_OUGeneralizationSet() -> None:
 
 
 def test_class_OUGeneralizationSet_list() -> None:
+    """Test the list attributes of the OUGeneralizationSet class by creating a new instance and verifying its \
+    attributes."""
     elem_type = OUGeneralizationSet
     term = get_outerm_from_ouelement(elem_type)
 
@@ -245,6 +262,7 @@ def test_class_OUGeneralizationSet_list() -> None:
 
 
 def test_class_OUGeneralizationSetView() -> None:
+    """Test the OUGeneralizationSetView class by creating a new instance and verifying its attributes."""
     elem_type = OUGeneralizationSetView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -267,6 +285,7 @@ def test_class_OUGeneralizationSetView() -> None:
 
 
 def test_class_OUGeneralizationView() -> None:
+    """Test the OUGeneralizationView class by creating a new instance and verifying its attributes."""
     elem_type = OUGeneralizationView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -295,6 +314,7 @@ def test_class_OUGeneralizationView() -> None:
 
 
 def test_class_OULiteral() -> None:
+    """Test the OULiteral class by creating a new instance and verifying its attributes."""
     elem_type = OULiteral
     term = get_outerm_from_ouelement(elem_type)
 
@@ -311,6 +331,7 @@ def test_class_OULiteral() -> None:
 
 
 def test_class_OUNote() -> None:
+    """Test the OUNote class by creating a new instance and verifying its attributes."""
     elem_type = OUNote
     term = get_outerm_from_ouelement(elem_type)
 
@@ -331,6 +352,7 @@ def test_class_OUNote() -> None:
 
 
 def test_class_OUNoteView() -> None:
+    """Test the OUNoteView class by creating a new instance and verifying its attributes."""
     elem_type = OUNoteView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -359,6 +381,7 @@ def test_class_OUNoteView() -> None:
 
 
 def test_class_OUPackage() -> None:
+    """Test the OUPackage class by creating a new instance and verifying its attributes."""
     elem_type = OUPackage
     term = get_outerm_from_ouelement(elem_type)
 
@@ -378,6 +401,7 @@ def test_class_OUPackage() -> None:
 
 
 def test_class_OUPackage_list() -> None:
+    """Test the list attributes of the OUPackage class by creating a new instance and verifying its attributes."""
     elem_type = OUPackage
     term = get_outerm_from_ouelement(elem_type)
 
@@ -398,6 +422,7 @@ def test_class_OUPackage_list() -> None:
 
 
 def test_class_OUPackageView() -> None:
+    """Test the OUPackageView class by creating a new instance and verifying its attributes."""
     elem_type = OUPackageView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -426,6 +451,7 @@ def test_class_OUPackageView() -> None:
 
 
 def test_class_OUPath() -> None:
+    """Test the OUPath class by creating a new instance and verifying its attributes."""
     elem_type = OUPath
     term = get_outerm_from_ouelement(elem_type)
 
@@ -442,6 +468,7 @@ def test_class_OUPath() -> None:
 
 
 def test_class_OUPath_list() -> None:
+    """Test the list attributes of the OUPath class by creating a new instance and verifying its attributes."""
     elem_type = OUPath
     term = get_outerm_from_ouelement(elem_type)
 
@@ -462,6 +489,7 @@ def test_class_OUPath_list() -> None:
 
 
 def test_class_OUPoint() -> None:
+    """Test the OUPoint class by creating a new instance and verifying its attributes."""
     elem_type = OUPoint
     term = get_outerm_from_ouelement(elem_type)
 
@@ -481,6 +509,7 @@ def test_class_OUPoint() -> None:
 
 
 def test_class_OUProject() -> None:
+    """Test the OUProject class by creating a new instance and verifying its attributes."""
     elem_type = OUProject
     term = get_outerm_from_ouelement(elem_type)
 
@@ -500,6 +529,7 @@ def test_class_OUProject() -> None:
 
 
 def test_class_OUProject_list() -> None:
+    """Test the list attributes of the OUProject class by creating a new instance and verifying its attributes."""
     elem_type = OUProject
     term = get_outerm_from_ouelement(elem_type)
 
@@ -520,6 +550,7 @@ def test_class_OUProject_list() -> None:
 
 
 def test_class_OUProperty() -> None:
+    """Test the OUProperty class by creating a new instance and verifying its attributes."""
     elem_type = OUProperty
     term = get_outerm_from_ouelement(elem_type)
 
@@ -557,6 +588,7 @@ def test_class_OUProperty() -> None:
 
 
 def test_class_OURectangle() -> None:
+    """Test the OURectangle class by creating a new instance and verifying its attributes."""
     elem_type = OURectangle
     term = get_outerm_from_ouelement(elem_type)
 
@@ -582,6 +614,7 @@ def test_class_OURectangle() -> None:
 
 
 def test_class_OURelation() -> None:
+    """Test the OURelation class by creating a new instance and verifying its attributes."""
     elem_type = OURelation
     term = get_outerm_from_ouelement(elem_type)
 
@@ -619,6 +652,7 @@ def test_class_OURelation() -> None:
 
 
 def test_class_OURelation_list() -> None:
+    """Test the list attributes of the OURelation class by creating a new instance and verifying its attributes."""
     elem_type = OURelation
     term = get_outerm_from_ouelement(elem_type)
 
@@ -639,6 +673,7 @@ def test_class_OURelation_list() -> None:
 
 
 def test_class_OURelationView() -> None:
+    """Test the OURelationView class by creating a new instance and verifying its attributes."""
     elem_type = OURelationView
     term = get_outerm_from_ouelement(elem_type)
 
@@ -667,6 +702,7 @@ def test_class_OURelationView() -> None:
 
 
 def test_class_OUText() -> None:
+    """Test the OUText class by creating a new instance and verifying its attributes."""
     term = OUTerm.Text
     elem_type = OUText
 

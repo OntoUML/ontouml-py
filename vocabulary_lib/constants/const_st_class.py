@@ -60,5 +60,5 @@ OU_CLASS_ST_SEMI_RIGIDS = [OUTerm.mixin]
 
 # All OntoUML class's stereotypes defined in the OntoUML profile
 OU_CLASS_ST_ALL = (
-    OU_CLASS_ST_SORTALS + OU_CLASS_ST_NON_SORTALS + OU_CLASS_ST_ABSTRACTS + [OUTerm.event, OUTerm.situation]
+        OU_CLASS_ST_SORTALS + OU_CLASS_ST_NON_SORTALS + OU_CLASS_ST_ABSTRACTS + [OUTerm.event, OUTerm.situation]
 )
