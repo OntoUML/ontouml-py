@@ -1,6 +1,6 @@
 from rdflib import Graph, URIRef
 
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[URIRef]:
@@ -20,8 +20,8 @@ def ou_get_direct_superclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> lis
     """
     superclasses: list[URIRef] = []
 
-    for gen in ontouml_graph.subjects(OUTerm.specific, ou_class_id):
-        for superclass in ontouml_graph.objects(gen, OUTerm.general):
+    for gen in ontouml_graph.subjects(OntoUML.specific, ou_class_id):
+        for superclass in ontouml_graph.objects(gen, OntoUML.general):
             superclasses.append(superclass)
 
     return superclasses
@@ -40,8 +40,8 @@ def ou_get_direct_subclasses(ontouml_graph: Graph, ou_class_id: URIRef) -> list[
     """
     subclasses: list[URIRef] = []
 
-    for gen in ontouml_graph.subjects(OUTerm.general, ou_class_id):
-        for subclass in ontouml_graph.objects(gen, OUTerm.specific):
+    for gen in ontouml_graph.subjects(OntoUML.general, ou_class_id):
+        for subclass in ontouml_graph.objects(gen, OntoUML.specific):
             subclasses.append(subclass)
 
     return subclasses
@@ -99,7 +99,7 @@ def ou_create_list_classes_sts(ontouml_graph: Graph, include_st: URIRef | list[U
         list_stereotypes = [include_st]
 
     for stereotype in list_stereotypes:
-        for ou_class in ontouml_graph.subjects(None, OUTerm.stereotype, stereotype):
+        for ou_class in ontouml_graph.subjects(None, OntoUML.stereotype, stereotype):
             list_classes_st.append(ou_class)
 
     return list_classes_st

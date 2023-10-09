@@ -12,8 +12,8 @@ Example:
     ```
     from ontouml_namespace import ONTOUML
 
-    my_ontouml_class = OUTerm.Class
-    all_terms = OUTerm.all()
+    my_ontouml_class = OntoUML.Class
+    all_terms = OntoUML.all()
 
     # Results:
     my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
@@ -31,7 +31,7 @@ from rdflib.namespace import DefinedNamespace, Namespace
 from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
 
 
-class OUTerm(DefinedNamespace):
+class OntoUML(DefinedNamespace):
     """Class to provide terms from the OntoUML vocabulary in an easy way.
 
     This class utilizes RDFLib structure for defining and accessing OntoUML terms. It provides access to OntoUML
@@ -333,17 +333,17 @@ class OUTerm(DefinedNamespace):
     _NS = Namespace(ONTOUML_NAMESPACE)
 
     @classmethod
-    def all(cls) -> list[URIRef]:
+    def list_all(cls) -> list[URIRef]:
         """
-        Retrieves a list of all public attributes of the OUTerm class, i.e., all terms contained in the OntoUML \
+        Retrieves a list of all public attributes of the OntoUML class, i.e., all terms contained in the OntoUML \
         Vocabulary.
 
-        This method uses introspection to find all attributes and methods of the OUTerm
+        This method uses introspection to find all attributes and methods of the OntoUML
         class that do not begin with an underscore (which by convention are considered private),
         and returns a list containing the names of these attributes and methods.
 
-        :return: A list containing the names of all public attributes and methods of the OUTerm class.
+        :return: A list containing the names of all public attributes and methods of the OntoUML class.
         :rtype: list[URIRef]
         """
-        all_dict = {k: getattr(OUTerm, k) for k in dir(OUTerm) if not k.startswith("_")}
+        all_dict = {k: getattr(OntoUML, k) for k in dir(OntoUML) if not k.startswith("_")}
         return list(all_dict.keys())

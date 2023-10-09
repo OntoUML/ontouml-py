@@ -24,7 +24,7 @@ from ontoumlpy.classes._ouelement import (
     OURelationView,
     OUText,
 )
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 class InvalidOntoUMLTypeException(Exception):
@@ -35,27 +35,27 @@ class InvalidOntoUMLTypeException(Exception):
 
 def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> _OUElement:
     map_type_element = {
-        OUTerm.Cardinality: OUCardinality,
-        OUTerm.Class: OUClass,
-        OUTerm.ClassView: OUClassView,
-        OUTerm.Diagram: OUDiagram,
-        OUTerm.Generalization: OUGeneralization,
-        OUTerm.GeneralizationSet: OUGeneralizationSet,
-        OUTerm.GeneralizationSetView: OUGeneralizationSetView,
-        OUTerm.GeneralizationView: OUGeneralizationView,
-        OUTerm.Literal: OULiteral,
-        OUTerm.Note: OUNote,
-        OUTerm.NoteView: OUNoteView,
-        OUTerm.Package: OUPackage,
-        OUTerm.PackageView: OUPackageView,
-        OUTerm.Path: OUPath,
-        OUTerm.Point: OUPoint,
-        OUTerm.Project: OUProject,
-        OUTerm.Property: OUProperty,
-        OUTerm.Rectangle: OURectangle,
-        OUTerm.Relation: OURelation,
-        OUTerm.RelationView: OURelationView,
-        OUTerm.Text: OUText,
+        OntoUML.Cardinality: OUCardinality,
+        OntoUML.Class: OUClass,
+        OntoUML.ClassView: OUClassView,
+        OntoUML.Diagram: OUDiagram,
+        OntoUML.Generalization: OUGeneralization,
+        OntoUML.GeneralizationSet: OUGeneralizationSet,
+        OntoUML.GeneralizationSetView: OUGeneralizationSetView,
+        OntoUML.GeneralizationView: OUGeneralizationView,
+        OntoUML.Literal: OULiteral,
+        OntoUML.Note: OUNote,
+        OntoUML.NoteView: OUNoteView,
+        OntoUML.Package: OUPackage,
+        OntoUML.PackageView: OUPackageView,
+        OntoUML.Path: OUPath,
+        OntoUML.Point: OUPoint,
+        OntoUML.Project: OUProject,
+        OntoUML.Property: OUProperty,
+        OntoUML.Rectangle: OURectangle,
+        OntoUML.Relation: OURelation,
+        OntoUML.RelationView: OURelationView,
+        OntoUML.Text: OUText,
     }
 
     individual_type = ontouml_graph.value(individual_id, RDF.type)

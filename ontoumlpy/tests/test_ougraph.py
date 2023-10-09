@@ -8,7 +8,7 @@ import pytest
 from rdflib import Graph, URIRef, RDF
 
 from ontoumlpy.classes.ougraph import OUGraph
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
 
 EXAMPLE_NS = "https://example.org/"
@@ -43,7 +43,7 @@ def test_population_with_single_class() -> None:
     """Test OUGraph population with a graph containing one class. Check if all other lists are empty."""
     graph = Graph()
     class1 = URIRef(EXAMPLE_NS + "class1")
-    graph.add((class1, RDF.type, OUTerm.Class))
+    graph.add((class1, RDF.type, OntoUML.Class))
     ou_graph = OUGraph(graph)
     assert len(ou_graph.list_OUClass) == 1
     assert ou_graph.list_OUClass[0].id == class1
@@ -60,8 +60,8 @@ def test_population_with_two_classes() -> None:
     graph = Graph()
     class1 = URIRef(EXAMPLE_NS + "class1")
     class2 = URIRef(EXAMPLE_NS + "class2")
-    graph.add((class1, RDF.type, OUTerm.Class))
-    graph.add((class2, RDF.type, OUTerm.Class))
+    graph.add((class1, RDF.type, OntoUML.Class))
+    graph.add((class2, RDF.type, OntoUML.Class))
     ou_graph = OUGraph(graph)
     assert len(ou_graph.list_OUClass) == 2
     assert ou_graph.list_OUClass[0].id == class1
@@ -81,9 +81,9 @@ def test_population_with_two_classes_and_one_generalization() -> None:
     class1 = URIRef(EXAMPLE_NS + "class1")
     class2 = URIRef(EXAMPLE_NS + "class2")
     gen1 = URIRef(EXAMPLE_NS + "gen1")
-    graph.add((class1, RDF.type, OUTerm.Class))
-    graph.add((class2, RDF.type, OUTerm.Class))
-    graph.add((gen1, RDF.type, OUTerm.Generalization))
+    graph.add((class1, RDF.type, OntoUML.Class))
+    graph.add((class2, RDF.type, OntoUML.Class))
+    graph.add((gen1, RDF.type, OntoUML.Generalization))
     ou_graph = OUGraph(graph)
     assert len(ou_graph.list_OUClass) == 2
     assert ou_graph.list_OUClass[0].id == class1
@@ -105,8 +105,8 @@ def test_include_concrete_elements_when_set_to_true() -> None:
     class1 = URIRef(EXAMPLE_NS + "class1")
     diagram1 = URIRef(EXAMPLE_NS + "diagram1")
 
-    graph.add((class1, RDF.type, OUTerm.Class))
-    graph.add((diagram1, RDF.type, OUTerm.Diagram))
+    graph.add((class1, RDF.type, OntoUML.Class))
+    graph.add((diagram1, RDF.type, OntoUML.Diagram))
 
     ou_graph = OUGraph(graph, include_concrete=True)
 
@@ -129,8 +129,8 @@ def test_exclude_concrete_elements_when_set_to_false() -> None:
     class1 = URIRef(EXAMPLE_NS + "class1")
     diagram1 = URIRef(EXAMPLE_NS + "diagram1")
 
-    graph.add((class1, RDF.type, OUTerm.Class))
-    graph.add((diagram1, RDF.type, OUTerm.Diagram))
+    graph.add((class1, RDF.type, OntoUML.Class))
+    graph.add((diagram1, RDF.type, OntoUML.Diagram))
 
     ou_graph = OUGraph(graph, include_concrete=False)
 
@@ -153,8 +153,8 @@ def test_negative_scenario_exclude_concrete_elements() -> None:
     class1 = URIRef(EXAMPLE_NS + "class1")
     diagram1 = URIRef(EXAMPLE_NS + "diagram1")
 
-    graph.add((class1, RDF.type, OUTerm.Class))
-    graph.add((diagram1, RDF.type, OUTerm.Diagram))
+    graph.add((class1, RDF.type, OntoUML.Class))
+    graph.add((diagram1, RDF.type, OntoUML.Diagram))
 
     ou_graph = OUGraph(graph, include_concrete=False)
 

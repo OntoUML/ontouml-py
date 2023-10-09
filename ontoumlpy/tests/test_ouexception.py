@@ -14,7 +14,7 @@ from ontoumlpy.classes.ouelement_types import (
     OUPoint,
 )
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError, OUInvalidAttribute
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 def test_ouid_not_in_graph_absent_id() -> None:
@@ -41,7 +41,7 @@ def test_ouid_not_in_graph_present_id() -> None:
     """
     present_id = URIRef("http://example.com/nonexistent_id")
     graph = Graph()
-    graph.add((present_id, RDF.type, OUTerm.Class))
+    graph.add((present_id, RDF.type, OntoUML.Class))
 
     try:
         OUClass(graph, present_id)
@@ -55,10 +55,10 @@ def test_ouid_not_in_graph_present_id() -> None:
 @pytest.mark.parametrize(
     "ouclass, outerm",
     [
-        (OUClass, OUTerm.Cardinality),
-        (OUDiagram, OUTerm.Shape),
-        (OUGeneralizationSetView, OUTerm.point),
-        (OUPoint, OUTerm.RelationView),
+        (OUClass, OntoUML.Cardinality),
+        (OUDiagram, OntoUML.Shape),
+        (OUGeneralizationSetView, OntoUML.point),
+        (OUPoint, OntoUML.RelationView),
     ],
 )
 def test_ouid_type_mismatch_error_mismatched_type(ouclass, outerm) -> None:
@@ -89,11 +89,11 @@ def test_ouid_type_mismatch_error_matched_type() -> None:
     elem_id4 = URIRef("http://example.com/elem_id4")
     elem_id5 = URIRef("http://example.com/elem_id5")
     graph = Graph()
-    graph.add((elem_id1, RDF.type, OUTerm.Cardinality))
-    graph.add((elem_id2, RDF.type, OUTerm.Rectangle))
-    graph.add((elem_id3, RDF.type, OUTerm.Path))
-    graph.add((elem_id4, RDF.type, OUTerm.NoteView))
-    graph.add((elem_id5, RDF.type, OUTerm.Text))
+    graph.add((elem_id1, RDF.type, OntoUML.Cardinality))
+    graph.add((elem_id2, RDF.type, OntoUML.Rectangle))
+    graph.add((elem_id3, RDF.type, OntoUML.Path))
+    graph.add((elem_id4, RDF.type, OntoUML.NoteView))
+    graph.add((elem_id5, RDF.type, OntoUML.Text))
 
     try:
         OUCardinality(graph, elem_id1)
@@ -120,11 +120,11 @@ def test_ou_invalid_attribute_valid_access() -> None:
     elem_id4 = URIRef("http://example.com/elem_id4")
     elem_id5 = URIRef("http://example.com/elem_id5")
     graph = Graph()
-    graph.add((elem_id1, RDF.type, OUTerm.Cardinality))
-    graph.add((elem_id2, RDF.type, OUTerm.Rectangle))
-    graph.add((elem_id3, RDF.type, OUTerm.Path))
-    graph.add((elem_id4, RDF.type, OUTerm.NoteView))
-    graph.add((elem_id5, RDF.type, OUTerm.Text))
+    graph.add((elem_id1, RDF.type, OntoUML.Cardinality))
+    graph.add((elem_id2, RDF.type, OntoUML.Rectangle))
+    graph.add((elem_id3, RDF.type, OntoUML.Path))
+    graph.add((elem_id4, RDF.type, OntoUML.NoteView))
+    graph.add((elem_id5, RDF.type, OntoUML.Text))
 
     try:
         x1 = OUCardinality(graph, elem_id1)
@@ -154,7 +154,7 @@ def test_ou_invalid_attribute_invalid_access() -> None:
     """
     elem_id1 = URIRef("http://example.com/elem_id1")
     graph = Graph()
-    graph.add((elem_id1, RDF.type, OUTerm.Cardinality))
+    graph.add((elem_id1, RDF.type, OntoUML.Cardinality))
 
     try:
         x1 = OUCardinality(graph, elem_id1)

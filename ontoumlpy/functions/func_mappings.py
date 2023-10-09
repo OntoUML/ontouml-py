@@ -29,30 +29,30 @@ from ontoumlpy.classes.ouelement_types import (
     OURelation,
 )
 from ontoumlpy.classes.ouexception import OUUnmappedOUElement, OUUnmappedOUTerm
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 _MAP_OUTERM_OUELEMENT = {
-    OUTerm.Cardinality: OUCardinality,
-    OUTerm.Class: OUClass,
-    OUTerm.ClassView: OUClassView,
-    OUTerm.Diagram: OUDiagram,
-    OUTerm.Generalization: OUGeneralization,
-    OUTerm.GeneralizationSet: OUGeneralizationSet,
-    OUTerm.GeneralizationSetView: OUGeneralizationSetView,
-    OUTerm.GeneralizationView: OUGeneralizationView,
-    OUTerm.Literal: OULiteral,
-    OUTerm.Note: OUNote,
-    OUTerm.NoteView: OUNoteView,
-    OUTerm.Package: OUPackage,
-    OUTerm.PackageView: OUPackageView,
-    OUTerm.Path: OUPath,
-    OUTerm.Point: OUPoint,
-    OUTerm.Project: OUProject,
-    OUTerm.Property: OUProperty,
-    OUTerm.Rectangle: OURectangle,
-    OUTerm.Relation: OURelation,
-    OUTerm.RelationView: OURelationView,
-    OUTerm.Text: OUText,
+    OntoUML.Cardinality: OUCardinality,
+    OntoUML.Class: OUClass,
+    OntoUML.ClassView: OUClassView,
+    OntoUML.Diagram: OUDiagram,
+    OntoUML.Generalization: OUGeneralization,
+    OntoUML.GeneralizationSet: OUGeneralizationSet,
+    OntoUML.GeneralizationSetView: OUGeneralizationSetView,
+    OntoUML.GeneralizationView: OUGeneralizationView,
+    OntoUML.Literal: OULiteral,
+    OntoUML.Note: OUNote,
+    OntoUML.NoteView: OUNoteView,
+    OntoUML.Package: OUPackage,
+    OntoUML.PackageView: OUPackageView,
+    OntoUML.Path: OUPath,
+    OntoUML.Point: OUPoint,
+    OntoUML.Project: OUProject,
+    OntoUML.Property: OUProperty,
+    OntoUML.Rectangle: OURectangle,
+    OntoUML.Relation: OURelation,
+    OntoUML.RelationView: OURelationView,
+    OntoUML.Text: OUText,
 }
 
 

@@ -7,7 +7,7 @@ from rdflib import Graph, RDF, URIRef
 
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 def test_ou_element_creation_positive() -> None:
@@ -18,7 +18,7 @@ def test_ou_element_creation_positive() -> None:
     """
     onto_graph = Graph()
     elem_uri = URIRef("https://example.org/my_elem")
-    elem_type = OUTerm.Class
+    elem_type = OntoUML.Class
     onto_graph.add((elem_uri, RDF.type, elem_type))
 
     elem_obj = _OUElement(onto_graph, elem_uri, "OUElement", elem_type)
@@ -34,7 +34,7 @@ def test_ou_element_negative_attribute() -> None:
     """
     onto_graph = Graph()
     elem_uri = URIRef("https://example.org/my_elem")
-    elem_type = OUTerm.Class
+    elem_type = OntoUML.Class
     onto_graph.add((elem_uri, RDF.type, elem_type))
     elem_obj = _OUElement(onto_graph, elem_uri, "OUElement", elem_type)
 
@@ -71,7 +71,7 @@ def test_ou_element_id_type_mismatch_error() -> None:
     onto_graph.add((elem_uri, RDF.type, elem_type))
 
     try:
-        _OUElement(onto_graph, elem_uri, "OUElement", OUTerm.Class)
+        _OUElement(onto_graph, elem_uri, "OUElement", OntoUML.Class)
         assert False
     except OUIDTypeMismatchError:
         assert True

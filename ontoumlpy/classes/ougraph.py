@@ -31,7 +31,7 @@ from loguru import logger
 from rdflib import Graph, RDF
 
 from ontoumlpy.classes._ouelement import _OUElement
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement, get_ouelement_from_outerm
 
 
@@ -145,46 +145,46 @@ class OUGraph:
         term = get_outerm_from_ouelement(element)
 
         # ABSTRACT SYNTAX ELEMENTS
-        if term == OUTerm.Cardinality:
+        if term == OntoUML.Cardinality:
             self.all_OUCardinality.append(element)
-        elif term == OUTerm.Class:
+        elif term == OntoUML.Class:
             self.all_OUClass.append(element)
-        elif term == OUTerm.Generalization:
+        elif term == OntoUML.Generalization:
             self.all_OUGeneralization.append(element)
-        elif term == OUTerm.GeneralizationSet:
+        elif term == OntoUML.GeneralizationSet:
             self.all_OUGeneralizationSet.append(element)
-        elif term == OUTerm.Literal:
+        elif term == OntoUML.Literal:
             self.all_OULiteral.append(element)
-        elif term == OUTerm.Note:
+        elif term == OntoUML.Note:
             self.all_OUNote.append(element)
-        elif term == OUTerm.Package:
+        elif term == OntoUML.Package:
             self.all_OUPackage.append(element)
-        elif term == OUTerm.Project:
+        elif term == OntoUML.Project:
             self.all_OUProject.append(element)
-        elif term == OUTerm.Property:
+        elif term == OntoUML.Property:
             self.all_OUProperty.append(element)
-        elif term == OUTerm.Relation:
+        elif term == OntoUML.Relation:
             self.all_OURelation.append(element)
-        elif term == OUTerm.Text:
+        elif term == OntoUML.Text:
             self.all_OUText.append(element)
 
         # CONCRETE SYNTAX ELEMENTS
         elif include_concrete:
-            if term == OUTerm.ClassView:
+            if term == OntoUML.ClassView:
                 self.all_OUClassView.append(element)
-            elif term == OUTerm.Diagram:
+            elif term == OntoUML.Diagram:
                 self.all_OUDiagram.append(element)
-            elif term == OUTerm.GeneralizationSetView:
+            elif term == OntoUML.GeneralizationSetView:
                 self.all_OUGeneralizationSetView.append(element)
-            elif term == OUTerm.GeneralizationView:
+            elif term == OntoUML.GeneralizationView:
                 self.all_OUGeneralizationView.append(element)
-            elif term == OUTerm.NoteView:
+            elif term == OntoUML.NoteView:
                 self.all_OUNoteView.append(element)
-            elif term == OUTerm.Path:
+            elif term == OntoUML.Path:
                 self.all_OUPath.append(element)
-            elif term == OUTerm.Point:
+            elif term == OntoUML.Point:
                 self.all_OUPoint.append(element)
-            elif term == OUTerm.Rectangle:
+            elif term == OntoUML.Rectangle:
                 self.all_OURectangle.append(element)
-            elif term == OUTerm.RelationView:
+            elif term == OntoUML.RelationView:
                 self.all_OURelationView.append(element)

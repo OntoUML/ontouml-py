@@ -30,7 +30,7 @@ from ontoumlpy.classes.ouelement_types import (
     OURelationView,
     OUText,
 )
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement
 
 
@@ -42,9 +42,9 @@ def test_class_OUCardinality() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.cardinalityValue, URIRef("x1")))
-    g.add((elem_id, OUTerm.lowerBound, URIRef("x2")))
-    g.add((elem_id, OUTerm.upperBound, URIRef("x3")))
+    g.add((elem_id, OntoUML.cardinalityValue, URIRef("x1")))
+    g.add((elem_id, OntoUML.lowerBound, URIRef("x2")))
+    g.add((elem_id, OntoUML.upperBound, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -65,15 +65,15 @@ def test_class_OUClass() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.name, URIRef("x1")))
-    g.add((elem_id, OUTerm.description, URIRef("x3")))
-    g.add((elem_id, OUTerm.isAbstract, URIRef("x4")))
-    g.add((elem_id, OUTerm.isDerived, URIRef("x5")))
-    g.add((elem_id, OUTerm.isPowertype, URIRef("x6")))
-    g.add((elem_id, OUTerm.literal, URIRef("x7")))
-    g.add((elem_id, OUTerm.order, URIRef("x8")))
-    g.add((elem_id, OUTerm.project, URIRef("x9")))
-    g.add((elem_id, OUTerm.stereotype, URIRef("x11")))
+    g.add((elem_id, OntoUML.name, URIRef("x1")))
+    g.add((elem_id, OntoUML.description, URIRef("x3")))
+    g.add((elem_id, OntoUML.isAbstract, URIRef("x4")))
+    g.add((elem_id, OntoUML.isDerived, URIRef("x5")))
+    g.add((elem_id, OntoUML.isPowertype, URIRef("x6")))
+    g.add((elem_id, OntoUML.literal, URIRef("x7")))
+    g.add((elem_id, OntoUML.order, URIRef("x8")))
+    g.add((elem_id, OntoUML.project, URIRef("x9")))
+    g.add((elem_id, OntoUML.stereotype, URIRef("x11")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -106,11 +106,11 @@ def test_class_OUClass_lists() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.attribute, URIRef("x1a")))
-    g.add((elem_id, OUTerm.attribute, URIRef("x1b")))
+    g.add((elem_id, OntoUML.attribute, URIRef("x1a")))
+    g.add((elem_id, OntoUML.attribute, URIRef("x1b")))
 
-    g.add((elem_id, OUTerm.restrictedTo, URIRef("x2a")))
-    g.add((elem_id, OUTerm.restrictedTo, URIRef("x2b")))
+    g.add((elem_id, OntoUML.restrictedTo, URIRef("x2a")))
+    g.add((elem_id, OntoUML.restrictedTo, URIRef("x2b")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -131,9 +131,9 @@ def test_class_OUClassView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -154,9 +154,9 @@ def test_class_OUDiagram() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.name, URIRef("x1")))
-    g.add((elem_id, OUTerm.owner, URIRef("x3")))
-    g.add((elem_id, OUTerm.project, URIRef("x4")))
+    g.add((elem_id, OntoUML.name, URIRef("x1")))
+    g.add((elem_id, OntoUML.owner, URIRef("x3")))
+    g.add((elem_id, OntoUML.project, URIRef("x4")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -177,8 +177,8 @@ def test_class_OUDiagram_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.containsView, URIRef("x1")))
-    g.add((elem_id, OUTerm.containsView, URIRef("x2")))
+    g.add((elem_id, OntoUML.containsView, URIRef("x1")))
+    g.add((elem_id, OntoUML.containsView, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -198,9 +198,9 @@ def test_class_OUGeneralization() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.general, URIRef("x1")))
-    g.add((elem_id, OUTerm.specific, URIRef("x2")))
-    g.add((elem_id, OUTerm.project, URIRef("x3")))
+    g.add((elem_id, OntoUML.general, URIRef("x1")))
+    g.add((elem_id, OntoUML.specific, URIRef("x2")))
+    g.add((elem_id, OntoUML.project, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -221,10 +221,10 @@ def test_class_OUGeneralizationSet() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isComplete, URIRef("x2")))
-    g.add((elem_id, OUTerm.isDisjoint, URIRef("x3")))
-    g.add((elem_id, OUTerm.name, URIRef("x4")))
-    g.add((elem_id, OUTerm.project, URIRef("x5")))
+    g.add((elem_id, OntoUML.isComplete, URIRef("x2")))
+    g.add((elem_id, OntoUML.isDisjoint, URIRef("x3")))
+    g.add((elem_id, OntoUML.name, URIRef("x4")))
+    g.add((elem_id, OntoUML.project, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -248,8 +248,8 @@ def test_class_OUGeneralizationSet_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.generalization, URIRef("x1")))
-    g.add((elem_id, OUTerm.generalization, URIRef("x2")))
+    g.add((elem_id, OntoUML.generalization, URIRef("x1")))
+    g.add((elem_id, OntoUML.generalization, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -269,9 +269,9 @@ def test_class_OUGeneralizationSetView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -292,11 +292,11 @@ def test_class_OUGeneralizationView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
-    g.add((elem_id, OUTerm.sourceView, URIRef("x4")))
-    g.add((elem_id, OUTerm.targetView, URIRef("x5")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.sourceView, URIRef("x4")))
+    g.add((elem_id, OntoUML.targetView, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -321,7 +321,7 @@ def test_class_OULiteral() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.project, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x1")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -338,8 +338,8 @@ def test_class_OUNote() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.text, URIRef("x1")))
-    g.add((elem_id, OUTerm.text, URIRef("x2")))
+    g.add((elem_id, OntoUML.text, URIRef("x1")))
+    g.add((elem_id, OntoUML.text, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -359,11 +359,11 @@ def test_class_OUNoteView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
-    g.add((elem_id, OUTerm.sourceView, URIRef("x4")))
-    g.add((elem_id, OUTerm.targetView, URIRef("x5")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.sourceView, URIRef("x4")))
+    g.add((elem_id, OntoUML.targetView, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -388,8 +388,8 @@ def test_class_OUPackage() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.name, URIRef("x2")))
-    g.add((elem_id, OUTerm.project, URIRef("x3")))
+    g.add((elem_id, OntoUML.name, URIRef("x2")))
+    g.add((elem_id, OntoUML.project, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -408,8 +408,8 @@ def test_class_OUPackage_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.containsModelElement, URIRef("x1")))
-    g.add((elem_id, OUTerm.containsModelElement, URIRef("x2")))
+    g.add((elem_id, OntoUML.containsModelElement, URIRef("x1")))
+    g.add((elem_id, OntoUML.containsModelElement, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -429,11 +429,11 @@ def test_class_OUPackageView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
-    g.add((elem_id, OUTerm.sourceView, URIRef("x4")))
-    g.add((elem_id, OUTerm.targetView, URIRef("x5")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.sourceView, URIRef("x4")))
+    g.add((elem_id, OntoUML.targetView, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -458,7 +458,7 @@ def test_class_OUPath() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -475,8 +475,8 @@ def test_class_OUPath_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.point, URIRef("x1")))
-    g.add((elem_id, OUTerm.point, URIRef("x2")))
+    g.add((elem_id, OntoUML.point, URIRef("x1")))
+    g.add((elem_id, OntoUML.point, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -496,8 +496,8 @@ def test_class_OUPoint() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.xCoordinate, URIRef("x1")))
-    g.add((elem_id, OUTerm.yCoordinate, URIRef("x2")))
+    g.add((elem_id, OntoUML.xCoordinate, URIRef("x1")))
+    g.add((elem_id, OntoUML.yCoordinate, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -516,8 +516,8 @@ def test_class_OUProject() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.name, URIRef("x1")))
-    g.add((elem_id, OUTerm.model, URIRef("x3")))
+    g.add((elem_id, OntoUML.name, URIRef("x1")))
+    g.add((elem_id, OntoUML.model, URIRef("x3")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -536,8 +536,8 @@ def test_class_OUProject_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.diagram, URIRef("x1")))
-    g.add((elem_id, OUTerm.diagram, URIRef("x2")))
+    g.add((elem_id, OntoUML.diagram, URIRef("x1")))
+    g.add((elem_id, OntoUML.diagram, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -557,14 +557,14 @@ def test_class_OUProperty() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.aggregationKind, URIRef("x1")))
-    g.add((elem_id, OUTerm.cardinality, URIRef("x2")))
-    g.add((elem_id, OUTerm.isDerived, URIRef("x3")))
-    g.add((elem_id, OUTerm.isOrdered, URIRef("x4")))
-    g.add((elem_id, OUTerm.isReadOnly, URIRef("x5")))
-    g.add((elem_id, OUTerm.name, URIRef("x6")))
-    g.add((elem_id, OUTerm.propertyType, URIRef("x7")))
-    g.add((elem_id, OUTerm.project, URIRef("x8")))
+    g.add((elem_id, OntoUML.aggregationKind, URIRef("x1")))
+    g.add((elem_id, OntoUML.cardinality, URIRef("x2")))
+    g.add((elem_id, OntoUML.isDerived, URIRef("x3")))
+    g.add((elem_id, OntoUML.isOrdered, URIRef("x4")))
+    g.add((elem_id, OntoUML.isReadOnly, URIRef("x5")))
+    g.add((elem_id, OntoUML.name, URIRef("x6")))
+    g.add((elem_id, OntoUML.propertyType, URIRef("x7")))
+    g.add((elem_id, OntoUML.project, URIRef("x8")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -595,10 +595,10 @@ def test_class_OURectangle() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.topLeftPosition, URIRef("x1")))
-    g.add((elem_id, OUTerm.height, URIRef("x2")))
-    g.add((elem_id, OUTerm.width, URIRef("x3")))
-    g.add((elem_id, OUTerm.project, URIRef("x4")))
+    g.add((elem_id, OntoUML.topLeftPosition, URIRef("x1")))
+    g.add((elem_id, OntoUML.height, URIRef("x2")))
+    g.add((elem_id, OntoUML.width, URIRef("x3")))
+    g.add((elem_id, OntoUML.project, URIRef("x4")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -621,14 +621,14 @@ def test_class_OURelation() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.description, URIRef("x1")))
-    g.add((elem_id, OUTerm.isAbstract, URIRef("x2")))
-    g.add((elem_id, OUTerm.isDerived, URIRef("x3")))
-    g.add((elem_id, OUTerm.name, URIRef("x4")))
-    g.add((elem_id, OUTerm.sourceEnd, URIRef("x6")))
-    g.add((elem_id, OUTerm.stereotype, URIRef("x7")))
-    g.add((elem_id, OUTerm.targetEnd, URIRef("x8")))
-    g.add((elem_id, OUTerm.project, URIRef("x9")))
+    g.add((elem_id, OntoUML.description, URIRef("x1")))
+    g.add((elem_id, OntoUML.isAbstract, URIRef("x2")))
+    g.add((elem_id, OntoUML.isDerived, URIRef("x3")))
+    g.add((elem_id, OntoUML.name, URIRef("x4")))
+    g.add((elem_id, OntoUML.sourceEnd, URIRef("x6")))
+    g.add((elem_id, OntoUML.stereotype, URIRef("x7")))
+    g.add((elem_id, OntoUML.targetEnd, URIRef("x8")))
+    g.add((elem_id, OntoUML.project, URIRef("x9")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -659,8 +659,8 @@ def test_class_OURelation_list() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.relationEnd, URIRef("x1")))
-    g.add((elem_id, OUTerm.relationEnd, URIRef("x2")))
+    g.add((elem_id, OntoUML.relationEnd, URIRef("x1")))
+    g.add((elem_id, OntoUML.relationEnd, URIRef("x2")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -680,11 +680,11 @@ def test_class_OURelationView() -> None:
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.isViewOf, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.shape, URIRef("x3")))
-    g.add((elem_id, OUTerm.sourceView, URIRef("x4")))
-    g.add((elem_id, OUTerm.targetView, URIRef("x5")))
+    g.add((elem_id, OntoUML.isViewOf, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.shape, URIRef("x3")))
+    g.add((elem_id, OntoUML.sourceView, URIRef("x4")))
+    g.add((elem_id, OntoUML.targetView, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)
@@ -703,17 +703,17 @@ def test_class_OURelationView() -> None:
 
 def test_class_OUText() -> None:
     """Test the OUText class by creating a new instance and verifying its attributes."""
-    term = OUTerm.Text
+    term = OntoUML.Text
     elem_type = OUText
 
     g = Graph()
     elem_id = URIRef("elem")
 
-    g.add((elem_id, OUTerm.height, URIRef("x1")))
-    g.add((elem_id, OUTerm.project, URIRef("x2")))
-    g.add((elem_id, OUTerm.text, URIRef("x3")))
-    g.add((elem_id, OUTerm.topLeftPosition, URIRef("x4")))
-    g.add((elem_id, OUTerm.width, URIRef("x5")))
+    g.add((elem_id, OntoUML.height, URIRef("x1")))
+    g.add((elem_id, OntoUML.project, URIRef("x2")))
+    g.add((elem_id, OntoUML.text, URIRef("x3")))
+    g.add((elem_id, OntoUML.topLeftPosition, URIRef("x4")))
+    g.add((elem_id, OntoUML.width, URIRef("x5")))
 
     g.add((elem_id, RDF.type, term))
     elem = elem_type(g, elem_id)

@@ -14,30 +14,30 @@ from rdflib import URIRef, Graph
 
 from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ouexception import OUInvalidAttribute
-from ontoumlpy.classes.outerm import OUTerm
+from ontoumlpy.classes.ontouml import OntoUML
 
 class_map = {
-    "OUCardinality": OUTerm.Cardinality,
-    "OUClass": OUTerm.Class,
-    "OUClassView": OUTerm.ClassView,
-    "OUDiagram": OUTerm.Diagram,
-    "OUGeneralization": OUTerm.Generalization,
-    "OUGeneralizationSet": OUTerm.GeneralizationSet,
-    "OUGeneralizationSetView": OUTerm.GeneralizationSetView,
-    "OUGeneralizationView": OUTerm.GeneralizationView,
-    "OULiteral": OUTerm.Literal,
-    "OUNote": OUTerm.Note,
-    "OUNoteView": OUTerm.NoteView,
-    "OUPackage": OUTerm.Package,
-    "OUPackageView": OUTerm.PackageView,
-    "OUPath": OUTerm.Path,
-    "OUPoint": OUTerm.Point,
-    "OUProject": OUTerm.Project,
-    "OUProperty": OUTerm.Property,
-    "OURectangle": OUTerm.Rectangle,
-    "OURelation": OUTerm.Relation,
-    "OURelationView": OUTerm.RelationView,
-    "OUText": OUTerm.Text,
+    "OUCardinality": OntoUML.Cardinality,
+    "OUClass": OntoUML.Class,
+    "OUClassView": OntoUML.ClassView,
+    "OUDiagram": OntoUML.Diagram,
+    "OUGeneralization": OntoUML.Generalization,
+    "OUGeneralizationSet": OntoUML.GeneralizationSet,
+    "OUGeneralizationSetView": OntoUML.GeneralizationSetView,
+    "OUGeneralizationView": OntoUML.GeneralizationView,
+    "OULiteral": OntoUML.Literal,
+    "OUNote": OntoUML.Note,
+    "OUNoteView": OntoUML.NoteView,
+    "OUPackage": OntoUML.Package,
+    "OUPackageView": OntoUML.PackageView,
+    "OUPath": OntoUML.Path,
+    "OUPoint": OntoUML.Point,
+    "OUProject": OntoUML.Project,
+    "OUProperty": OntoUML.Property,
+    "OURectangle": OntoUML.Rectangle,
+    "OURelation": OntoUML.Relation,
+    "OURelationView": OntoUML.RelationView,
+    "OUText": OntoUML.Text,
 }
 
 
@@ -62,9 +62,9 @@ class OUCardinality(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.cardinalityValue: URIRef = ontouml_graph.value(object_id, OUTerm.cardinalityValue)
-        self.lowerBound: URIRef = ontouml_graph.value(object_id, OUTerm.lowerBound)
-        self.upperBound: URIRef = ontouml_graph.value(object_id, OUTerm.upperBound)
+        self.cardinalityValue: URIRef = ontouml_graph.value(object_id, OntoUML.cardinalityValue)
+        self.lowerBound: URIRef = ontouml_graph.value(object_id, OntoUML.lowerBound)
+        self.upperBound: URIRef = ontouml_graph.value(object_id, OntoUML.upperBound)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -107,17 +107,17 @@ class OUClass(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.attribute: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.attribute))
-        self.description: URIRef = ontouml_graph.value(object_id, OUTerm.description)
-        self.isAbstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
-        self.isPowertype: URIRef = ontouml_graph.value(object_id, OUTerm.isPowertype)
-        self.literal: URIRef = ontouml_graph.value(object_id, OUTerm.literal)
-        self.order: URIRef = ontouml_graph.value(object_id, OUTerm.order)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.restrictedTo: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.restrictedTo))
-        self.stereotype: URIRef = ontouml_graph.value(object_id, OUTerm.stereotype)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.attribute: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.attribute))
+        self.description: URIRef = ontouml_graph.value(object_id, OntoUML.description)
+        self.isAbstract: URIRef = ontouml_graph.value(object_id, OntoUML.isAbstract)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
+        self.isPowertype: URIRef = ontouml_graph.value(object_id, OntoUML.isPowertype)
+        self.literal: URIRef = ontouml_graph.value(object_id, OntoUML.literal)
+        self.order: URIRef = ontouml_graph.value(object_id, OntoUML.order)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.restrictedTo: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.restrictedTo))
+        self.stereotype: URIRef = ontouml_graph.value(object_id, OntoUML.stereotype)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -144,9 +144,9 @@ class OUClassView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -175,10 +175,10 @@ class OUDiagram(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.containsView: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.containsView))
-        self.owner: URIRef = ontouml_graph.value(object_id, OUTerm.owner)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.containsView: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.containsView))
+        self.owner: URIRef = ontouml_graph.value(object_id, OntoUML.owner)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -205,9 +205,9 @@ class OUGeneralization(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.general: URIRef = ontouml_graph.value(object_id, OUTerm.general)
-        self.specific: URIRef = ontouml_graph.value(object_id, OUTerm.specific)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.general: URIRef = ontouml_graph.value(object_id, OntoUML.general)
+        self.specific: URIRef = ontouml_graph.value(object_id, OntoUML.specific)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -238,11 +238,11 @@ class OUGeneralizationSet(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.generalization: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.generalization))
-        self.isComplete: URIRef = ontouml_graph.value(object_id, OUTerm.isComplete)
-        self.isDisjoint: URIRef = ontouml_graph.value(object_id, OUTerm.isDisjoint)
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.generalization: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.generalization))
+        self.isComplete: URIRef = ontouml_graph.value(object_id, OntoUML.isComplete)
+        self.isDisjoint: URIRef = ontouml_graph.value(object_id, OntoUML.isDisjoint)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -269,9 +269,9 @@ class OUGeneralizationSetView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -302,11 +302,11 @@ class OUGeneralizationView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OntoUML.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OntoUML.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -329,7 +329,7 @@ class OULiteral(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -352,7 +352,7 @@ class OUNote(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.text: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.text))
+        self.text: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.text))
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -383,11 +383,11 @@ class OUNoteView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OntoUML.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OntoUML.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -414,9 +414,9 @@ class OUPackage(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.containsModelElement: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.containsModelElement))
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.containsModelElement: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.containsModelElement))
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -447,11 +447,11 @@ class OUPackageView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OntoUML.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OntoUML.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -476,8 +476,8 @@ class OUPath(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.point: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.point))
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.point: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.point))
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -502,8 +502,8 @@ class OUPoint(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.xCoordinate: URIRef = ontouml_graph.value(object_id, OUTerm.xCoordinate)
-        self.yCoordinate: URIRef = ontouml_graph.value(object_id, OUTerm.yCoordinate)
+        self.xCoordinate: URIRef = ontouml_graph.value(object_id, OntoUML.xCoordinate)
+        self.yCoordinate: URIRef = ontouml_graph.value(object_id, OntoUML.yCoordinate)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -530,9 +530,9 @@ class OUProject(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.diagram: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.diagram))
-        self.model: URIRef = ontouml_graph.value(object_id, OUTerm.model)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.diagram: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.diagram))
+        self.model: URIRef = ontouml_graph.value(object_id, OntoUML.model)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -569,14 +569,14 @@ class OUProperty(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.aggregationKind: URIRef = ontouml_graph.value(object_id, OUTerm.aggregationKind)
-        self.cardinality: URIRef = ontouml_graph.value(object_id, OUTerm.cardinality)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
-        self.isOrdered: URIRef = ontouml_graph.value(object_id, OUTerm.isOrdered)
-        self.isReadOnly: URIRef = ontouml_graph.value(object_id, OUTerm.isReadOnly)
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.propertyType: URIRef = ontouml_graph.value(object_id, OUTerm.propertyType)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.aggregationKind: URIRef = ontouml_graph.value(object_id, OntoUML.aggregationKind)
+        self.cardinality: URIRef = ontouml_graph.value(object_id, OntoUML.cardinality)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
+        self.isOrdered: URIRef = ontouml_graph.value(object_id, OntoUML.isOrdered)
+        self.isReadOnly: URIRef = ontouml_graph.value(object_id, OntoUML.isReadOnly)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.propertyType: URIRef = ontouml_graph.value(object_id, OntoUML.propertyType)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -605,10 +605,10 @@ class OURectangle(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
-        self.height: URIRef = ontouml_graph.value(object_id, OUTerm.height)
-        self.width: URIRef = ontouml_graph.value(object_id, OUTerm.width)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OntoUML.topLeftPosition)
+        self.height: URIRef = ontouml_graph.value(object_id, OntoUML.height)
+        self.width: URIRef = ontouml_graph.value(object_id, OntoUML.width)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -647,15 +647,15 @@ class OURelation(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.description: URIRef = ontouml_graph.value(object_id, OUTerm.description)
-        self.isAbstract: URIRef = ontouml_graph.value(object_id, OUTerm.isAbstract)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OUTerm.isDerived)
-        self.name: URIRef = ontouml_graph.value(object_id, OUTerm.name)
-        self.relationEnd: list[URIRef] = list(ontouml_graph.objects(object_id, OUTerm.relationEnd))
-        self.sourceEnd: URIRef = ontouml_graph.value(object_id, OUTerm.sourceEnd)
-        self.stereotype: URIRef = ontouml_graph.value(object_id, OUTerm.stereotype)
-        self.targetEnd: URIRef = ontouml_graph.value(object_id, OUTerm.targetEnd)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
+        self.description: URIRef = ontouml_graph.value(object_id, OntoUML.description)
+        self.isAbstract: URIRef = ontouml_graph.value(object_id, OntoUML.isAbstract)
+        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
+        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
+        self.relationEnd: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.relationEnd))
+        self.sourceEnd: URIRef = ontouml_graph.value(object_id, OntoUML.sourceEnd)
+        self.stereotype: URIRef = ontouml_graph.value(object_id, OntoUML.stereotype)
+        self.targetEnd: URIRef = ontouml_graph.value(object_id, OntoUML.targetEnd)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -686,11 +686,11 @@ class OURelationView(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OUTerm.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OUTerm.shape)
-        self.sourceView: URIRef = ontouml_graph.value(object_id, OUTerm.sourceView)
-        self.targetView: URIRef = ontouml_graph.value(object_id, OUTerm.targetView)
+        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
+        self.sourceView: URIRef = ontouml_graph.value(object_id, OntoUML.sourceView)
+        self.targetView: URIRef = ontouml_graph.value(object_id, OntoUML.targetView)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
@@ -721,11 +721,11 @@ class OUText(_OUElement):
         related_type = class_map[class_name]
         super().__init__(ontouml_graph, object_id, class_name, related_type)
 
-        self.height: URIRef = ontouml_graph.value(object_id, OUTerm.height)
-        self.project: URIRef = ontouml_graph.value(object_id, OUTerm.project)
-        self.text: URIRef = ontouml_graph.value(object_id, OUTerm.text)
-        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OUTerm.topLeftPosition)
-        self.width: URIRef = ontouml_graph.value(object_id, OUTerm.width)
+        self.height: URIRef = ontouml_graph.value(object_id, OntoUML.height)
+        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.text: URIRef = ontouml_graph.value(object_id, OntoUML.text)
+        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OntoUML.topLeftPosition)
+        self.width: URIRef = ontouml_graph.value(object_id, OntoUML.width)
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
