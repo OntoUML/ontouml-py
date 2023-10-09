@@ -5,8 +5,7 @@ negative cases, and error handling.
 """
 from rdflib import Graph, RDF, URIRef
 
-from ontoumlpy.classes._ouelement import _OUElement
-from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.classes.ontouml import OntoUML
 
 

@@ -30,8 +30,8 @@ Example:
 from loguru import logger
 from rdflib import Graph, RDF
 
-from ontoumlpy.classes._ouelement import _OUElement
 from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement, get_ouelement_from_outerm
 
 

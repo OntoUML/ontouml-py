@@ -4,11 +4,11 @@ It provides functions to retrieve OUElement objects from OntoUML terms and vice 
 """
 from rdflib import URIRef
 
-from ontoumlpy.classes._ouelement import _OUElement
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.classes.ouelement_types import (
+from ontoumlpy.classes.ouelement import (
     OUCardinality,
-    OUDiagram,
+    oudiagram,
     OUGeneralizationSet,
     OUGeneralizationSetView,
     OUGeneralizationView,

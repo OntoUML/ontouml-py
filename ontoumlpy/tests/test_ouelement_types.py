@@ -1,17 +1,17 @@
 """
 Module for testing classes related to the each specific type ou OUElement.
 
-This module provides tests for the classes defined in the ontouml-py classes/ouelement_types module.
+This module provides tests for the classes defined in the ontouml-py classes/ouelement module.
 
 
 """
 from rdflib import RDF, URIRef, Graph
 
-from ontoumlpy.classes.ouelement_types import (
+from ontoumlpy.classes.ouelement import (
     OUCardinality,
     OUClass,
     OUClassView,
-    OUDiagram,
+    oudiagram,
     OUGeneralization,
     OUGeneralizationSet,
     OUGeneralizationSetView,

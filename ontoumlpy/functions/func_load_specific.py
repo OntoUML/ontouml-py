@@ -1,6 +1,6 @@
 from rdflib import Graph, RDF, URIRef
 
-from ontoumlpy.classes._ouelement import (
+from ontoumlpy.classes.ouelement._ouelement import (
     _OUElement,
     OUCardinality,
     OUClass,

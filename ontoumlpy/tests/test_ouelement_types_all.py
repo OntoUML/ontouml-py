@@ -20,8 +20,8 @@ Functions:
 import pytest
 from rdflib import Graph, URIRef, RDF
 
-from ontoumlpy.classes._ouelement import _OUElement
-from ontoumlpy.classes.ouelement_types import OUCardinality
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouelement import OUCardinality
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement, get_ouelement_from_outerm
 
 

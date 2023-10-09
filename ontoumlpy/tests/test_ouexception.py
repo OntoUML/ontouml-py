@@ -2,14 +2,14 @@
 import pytest
 from rdflib import Graph, URIRef, RDF
 
-from ontoumlpy.classes.ouelement_types import (
+from ontoumlpy.classes.ouelement import (
     OUCardinality,
     OURectangle,
     OUPath,
     OUNoteView,
     OUText,
     OUClass,
-    OUDiagram,
+    oudiagram,
     OUGeneralizationSetView,
     OUPoint,
 )
