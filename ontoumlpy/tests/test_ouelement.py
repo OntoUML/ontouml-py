@@ -42,36 +42,3 @@ def test_ou_element_negative_attribute() -> None:
         elem_obj.non_existent_attribute
     except AttributeError:
         assert True
-
-
-def test_ou_element_id_not_in_graph() -> None:
-    """Test the exception handling for a non-existent element ID.
-
-    This function tests that an OUIDNotInGraph exception is raised when trying to create an _OUElement instance with
-    an ID that is not present in the graph.
-    """
-    onto_graph = Graph()
-    elem_uri = URIRef("https://example.org/my_elem")
-    try:
-        _OUElement(onto_graph, elem_uri, "OUElement", "")
-        assert False
-    except OUIDNotInGraph:
-        assert True
-
-
-def test_ou_element_id_type_mismatch_error() -> None:
-    """Test the exception handling for a type mismatch error.
-
-    This function tests that an OUIDTypeMismatchError exception is raised when trying to create an _OUElement instance
-    with an ID whose type does not match the expected type.
-    """
-    onto_graph = Graph()
-    elem_uri = URIRef("https://example.org/my_elem")
-    elem_type = URIRef("my_type")
-    onto_graph.add((elem_uri, RDF.type, elem_type))
-
-    try:
-        _OUElement(onto_graph, elem_uri, "OUElement", OntoUML.Class)
-        assert False
-    except OUIDTypeMismatchError:
-        assert True

@@ -1,70 +1,56 @@
-"""
-This module provides the foundational class for representing elements in OntoUML models.
-It includes the `_OUElement` class, which serves as the main class for OntoUML models, and
-is designed to be private to prevent direct instantiation. The module also includes
-necessary exceptions for handling issues related to OntoUML ID and type mismatches.
+"""This module provides foundational classes for representing elements in OntoUML models.
 
-The `_OUElement` class is initialized with a URI reference representing the object's ID,
-and performs checks to ensure that the ID exists in the provided OntoUML graph and has a
-valid type. It raises exceptions (`OUIDNotInGraph`, `OUIDTypeMismatchError`) when these
-checks fail, providing informative error messages to facilitate debugging.
-"""
-from rdflib import URIRef, Graph
+The module contains the `_OUElement` class, which serves as a foundational class for OntoUML models. Designed to be
+abstract and protected, it prevents direct instantiation, requiring subclassing to provide specific functionalities and
+representations for OntoUML models.
 
-from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError
+While managing elements within the model by keeping track of their ID, type, name, and description using
+URI references, `_OUElement` does not perform checks for the existence or the validity of the ID within an OntoUML
+graph. Such checks and additional logic for managing OntoUML models should be implemented within
+subclasses.
+
+Note that the implementation assumes URI references are utilized for model element identification, ensuring
+compatibility with RDF data structures and semantics.
+"""
+from abc import abstractmethod
+
+from rdflib import URIRef
 
 
 class _OUElement:
-    """Main class for OntoUML models. Private.
+    """Abstract and protected foundational class for elements in OntoUML models.
 
-    :param object_id: The URI reference of the cardinality object.
-    :type object_id: URIRef
+    The `_OUElement` class encapsulates common attributes like ID, type, name, and description using URI references,
+    and is intended to be subclassed to provide specific functionalities and representations for OntoUML models.
+    Direct instantiation is discouraged and, therefore, the class is marked as abstract.
 
     :ivar id: The URI reference of the object.
     :vartype id: URIRef
     :ivar type: The type of the object as a URI reference.
     :vartype type: URIRef
+    :ivar description: A textual description of the object being created.
+    :vartype description: URIRef
+    :ivar name: The name of the object.
+    :vartype name: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef, class_name: str, related_type: URIRef):
-        """Initializes an instance of the _OUElement class, verifying the existence and type of the object in \
-        the OntoUML graph.
+    @abstractmethod
+    def __init__(self, object_id: URIRef, related_type: URIRef, name: URIRef, description: URIRef):
+        """Initializes an instance of the _OUElement class, intended to be overridden by child classes.
 
-        This constructor method performs two main checks on the provided object_id:
-        1. Checks if the object_id exists in the ontouml_graph.
-        2. Checks if the object_id has the expected related_type in the ontouml_graph.
+        This method is declared as abstract, indicating it should not be used to instantiate objects directly and is
+        to be implemented by subclasses. Nevertheless, it includes logic to set up basic properties.
 
-        If either check fails, an exception is raised. Otherwise, the instance is successfully created with the
-        specified object_id and related_type.
-
-        :param ontouml_graph: The OntoUML graph in which to look for the object_id.
-        :type ontouml_graph: Graph
         :param object_id: The URI reference of the object being created.
         :type object_id: URIRef
-        :param class_name: The name of the class for which the object is being created.
-        :type class_name: str
-        :param related_type: The expected type of the object in the OntoUML graph.
+        :param description: A textual description of the object being created.
+        :type description: URIRef
+        :param related_type: The URI reference indicating the OntoUML type for the object.
         :type related_type: URIRef
-
-        :raises OUIDNotInGraph: If the object_id does not exist in the ontouml_graph.
-        :raises OUIDTypeMismatchError: If the object_id exists but does not have the expected related_type in the \
-        ontouml_graph.
-
-        :ivar id: The URI reference of the object, initialized to `object_id`.
-        :vartype id: URIRef
-        :ivar type: The type of the object as a URI reference, initialized to `related_type`.
-        :vartype type: URIRef
         """
-        # Verify if ID exists in the graph
-        # TODO(@pedropaulofb): This restriction must be removed. Elements can now exist by their own.
-        if (object_id, None, None) not in ontouml_graph:
-            raise OUIDNotInGraph(object_id, class_name)
-
-        # Verify if ID has a valid type
-        elif (object_id, None, related_type) not in ontouml_graph:
-            raise OUIDTypeMismatchError(object_id, class_name, related_type)
 
         # If valid, instantiate
-        else:
-            self.id: URIRef = object_id
-            self.type: URIRef = related_type
+        self.id: URIRef = object_id
+        self.name: URIRef = name
+        self.description: URIRef = description
+        self.type: URIRef = related_type

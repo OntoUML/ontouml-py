@@ -10,36 +10,12 @@ print(f"Description: {person_class.description}")
 print(f"Attributes: {person_class.attribute}")
 You can perform similar operations for other OntoUML concepts using their respective classes.
 """
+from icecream import ic
 from rdflib import URIRef, Graph
 
 from ontoumlpy.classes._ouelement import _OUElement
-from ontoumlpy.classes.ouexception import OUInvalidAttribute
 from ontoumlpy.classes.ontouml import OntoUML
-
-class_map = {
-    "OUCardinality": OntoUML.Cardinality,
-    "OUClass": OntoUML.Class,
-    "OUClassView": OntoUML.ClassView,
-    "OUDiagram": OntoUML.Diagram,
-    "OUGeneralization": OntoUML.Generalization,
-    "OUGeneralizationSet": OntoUML.GeneralizationSet,
-    "OUGeneralizationSetView": OntoUML.GeneralizationSetView,
-    "OUGeneralizationView": OntoUML.GeneralizationView,
-    "OULiteral": OntoUML.Literal,
-    "OUNote": OntoUML.Note,
-    "OUNoteView": OntoUML.NoteView,
-    "OUPackage": OntoUML.Package,
-    "OUPackageView": OntoUML.PackageView,
-    "OUPath": OntoUML.Path,
-    "OUPoint": OntoUML.Point,
-    "OUProject": OntoUML.Project,
-    "OUProperty": OntoUML.Property,
-    "OURectangle": OntoUML.Rectangle,
-    "OURelation": OntoUML.Relation,
-    "OURelationView": OntoUML.RelationView,
-    "OUText": OntoUML.Text,
-}
-
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
 
 class OUCardinality(_OUElement):
     """Represents cardinality information for a property.
@@ -70,57 +46,7 @@ class OUCardinality(_OUElement):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
 
 
-class OUClass(_OUElement):
-    """Represents a class in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
-    :param object_id: The URI reference of the class.
-    :type object_id: URIRef
-
-    :ivar name: The name of the class.
-    :vartype name: URIRef
-    :ivar attribute: A list of attributes associated with the class.
-    :vartype attribute: List[URIRef]
-    :ivar description: The description of the class.
-    :vartype description: URIRef
-    :ivar isAbstract: Indicates if the class is abstract.
-    :vartype isAbstract: URIRef
-    :ivar isDerived: Indicates if the class is derived.
-    :vartype isDerived: URIRef
-    :ivar isPowertype: Indicates if the class is a powertype.
-    :vartype isPowertype: URIRef
-    :ivar literal: The literal associated with the class.
-    :vartype literal: URIRef
-    :ivar order: The order of the class.
-    :vartype order: URIRef
-    :ivar project: The project to which the class belongs.
-    :vartype project: URIRef
-    :ivar restrictedTo: A list of classes restricted to this class.
-    :vartype restrictedTo: List[URIRef]
-    :ivar stereotype: The stereotype of the class.
-    :vartype stereotype: URIRef
-    """
-
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
-
-        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
-        self.attribute: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.attribute))
-        self.description: URIRef = ontouml_graph.value(object_id, OntoUML.description)
-        self.isAbstract: URIRef = ontouml_graph.value(object_id, OntoUML.isAbstract)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
-        self.isPowertype: URIRef = ontouml_graph.value(object_id, OntoUML.isPowertype)
-        self.literal: URIRef = ontouml_graph.value(object_id, OntoUML.literal)
-        self.order: URIRef = ontouml_graph.value(object_id, OntoUML.order)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
-        self.restrictedTo: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.restrictedTo))
-        self.stereotype: URIRef = ontouml_graph.value(object_id, OntoUML.stereotype)
-
-    def __getattr__(self, invalid_att_name):
-        raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
 
 
 class OUClassView(_OUElement):
@@ -729,3 +655,4 @@ class OUText(_OUElement):
 
     def __getattr__(self, invalid_att_name):
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
+
