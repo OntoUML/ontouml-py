@@ -64,7 +64,8 @@ def test_valid_ontouml_type(ou_term: URIRef) -> None:
 
 
 @pytest.mark.parametrize(
-    "ou_term", [(OntoUML.phase), (OntoUML.lowerBound), (OntoUML.instantiation), (OntoUML.end), (OntoUML.DecoratableElement)]
+    "ou_term",
+    [(OntoUML.phase), (OntoUML.lowerBound), (OntoUML.instantiation), (OntoUML.end), (OntoUML.DecoratableElement)],
 )
 def test_valid_ontouml_attribute_access(ou_term: URIRef) -> None:
     """Verifies that valid attributes can be accessed without raising an AttributeError for the specified OntoUML \
@@ -82,7 +83,13 @@ def test_valid_ontouml_attribute_access(ou_term: URIRef) -> None:
 
 @pytest.mark.parametrize(
     "ou_term",
-    [(OntoUML.isAbstract), (OntoUML.cardinalityValue), (OntoUML.begin), (OntoUML.GeneralizationView), (OntoUML.isViewOf)],
+    [
+        (OntoUML.isAbstract),
+        (OntoUML.cardinalityValue),
+        (OntoUML.begin),
+        (OntoUML.GeneralizationView),
+        (OntoUML.isViewOf),
+    ],
 )
 def test_invalid_ontouml_attribute_error(ou_term: URIRef) -> None:
     """Verifies that invalid attributes raise an AttributeError when accessed for the specified OntoUML instances.
@@ -134,7 +141,8 @@ def test_list_all_method_is_empty() -> None:
 
     assert len(list_terms) != 0
 
-def test_list_all_number()->None:
+
+def test_list_all_number() -> None:
     """Verifies if the list all method returns the same number of items as the class attribute number."""
 
     assert len(dir(OntoUML)) == len(OntoUML.list_all())

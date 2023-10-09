@@ -1,10 +1,11 @@
-"""This module handles the mapping between OUTerm and OUElement objects.
+"""This module handles the mapping between OntoUML terms and OUElement objects.
 
-It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
+It provides functions to retrieve OUElement objects from OntoUML terms and vice versa.
 """
 from rdflib import URIRef
 
 from ontoumlpy.classes._ouelement import _OUElement
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement_types import (
     OUCardinality,
     OUDiagram,
@@ -29,9 +30,8 @@ from ontoumlpy.classes.ouelement_types import (
     OURelation,
 )
 from ontoumlpy.classes.ouexception import OUUnmappedOUElement, OUUnmappedOUTerm
-from ontoumlpy.classes.ontouml import OntoUML
 
-_MAP_OUTERM_OUELEMENT = {
+_OU_MAP_TERM_ELEMENT = {
     OntoUML.Cardinality: OUCardinality,
     OntoUML.Class: OUClass,
     OntoUML.ClassView: OUClassView,
@@ -56,28 +56,28 @@ _MAP_OUTERM_OUELEMENT = {
 }
 
 
-def get_ouelement_from_outerm(outerm: URIRef | str) -> _OUElement:
+def ou_get_element_from_term(ontouml_term: URIRef | str) -> _OUElement:
     """Return the corresponding OUElement object for a given OUTerm or URIRef/str object.
 
     If the input is a string, it's converted to a URIRef object before lookup.
 
-    :param outerm: The OUTerm object or URIRef/str representing the term.
-    :type outerm: Union[URIRef, str]
+    :param ontouml_term: The OUTerm object or URIRef/str representing the term.
+    :type ontouml_term: Union[URIRef, str]
     :raises OUUnmappedOUTerm: If the OUTerm object is not found in the mapping.
     :return: The corresponding OUElement object.
     :rtype: _OUElement
     """
-    if isinstance(outerm, str):
-        outerm = URIRef(outerm)
+    if isinstance(ontouml_term, str):
+        ontouml_term = URIRef(ontouml_term)
 
     try:
-        return _MAP_OUTERM_OUELEMENT[outerm]
+        return _OU_MAP_TERM_ELEMENT[ontouml_term]
     # Overwrites default KeyError
     except KeyError:
-        raise OUUnmappedOUTerm(outerm)
+        raise OUUnmappedOUTerm(ontouml_term)
 
 
-def get_outerm_from_ouelement(ouelement: _OUElement | str) -> URIRef:
+def ou_get_term_from_element(ouelement: _OUElement | str) -> URIRef:
     """Return the corresponding OUTerm object for a given OUElement object or its class name as a string.
 
     This function iterates through the mapping dictionary to find the corresponding OUTerm object.
@@ -91,12 +91,12 @@ def get_outerm_from_ouelement(ouelement: _OUElement | str) -> URIRef:
     """
 
     if isinstance(ouelement, str):
-        for key, value in _MAP_OUTERM_OUELEMENT.items():
+        for key, value in _OU_MAP_TERM_ELEMENT.items():
             if value.__name__ == ouelement:
                 return key
     elif isinstance(ouelement, _OUElement):
         ouelement_class = type(ouelement)  # Get the class of the ouelement instance
-        for key, value in _MAP_OUTERM_OUELEMENT.items():
+        for key, value in _OU_MAP_TERM_ELEMENT.items():
             if value == ouelement_class:
                 return key
 

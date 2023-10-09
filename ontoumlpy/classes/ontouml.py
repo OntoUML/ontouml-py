@@ -25,7 +25,6 @@ Example:
 For more information about the OntoUML vocabulary,
 refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 """
-from icecream import ic
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
@@ -331,7 +330,7 @@ class OntoUML(DefinedNamespace):
 
     _fail = True
 
-    _NS = Namespace(ONTOUML_NAMESPACE)
+    _NS = Namespace(ONTOUML_NAMESPACE)  # has type RDFLib.Namespace.
 
     @classmethod
     def list_all(cls) -> list[URIRef]:

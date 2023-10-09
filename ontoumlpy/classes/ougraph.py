@@ -125,11 +125,15 @@ class OUGraph:
                     elem_inst = elem_type(ontouml_graph, s)
                     self.add_element(elem_inst)
                 else:
-                    logger.debug(f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
-                                 f"because it is not an OntoUML element.")
+                    logger.debug(
+                        f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
+                        f"because it is not an OntoUML element."
+                    )
             else:
-                logger.debug(f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
-                             f"because it is part of the OntoUML's concrete syntax or it is not an OntoUML element.")
+                logger.debug(
+                    f"Graph's element {s} of type {o} was not loaded into any OUGraph's list "
+                    f"because it is part of the OntoUML's concrete syntax or it is not an OntoUML element."
+                )
 
     def update(self, ontouml_graph: Graph, include_concrete: bool = False) -> None:
         """Calls the __init__ method to re-initialize the OUGraph instance with the new parameters.
