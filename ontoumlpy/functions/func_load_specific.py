@@ -1,5 +1,6 @@
 from rdflib import Graph, RDF, URIRef
 
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement._ouelement import (
     _OUElement,
     OUCardinality,
@@ -24,7 +25,6 @@ from ontoumlpy.classes.ouelement._ouelement import (
     OURelationView,
     OUText,
 )
-from ontoumlpy.classes.ontouml import OntoUML
 
 
 class InvalidOntoUMLTypeException(Exception):

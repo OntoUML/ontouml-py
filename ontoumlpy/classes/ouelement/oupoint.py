@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OUPoint(_OUElement):
     """Represents a point in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the point.
     :type object_id: URIRef
 
@@ -12,13 +19,19 @@ class OUPoint(_OUElement):
     :vartype yCoordinate: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        description: URIRef = None,
+        xCoordinate: URIRef = None,
+        yCoordinate: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.Point
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.xCoordinate: URIRef = ontouml_graph.value(object_id, OntoUML.xCoordinate)
-        self.yCoordinate: URIRef = ontouml_graph.value(object_id, OntoUML.yCoordinate)
+        self.xCoordinate: URIRef = xCoordinate
+        self.yCoordinate: URIRef = yCoordinate
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

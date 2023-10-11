@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OUGeneralizationSetView(_OUElement):
     """Represents a view of a generalization set in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the generalization set view.
     :type object_id: URIRef
 
@@ -14,14 +21,21 @@ class OUGeneralizationSetView(_OUElement):
     :vartype shape: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        description: URIRef = None,
+        isViewOf: URIRef = None,
+        project: URIRef = None,
+        shape: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.GeneralizationView
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.isViewOf: URIRef = ontouml_graph.value(object_id, OntoUML.isViewOf)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
-        self.shape: URIRef = ontouml_graph.value(object_id, OntoUML.shape)
+        self.isViewOf: URIRef = isViewOf
+        self.project: URIRef = project
+        self.shape: URIRef = shape
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

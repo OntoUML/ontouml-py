@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OURectangle(_OUElement):
     """Represents a rectangle in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the rectangle.
     :type object_id: URIRef
 
@@ -16,15 +23,23 @@ class OURectangle(_OUElement):
     :vartype project: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        description: URIRef = None,
+        height: URIRef = None,
+        name: URIRef = None,
+        project: URIRef = None,
+        topLeftPosition: URIRef = None,
+        width: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.Rectangle
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OntoUML.topLeftPosition)
-        self.height: URIRef = ontouml_graph.value(object_id, OntoUML.height)
-        self.width: URIRef = ontouml_graph.value(object_id, OntoUML.width)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.topLeftPosition: URIRef = topLeftPosition
+        self.height: URIRef = height
+        self.width: URIRef = width
+        self.project: URIRef = project
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

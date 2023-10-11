@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OUText(_OUElement):
     """Represents text in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the text.
     :type object_id: URIRef
 
@@ -18,16 +25,25 @@ class OUText(_OUElement):
     :vartype width: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        height: URIRef = None,
+        project: URIRef = None,
+        text: URIRef = None,
+        topLeftPosition: URIRef = None,
+        width: URIRef = None,
+        description: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.Text
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.height: URIRef = ontouml_graph.value(object_id, OntoUML.height)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
-        self.text: URIRef = ontouml_graph.value(object_id, OntoUML.text)
-        self.topLeftPosition: URIRef = ontouml_graph.value(object_id, OntoUML.topLeftPosition)
-        self.width: URIRef = ontouml_graph.value(object_id, OntoUML.width)
+        self.height: URIRef = height
+        self.project: URIRef = project
+        self.text: URIRef = text
+        self.topLeftPosition: URIRef = topLeftPosition
+        self.width: URIRef = width
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

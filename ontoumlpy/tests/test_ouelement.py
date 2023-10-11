@@ -5,8 +5,8 @@ negative cases, and error handling.
 """
 from rdflib import Graph, RDF, URIRef
 
-from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
 
 
 def test_ou_element_creation_positive() -> None:

@@ -2,6 +2,7 @@
 import pytest
 from rdflib import Graph, URIRef, RDF
 
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement import (
     OUCardinality,
     OURectangle,
@@ -9,12 +10,10 @@ from ontoumlpy.classes.ouelement import (
     OUNoteView,
     OUText,
     OUClass,
-    oudiagram,
     OUGeneralizationSetView,
     OUPoint,
 )
 from ontoumlpy.classes.ouexception import OUIDNotInGraph, OUIDTypeMismatchError, OUInvalidAttribute
-from ontoumlpy.classes.ontouml import OntoUML
 
 
 def test_ouid_not_in_graph_absent_id() -> None:

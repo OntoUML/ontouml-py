@@ -1,7 +1,7 @@
 from rdflib import URIRef
 
-from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
 from ontoumlpy.classes.ouexception import OUInvalidAttribute
 
 
@@ -50,7 +50,7 @@ class OUClass(_OUElement):
         stereotype: URIRef = None,
         attribute: list[URIRef] = None,
         restrictedTo: list[URIRef] = None,
-    ):
+    ) -> None:
         """Instantiate an OUClass with the given parameters, initializing all the object attributes.
 
         :param object_id: The URI reference representing the class.
@@ -94,7 +94,7 @@ class OUClass(_OUElement):
         self.attribute: list[URIRef] = attribute
         self.restrictedTo: list[URIRef] = restrictedTo
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         """Override to raise an exception when attempting to access an invalid attribute.
 
         :param invalid_att_name: The name of the invalid attribute being accessed.

@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OUProperty(_OUElement):
     """Represents a property in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the property.
     :type object_id: URIRef
 
@@ -24,19 +31,29 @@ class OUProperty(_OUElement):
     :vartype project: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        aggregationKind: URIRef = None,
+        cardinality: URIRef = None,
+        description: URIRef = None,
+        isDerived: URIRef = None,
+        isOrdered: URIRef = None,
+        isReadOnly: URIRef = None,
+        name: URIRef = None,
+        project: URIRef = None,
+        propertyType: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.Property
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.aggregationKind: URIRef = ontouml_graph.value(object_id, OntoUML.aggregationKind)
-        self.cardinality: URIRef = ontouml_graph.value(object_id, OntoUML.cardinality)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
-        self.isOrdered: URIRef = ontouml_graph.value(object_id, OntoUML.isOrdered)
-        self.isReadOnly: URIRef = ontouml_graph.value(object_id, OntoUML.isReadOnly)
-        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
-        self.propertyType: URIRef = ontouml_graph.value(object_id, OntoUML.propertyType)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.aggregationKind: URIRef = aggregationKind
+        self.cardinality: URIRef = cardinality
+        self.isDerived: URIRef = isDerived
+        self.isOrdered: URIRef = isOrdered
+        self.isReadOnly: URIRef = isReadOnly
+        self.propertyType: URIRef = propertyType
+        self.project: URIRef = project
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

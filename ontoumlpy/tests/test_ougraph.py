@@ -5,11 +5,11 @@ and the handling of include_concrete parameter during the initialization. It als
 robustness against incorrect input types and exceptions handling.
 """
 import pytest
+from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
 from rdflib import Graph, URIRef, RDF
 
-from ontoumlpy.classes.ougraph import OUGraph
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.constants.const_prefix import ONTOUML_NAMESPACE
+from ontoumlpy.classes.ougraph import OUGraph
 
 EXAMPLE_NS = "https://example.org/"
 

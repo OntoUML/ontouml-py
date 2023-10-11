@@ -1,8 +1,15 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OURelation(_OUElement):
     """Represents a relation in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
+
+
     :param object_id: The URI reference of the relation.
     :type object_id: URIRef
 
@@ -26,20 +33,29 @@ class OURelation(_OUElement):
     :vartype project: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        description: URIRef = None,
+        isAbstract: URIRef = None,
+        isDerived: URIRef = None,
+        relationEnd: URIRef = None,
+        stereotype: URIRef = None,
+        sourceEnd: URIRef = None,
+        targetEnd: URIRef = None,
+        project: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.Relation
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.description: URIRef = ontouml_graph.value(object_id, OntoUML.description)
-        self.isAbstract: URIRef = ontouml_graph.value(object_id, OntoUML.isAbstract)
-        self.isDerived: URIRef = ontouml_graph.value(object_id, OntoUML.isDerived)
-        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
-        self.relationEnd: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.relationEnd))
-        self.sourceEnd: URIRef = ontouml_graph.value(object_id, OntoUML.sourceEnd)
-        self.stereotype: URIRef = ontouml_graph.value(object_id, OntoUML.stereotype)
-        self.targetEnd: URIRef = ontouml_graph.value(object_id, OntoUML.targetEnd)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.isAbstract: URIRef = isAbstract
+        self.isDerived: URIRef = isDerived
+        self.relationEnd: list[URIRef] = relationEnd
+        self.sourceEnd: URIRef = sourceEnd
+        self.stereotype: URIRef = stereotype
+        self.targetEnd: URIRef = targetEnd
+        self.project: URIRef = project
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

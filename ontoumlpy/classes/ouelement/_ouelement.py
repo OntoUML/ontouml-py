@@ -34,6 +34,8 @@ class _OUElement:
     :vartype name: URIRef
     """
 
+    element_term_mapping = {}
+
     @abstractmethod
     def __init__(self, object_id: URIRef, related_type: URIRef, name: URIRef, description: URIRef):
         """Initialize an instance of the _OUElement class, intended to be overridden by child classes.

@@ -7,11 +7,11 @@ This module provides tests for the classes defined in the ontouml-py classes/oue
 """
 from rdflib import RDF, URIRef, Graph
 
+from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement import (
     OUCardinality,
     OUClass,
     OUClassView,
-    oudiagram,
     OUGeneralization,
     OUGeneralizationSet,
     OUGeneralizationSetView,
@@ -30,7 +30,6 @@ from ontoumlpy.classes.ouelement import (
     OURelationView,
     OUText,
 )
-from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.functions.func_mappings import get_outerm_from_ouelement
 
 

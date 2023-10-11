@@ -1,8 +1,13 @@
+from rdflib import URIRef
+
+from ontoumlpy.classes.ontouml import OntoUML
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouexception import OUInvalidAttribute
+
+
 class OUDiagram(_OUElement):
     """Represents a diagram in OntoUML.
 
-    :param ontouml_graph: The OntoUML model graph.
-    :type ontouml_graph: Graph
     :param object_id: The URI reference of the diagram.
     :type object_id: URIRef
 
@@ -16,15 +21,21 @@ class OUDiagram(_OUElement):
     :vartype project: URIRef
     """
 
-    def __init__(self, ontouml_graph: Graph, object_id: URIRef):
-        class_name = self.__class__.__name__
-        related_type = class_map[class_name]
-        super().__init__(ontouml_graph, object_id, class_name, related_type)
+    def __init__(
+        self,
+        object_id: URIRef,
+        description: URIRef = None,
+        name: URIRef = None,
+        owner: URIRef = None,
+        project: URIRef = None,
+        containsView: list[URIRef] = None,
+    ) -> None:
+        related_type = OntoUML.Diagram
+        super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.name: URIRef = ontouml_graph.value(object_id, OntoUML.name)
-        self.containsView: list[URIRef] = list(ontouml_graph.objects(object_id, OntoUML.containsView))
-        self.owner: URIRef = ontouml_graph.value(object_id, OntoUML.owner)
-        self.project: URIRef = ontouml_graph.value(object_id, OntoUML.project)
+        self.containsView: list[URIRef] = containsView
+        self.owner: URIRef = owner
+        self.project: URIRef = project
 
-    def __getattr__(self, invalid_att_name):
+    def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)

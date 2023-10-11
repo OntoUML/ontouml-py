@@ -25,7 +25,6 @@ Example:
 For more information about the OntoUML vocabulary,
 refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 """
-from icecream import ic
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
@@ -348,7 +347,7 @@ class OntoUML(DefinedNamespace):
         return list(all_dict.keys())
 
     @classmethod
-    def get_namespace(cls)->str:
+    def get_namespace(cls) -> str:
         """Retrieve the OntoUML namespace URI.
 
         This method returns the OntoUML namespace URI as a string.
@@ -365,7 +364,3 @@ class OntoUML(DefinedNamespace):
         """
         # The OntoUML namespace URI. This constant defines the URI for the OntoUML namespace used in RDF triples.
         return str(cls._NS)
-
-
-ic(type(OntoUML.get_namespace()))
-
