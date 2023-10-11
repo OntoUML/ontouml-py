@@ -25,8 +25,17 @@ class OUPackageView(_OUElement):
     :vartype targetView: URIRef
     """
 
-    def __init__(self, object_id: URIRef, name: URIRef = None, description: URIRef = None, isViewOf: URIRef = None, project: URIRef = None, shape: URIRef = None,
-                 sourceView: URIRef = None, targetView: URIRef = None) -> None:
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        description: URIRef = None,
+        isViewOf: URIRef = None,
+        project: URIRef = None,
+        shape: URIRef = None,
+        sourceView: URIRef = None,
+        targetView: URIRef = None,
+    ) -> None:
         related_type = OntoUML.PackageView
         super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 

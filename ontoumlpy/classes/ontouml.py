@@ -364,3 +364,12 @@ class OntoUML(DefinedNamespace):
         """
         # The OntoUML namespace URI. This constant defines the URI for the OntoUML namespace used in RDF triples.
         return str(cls._NS)
+
+    @classmethod
+    def get_term(cls, str_term: str) -> URIRef:
+        for term in dir(cls):
+            if str_term == term.fragment:
+                return term
+        else:
+            raise ValueError
+        # TODO(@pedropaulofb): CREATE specific EXCEPTION

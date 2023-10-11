@@ -14,7 +14,10 @@ compatibility with RDF data structures and semantics.
 """
 from abc import abstractmethod
 
-from rdflib import URIRef
+from icecream import ic
+from rdflib import URIRef, Graph
+
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 class _OUElement:
@@ -58,4 +61,13 @@ class _OUElement:
         self.id: URIRef = object_id
         self.name: URIRef = name
         self.description: URIRef = description
-        self.type: URIRef = related_type
+        self.element_type: URIRef = related_type
+
+    def add_to_graph(self, graph: Graph) -> None:
+        for obj_predicate in self.__dict__:
+            try:
+                elem_predicate = OntoUML.get_term(obj_predicate)
+                elem_object = getattr(self, obj_predicate)
+                graph.add((self.id, elem_predicate, elem_object))
+            except Exception:
+                pass

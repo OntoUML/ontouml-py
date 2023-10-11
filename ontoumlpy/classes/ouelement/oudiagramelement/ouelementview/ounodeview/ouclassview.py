@@ -21,7 +21,15 @@ class OUClassView(_OUElement):
     :vartype shape: URIRef
     """
 
-    def __init__(self, object_id: URIRef, name: URIRef = None, description: URIRef = None, isViewOf: URIRef = None, project: URIRef = None, shape: URIRef = None) -> None:
+    def __init__(
+        self,
+        object_id: URIRef,
+        name: URIRef = None,
+        description: URIRef = None,
+        isViewOf: URIRef = None,
+        project: URIRef = None,
+        shape: URIRef = None,
+    ) -> None:
         related_type = OntoUML.ClassView
         super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 

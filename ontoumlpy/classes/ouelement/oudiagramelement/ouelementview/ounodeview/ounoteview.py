@@ -25,9 +25,18 @@ class OUNoteView(_OUElement):
     :vartype targetView: URIRef
     """
 
-    def __init__(self, object_id: URIRef, isViewOf: URIRef = None, name: URIRef = None, description: URIRef = None, project: URIRef = None, shape: URIRef = None,
-                 sourceView: URIRef = None, targetView: URIRef = None) -> None:
-        related_type = OntoUML.NoteView 
+    def __init__(
+        self,
+        object_id: URIRef,
+        isViewOf: URIRef = None,
+        name: URIRef = None,
+        description: URIRef = None,
+        project: URIRef = None,
+        shape: URIRef = None,
+        sourceView: URIRef = None,
+        targetView: URIRef = None,
+    ) -> None:
+        related_type = OntoUML.NoteView
         super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
         self.isViewOf: URIRef = isViewOf

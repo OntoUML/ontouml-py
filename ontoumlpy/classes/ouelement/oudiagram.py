@@ -1,4 +1,5 @@
-from rdflib import URIRef
+from icecream import ic
+from rdflib import URIRef, Graph
 
 from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement._ouelement import _OUElement
