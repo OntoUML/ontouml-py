@@ -40,8 +40,8 @@ from ontoumlpy.classes.ouelement.oumodelelement.ouproperty import OUProperty
 from ontoumlpy.classes.ouelement.oupoint import OUPoint
 from ontoumlpy.classes.ouelement.ouproject import OUProject
 from ontoumlpy.classes.ouenumeration.enumerations_other import OUAbstractElements, OUConcreteElements
-from ontoumlpy.classes.ouexception import OUInvalidOUElementType
-from ontoumlpy.functions.func_load_specific import create_ouelement
+from ontoumlpy.classes.ouexception import OUInvalidElementType
+from ontoumlpy.functions.func_load_specific import ou_create_element
 
 
 class OUGraph:
@@ -153,7 +153,7 @@ class OUGraph:
         try:
             map_type_list[element.element_type].append(element)
         except:
-            raise OUInvalidOUElementType(element.element_type)
+            raise OUInvalidElementType(element.element_type)
 
     def read_graph(self, rdf_graph: Graph, include_concrete: bool = True) -> None:
         """Load OntoUML elements from an RDF graph into organized lists.
@@ -174,13 +174,13 @@ class OUGraph:
         for s, _, o in rdf_graph.triples((None, RDF.type, None)):
             # ABSTRACT SYNTAX ELEMENTS
             if o in list_abstract_elements:
-                new_element = create_ouelement(s, o)
+                new_element = ou_create_element(s, o)
                 self.add_element(new_element)
 
             # CONCRETE SYNTAX ELEMENTS
             elif o in list_concrete_elements:
                 if include_concrete:
-                    new_element = create_ouelement(s, o)
+                    new_element = ou_create_element(s, o)
                     self.add_element(new_element)
                 else:
                     logger.debug(

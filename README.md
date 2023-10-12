@@ -482,18 +482,16 @@ This document provides a detailed explanation of the custom exceptions used in t
 #### Descriptions of Exceptions
 
 - **OUInvalidAttribute**: Raised when an invalid attribute is accessed on an OntoUML class.
-- **OUUnmappedOUTerm**: Thrown when an OUElement does not have a mapped OUTerm.
-- **OUUnmappedOUElement**: Emitted when an OUTerm does not have a mapped OUElement.
-- **OUUnavailableOUTerm**: Triggered when an OUTerm is not available or does not exist in the OntoUML Vocabulary.
-- **OUInvalidOUElementType**: Raised when an OUElement is not mapped to an internal list within the OUGraph, signifying a lack of mapping definitions in the graph management logic.
+- **OUUnavailableTerm**: Raised when an OUTerm is not available or does not exist in the OntoUML Vocabulary.
+- **OUInvalidElementType**: Raised when an OUElement is not mapped to an internal list within the OUGraph, signifying a lack of mapping definitions in the graph management logic.
+- **InvalidOntoUMLTypeException**: Raised when an individual is not from a valid OntoUML type.
 
-| Exception Name          | Description                                                               |
-|-------------------------|---------------------------------------------------------------------------|
-| `OUInvalidAttribute`    | Raised when an invalid attribute is accessed on an OntoUML class.         |
-| `OUUnmappedOUTerm`      | Triggered when an OUElement doesn't have a mapped OUTerm.                 |
-| `OUUnmappedOUElement`   | Activated when an OUTerm doesn’t have a mapped OUElement.                 |
-| `OUUnavailableOUTerm`   | Thrown when an OUTerm is unavailable in the OntoUML Vocabulary.           |
-| `OUInvalidOUElementType`| Raised when an OUElement isn’t mapped in the OUGraph's internal list.      |
+| Exception Name                | Description                                                               |
+|-------------------------------|---------------------------------------------------------------------------|
+| `OUInvalidAttribute`          | Raised when an invalid attribute is accessed on an OntoUML class.         |
+| `OUUnavailableTerm`           | Raised when an OUTerm is not available in the OntoUML Vocabulary.         |
+| `OUInvalidElementType`        | Raised when an OUElement isn't mapped in the OUGraph's internal list.     |
+| `InvalidOntoUMLTypeException` | Raised when an individual is not from a valid OntoUML type.               |
 
 
 

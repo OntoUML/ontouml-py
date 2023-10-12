@@ -28,7 +28,7 @@ refer to the official documentation at: https://w3id.org/ontouml/vocabulary
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
-from ontoumlpy.classes.ouexception import OUUnavailableOUTerm
+from ontoumlpy.classes.ouexception import OUUnavailableTerm
 
 
 class OntoUML(DefinedNamespace):
@@ -397,4 +397,4 @@ class OntoUML(DefinedNamespace):
             if str_term == term.fragment:
                 return term
         else:
-            raise OUUnavailableOUTerm(str_term)
+            raise OUUnavailableTerm(str_term)

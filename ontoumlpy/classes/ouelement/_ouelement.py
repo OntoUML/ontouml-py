@@ -18,7 +18,7 @@ from loguru import logger
 from rdflib import URIRef, Graph, RDF
 
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.classes.ouexception import OUUnavailableOUTerm
+from ontoumlpy.classes.ouexception import OUUnavailableTerm
 
 
 class _OUElement:
@@ -93,5 +93,5 @@ class _OUElement:
                 elem_object = getattr(self, obj_predicate)
                 if elem_object:
                     graph.add((self.id, elem_predicate, elem_object))
-            except OUUnavailableOUTerm:
+            except OUUnavailableTerm:
                 logger.debug(f"OntoUML.get_term({obj_predicate}) generated an OUUnavailableOUTerm exception.")
