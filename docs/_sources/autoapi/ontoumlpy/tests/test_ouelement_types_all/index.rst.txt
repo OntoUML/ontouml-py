@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.tests.test_ouelement_types_all`
-===================================================
+:py:mod:`ontoumlpy.tests.test_ouelement_types_all`
+==================================================
 
-.. py:module:: ontouml-py.tests.test_ouelement_types_all
+.. py:module:: ontoumlpy.tests.test_ouelement_types_all
 
 .. autoapi-nested-parse::
 
@@ -34,10 +34,10 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ouelement_types_all.create_ouelement
-   ontouml-py.tests.test_ouelement_types_all.test_instantiation_all_elements
-   ontouml-py.tests.test_ouelement_types_all.test_instantiation_all_elements_wrong_id
-   ontouml-py.tests.test_ouelement_types_all.test_instantiation_all_elements_wrong_type
+   ontoumlpy.tests.test_ouelement_types_all.create_ouelement
+   ontoumlpy.tests.test_ouelement_types_all.test_instantiation_all_elements
+   ontoumlpy.tests.test_ouelement_types_all.test_instantiation_all_elements_wrong_id
+   ontoumlpy.tests.test_ouelement_types_all.test_instantiation_all_elements_wrong_type
 
 
 

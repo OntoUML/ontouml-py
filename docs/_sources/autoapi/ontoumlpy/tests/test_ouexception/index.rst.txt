@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.tests.test_ouexception`
-===========================================
+:py:mod:`ontoumlpy.tests.test_ouexception`
+==========================================
 
-.. py:module:: ontouml-py.tests.test_ouexception
+.. py:module:: ontoumlpy.tests.test_ouexception
 
 .. autoapi-nested-parse::
 
@@ -18,12 +18,12 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ouexception.test_ouid_not_in_graph_absent_id
-   ontouml-py.tests.test_ouexception.test_ouid_not_in_graph_present_id
-   ontouml-py.tests.test_ouexception.test_ouid_type_mismatch_error_mismatched_type
-   ontouml-py.tests.test_ouexception.test_ouid_type_mismatch_error_matched_type
-   ontouml-py.tests.test_ouexception.test_ou_invalid_attribute_valid_access
-   ontouml-py.tests.test_ouexception.test_ou_invalid_attribute_invalid_access
+   ontoumlpy.tests.test_ouexception.test_ouid_not_in_graph_absent_id
+   ontoumlpy.tests.test_ouexception.test_ouid_not_in_graph_present_id
+   ontoumlpy.tests.test_ouexception.test_ouid_type_mismatch_error_mismatched_type
+   ontoumlpy.tests.test_ouexception.test_ouid_type_mismatch_error_matched_type
+   ontoumlpy.tests.test_ouexception.test_ou_invalid_attribute_valid_access
+   ontoumlpy.tests.test_ouexception.test_ou_invalid_attribute_invalid_access
 
 
 

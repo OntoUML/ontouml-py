@@ -465,23 +465,26 @@ flowchart TD
     Graph
 ```
 
-[![dependencies](https://mermaid.ink/img/pako:eNptjj1vgzAQhv8KuqETiXBjEvDQKVXHDEmWyMsJTEHCNnJt5QPx33NxhFjq6fHd8772CJWtFQhoenutWnQ-Oe2lSegczj8OhzZZrb6Iv3ullfHJx4tN0Mqhty5eT8ppgmjP0Vl_h_81lpJFmpcLxwykQK7Grqafjq-FBN_SCxIEYa0aDL2XIM1EKgZvj3dTgfAuqBTCUKNX-w5_HWoQDfZ_NB3QgBjhBuJzu87zjLOMlYyVO843KdxB8HJNs2zLdgUrCp7lUwoPa6mBxfQlcmybnjWFY_0?type=png)](https://mermaid.live/edit#pako:eNptjj1vgzAQhv8KuqETiXBjEvDQKVXHDEmWyMsJTEHCNnJt5QPx33NxhFjq6fHd8772CJWtFQhoenutWnQ-Oe2lSegczj8OhzZZrb6Iv3ullfHJx4tN0Mqhty5eT8ppgmjP0Vl_h_81lpJFmpcLxwykQK7Grqafjq-FBN_SCxIEYa0aDL2XIM1EKgZvj3dTgfAuqBTCUKNX-w5_HWoQDfZ_NB3QgBjhBuJzu87zjLOMlYyVO843KdxB8HJNs2zLdgUrCp7lUwoPa6mBxfQlcmybnjWFY_0)
+### OntoUML Custom Exceptions
 
-### Custom Exceptions
-
-These are specialized error classes to raise exceptions under specific circumstances during the API's operation. Custom exceptions help identify and handle problems in a structured manner.
+This document provides a detailed explanation of the custom exceptions used in the handling and management of OntoUML graphs and related operations. These custom exceptions are designed to provide explicit and user-friendly error messages, assisting developers in debugging and resolving issues.
 
 #### Descriptions of Exceptions
 
-- **InexistentTermError**: Likely raised when a term that does not exist in the OntoUML Vocabulary is referenced or requested.
-- **InvalidElementError**: Presumably raised when an OntoUML element is invalid or misconfigured.
-- **GraphUpdateError**: Potentially raised when an attempt to update, modify, or interact with an RDF graph in an unsupported or invalid way occurs.
+- **OUInvalidAttribute**: Raised when an invalid attribute is accessed on an OntoUML class.
+- **OUUnmappedOUTerm**: Thrown when an OUElement does not have a mapped OUTerm.
+- **OUUnmappedOUElement**: Emitted when an OUTerm does not have a mapped OUElement.
+- **OUUnavailableOUTerm**: Triggered when an OUTerm is not available or does not exist in the OntoUML Vocabulary.
+- **OUInvalidOUElementType**: Raised when an OUElement is not mapped to an internal list within the OUGraph, signifying a lack of mapping definitions in the graph management logic.
 
-| Exception Name       | Description                                                             |
-|----------------------|-------------------------------------------------------------------------|
-| `InexistentTermError`| Triggered when a non-existent OntoUML term is referenced or requested.  |
-| `InvalidElementError`| Occurs when an OntoUML element is invalid or improperly configured.     |
-| `GraphUpdateError`   | Raised during invalid attempts to interact or modify an RDF graph.       |
+| Exception Name          | Description                                                               |
+|-------------------------|---------------------------------------------------------------------------|
+| `OUInvalidAttribute`    | Raised when an invalid attribute is accessed on an OntoUML class.         |
+| `OUUnmappedOUTerm`      | Triggered when an OUElement doesn't have a mapped OUTerm.                 |
+| `OUUnmappedOUElement`   | Activated when an OUTerm doesn’t have a mapped OUElement.                 |
+| `OUUnavailableOUTerm`   | Thrown when an OUTerm is unavailable in the OntoUML Vocabulary.           |
+| `OUInvalidOUElementType`| Raised when an OUElement isn’t mapped in the OUGraph's internal list.      |
+
 
 
 ## How to Contribute

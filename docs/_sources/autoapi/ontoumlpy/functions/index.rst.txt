@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.functions`
-==============================
+:py:mod:`ontoumlpy.functions`
+=============================
 
-.. py:module:: ontouml-py.functions
+.. py:module:: ontoumlpy.functions
 
 
 Submodules

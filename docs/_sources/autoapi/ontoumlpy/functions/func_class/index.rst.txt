@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.functions.func_class`
-=========================================
+:py:mod:`ontoumlpy.functions.func_class`
+========================================
 
-.. py:module:: ontouml-py.functions.func_class
+.. py:module:: ontoumlpy.functions.func_class
 
 
 Module Contents
@@ -13,11 +13,11 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.functions.func_class.ou_get_direct_superclasses
-   ontouml-py.functions.func_class.ou_get_direct_subclasses
-   ontouml-py.functions.func_class.ou_get_all_superclasses
-   ontouml-py.functions.func_class.ou_get_all_subclasses
-   ontouml-py.functions.func_class.ou_create_list_classes_sts
+   ontoumlpy.functions.func_class.ou_get_direct_superclasses
+   ontoumlpy.functions.func_class.ou_get_direct_subclasses
+   ontoumlpy.functions.func_class.ou_get_all_superclasses
+   ontoumlpy.functions.func_class.ou_get_all_subclasses
+   ontoumlpy.functions.func_class.ou_create_list_classes_sts
 
 
 

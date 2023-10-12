@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.tests.test_ougraph`
-=======================================
+:py:mod:`ontoumlpy.tests.test_ougraph`
+======================================
 
-.. py:module:: ontouml-py.tests.test_ougraph
+.. py:module:: ontoumlpy.tests.test_ougraph
 
 .. autoapi-nested-parse::
 
@@ -22,20 +22,20 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ougraph.test_successful_initialization
-   ontouml-py.tests.test_ougraph.test_negative_assertion_during_initialization
-   ontouml-py.tests.test_ougraph.test_population_with_empty_graph
-   ontouml-py.tests.test_ougraph.test_population_with_single_class
-   ontouml-py.tests.test_ougraph.test_population_with_two_classes
-   ontouml-py.tests.test_ougraph.test_population_with_two_classes_and_one_generalization
-   ontouml-py.tests.test_ougraph.test_include_concrete_elements_when_set_to_true
-   ontouml-py.tests.test_ougraph.test_exclude_concrete_elements_when_set_to_false
-   ontouml-py.tests.test_ougraph.test_negative_scenario_exclude_concrete_elements
-   ontouml-py.tests.test_ougraph.test_invalid_type_handling_population
-   ontouml-py.tests.test_ougraph.test_invalid_type_handling_population_without_concrete
-   ontouml-py.tests.test_ougraph.test_correct_type_handling_population_without_concrete
-   ontouml-py.tests.test_ougraph.test_wrong_type_exception_handling_on_initialization
-   ontouml-py.tests.test_ougraph.test_wrong_argument_exception_handling_on_initialization
+   ontoumlpy.tests.test_ougraph.test_successful_initialization
+   ontoumlpy.tests.test_ougraph.test_negative_assertion_during_initialization
+   ontoumlpy.tests.test_ougraph.test_population_with_empty_graph
+   ontoumlpy.tests.test_ougraph.test_population_with_single_class
+   ontoumlpy.tests.test_ougraph.test_population_with_two_classes
+   ontoumlpy.tests.test_ougraph.test_population_with_two_classes_and_one_generalization
+   ontoumlpy.tests.test_ougraph.test_include_concrete_elements_when_set_to_true
+   ontoumlpy.tests.test_ougraph.test_exclude_concrete_elements_when_set_to_false
+   ontoumlpy.tests.test_ougraph.test_negative_scenario_exclude_concrete_elements
+   ontoumlpy.tests.test_ougraph.test_invalid_type_handling_population
+   ontoumlpy.tests.test_ougraph.test_invalid_type_handling_population_without_concrete
+   ontoumlpy.tests.test_ougraph.test_correct_type_handling_population_without_concrete
+   ontoumlpy.tests.test_ougraph.test_wrong_type_exception_handling_on_initialization
+   ontoumlpy.tests.test_ougraph.test_wrong_argument_exception_handling_on_initialization
 
 
 
@@ -44,7 +44,7 @@ Attributes
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ougraph.EXAMPLE_NS
+   ontoumlpy.tests.test_ougraph.EXAMPLE_NS
 
 
 .. py:data:: EXAMPLE_NS

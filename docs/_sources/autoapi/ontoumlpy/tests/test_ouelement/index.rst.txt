@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.tests.test_ouelement`
-=========================================
+:py:mod:`ontoumlpy.tests.test_ouelement`
+========================================
 
-.. py:module:: ontouml-py.tests.test_ouelement
+.. py:module:: ontoumlpy.tests.test_ouelement
 
 .. autoapi-nested-parse::
 
@@ -21,10 +21,8 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ouelement.test_ou_element_creation_positive
-   ontouml-py.tests.test_ouelement.test_ou_element_negative_attribute
-   ontouml-py.tests.test_ouelement.test_ou_element_id_not_in_graph
-   ontouml-py.tests.test_ouelement.test_ou_element_id_type_mismatch_error
+   ontoumlpy.tests.test_ouelement.test_ou_element_creation_positive
+   ontoumlpy.tests.test_ouelement.test_ou_element_negative_attribute
 
 
 
@@ -42,21 +40,5 @@ Functions
 
    This function tests that an AttributeError is raised when trying to access a non-existent attribute of
    an _OUElement instance.
-
-
-.. py:function:: test_ou_element_id_not_in_graph()
-
-   Test the exception handling for a non-existent element ID.
-
-   This function tests that an OUIDNotInGraph exception is raised when trying to create an _OUElement instance with
-   an ID that is not present in the graph.
-
-
-.. py:function:: test_ou_element_id_type_mismatch_error()
-
-   Test the exception handling for a type mismatch error.
-
-   This function tests that an OUIDTypeMismatchError exception is raised when trying to create an _OUElement instance
-   with an ID whose type does not match the expected type.
 
 

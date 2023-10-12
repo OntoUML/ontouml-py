@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.classes`
-============================
+:py:mod:`ontoumlpy.classes`
+===========================
 
-.. py:module:: ontouml-py.classes
+.. py:module:: ontoumlpy.classes
 
 .. autoapi-nested-parse::
 
@@ -12,16 +12,24 @@
 
 
 
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   ouelement/index.rst
+   ouenumeration/index.rst
+
+
 Submodules
 ----------
 .. toctree::
    :titlesonly:
    :maxdepth: 1
 
-   _ouelement/index.rst
-   ouelement_types/index.rst
+   ontouml/index.rst
    ouexception/index.rst
    ougraph/index.rst
-   outerm/index.rst
 
 

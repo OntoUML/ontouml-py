@@ -1,13 +1,13 @@
-:py:mod:`ontouml-py.tests.test_ouelement_types`
-===============================================
+:py:mod:`ontoumlpy.tests.test_ouelement_types`
+==============================================
 
-.. py:module:: ontouml-py.tests.test_ouelement_types
+.. py:module:: ontoumlpy.tests.test_ouelement_types
 
 .. autoapi-nested-parse::
 
    Module for testing classes related to the each specific type ou OUElement.
 
-   This module provides tests for the classes defined in the ontouml-py classes/ouelement_types module.
+   This module provides tests for the classes defined in the ontouml-py classes/ouelement module.
 
 
 
@@ -21,34 +21,34 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.tests.test_ouelement_types.test_class_OUCardinality
-   ontouml-py.tests.test_ouelement_types.test_class_OUClass
-   ontouml-py.tests.test_ouelement_types.test_class_OUClass_lists
-   ontouml-py.tests.test_ouelement_types.test_class_OUClassView
-   ontouml-py.tests.test_ouelement_types.test_class_OUDiagram
-   ontouml-py.tests.test_ouelement_types.test_class_OUDiagram_list
-   ontouml-py.tests.test_ouelement_types.test_class_OUGeneralization
-   ontouml-py.tests.test_ouelement_types.test_class_OUGeneralizationSet
-   ontouml-py.tests.test_ouelement_types.test_class_OUGeneralizationSet_list
-   ontouml-py.tests.test_ouelement_types.test_class_OUGeneralizationSetView
-   ontouml-py.tests.test_ouelement_types.test_class_OUGeneralizationView
-   ontouml-py.tests.test_ouelement_types.test_class_OULiteral
-   ontouml-py.tests.test_ouelement_types.test_class_OUNote
-   ontouml-py.tests.test_ouelement_types.test_class_OUNoteView
-   ontouml-py.tests.test_ouelement_types.test_class_OUPackage
-   ontouml-py.tests.test_ouelement_types.test_class_OUPackage_list
-   ontouml-py.tests.test_ouelement_types.test_class_OUPackageView
-   ontouml-py.tests.test_ouelement_types.test_class_OUPath
-   ontouml-py.tests.test_ouelement_types.test_class_OUPath_list
-   ontouml-py.tests.test_ouelement_types.test_class_OUPoint
-   ontouml-py.tests.test_ouelement_types.test_class_OUProject
-   ontouml-py.tests.test_ouelement_types.test_class_OUProject_list
-   ontouml-py.tests.test_ouelement_types.test_class_OUProperty
-   ontouml-py.tests.test_ouelement_types.test_class_OURectangle
-   ontouml-py.tests.test_ouelement_types.test_class_OURelation
-   ontouml-py.tests.test_ouelement_types.test_class_OURelation_list
-   ontouml-py.tests.test_ouelement_types.test_class_OURelationView
-   ontouml-py.tests.test_ouelement_types.test_class_OUText
+   ontoumlpy.tests.test_ouelement_types.test_class_OUCardinality
+   ontoumlpy.tests.test_ouelement_types.test_class_OUClass
+   ontoumlpy.tests.test_ouelement_types.test_class_OUClass_lists
+   ontoumlpy.tests.test_ouelement_types.test_class_OUClassView
+   ontoumlpy.tests.test_ouelement_types.test_class_OUDiagram
+   ontoumlpy.tests.test_ouelement_types.test_class_OUDiagram_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OUGeneralization
+   ontoumlpy.tests.test_ouelement_types.test_class_OUGeneralizationSet
+   ontoumlpy.tests.test_ouelement_types.test_class_OUGeneralizationSet_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OUGeneralizationSetView
+   ontoumlpy.tests.test_ouelement_types.test_class_OUGeneralizationView
+   ontoumlpy.tests.test_ouelement_types.test_class_OULiteral
+   ontoumlpy.tests.test_ouelement_types.test_class_OUNote
+   ontoumlpy.tests.test_ouelement_types.test_class_OUNoteView
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPackage
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPackage_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPackageView
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPath
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPath_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OUPoint
+   ontoumlpy.tests.test_ouelement_types.test_class_OUProject
+   ontoumlpy.tests.test_ouelement_types.test_class_OUProject_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OUProperty
+   ontoumlpy.tests.test_ouelement_types.test_class_OURectangle
+   ontoumlpy.tests.test_ouelement_types.test_class_OURelation
+   ontoumlpy.tests.test_ouelement_types.test_class_OURelation_list
+   ontoumlpy.tests.test_ouelement_types.test_class_OURelationView
+   ontoumlpy.tests.test_ouelement_types.test_class_OUText
 
 
 

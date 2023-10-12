@@ -1,13 +1,13 @@
-:py:mod:`ontouml-py.functions.func_mappings`
-============================================
+:py:mod:`ontoumlpy.functions.func_mappings`
+===========================================
 
-.. py:module:: ontouml-py.functions.func_mappings
+.. py:module:: ontoumlpy.functions.func_mappings
 
 .. autoapi-nested-parse::
 
-   This module handles the mapping between OUTerm and OUElement objects.
+   This module handles the mapping between OntoUML terms and OUElement objects.
 
-   It provides functions to retrieve OUElement objects from OUTerm objects and vice versa.
+   It provides functions to retrieve OUElement objects from OntoUML terms and vice versa.
 
 
 
@@ -20,37 +20,12 @@ Functions
 
 .. autoapisummary::
 
-   ontouml-py.functions.func_mappings.get_ouelement_from_outerm
-   ontouml-py.functions.func_mappings.get_outerm_from_ouelement
+   ontoumlpy.functions.func_mappings.ou_get_term_from_element
+   ontoumlpy.functions.func_mappings.get_related_element
 
 
 
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT
-
-
-.. py:data:: _MAP_OUTERM_OUELEMENT
-
-   
-
-.. py:function:: get_ouelement_from_outerm(outerm)
-
-   Return the corresponding OUElement object for a given OUTerm or URIRef/str object.
-
-   If the input is a string, it's converted to a URIRef object before lookup.
-
-   :param outerm: The OUTerm object or URIRef/str representing the term.
-   :type outerm: Union[URIRef, str]
-   :raises OUUnmappedOUTerm: If the OUTerm object is not found in the mapping.
-   :return: The corresponding OUElement object.
-   :rtype: _OUElement
-
-
-.. py:function:: get_outerm_from_ouelement(ouelement)
+.. py:function:: ou_get_term_from_element(ouelement)
 
    Return the corresponding OUTerm object for a given OUElement object or its class name as a string.
 
@@ -62,5 +37,18 @@ Attributes
    :raises OUUnmappedOUElement: If the OUElement object is not found in the mapping.
    :return: The corresponding OUTerm object.
    :rtype: URIRef
+
+
+.. py:function:: get_related_element(cls, ontouml_term)
+
+   Return the corresponding OUElement object for a given OUTerm or URIRef/str object.
+
+   If the input is a string, it's converted to a URIRef object before lookup.
+
+   :param ontouml_term: The OUTerm object or URIRef/str representing the term.
+   :type ontouml_term: Union[URIRef, str]
+   :raises OUUnmappedOUTerm: If the OUTerm object is not found in the mapping.
+   :return: The corresponding OUElement object.
+   :rtype: _OUElement
 
 

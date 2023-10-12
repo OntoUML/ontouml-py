@@ -1,308 +1,187 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" >
 <head>
-    <meta charset="utf-8"/>
-    <meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>ontouml-py.functions.func_mappings &mdash; ontouml-py documentation</title>
-    <link href="../../../../_static/pygments.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../../_static/css/theme.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../../_static/graphviz.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../../_static/css/sphinx_rtd_size.css" rel="stylesheet" type="text/css"/>
-    <!--[if lt IE 9]>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ontoumlpy.functions.func_mappings &mdash; ontouml-py  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+  <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
-    <![endif]-->
-
-    <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
-    <link href="../../../../genindex.html" rel="index" title="Index"/>
-    <link href="../../../../search.html" rel="search" title="Search"/>
-    <link href="../../tests/index.html" rel="next" title="ontouml-py.tests"/>
-    <link href="../func_load_specific/index.html" rel="prev" title="ontouml-py.functions.func_load_specific"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ontoumlpy.tests" href="../../tests/index.html" />
+    <link rel="prev" title="ontoumlpy.functions.func_load_specific" href="../func_load_specific/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-<div class="wy-grid-for-nav">
-    <nav class="wy-nav-side" data-toggle="wy-nav-shift">
-        <div class="wy-side-scroll">
-            <div class="wy-side-nav-search">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ontouml-py
+              <img src="../../../../_static/logo-ontouml-py-reduced.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../classes/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.classes</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.functions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tests/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.tests</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-                <a class="icon icon-home" href="../../../../index.html">
-                    ontouml-py
-                    <img alt="Logo" class="logo" src="../../../../_static/logo-ontouml-py-reduced.png"/>
-                </a>
-                <div role="search">
-                    <form action="../../../../search.html" class="wy-form" id="rtd-search-form" method="get">
-                        <input aria-label="Search docs" name="q" placeholder="Search docs" type="text"/>
-                        <input name="check_keywords" type="hidden" value="yes"/>
-                        <input name="area" type="hidden" value="default"/>
-                    </form>
-                </div>
-            </div>
-            <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API
-                        Reference</a>
-                        <ul class="current">
-                            <li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code
-                                    class="xref py py-mod docutils literal notranslate"><span
-                                    class="pre">ontouml-py</span></code></a>
-                                <ul class="current">
-                                    <li class="toctree-l3 current"><a class="reference internal"
-                                                                      href="../../index.html#subpackages">Subpackages</a>
-                                        <ul class="current">
-                                            <li class="toctree-l4"><a class="reference internal"
-                                                                      href="../../classes/index.html"><code
-                                                    class="xref py py-mod docutils literal notranslate"><span
-                                                    class="pre">ontouml-py.classes</span></code></a></li>
-                                            <li class="toctree-l4"><a class="reference internal"
-                                                                      href="../../constants/index.html"><code
-                                                    class="xref py py-mod docutils literal notranslate"><span
-                                                    class="pre">ontouml-py.constants</span></code></a></li>
-                                            <li class="toctree-l4 current"><a class="reference internal"
-                                                                              href="../index.html"><code
-                                                    class="xref py py-mod docutils literal notranslate"><span
-                                                    class="pre">ontouml-py.functions</span></code></a></li>
-                                            <li class="toctree-l4"><a class="reference internal"
-                                                                      href="../../tests/index.html"><code
-                                                    class="xref py py-mod docutils literal notranslate"><span
-                                                    class="pre">ontouml-py.tests</span></code></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-            </div>
         </div>
+      </div>
     </nav>
 
-    <section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
-        <nav aria-label="Mobile navigation menu" class="wy-nav-top">
-            <i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-            <a href="../../../../index.html">ontouml-py</a>
-        </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ontouml-py</a>
+      </nav>
 
-        <div class="wy-nav-content">
-            <div class="rst-content">
-                <div aria-label="Page navigation" role="navigation">
-                    <ul class="wy-breadcrumbs">
-                        <li><a aria-label="Home" class="icon icon-home" href="../../../../index.html"></a></li>
-                        <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
-                        <li class="breadcrumb-item"><a href="../../index.html"><code
-                                class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py</span></code></a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="../index.html"><code
-                                class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.functions</span></code></a>
-                        </li>
-                        <li class="breadcrumb-item active"><code
-                                class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.functions.func_mappings</span></code>
-                        </li>
-                        <li class="wy-breadcrumbs-aside">
-                            <a href="../../../../_sources/autoapi/ontoumlpy/functions/func_mappings/index.rst.txt"
-                               rel="nofollow"> View page source</a>
-                        </li>
-                    </ul>
-                    <hr/>
-                </div>
-                <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-                    <div itemprop="articleBody">
-
-                        <section id="module-ontouml-py.functions.func_mappings">
-                            <span id="ontouml-py-functions-func-mappings"></span>
-                            <h1><a class="reference internal" href="#module-ontouml-py.functions.func_mappings"
-                                   title="ontouml-py.functions.func_mappings"><code
-                                    class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml-py.functions.func_mappings</span></code></a><a
-                                    class="headerlink" href="#module-ontouml-py.functions.func_mappings"
-                                    title="Link to this heading"></a></h1>
-                            <p>This module handles the mapping between OUTerm and OUElement objects.</p>
-                            <p>It provides functions to retrieve OUElement objects from OUTerm objects and vice
-                                versa.</p>
-                            <section id="module-contents">
-                                <h2>Module Contents<a class="headerlink" href="#module-contents"
-                                                      title="Link to this heading"></a></h2>
-                                <section id="functions">
-                                    <h3>Functions<a class="headerlink" href="#functions"
-                                                    title="Link to this heading"></a></h3>
-                                    <table class="autosummary longtable docutils align-default">
-                                        <tbody>
-                                        <tr class="row-odd">
-                                            <td><p><a class="reference internal"
-                                                      href="#ontouml-py.functions.func_mappings.get_ouelement_from_outerm"
-                                                      title="ontouml-py.functions.func_mappings.get_ouelement_from_outerm"><code
-                                                    class="xref py py-obj docutils literal notranslate"><span
-                                                    class="pre">get_ouelement_from_outerm</span></code></a>(outerm)</p>
-                                            </td>
-                                            <td><p>Return the corresponding OUElement object for a given OUTerm or
-                                                URIRef/str object.</p></td>
-                                        </tr>
-                                        <tr class="row-even">
-                                            <td><p><a class="reference internal"
-                                                      href="#ontouml-py.functions.func_mappings.get_outerm_from_ouelement"
-                                                      title="ontouml-py.functions.func_mappings.get_outerm_from_ouelement"><code
-                                                    class="xref py py-obj docutils literal notranslate"><span
-                                                    class="pre">get_outerm_from_ouelement</span></code></a>(ouelement)
-                                            </p></td>
-                                            <td><p>Return the corresponding OUTerm object for a given OUElement object
-                                                or its class name as a string.</p></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </section>
-                                <section id="attributes">
-                                    <h3>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a>
-                                    </h3>
-                                    <table class="autosummary longtable docutils align-default">
-                                        <tbody>
-                                        <tr class="row-odd">
-                                            <td><p><a class="reference internal"
-                                                      href="#ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT"
-                                                      title="ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT"><code
-                                                    class="xref py py-obj docutils literal notranslate"><span
-                                                    class="pre">_MAP_OUTERM_OUELEMENT</span></code></a></p></td>
-                                            <td><p></p></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <dl class="py data">
-                                        <dt class="sig sig-object py"
-                                            id="ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT">
-                                            <span class="sig-prename descclassname"><span class="pre">ontouml-py.functions.func_mappings.</span></span><span
-                                                class="sig-name descname"><span class="pre">_MAP_OUTERM_OUELEMENT</span></span><a
-                                                class="headerlink"
-                                                href="#ontouml-py.functions.func_mappings._MAP_OUTERM_OUELEMENT"
-                                                title="Link to this definition"></a></dt>
-                                        <dd></dd>
-                                    </dl>
-
-                                    <dl class="py function">
-                                        <dt class="sig sig-object py"
-                                            id="ontouml-py.functions.func_mappings.get_ouelement_from_outerm">
-                                            <span class="sig-prename descclassname"><span class="pre">ontouml-py.functions.func_mappings.</span></span><span
-                                                class="sig-name descname"><span
-                                                class="pre">get_ouelement_from_outerm</span></span><span
-                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                                class="pre">outerm</span></span></em><span class="sig-paren">)</span><a
-                                                class="headerlink"
-                                                href="#ontouml-py.functions.func_mappings.get_ouelement_from_outerm"
-                                                title="Link to this definition"></a></dt>
-                                        <dd><p>Return the corresponding OUElement object for a given OUTerm or
-                                            URIRef/str object.</p>
-                                            <p>If the input is a string, it’s converted to a URIRef object before
-                                                lookup.</p>
-                                            <dl class="field-list simple">
-                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-                                                <dd class="field-odd"><p><strong>outerm</strong>
-                                                    (<em>Union</em><em>[</em><em>URIRef</em><em>, </em><em>str</em><em>]</em>)
-                                                    – The OUTerm object or URIRef/str representing the term.</p>
-                                                </dd>
-                                                <dt class="field-even">Raises<span class="colon">:</span></dt>
-                                                <dd class="field-even"><p><a class="reference internal"
-                                                                             href="../../classes/ouexception/index.html#ontouml-py.classes.ouexception.OUUnmappedOUTerm"
-                                                                             title="ontouml-py.classes.ouexception.OUUnmappedOUTerm"><strong>OUUnmappedOUTerm</strong></a>
-                                                    – If the OUTerm object is not found in the mapping.</p>
-                                                </dd>
-                                                <dt class="field-odd">Returns<span class="colon">:</span></dt>
-                                                <dd class="field-odd"><p>The corresponding OUElement object.</p>
-                                                </dd>
-                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
-                                                <dd class="field-even"><p><a class="reference internal"
-                                                                             href="../../classes/_ouelement/index.html#ontouml-py.classes._ouelement._OUElement"
-                                                                             title="ontouml-py.classes._ouelement._OUElement">_OUElement</a>
-                                                </p>
-                                                </dd>
-                                            </dl>
-                                        </dd>
-                                    </dl>
-
-                                    <dl class="py function">
-                                        <dt class="sig sig-object py"
-                                            id="ontouml-py.functions.func_mappings.get_outerm_from_ouelement">
-                                            <span class="sig-prename descclassname"><span class="pre">ontouml-py.functions.func_mappings.</span></span><span
-                                                class="sig-name descname"><span
-                                                class="pre">get_outerm_from_ouelement</span></span><span
-                                                class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                                class="pre">ouelement</span></span></em><span class="sig-paren">)</span><a
-                                                class="headerlink"
-                                                href="#ontouml-py.functions.func_mappings.get_outerm_from_ouelement"
-                                                title="Link to this definition"></a></dt>
-                                        <dd><p>Return the corresponding OUTerm object for a given OUElement object or
-                                            its class name as a string.</p>
-                                            <p>This function iterates through the mapping dictionary to find the
-                                                corresponding OUTerm object.
-                                                Every OUElement object is assumed to be mapped to an OUTerm object.</p>
-                                            <dl class="field-list simple">
-                                                <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-                                                <dd class="field-odd"><p><strong>ouelement</strong>
-                                                    (<em>Union</em><em>[</em><a class="reference internal"
-                                                                                href="../../classes/_ouelement/index.html#ontouml-py.classes._ouelement._OUElement"
-                                                                                title="ontouml-py.classes._ouelement._OUElement"><em>_OUElement</em></a><em>, </em><em>str</em><em>]</em>)
-                                                    – The OUElement object or its class name as a string.</p>
-                                                </dd>
-                                                <dt class="field-even">Raises<span class="colon">:</span></dt>
-                                                <dd class="field-even"><p><a class="reference internal"
-                                                                             href="../../classes/ouexception/index.html#ontouml-py.classes.ouexception.OUUnmappedOUElement"
-                                                                             title="ontouml-py.classes.ouexception.OUUnmappedOUElement"><strong>OUUnmappedOUElement</strong></a>
-                                                    – If the OUElement object is not found in the mapping.</p>
-                                                </dd>
-                                                <dt class="field-odd">Returns<span class="colon">:</span></dt>
-                                                <dd class="field-odd"><p>The corresponding OUTerm object.</p>
-                                                </dd>
-                                                <dt class="field-even">Return type<span class="colon">:</span></dt>
-                                                <dd class="field-even"><p>URIRef</p>
-                                                </dd>
-                                            </dl>
-                                        </dd>
-                                    </dl>
-
-                                </section>
-                            </section>
-                        </section>
-
-
-                    </div>
-                </div>
-                <footer>
-                    <div aria-label="Footer" class="rst-footer-buttons" role="navigation">
-                        <a accesskey="p" class="btn btn-neutral float-left"
-                           href="../func_load_specific/index.html" rel="prev" title="ontouml-py.functions.func_load_specific"><span
-                                aria-hidden="true" class="fa fa-arrow-circle-left"></span> Previous</a>
-                        <a accesskey="n" class="btn btn-neutral float-right" href="../../tests/index.html"
-                           rel="next" title="ontouml-py.tests">Next <span aria-hidden="true"
-                                                               class="fa fa-arrow-circle-right"></span></a>
-                    </div>
-
-                    <hr/>
-
-                    <div role="contentinfo">
-                        <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente,
-                            the Netherlands.</p>
-                    </div>
-
-                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
-
-                </footer>
-            </div>
-        </div>
-    </section>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.functions</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.functions.func_mappings</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/ontoumlpy/functions/func_mappings/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
 </div>
-<script>
-    jQuery(function () {
-        SphinxRtdTheme.Navigation.enable(true);
-    });
-</script>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ontoumlpy.functions.func_mappings">
+<span id="ontoumlpy-functions-func-mappings"></span><h1><a class="reference internal" href="#module-ontoumlpy.functions.func_mappings" title="ontoumlpy.functions.func_mappings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontoumlpy.functions.func_mappings</span></code></a><a class="headerlink" href="#module-ontoumlpy.functions.func_mappings" title="Link to this heading"></a></h1>
+<p>This module handles the mapping between OntoUML terms and OUElement objects.</p>
+<p>It provides functions to retrieve OUElement objects from OntoUML terms and vice versa.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontoumlpy.functions.func_mappings.ou_get_term_from_element" title="ontoumlpy.functions.func_mappings.ou_get_term_from_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ou_get_term_from_element</span></code></a>(ouelement)</p></td>
+<td><p>Return the corresponding OUTerm object for a given OUElement object or its class name as a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontoumlpy.functions.func_mappings.get_related_element" title="ontoumlpy.functions.func_mappings.get_related_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_related_element</span></code></a>(cls, ontouml_term)</p></td>
+<td><p>Return the corresponding OUElement object for a given OUTerm or URIRef/str object.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="ontoumlpy.functions.func_mappings.ou_get_term_from_element">
+<span class="sig-prename descclassname"><span class="pre">ontoumlpy.functions.func_mappings.</span></span><span class="sig-name descname"><span class="pre">ou_get_term_from_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ouelement</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontoumlpy.functions.func_mappings.ou_get_term_from_element" title="Link to this definition"></a></dt>
+<dd><p>Return the corresponding OUTerm object for a given OUElement object or its class name as a string.</p>
+<p>This function iterates through the mapping dictionary to find the corresponding OUTerm object.
+Every OUElement object is assumed to be mapped to an OUTerm object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ouelement</strong> (<em>Union</em><em>[</em><a class="reference internal" href="../../classes/ouelement/_ouelement/index.html#ontoumlpy.classes.ouelement._ouelement._OUElement" title="ontoumlpy.classes.ouelement._ouelement._OUElement"><em>_OUElement</em></a><em>, </em><em>str</em><em>]</em>) – The OUElement object or its class name as a string.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../classes/ouexception/index.html#ontoumlpy.classes.ouexception.OUUnmappedOUElement" title="ontoumlpy.classes.ouexception.OUUnmappedOUElement"><strong>OUUnmappedOUElement</strong></a> – If the OUElement object is not found in the mapping.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The corresponding OUTerm object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>URIRef</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontoumlpy.functions.func_mappings.get_related_element">
+<span class="sig-prename descclassname"><span class="pre">ontoumlpy.functions.func_mappings.</span></span><span class="sig-name descname"><span class="pre">get_related_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ontouml_term</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontoumlpy.functions.func_mappings.get_related_element" title="Link to this definition"></a></dt>
+<dd><p>Return the corresponding OUElement object for a given OUTerm or URIRef/str object.</p>
+<p>If the input is a string, it’s converted to a URIRef object before lookup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ontouml_term</strong> (<em>Union</em><em>[</em><em>URIRef</em><em>, </em><em>str</em><em>]</em>) – The OUTerm object or URIRef/str representing the term.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../classes/ouexception/index.html#ontoumlpy.classes.ouexception.OUUnmappedOUTerm" title="ontoumlpy.classes.ouexception.OUUnmappedOUTerm"><strong>OUUnmappedOUTerm</strong></a> – If the OUTerm object is not found in the mapping.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The corresponding OUElement object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../classes/ouelement/_ouelement/index.html#ontoumlpy.classes.ouelement._ouelement._OUElement" title="ontoumlpy.classes.ouelement._ouelement._OUElement">_OUElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../func_load_specific/index.html" class="btn btn-neutral float-left" title="ontoumlpy.functions.func_load_specific" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../tests/index.html" class="btn btn-neutral float-right" title="ontoumlpy.tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente, the Netherlands.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>

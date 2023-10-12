@@ -6,7 +6,7 @@ Welcome to ontouml-py's code documentation!
 .. image:: ../resources/logo-ontouml-py-reduced.png
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: Contents:
 
 Indices and tables

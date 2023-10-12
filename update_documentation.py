@@ -33,7 +33,7 @@ def execute_documentation_commands() -> None:
     sphinx_dir = os.path.join(base_dir, "sphinx")
     docs_dir = os.path.join(base_dir, "docs")
 
-    # Delete and creating again the existing docs/ directory
+    logger.info("Deleting and creating again the existing docs/ directory")
     try:
         # Use shutil.rmtree to remove the directory and its contents
         if os.path.exists(docs_dir):
@@ -44,7 +44,7 @@ def execute_documentation_commands() -> None:
     except OSError as e:
         logger.error(f"Error: {e}")
 
-    # Execute commands 'make clean' and 'make html' sequentially
+    logger.info("Executing commands 'make clean' and 'make html' sequentially")
     try:
         subprocess.run(["make", "clean"], cwd=sphinx_dir, shell=True, check=True)
         subprocess.run(["make", "html"], cwd=sphinx_dir, shell=True, check=True)
@@ -64,7 +64,7 @@ def execute_documentation_commands() -> None:
     except Exception as e:
         logger.error(f"Error: {e}")
 
-    # Execute command 'make clean'
+    logger.info("Executing command 'make clean'")
     try:
         subprocess.run(["make", "clean"], cwd=sphinx_dir, shell=True, check=True)
         logger.info("Commands 'make clean' and 'make html' successfully executed.")

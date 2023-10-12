@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.tests`
-==========================
+:py:mod:`ontoumlpy.tests`
+=========================
 
-.. py:module:: ontouml-py.tests
+.. py:module:: ontoumlpy.tests
 
 
 Submodules
@@ -10,11 +10,12 @@ Submodules
    :titlesonly:
    :maxdepth: 1
 
+   test_func_mappings/index.rst
+   test_ontouml/index.rst
    test_ouelement/index.rst
    test_ouelement_types/index.rst
    test_ouelement_types_all/index.rst
    test_ouexception/index.rst
    test_ougraph/index.rst
-   test_outerm/index.rst
 
 

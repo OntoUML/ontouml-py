@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py.classes.ougraph`
-====================================
+:py:mod:`ontoumlpy.classes.ougraph`
+===================================
 
-.. py:module:: ontouml-py.classes.ougraph
+.. py:module:: ontoumlpy.classes.ougraph
 
 .. autoapi-nested-parse::
 
@@ -18,23 +18,6 @@
        To use this module, instantiate the OUGraph class with an RDF graph and optionally specify whether to include
        concrete syntax elements. After instantiation, you can access various lists containing OntoUML elements.
 
-   Example:
-       from rdflib import Graph
-       from ontology_vocabulary import OUGraph
-
-       # Load an RDF graph containing OntoUML data
-       ontouml_graph = Graph()
-       ontouml_graph.parse("ontouml_data.rdf")
-
-       # Instantiate the OUGraph class
-       ou_graph = OUGraph(ontouml_graph)
-
-       # Access OntoUML element lists
-       class_elements = ou_graph.list_OUClass
-       generalization_elements = ou_graph.list_OUGeneralization
-
-       # Process and analyze OntoUML data
-
 
 
 Module Contents
@@ -45,12 +28,12 @@ Classes
 
 .. autoapisummary::
 
-   ontouml-py.classes.ougraph.OUGraph
+   ontoumlpy.classes.ougraph.OUGraph
 
 
 
 
-.. py:class:: OUGraph(ontouml_graph, include_concrete = True)
+.. py:class:: OUGraph
 
 
    OntoUML Vocabulary Graph Class.
@@ -58,50 +41,84 @@ Classes
    This class provides a Python interface for managing OntoUML vocabulary elements based on an RDF graph. It allows you
    to load OntoUML elements from the graph and organize them into separate lists by their types.
 
-   :param ontouml_graph: An RDF graph containing OntoUML vocabulary data.
-   :type ontouml_graph: Graph
-   :param include_concrete: Flag indicating whether to include concrete syntax elements.
-   :type include_concrete: bool, optional
+   :ivar ou_cardinality_list: A list of OntoUML Cardinality objects.
+   :vartype ou_cardinality_list: list
+   :ivar ou_class_list: A list of OntoUML Class objects.
+   :vartype ou_class_list: list
+   :ivar ou_classView_list: A list of OntoUML ClassView objects.
+   :vartype ou_classView_list: list
+   :ivar ou_diagram_list: A list of OntoUML Diagram objects.
+   :vartype ou_diagram_list: list
+   :ivar ou_generalization_list: A list of OntoUML Generalization objects.
+   :vartype ou_generalization_list: list
+   :ivar ou_generalizationSet_list: A list of OntoUML GeneralizationSet objects.
+   :vartype ou_generalizationSet_list: list
+   :ivar ou_generalizationSetView_list: A list of OntoUML GeneralizationSetView objects.
+   :vartype ou_generalizationSetView_list: list
+   :ivar ou_generalizationView_list: A list of OntoUML GeneralizationView objects.
+   :vartype ou_generalizationView_list: list
+   :ivar ou_literal_list: A list of OntoUML Literal objects.
+   :vartype ou_literal_list: list
+   :ivar ou_note_list: A list of OntoUML Note objects.
+   :vartype ou_note_list: list
+   :ivar ou_noteView_list: A list of OntoUML NoteView objects.
+   :vartype ou_noteView_list: list
+   :ivar ou_package_list: A list of OntoUML Package objects.
+   :vartype ou_package_list: list
+   :ivar ou_packageView_list: A list of OntoUML PackageView objects.
+   :vartype ou_packageView_list: list
+   :ivar ou_path_list: A list of OntoUML Path objects.
+   :vartype ou_path_list: list
+   :ivar ou_point_list: A list of OntoUML Point objects.
+   :vartype ou_point_list: list
+   :ivar ou_project_list: A list of OntoUML Project objects.
+   :vartype ou_project_list: list
+   :ivar ou_property_list: A list of OntoUML Property objects.
+   :vartype ou_property_list: list
+   :ivar ou_rectangle_list: A list of OntoUML Rectangle objects.
+   :vartype ou_rectangle_list: list
+   :ivar ou_relation_list: A list of OntoUML Relation objects.
+   :vartype ou_relation_list: list
+   :ivar ou_relationView_list: A list of OntoUML RelationView objects.
+   :vartype ou_relationView_list: list
+   :ivar ou_text_list: A list of OntoUML Text objects.
+   :vartype ou_text_list: list
 
-   :ivar list_OUCardinality: A list of OntoUML Cardinality objects.
-   :vartype list_OUCardinality: list
-   :ivar list_OUClass: A list of OntoUML Class objects.
-   :vartype list_OUClass: list
-   :ivar list_OUClassView: A list of OntoUML ClassView objects.
-   :vartype list_OUClassView: list
-   :ivar list_OUDiagram: A list of OntoUML Diagram objects.
-   :vartype list_OUDiagram: list
-   :ivar list_OUGeneralization: A list of OntoUML Generalization objects.
-   :vartype list_OUGeneralization: list
-   :ivar list_OUGeneralizationSet: A list of OntoUML GeneralizationSet objects.
-   :vartype list_OUGeneralizationSet: list
-   :ivar list_OUGeneralizationSetView: A list of OntoUML GeneralizationSetView objects.
-   :vartype list_OUGeneralizationSetView: list
-   :ivar list_OUGeneralizationView: A list of OntoUML GeneralizationView objects.
-   :vartype list_OUGeneralizationView: list
-   :ivar list_OULiteral: A list of OntoUML Literal objects.
-   :vartype list_OULiteral: list
-   :ivar list_OUNote: A list of OntoUML Note objects.
-   :vartype list_OUNote: list
-   :ivar list_OUNoteView: A list of OntoUML NoteView objects.
-   :vartype list_OUNoteView: list
-   :ivar list_OUPackage: A list of OntoUML Package objects.
-   :vartype list_OUPackage: list
-   :ivar list_OUPath: A list of OntoUML Path objects.
-   :vartype list_OUPath: list
-   :ivar list_OUPoint: A list of OntoUML Point objects.
-   :vartype list_OUPoint: list
-   :ivar list_OUProject: A list of OntoUML Project objects.
-   :vartype list_OUProject: list
-   :ivar list_OUProperty: A list of OntoUML Property objects.
-   :vartype list_OUProperty: list
-   :ivar list_OURectangle: A list of OntoUML Rectangle objects.
-   :vartype list_OURectangle: list
-   :ivar list_OURelation: A list of OntoUML Relation objects.
-   :vartype list_OURelation: list
-   :ivar list_OURelationView: A list of OntoUML RelationView objects.
-   :vartype list_OURelationView: list
-   :ivar list_OUText: A list of OntoUML Text objects.
-   :vartype list_OUText: list
+   .. py:method:: add_element(element)
+
+      Add an OntoUML Element to its Corresponding List
+
+      This method sorts the provided OntoUML element into its respective list within the OUGraph instance according
+      to its type, facilitating an organized storage of diverse OntoUML elements.
+
+      :param element: An OntoUML element to be added to the OUGraph.
+      :type element: _OUElement
+
+
+   .. py:method:: read_graph(rdf_graph, include_concrete = True)
+
+      Load OntoUML elements from an RDF graph into organized lists.
+
+      This method iterates through all triples in the provided RDF graph, identifies OntoUML elements,
+      and adds them to the respective lists based on their type.
+
+      :param rdf_graph: An RDF graph containing OntoUML vocabulary data.
+      :type rdf_graph: Graph
+      :param include_concrete: Flag indicating whether to include concrete syntax elements.
+      :type include_concrete: bool, optional
+
+
+   .. py:method:: write_graph(rdf_graph, include_concrete = True)
+
+      Write OntoUML elements into an RDF graph.
+
+      This method traverses through all stored OntoUML elements within the OUGraph and adds them to the provided
+      RDF graph, either including or excluding concrete syntax elements based on the `include_concrete` parameter.
+
+      :param rdf_graph: An RDF graph where OntoUML vocabulary data will be written.
+      :type rdf_graph: Graph
+      :param include_concrete: Flag indicating whether to include concrete syntax elements.
+      :type include_concrete: bool, optional
+
 
 

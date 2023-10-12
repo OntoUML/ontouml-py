@@ -1,7 +1,7 @@
-:py:mod:`ontouml-py`
-====================
+:py:mod:`ontoumlpy`
+===================
 
-.. py:module:: ontouml-py
+.. py:module:: ontoumlpy
 
 
 Subpackages
@@ -11,7 +11,6 @@ Subpackages
    :maxdepth: 3
 
    classes/index.rst
-   constants/index.rst
    functions/index.rst
    tests/index.rst
 
