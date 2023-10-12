@@ -1,30 +1,30 @@
 from rdflib import Graph, RDF, URIRef
 
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.classes.ouelement._ouelement import (
-    _OUElement,
-    OUCardinality,
-    OUClass,
-    OUClassView,
-    OUDiagram,
-    OUGeneralization,
-    OUGeneralizationSet,
-    OUGeneralizationSetView,
+from ontoumlpy.classes.ouelement._ouelement import _OUElement
+from ontoumlpy.classes.ouelement.oucardinality import OUCardinality
+from ontoumlpy.classes.ouelement.oudiagram import OUDiagram
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ouconnectorview.ougeneralizationview import (
     OUGeneralizationView,
-    OULiteral,
-    OUNote,
-    OUNoteView,
-    OUPackage,
-    OUPackageView,
-    OUPath,
-    OUPoint,
-    OUProject,
-    OUProperty,
-    OURectangle,
-    OURelation,
-    OURelationView,
-    OUText,
 )
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ouconnectorview.ourelationview import OURelationView
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ougeneralizationsetview import OUGeneralizationSetView
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ounodeview.ouclassview import OUClassView
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ounodeview.ounoteview import OUNoteView
+from ontoumlpy.classes.ouelement.oudiagramelement.ouelementview.ounodeview.oupackageview import OUPackageView
+from ontoumlpy.classes.ouelement.oudiagramelement.shape.oupath import OUPath
+from ontoumlpy.classes.ouelement.oudiagramelement.shape.ourectangularshape.ourectangle import OURectangle
+from ontoumlpy.classes.ouelement.oudiagramelement.shape.ourectangularshape.outext import OUText
+from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ouclass import OUClass
+from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ourelation import OURelation
+from ontoumlpy.classes.ouelement.oumodelelement.ougeneralization import OUGeneralization
+from ontoumlpy.classes.ouelement.oumodelelement.ougeneralizationset import OUGeneralizationSet
+from ontoumlpy.classes.ouelement.oumodelelement.ouliteral import OULiteral
+from ontoumlpy.classes.ouelement.oumodelelement.ounote import OUNote
+from ontoumlpy.classes.ouelement.oumodelelement.oupackage import OUPackage
+from ontoumlpy.classes.ouelement.oumodelelement.ouproperty import OUProperty
+from ontoumlpy.classes.ouelement.oupoint import OUPoint
+from ontoumlpy.classes.ouelement.ouproject import OUProject
 
 
 class InvalidOntoUMLTypeException(Exception):
@@ -33,7 +33,7 @@ class InvalidOntoUMLTypeException(Exception):
     pass
 
 
-def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> _OUElement:
+def create_ouelement(individual_id: URIRef, individual_type: URIRef) -> _OUElement:
     map_type_element = {
         OntoUML.Cardinality: OUCardinality,
         OntoUML.Class: OUClass,
@@ -58,7 +58,6 @@ def create_ouelement(ontouml_graph: Graph, individual_id: URIRef) -> _OUElement:
         OntoUML.Text: OUText,
     }
 
-    individual_type = ontouml_graph.value(individual_id, RDF.type)
     if individual_type in map_type_element.keys():
         individual_obj = map_type_element[individual_type](individual_id)
     else:

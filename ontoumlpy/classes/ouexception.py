@@ -5,44 +5,7 @@ that may occur in the manipulation and management of OntoUML graphs and related 
 Each exception is designed to provide clear, user-friendly error messages to assist in
 debugging and issue resolution.
 """
-from icecream import ic
 from rdflib import URIRef
-
-
-class OUIDNotInGraph(ValueError):
-    """Custom exception for handling cases where the provided ID does not exist in the OntoUML graph.
-
-    :param absent_ou_id: The ID that does not exist in the OntoUML graph.
-    :type absent_ou_id: URIRef
-    :param ou_class_name: The name of the OntoUML class being instantiated.
-    :type ou_class_name: str
-    """
-
-    def __init__(self, absent_ou_id: URIRef, ou_class_name: str):
-        message = (
-            f"The id '{absent_ou_id}' used to instantiate '{ou_class_name}' does not exist in the OntoUML graph. "
-            f"Software execution aborted."
-        )
-        super().__init__(message)
-
-
-class OUIDTypeMismatchError(ValueError):
-    """Custom exception for handling cases where the provided ID exists but has a type mismatch with the expected type.
-
-    :param mismatched_ou_id: The ID that exists but has a type mismatch.
-    :type mismatched_ou_id: URIRef
-    :param ou_class_name: The name of the OntoUML class being instantiated.
-    :type ou_class_name: str
-    :param related_type: The expected type for the ID.
-    :type related_type: URIRef
-    """
-
-    def __init__(self, mismatched_ou_id: URIRef, ou_class_name: str, related_type: URIRef):
-        message = (
-            f"The id '{mismatched_ou_id}' used to instantiate '{ou_class_name}' is not an element of "
-            f"type '{related_type}'. Software execution aborted."
-        )
-        super().__init__(message)
 
 
 class OUInvalidAttribute(NameError):
@@ -54,32 +17,32 @@ class OUInvalidAttribute(NameError):
     :type invalid_att_name: str
     """
 
-    def __init__(self, ou_class_name: str, invalid_att_name: str):
+    def __init__(self, ou_class_name: str, invalid_att_name: str) -> None:
         message = f"The '{ou_class_name}' does not have an attribute '{invalid_att_name}'. Software execution aborted."
         super().__init__(message)
 
 
-class OUUnmappedOUElement(KeyError):
+class OUUnmappedOUTerm(KeyError):
     """Custom exception for handling cases where an OUElement does not have a mapped OUTerm.
 
-    :param ouelement: The OUElement that does not have a mapped OUTerm.
-    :type ouelement: str
+    :param ou_element: The OUElement that does not have a mapped OUTerm.
+    :type ou_element: str
     """
 
-    def __init__(self, ouelement):
-        message = f"The OUElement '{ouelement}' does not have a mapped OUTerm. Software execution aborted."
+    def __init__(self, ou_element) -> None:
+        message = f"The OUElement '{ou_element}' does not have a mapped OUTerm. Software execution aborted."
         super().__init__(message)
 
 
-class OUUnmappedOUTerm(Exception):
+class OUUnmappedOUElement(Exception):
     """Custom exception for handling cases where an OUTerm does not have a mapped OUElement.
 
-    :param outerm: The OUTerm that does not have a mapped OUElement.
-    :type outerm: str
+    :param ou_term: The OUTerm that does not have a mapped OUElement.
+    :type ou_term: str
     """
 
-    def __init__(self, outerm):
-        message = f"The OUTerm '{outerm}' does not have a mapped OUElement. Software execution aborted."
+    def __init__(self, ou_term) -> None:
+        message = f"The OUTerm '{ou_term}' does not have a mapped OUElement. Software execution aborted."
         super().__init__(message)
 
 
@@ -94,7 +57,24 @@ class OUUnavailableOUTerm(ValueError):
     :type outerm: str
     """
 
-    def __init__(self, outerm: str):
-        ic("here")
+    def __init__(self, outerm: str) -> None:
         message = f"The OUTerm '{outerm}' does not exist in the OntoUML Vocabulary."
+        super().__init__(message)
+
+
+class OUInvalidOUElementType(KeyError):
+    """Exception raised for unmapped OUElement types to OUGraph internal list.
+
+    This exception is thrown when an OUElement is not mapped to an internal list within the OUGraph, indicating a
+    misalignment or absence of mapping definitions within the graph management logic.
+
+    :param ou_element: The OUElement that is not mapped in the OUGraph.
+    :type ou_element: URIRef
+    """
+
+    def __init__(self, ou_element_type: URIRef) -> None:
+        message = (
+            f"The OUElement '{ou_element_type}' is not mapped to an OUGraph internal list."
+            f"Software execution aborted."
+        )
         super().__init__(message)

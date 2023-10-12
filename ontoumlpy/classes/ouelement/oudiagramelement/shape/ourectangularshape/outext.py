@@ -8,8 +8,6 @@ from ontoumlpy.classes.ouexception import OUInvalidAttribute
 class OUText(_OUElement):
     """Represents text in OntoUML.
 
-
-
     :param object_id: The URI reference of the text.
     :type object_id: URIRef
 

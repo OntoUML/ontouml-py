@@ -14,7 +14,6 @@ compatibility with RDF data structures and semantics.
 """
 from abc import abstractmethod
 
-from icecream import ic
 from loguru import logger
 from rdflib import URIRef, Graph, RDF
 
@@ -46,8 +45,8 @@ class _OUElement:
         """Initialize an instance of the _OUElement class, intended to be overridden by child classes.
 
         Declared as abstract, it indicates that the class should not be used to instantiate objects directly and should
-        be implemented by subclasses. However, it includes logic to set up basic properties, allowing for attribute setup
-        in derived classes.
+        be implemented by subclasses. However, it includes logic to set up basic properties, allowing for attribute
+        setup in derived classes.
 
         :param object_id: The URI reference of the object being created.
         :type object_id: URIRef
@@ -83,6 +82,7 @@ class _OUElement:
         :param graph: The RDF graph where the instance’s semantic data, in the form of triples, should be appended.
         :type graph: Graph
         """
+
         # Inserting element type as a fundamental triple
         graph.add((self.id, RDF.type, self.element_type))
 

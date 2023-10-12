@@ -1,5 +1,4 @@
-from icecream import ic
-from rdflib import URIRef, Graph
+from rdflib import URIRef
 
 from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.classes.ouelement._ouelement import _OUElement
@@ -43,14 +42,3 @@ class OUDiagram(_OUElement):
 
     def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
-
-
-g = Graph()
-x = OUDiagram(URIRef("x"))
-x.add_to_rdf_graph(g)
-x.name = URIRef("test")
-x.add_to_rdf_graph(g)
-x.add_to_rdf_graph(g)
-ic()
-for s, p, o in g.triples((None, None, None)):
-    ic(s, p, o)

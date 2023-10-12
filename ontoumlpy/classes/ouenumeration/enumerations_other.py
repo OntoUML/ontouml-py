@@ -62,3 +62,39 @@ class OUOntologicalNatures(_OUEnumeration):
     relatorNature = OntoUML.relatorNature
     situationNature = OntoUML.situationNature
     typeNature = OntoUML.typeNature
+
+
+class OUAbstractElements(_OUEnumeration):
+    # Model Elements
+    Class = OntoUML.Class
+    Generalization = OntoUML.Generalization
+    GeneralizationSet = OntoUML.GeneralizationSet
+    Literal = OntoUML.Literal
+    Note = OntoUML.Note
+    Package = OntoUML.Package
+    Property = OntoUML.Property
+    Relation = OntoUML.Relation
+
+    # Other
+    Cardinality = OntoUML.Cardinality
+    Diagram = OntoUML.Diagram
+    Project = OntoUML.Project
+
+
+class OUConcreteElements(_OUEnumeration):
+    # Diagram Elements
+    ## Shapes
+    Path = OntoUML.Path
+    Rectangle = OntoUML.Rectangle
+    Text = OntoUML.Text
+
+    ## Views
+    ClassView = OntoUML.ClassView
+    GeneralizationSetView = OntoUML.GeneralizationSetView
+    GeneralizationView = OntoUML.GeneralizationView
+    NoteView = OntoUML.NoteView
+    PackageView = OntoUML.PackageView
+    RelationView = OntoUML.RelationView
+
+    # Other
+    Point = OntoUML.Point
