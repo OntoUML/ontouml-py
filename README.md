@@ -32,14 +32,41 @@ project.
 ## Contents
 
 <!-- TOC -->
-
 * [ontouml-py](#ontouml-py)
-    * [Contents](#contents)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [As a script](#as-a-script)
-    * [As a library](#as-a-library)
-
+  * [Contents](#contents)
+  * [Installation and Use](#installation-and-use)
+    * [Prerequisites](#prerequisites)
+    * [Instructions for Users](#instructions-for-users)
+    * [Instructions for Contributors](#instructions-for-contributors)
+  * [Introduction](#introduction)
+    * [Development Stage:](#development-stage)
+    * [The OntoUML Vocabulary](#the-ontouml-vocabulary)
+  * [Concepts](#concepts)
+    * [RDF Graph](#rdf-graph)
+    * [RDF Graph](#rdf-graph-1)
+    * [OUTerm](#outerm)
+      * [Descriptions of the Methods:](#descriptions-of-the-methods)
+      * [Usage examples](#usage-examples)
+    * [OUGraph](#ougraph)
+      * [Usage examples:](#usage-examples-1)
+      * [OUGraph Class Method Descriptions](#ougraph-class-method-descriptions)
+    * [OUElement](#ouelement)
+      * [Usage examples](#usage-examples-2)
+      * [OUElement Class Method Descriptions](#ouelement-class-method-descriptions)
+    * [OUEnumerations](#ouenumerations)
+      * [Usage examples](#usage-examples-3)
+      * [OUEnumerations Class Method Descriptions](#ouenumerations-class-method-descriptions)
+    * [Classes Specializing `_OUElement`](#classes-specializing-ouelement)
+    * [Enumeration Classes](#enumeration-classes)
+    * [Note](#note)
+    * [Dependencies](#dependencies)
+    * [Custom Exceptions](#custom-exceptions)
+      * [Descriptions of Exceptions](#descriptions-of-exceptions)
+  * [How to Contribute](#how-to-contribute)
+    * [Report Issues](#report-issues)
+    * [Code Contribution](#code-contribution)
+    * [Test Contribution](#test-contribution)
+    * [General Guidelines](#general-guidelines)
 <!-- TOC -->
 
 ## Installation and Use
