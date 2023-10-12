@@ -415,19 +415,19 @@ print(common_stereotypes)
 ```python
 class OntoUMLModel:
     """A basic representation of an OntoUML Model."""
-    
+
     def __init__(self, stereotypes):
         """Initializes the model with given stereotypes if valid."""
         # Assume OntoUML.role is of type URIRef
         self.stereotypes = [s for s in stereotypes if s in OUClassStereotype.get_all()]
-    
+
     def add_stereotype(self, stereotype):
         """Adds a stereotype if it's a valid OntoUML class stereotype."""
         if stereotype in OUClassStereotype.get_all():
             self.stereotypes.append(stereotype)
         else:
             print(f"{stereotype} is not a valid OntoUML class stereotype.")
-    
+
     # Additional model management methods...
 
 # Example usage
@@ -493,6 +493,88 @@ This document provides a detailed explanation of the custom exceptions used in t
 | `OUInvalidElementType`        | Raised when an OUElement isn't mapped in the OUGraph's internal list.     |
 | `InvalidOntoUMLTypeException` | Raised when an individual is not from a valid OntoUML type.               |
 
+### Functions Provided
+
+This section elucidates the utility functions available in the module, designed to assist in manipulating and managing OntoUML graphs and related operations through the `ontoumlpy` library. The functions serve to provide additional, straightforward functionalities for developers, ensuring efficient interaction with OntoUML concepts.
+
+#### ou_create_element Function
+
+def ou_create_element(individual_id: URIRef, individual_type: URIRef) -> _OUElement:
+
+The `ou_create_element` function is designed to generate OntoUML elements by mapping RDF individuals to their corresponding classes within the `ontoumlpy` library. It accepts the ID and type of an RDF individual as input arguments and returns an instance of the pertinent OntoUML class, leveraging a predefined mapping between OntoUML types and `ontoumlpy` classes to ascertain which class to instantiate.
+
+- **Parameters:**
+    - `individual_id`: RDF ID of the individual to be mapped.
+    - `individual_type`: RDF type of the individual to be mapped.
+
+- **Return Type:**
+    - An instance of an `ontoumlpy` class corresponding to the RDF individual type provided.
+
+- **Raises:**
+    - `InvalidOntoUMLTypeException`: If the `individual_type` does not correspond to a valid OntoUML type.
+
+The function essentially forms a bridge between RDF individual representations and the robust class structures offered by `ontoumlpy`, ensuring a coherent and type-consistent mapping. Developers can utilize this function to conveniently instantiate objects representing OntoUML elements based on their RDF descriptions, without delving into the intricacies of individual class instantiation and management.
+
+##### Basic Usage Examples
+
+1. Creating an OntoUML Class Element
+
+In this example, we'll create an instance of an OntoUML class using the `ou_create_element` function.
+
+```python
+from rdflib import URIRef
+from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ouclass import OUClass
+
+individual_id = URIRef("http://example.org/ontouml#Person")
+individual_type = URIRef("http://example.org/ontouml#Class")
+
+try:
+    ou_element = ou_create_element(individual_id, individual_type)
+    print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
+except InvalidOntoUMLTypeException as e:
+    print(f"Error: {str(e)}")
+```
+Expected Output:
+```txt
+Created OUClass instance with ID: http://example.org/ontouml#Person
+```
+
+3. Handling Invalid OntoUML Type
+Here, we'll try to create an instance with an invalid OntoUML type and handle the exception gracefully.
+```python
+individual_id = URIRef("http://example.org/ontouml#Person")
+invalid_individual_type = URIRef("http://example.org/ontouml#InvalidType")
+
+try:
+    ou_element = ou_create_element(individual_id, invalid_individual_type)
+    print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
+except InvalidOntoUMLTypeException as e:
+    print(f"Error: {str(e)}")
+```
+Expected Output:
+```txt
+Error: The 'http://example.org/ontouml#InvalidType' is not a valid OntoUML element type.
+```
+
+3. Working with Relation Elements
+Attempting to create a relation element instance using ou_create_element function.
+```python
+from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ourelation import OURelation
+
+individual_id = URIRef("http://example.org/ontouml#Marriage")
+individual_type = URIRef("http://example.org/ontouml#Relation")
+
+try:
+    ou_element = ou_create_element(individual_id, individual_type)
+    print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
+except InvalidOntoUMLTypeException as e:
+    print(f"Error: {str(e)}")
+```
+
+Expected Output:
+```txt
+Created OURelation instance with ID: http://example.org/ontouml#Marriage
+```
 
 
 ## How to Contribute
