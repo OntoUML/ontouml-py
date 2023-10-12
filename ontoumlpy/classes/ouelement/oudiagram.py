@@ -24,19 +24,33 @@ class OUDiagram(_OUElement):
 
     def __init__(
         self,
+        # Mandatory URIRef
         object_id: URIRef,
+        # Optional URIRef
         description: URIRef = None,
         name: URIRef = None,
         owner: URIRef = None,
         project: URIRef = None,
+        # Optional list[URIRef]
         containsView: list[URIRef] = None,
     ) -> None:
         related_type = OntoUML.Diagram
         super().__init__(object_id=object_id, related_type=related_type, name=name, description=description)
 
-        self.containsView: list[URIRef] = containsView
         self.owner: URIRef = owner
         self.project: URIRef = project
+        self.containsView: list[URIRef] = containsView
 
     def __getattr__(self, invalid_att_name) -> None:
         raise OUInvalidAttribute(self.__class__.__name__, invalid_att_name)
+
+
+g = Graph()
+x = OUDiagram(URIRef("x"))
+x.add_to_rdf_graph(g)
+x.name = URIRef("test")
+x.add_to_rdf_graph(g)
+x.add_to_rdf_graph(g)
+ic()
+for s, p, o in g.triples((None, None, None)):
+    ic(s, p, o)
