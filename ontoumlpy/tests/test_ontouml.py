@@ -4,8 +4,7 @@ which represents OntoUML vocabulary terms as URI references.
 import pytest
 from rdflib import URIRef
 
-from ..classes.ontouml import OntoUML
-from ..constants.const_prefix import ONTOUML_NAMESPACE
+from ontoumlpy.classes.ontouml import OntoUML
 
 
 @pytest.mark.parametrize(
@@ -26,7 +25,7 @@ def test_valid_ontouml_uri_mapping(ou_term: URIRef, term: str) -> None:
     :param term: The string representation of the OntoUML term.
     :type term: str
     """
-    assert str(ou_term) == ONTOUML_NAMESPACE + term
+    assert str(ou_term) == OntoUML.get_term(term)
 
 
 @pytest.mark.parametrize(
@@ -47,7 +46,7 @@ def test_invalid_ontouml_uri_mapping(ou_term: URIRef, term: str) -> None:
     :param term: The string representation of the OntoUML term.
     :type term: str
     """
-    assert str(ou_term) != ONTOUML_NAMESPACE + term
+    assert str(ou_term) != OntoUML.get_term(term)
 
 
 @pytest.mark.parametrize(
