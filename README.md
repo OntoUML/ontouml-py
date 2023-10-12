@@ -126,7 +126,17 @@ OntoUML is a modeling language that has been developed to support the representa
 
 The OntoUML Vocabulary provides the necessary resources for mapping OntoUML models to OWL ontologies, which is a crucial step for utilizing OntoUML in ontology-driven conceptual modeling tasks. This mapping process ensures that the semantics of OntoUML models are adequately represented in the OWL ontologies, thereby preserving the integrity and meaning of the models when they are exchanged or processed further. Moreover, the ontology file `ontouml.ttl` in the Vocabulary is rich with metadata, including a description, author information, and versioning details, which are crucial for understanding and managing OntoUML models in a collaborative modeling environment.
 
-## Concepts
+### The RDFLib
+
+[RDFLib](https://rdflib.readthedocs.io/en/stable/) is a Python library that provides a comprehensive toolkit for working with [Resource Description Framework (RDF)](https://www.w3.org/RDF/) data, which is fundamental to the [Semantic Web](https://www.w3.org/standards/semanticweb/) and linked data technologies. RDFLib enables developers to create, manipulate, and query RDF graphs, making it a powerful tool for representing and exchanging structured information in a machine-readable format. With RDFLib, users can parse RDF data, build RDF graphs programmatically, and perform complex queries to extract valuable insights from linked data sources. Its versatility and robust features make it a vital component for applications involving knowledge representation, ontology modeling, and semantic data integration within the Python ecosystem.
+
+### The OntoUML-JS
+
+[OntoUML JS](https://github.com/OntoUML/ontouml-js) is a versatile JavaScript library tailored for effortlessly handling OntoUML models. It streamlines the process of manipulating OntoUML models and serializing them into [`ontouml-schema`](https://github.com/OntoUML/ontouml-schema) compliant JSON files. With OntoUML JS, developers can efficiently create and manage OntoUML elements, construct models, and perform various model-related tasks programmatically. This library introduces constructor methods for creating OntoUML elements, provides support for container elements like projects and packages, and facilitates element serialization and deserialization. Additionally, OntoUML JS is continually updated with useful methods to simplify the development of OntoUML models. Whether you are working on ontology-driven conceptual modeling or require a tool for handling complex domain ontologies, OntoUML JS offers a valuable utility to streamline your workflow.
+
+## OntoUML-Py Concepts
+
+When working with the OntoUML-Py library, users will primarily engage with five fundamental concepts, each contributing to the seamless manipulation of OntoUML models and RDF graphs. These key concepts include OUTerm, which represents OntoUML terms and ensures semantic consistency; OUElement, serving as a container for various OntoUML model elements and maintaining their structured details; OUGraph, a pivotal orchestrator for OntoUML vocabulary elements within RDF graphs, enabling systematic access and manipulation; OUEnumeration, which provides organized enumerations for OntoUML concepts and stereotypes; and Graph, a core concept from RDFLib, offering a structured framework for managing RDF data. Together, these concepts empower users to efficiently handle OntoUML models, navigate their semantic complexities, and interact with RDF graphs, making OntoUML-Py a valuable tool for ontology-driven conceptual modeling and semantic web technologies.
 
 ### RDF Graph
 
@@ -513,3 +523,10 @@ This document provides a detailed explanation of the custom exceptions used in t
 
 Thank you for investing your time and expertise into this project!
 
+## Author
+
+This project is maintained by the [Semantics, Cybersecurity & Services (SCS) Group](https://www.utwente.nl/en/eemcs/scs/) of the [University of Twente](https://www.utwente.nl/), The Netherlands. Its developer is:
+
+- [Pedro Paulo Favato Barcelos](https://orcid.org/0000-0003-2736-7817) [[GitHub](https://github.com/pedropaulofb)] [[LinkedIn](https://www.linkedin.com/in/pedro-paulo-favato-barcelos/)]
+
+Feel free to get in touch using the provided links. For questions, contributions, or to report any problem, you can **[open an issue](https://github.com/OntoUML/ontouml-py/issues/new)** at this repository.
