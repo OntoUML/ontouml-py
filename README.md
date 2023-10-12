@@ -43,7 +43,6 @@ project.
     * [The OntoUML Vocabulary](#the-ontouml-vocabulary)
   * [Concepts](#concepts)
     * [RDF Graph](#rdf-graph)
-    * [RDF Graph](#rdf-graph-1)
     * [OUTerm](#outerm)
       * [Descriptions of the Methods:](#descriptions-of-the-methods)
       * [Usage examples](#usage-examples)
@@ -128,8 +127,6 @@ OntoUML is a modeling language that has been developed to support the representa
 The OntoUML Vocabulary provides the necessary resources for mapping OntoUML models to OWL ontologies, which is a crucial step for utilizing OntoUML in ontology-driven conceptual modeling tasks. This mapping process ensures that the semantics of OntoUML models are adequately represented in the OWL ontologies, thereby preserving the integrity and meaning of the models when they are exchanged or processed further. Moreover, the ontology file `ontouml.ttl` in the Vocabulary is rich with metadata, including a description, author information, and versioning details, which are crucial for understanding and managing OntoUML models in a collaborative modeling environment.
 
 ## Concepts
-
-### RDF Graph
 
 ### RDF Graph
 
