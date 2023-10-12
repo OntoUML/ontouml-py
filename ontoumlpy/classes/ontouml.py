@@ -13,7 +13,7 @@ Example:
     from ontouml_namespace import ONTOUML
 
     my_ontouml_class = OntoUML.Class
-    all_terms = OntoUML.all()
+    all_terms = OntoUML.list_all()
 
     # Results:
     my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
@@ -369,6 +369,30 @@ class OntoUML(DefinedNamespace):
 
     @classmethod
     def get_term(cls, str_term: str) -> URIRef:
+        """
+        Retrieve the URIRef of a term from the OntoUML vocabulary.
+
+        Given a term name as a string, this method retrieves its associated URIRef from the OntoUML vocabulary. The
+        method ensures compliance with OntoUML vocabulary version 1.1.0. If the term is unavailable or nonexistent,
+        an exception is raised.
+
+        :param str_term: The name of the OntoUML term to retrieve.
+        :type str_term: str
+        :return: URIRef associated with the specified OntoUML term.
+        :rtype: URIRef
+        :raises OUUnavailableOUTerm: If the term is not available in the OntoUML vocabulary.
+
+        Example:
+            ```
+            from ontouml_namespace import OntoUML
+
+            try:
+                my_term = OntoUML.get_term('Class')
+                # Result: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
+            except OUUnavailableOUTerm:
+                print("Specified term is not available in OntoUML vocabulary.")
+            ```
+        """
         for term in dir(cls):
             if str_term == term.fragment:
                 return term

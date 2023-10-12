@@ -42,75 +42,308 @@ project.
 
 <!-- TOC -->
 
-## Installation
+## Installation and Use
 
-Before using the OntoUML Graph ontouml-py, you need to [download and install Python](https://www.python.org/downloads/).
+### Prerequisites
 
-To install the application you simply need to perform the following command:
+Ensure you have Python installed on your system before utilizing `ontouml-py`. It has been tested with Python versions 3.9 to 3.11 on Mac, Windows, and Linux. If not installed, [download and install Python](https://www.python.org/downloads/).
 
-```text
+### Instructions for Users
+
+1. Install ontouml-py: Execute the following command to install the library:
+
+```shell
 pip install ontouml-py
 ```
+All dependencies will be installed automatically.
 
-All dependencies will be installed automatically, and you will be ready to use the ontouml-py package.
+2. Usage: To use ontouml-py, import the necessary functionalities in your Python code. Example:
+
+```python
+from ontoumlpy import YourFunctionOrClass
+```
+
+Note: Replace YourFunctionOrClass with the actual function or class you intend to use.
+
+### Instructions for Contributors
+
+1. **Fork the Project:**
+   Fork the `ontouml-py` repository to your own GitHub account.
+
+2. **Clone and Setup:**
+   Clone your forked repository and navigate to the project directory.
+
+3. **Install Dependencies:**
+   Use [Poetry](https://python-poetry.org/) for dependency management. If not installed, refer to Poetry’s [documentation](https://python-poetry.org/docs/#installation) for installation instructions. Then, install all dependencies with:
+   ```shell
+   poetry install
+   ```
+
+Now, you're ready to make enhancements or fixes and contribute back to ontouml-py!
 
 ## Introduction
 
-Corresponds to the OntoUML-JS, but for manipulation of RDF graphs.
-Enhances RDFLib's functionalities. Treats specific necessities of OntoUML.
-Works with the OntoUML vocabulary. Complies with its version 1.1.0.
-Under development. Currently, provides limited functionality.
+**ontouml-py
+** is a Python library tailored for managing RDF graphs with a particular emphasis on OntoUML specifics. Inspired by [OntoUML-JS](https://w3id.org/ontouml/js), this library extends [RDFLib](https://rdflib.readthedocs.io/en/stable/)'s functionalities to accommodate the distinctive requirements of OntoUML.
 
+The library complies with the [OntoUML vocabulary]((https://w3id.org/ontouml/vocabulary))—ensuring compatibility with its [version 1.1.0](https://w3id.org/ontouml/vocabulary/v1.1.0)—and providing functionalities for adept manipulation of RDF graphs, with due consideration to OntoUML principles.
+
+### Development Stage:
+
+ontouml-py is still under active development. It currently provides limited functionality and is progressively being extended to offer a comprehensive toolset for OntoUML and RDF graph interaction.
+
+Your contributions and feedback are valuable in enhancing ontouml-py and expanding its capabilities!
+
+### The OntoUML Vocabulary
+
+OntoUML is a modeling language that has been developed to support the representation of domain ontologies in the conceptual modeling phase of system development. The [OntoUML Vocabulary](https://w3id.org/ontouml/vocabulary), on the other hand, is an OWL vocabulary designed to allow the serialization and exchanging of OntoUML models in conformance with the [OntoUML Metamodel](https://w3id.org/ontouml/metamodel). By providing a systematic and semantically sound basis for model conceptualization, OntoUML aims to foster the construction of more precise and problem-oriented models in the context of complex systems engineering.
+
+The OntoUML Vocabulary provides the necessary resources for mapping OntoUML models to OWL ontologies, which is a crucial step for utilizing OntoUML in ontology-driven conceptual modeling tasks. This mapping process ensures that the semantics of OntoUML models are adequately represented in the OWL ontologies, thereby preserving the integrity and meaning of the models when they are exchanged or processed further. Moreover, the ontology file `ontouml.ttl` in the Vocabulary is rich with metadata, including a description, author information, and versioning details, which are crucial for understanding and managing OntoUML models in a collaborative modeling environment.
 
 ## Concepts
 
-### OUTerm
-
-Refers to a term in the OntoUML Vocabulary. 
-
-Provides usability just like RDFLib does to OWL, RDF, etc. I.e., it can be used like this: 
-Examples:
-```python
-x = OntoUML.Class
-ic(x) # result  
-```
-
-
-- Accesses: No other concepts.
-- Accessed By: Directly, OUEnumeration, OUGraph, and OUElement.
-
+### RDF Graph
 
 ### RDF Graph
 
-An RDFLib Graph is in this context called simply rdf graph.
+Originating from [RDFLib](https://rdflib.readthedocs.io/en/stable/_modules/rdflib/graph.html), the RDF Graph is not a native concept to the `ontouml-py` library but is integral in managing OntoUML data within a semantic and structured framework.
 
 - Accesses: No other concepts.
 - Accessed By: Directly, OUGraph, OUElement.
 
+The RDF Graph plays a pivotal role in:
+- Serializing and deserializing OntoUML models.
+- Enabling structured querying and manipulation of OntoUML data.
+- Handling triples, the basic structural units in RDF data, for managing OntoUML elements.
+
+
+### OUTerm
+
+A key concept in the library is the OUTerm, which allows users to easily work with terms from the OntoUML vocabulary. This means you can retrieve, manipulate, and employ various ontological terms directly, enhancing the accuracy and consistency of your ontology model. Additionally, the library incorporates the URIRef concept from RDFLib, letting you use universal resource identifiers for defining relationships and properties clearly and unambiguously. Together, these concepts offer a straightforward and effective way to develop and share your ontologies.
+
+OUTerm serves as a reference to a term in the OntoUML Vocabulary, offering usability akin to RDFLib for OWL, RDF, and similar formats. The returned type upon usage is URIRef.
+
+- Accesses: No other concepts.
+- Accessed By: Directly, OUEnumeration, OUGraph, and OUElement.
+
+#### Descriptions of the Methods:
+
+- **list_all**: Provides all OntoUML terms defined in the OntoUML Vocabulary as a list of URIRef objects.
+- **get_namespace**: Likely returns the namespace of OntoUML.
+- **get_term**: Retrieves a specific OntoUML term as a URIRef, given a term name as a string.
+
+| Method Name     | Description                         | Input Arguments  | Output Arguments   |
+|-----------------|-------------------------------------|------------------|--------------------|
+| `list_all`      | Lists all OntoUML terms as URIRefs  | None             | List of `URIRef`   |
+| `get_namespace` | Retrieves the namespace for OntoUML | None             | `str`              |
+| `get_term`      | Gets a specific OntoUML term        | `term_name: str` | `URIRef` or `None` |
+
+#### Usage examples
+
+1. Accessing an OntoUML Term:
+```python
+from ontouml_namespace import OntoUML
+
+# Accessing a specific OntoUML term
+my_ontouml_class = OntoUML.Class
+
+# Output
+print(my_ontouml_class)
+```
+Result:
+```txt
+https://w3id.org/ontouml#Class
+```
+
+The result "https://w3id.org/ontouml#Class" from box 1 is of [type URIRef in RDFLib](https://rdflib.readthedocs.io/en/stable/rdf_terms.html#uriref), which represents a Uniform Resource Identifier (URI) within the Resource Description Framework (RDF) data model, serving as a unique identifier for resources in semantic web technologies.
+
+2. Accessing all OntoUML Terms
+```python
+from ontouml_namespace import OntoUML
+
+# Accessing all OntoUML terms
+all_terms = OntoUML.list_all()
+
+# Output
+print(all_terms)
+```
+Result:
+```txt
+[rdflib.term.URIRef('https://w3id.org/ontouml#abstract'),
+ rdflib.term.URIRef('https://w3id.org/ontouml#abstractNature'),
+ rdflib.term.URIRef('https://w3id.org/ontouml#aggregationKind'),
+ ...]
+```
+As can be seen, the result is a list of URIRefs.
+
 ### OUGraph
 
-It is intended to be used to aggregate OUElements.
-Do not need to be composed of OUElements to exist.
-Relates to RDFLib Graphs by load_graph and update_graph methods. 
-- Accesses: OUEnumeration, OUTerm, OUElement, Graph. 
+OUGraphs stand as a pivotal concept in managing and orchestrating OntoUML vocabulary elements extracted from an RDF graph. The utility, OUGraph, ingeniously curates and compartmentalizes these elements into structured lists, depending on their type, thus enabling a seamless and systematic access and manipulation of the OntoUML elements. Whether it's dealing with diverse OntoUML elements like Class, Relation, Generalization, and more, or their visual representations in diagrams, OUGraph capacitates users to load, add, and even write these elements back into an RDF graph, ensuring that the model data is not only stored but can be utilized, analyzed, and manipulated effectively for further research and model development.
+
+This python class, enriched with methods for adding elements, reading, and writing into RDF graphs, and moreover, handling both abstract and concrete syntax elements, becomes an instrumental tool in managing OntoUML schema in RDF format. Therefore, OUGraphs not only uphold the integrity of the OntoUML's conceptual model structure but also pave the way for a more coherent and systematic management and utilization of OntoUML vocabulary elements in computational environments.
+
+- Accesses: OUEnumeration, OUTerm, OUElement, Graph.
 - Accessed By: Directly only.
+
+#### Usage examples:
+1. Loading OntoUML Elements from an RDF Graph
+To begin with, you'll need an RDF graph (using the rdflib library) populated with OntoUML elements.
+
+```python
+from rdflib import Graph
+
+# Create a new RDF graph and populate it with OntoUML elements
+rdf_graph = Graph()
+# ... [insert RDF triples relating to OntoUML elements here] ...
+```
+
+Next, instantiate OUGraph and use the read_graph method to load and organize OntoUML elements into lists.
+
+```python
+from ontoumlpy.classes.ougraph import OUGraph
+
+ou_graph = OUGraph()
+ou_graph.read_graph(rdf_graph)
+```
+
+2. Accessing OntoUML Elements from OUGraph
+Once OntoUML elements are loaded into OUGraph, you can access them through their respective lists.
+
+```python
+# Access and print all OntoUML Class elements
+for ou_class in ou_graph.ou_class_list:
+    print(f"OntoUML Class: {ou_class}")
+```
+
+3. Adding a New OntoUML Element to OUGraph
+To add a new OntoUML element to OUGraph, create an instance of the desired element type and use the add_element method.
+
+```python
+from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ouclass import OUClass
+
+# Create a new OntoUML Class element
+new_ou_class = OUClass(URIRef("example_id"))
+
+# Add the new element to ou_graph
+ou_graph.add_element(new_ou_class)
+```
+4. Writing OntoUML Elements to an RDF Graph
+If you wish to export your OntoUML elements from OUGraph to an RDF graph, you can utilize the write_graph method.
+
+```python
+# Create a new RDF graph to store OntoUML elements
+output_rdf_graph = Graph()
+
+# Write OntoUML elements from ou_graph to the new RDF graph
+ou_graph.write_graph(output_rdf_graph)
+```
+
+#### OUGraph Class Method Descriptions
+
+- **add_element**: Adds a specified OntoUML element to the OUGraph.
+- **read_graph**: Loads OntoUML elements from a provided RDF graph into the OUGraph.
+- **write_graph**: Exports the OntoUML elements stored in the OUGraph into a provided RDF graph.
+
+| Method Name   | Description                                                             | Input Arguments                              | Output Arguments |
+|---------------|-------------------------------------------------------------------------|----------------------------------------------|------------------|
+| `add_element` | Adds an OntoUML element to the relevant type list.                      | `element: _OUElement`                        | `None`           |
+| `read_graph`  | Loads OntoUML elements from a provided RDF graph.                       | `rdf_graph: Graph`, `include_concrete: bool` | `None`           |
+| `write_graph` | Exports the OntoUML elements stored in the `OUGraph` into an RDF graph. | `rdf_graph: Graph`, `include_concrete: bool` | `None`           |
 
 ### OUElement
 
-OUElements are classes directly representing OntoUML Vocabulary's classes.
-Do not need to be inside an OUGraph to exist.
+OUElement is a concept used in OntoUML, a system designed to help create clear and detailed models, which helps us understand and organize complex information. In short, OUElement represents different types of elements you might use when building a model, like classes or relationships. It keeps track of all necessary details, like its name or type, using a format called URI references. So, when you're making a model, OUElement acts like a container, holding and managing all the information about the parts you're using, making sure everything is structured and easy to work with. It's like a toolbox for model-making, helping to keep everything in order and making it easier to share detailed ideas with others.
 
-Have access to OUTerms and Graphs.
 - Accesses: OUTerms and Graphs.
 - Accessed By: Directly, OUGraphs.
 
+#### Usage examples
+1. Creating an Instance of OUClass
+```python
+from rdflib import URIRef
+from your_module import OUClass  # Replace with your actual module path
+
+# Creating an instance of OUClass
+my_class = OUClass(
+    object_id=URIRef("http://example.org/my_class"),
+    name=URIRef("Person"),
+    description=URIRef("A human individual."),
+    isAbstract=URIRef("False"),
+    stereotype=URIRef("Kind")
+)
+```
+In this example, we create a new OntoUML class named "Person" with a description, and stereotype "Kind". Notice how URIRef is used to create URI references for all parameters.
+
+2. Modifying an Instance of OUClass After Creation
+
+```python
+from rdflib import URIRef
+from your_module import OUClass  # Replace with your actual module path
+
+# Creating an instance of OUClass
+c = OUClass(object_id=URIRef("http://example.org/my_id"))
+
+# Modifying attributes after instantiation
+c.name = URIRef("http://example.org/my_name")
+c.description = URIRef("http://example.org/A_description_about_the_class")
+```
+In this example an instance c of OUClass is created with an object_id parameter provided, and the rest of the parameters are kept as default (None, if they're optional).
+After instantiation, we dynamically assign values to its name and description attributes.
+
+3. Adding OUClass Instance to an RDF Graph
+After creating an instance of OUClass, it can be added to an RDF graph using its attributes. Here’s a simple example considering that you implement the add_to_rdf_graph method following the logic of _OUElement:
+```python
+from rdflib import Graph
+
+# Creating a new RDF graph
+graph = Graph()
+
+# Adding the my_class instance to the RDF graph
+my_class.add_to_rdf_graph(graph)
+```
+
+In your full implementation, you'll likely have 20 other specialized classes similar to OUClass, each tailored for different OntoUML concepts (e.g., OURelationship, OUProperty, etc.). The creation and usage of instances of those classes would follow a similar pattern as outlined in the examples, tailored to the unique attributes and behaviors of each class type.
+
+#### OUElement Class Method Descriptions
+
+- **add_to_rdf_graph**: Integrates the instance data into an RDF graph.
+
+| Method Name        | Description                                                                                                                                                         | Input Arguments | Output Arguments |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|------------------|
+| `add_to_rdf_graph` | Integrates instance data into an RDF graph, forming triples that represent semantic relationships in OntoUML models, and logs issues without halting on exceptions. | `graph: Graph`  | `None`           |
+
 ### OUEnumerations
 
-Have access to OUTerms. 
 - Accesses: OUTerms.
 - Accessed By: Directly, OUGraphs.
 
-## Dependencies
+#### OUEnumerations Class Method Descriptions
+
+- **get_all**: Returns a list of all enumeration members.
+
+| Method Name | Description                                                                                    | Input Arguments | Output Arguments |
+|-------------|------------------------------------------------------------------------------------------------|-----------------|------------------|
+| `get_all`   | Retrieves a list of all enumeration members' values to facilitate member iteration or display. | `None`          | `list[URIRef]`   |
+
+### Classes Specializing `_OUElement`
+
+- **RedefinableOUElement**
+    - **Subclasses**: OUClass, OUAssociation, OUDataType, OUGeneralization, OUGeneralizationSet
+    - **Methods**:
+        - **add_to_rdf_graph**: Incorporates instance data into an RDF graph, forming semantically accurate triples and logging issues without terminating on exceptions.
+
+### Enumeration Classes
+
+- **OUKind**, **OUSubkind**, **OUPhase**, **OUQuantity**, **OUCollective**, **OUAbstract**, **OUQuality**, **OUMode**, **OUGeneralizationSet**
+- **Method Description**:
+    - **get_all**: Retrieves a list of all enumeration members’ values to facilitate member iteration or display.
+
+### Note
+
+**1.** Descriptions for the methods might not cover all edge cases or alternative behaviors, depending on actual implementation and design decisions in the code.
+**2.** The above enumeration classes and specialized classes are intended to serve representative purposes and might contain actual, anticipated, or placeholder names based on the provided context.
+
+### Dependencies
 
 ```mermaid
 flowchart TD
@@ -123,7 +356,46 @@ flowchart TD
 
 [![dependencies](https://mermaid.ink/img/pako:eNptjj1vgzAQhv8KuqETiXBjEvDQKVXHDEmWyMsJTEHCNnJt5QPx33NxhFjq6fHd8772CJWtFQhoenutWnQ-Oe2lSegczj8OhzZZrb6Iv3ullfHJx4tN0Mqhty5eT8ppgmjP0Vl_h_81lpJFmpcLxwykQK7Grqafjq-FBN_SCxIEYa0aDL2XIM1EKgZvj3dTgfAuqBTCUKNX-w5_HWoQDfZ_NB3QgBjhBuJzu87zjLOMlYyVO843KdxB8HJNs2zLdgUrCp7lUwoPa6mBxfQlcmybnjWFY_0?type=png)](https://mermaid.live/edit#pako:eNptjj1vgzAQhv8KuqETiXBjEvDQKVXHDEmWyMsJTEHCNnJt5QPx33NxhFjq6fHd8772CJWtFQhoenutWnQ-Oe2lSegczj8OhzZZrb6Iv3ullfHJx4tN0Mqhty5eT8ppgmjP0Vl_h_81lpJFmpcLxwykQK7Grqafjq-FBN_SCxIEYa0aDL2XIM1EKgZvj3dTgfAuqBTCUKNX-w5_HWoQDfZ_NB3QgBjhBuJzu87zjLOMlYyVO843KdxB8HJNs2zLdgUrCp7lUwoPa6mBxfQlcmybnjWFY_0)
 
-## Contributing
+### Custom Exceptions
 
-Contribute by informing interesting features, reporting errors or bugs, creating new tests.
-Open issue.
+These are specialized error classes to raise exceptions under specific circumstances during the API's operation. Custom exceptions help identify and handle problems in a structured manner.
+
+#### Descriptions of Exceptions
+
+- **InexistentTermError**: Likely raised when a term that does not exist in the OntoUML Vocabulary is referenced or requested.
+- **InvalidElementError**: Presumably raised when an OntoUML element is invalid or misconfigured.
+- **GraphUpdateError**: Potentially raised when an attempt to update, modify, or interact with an RDF graph in an unsupported or invalid way occurs.
+
+| Exception Name       | Description                                                             |
+|----------------------|-------------------------------------------------------------------------|
+| `InexistentTermError`| Triggered when a non-existent OntoUML term is referenced or requested.  |
+| `InvalidElementError`| Occurs when an OntoUML element is invalid or improperly configured.     |
+| `GraphUpdateError`   | Raised during invalid attempts to interact or modify an RDF graph.       |
+
+
+## How to Contribute
+
+### Report Issues
+
+- Report bugs or suggest features by [opening an issue](https://github.com/OntoUML/ontouml-py/issues/new).
+- Point out any discrepancies in the AI-generated documentation by [opening an issue](https://github.com/OntoUML/ontouml-py/issues/new).
+
+### Code Contribution
+
+1. Fork the Repository: Fork the project repository and create your feature branch: `git checkout -b feature/YourFeatureName`.
+2. Commit Changes: Make and commit your changes with meaningful commit messages.
+3. Push to Branch: Push your work back up to your fork: `git push origin feature/YourFeatureName`.
+4. Submit a Pull Request: Open a pull request to merge your feature branch into the main project repository.
+
+### Test Contribution
+
+- Improve reliability by adding or enhancing tests.
+
+### General Guidelines
+
+- Ensure your code adheres to our coding standards.
+- Update documentation as needed.
+- Ensure that your code does not introduce additional issues.
+
+Thank you for investing your time and expertise into this project!
+
