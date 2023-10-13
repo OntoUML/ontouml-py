@@ -192,11 +192,12 @@ https://w3id.org/ontouml#Class
 The result "https://w3id.org/ontouml#Class" from box 1 is of [type URIRef in RDFLib](https://rdflib.readthedocs.io/en/stable/rdf_terms.html#uriref), which represents a Uniform Resource Identifier (URI) within the Resource Description Framework (RDF) data model, serving as a unique identifier for resources in semantic web technologies.
 
 2. Accessing all OntoUML Terms
+
 ```python
 from ontouml_namespace import OntoUML
 
 # Accessing all OntoUML terms
-all_terms = OntoUML.list_all()
+all_terms = OntoUML.get_list_all()
 
 # Output
 print(all_terms)

@@ -13,7 +13,7 @@ Example:
     from ontouml_namespace import ONTOUML
 
     my_ontouml_class = OntoUML.Class
-    all_terms = OntoUML.list_all()
+    all_terms = OntoUML.get_list_all()
 
     # Results:
     my_ontouml_class: rdflib.term.URIRef('https://w3id.org/ontouml#Class')
@@ -334,7 +334,7 @@ class OntoUML(DefinedNamespace):
     _NS = Namespace("https://w3id.org/ontouml#")  # has type RDFLib.Namespace.
 
     @classmethod
-    def list_all(cls) -> list[URIRef]:
+    def get_list_all(cls) -> list[URIRef]:
         """
         Retrieves a list of all public attributes of the OntoUML class, i.e., all terms contained in the OntoUML \
         Vocabulary.
