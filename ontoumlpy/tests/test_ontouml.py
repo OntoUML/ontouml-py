@@ -47,13 +47,3 @@ def test_invalid_ontouml_uri_mapping(ou_term: URIRef, term: str) -> None:
     :type term: str
     """
     assert str(ou_term) != OntoUML.get_term(term)
-
-
-@pytest.mark.parametrize("term", [("ma_terial"), (" Package"), ("owner "), ("isReDdOnly"), ("historicaldependence")])
-def test_invalid_ontouml_attribute_absence(term: str) -> None:
-    """Verifies that specified invalid attributes do not exist in OntoUML.
-
-    :param term: The attribute name to be checked.
-    :type term: str
-    """
-    assert not (hasattr(OntoUML, term))

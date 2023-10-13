@@ -289,3 +289,23 @@ ALL_TERMS_STR = [
 
 OK_BASE_URI = "https://w3id.org/ontouml#"
 NOK_BASE_URI = "https://example.org/"
+
+INVALID_INPUTS = [
+    " ",
+    "str",
+    b"some_byte_string",
+    10,
+    10.1,
+    None,
+    False,
+    True,
+    "_",
+    (10, 2),
+    [1, 2],
+    {},
+    {"key": "value"},
+    1 + 2j,
+    bytearray([65, 66, 67]),
+    {1, 2, 3},
+    frozenset([1, 2, 3]),
+]

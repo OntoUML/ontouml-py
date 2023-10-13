@@ -1,9 +1,9 @@
-"""Module for testing exclusively the attributes of the OntoUML class."""
+"""Module for testing exclusively the method list_all of the OntoUML class."""
 import pytest
 from rdflib import URIRef
 
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.tests.test_ontouml.fixtures_test_ontouml import ALL_TERMS_STR, OK_BASE_URI, NOK_BASE_URI
+from ontoumlpy.tests.test_ontouml.fixtures_test_ontouml import ALL_TERMS_STR, OK_BASE_URI, NOK_BASE_URI, INVALID_INPUTS
 
 
 def test_list_all_method_valid_ontouml_attribute_existence() -> None:
@@ -70,25 +70,7 @@ def test_list_all_terms_include_correct_base_uri() -> None:
 
 @pytest.mark.parametrize(
     "in_arg",
-    [
-        " ",
-        "str",
-        b"some_byte_string",
-        10,
-        10.1,
-        None,
-        False,
-        True,
-        "_",
-        (10, 2),
-        [1, 2],
-        {},
-        {"key": "value"},
-        1 + 2j,
-        bytearray([65, 66, 67]),
-        {1, 2, 3},
-        frozenset([1, 2, 3]),
-    ],
+    INVALID_INPUTS,
 )
 def test_list_all_raises_typeerror_with_arguments(in_arg) -> None:
     """Verifies that OntoUML.list_all() raises a TypeError when provided with an argument.
