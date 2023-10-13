@@ -16,6 +16,8 @@
 
 # ontouml-py
 
+**WORK IN PROGRESS**
+
 <p align="center"><img src="https://raw.githubusercontent.com/OntoUML/ontouml-py/main/ontouml-py/resources/logo-ontouml-py.png" width="740"></p>
 
 Python software that implement validation rules for OntoUML models represented as OntoUML Vocabulary graphs
