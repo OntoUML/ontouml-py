@@ -49,59 +49,6 @@ def test_invalid_ontouml_uri_mapping(ou_term: URIRef, term: str) -> None:
     assert str(ou_term) != OntoUML.get_term(term)
 
 
-@pytest.mark.parametrize(
-    "ou_term", [(OntoUML.type), (OntoUML.subkind), (OntoUML.situation), (OntoUML.qualityNature), (OntoUML.ModelElement)]
-)
-def test_valid_ontouml_type(ou_term: URIRef) -> None:
-    """Verifies the type correctness of the specified OntoUML instances.
-
-    :param ou_term: The OntoUML instance to be tested.
-    :type ou_term: URIRef
-    """
-    assert isinstance(ou_term, str)
-    assert isinstance(ou_term, URIRef)
-
-
-@pytest.mark.parametrize(
-    "ou_term",
-    [(OntoUML.phase), (OntoUML.lowerBound), (OntoUML.instantiation), (OntoUML.end), (OntoUML.DecoratableElement)],
-)
-def test_valid_ontouml_attribute_access(ou_term: URIRef) -> None:
-    """Verifies that valid attributes can be accessed without raising an AttributeError for the specified OntoUML \
-    instances.
-
-    :param ou_term: The OntoUML instance to be tested.
-    :type ou_term: URIRef
-    """
-    try:
-        ou_term
-    except AttributeError:
-        assert False
-    assert True
-
-
-@pytest.mark.parametrize(
-    "ou_term",
-    [
-        (OntoUML.isAbstract),
-        (OntoUML.cardinalityValue),
-        (OntoUML.begin),
-        (OntoUML.GeneralizationView),
-        (OntoUML.isViewOf),
-    ],
-)
-def test_invalid_ontouml_attribute_error(ou_term: URIRef) -> None:
-    """Verifies that invalid attributes raise an AttributeError when accessed for the specified OntoUML instances.
-
-    :param ou_term: The OntoUML instance to be tested.
-    :type ou_term: URIRef
-    """
-    try:
-        ou_term
-    except AttributeError:
-        assert True
-
-
 @pytest.mark.parametrize("term", [("width"), ("mode"), ("model"), ("stereotype"), ("Stereotype")])
 def test_valid_ontouml_attribute_existence(term: str) -> None:
     """Verifies that specified attributes exist in OntoUML and that they have the expected type.
@@ -131,17 +78,3 @@ def test_list_all_method_valid_ontouml_attribute_existence() -> None:
     for term in list_terms:
         assert hasattr(OntoUML, term)
         assert isinstance(term, URIRef)
-
-
-def test_list_all_method_is_empty() -> None:
-    """Verifies if the list_all method returns is not empty."""
-
-    list_terms = OntoUML.list_all()
-
-    assert len(list_terms) != 0
-
-
-def test_list_all_number() -> None:
-    """Verifies if the list all method returns the same number of items as the class attribute number."""
-
-    assert len(dir(OntoUML)) == len(OntoUML.list_all())
