@@ -3,7 +3,12 @@ import pytest
 from rdflib import URIRef
 
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.tests.test_ontouml.fixtures_test_ontouml import ALL_TERMS_STR, OK_BASE_URI, NOK_BASE_URI
+from ontoumlpy.tests.test_ontouml.fixtures_test_ontouml import (
+    ALL_TERMS_STR,
+    OK_BASE_URI,
+    NOK_BASE_URI,
+    ALL_TERMS_FRAGMENT,
+)
 
 
 def test_internal_term_presence_and_type() -> None:
@@ -44,8 +49,19 @@ def test_ontouml_term_matching_uri(term: str) -> None:
     assert called_term == OK_BASE_URI + term
 
 
+@pytest.mark.parametrize("term", ALL_TERMS_FRAGMENT)
+def test_ontouml_has_valid_attributes(term: str) -> None:
+    """Verifies that OntoUML possesses the specified attributes.
+
+    :param term: The attribute name to be checked.
+    :type term: str
+    """
+
+    assert hasattr(OntoUML, term)
+
+
 @pytest.mark.parametrize("term", ALL_TERMS_STR)
-def test_invalid_ontouml_term_variations(term: str) -> None:
+def test_ontouml_term_excludes_invalid_variations(term: str) -> None:
     """Assert that called_term doesn't match any of the undesired/invalid variations.
 
     :param term: A term from the ALL_TERMS_STR list, representing an OntoUML term.
@@ -71,17 +87,16 @@ def test_invalid_ontouml_term_variations(term: str) -> None:
 
 @pytest.mark.parametrize("term", ALL_TERMS_STR)
 def test_ontouml_term_accessibility(term: str) -> None:
-    """Verify that accessing any term from ALL_TERMS_STR in OntoUML does not return None and not raise an exception.
+    """Verify that each term from ALL_TERMS_STR in OntoUML can be accessed without exceptions and is not None.
 
-    The function utilizes getattr to dynamically access attributes of the OntoUML class using terms from ALL_TERMS_STR
-    and ensures that:
-    - The result of the access is not None.
-    - No exception is raised during the access. If an exception occurs, the function will provide an error message
-      including the exception’s details.
+    Using getattr, the function dynamically retrieves OntoUML class attributes using terms from ALL_TERMS_STR, ensuring:
+    - The accessed attribute is not None.
+    - No exceptions are raised during access. If an exception occurs, the function fails and provides an error message with
+      the exception’s details.
 
     :param term: A term from the ALL_TERMS_STR list, representing an OntoUML term to be accessed.
     :type term: str
-    :raises pytest.fail: If accessing the term raises any Exception, providing an error message detailing the exception.
+    :raises pytest.fail: If accessing the term raises any Exception, detailing the exception in the error message.
     """
     try:
         result = getattr(OntoUML, term)
@@ -101,3 +116,5 @@ def test_invalid_ontouml_term_access(input_string: str) -> None:
     """
     with pytest.raises(AttributeError):
         getattr(OntoUML, input_string)
+
+    assert not (hasattr(OntoUML, input_string))

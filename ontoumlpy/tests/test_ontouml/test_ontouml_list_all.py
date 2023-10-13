@@ -6,6 +6,15 @@ from ontoumlpy.classes.ontouml import OntoUML
 from ontoumlpy.tests.test_ontouml.fixtures_test_ontouml import ALL_TERMS_STR, OK_BASE_URI, NOK_BASE_URI
 
 
+def test_list_all_method_valid_ontouml_attribute_existence() -> None:
+    """Verifies if the list_all method returns valid terms and that these terms have the expected type."""
+
+    list_terms = OntoUML.list_all()
+
+    for term in list_terms:
+        assert hasattr(OntoUML, term)
+
+
 @pytest.mark.parametrize("term", ALL_TERMS_STR)
 def test_valid_term_in_ontouml_list(term: str) -> None:
     """Verifies if a term exists in the list returned by OntoUML.list_all().
