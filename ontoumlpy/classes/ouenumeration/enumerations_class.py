@@ -1,123 +1,110 @@
-"""This module defines various OntoUML Class Stereotypes used in OntoUML modeling.
+"""This module defines various tuples of OntoUML Class Stereotypes used in OntoUML modeling.
 
-Each enumeration represents a specific grouping of stereotypes, providing a convenient and
-semantically meaningful way to access and utilize the stereotypes in OntoUML modeling.
+Each tuple represents a specific grouping of stereotypes, providing a structured and
+semantically relevant means to access and utilize the stereotypes in OntoUML modeling.
+
+All tuples are provided sorted in alphabetical order.
 """
+from icecream import ic
 
 from ontoumlpy.classes.ontouml import OntoUML
-from ontoumlpy.classes.ouenumeration._ouenumeration import _OUEnumeration
+
+ONTOUML_BASE_SORTAL_CLASS_STEREOTYPES = (
+    OntoUML.historicalRole,
+    OntoUML.phase,
+    OntoUML.role,
+    OntoUML.subkind,
+)
 
 
-class OUBaseSortalClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as base sortals."""
-
-    historicalRole = OntoUML.historicalRole
-    phase = OntoUML.phase
-    role = OntoUML.role
-    subkind = OntoUML.subkind
-
-
-class OUUltimateSortalClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as ultimate sortals."""
-
-    collective = OntoUML.collective
-    kind = OntoUML.kind
-    mode = OntoUML.mode
-    quality = OntoUML.quality
-    quantity = OntoUML.quantity
-    relator = OntoUML.relator
-    type = OntoUML.type
+ONTOUML_ULTIMATE_SORTAL_CLASS_STEREOTYPES = (
+    OntoUML.collective,
+    OntoUML.kind,
+    OntoUML.mode,
+    OntoUML.quality,
+    OntoUML.quantity,
+    OntoUML.relator,
+    OntoUML.type,
+)
 
 
-class OUSortalClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as sortals.
-    Combines base sortals and ultimate sortals.
-    """
-
-    historicalRole = OntoUML.historicalRole
-    phase = OntoUML.phase
-    role = OntoUML.role
-    subkind = OntoUML.subkind
-    collective = OntoUML.collective
-    kind = OntoUML.kind
-    mode = OntoUML.mode
-    quality = OntoUML.quality
-    quantity = OntoUML.quantity
-    relator = OntoUML.relator
-    type = OntoUML.type
+ONTOUML_SORTAL_CLASS_STEREOTYPES = (
+    OntoUML.collective,
+    OntoUML.historicalRole,
+    OntoUML.kind,
+    OntoUML.mode,
+    OntoUML.phase,
+    OntoUML.quality,
+    OntoUML.quantity,
+    OntoUML.relator,
+    OntoUML.role,
+    OntoUML.subkind,
+    OntoUML.type,
+)
 
 
-class OUNonSortalClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as non-sortals."""
-
-    category = OntoUML.category
-    historicalRoleMixin = OntoUML.historicalRoleMixin
-    mixin = OntoUML.mixin
-    phaseMixin = OntoUML.phaseMixin
-    roleMixin = OntoUML.roleMixin
-
-
-class OUAbstractClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as abstracts."""
-
-    abstract = OntoUML.abstract
-    datatype = OntoUML.datatype
-    enumeration = OntoUML.enumeration
+ONTOUML_NON_SORTAL_CLASS_STEREOTYPES = (
+    OntoUML.category,
+    OntoUML.historicalRoleMixin,
+    OntoUML.mixin,
+    OntoUML.phaseMixin,
+    OntoUML.roleMixin,
+)
 
 
-class OURigidClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as rigids."""
-
-    category = OntoUML.category
-    collective = OntoUML.collective
-    kind = OntoUML.kind
-    mode = OntoUML.mode
-    quality = OntoUML.quality
-    quantity = OntoUML.quantity
-    relator = OntoUML.relator
-    subkind = OntoUML.subkind
+ONTOUML_ABSTRACT_CLASS_STEREOTYPES = (
+    OntoUML.abstract,
+    OntoUML.datatype,
+    OntoUML.enumeration,
+)
 
 
-class OUAntiRigidClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as anti-rigids."""
-
-    historicalRole = OntoUML.historicalRole
-    historicalRoleMixin = OntoUML.historicalRoleMixin
-    phase = OntoUML.phase
-    phaseMixin = OntoUML.phaseMixin
-    role = OntoUML.role
-    roleMixin = OntoUML.roleMixin
-
-
-class OUSemiRigidClass(_OUEnumeration):
-    """An enumeration representing OntoUML class stereotypes defined as semi-rigids."""
-
-    mixin = OntoUML.mixin
+ONTOUML_RIGID_CLASS_STEREOTYPES = (
+    OntoUML.category,
+    OntoUML.collective,
+    OntoUML.kind,
+    OntoUML.mode,
+    OntoUML.quality,
+    OntoUML.quantity,
+    OntoUML.relator,
+    OntoUML.subkind,
+)
 
 
-class OUClassStereotype(_OUEnumeration):
-    """An enumeration representing all OntoUML class stereotypes defined in the OntoUML profile.
-    Combines sortals, non-sortals, and abstracts, and also adds event and situation stereotypes.
-    """
+ONTOUML_ANTI_RIGID_CLASS_STEREOTYPES = (
+    OntoUML.historicalRole,
+    OntoUML.historicalRoleMixin,
+    OntoUML.phase,
+    OntoUML.phaseMixin,
+    OntoUML.role,
+    OntoUML.roleMixin,
+)
 
-    abstract = OntoUML.abstract
-    category = OntoUML.category
-    collective = OntoUML.collective
-    datatype = OntoUML.datatype
-    enumeration = OntoUML.enumeration
-    event = OntoUML.event
-    historicalRole = OntoUML.historicalRole
-    historicalRoleMixin = OntoUML.historicalRoleMixin
-    kind = OntoUML.kind
-    mixin = OntoUML.mixin
-    mode = OntoUML.mode
-    phase = OntoUML.phase
-    phaseMixin = OntoUML.phaseMixin
-    quality = OntoUML.quality
-    quantity = OntoUML.quantity
-    relator = OntoUML.relator
-    role = OntoUML.role
-    roleMixin = OntoUML.roleMixin
-    situation = OntoUML.situation
-    subkind = OntoUML.subkind
-    type = OntoUML.type
+
+# The comma ensures that Python will understand the following as a tuple
+ONTOUML_SEMI_RIGID_CLASS_STEREOTYPES = (OntoUML.mixin,)
+
+
+ONTOUML_CLASS_STEREOTYPES = (
+    OntoUML.abstract,
+    OntoUML.category,
+    OntoUML.collective,
+    OntoUML.datatype,
+    OntoUML.enumeration,
+    OntoUML.event,
+    OntoUML.historicalRole,
+    OntoUML.historicalRoleMixin,
+    OntoUML.kind,
+    OntoUML.mixin,
+    OntoUML.mode,
+    OntoUML.phase,
+    OntoUML.phaseMixin,
+    OntoUML.quality,
+    OntoUML.quantity,
+    OntoUML.relator,
+    OntoUML.role,
+    OntoUML.roleMixin,
+    OntoUML.situation,
+    OntoUML.subkind,
+    OntoUML.type,
+)

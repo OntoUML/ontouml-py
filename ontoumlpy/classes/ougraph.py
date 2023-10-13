@@ -39,7 +39,7 @@ from ontoumlpy.classes.ouelement.oumodelelement.oupackage import OUPackage
 from ontoumlpy.classes.ouelement.oumodelelement.ouproperty import OUProperty
 from ontoumlpy.classes.ouelement.oupoint import OUPoint
 from ontoumlpy.classes.ouelement.ouproject import OUProject
-from ontoumlpy.classes.ouenumeration.enumerations_other import OUAbstractElements, OUConcreteElements
+from ontoumlpy.classes.ouenumeration.enumerations_misc import OUAbstractElements, OUConcreteElements
 from ontoumlpy.classes.ouexception import OUInvalidElementType
 from ontoumlpy.functions.func_load_specific import ou_create_element
 
