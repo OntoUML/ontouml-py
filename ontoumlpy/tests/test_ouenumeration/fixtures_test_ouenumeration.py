@@ -35,3 +35,73 @@ DICT_TUPLES_SIZE = {
     ONTOUML_ABSTRACT_ELEMENTS: 11,
     ONTOUML_CONCRETE_ELEMENTS: 10,
 }
+
+
+def swap_first_two(original: tuple) -> tuple:
+    """Swaps the first two elements of a given tuple.
+
+    :param original: The original tuple.
+    :type original: tuple
+    :return: A new tuple with the first two elements swapped. If the tuple has fewer than two elements, returns the
+             original tuple unmodified.
+    :rtype: tuple
+    """
+    mutant = list(original)
+    if len(mutant) > 1:
+        mutant[0], mutant[1] = mutant[1], mutant[0]
+    return tuple(mutant)
+
+
+def remove_first(original: tuple) -> tuple:
+    """Removes the first element from a given tuple.
+
+    :param original: The original tuple.
+    :type original: tuple
+    :return: A new tuple with the first element removed.
+    :rtype: tuple
+    """
+    return original[1:]
+
+
+def add_element(original: tuple) -> tuple:
+    """Adds a None element to the end of a given tuple.
+
+    :param original: The original tuple.
+    :type original: tuple
+    :return: A new tuple with a None element added at the end.
+    :rtype: tuple
+    """
+    return original + (None,)
+
+
+def replace_last(original: tuple) -> tuple:
+    """Replaces the last element of a given tuple with the string "REPLACEMENT".
+
+    :param original: The original tuple.
+    :type original: tuple
+    :return: A new tuple with the last element replaced by "REPLACEMENT".
+    :rtype: tuple
+    """
+    return original[:-1] + ("REPLACEMENT",)
+
+
+def reverse_order(original: tuple) -> tuple:
+    """Reverses the order of elements in a given tuple.
+
+    :param original: The original tuple.
+    :type original: tuple
+    :return: A new tuple with the order of elements reversed.
+    :rtype: tuple
+    """
+    return tuple(reversed(original))
+
+
+# List of mutation functions
+MUTATIONS = [swap_first_two, remove_first, add_element, replace_last, reverse_order]
+
+
+# Extract tuples from your dictionary
+TUPLES = DICT_TUPLES_SIZE.keys()
+
+# Generate mutants
+MUTANTS = [(original, mutation, mutation(original)) for original in TUPLES for mutation in MUTATIONS]

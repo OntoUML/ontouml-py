@@ -8,7 +8,7 @@ import pytest
 from icecream import ic
 from rdflib import URIRef
 
-from ontoumlpy.tests.test_ouenumeration.fixtures_test_ouenumeration import DICT_TUPLES_SIZE
+from ontoumlpy.tests.test_ouenumeration.fixtures_test_ouenumeration import DICT_TUPLES_SIZE, MUTANTS
 
 
 @pytest.mark.parametrize("in_tuple", DICT_TUPLES_SIZE.keys())
@@ -85,41 +85,6 @@ def test_elements_are_in_alphabetical_order(in_tuple: tuple) -> None:
 
     # Comparing the tuple with its sorted version
     assert string_representations == sorted(string_representations), f"Tuple {in_tuple} is not in alphabetical order."
-
-
-def swap_first_two(original):
-    mutant = list(original)
-    if len(mutant) > 1:
-        mutant[0], mutant[1] = mutant[1], mutant[0]
-    return tuple(mutant)
-
-
-def remove_first(original):
-    return original[1:]
-
-
-def add_element(original):
-    return original + (None,)
-
-
-def replace_last(original):
-    return original[:-1] + ("REPLACEMENT",)
-
-
-def reverse_order(original):
-    return tuple(reversed(original))
-
-
-# List of mutation functions
-MUTATIONS = [swap_first_two, remove_first, add_element, replace_last, reverse_order]
-
-
-# Extract tuples from your dictionary
-TUPLES = DICT_TUPLES_SIZE.keys()
-
-
-# Generate mutants
-MUTANTS = [(original, mutation, mutation(original)) for original in TUPLES for mutation in MUTATIONS]
 
 
 @pytest.mark.parametrize("original,mutation_func,mutant", MUTANTS)
