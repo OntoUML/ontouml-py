@@ -88,7 +88,7 @@ All dependencies will be installed automatically.
 2. Usage: To use ontouml-py, import the necessary functionalities in your Python code. Example:
 
 ```python
-from ontoumlpy import YourFunctionOrClass
+from ontouml_py import YourFunctionOrClass
 ```
 
 Note: Replace YourFunctionOrClass with the actual function or class you intend to use.
@@ -237,7 +237,7 @@ rdf_graph = Graph()
 Next, instantiate OUGraph and use the read_graph method to load and organize OntoUML elements into lists.
 
 ```python
-from ontoumlpy.classes.ougraph import OUGraph
+from ontouml_py.classes.ougraph import OUGraph
 
 ou_graph = OUGraph()
 ou_graph.read_graph(rdf_graph)
@@ -256,7 +256,7 @@ for ou_class in ou_graph.ou_class_list:
 To add a new OntoUML element to OUGraph, create an instance of the desired element type and use the add_element method.
 
 ```python
-from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ouclass import OUClass
+from ontouml_py.ontoumlelement import OUClass
 
 # Create a new OntoUML Class element
 new_ou_class = OUClass(URIRef("example_id"))
@@ -526,16 +526,16 @@ In this example, we'll create an instance of an OntoUML class using the `ou_crea
 
 ```python
 from rdflib import URIRef
-from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ouclass import OUClass
+from ontouml_py.ontoumlelement import OUClass
 
 individual_id = URIRef("http://example.org/ontouml#Person")
 individual_type = URIRef("http://example.org/ontouml#Class")
 
 try:
-    ou_element = ou_create_element(individual_id, individual_type)
-    print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
+  ou_element = ou_create_element(individual_id, individual_type)
+  print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
 except InvalidOntoUMLTypeException as e:
-    print(f"Error: {str(e)}")
+  print(f"Error: {str(e)}")
 ```
 Expected Output:
 ```txt
@@ -561,17 +561,18 @@ Error: The 'http://example.org/ontouml#InvalidType' is not a valid OntoUML eleme
 
 3. Working with Relation Elements
 Attempting to create a relation element instance using ou_create_element function.
+
 ```python
-from ontoumlpy.classes.ouelement.oumodelelement.ouclassifier.ourelation import OURelation
+from ontouml_py.ontoumlelement import OURelation
 
 individual_id = URIRef("http://example.org/ontouml#Marriage")
 individual_type = URIRef("http://example.org/ontouml#Relation")
 
 try:
-    ou_element = ou_create_element(individual_id, individual_type)
-    print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
+  ou_element = ou_create_element(individual_id, individual_type)
+  print(f"Created {type(ou_element).__name__} instance with ID: {ou_element.id}")
 except InvalidOntoUMLTypeException as e:
-    print(f"Error: {str(e)}")
+  print(f"Error: {str(e)}")
 ```
 
 Expected Output:

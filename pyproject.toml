@@ -18,8 +18,7 @@ exclude = ["ontouml-py/tests"]
 [tool.poetry.dependencies]
 importlib = "^1.0.4"
 python = "^3.09"
-rdflib = "^7.0.0"
-loguru = "^0.7.2"
+langstring = "^1.0.0b0"
 
 [tool.poetry.group.dev.dependencies]
 myst-parser = "^2.0.0"
