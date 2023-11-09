@@ -1,9 +1,9 @@
 import datetime
 
-from icecream import ic
 from langstring_lib.langstring import LangString
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
+from ontouml_py.utils.utils import secure_set
 
 
 class NamedElement(OntoumlElement):
@@ -18,19 +18,13 @@ class NamedElement(OntoumlElement):
         description: LangString = None,
         editorialNotes: LangString = None,
     ):
+        # Allows the initialization of the created attribute without overwriting the default value.
         if created is None:
             super().__init__(modified=modified)
         else:
             super().__init__(created=created, modified=modified)
-        self.prefName = prefName
-        self.altNames = altNames
-        self.description = description
-        self.editorialNotes = editorialNotes
 
-
-a = LangString("a", "en")
-d = datetime.datetime(2020, 10, 10)
-x = NamedElement(modified=d)
-z = OntoumlElement()
-ic(x.__dict__)
-ic(z.__dict__)
+        secure_set(self, "prefName", prefName, LangString)
+        secure_set(self, "altNames", altNames, list[LangString])
+        secure_set(self, "description", description, LangString)
+        secure_set(self, "editorialNotes", editorialNotes, LangString)

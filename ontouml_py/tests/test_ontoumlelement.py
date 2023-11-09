@@ -1,3 +1,6 @@
+"""This module contains tests for the OntoumlElement class, ensuring that initialization and attribute access behave
+as expected.
+"""
 import uuid
 from datetime import datetime, timedelta
 
@@ -8,28 +11,49 @@ from ontouml_py.classes.ontoumlelement import OntoumlElement
 
 # Create a stub subclass just for testing purposes, as the OntoumlElement class is abstract.
 class StubOntoumlElement(OntoumlElement):
+    """A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.
+
+    :ivar _id: The read-only unique identifier of the OntoumlElement.
+    :vartype _id: uuid.UUID
+    """
+
     def __init__(self, created: datetime = datetime.now(), modified: datetime = None):
+        """Initializes a new instance of StubOntoumlElement.
+
+        :param created: The creation time for the OntoumlElement, defaults to the current time.
+        :type created: datetime, optional
+        :param modified: The modification time for the OntoumlElement, defaults to None.
+        :type modified: datetime or None, optional
+        """
         super().__init__(created, modified)
 
     @property
-    def id(self):
-        """The read-only unique identifier of the OntoumlElement."""
+    def id(self) -> uuid.UUID:
+        """Overrides the id property to directly access the protected _id attribute.
+
+        :return: The unique identifier of the OntoumlElement.
+        :rtype: uuid.UUID
+        """
         return self._id  # Directly access the protected _id attribute.
 
 
 @pytest.fixture
 def stub_ontouml_element() -> StubOntoumlElement:
-    """Fixture for creating a stub OntoumlElement instance."""
+    """Provides a fixture for creating a stub OntoumlElement instance for testing.
+
+    :return: An instance of the stub subclass of OntoumlElement.
+    :rtype: StubOntoumlElement
+    """
     return StubOntoumlElement()
 
 
 def test_ontouml_element_init(stub_ontouml_element: StubOntoumlElement):
-    """
-    Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
+    """Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
     attributes are set appropriately.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+     :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+     :type stub_ontouml_element: StubOntoumlElement
+     :raises AssertionError: If the id attribute is not an instance of uuid.UUID.
     """
     element = stub_ontouml_element
     assert isinstance(element.id, uuid.UUID), "id attribute must be a UUID"
@@ -48,7 +72,7 @@ def test_invalid_modified_argument_type():
     """Test the initialization of a StubOntoumlElement with an invalid 'modified' argument type to ensure it raises
     a TypeError.
     """
-    with pytest.raises(TypeError, match=r"The 'modified' argument must be a datetime or None, not str"):
+    with pytest.raises(TypeError, match=r"The 'modified' argument must be a datetime, not str"):
         # Pass incorrect type to 'modified' to simulate a TypeError
         StubOntoumlElement(modified="not-a-datetime")
 
@@ -74,7 +98,7 @@ def test_none_argument(stub_ontouml_element: StubOntoumlElement):
     element = StubOntoumlElement(modified=None)
     assert element.modified is None, "modified attribute should accept None"
 
-    with pytest.raises(TypeError, match="argument must be a datetime, not NoneType"):
+    with pytest.raises(TypeError, match="The 'created' argument cannot be None."):
         # Trying to pass None to 'created' should raise an error
         StubOntoumlElement(created=None)
 
@@ -114,13 +138,6 @@ def test_same_creation_and_modification_time(stub_ontouml_element: StubOntoumlEl
     creation_time = datetime.now()
     element = StubOntoumlElement(created=creation_time, modified=creation_time)
     assert element.modified == creation_time, "modified attribute should be allowed to be the same as creation time"
-
-
-def test_id_read_only():
-    """Test that the id attribute is read-only by attempting to assign a new value to it after instantiation."""
-    element = StubOntoumlElement()
-    with pytest.raises(AttributeError):
-        element.id = uuid.uuid4()  # Attempting to reassign the 'id' attribute should raise an AttributeError
 
 
 def test_id_read_only(stub_ontouml_element: StubOntoumlElement):

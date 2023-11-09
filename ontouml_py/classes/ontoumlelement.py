@@ -1,9 +1,10 @@
-"""This module provides the abstract base class for OntoUML elements, defining a common structure and initialization
-behavior for all elements within an OntoUML model.
-"""
+"""This module provides the abstract base class for OntoUML elements, defining a common structure and initialization \
+behavior for all elements within an OntoUML model."""
 import uuid
 from abc import abstractmethod, ABC
 from datetime import datetime
+
+from ontouml_py.utils.utils import secure_set
 
 
 class OntoumlElement(ABC):
@@ -22,8 +23,8 @@ class OntoumlElement(ABC):
     """
 
     @abstractmethod
-    def __init__(self, created: datetime = datetime.now(), modified: datetime = None):
-        """Initializes a new instance of an OntoUML element, assigning a unique identifier and setting creation and
+    def __init__(self, created: datetime = datetime.now(), modified: datetime = None) -> None:
+        """Initialize a new instance of an OntoUML element, assigning a unique identifier and setting creation and \
         modification timestamps. Validates that the 'created' and 'modified' parameters are of the correct type.
 
         This method should be implemented by subclasses to ensure that OntoUML elements are initialized with consistent
@@ -39,32 +40,20 @@ class OntoumlElement(ABC):
         :raises TypeError: If 'created' is not an instance of datetime.
         :raises TypeError: If 'modified' is provided but is not an instance of datetime or None.
         """
-
         # ID ATTRIBUTE
-
         self._id: uuid.UUID = uuid.uuid4()
 
         # CREATED ATTRIBUTE
-
-        if not isinstance(created, datetime):
-            raise TypeError(f"The 'created' argument must be a datetime, not {type(created).__name__}.")
-
-        self.created = created
+        secure_set(self, "created", created, datetime, False)
 
         # MODIFIED ATTRIBUTE
-
-        if modified is not None and not isinstance(modified, datetime):
-            raise TypeError(f"The 'modified' argument must be a datetime or None, not {type(modified).__name__}.")
-
+        secure_set(self, "modified", modified, datetime)
         if modified and created and modified < created:
             raise ValueError(f"The 'modified' datetime must be later than the 'created' datetime ({created}).")
 
-        self.modified = modified
-
         @property
         def id(self) -> uuid.UUID:
-            """
-            The read-only unique identifier of the OntoumlElement. Attempts to set this property will raise
+            """The read-only unique identifier of the OntoumlElement. Attempts to set this property will raise \
             an AttributeError.
 
             :return: The unique identifier of the element.
