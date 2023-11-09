@@ -34,7 +34,8 @@ def test_validate_and_set_with_incorrect_type() -> None:
 
 
 def test_validate_and_set_with_optional_none() -> None:
-    """Test the validate_and_set function with an optional parameter set to None to ensure it allows None for optional attributes.
+    """Test the validate_and_set function with an optional parameter set to None to ensure it allows None for \
+    optional attributes.
 
     :raises AssertionError: If validate_and_set fails to set an optional attribute to None.
     """
@@ -54,7 +55,8 @@ def test_validate_and_set_with_non_optional_none() -> None:
 
 
 def test_validate_and_set_with_list_of_correct_types() -> None:
-    """Test the validate_and_set function with a list of correct types to ensure it sets the value without raising an error.
+    """Test the validate_and_set function with a list of correct types to ensure it sets the value without raising \
+    an error.
 
     :raises AssertionError: If validate_and_set fails to set a list of values of the correct type.
     """
@@ -77,7 +79,7 @@ def test_validate_and_set_with_list_of_incorrect_types() -> None:
 
 
 def test_validate_and_set_with_empty_list() -> None:
-    """Test the validate_and_set function with an empty list to ensure it does not raise an error when lists are allowed.
+    """Test the validate_and_set function with an empty list ensuring it does not raise an error when lists are allowed.
 
     :raises AssertionError: If validate_and_set fails to set an empty list when lists are allowed.
     """
@@ -87,7 +89,8 @@ def test_validate_and_set_with_empty_list() -> None:
 
 
 def test_validate_and_set_with_list_of_mixed_correct_types() -> None:
-    """Test the validate_and_set function with a list of mixed but correct types to ensure it sets the value without error.
+    """Test the validate_and_set function with a list of mixed but correct types to ensure it sets the value without \
+    error.
 
     :raises AssertionError: If validate_and_set fails to set a list of mixed but correct types.
     """
@@ -97,7 +100,8 @@ def test_validate_and_set_with_list_of_mixed_correct_types() -> None:
 
 
 def test_validate_and_set_with_list_including_none() -> None:
-    """Test the validate_and_set function with a list including None to ensure it sets the value without raising an error.
+    """Test the validate_and_set function with a list including None to ensure it sets the value without raising \
+    an error.
 
     :raises AssertionError: If validate_and_set fails to set a list including None when None is allowed.
     """
@@ -132,7 +136,8 @@ def test_validate_and_set_reassign_attribute() -> None:
     """
     Test the validate_and_set function to ensure it correctly handles reassigning an existing attribute.
 
-    :raises AssertionError: If validate_and_set fails to reassign an existing attribute with a new value of the correct type.
+    :raises AssertionError: If validate_and_set fails to reassign an existing attribute with a new value of the \
+    correct type.
     """
     instance = TestClass()
     validate_and_set(instance, "name", "John Doe", str)

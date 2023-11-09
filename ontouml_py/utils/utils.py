@@ -1,8 +1,6 @@
 """This utility module contains a collection of helper functions that provide common functionality used throughout the \
 application. These functions are designed to be generic and reusable across various parts of the codebase.
 """
-from typing import Any, Type, List, get_origin, get_args, Union
-
 
 from typing import Any, Type, List, Union, get_origin, get_args
 

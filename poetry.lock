@@ -680,16 +680,6 @@ files = [
 ]
 
 [[package]]
-name = "importlib"
-version = "1.0.4"
-description = "Backport of importlib.import_module() from Python 2.7"
-optional = false
-python-versions = "*"
-files = [
-    {file = "importlib-1.0.4.zip", hash = "sha256:b6ee7066fea66e35f8d0acee24d98006de1a0a8a94a8ce6efe73a9a23c8d9826"},
-]
-
-[[package]]
 name = "importlib-metadata"
 version = "6.8.0"
 description = "Read metadata from Python packages"
@@ -2207,4 +2197,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.09"
-content-hash = "1163b1201b20a83db849f355adf9a18c60dc56703be742b5748bc21326be72a7"
+content-hash = "ec426da326828bde5cb50fd6152e5dd4b121897948e827aa3ba4b2250b282c41"
