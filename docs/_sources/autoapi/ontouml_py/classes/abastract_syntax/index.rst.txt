@@ -1,7 +1,7 @@
-:py:mod:`ontouml_py.classes.abastract_syntax`
+:py:mod:`ontouml_py.classes.abstract_syntax`
 =============================================
 
-.. py:module:: ontouml_py.classes.abastract_syntax
+.. py:module:: ontouml_py.classes.abstract_syntax
 
 
 Submodules

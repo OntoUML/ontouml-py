@@ -4,7 +4,7 @@ from typing import Optional, List
 import pytest
 from langstring_lib.langstring import LangString
 
-from ontouml_py.classes.abastract_syntax.namedelement import NamedElement
+from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
 
 
 class NamedElementStub(NamedElement):

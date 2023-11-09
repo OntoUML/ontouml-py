@@ -10,7 +10,7 @@ Subpackages
    :titlesonly:
    :maxdepth: 3
 
-   abastract_syntax/index.rst
+   abstract_syntax/index.rst
    concrete_syntax/index.rst
 
 

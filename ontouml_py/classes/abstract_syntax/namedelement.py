@@ -33,10 +33,10 @@ class NamedElement(OntoumlElement):
     @abstractmethod
     def __init__(
         self,
-        # Inherited attributes
+        # INHERITED ATTRIBUTES
         created: datetime = None,
         modified: datetime = None,
-        # Class's attributes
+        # CLASS'S ATTRIBUTES
         pref_name: LangString = None,
         alt_names: list[LangString] = None,
         description: LangString = None,

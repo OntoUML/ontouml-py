@@ -41,7 +41,7 @@ Functions
 .. py:class:: NamedElementStub(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorial_notes = None, creators = None, contributors = None)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abastract_syntax.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.namedelement.NamedElement`
 
    A stub class that extends the abstract NamedElement class for testing purposes.
 
