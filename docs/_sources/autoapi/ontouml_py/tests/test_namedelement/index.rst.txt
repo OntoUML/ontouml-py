@@ -24,7 +24,7 @@ Functions
    ontouml_py.tests.test_namedelement.test_namedelement_initialization
    ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization
    ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation
-   ontouml_py.tests.test_namedelement.test_namedelement_description_editorialNotes_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization
    ontouml_py.tests.test_namedelement.test_namedelement_default_created_time
    ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types
    ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values
@@ -38,7 +38,7 @@ Functions
 
 
 
-.. py:class:: NamedElementStub(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorialNotes = None, creators = None, contributors = None)
+.. py:class:: NamedElementStub(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorial_notes = None, creators = None, contributors = None)
 
 
    Bases: :py:obj:`ontouml_py.classes.abastract_syntax.namedelement.NamedElement`
@@ -70,12 +70,12 @@ Functions
    :param is_valid: Boolean indicating whether the 'alt_names' is valid or not.
 
 
-.. py:function:: test_namedelement_description_editorialNotes_initialization(description, editorialNotes)
+.. py:function:: test_namedelement_description_editorial_notes_initialization(description, editorial_notes)
 
-   Test the initialization of NamedElementStub, ensuring 'description' and 'editorialNotes' are set correctly.
+   Test the initialization of NamedElementStub, ensuring 'description' and 'editorial_notes' are set correctly.
 
    :param description: A LangString object representing the description or None.
-   :param editorialNotes: A LangString object representing the editorial notes or None.
+   :param editorial_notes: A LangString object representing the editorial notes or None.
 
 
 .. py:function:: test_namedelement_default_created_time()

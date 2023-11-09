@@ -27,7 +27,7 @@ Classes
 
 
 
-.. py:class:: NamedElement(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorialNotes = None, creators = None, contributors = None)
+.. py:class:: NamedElement(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorial_notes = None, creators = None, contributors = None)
 
 
    Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
@@ -40,7 +40,7 @@ Classes
    :ivar pref_name: The preferred name of the element, represented as a LangString object.
    :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
    :ivar description: A LangString object representing the description of the element.
-   :ivar editorialNotes: A LangString object containing editorial notes associated with the element.
+   :ivar editorial_notes: A LangString object containing editorial notes associated with the element.
    :ivar creators: A list of URIs represented as strings identifying the creators of the element.
    :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
 

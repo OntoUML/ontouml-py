@@ -24,7 +24,7 @@ class NamedElement(OntoumlElement):
     :ivar pref_name: The preferred name of the element, represented as a LangString object.
     :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
     :ivar description: A LangString object representing the description of the element.
-    :ivar editorialNotes: A LangString object containing editorial notes associated with the element.
+    :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
     :ivar creators: A list of URIs represented as strings identifying the creators of the element.
     :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
 
@@ -40,7 +40,7 @@ class NamedElement(OntoumlElement):
         pref_name: LangString = None,
         alt_names: list[LangString] = None,
         description: LangString = None,
-        editorialNotes: LangString = None,
+        editorial_notes: list[LangString] = None,
         creators: list[str] = None,
         contributors: list[str] = None,
     ):
@@ -58,8 +58,8 @@ class NamedElement(OntoumlElement):
         :type alt_names: Optional[List[LangString]], optional
         :param description: A LangString object representing the description of the element.
         :type description: Optional[LangString], optional
-        :param editorialNotes: A LangString object containing editorial notes associated with the element.
-        :type editorialNotes: Optional[LangString], optional
+        :param editorial_notes: A list of LangString objects containing editorial notes associated with the element.
+        :type editorial_notes: Optional[list[LangString]], optional
         :param creators: A list of strings representing the URIs of the creators of the element.
         :type creators: Optional[List[str]], optional
         :param contributors: A list of strings representing the URIs of the contributors to the element.
@@ -74,6 +74,6 @@ class NamedElement(OntoumlElement):
         validate_and_set(self, "pref_name", pref_name, LangString)
         validate_and_set(self, "alt_names", alt_names, list[LangString])
         validate_and_set(self, "description", description, LangString)
-        validate_and_set(self, "editorialNotes", editorialNotes, LangString)
+        validate_and_set(self, "editorial_notes", editorial_notes, list[LangString])
         validate_and_set(self, "creators", creators, list[str])
         validate_and_set(self, "contributors", contributors, list[str])

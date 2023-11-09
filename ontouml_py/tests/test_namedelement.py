@@ -17,11 +17,11 @@ class NamedElementStub(NamedElement):
         pref_name: Optional[LangString] = None,
         alt_names: Optional[List[LangString]] = None,
         description: Optional[LangString] = None,
-        editorialNotes: Optional[LangString] = None,
+        editorial_notes: Optional[List[LangString]] = None,
         creators: Optional[List[str]] = None,
         contributors: Optional[List[str]] = None,
     ):
-        super().__init__(created, modified, pref_name, alt_names, description, editorialNotes, creators, contributors)
+        super().__init__(created, modified, pref_name, alt_names, description, editorial_notes, creators, contributors)
 
 
 # Test cases
@@ -89,9 +89,9 @@ def test_namedelement_alt_names_validation(alt_names: Optional[List[LangString]]
             NamedElementStub(alt_names=alt_names)
 
 
-# Test the setting and validation logic for 'description' and 'editorialNotes'
+# Test the setting and validation logic for 'description' and 'editorial_notes'
 @pytest.mark.parametrize(
-    "description, editorialNotes",
+    "description, editorial_notes",
     [
         (LangString("Description text"), LangString("Editorial notes text")),
         (None, None),
@@ -99,19 +99,19 @@ def test_namedelement_alt_names_validation(alt_names: Optional[List[LangString]]
         (LangString(""), LangString("")),  # Testing empty LangString objects
     ],
 )
-def test_namedelement_description_editorialNotes_initialization(
-    description: Optional[LangString], editorialNotes: Optional[LangString]
+def test_namedelement_description_editorial_notes_initialization(
+    description: Optional[LangString], editorial_notes: Optional[LangString]
 ) -> None:
-    """Test the initialization of NamedElementStub, ensuring 'description' and 'editorialNotes' are set correctly.
+    """Test the initialization of NamedElementStub, ensuring 'description' and 'editorial_notes' are set correctly.
 
     :param description: A LangString object representing the description or None.
-    :param editorialNotes: A LangString object representing the editorial notes or None.
+    :param editorial_notes: A LangString object representing the editorial notes or None.
     """
-    element = NamedElementStub(description=description, editorialNotes=editorialNotes)
+    element = NamedElementStub(description=description, editorial_notes=editorial_notes)
     assert element.description == description, "The 'description' should be set correctly during initialization"
     assert (
-        element.editorialNotes == editorialNotes
-    ), "The 'editorialNotes' should be set correctly during initialization"
+        element.editorial_notes == editorial_notes
+    ), "The 'editorial_notes' should be set correctly during initialization"
 
 
 # Test to ensure that the current time is used by default for 'created' attribute when it is not provided
@@ -125,13 +125,14 @@ def test_namedelement_default_created_time() -> None:
     ), "The 'created' attribute should be very close to the current time"
 
 
-# Test invalid argument types for 'pref_name', 'description', and 'editorialNotes'
+# Test invalid argument types for 'pref_name', 'description', and 'editorial_notes'
 @pytest.mark.parametrize(
     "attr_name, invalid_value",
     [
         ("pref_name", "Invalid type"),  # Non-LangString type for 'pref_name'
         ("description", 123),  # Non-LangString type for 'description'
-        ("editorialNotes", [LangString("Note")]),  # Non-LangString type for 'editorialNotes'
+        ("editorial_notes", "Not a list of LangString"),  # Not a list type for 'editorial_notes'
+        ("editorial_notes", [123]),  # List with incorrect inner type for 'editorial_notes'
     ],
 )
 def test_namedelement_invalid_argument_types(attr_name: str, invalid_value) -> None:
@@ -168,7 +169,7 @@ def test_namedelement_invalid_alt_names_values(invalid_alt_names) -> None:
     [
         ("pref_name"),
         ("description"),
-        ("editorialNotes"),
+        ("editorial_notes"),
     ],
 )
 def test_namedelement_attributes_set_as_none(attr_name: str) -> None:
@@ -180,13 +181,13 @@ def test_namedelement_attributes_set_as_none(attr_name: str) -> None:
     assert getattr(element, attr_name) is None, f"The '{attr_name}' attribute should be allowed to be set as None"
 
 
-# Test edge cases for 'pref_name', 'description', and 'editorialNotes' with unusual but valid inputs
+# Test edge cases for 'pref_name', 'description', and 'editorial_notes' with unusual but valid inputs
 @pytest.mark.parametrize(
     "attr_name, edge_case_value",
     [
         ("pref_name", LangString("")),  # Empty string in LangString for 'pref_name'
         ("description", LangString(" ")),  # Whitespace string in LangString for 'description'
-        ("editorialNotes", LangString("\n")),  # Newline character in LangString for 'editorialNotes'
+        ("editorial_notes", LangString("\n")),  # Newline character in LangString for 'editorial_notes'
     ],
 )
 def test_namedelement_edge_cases_for_langstring_attributes(attr_name: str, edge_case_value: LangString) -> None:
