@@ -29,6 +29,8 @@ class OntoumlElement(ABC):
         This method should be implemented by subclasses to ensure that OntoUML elements are initialized with consistent
         state and behavior.
 
+        The modified attribute's value cannot be later than the created attribute's value (when the value exists).
+
         :param created: A datetime object representing the creation time, defaults to the current time.
         :type created: datetime, optional
         :param modified: A datetime object representing the modification time, defaults to None.
@@ -37,14 +39,26 @@ class OntoumlElement(ABC):
         :raises TypeError: If 'created' is not an instance of datetime.
         :raises TypeError: If 'modified' is provided but is not an instance of datetime or None.
         """
+
+        # ID ATTRIBUTE
+
         self._id: uuid.UUID = uuid.uuid4()
+
+        # CREATED ATTRIBUTE
 
         if not isinstance(created, datetime):
             raise TypeError(f"The 'created' argument must be a datetime, not {type(created).__name__}.")
+
+        self.created = created
+
+        # MODIFIED ATTRIBUTE
+
         if modified is not None and not isinstance(modified, datetime):
             raise TypeError(f"The 'modified' argument must be a datetime or None, not {type(modified).__name__}.")
 
-        self.created = created
+        if modified and created and modified < created:
+            raise ValueError(f"The 'modified' datetime must be later than the 'created' datetime ({created}).")
+
         self.modified = modified
 
         @property

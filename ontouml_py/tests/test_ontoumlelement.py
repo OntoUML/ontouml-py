@@ -100,7 +100,7 @@ def test_modification_time_before_creation(stub_ontouml_element: StubOntoumlElem
     """
     creation_time = datetime.now()
     past_time = creation_time - timedelta(days=1)
-    with pytest.raises(ValueError, match="modification time cannot be before creation time"):
+    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime"):
         StubOntoumlElement(created=creation_time, modified=past_time)
 
 
