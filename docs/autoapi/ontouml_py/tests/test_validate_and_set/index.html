@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ontouml_py.tests.test_validate_and_set &mdash; ontouml-py  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/sphinx_rtd_size.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ontouml_py.utils" href="../../utils/index.html" />
+    <link rel="prev" title="ontouml_py.tests.test_ontoumlelement" href="../test_ontoumlelement/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ontouml-py
+              <img src="../../../../_static/logo-ontouml-py-reduced.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../classes/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../functions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.functions</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.utils</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ontouml-py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests.test_validate_and_set</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/ontouml_py/tests/test_validate_and_set/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ontouml_py.tests.test_validate_and_set">
+<span id="ontouml-py-tests-test-validate-and-set"></span><h1><a class="reference internal" href="#module-ontouml_py.tests.test_validate_and_set" title="ontouml_py.tests.test_validate_and_set"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests.test_validate_and_set</span></code></a><a class="headerlink" href="#module-ontouml_py.tests.test_validate_and_set" title="Link to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.TestClass" title="ontouml_py.tests.test_validate_and_set.TestClass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestClass</span></code></a></p></td>
+<td><p>Example class for testing validate_and_set function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.CustomType" title="ontouml_py.tests.test_validate_and_set.CustomType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CustomType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_correct_type" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_correct_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_correct_type</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with the correct type to ensure it sets the value without raising an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_incorrect_type" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_incorrect_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_incorrect_type</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with the incorrect type to ensure it raises a TypeError.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_optional_none" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_optional_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_optional_none</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with an optional parameter set to None to ensure it allows None for     optional attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_non_optional_none" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_non_optional_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_non_optional_none</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a non-optional parameter set to None to ensure it raises a TypeError.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_correct_types" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_correct_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_list_of_correct_types</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a list of correct types to ensure it sets the value without raising     an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_incorrect_types" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_incorrect_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_list_of_incorrect_types</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a list containing incorrect types to ensure it raises a TypeError.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_empty_list" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_empty_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_empty_list</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with an empty list ensuring it does not raise an error when lists are allowed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_mixed_correct_types" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_mixed_correct_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_list_of_mixed_correct_types</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a list of mixed but correct types to ensure it sets the value without     error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_including_none" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_including_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_list_including_none</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a list including None to ensure it sets the value without raising     an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nested_list" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nested_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_nested_list</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with nested lists to ensure it sets the value without raising an error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nonexistent_attribute" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nonexistent_attribute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_nonexistent_attribute</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function to ensure it can create and set a new attribute that wasn't initially present.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_reassign_attribute" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_reassign_attribute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_reassign_attribute</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function to ensure it correctly handles reassigning an existing attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_complex_types" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_complex_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_complex_types</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a complex type like a dictionary to ensure it sets the value correctly.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_custom_object" title="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_custom_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_validate_and_set_with_custom_object</span></code></a>()</p></td>
+<td><p>Test the validate_and_set function with a custom object to ensure it sets the value correctly.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.TestClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">TestClass</span></span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.TestClass" title="Link to this definition"></a></dt>
+<dd><p>Example class for testing validate_and_set function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_correct_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_correct_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_correct_type" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with the correct type to ensure it sets the value without raising an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set the value of the correct type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_incorrect_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_incorrect_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_incorrect_type" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with the incorrect type to ensure it raises a TypeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If validate_and_set allows setting a value of incorrect type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_optional_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_optional_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_optional_none" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with an optional parameter set to None to ensure it allows None for     optional attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set an optional attribute to None.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_non_optional_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_non_optional_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_non_optional_none" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a non-optional parameter set to None to ensure it raises a TypeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If validate_and_set allows setting a non-optional attribute to None.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_correct_types">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_list_of_correct_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_correct_types" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a list of correct types to ensure it sets the value without raising     an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set a list of values of the correct type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_incorrect_types">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_list_of_incorrect_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_incorrect_types" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a list containing incorrect types to ensure it raises a TypeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If validate_and_set allows setting a list containing values of incorrect type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_empty_list">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_empty_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_empty_list" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with an empty list ensuring it does not raise an error when lists are allowed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set an empty list when lists are allowed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_mixed_correct_types">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_list_of_mixed_correct_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_mixed_correct_types" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a list of mixed but correct types to ensure it sets the value without     error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set a list of mixed but correct types.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_including_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_list_including_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_including_none" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a list including None to ensure it sets the value without raising     an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set a list including None when None is allowed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nested_list">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_nested_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nested_list" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with nested lists to ensure it sets the value without raising an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set nested lists correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nonexistent_attribute">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_nonexistent_attribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nonexistent_attribute" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function to ensure it can create and set a new attribute that wasn’t initially present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to create and set a new attribute.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_reassign_attribute">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_reassign_attribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_reassign_attribute" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function to ensure it correctly handles reassigning an existing attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to reassign an existing attribute with a new value of the     correct type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_complex_types">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_complex_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_complex_types" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a complex type like a dictionary to ensure it sets the value correctly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set a complex type like a dictionary.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.CustomType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">CustomType</span></span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.CustomType" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_custom_object">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_validate_and_set.</span></span><span class="sig-name descname"><span class="pre">test_validate_and_set_with_custom_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_custom_object" title="Link to this definition"></a></dt>
+<dd><p>Test the validate_and_set function with a custom object to ensure it sets the value correctly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If validate_and_set fails to set a custom object type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../test_ontoumlelement/index.html" class="btn btn-neutral float-left" title="ontouml_py.tests.test_ontoumlelement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../utils/index.html" class="btn btn-neutral float-right" title="ontouml_py.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Semantics, Cybersecurity &amp; Services (SCS), University of Twente, the Netherlands.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

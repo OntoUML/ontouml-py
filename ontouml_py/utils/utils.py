@@ -1,13 +1,11 @@
 """This utility module contains a collection of helper functions that provide common functionality used throughout the \
-application. These functions are designed to be generic and reusable across various parts of the codebase.
-"""
+application. These functions are designed to be generic and reusable across various parts of the codebase."""
 
 from typing import Any, Type, List, Union, get_origin, get_args
 
 
 def is_valid_list(item, inner_type) -> bool:
-    """
-    Recursively checks if all elements in a list are of the specified inner_type.
+    """Recursively checks if all elements in a list are of the specified inner_type.
 
     :param item: The item to be checked, can be a list or a single element.
     :param inner_type: The type that items in the list are expected to be.
@@ -25,8 +23,7 @@ def is_valid_list(item, inner_type) -> bool:
 def validate_and_set(
     instance: Any, attr_name: str, att_value: Any, attr_type: Union[Type[Any], List[Type[Any]]], optional: bool = True
 ) -> None:
-    """
-    Securely sets the attribute value of an instance after type checking.
+    """Securely sets the attribute value of an instance after type checking.
 
     :param instance: The instance of the object on which the attribute will be set.
     :param attr_name: The name of the attribute to set.
@@ -35,7 +32,6 @@ def validate_and_set(
     :param optional: Specifies if the attribute is optional (can be None).
     :raises TypeError: If the value is not of the expected type.
     """
-
     # If the value is None and the attribute is optional, skip the type check and set the attribute
     if att_value is None and optional:
         setattr(instance, attr_name, att_value)

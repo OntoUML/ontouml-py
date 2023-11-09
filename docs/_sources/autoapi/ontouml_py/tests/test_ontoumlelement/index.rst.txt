@@ -1,0 +1,140 @@
+:py:mod:`ontouml_py.tests.test_ontoumlelement`
+==============================================
+
+.. py:module:: ontouml_py.tests.test_ontoumlelement
+
+.. autoapi-nested-parse::
+
+   This module contains tests for the OntoumlElement class, ensuring that initialization and attribute access behave
+   as expected.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_ontoumlelement.StubOntoumlElement
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_ontoumlelement.stub_ontouml_element
+   ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init
+   ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type
+   ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type
+   ontouml_py.tests.test_ontoumlelement.test_unknown_argument
+   ontouml_py.tests.test_ontoumlelement.test_none_argument
+   ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future
+   ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation
+   ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time
+   ontouml_py.tests.test_ontoumlelement.test_id_read_only
+
+
+
+.. py:class:: StubOntoumlElement(created = datetime.now(), modified = None)
+
+
+   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+
+   A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.
+
+   :ivar _id: The read-only unique identifier of the OntoumlElement.
+   :vartype _id: uuid.UUID
+
+   .. py:property:: id
+      :type: uuid.UUID
+
+      Overrides the id property to directly access the protected _id attribute.
+
+      :return: The unique identifier of the OntoumlElement.
+      :rtype: uuid.UUID
+
+
+
+.. py:function:: stub_ontouml_element()
+
+   Provides a fixture for creating a stub OntoumlElement instance for testing.
+
+   :return: An instance of the stub subclass of OntoumlElement.
+   :rtype: StubOntoumlElement
+
+
+.. py:function:: test_ontouml_element_init(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
+   attributes are set appropriately.
+
+    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+    :type stub_ontouml_element: StubOntoumlElement
+    :raises AssertionError: If the id attribute is not an instance of uuid.UUID.
+
+
+.. py:function:: test_invalid_created_argument_type()
+
+   Test the initialization of a StubOntoumlElement with an invalid 'created' argument type to ensure it raises
+   a TypeError.
+
+
+.. py:function:: test_invalid_modified_argument_type()
+
+   Test the initialization of a StubOntoumlElement with an invalid 'modified' argument type to ensure it raises
+   a TypeError.
+
+
+.. py:function:: test_unknown_argument(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement with an unknown argument to ensure it raises a TypeError.
+
+   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+   :type stub_ontouml_element: StubOntoumlElement
+
+
+.. py:function:: test_none_argument(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement with None as an argument to ensure it handles None correctly.
+
+   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+   :type stub_ontouml_element: StubOntoumlElement
+
+
+.. py:function:: test_creation_time_in_future(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement with a creation time set in the future to ensure it handles
+   future datetime correctly.
+
+   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+   :type stub_ontouml_element: StubOntoumlElement
+
+
+.. py:function:: test_modification_time_before_creation(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement with a modification time set before the creation time to
+   ensure logical consistency is maintained.
+
+   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+   :type stub_ontouml_element: StubOntoumlElement
+
+
+.. py:function:: test_same_creation_and_modification_time(stub_ontouml_element)
+
+   Test the initialization of a StubOntoumlElement with the same creation and modification time to ensure
+   it is handled appropriately.
+
+   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
+   :type stub_ontouml_element: StubOntoumlElement
+
+
+.. py:function:: test_id_read_only(stub_ontouml_element)
+
+   Test that the id attribute is read-only by attempting to assign a new value to it after instantiation.
+
+

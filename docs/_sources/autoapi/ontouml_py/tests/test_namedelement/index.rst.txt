@@ -1,0 +1,154 @@
+:py:mod:`ontouml_py.tests.test_namedelement`
+============================================
+
+.. py:module:: ontouml_py.tests.test_namedelement
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_namedelement.NamedElementStub
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_namedelement.test_namedelement_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_prefName_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_altNames_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_description_editorialNotes_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_default_created_time
+   ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types
+   ontouml_py.tests.test_namedelement.test_namedelement_invalid_altNames_values
+   ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none
+   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes
+   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_altNames
+   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes
+   ontouml_py.tests.test_namedelement.test_namedelement_creators_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes
+
+
+
+.. py:class:: NamedElementStub(created = None, modified = None, prefName = None, altNames = None, description = None, editorialNotes = None, creators = None, contributors = None)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abastract_syntax.namedelement.NamedElement`
+
+   A stub class that extends the abstract NamedElement class for testing purposes.
+
+
+.. py:function:: test_namedelement_initialization(created, modified, expected_created)
+
+   Test the initialization of NamedElementStub, ensuring it sets the 'created' and 'modified' dates correctly.
+
+   :param created: The date the element is created or None to test the default behavior.
+   :param modified: The date the element was last modified or None if it hasn't been modified.
+   :param expected_created: The expected value of the 'created' attribute after initialization.
+
+
+.. py:function:: test_namedelement_prefName_initialization(prefName)
+
+   Test the initialization of NamedElementStub, ensuring it sets the 'prefName' attribute correctly.
+
+   :param prefName: The preferred name of the element, as a LangString object.
+
+
+.. py:function:: test_namedelement_altNames_validation(altNames, is_valid)
+
+   Test the validation of 'altNames' attribute during the initialization of NamedElementStub.
+
+   :param altNames: A list of alternative names or None.
+   :param is_valid: Boolean indicating whether the 'altNames' is valid or not.
+
+
+.. py:function:: test_namedelement_description_editorialNotes_initialization(description, editorialNotes)
+
+   Test the initialization of NamedElementStub, ensuring 'description' and 'editorialNotes' are set correctly.
+
+   :param description: A LangString object representing the description or None.
+   :param editorialNotes: A LangString object representing the editorial notes or None.
+
+
+.. py:function:: test_namedelement_default_created_time()
+
+   Test the default behavior of the 'created' attribute to ensure it is set to the current time when not     provided.
+
+
+.. py:function:: test_namedelement_invalid_argument_types(attr_name, invalid_value)
+
+   Test the initialization of NamedElementStub with invalid argument types.
+
+   :param attr_name: Name of the attribute being tested.
+   :param invalid_value: An invalid value for the attribute.
+
+
+.. py:function:: test_namedelement_invalid_altNames_values(invalid_altNames)
+
+   Test the initialization of NamedElementStub with invalid values for 'altNames'.
+
+   :param invalid_altNames: An invalid value for the 'altNames' list.
+
+
+.. py:function:: test_namedelement_attributes_set_as_none(attr_name)
+
+   Test the initialization of NamedElementStub with attributes set as None.
+
+   :param attr_name: Name of the attribute being tested.
+
+
+.. py:function:: test_namedelement_edge_cases_for_langstring_attributes(attr_name, edge_case_value)
+
+   Test the initialization of NamedElementStub with edge case values for LangString attributes.
+
+   :param attr_name: Name of the attribute being tested.
+   :param edge_case_value: An edge case LangString value for the attribute.
+
+
+.. py:function:: test_namedelement_edge_cases_for_altNames(edge_case_altNames)
+
+   Test the initialization of NamedElementStub with edge case values for 'altNames' list.
+
+   :param edge_case_altNames: An edge case list of LangString objects for 'altNames'.
+
+
+.. py:function:: test_namedelement_edge_cases_for_datetime_attributes(created, modified)
+
+   Test the initialization of NamedElementStub with edge case datetime values for 'created' and 'modified'.
+
+   :param created: An edge case datetime value for when the element was created.
+   :param modified: An edge case datetime value for when the element was last modified.
+
+
+.. py:function:: test_namedelement_creators_validation(creators, is_valid)
+
+   Test the validation of 'creators' attribute during the initialization of NamedElementStub.
+
+   :param creators: A list of URIs or None.
+   :param is_valid: Boolean indicating whether the 'creators' is valid or not.
+
+
+.. py:function:: test_namedelement_contributors_validation(contributors, is_valid)
+
+   Test the validation of 'contributors' attribute during the initialization of NamedElementStub.
+
+   :param contributors: A list of URIs or None.
+   :param is_valid: Boolean indicating whether the 'contributors' is valid or not.
+
+
+.. py:function:: test_namedelement_edge_cases_for_uri_attributes(attr_name, edge_case_values)
+
+   Test the initialization of NamedElementStub with edge case values for URI attributes.
+
+   :param attr_name: Name of the attribute being tested.
+   :param edge_case_values: An edge case list of URIs for the attribute.
+
+

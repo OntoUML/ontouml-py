@@ -1,0 +1,149 @@
+:py:mod:`ontouml_py.tests.test_validate_and_set`
+================================================
+
+.. py:module:: ontouml_py.tests.test_validate_and_set
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_validate_and_set.TestClass
+   ontouml_py.tests.test_validate_and_set.CustomType
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_correct_type
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_incorrect_type
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_optional_none
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_non_optional_none
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_correct_types
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_incorrect_types
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_empty_list
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_of_mixed_correct_types
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_list_including_none
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nested_list
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_nonexistent_attribute
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_reassign_attribute
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_complex_types
+   ontouml_py.tests.test_validate_and_set.test_validate_and_set_with_custom_object
+
+
+
+.. py:class:: TestClass
+
+
+   Example class for testing validate_and_set function.
+
+
+.. py:function:: test_validate_and_set_with_correct_type()
+
+   Test the validate_and_set function with the correct type to ensure it sets the value without raising an error.
+
+   :raises AssertionError: If validate_and_set fails to set the value of the correct type.
+
+
+.. py:function:: test_validate_and_set_with_incorrect_type()
+
+   Test the validate_and_set function with the incorrect type to ensure it raises a TypeError.
+
+   :raises TypeError: If validate_and_set allows setting a value of incorrect type.
+
+
+.. py:function:: test_validate_and_set_with_optional_none()
+
+   Test the validate_and_set function with an optional parameter set to None to ensure it allows None for     optional attributes.
+
+   :raises AssertionError: If validate_and_set fails to set an optional attribute to None.
+
+
+.. py:function:: test_validate_and_set_with_non_optional_none()
+
+   Test the validate_and_set function with a non-optional parameter set to None to ensure it raises a TypeError.
+
+   :raises TypeError: If validate_and_set allows setting a non-optional attribute to None.
+
+
+.. py:function:: test_validate_and_set_with_list_of_correct_types()
+
+   Test the validate_and_set function with a list of correct types to ensure it sets the value without raising     an error.
+
+   :raises AssertionError: If validate_and_set fails to set a list of values of the correct type.
+
+
+.. py:function:: test_validate_and_set_with_list_of_incorrect_types()
+
+   Test the validate_and_set function with a list containing incorrect types to ensure it raises a TypeError.
+
+   :raises TypeError: If validate_and_set allows setting a list containing values of incorrect type.
+
+
+.. py:function:: test_validate_and_set_with_empty_list()
+
+   Test the validate_and_set function with an empty list ensuring it does not raise an error when lists are allowed.
+
+   :raises AssertionError: If validate_and_set fails to set an empty list when lists are allowed.
+
+
+.. py:function:: test_validate_and_set_with_list_of_mixed_correct_types()
+
+   Test the validate_and_set function with a list of mixed but correct types to ensure it sets the value without     error.
+
+   :raises AssertionError: If validate_and_set fails to set a list of mixed but correct types.
+
+
+.. py:function:: test_validate_and_set_with_list_including_none()
+
+   Test the validate_and_set function with a list including None to ensure it sets the value without raising     an error.
+
+   :raises AssertionError: If validate_and_set fails to set a list including None when None is allowed.
+
+
+.. py:function:: test_validate_and_set_with_nested_list()
+
+   Test the validate_and_set function with nested lists to ensure it sets the value without raising an error.
+
+   :raises AssertionError: If validate_and_set fails to set nested lists correctly.
+
+
+.. py:function:: test_validate_and_set_with_nonexistent_attribute()
+
+   Test the validate_and_set function to ensure it can create and set a new attribute that wasn't initially present.
+
+   :raises AssertionError: If validate_and_set fails to create and set a new attribute.
+
+
+.. py:function:: test_validate_and_set_reassign_attribute()
+
+   Test the validate_and_set function to ensure it correctly handles reassigning an existing attribute.
+
+   :raises AssertionError: If validate_and_set fails to reassign an existing attribute with a new value of the     correct type.
+
+
+.. py:function:: test_validate_and_set_with_complex_types()
+
+   Test the validate_and_set function with a complex type like a dictionary to ensure it sets the value correctly.
+
+   :raises AssertionError: If validate_and_set fails to set a complex type like a dictionary.
+
+
+.. py:class:: CustomType
+
+
+
+.. py:function:: test_validate_and_set_with_custom_object()
+
+   Test the validate_and_set function with a custom object to ensure it sets the value correctly.
+
+   :raises AssertionError: If validate_and_set fails to set a custom object type.
+
+

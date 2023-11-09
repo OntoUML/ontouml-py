@@ -1,0 +1,43 @@
+:py:mod:`ontouml_py.classes.ontoumlelement`
+===========================================
+
+.. py:module:: ontouml_py.classes.ontoumlelement
+
+.. autoapi-nested-parse::
+
+   This module provides the abstract base class for OntoUML elements, defining a common structure and initialization behavior for all elements within an OntoUML model.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.ontoumlelement.OntoumlElement
+
+
+
+
+.. py:class:: OntoumlElement(created = datetime.now(), modified = None)
+
+
+   Bases: :py:obj:`abc.ABC`
+
+   An abstract base class that represents a generic element within an OntoUML model.
+
+   This class provides a common interface for OntoUML elements, including unique identifier generation and timestamp
+   management for creation and modification times. It is not meant to be instantiated directly but rather extended
+   by more specific element types.
+
+   :ivar _id: A unique identifier for the element, intended to be read-only.
+   :vartype _id: uuid.UUID
+   :ivar created: A timestamp marking when the element was created.
+   :vartype created: datetime
+   :ivar modified: An optional timestamp marking when the element was last modified.
+   :vartype modified: datetime, optional
+
+

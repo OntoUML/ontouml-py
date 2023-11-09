@@ -1,0 +1,46 @@
+:py:mod:`ontouml_py.utils.utils`
+================================
+
+.. py:module:: ontouml_py.utils.utils
+
+.. autoapi-nested-parse::
+
+   This utility module contains a collection of helper functions that provide common functionality used throughout the application. These functions are designed to be generic and reusable across various parts of the codebase.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.utils.utils.is_valid_list
+   ontouml_py.utils.utils.validate_and_set
+
+
+
+.. py:function:: is_valid_list(item, inner_type)
+
+   Recursively checks if all elements in a list are of the specified inner_type.
+
+   :param item: The item to be checked, can be a list or a single element.
+   :param inner_type: The type that items in the list are expected to be.
+   :return: True if all elements are of the inner_type, False otherwise.
+
+
+.. py:function:: validate_and_set(instance, attr_name, att_value, attr_type, optional = True)
+
+   Securely sets the attribute value of an instance after type checking.
+
+   :param instance: The instance of the object on which the attribute will be set.
+   :param attr_name: The name of the attribute to set.
+   :param att_value: The value to be assigned to the attribute.
+   :param attr_type: The type the attribute should be. Can be a type or a list of types.
+   :param optional: Specifies if the attribute is optional (can be None).
+   :raises TypeError: If the value is not of the expected type.
+
+

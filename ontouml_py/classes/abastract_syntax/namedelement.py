@@ -1,3 +1,11 @@
+"""Module for the abstract NamedElement class within an OntoUML model.
+
+This module defines the NamedElement class, which is an abstract class designed to represent elements with names in an
+OntoUML model. It extends the OntoumlElement class and includes additional attributes and validation for managing
+named elements' details such as their preferred name, alternative names, descriptions, editorial notes, as well as
+lists of creators and contributors.
+"""
+
 import datetime
 from abc import abstractmethod
 
@@ -17,27 +25,32 @@ class NamedElement(OntoumlElement):
     :ivar altNames: A list of alternative names for the element, each represented as a LangString object.
     :ivar description: A LangString object representing the description of the element.
     :ivar editorialNotes: A LangString object containing editorial notes associated with the element.
+    :ivar creators: A list of URIs represented as strings identifying the creators of the element.
+    :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
+
     """
 
     @abstractmethod
     def __init__(
-            self,
-            # Inherited attributes
-            created: datetime = None,
-            modified: datetime = None,
-            # Class's attributes
-            prefName: LangString = None,
-            altNames: list[LangString] = None,
-            description: LangString = None,
-            editorialNotes: LangString = None,
+        self,
+        # Inherited attributes
+        created: datetime = None,
+        modified: datetime = None,
+        # Class's attributes
+        prefName: LangString = None,
+        altNames: list[LangString] = None,
+        description: LangString = None,
+        editorialNotes: LangString = None,
+        creators: list[str] = None,
+        contributors: list[str] = None,
     ):
-        """Initializes a new NamedElement instance, ensuring proper initialization of attributes with validation.
+        """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
 
-        :param created: The datetime instance representing when the element was created. If not provided, the
-                        current time is used by default.
+        :param created: The datetime instance representing when the element was created. If not provided, the current
+        time is used by default.
         :type created: Optional[datetime], optional
         :param modified: The datetime instance representing when the element was last modified. This is optional and
-                         can be left as None if the element has not been modified.
+        can be left as None if the element has not been modified.
         :type modified: Optional[datetime], optional
         :param prefName: The preferred name of the element, represented as a LangString object.
         :type prefName: Optional[LangString], optional
@@ -47,6 +60,10 @@ class NamedElement(OntoumlElement):
         :type description: Optional[LangString], optional
         :param editorialNotes: A LangString object containing editorial notes associated with the element.
         :type editorialNotes: Optional[LangString], optional
+        :param creators: A list of strings representing the URIs of the creators of the element.
+        :type creators: Optional[List[str]], optional
+        :param contributors: A list of strings representing the URIs of the contributors to the element.
+        :type contributors: Optional[List[str]], optional
         """
         # Allows the initialization of the created attribute without overwriting the default value.
         if created is None:
@@ -58,3 +75,5 @@ class NamedElement(OntoumlElement):
         validate_and_set(self, "altNames", altNames, list[LangString])
         validate_and_set(self, "description", description, LangString)
         validate_and_set(self, "editorialNotes", editorialNotes, LangString)
+        validate_and_set(self, "creators", creators, list[str])
+        validate_and_set(self, "contributors", contributors, list[str])

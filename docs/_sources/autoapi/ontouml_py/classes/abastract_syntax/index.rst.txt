@@ -1,0 +1,15 @@
+:py:mod:`ontouml_py.classes.abastract_syntax`
+=============================================
+
+.. py:module:: ontouml_py.classes.abastract_syntax
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   namedelement/index.rst
+
+
