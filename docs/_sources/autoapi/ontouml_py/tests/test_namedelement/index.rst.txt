@@ -22,15 +22,15 @@ Functions
 .. autoapisummary::
 
    ontouml_py.tests.test_namedelement.test_namedelement_initialization
-   ontouml_py.tests.test_namedelement.test_namedelement_prefName_initialization
-   ontouml_py.tests.test_namedelement.test_namedelement_altNames_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation
    ontouml_py.tests.test_namedelement.test_namedelement_description_editorialNotes_initialization
    ontouml_py.tests.test_namedelement.test_namedelement_default_created_time
    ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types
-   ontouml_py.tests.test_namedelement.test_namedelement_invalid_altNames_values
+   ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values
    ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none
    ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes
-   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_altNames
+   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names
    ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes
    ontouml_py.tests.test_namedelement.test_namedelement_creators_validation
    ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation
@@ -38,7 +38,7 @@ Functions
 
 
 
-.. py:class:: NamedElementStub(created = None, modified = None, prefName = None, altNames = None, description = None, editorialNotes = None, creators = None, contributors = None)
+.. py:class:: NamedElementStub(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorialNotes = None, creators = None, contributors = None)
 
 
    Bases: :py:obj:`ontouml_py.classes.abastract_syntax.namedelement.NamedElement`
@@ -55,19 +55,19 @@ Functions
    :param expected_created: The expected value of the 'created' attribute after initialization.
 
 
-.. py:function:: test_namedelement_prefName_initialization(prefName)
+.. py:function:: test_namedelement_pref_name_initialization(pref_name)
 
-   Test the initialization of NamedElementStub, ensuring it sets the 'prefName' attribute correctly.
+   Test the initialization of NamedElementStub, ensuring it sets the 'pref_name' attribute correctly.
 
-   :param prefName: The preferred name of the element, as a LangString object.
+   :param pref_name: The preferred name of the element, as a LangString object.
 
 
-.. py:function:: test_namedelement_altNames_validation(altNames, is_valid)
+.. py:function:: test_namedelement_alt_names_validation(alt_names, is_valid)
 
-   Test the validation of 'altNames' attribute during the initialization of NamedElementStub.
+   Test the validation of 'alt_names' attribute during the initialization of NamedElementStub.
 
-   :param altNames: A list of alternative names or None.
-   :param is_valid: Boolean indicating whether the 'altNames' is valid or not.
+   :param alt_names: A list of alternative names or None.
+   :param is_valid: Boolean indicating whether the 'alt_names' is valid or not.
 
 
 .. py:function:: test_namedelement_description_editorialNotes_initialization(description, editorialNotes)
@@ -91,11 +91,11 @@ Functions
    :param invalid_value: An invalid value for the attribute.
 
 
-.. py:function:: test_namedelement_invalid_altNames_values(invalid_altNames)
+.. py:function:: test_namedelement_invalid_alt_names_values(invalid_alt_names)
 
-   Test the initialization of NamedElementStub with invalid values for 'altNames'.
+   Test the initialization of NamedElementStub with invalid values for 'alt_names'.
 
-   :param invalid_altNames: An invalid value for the 'altNames' list.
+   :param invalid_alt_names: An invalid value for the 'alt_names' list.
 
 
 .. py:function:: test_namedelement_attributes_set_as_none(attr_name)
@@ -113,11 +113,11 @@ Functions
    :param edge_case_value: An edge case LangString value for the attribute.
 
 
-.. py:function:: test_namedelement_edge_cases_for_altNames(edge_case_altNames)
+.. py:function:: test_namedelement_edge_cases_for_alt_names(edge_case_alt_names)
 
-   Test the initialization of NamedElementStub with edge case values for 'altNames' list.
+   Test the initialization of NamedElementStub with edge case values for 'alt_names' list.
 
-   :param edge_case_altNames: An edge case list of LangString objects for 'altNames'.
+   :param edge_case_alt_names: An edge case list of LangString objects for 'alt_names'.
 
 
 .. py:function:: test_namedelement_edge_cases_for_datetime_attributes(created, modified)

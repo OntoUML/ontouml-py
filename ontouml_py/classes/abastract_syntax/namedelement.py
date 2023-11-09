@@ -21,8 +21,8 @@ class NamedElement(OntoumlElement):
     The class provides functionality for managing named elements, including their preferred name, alternative names,
     descriptions, and editorial notes.
 
-    :ivar prefName: The preferred name of the element, represented as a LangString object.
-    :ivar altNames: A list of alternative names for the element, each represented as a LangString object.
+    :ivar pref_name: The preferred name of the element, represented as a LangString object.
+    :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
     :ivar description: A LangString object representing the description of the element.
     :ivar editorialNotes: A LangString object containing editorial notes associated with the element.
     :ivar creators: A list of URIs represented as strings identifying the creators of the element.
@@ -37,8 +37,8 @@ class NamedElement(OntoumlElement):
         created: datetime = None,
         modified: datetime = None,
         # Class's attributes
-        prefName: LangString = None,
-        altNames: list[LangString] = None,
+        pref_name: LangString = None,
+        alt_names: list[LangString] = None,
         description: LangString = None,
         editorialNotes: LangString = None,
         creators: list[str] = None,
@@ -52,10 +52,10 @@ class NamedElement(OntoumlElement):
         :param modified: The datetime instance representing when the element was last modified. This is optional and
         can be left as None if the element has not been modified.
         :type modified: Optional[datetime], optional
-        :param prefName: The preferred name of the element, represented as a LangString object.
-        :type prefName: Optional[LangString], optional
-        :param altNames: A list of alternative names for the element, each represented as a LangString object.
-        :type altNames: Optional[List[LangString]], optional
+        :param pref_name: The preferred name of the element, represented as a LangString object.
+        :type pref_name: Optional[LangString], optional
+        :param alt_names: A list of alternative names for the element, each represented as a LangString object.
+        :type alt_names: Optional[List[LangString]], optional
         :param description: A LangString object representing the description of the element.
         :type description: Optional[LangString], optional
         :param editorialNotes: A LangString object containing editorial notes associated with the element.
@@ -71,8 +71,8 @@ class NamedElement(OntoumlElement):
         else:
             super().__init__(created=created, modified=modified)
 
-        validate_and_set(self, "prefName", prefName, LangString)
-        validate_and_set(self, "altNames", altNames, list[LangString])
+        validate_and_set(self, "pref_name", pref_name, LangString)
+        validate_and_set(self, "alt_names", alt_names, list[LangString])
         validate_and_set(self, "description", description, LangString)
         validate_and_set(self, "editorialNotes", editorialNotes, LangString)
         validate_and_set(self, "creators", creators, list[str])

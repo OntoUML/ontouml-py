@@ -14,14 +14,14 @@ class NamedElementStub(NamedElement):
         self,
         created: Optional[datetime.datetime] = None,
         modified: Optional[datetime.datetime] = None,
-        prefName: Optional[LangString] = None,
-        altNames: Optional[List[LangString]] = None,
+        pref_name: Optional[LangString] = None,
+        alt_names: Optional[List[LangString]] = None,
         description: Optional[LangString] = None,
         editorialNotes: Optional[LangString] = None,
         creators: Optional[List[str]] = None,
         contributors: Optional[List[str]] = None,
     ):
-        super().__init__(created, modified, prefName, altNames, description, editorialNotes, creators, contributors)
+        super().__init__(created, modified, pref_name, alt_names, description, editorialNotes, creators, contributors)
 
 
 # Test cases
@@ -50,43 +50,43 @@ def test_namedelement_initialization(
 
 
 @pytest.mark.parametrize(
-    "prefName",
+    "pref_name",
     [
         (LangString("Test Name")),
     ],
 )
-def test_namedelement_prefName_initialization(prefName: LangString) -> None:
-    """Test the initialization of NamedElementStub, ensuring it sets the 'prefName' attribute correctly.
+def test_namedelement_pref_name_initialization(pref_name: LangString) -> None:
+    """Test the initialization of NamedElementStub, ensuring it sets the 'pref_name' attribute correctly.
 
-    :param prefName: The preferred name of the element, as a LangString object.
+    :param pref_name: The preferred name of the element, as a LangString object.
     """
-    element = NamedElementStub(prefName=prefName)
-    assert element.prefName == prefName, "The 'prefName' should be set correctly during initialization"
+    element = NamedElementStub(pref_name=pref_name)
+    assert element.pref_name == pref_name, "The 'pref_name' should be set correctly during initialization"
 
 
-# Test the validation logic for 'altNames'
+# Test the validation logic for 'alt_names'
 @pytest.mark.parametrize(
-    "altNames, is_valid",
+    "alt_names, is_valid",
     [
         ([LangString("Alternative Name 1"), LangString("Alternative Name 2")], True),
         ([], True),
         # Testing empty list of alternative names
-        (None, True),  # Testing 'None' as a value for 'altNames'
+        (None, True),  # Testing 'None' as a value for 'alt_names'
         ([123, "Invalid LangString"], False),  # Testing invalid list contents
     ],
 )
-def test_namedelement_altNames_validation(altNames: Optional[List[LangString]], is_valid: bool) -> None:
-    """Test the validation of 'altNames' attribute during the initialization of NamedElementStub.
+def test_namedelement_alt_names_validation(alt_names: Optional[List[LangString]], is_valid: bool) -> None:
+    """Test the validation of 'alt_names' attribute during the initialization of NamedElementStub.
 
-    :param altNames: A list of alternative names or None.
-    :param is_valid: Boolean indicating whether the 'altNames' is valid or not.
+    :param alt_names: A list of alternative names or None.
+    :param is_valid: Boolean indicating whether the 'alt_names' is valid or not.
     """
     if is_valid:
-        element = NamedElementStub(altNames=altNames)
-        assert element.altNames == altNames, "The 'altNames' should be set correctly when valid"
+        element = NamedElementStub(alt_names=alt_names)
+        assert element.alt_names == alt_names, "The 'alt_names' should be set correctly when valid"
     else:
         with pytest.raises(TypeError):
-            NamedElementStub(altNames=altNames)
+            NamedElementStub(alt_names=alt_names)
 
 
 # Test the setting and validation logic for 'description' and 'editorialNotes'
@@ -125,11 +125,11 @@ def test_namedelement_default_created_time() -> None:
     ), "The 'created' attribute should be very close to the current time"
 
 
-# Test invalid argument types for 'prefName', 'description', and 'editorialNotes'
+# Test invalid argument types for 'pref_name', 'description', and 'editorialNotes'
 @pytest.mark.parametrize(
     "attr_name, invalid_value",
     [
-        ("prefName", "Invalid type"),  # Non-LangString type for 'prefName'
+        ("pref_name", "Invalid type"),  # Non-LangString type for 'pref_name'
         ("description", 123),  # Non-LangString type for 'description'
         ("editorialNotes", [LangString("Note")]),  # Non-LangString type for 'editorialNotes'
     ],
@@ -144,29 +144,29 @@ def test_namedelement_invalid_argument_types(attr_name: str, invalid_value) -> N
         NamedElementStub(**{attr_name: invalid_value})
 
 
-# Test invalid argument values for 'altNames'
+# Test invalid argument values for 'alt_names'
 @pytest.mark.parametrize(
-    "invalid_altNames",
+    "invalid_alt_names",
     [
         ("Invalid type"),  # Single non-LangString type in list
         (["Valid", 123, "Invalid"]),  # Mixed types, with invalid entries
         (123),  # Non-list type
     ],
 )
-def test_namedelement_invalid_altNames_values(invalid_altNames) -> None:
-    """Test the initialization of NamedElementStub with invalid values for 'altNames'.
+def test_namedelement_invalid_alt_names_values(invalid_alt_names) -> None:
+    """Test the initialization of NamedElementStub with invalid values for 'alt_names'.
 
-    :param invalid_altNames: An invalid value for the 'altNames' list.
+    :param invalid_alt_names: An invalid value for the 'alt_names' list.
     """
     with pytest.raises((TypeError, ValueError)):
-        NamedElementStub(altNames=invalid_altNames)
+        NamedElementStub(alt_names=invalid_alt_names)
 
 
 # Test for attributes set as None to verify that they are allowed and handled correctly
 @pytest.mark.parametrize(
     "attr_name",
     [
-        ("prefName"),
+        ("pref_name"),
         ("description"),
         ("editorialNotes"),
     ],
@@ -180,11 +180,11 @@ def test_namedelement_attributes_set_as_none(attr_name: str) -> None:
     assert getattr(element, attr_name) is None, f"The '{attr_name}' attribute should be allowed to be set as None"
 
 
-# Test edge cases for 'prefName', 'description', and 'editorialNotes' with unusual but valid inputs
+# Test edge cases for 'pref_name', 'description', and 'editorialNotes' with unusual but valid inputs
 @pytest.mark.parametrize(
     "attr_name, edge_case_value",
     [
-        ("prefName", LangString("")),  # Empty string in LangString for 'prefName'
+        ("pref_name", LangString("")),  # Empty string in LangString for 'pref_name'
         ("description", LangString(" ")),  # Whitespace string in LangString for 'description'
         ("editorialNotes", LangString("\n")),  # Newline character in LangString for 'editorialNotes'
     ],
@@ -201,22 +201,22 @@ def test_namedelement_edge_cases_for_langstring_attributes(attr_name: str, edge_
     ), f"The '{attr_name}' attribute should handle edge case LangString values"
 
 
-# Test edge cases for 'altNames' with unusual but valid inputs
+# Test edge cases for 'alt_names' with unusual but valid inputs
 @pytest.mark.parametrize(
-    "edge_case_altNames",
+    "edge_case_alt_names",
     [
         ([LangString("")]),  # List with empty string LangString
         ([LangString(" "), LangString("\t")]),  # List with whitespace and tab characters in LangString
         ([LangString("Name")] * 100),  # List with a large number of the same LangString
     ],
 )
-def test_namedelement_edge_cases_for_altNames(edge_case_altNames: List[LangString]) -> None:
-    """Test the initialization of NamedElementStub with edge case values for 'altNames' list.
+def test_namedelement_edge_cases_for_alt_names(edge_case_alt_names: List[LangString]) -> None:
+    """Test the initialization of NamedElementStub with edge case values for 'alt_names' list.
 
-    :param edge_case_altNames: An edge case list of LangString objects for 'altNames'.
+    :param edge_case_alt_names: An edge case list of LangString objects for 'alt_names'.
     """
-    element = NamedElementStub(altNames=edge_case_altNames)
-    assert element.altNames == edge_case_altNames, "The 'altNames' attribute should handle edge case lists"
+    element = NamedElementStub(alt_names=edge_case_alt_names)
+    assert element.alt_names == edge_case_alt_names, "The 'alt_names' attribute should handle edge case lists"
 
 
 # Test initialization with edge case datetime values
