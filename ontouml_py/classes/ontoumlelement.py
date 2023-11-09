@@ -4,7 +4,7 @@ import uuid
 from abc import abstractmethod, ABC
 from datetime import datetime
 
-from ontouml_py.utils.utils import secure_set
+from ontouml_py.utils.utils import validate_and_set
 
 
 class OntoumlElement(ABC):
@@ -44,10 +44,10 @@ class OntoumlElement(ABC):
         self._id: uuid.UUID = uuid.uuid4()
 
         # CREATED ATTRIBUTE
-        secure_set(self, "created", created, datetime, False)
+        validate_and_set(self, "created", created, datetime, False)
 
         # MODIFIED ATTRIBUTE
-        secure_set(self, "modified", modified, datetime)
+        validate_and_set(self, "modified", modified, datetime)
         if modified and created and modified < created:
             raise ValueError(f"The 'modified' datetime must be later than the 'created' datetime ({created}).")
 

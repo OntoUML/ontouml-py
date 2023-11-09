@@ -3,7 +3,7 @@ import datetime
 from langstring_lib.langstring import LangString
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
-from ontouml_py.utils.utils import secure_set
+from ontouml_py.utils.utils import validate_and_set
 
 
 class NamedElement(OntoumlElement):
@@ -24,7 +24,7 @@ class NamedElement(OntoumlElement):
         else:
             super().__init__(created=created, modified=modified)
 
-        secure_set(self, "prefName", prefName, LangString)
-        secure_set(self, "altNames", altNames, list[LangString])
-        secure_set(self, "description", description, LangString)
-        secure_set(self, "editorialNotes", editorialNotes, LangString)
+        validate_and_set(self, "prefName", prefName, LangString)
+        validate_and_set(self, "altNames", altNames, list[LangString])
+        validate_and_set(self, "description", description, LangString)
+        validate_and_set(self, "editorialNotes", editorialNotes, LangString)
