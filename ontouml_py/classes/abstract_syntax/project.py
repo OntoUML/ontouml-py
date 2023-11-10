@@ -35,6 +35,7 @@ class Project(NamedElement):
     :ivar designed_for_task: A list of strings representing tasks the project is designed for.
     :ivar publisher: A string representing the publisher of the project.
     """
+
     # TODO (@pedropaulofb): add attribute representation_style, root
     def __init__(
         self,  # INHERITED ATTRIBUTES
@@ -151,6 +152,7 @@ class Project(NamedElement):
         validate_and_set(self, "designed_for_task", designed_for_task, list[str])
         validate_and_set(self, "publisher", publisher, str)
 
+
 x = Project(themes="a")
-x.themes="b"
-x.themes=1
+x.themes = "b"
+x.themes = 1

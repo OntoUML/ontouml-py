@@ -17,10 +17,10 @@ class OntoumlElementStub(OntoumlElement):
         # Implement abstract methods or set properties required by the OntoumlElement class.
         pass
 
+
 def create_ontoumlelement() -> OntoumlElementStub:
     """Create and return an instance of OntoumlElementStub."""
     return OntoumlElementStub()
-
 
 
 @pytest.fixture
@@ -28,13 +28,16 @@ def valid_langstring_list() -> list[LangString]:
     """Provide a list of valid LangString objects for testing."""
     return [create_langstring("Keyword1"), create_langstring("Keyword2")]
 
+
 @pytest.fixture
 def valid_ontoumlelement_list() -> list[OntoumlElementStub]:
     """Provide a list of valid OntoumlElementStub objects for testing."""
     return [OntoumlElementStub(), OntoumlElementStub()]
 
-def test_project_initialization(valid_langstring_list: list[LangString],
-                                valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+
+def test_project_initialization(
+    valid_langstring_list: list[LangString], valid_ontoumlelement_list: list[OntoumlElementStub]
+) -> None:
     """Test the successful initialization of a Project instance.
 
     :param valid_langstring_list: A list of LangString objects to be used for 'keywords' and 'editorial_notes'.
@@ -64,7 +67,7 @@ def test_project_initialization(valid_langstring_list: list[LangString],
         license="CC BY 4.0",
         contexts=["Context1", "Context2"],
         designed_for_task=["Task1", "Task2"],
-        publisher="Publisher Name"
+        publisher="Publisher Name",
     )
 
     assert project.created == current_time, "Project should have the correct 'created' datetime."
@@ -73,13 +76,25 @@ def test_project_initialization(valid_langstring_list: list[LangString],
     assert project.alt_names == valid_langstring_list, "Project should have the correct 'alt_names'."
     assert project.description.text == "Project Description", "Project should have the correct 'description'."
     assert project.editorial_notes == valid_langstring_list, "Project should have the correct 'editorial_notes'."
-    assert project.creators == ["http://creator1.com", "http://creator2.com"], "Project should have the correct 'creators'."
-    assert project.contributors == ["http://contributor1.com", "http://contributor2.com"], "Project should have the correct 'contributors'."
+    assert project.creators == [
+        "http://creator1.com",
+        "http://creator2.com",
+    ], "Project should have the correct 'creators'."
+    assert project.contributors == [
+        "http://contributor1.com",
+        "http://contributor2.com",
+    ], "Project should have the correct 'contributors'."
     assert project.elements == valid_ontoumlelement_list, "Project should have the correct 'elements'."
     assert project.acronyms == ["P1", "P2"], "Project should have the correct 'acronyms'."
-    assert project.bibliographic_citations == ["Citation1", "Citation2"], "Project should have the correct 'bibliographic_citations'."
+    assert project.bibliographic_citations == [
+        "Citation1",
+        "Citation2",
+    ], "Project should have the correct 'bibliographic_citations'."
     assert project.keywords == valid_langstring_list, "Project should have the correct 'keywords'."
-    assert project.landing_pages == ["http://landingpage1.com", "http://landingpage2.com"], "Project should have the correct 'landing_pages'."
+    assert project.landing_pages == [
+        "http://landingpage1.com",
+        "http://landingpage2.com",
+    ], "Project should have the correct 'landing_pages'."
     assert project.languages == ["en", "pt"], "Project should have the correct 'languages'."
     assert project.namespace == "http://example.org/ns", "Project should have the correct 'namespace'."
     assert project.sources == ["http://source1.com", "http://source2.com"], "Project should have the correct 'sources'."
@@ -91,9 +106,9 @@ def test_project_initialization(valid_langstring_list: list[LangString],
     assert project.designed_for_task == ["Task1", "Task2"], "Project should have the correct 'designed_for_task'."
     assert project.publisher == "Publisher Name", "Project should have the correct 'publisher'."
 
+
 def test_project_initialization_with_invalid_types() -> None:
-    """Test the initialization of Project with invalid types to ensure it raises TypeErrors.
-    """
+    """Test the initialization of Project with invalid types to ensure it raises TypeErrors."""
     with pytest.raises(TypeError):
         Project(pref_name="Not a LangString")  # Invalid type for 'pref_name'
 
@@ -163,7 +178,9 @@ def test_project_empty_lists_handling() -> None:
     assert project.contributors == [], "Attribute 'contributors' should handle being set to an empty list."
     assert project.elements == [], "Attribute 'elements' should handle being set to an empty list."
     assert project.acronyms == [], "Attribute 'acronyms' should handle being set to an empty list."
-    assert project.bibliographic_citations == [], "Attribute 'bibliographic_citations' should handle being set to an empty list."
+    assert (
+        project.bibliographic_citations == []
+    ), "Attribute 'bibliographic_citations' should handle being set to an empty list."
     assert project.keywords == [], "Attribute 'keywords' should handle being set to an empty list."
     assert project.landing_pages == [], "Attribute 'landing_pages' should handle being set to an empty list."
     assert project.languages == [], "Attribute 'languages' should handle being set to an empty list."
@@ -185,11 +202,7 @@ def test_project_non_list_attributes() -> None:
     publisher = "Example Publisher"
 
     project = Project(
-        pref_name=pref_name,
-        description=description,
-        namespace=namespace,
-        license=license,
-        publisher=publisher
+        pref_name=pref_name, description=description, namespace=namespace, license=license, publisher=publisher
     )
 
     assert project.pref_name == pref_name, "The 'pref_name' should be set and retrieved correctly."
@@ -197,6 +210,7 @@ def test_project_non_list_attributes() -> None:
     assert project.namespace == namespace, "The 'namespace' should be set and retrieved correctly."
     assert project.license == license, "The 'license' should be set and retrieved correctly."
     assert project.publisher == publisher, "The 'publisher' should be set and retrieved correctly."
+
 
 # Test that incorrect types for non-list attributes raise TypeErrors
 def test_project_non_list_attributes_type_errors() -> None:
@@ -209,6 +223,7 @@ def test_project_non_list_attributes_type_errors() -> None:
 
     with pytest.raises(TypeError):
         Project(publisher=5.5)  # publisher should be a string
+
 
 # Ensure datetime attributes are handled correctly
 def test_project_datetime_attributes() -> None:
@@ -227,8 +242,7 @@ def test_project_datetime_attributes() -> None:
 
 # Test that providing None for optional list attributes does not raise errors
 def test_project_none_for_optional_list_attributes() -> None:
-    """Test that providing None for optional list attributes sets them to None without error.
-    """
+    """Test that providing None for optional list attributes sets them to None without error."""
     project = Project(
         pref_name=create_langstring("Test None Lists"),
         alt_names=None,
@@ -255,7 +269,9 @@ def test_project_none_for_optional_list_attributes() -> None:
     assert project.contributors is None, "Optional list attribute 'contributors' should accept None."
     assert project.elements is None, "Optional list attribute 'elements' should accept None."
     assert project.acronyms is None, "Optional list attribute 'acronyms' should accept None."
-    assert project.bibliographic_citations is None, "Optional list attribute 'bibliographic_citations' should accept None."
+    assert (
+        project.bibliographic_citations is None
+    ), "Optional list attribute 'bibliographic_citations' should accept None."
     assert project.keywords is None, "Optional list attribute 'keywords' should accept None."
     assert project.landing_pages is None, "Optional list attribute 'landing_pages' should accept None."
     assert project.languages is None, "Optional list attribute 'languages' should accept None."
@@ -270,16 +286,10 @@ def test_project_none_for_optional_list_attributes() -> None:
 # Test handling of empty strings for attributes that are strings
 def test_project_empty_strings_for_string_attributes() -> None:
     """Test that providing empty strings for string attributes does not raise errors."""
-    project = Project(
-        pref_name=create_langstring("Test Empty Strings"),
-        namespace="",
-        license="",
-        publisher=""
-    )
+    project = Project(pref_name=create_langstring("Test Empty Strings"), namespace="", license="", publisher="")
     assert project.namespace == "", "String attribute 'namespace' should accept an empty string."
     assert project.license == "", "String attribute 'license' should accept an empty string."
     assert project.publisher == "", "String attribute 'publisher' should accept an empty string."
-
 
 
 # Test that providing invalid values for string attributes raises TypeErrors
@@ -294,11 +304,13 @@ def test_project_invalid_values_for_string_attributes() -> None:
     with pytest.raises(TypeError):
         Project(publisher=True)  # Invalid type, expecting a string
 
+
 # Test that providing None for optional attributes does not raise errors
 def test_project_none_for_optional_attributes() -> None:
     """Test that providing None for optional attributes sets them correctly without error."""
     project = Project(pref_name=None)  # Assuming pref_name is optional and can be None
     assert project.pref_name is None, "Optional attribute 'pref_name' should accept None."
+
 
 # Test providing invalid non-None values for optional attributes
 def test_project_invalid_non_none_values_for_optional_attributes() -> None:
@@ -312,10 +324,10 @@ def test_project_invalid_non_none_values_for_optional_attributes() -> None:
     with pytest.raises(TypeError):
         Project(license=False)  # Invalid type, expecting a string or None
 
+
 # Test providing invalid values for list attributes
 def test_project_invalid_values_for_list_attributes() -> None:
-    """Test that providing invalid values for list attributes raises TypeErrors.
-    """
+    """Test that providing invalid values for list attributes raises TypeErrors."""
     with pytest.raises(TypeError):
         Project(alt_names="Not a list")  # Invalid type, expecting a list of LangString or None
 
@@ -325,83 +337,70 @@ def test_project_invalid_values_for_list_attributes() -> None:
     with pytest.raises(TypeError):
         Project(editorial_notes=[123])  # Invalid type inside list, expecting a list of LangString
 
+
 # Test providing mixed valid and invalid values in list attributes
 def test_project_mixed_values_in_list_attributes() -> None:
-    """Test that providing mixed valid and invalid values in list attributes raises TypeErrors.
-    """
+    """Test that providing mixed valid and invalid values in list attributes raises TypeErrors."""
     with pytest.raises(TypeError):
-        Project(
-            editorial_notes=[create_langstring("Valid"), 123]  # Mixed types inside 'editorial_notes' list
-        )
+        Project(editorial_notes=[create_langstring("Valid"), 123])  # Mixed types inside 'editorial_notes' list
 
     with pytest.raises(TypeError):
-        Project(
-            creators=["http://validcreator.com", 456]  # Mixed types inside 'creators' list
-        )
+        Project(creators=["http://validcreator.com", 456])  # Mixed types inside 'creators' list
+
 
 # Test edge cases for string attributes like very long strings or unusual characters
 def test_project_string_attributes_edge_cases() -> None:
-    """Test edge cases for string attributes such as extremely long strings or strings with unusual characters.
-    """
+    """Test edge cases for string attributes such as extremely long strings or strings with unusual characters."""
     very_long_string = "x" * 10000
     unusual_chars_string = "\t\n\r\x0b\x0c"
 
-    project = Project(
-        namespace=very_long_string,
-        license=unusual_chars_string,
-        publisher=very_long_string
-    )
+    project = Project(namespace=very_long_string, license=unusual_chars_string, publisher=very_long_string)
 
     assert project.namespace == very_long_string, "String attribute 'namespace' should handle very long strings."
     assert project.license == unusual_chars_string, "String attribute 'license' should handle unusual characters."
     assert project.publisher == very_long_string, "String attribute 'publisher' should handle very long strings."
 
+
 # Test edge cases for datetime attributes like minimum and maximum possible dates
 def test_project_datetime_attributes_edge_cases() -> None:
-    """Test edge cases for datetime attributes such as minimum and maximum possible dates.
-    """
+    """Test edge cases for datetime attributes such as minimum and maximum possible dates."""
     min_datetime = datetime.min
     max_datetime = datetime.max
 
-    project = Project(
-        created=min_datetime,
-        modified=max_datetime
-    )
+    project = Project(created=min_datetime, modified=max_datetime)
 
     assert project.created == min_datetime, "Datetime attribute 'created' should handle minimum datetime."
     assert project.modified == max_datetime, "Datetime attribute 'modified' should handle maximum datetime."
 
+
 # Test edge cases for list attributes like very large lists or lists with mixed types
 def test_project_list_attributes_edge_cases() -> None:
-    """Test edge cases for list attributes such as very large lists or lists with mixed types.
-    """
+    """Test edge cases for list attributes such as very large lists or lists with mixed types."""
     large_list = [create_langstring(f"Keyword{i}") for i in range(1000)]  # Large list of LangString objects
     mixed_types_list = [create_langstring("Valid"), "Invalid", 123]
 
     with pytest.raises(TypeError):
-        Project(
-            keywords=large_list,
-            editorial_notes=mixed_types_list  # Mixed types, should raise TypeError
-        )
+        Project(keywords=large_list, editorial_notes=mixed_types_list)  # Mixed types, should raise TypeError
 
     project = Project(keywords=large_list)
     assert project.keywords == large_list, "List attribute 'keywords' should handle very large lists."
 
+
 # Test handling of None in list attributes for scenarios where None might represent a lack of value
 def test_project_none_in_list_attributes_edge_cases() -> None:
-    """Test handling of None in list attributes for scenarios where None might represent a lack of value.
-    """
+    """Test handling of None in list attributes for scenarios where None might represent a lack of value."""
     list_with_none = [None, create_langstring("Valid")]
 
     with pytest.raises(TypeError):
         Project(keywords=list_with_none)  # List containing None, should raise TypeError
 
+
 # More edge case tests can be added to cover additional scenarios specific to the Project class.
+
 
 # Test edge cases for string attributes that are URIs or supposed to follow a specific format
 def test_project_string_format_edge_cases() -> None:
-    """Test edge cases for string attributes that should follow specific formats, like URIs.
-    """
+    """Test edge cases for string attributes that should follow specific formats, like URIs."""
     # These are not valid URIs but are being used to test the system's robustness against incorrect formats
     invalid_uri = "invalid_uri"
     project = Project(
@@ -409,7 +408,7 @@ def test_project_string_format_edge_cases() -> None:
         creators=[invalid_uri],
         contributors=[invalid_uri],
         landing_pages=[invalid_uri],
-        sources=[invalid_uri]
+        sources=[invalid_uri],
     )
     # Assert that the class can handle incorrect formats; this may vary depending on class constraints
     assert project.creators[0] == invalid_uri, "String URI attribute 'creators' should accept any string."
@@ -417,10 +416,10 @@ def test_project_string_format_edge_cases() -> None:
     assert project.landing_pages[0] == invalid_uri, "String URI attribute 'landing_pages' should accept any string."
     assert project.sources[0] == invalid_uri, "String URI attribute 'sources' should accept any string."
 
+
 # Test the resilience of the class against attributes with unexpected data types
 def test_project_unexpected_data_types_handling() -> None:
-    """Test the resilience of the class against attributes with unexpected data types.
-    """
+    """Test the resilience of the class against attributes with unexpected data types."""
     # Passing an integer where a list is expected
     with pytest.raises(TypeError):
         Project(elements=123)
@@ -433,12 +432,13 @@ def test_project_unexpected_data_types_handling() -> None:
     with pytest.raises(TypeError):
         Project(pref_name=["Not", "LangString"])
 
+
 def test_project_mixed_none_and_valid_values_handling() -> None:
     """Test that providing a list with mixed None and valid string values for list attributes raises TypeError."""
     with pytest.raises(TypeError, match="All elements in 'contributors' must be of type str."):
         Project(
             pref_name=create_langstring("Test Mixed None"),
-            contributors=[None, "http://validcontributor.com"]  # This should raise a TypeError
+            contributors=[None, "http://validcontributor.com"],  # This should raise a TypeError
         )
 
 
@@ -450,7 +450,7 @@ def test_project_large_string_values_handling() -> None:
         pref_name=create_langstring("Test Large String"),
         namespace=large_string,
         license=large_string,
-        publisher=large_string
+        publisher=large_string,
     )
     assert project.namespace == large_string, "String attribute 'namespace' should handle large string values."
     assert project.license == large_string, "String attribute 'license' should handle large string values."

@@ -1,147 +1,324 @@
-"""This module contains tests for the OntoumlElement class, ensuring that initialization and attribute access behave
-as expected.
-"""
 import uuid
 from datetime import datetime, timedelta
 
 import pytest
+from pydantic import ValidationError
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
 
 
-# Create a stub subclass just for testing purposes, as the OntoumlElement class is abstract.
-class StubOntoumlElement(OntoumlElement):
-    """A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.
+class ConcreteOntoumlElement(OntoumlElement):
+    """A concrete subclass of OntoumlElement for testing purposes."""
 
-    :ivar _id: The read-only unique identifier of the OntoumlElement.
-    :vartype _id: uuid.UUID
-    """
+    def __init__(self, **data) -> None:
+        """Initializes a new instance of ConcreteOntoumlElement.
 
-    def __init__(self, created: datetime = datetime.now(), modified: datetime = None):
-        """Initializes a new instance of StubOntoumlElement.
-
-        :param created: The creation time for the OntoumlElement, defaults to the current time.
-        :type created: datetime, optional
-        :param modified: The modification time for the OntoumlElement, defaults to None.
-        :type modified: datetime or None, optional
+        :param data: Fields to be set on the model instance.
+        :type data: dict
         """
-        super().__init__(created, modified)
-
-    @property
-    def id(self) -> uuid.UUID:
-        """Overrides the id property to directly access the protected _id attribute.
-
-        :return: The unique identifier of the OntoumlElement.
-        :rtype: uuid.UUID
-        """
-        return self._id  # Directly access the protected _id attribute.
+        super().__init__(**data)
 
 
 @pytest.fixture
-def stub_ontouml_element() -> StubOntoumlElement:
-    """Provides a fixture for creating a stub OntoumlElement instance for testing.
+def concrete_ontouml_element() -> ConcreteOntoumlElement:
+    """Provides a fixture for creating a concrete OntoumlElement instance for testing.
 
-    :return: An instance of the stub subclass of OntoumlElement.
-    :rtype: StubOntoumlElement
+    :return: An instance of ConcreteOntoumlElement.
+    :rtype: ConcreteOntoumlElement
     """
-    return StubOntoumlElement()
+    return ConcreteOntoumlElement()
 
 
-def test_ontouml_element_init(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
-    attributes are set appropriately.
+def test_ontouml_element_init(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test the initialization of a ConcreteOntoumlElement instance.
 
-     :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-     :type stub_ontouml_element: StubOntoumlElement
-     :raises AssertionError: If the id attribute is not an instance of uuid.UUID.
+    Ensures that the 'id' attribute is initialized as a UUID.
+
+    :param concrete_ontouml_element: A fixture instance of ConcreteOntoumlElement.
+    :type concrete_ontouml_element: ConcreteOntoumlElement
+    :raises AssertionError: If the 'id' attribute is not correctly initialized as a UUID.
     """
-    element = stub_ontouml_element
-    assert isinstance(element.id, uuid.UUID), "id attribute must be a UUID"
+    assert isinstance(concrete_ontouml_element.id, uuid.UUID), "The 'id' attribute must be initialized as a UUID."
 
 
-def test_invalid_created_argument_type():
-    """Test the initialization of a StubOntoumlElement with an invalid 'created' argument type to ensure it raises
-    a TypeError.
+def test_invalid_created_argument_type() -> None:
+    """Test passing an invalid 'created' argument type during initialization of ConcreteOntoumlElement.
+
+    :raises ValidationError: If a non-datetime value is passed for 'created'.
     """
-    with pytest.raises(TypeError, match=r"The 'created' argument must be a datetime, not str"):
-        # Pass incorrect type to 'created' to simulate a TypeError
-        StubOntoumlElement(created="not-a-datetime")
+    with pytest.raises(ValidationError, match=r"^1 validation error for ConcreteOntoumlElement\ncreated\n"):
+        ConcreteOntoumlElement(created="not-a-datetime")
 
 
-def test_invalid_modified_argument_type():
-    """Test the initialization of a StubOntoumlElement with an invalid 'modified' argument type to ensure it raises
-    a TypeError.
+def test_invalid_modified_argument_type() -> None:
+    """Test passing an invalid 'modified' argument type during initialization of ConcreteOntoumlElement.
+
+    :raises ValidationError: If a non-datetime value is passed for 'modified'.
     """
-    with pytest.raises(TypeError, match=r"The 'modified' argument must be a datetime, not str"):
-        # Pass incorrect type to 'modified' to simulate a TypeError
-        StubOntoumlElement(modified="not-a-datetime")
+    with pytest.raises(ValidationError, match=r"^1 validation error for ConcreteOntoumlElement\nmodified\n"):
+        ConcreteOntoumlElement(modified="not-a-datetime")
 
 
-def test_unknown_argument(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement with an unknown argument to ensure it raises a TypeError.
+def test_unknown_argument() -> None:
+    """Test passing an unknown argument during initialization of ConcreteOntoumlElement.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+    :raises TypeError: If an unexpected keyword argument is provided.
     """
-    with pytest.raises(TypeError, match="got an unexpected keyword argument 'unknown_arg'"):
-        # Pass an unknown keyword argument to simulate a TypeError
-        StubOntoumlElement(unknown_arg="value")
+    with pytest.raises(ValidationError, match="Extra inputs are not permitted"):
+        ConcreteOntoumlElement(unknown_arg="value")
 
 
-def test_none_argument(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement with None as an argument to ensure it handles None correctly.
+def test_none_argument_for_modified() -> None:
+    """Test passing None for the 'modified' attribute in ConcreteOntoumlElement.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+    Ensures None can be assigned to 'modified' without errors.
+
+    :raises AssertionError: If 'modified' cannot be set to None.
     """
-    # It's allowed to pass None for 'modified', but not for 'created' as per our class definition
-    element = StubOntoumlElement(modified=None)
-    assert element.modified is None, "modified attribute should accept None"
-
-    with pytest.raises(TypeError, match="The 'created' argument cannot be None."):
-        # Trying to pass None to 'created' should raise an error
-        StubOntoumlElement(created=None)
+    element = ConcreteOntoumlElement(modified=None)
+    assert element.modified is None, "The 'modified' attribute should accept None without errors."
 
 
-def test_creation_time_in_future(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement with a creation time set in the future to ensure it handles
-    future datetime correctly.
+def test_creation_time_in_future() -> None:
+    """Test setting a future datetime for the 'created' attribute in ConcreteOntoumlElement.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+    Ensures future datetime values are accepted for 'created'.
+
+    :raises AssertionError: If future datetime values are not accepted for 'created'.
     """
     future_time = datetime.now() + timedelta(days=1)
-    element = StubOntoumlElement(created=future_time)
-    assert element.created == future_time, "created attribute should handle future datetime values"
+    element = ConcreteOntoumlElement(created=future_time)
+    assert element.created == future_time, "Future datetime values should be accepted for the 'created' attribute."
 
 
-def test_modification_time_before_creation(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement with a modification time set before the creation time to
-    ensure logical consistency is maintained.
+def test_modification_time_before_creation() -> None:
+    """Test setting a modification time earlier than creation time in ConcreteOntoumlElement.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+    :raises ValidationError: If 'modified' is set to a datetime earlier than 'created'.
     """
     creation_time = datetime.now()
     past_time = creation_time - timedelta(days=1)
     with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime"):
-        StubOntoumlElement(created=creation_time, modified=past_time)
+        ConcreteOntoumlElement(created=creation_time, modified=past_time)
 
 
-def test_same_creation_and_modification_time(stub_ontouml_element: StubOntoumlElement):
-    """Test the initialization of a StubOntoumlElement with the same creation and modification time to ensure
-    it is handled appropriately.
+def test_same_creation_and_modification_time() -> None:
+    """Test setting the same creation and modification time in ConcreteOntoumlElement.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
+    Ensures that 'modified' can be the same as 'created' without errors.
+
+    :raises AssertionError: If 'modified' cannot be set to the same datetime as 'created'.
     """
     creation_time = datetime.now()
-    element = StubOntoumlElement(created=creation_time, modified=creation_time)
-    assert element.modified == creation_time, "modified attribute should be allowed to be the same as creation time"
+    element = ConcreteOntoumlElement(created=creation_time, modified=creation_time)
+    assert element.modified == creation_time, "The 'modified' attribute should be allowed to be the same as 'created'."
 
 
-def test_id_read_only(stub_ontouml_element: StubOntoumlElement):
-    """Test that the id attribute is read-only by attempting to assign a new value to it after instantiation."""
-    element = stub_ontouml_element
-    with pytest.raises(AttributeError):
-        element.id = uuid.uuid4()  # Attempting to reassign the 'id' attribute should raise an AttributeError
+def test_id_read_only(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test the immutability of the 'id' attribute in ConcreteOntoumlElement.
+
+    :raises ValueError: If attempting to modify the 'id' attribute after initialization.
+    """
+    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
+        concrete_ontouml_element.id = uuid.uuid4()
+
+
+def test_id_initialization_with_uuid() -> None:
+    """Test initializing the 'id' attribute with a UUID."""
+    custom_id = uuid.uuid4()
+    element = ConcreteOntoumlElement(id=custom_id)
+    assert element.id == custom_id, "The 'id' attribute should be initialized with the specified UUID."
+
+
+def test_id_read_only_post_initialization(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test that the 'id' attribute is read-only after initialization."""
+    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
+        concrete_ontouml_element.id = uuid.uuid4()
+
+
+def test_created_initialization_with_datetime() -> None:
+    """Test initializing the 'created' attribute with a specific datetime."""
+    custom_time = datetime(2020, 1, 1)
+    element = ConcreteOntoumlElement(created=custom_time)
+    assert element.created == custom_time, "The 'created' attribute should be initialized with the specified datetime."
+
+
+def test_created_read_only_post_initialization(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test that the 'created' attribute is read-only after initialization."""
+    with pytest.raises(ValueError, match="Attribute 'created' is read-only and cannot be modified."):
+        concrete_ontouml_element.created = datetime.now()
+
+
+def test_modified_initialization_with_valid_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test initializing the 'modified' attribute with a valid datetime greater than 'created'."""
+    modification_time = concrete_ontouml_element.created + timedelta(days=1)
+    concrete_ontouml_element.modified = modification_time
+    assert (
+        concrete_ontouml_element.modified == modification_time
+    ), "The 'modified' attribute should be set to the specified datetime."
+
+
+def test_modified_initialization_with_none(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test initializing the 'modified' attribute with None."""
+    concrete_ontouml_element.modified = None
+    assert concrete_ontouml_element.modified is None, "The 'modified' attribute should accept None."
+
+
+def test_modified_update_with_invalid_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test updating the 'modified' attribute with a datetime earlier than 'created'."""
+    earlier_time = concrete_ontouml_element.created - timedelta(days=1)
+    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+        concrete_ontouml_element.modified = earlier_time
+
+
+def test_modified_update_with_valid_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test updating the 'modified' attribute with a valid datetime greater than 'created'."""
+    later_time = concrete_ontouml_element.created + timedelta(days=1)
+    concrete_ontouml_element.modified = later_time
+    assert (
+        concrete_ontouml_element.modified == later_time
+    ), "The 'modified' attribute should be updated to the specified datetime."
+
+
+def test_id_initialization_with_non_uuid() -> None:
+    """Test initializing the 'id' attribute with a non-UUID value."""
+    with pytest.raises(ValidationError, match=r"Input should be a valid UUID"):
+        ConcreteOntoumlElement(id="non-uuid-value")
+
+
+def test_created_initialization_with_future_datetime() -> None:
+    """Test initializing the 'created' attribute with a future datetime."""
+    future_datetime = datetime.now() + timedelta(days=10)
+    element = ConcreteOntoumlElement(created=future_datetime)
+    assert element.created == future_datetime, "The 'created' attribute should accept future datetime values."
+
+
+def test_created_initialization_with_past_datetime() -> None:
+    """Test initializing the 'created' attribute with a past datetime."""
+    past_datetime = datetime.now() - timedelta(days=10)
+    element = ConcreteOntoumlElement(created=past_datetime)
+    assert element.created == past_datetime, "The 'created' attribute should accept past datetime values."
+
+
+def test_modified_initialization_with_same_as_created_datetime() -> None:
+    """Test initializing the 'modified' attribute with a datetime equal to 'created'."""
+    current_time = datetime.now()
+    element = ConcreteOntoumlElement(created=current_time, modified=current_time)
+    assert element.modified == current_time, "The 'modified' attribute should accept datetime equal to 'created'."
+
+
+def test_modified_update_to_none_post_initialization(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test updating the 'modified' attribute to None after initialization."""
+    concrete_ontouml_element.modified = None
+    assert concrete_ontouml_element.modified is None, (
+        "The 'modified' attribute should be settable to None " "after initialization."
+    )
+
+
+def test_modified_update_to_future_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test updating the 'modified' attribute to a future datetime."""
+    future_datetime = datetime.now() + timedelta(days=5)
+    concrete_ontouml_element.modified = future_datetime
+    assert concrete_ontouml_element.modified == future_datetime, (
+        "The 'modified' attribute should accept " "future datetime values."
+    )
+
+
+def test_modified_update_to_past_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test updating the 'modified' attribute to a past datetime earlier than 'created'."""
+    past_datetime = concrete_ontouml_element.created - timedelta(days=1)
+    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+        concrete_ontouml_element.modified = past_datetime
+
+
+def test_modified_initialization_with_invalid_type() -> None:
+    """Test initializing the 'modified' attribute with an invalid type."""
+    with pytest.raises(ValidationError):
+        ConcreteOntoumlElement(modified="not-a-datetime")
+
+
+def test_default_values_for_created_and_modified() -> None:
+    """Test the default values for 'created' and 'modified' attributes."""
+    element = ConcreteOntoumlElement()
+    assert isinstance(element.created, datetime), (
+        "The 'created' attribute should have a default value of the " "current datetime."
+    )
+    assert element.modified is None, "The 'modified' attribute should have a default value of None."
+
+
+def test_future_dates_for_created_and_modified() -> None:
+    """Test setting future datetime values for 'created' and 'modified' attributes."""
+    future_datetime = datetime.now() + timedelta(days=5)
+    element = ConcreteOntoumlElement(created=future_datetime, modified=future_datetime)
+    assert element.created == future_datetime, "Future datetime values should be valid for 'created'."
+    assert element.modified == future_datetime, "Future datetime values should be valid for 'modified'."
+
+
+def test_updating_modified_post_instantiation() -> None:
+    """Test updating the 'modified' attribute to a valid datetime after instantiation."""
+    element = ConcreteOntoumlElement()
+    new_modified_time = datetime.now() + timedelta(hours=1)
+    element.modified = new_modified_time
+    assert element.modified == new_modified_time, (
+        "The 'modified' attribute should be updatable to a valid datetime " "after instantiation."
+    )
+
+
+def test_custom_id_initialization() -> None:
+    """Test initializing with a custom UUID for 'id'."""
+    custom_uuid = uuid.uuid4()
+    element = ConcreteOntoumlElement(id=custom_uuid)
+    assert element.id == custom_uuid, "The 'id' attribute should accept a custom UUID during initialization."
+
+
+def test_instantiation_with_no_arguments() -> None:
+    """Test instantiation of ConcreteOntoumlElement with no arguments."""
+    element = ConcreteOntoumlElement()
+    assert isinstance(element.id, uuid.UUID), "The 'id' attribute should have a UUID value by default."
+    assert isinstance(element.created, datetime), "The 'created' attribute should have a datetime value by default."
+    assert element.modified is None, "The 'modified' attribute should be None by default."
+
+
+def test_modified_same_as_created_at_initialization() -> None:
+    """Test setting 'modified' the same as 'created' during initialization."""
+    now = datetime.now()
+    element = ConcreteOntoumlElement(created=now, modified=now)
+    assert element.modified == now, (
+        "The 'modified' attribute should be able to be set the same as 'created' " "at initialization."
+    )
+
+
+def test_instantiation_with_partial_arguments() -> None:
+    """Test instantiation of ConcreteOntoumlElement with partial arguments."""
+    custom_time = datetime.now() - timedelta(days=1)
+    element = ConcreteOntoumlElement(created=custom_time)
+    assert element.created == custom_time, "The 'created' attribute should be set to the provided datetime."
+    assert element.modified is None, "The 'modified' attribute should be None by default when not provided."
+
+
+def test_invalid_types_for_created_and_modified() -> None:
+    """Test passing invalid types for 'created' and 'modified' attributes."""
+    with pytest.raises(ValidationError):
+        ConcreteOntoumlElement(created="invalid-type")
+    with pytest.raises(ValidationError):
+        ConcreteOntoumlElement(modified="invalid-type")
+
+def test_default_id_immutable()->None:
+    """Test that the default 'id' is immutable."""
+    element = ConcreteOntoumlElement()
+    original_id = element.id
+    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
+        element.id = uuid.uuid4()
+    assert element.id == original_id, "The default 'id' should be immutable."
+
+def test_modified_accept_none_post_instantiation()->None:
+    """Test that the 'modified' attribute can be set to None after instantiation."""
+    element = ConcreteOntoumlElement()
+    element.modified = None
+    assert element.modified is None, "The 'modified' attribute should accept None post-instantiation."
+
+def test_error_when_modified_before_created()->None:
+    """Test an error is raised if 'modified' is set to a datetime before 'created'."""
+    element = ConcreteOntoumlElement()
+    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+        element.modified = element.created - timedelta(days=1)
