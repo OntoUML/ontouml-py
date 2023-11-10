@@ -1,62 +1,70 @@
-"""This module provides the abstract base class for OntoUML elements, defining a common structure and initialization \
-behavior for all elements within an OntoUML model."""
+"""
+This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model. It includes \
+attributes for unique identification, creation, and modification timestamps, ensuring these properties are present \
+across all OntoUML elements. The class also incorporates validations to enforce the integrity of these attributes.
+"""
+
 import uuid
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import Optional
 
-from ontouml_py.utils.utils import validate_and_set
+from pydantic import BaseModel, Field
 
 
-class OntoumlElement(ABC):
-    """An abstract base class that represents a generic element within an OntoUML model.
-
-    This class provides a common interface for OntoUML elements, including unique identifier generation and timestamp
-    management for creation and modification times. It is not meant to be instantiated directly but rather extended
-    by more specific element types.
-
-    :ivar _id: A unique identifier for the element, intended to be read-only.
-    :vartype _id: uuid.UUID
-    :ivar created: A timestamp marking when the element was created.
-    :vartype created: datetime
-    :ivar modified: An optional timestamp marking when the element was last modified.
-    :vartype modified: datetime, optional
+class OntoumlElement(ABC,BaseModel):
     """
+    Abstract base class representing a generic element within an OntoUML model.
+
+    This class is intended as a base for all OntoUML elements, providing unique identifier generation and
+    timestamp management for creation and modification times. It should not be instantiated directly.
+
+    :ivar id: A unique identifier for the element, generated upon instantiation.
+    :vartype id: uuid.UUID
+    :ivar created: The timestamp when the element was created, defaults to the current time.
+    :vartype created: datetime
+    :ivar modified: The timestamp when the element was last modified, defaults to None.
+    :vartype modified: Optional[datetime]
+    """
+    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    created: datetime = Field(default_factory=datetime.now)
+    modified: Optional[datetime] = None
+
+    class Config:
+        """
+        Pydantic's configuration settings for the OntoumlElement model.
+
+        :cvar validate_assignment: Enables validation of field values upon assignment.
+        :cvar extra: Controls the behavior of the model in regard to unexpected fields. Set to 'forbid' to disallow \
+        extra fields.
+        """
+        validate_assignment = True
+        extra = 'forbid'
 
     @abstractmethod
-    def __init__(self, created: datetime = datetime.now(), modified: datetime = None) -> None:
-        """Initialize a new instance of an OntoUML element, assigning a unique identifier and setting creation and \
-        modification timestamps. Validates that the 'created' and 'modified' parameters are of the correct type.
-
-        This method should be implemented by subclasses to ensure that OntoUML elements are initialized with consistent
-        state and behavior.
-
-        The modified attribute's value cannot be later than the created attribute's value (when the value exists).
-
-        :param created: A datetime object representing the creation time, defaults to the current time.
-        :type created: datetime, optional
-        :param modified: A datetime object representing the modification time, defaults to None.
-        :type modified: datetime, optional
-
-        :raises TypeError: If 'created' is not an instance of datetime.
-        :raises TypeError: If 'modified' is provided but is not an instance of datetime or None.
+    def __init__(self, **data):
         """
-        # ID ATTRIBUTE
-        self._id: uuid.UUID = uuid.uuid4()
+        Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
 
-        # CREATED ATTRIBUTE
-        validate_and_set(self, "created", created, datetime, False)
+        :param data: Fields to be set on the model instance.
+        :type data: dict
+        """
+        super().__init__(**data)
+        self._created = self.created
+        self._id = self.id
 
-        # MODIFIED ATTRIBUTE
-        validate_and_set(self, "modified", modified, datetime)
-        if modified and created and modified < created:
-            raise ValueError(f"The 'modified' datetime must be later than the 'created' datetime ({created}).")
+    def __setattr__(self, key, value):
+        """
+        Set attribute value with validation for read-only fields and custom logic.
 
-        @property
-        def id(self) -> uuid.UUID:
-            """The read-only unique identifier of the OntoumlElement. Attempts to set this property will raise \
-            an AttributeError.
-
-            :return: The unique identifier of the element.
-            :rtype: uuid.UUID
-            """
-            return self._id
+        :param key: The attribute name to set.
+        :type key: str
+        :param value: The value to set for the attribute.
+        :type value: Any
+        :raises ValueError: If trying to modify read-only fields or if 'modified' is earlier than 'created'.
+        """
+        if key in ['id', 'created'] and hasattr(self, key):
+            raise ValueError(f"Attribute '{key}' is read-only and cannot be modified.")
+        if key == 'modified' and value is not None and value < self._created:
+            raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
+        super().__setattr__(key, value)

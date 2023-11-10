@@ -150,3 +150,7 @@ class Project(NamedElement):
         validate_and_set(self, "contexts", contexts, list[str])
         validate_and_set(self, "designed_for_task", designed_for_task, list[str])
         validate_and_set(self, "publisher", publisher, str)
+
+x = Project(themes="a")
+x.themes="b"
+x.themes=1
