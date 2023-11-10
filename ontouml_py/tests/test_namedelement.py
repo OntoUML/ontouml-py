@@ -1,5 +1,3 @@
-from typing import List
-
 import pytest
 from langstring_lib.langstring import LangString
 from pydantic import ValidationError
@@ -9,7 +7,20 @@ from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
 
 # Concrete subclass for testing
 class ConcreteNamedElement(NamedElement):
+    """
+    A concrete subclass of NamedElement for testing purposes.
+
+    This class inherits from NamedElement and allows the instantiation of NamedElement objects,
+    which is normally an abstract class and cannot be instantiated directly.
+    """
+
     def __init__(self, **data):
+        """
+        Initialize a new instance of ConcreteNamedElement.
+
+        :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
+        :type data: dict
+        """
         super().__init__(**data)
 
 
@@ -20,7 +31,7 @@ def valid_langstring() -> LangString:
 
 
 @pytest.fixture
-def valid_langstring_list() -> List[LangString]:
+def valid_langstring_list() -> list[LangString]:
     """Provides a list of valid LangString objects for testing."""
     return [LangString("LangString 1"), LangString("LangString 2")]
 
@@ -31,7 +42,7 @@ def invalid_langstring() -> str:
 
 
 def test_namedelement_instantiation_with_arguments(
-    valid_langstring: LangString, valid_langstring_list: List[LangString]
+    valid_langstring: LangString, valid_langstring_list: list[LangString]
 ) -> None:
     """
     Test the instantiation of NamedElement with specific arguments.

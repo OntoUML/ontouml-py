@@ -9,6 +9,7 @@ from abc import abstractmethod
 from typing import Optional
 
 from langstring_lib.langstring import LangString
+from pydantic import Field
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
 
@@ -21,26 +22,36 @@ class NamedElement(OntoumlElement):
     descriptions, editorial notes, as well as lists of creators and contributors.
 
     :ivar pref_name: The preferred name of the element, represented as a LangString object.
+    :vartype pref_name: Optional[LangString]
     :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
+    :vartype alt_names: list[LangString]
     :ivar description: A LangString object representing the description of the element.
+    :vartype description: Optional[LangString]
     :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
+    :vartype editorial_notes: list[LangString]
     :ivar creators: A list of URIs represented as strings identifying the creators of the element.
+    :vartype creators: list[str]
     :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
+    :vartype contributors: list[str]
     """
 
     pref_name: Optional[LangString] = None
-    alt_names: list[LangString] = []
+    alt_names: list[LangString] = Field(default_factory=list)
     description: Optional[LangString] = None
-    editorial_notes: list[LangString] = []
-    creators: list[str] = []
-    contributors: list[str] = []
+    editorial_notes: list[LangString] = Field(default_factory=list)
+    creators: list[str] = Field(default_factory=list)
+    contributors: list[str] = Field(default_factory=list)
 
     class Config:
         """
-        Pydantic's configuration settings for the OntoumlElement model.
+        Pydantic's configuration settings for the NamedElement model.
 
+        :cvar arbitrary_types_allowed: Allows custom types like LangString.
+        :vartype arbitrary_types_allowed: bool
         :cvar validate_assignment: Enables validation of field values upon assignment.
+        :vartype validate_assignment: bool
         :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid' to disallow extra fields.
+        :vartype extra: str
         """
 
         arbitrary_types_allowed = True
@@ -57,6 +68,5 @@ class NamedElement(OntoumlElement):
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
         super().__init__(**data)

@@ -1,52 +1,92 @@
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import pytest
 from langstring_lib.langstring import LangString
+from pydantic import ValidationError
 
 from ontouml_py.classes.abstract_syntax.project import Project
 from ontouml_py.classes.ontoumlelement import OntoumlElement
 
 
-# Utility function to create a LangString object
+# Utility functions and fixtures
 def create_langstring(text: str) -> LangString:
+    """
+    Create a LangString object from a given text.
+
+    :param text: The text to be converted into a LangString.
+    :type text: str
+    :return: A LangString object containing the provided text.
+    :rtype: LangString
+    """
     return LangString(text)
 
 
 class OntoumlElementStub(OntoumlElement):
+    """
+    A stub class for OntoumlElement.
+
+    This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
+    It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
+    typically instantiated to create simple examples of OntoumlElement objects.
+    """
+
     def __init__(self):
-        # Implement abstract methods or set properties required by the OntoumlElement class.
+        """
+        Initialize a new instance of OntoumlElementStub.
+
+        As a stub implementation, this constructor intentionally does not perform any additional initialization
+        beyond that provided by the OntoumlElement class. It serves to allow the creation of OntoumlElementStub
+        instances where an actual OntoumlElement object is needed, but without any specialized behavior or attributes.
+        """
+        # intentionally empty
         pass
 
 
 def create_ontoumlelement() -> OntoumlElementStub:
-    """Create and return an instance of OntoumlElementStub."""
+    """
+    Create and return an instance of OntoumlElementStub.
+
+    :return: An instance of OntoumlElementStub.
+    :rtype: OntoumlElementStub
+    """
     return OntoumlElementStub()
 
 
 @pytest.fixture
 def valid_langstring_list() -> list[LangString]:
-    """Provide a list of valid LangString objects for testing."""
+    """
+    Provide a fixture for creating a list of valid LangString objects.
+
+    :return: A list of LangString objects.
+    :rtype: list[LangString]
+    """
     return [create_langstring("Keyword1"), create_langstring("Keyword2")]
 
 
 @pytest.fixture
 def valid_ontoumlelement_list() -> list[OntoumlElementStub]:
-    """Provide a list of valid OntoumlElementStub objects for testing."""
+    """
+    Provide a fixture for creating a list of valid OntoumlElementStub objects.
+
+    :return: A list of OntoumlElementStub objects.
+    :rtype: list[OntoumlElementStub]
+    """
     return [OntoumlElementStub(), OntoumlElementStub()]
 
 
+# Test for successful initialization of Project
 def test_project_initialization(
     valid_langstring_list: list[LangString], valid_ontoumlelement_list: list[OntoumlElementStub]
 ) -> None:
-    """Test the successful initialization of a Project instance.
-
-    :param valid_langstring_list: A list of LangString objects to be used for 'keywords' and 'editorial_notes'.
-    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects to be used for 'elements'.
     """
-    current_time = datetime.now()
+    Test the successful initialization of a Project instance with valid parameters.
+
+    :param valid_langstring_list: A list of LangString objects for testing.
+    :type valid_langstring_list: list[LangString]
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    """
     project = Project(
-        created=current_time,
-        modified=current_time,
         pref_name=create_langstring("Project Name"),
         alt_names=valid_langstring_list,
         description=create_langstring("Project Description"),
@@ -70,8 +110,7 @@ def test_project_initialization(
         publisher="Publisher Name",
     )
 
-    assert project.created == current_time, "Project should have the correct 'created' datetime."
-    assert project.modified == current_time, "Project should have the correct 'modified' datetime."
+    # Assertions to validate initialization
     assert project.pref_name.text == "Project Name", "Project should have the correct 'pref_name'."
     assert project.alt_names == valid_langstring_list, "Project should have the correct 'alt_names'."
     assert project.description.text == "Project Description", "Project should have the correct 'description'."
@@ -107,351 +146,265 @@ def test_project_initialization(
     assert project.publisher == "Publisher Name", "Project should have the correct 'publisher'."
 
 
-def test_project_initialization_with_invalid_types() -> None:
-    """Test the initialization of Project with invalid types to ensure it raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(pref_name="Not a LangString")  # Invalid type for 'pref_name'
+# Test assertion after non-empty creation with empty string, list, or tuple - mutability test
+def test_project_mutable_update_empty_values() -> None:
+    """
+    Test updating project attributes to empty values after non-empty initialization.
 
-    with pytest.raises(TypeError):
-        Project(alt_names=["Not a LangString"])  # Invalid type inside 'alt_names' list
-
-    with pytest.raises(TypeError):
-        Project(elements=["Not an OntoumlElement"])  # Invalid type inside 'elements' list
-
-
-# Test that missing optional parameters are handled correctly
-def test_project_optional_params_handling() -> None:
-    """Test that optional parameters are correctly defaulted to None when not provided."""
-    project = Project(pref_name=create_langstring("Optional Params Test"))
-
-    assert project.modified is None, "Optional 'modified' attribute should default to None."
-    assert project.alt_names is None, "Optional 'alt_names' attribute should default to None."
-    assert project.description is None, "Optional 'description' attribute should default to None."
-    assert project.editorial_notes is None, "Optional 'editorial_notes' attribute should default to None."
-    assert project.creators is None, "Optional 'creators' attribute should default to None."
-    assert project.contributors is None, "Optional 'contributors' attribute should default to None."
-    assert project.elements is None, "Optional 'elements' attribute should default to None."
-    assert project.acronyms is None, "Optional 'acronyms' attribute should default to None."
-    assert (
-        project.bibliographic_citations is None
-    ), "Optional 'bibliographic_citations' attribute should default to None."
-    assert project.keywords is None, "Optional 'keywords' attribute should default to None."
-    assert project.landing_pages is None, "Optional 'landing_pages' attribute should default to None."
-    assert project.languages is None, "Optional 'languages' attribute should default to None."
-    assert project.namespace is None, "Optional 'namespace' attribute should default to None."
-    assert project.sources is None, "Optional 'sources' attribute should default to None."
-    assert project.access_rights is None, "Optional 'access_rights' attribute should default to None."
-    assert project.ontology_types is None, "Optional 'ontology_types' attribute should default to None."
-    assert project.themes is None, "Optional 'themes' attribute should default to None."
-    assert project.license is None, "Optional 'license' attribute should default to None."
-    assert project.contexts is None, "Optional 'contexts' attribute should default to None."
-    assert project.designed_for_task is None, "Optional 'designed_for_task' attribute should default to None."
-    assert project.publisher is None, "Optional 'publisher' attribute should default to None."
+    :raises AssertionError: If the attributes don't update to empty values correctly.
+    """
+    project = Project(pref_name=create_langstring("Initial"), alt_names=[create_langstring("Alt")])
+    project.pref_name = create_langstring("")
+    project.alt_names = []
+    assert project.pref_name.text == "" and project.alt_names == [], "Should update to empty values correctly."
 
 
-# Test that the class correctly handles empty lists for list attributes
-def test_project_empty_lists_handling() -> None:
-    """Test that attributes which are lists can be set to empty lists without error."""
-    project = Project(
-        pref_name=create_langstring("Empty Lists Test"),
-        alt_names=[],
-        editorial_notes=[],
-        creators=[],
-        contributors=[],
-        elements=[],
-        acronyms=[],
-        bibliographic_citations=[],
-        keywords=[],
-        landing_pages=[],
-        languages=[],
-        sources=[],
-        access_rights=[],
-        ontology_types=[],
-        themes=[],
-        contexts=[],
-        designed_for_task=[],
-    )
+def test_project_invalid_value_in_list_post_init() -> None:
+    """
+    Test assigning an invalid value in a list attribute after non-empty initialization.
 
-    assert project.alt_names == [], "Attribute 'alt_names' should handle being set to an empty list."
-    assert project.editorial_notes == [], "Attribute 'editorial_notes' should handle being set to an empty list."
-    assert project.creators == [], "Attribute 'creators' should handle being set to an empty list."
-    assert project.contributors == [], "Attribute 'contributors' should handle being set to an empty list."
-    assert project.elements == [], "Attribute 'elements' should handle being set to an empty list."
-    assert project.acronyms == [], "Attribute 'acronyms' should handle being set to an empty list."
-    assert (
-        project.bibliographic_citations == []
-    ), "Attribute 'bibliographic_citations' should handle being set to an empty list."
-    assert project.keywords == [], "Attribute 'keywords' should handle being set to an empty list."
-    assert project.landing_pages == [], "Attribute 'landing_pages' should handle being set to an empty list."
-    assert project.languages == [], "Attribute 'languages' should handle being set to an empty list."
-    assert project.sources == [], "Attribute 'sources' should handle being set to an empty list."
-    assert project.access_rights == [], "Attribute 'access_rights' should handle being set to an empty list."
-    assert project.ontology_types == [], "Attribute 'ontology_types' should handle being set to an empty list."
-    assert project.themes == [], "Attribute 'themes' should handle being set to an empty list."
-    assert project.contexts == [], "Attribute 'contexts' should handle being set to an empty list."
-    assert project.designed_for_task == [], "Attribute 'designed_for_task' should handle being set to an empty list."
+    :raises ValidationError: If the list accepts an invalid value.
+    """
+    project = Project(alt_names=[create_langstring("Initial")])
+    with pytest.raises(ValidationError):
+        project.alt_names = [create_langstring("Another"), None]  # Reassign with a new list containing an invalid value
 
 
-# Test setting and retrieving non-list attributes
-def test_project_non_list_attributes() -> None:
-    """Test setting and retrieving non-list attributes such as strings and LangString objects."""
-    pref_name = create_langstring("Project Name")
-    description = create_langstring("A project description")
-    namespace = "http://example.com/ns"
-    license = "CC BY 4.0"
-    publisher = "Example Publisher"
+def test_project_invalid_type_in_list_post_init() -> None:
+    """
+    Test assigning an invalid type in a list attribute after non-empty initialization.
 
-    project = Project(
-        pref_name=pref_name, description=description, namespace=namespace, license=license, publisher=publisher
-    )
-
-    assert project.pref_name == pref_name, "The 'pref_name' should be set and retrieved correctly."
-    assert project.description == description, "The 'description' should be set and retrieved correctly."
-    assert project.namespace == namespace, "The 'namespace' should be set and retrieved correctly."
-    assert project.license == license, "The 'license' should be set and retrieved correctly."
-    assert project.publisher == publisher, "The 'publisher' should be set and retrieved correctly."
+    :raises ValidationError: If the list accepts an invalid type.
+    """
+    project = Project(alt_names=[create_langstring("Initial")])
+    with pytest.raises(ValidationError):
+        project.alt_names = [create_langstring("Another"), 123]  # Reassign with a new list containing an invalid type
 
 
-# Test that incorrect types for non-list attributes raise TypeErrors
-def test_project_non_list_attributes_type_errors() -> None:
-    """Test that providing incorrect types for non-list attributes raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(namespace=123)  # namespace should be a string
+# Test for None in list after non-empty initialization
+def test_project_none_in_list_post_init() -> None:
+    """
+    Test assigning None to a list attribute after non-empty initialization.
 
-    with pytest.raises(TypeError):
-        Project(license=LangString("CC BY 4.0"))  # license should be a string
-
-    with pytest.raises(TypeError):
-        Project(publisher=5.5)  # publisher should be a string
-
-
-# Ensure datetime attributes are handled correctly
-def test_project_datetime_attributes() -> None:
-    """Test that datetime attributes are set correctly and handle None as a default value."""
-    created_time = datetime(2022, 1, 1, 12, 0)
-    modified_time = datetime(2022, 1, 2, 12, 0)
-
-    project = Project(created=created_time, modified=modified_time)
-
-    assert project.created == created_time, "The 'created' datetime should be set correctly."
-    assert project.modified == modified_time, "The 'modified' datetime should be set correctly."
-
-    project = Project()
-    assert isinstance(project.created, datetime), "The 'created' datetime should be automatically set if not provided."
+    :raises ValueError: If None is assigned to a list attribute.
+    """
+    project = Project(alt_names=[create_langstring("Initial")])
+    with pytest.raises(ValueError):
+        project.alt_names = None
 
 
-# Test that providing None for optional list attributes does not raise errors
-def test_project_none_for_optional_list_attributes() -> None:
-    """Test that providing None for optional list attributes sets them to None without error."""
-    project = Project(
-        pref_name=create_langstring("Test None Lists"),
-        alt_names=None,
-        editorial_notes=None,
-        creators=None,
-        contributors=None,
-        elements=None,
-        acronyms=None,
-        bibliographic_citations=None,
-        keywords=None,
-        landing_pages=None,
-        languages=None,
-        sources=None,
-        access_rights=None,
-        ontology_types=None,
-        themes=None,
-        contexts=None,
-        designed_for_task=None,
-    )
+# Test for empty string in list after non-empty initialization
+def test_project_empty_string_in_list_post_init() -> None:
+    """
+    Test appending an empty string to a list attribute after non-empty initialization.
 
-    assert project.alt_names is None, "Optional list attribute 'alt_names' should accept None."
-    assert project.editorial_notes is None, "Optional list attribute 'editorial_notes' should accept None."
-    assert project.creators is None, "Optional list attribute 'creators' should accept None."
-    assert project.contributors is None, "Optional list attribute 'contributors' should accept None."
-    assert project.elements is None, "Optional list attribute 'elements' should accept None."
-    assert project.acronyms is None, "Optional list attribute 'acronyms' should accept None."
-    assert (
-        project.bibliographic_citations is None
-    ), "Optional list attribute 'bibliographic_citations' should accept None."
-    assert project.keywords is None, "Optional list attribute 'keywords' should accept None."
-    assert project.landing_pages is None, "Optional list attribute 'landing_pages' should accept None."
-    assert project.languages is None, "Optional list attribute 'languages' should accept None."
-    assert project.sources is None, "Optional list attribute 'sources' should accept None."
-    assert project.access_rights is None, "Optional list attribute 'access_rights' should accept None."
-    assert project.ontology_types is None, "Optional list attribute 'ontology_types' should accept None."
-    assert project.themes is None, "Optional list attribute 'themes' should accept None."
-    assert project.contexts is None, "Optional list attribute 'contexts' should accept None."
-    assert project.designed_for_task is None, "Optional list attribute 'designed_for_task' should accept None."
+    :raises AssertionError: If empty string in list is not handled correctly.
+    """
+    project = Project(alt_names=[create_langstring("Initial")])
+    project.alt_names.append(create_langstring(""))
+    assert project.alt_names[-1].text == "", "Should handle empty string in list correctly."
 
 
-# Test handling of empty strings for attributes that are strings
-def test_project_empty_strings_for_string_attributes() -> None:
-    """Test that providing empty strings for string attributes does not raise errors."""
-    project = Project(pref_name=create_langstring("Test Empty Strings"), namespace="", license="", publisher="")
-    assert project.namespace == "", "String attribute 'namespace' should accept an empty string."
-    assert project.license == "", "String attribute 'license' should accept an empty string."
-    assert project.publisher == "", "String attribute 'publisher' should accept an empty string."
+# Test for updating list attribute with a mix of valid and None values
+def test_project_update_list_with_mixed_values() -> None:
+    """
+    Test updating a list attribute with a mix of valid and None values.
+
+    :raises ValidationError: If mixed values are incorrectly accepted.
+    """
+    project = Project(acronyms=["AC1"])
+    with pytest.raises(ValidationError):
+        project.acronyms = ["AC2", None]
 
 
-# Test that providing invalid values for string attributes raises TypeErrors
-def test_project_invalid_values_for_string_attributes() -> None:
-    """Test that providing invalid values for string attributes raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(namespace=123)  # Invalid type, expecting a string
+# Test for updating list attribute with a mix of valid and invalid types
+def test_project_update_list_with_mixed_types() -> None:
+    """
+    Test updating a list attribute with a mix of valid and invalid types.
 
-    with pytest.raises(TypeError):
-        Project(license=LangString("Invalid"))  # Invalid type, expecting a string
-
-    with pytest.raises(TypeError):
-        Project(publisher=True)  # Invalid type, expecting a string
-
-
-# Test that providing None for optional attributes does not raise errors
-def test_project_none_for_optional_attributes() -> None:
-    """Test that providing None for optional attributes sets them correctly without error."""
-    project = Project(pref_name=None)  # Assuming pref_name is optional and can be None
-    assert project.pref_name is None, "Optional attribute 'pref_name' should accept None."
+    :raises ValidationError: If mixed types are incorrectly accepted.
+    """
+    project = Project(acronyms=["AC1"])
+    with pytest.raises(ValidationError):
+        project.acronyms = ["AC2", 123]
 
 
-# Test providing invalid non-None values for optional attributes
-def test_project_invalid_non_none_values_for_optional_attributes() -> None:
-    """Test that providing invalid non-None values for optional attributes raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(pref_name=123)  # Invalid type, expecting LangString or None
+def test_project_interaction_with_langstring_complex() -> None:
+    """
+    Test Project initialization with complex LangString objects.
 
-    with pytest.raises(TypeError):
-        Project(namespace=5.5)  # Invalid type, expecting a string or None
+    :raises AssertionError: If complex LangString objects are not handled correctly.
+    """
+    # Create LangString objects for each language
+    langstring_en = LangString("Complex Name", "en")
+    langstring_pt = LangString("Nome Complexo", "pt")
 
-    with pytest.raises(TypeError):
-        Project(license=False)  # Invalid type, expecting a string or None
+    # Use these LangString objects in a list for an attribute like keywords
+    project = Project(keywords=[langstring_en, langstring_pt])
 
-
-# Test providing invalid values for list attributes
-def test_project_invalid_values_for_list_attributes() -> None:
-    """Test that providing invalid values for list attributes raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(alt_names="Not a list")  # Invalid type, expecting a list of LangString or None
-
-    with pytest.raises(TypeError):
-        Project(elements="Not a list")  # Invalid type, expecting a list of OntoumlElement or None
-
-    with pytest.raises(TypeError):
-        Project(editorial_notes=[123])  # Invalid type inside list, expecting a list of LangString
+    # Check if the LangString objects are correctly assigned and stored
+    assert project.keywords[0].text == "Complex Name", "English LangString should be correctly set."
+    assert project.keywords[0].lang == "en", "Language for English LangString should be 'en'."
+    assert project.keywords[1].text == "Nome Complexo", "Portuguese LangString should be correctly set."
+    assert project.keywords[1].lang == "pt", "Language for Portuguese LangString should be 'pt'."
 
 
-# Test providing mixed valid and invalid values in list attributes
-def test_project_mixed_values_in_list_attributes() -> None:
-    """Test that providing mixed valid and invalid values in list attributes raises TypeErrors."""
-    with pytest.raises(TypeError):
-        Project(editorial_notes=[create_langstring("Valid"), 123])  # Mixed types inside 'editorial_notes' list
+def test_project_datetime_with_different_timezones() -> None:
+    """
+    Test Project initialization with datetime objects in different time zones.
 
-    with pytest.raises(TypeError):
-        Project(creators=["http://validcreator.com", 456])  # Mixed types inside 'creators' list
+    :raises AssertionError: If datetime objects with different time zones are not handled correctly.
+    """
+    # Example using timezone aware datetime objects
+    aware_datetime = datetime(2022, 1, 1, tzinfo=timezone.utc)
+    project = Project(created=aware_datetime)
+    assert project.created == aware_datetime, "Project should handle timezone aware datetime objects."
 
 
-# Test edge cases for string attributes like very long strings or unusual characters
-def test_project_string_attributes_edge_cases() -> None:
-    """Test edge cases for string attributes such as extremely long strings or strings with unusual characters."""
+def test_project_extreme_values_handling() -> None:
+    """
+    Test Project handling extreme and boundary values in attributes.
+
+    :raises AssertionError: If extreme and boundary values are not handled correctly.
+    """
     very_long_string = "x" * 10000
-    unusual_chars_string = "\t\n\r\x0b\x0c"
-
-    project = Project(namespace=very_long_string, license=unusual_chars_string, publisher=very_long_string)
-
-    assert project.namespace == very_long_string, "String attribute 'namespace' should handle very long strings."
-    assert project.license == unusual_chars_string, "String attribute 'license' should handle unusual characters."
-    assert project.publisher == very_long_string, "String attribute 'publisher' should handle very long strings."
+    project = Project(namespace=very_long_string)
+    assert project.namespace == very_long_string, "Project should handle very long string values."
 
 
-# Test edge cases for datetime attributes like minimum and maximum possible dates
-def test_project_datetime_attributes_edge_cases() -> None:
-    """Test edge cases for datetime attributes such as minimum and maximum possible dates."""
+def test_project_default_values_initialization() -> None:
+    """
+    Test initialization of Project with default values.
+
+    :raises AssertionError: If default values are not set correctly.
+    """
+    project = Project()
+    assert isinstance(project.elements, list), "Elements should default to an empty list."
+    assert isinstance(project.acronyms, list), "Acronyms should default to an empty list."
+    assert isinstance(project.bibliographic_citations, list), "Bibliographic citations should default to an empty list."
+    assert isinstance(project.keywords, list), "Keywords should default to an empty list."
+    assert isinstance(project.landing_pages, list), "Landing pages should default to an empty list."
+    assert isinstance(project.languages, list), "Languages should default to an empty list."
+    assert project.namespace is None, "Namespace should default to None."
+    assert isinstance(project.sources, list), "Sources should default to an empty list."
+    assert isinstance(project.access_rights, list), "Access rights should default to an empty list."
+    assert isinstance(project.ontology_types, list), "Ontology types should default to an empty list."
+    assert isinstance(project.themes, list), "Themes should default to an empty list."
+    assert project.license is None, "License should default to None."
+    assert isinstance(project.contexts, list), "Contexts should default to an empty list."
+    assert isinstance(project.designed_for_task, list), "Designed for task should default to an empty list."
+    assert project.publisher is None, "Publisher should default to None."
+
+
+# Tests for edge cases
+
+
+def test_project_large_list_attributes() -> None:
+    """Test handling large lists for list-type attributes."""
+    large_elements = [OntoumlElementStub() for _ in range(1000)]
+    large_strings = ["string" * 100 for _ in range(1000)]
+
+    project = Project(elements=large_elements, acronyms=large_strings, bibliographic_citations=large_strings)
+
+    assert len(project.elements) == 1000, "Should handle large lists for 'elements'."
+    assert len(project.acronyms) == 1000, "Should handle large lists for 'acronyms'."
+    assert len(project.bibliographic_citations) == 1000, "Should handle large lists for 'bibliographic_citations'."
+
+
+def test_project_extreme_string_values() -> None:
+    """Test handling extreme string values for string-type attributes."""
+    very_long_string = "x" * 10000
+    unusual_characters = "!@#$%^&*()_+|}{\":?><,./;'[]\\=-`~"
+
+    project = Project(namespace=very_long_string, license=unusual_characters, publisher=very_long_string)
+
+    assert project.namespace == very_long_string, "Should handle very long strings for 'namespace'."
+    assert project.license == unusual_characters, "Should handle unusual characters for 'license'."
+    assert project.publisher == very_long_string, "Should handle very long strings for 'publisher'."
+
+
+def test_project_mixing_types_in_lists() -> None:
+    """Test assigning mixed types in list attributes."""
+    with pytest.raises(ValidationError):
+        Project(elements=[123, OntoumlElementStub()])  # Mixing int and OntoumlElement in 'elements'
+
+    with pytest.raises(ValidationError):
+        Project(acronyms=[True, "ACR"])  # Mixing bool and str in 'acronyms'
+
+
+def test_project_empty_values_post_initialization() -> None:
+    """Test assigning empty values to attributes post-initialization."""
+    project = Project(pref_name=create_langstring("Test"))
+    project.namespace = ""
+    project.license = ""
+    project.publisher = ""
+
+    assert project.namespace == "", "Should allow setting empty string for 'namespace' post-initialization."
+    assert project.license == "", "Should allow setting empty string for 'license' post-initialization."
+    assert project.publisher == "", "Should allow setting empty string for 'publisher' post-initialization."
+
+
+def test_project_future_past_dates() -> None:
+    """Test setting future and past dates for datetime attributes."""
+    future_date = datetime.now() + timedelta(days=365)
+    past_date = datetime.now() - timedelta(days=365)
+
+    project = Project(created=past_date, modified=future_date)
+
+    assert project.created == past_date, "Should handle past dates for 'created'."
+    assert project.modified == future_date, "Should handle future dates for 'modified'."
+
+
+def test_project_assigning_null_to_optional_fields() -> None:
+    """Test assigning None to optional fields."""
+    project = Project()
+    project.namespace = None
+    project.license = None
+    project.publisher = None
+
+    assert project.namespace is None, "Should allow assigning None to 'namespace'."
+    assert project.license is None, "Should allow assigning None to 'license'."
+    assert project.publisher is None, "Should allow assigning None to 'publisher'."
+
+
+def test_project_datetime_boundaries() -> None:
+    """Test setting the minimum and maximum datetime values."""
     min_datetime = datetime.min
     max_datetime = datetime.max
 
     project = Project(created=min_datetime, modified=max_datetime)
 
-    assert project.created == min_datetime, "Datetime attribute 'created' should handle minimum datetime."
-    assert project.modified == max_datetime, "Datetime attribute 'modified' should handle maximum datetime."
+    assert project.created == min_datetime, "Should handle minimum datetime for 'created'."
+    assert project.modified == max_datetime, "Should handle maximum datetime for 'modified'."
 
 
-# Test edge cases for list attributes like very large lists or lists with mixed types
-def test_project_list_attributes_edge_cases() -> None:
-    """Test edge cases for list attributes such as very large lists or lists with mixed types."""
-    large_list = [create_langstring(f"Keyword{i}") for i in range(1000)]  # Large list of LangString objects
-    mixed_types_list = [create_langstring("Valid"), "Invalid", 123]
+def test_project_empty_and_null_lists() -> None:
+    """Test handling empty and None lists for list attributes."""
+    project = Project()
+    project.elements = []
 
-    with pytest.raises(TypeError):
-        Project(keywords=large_list, editorial_notes=mixed_types_list)  # Mixed types, should raise TypeError
+    assert project.elements == [], "Should handle empty list for 'elements'."
 
-    project = Project(keywords=large_list)
-    assert project.keywords == large_list, "List attribute 'keywords' should handle very large lists."
+    with pytest.raises(ValidationError):
+        project.acronyms = None
 
 
-# Test handling of None in list attributes for scenarios where None might represent a lack of value
-def test_project_none_in_list_attributes_edge_cases() -> None:
-    """Test handling of None in list attributes for scenarios where None might represent a lack of value."""
-    list_with_none = [None, create_langstring("Valid")]
+def test_project_numerical_values_for_strings() -> None:
+    """Test assigning numerical values to string attributes."""
+    with pytest.raises(ValidationError):
+        Project(namespace=123)
 
-    with pytest.raises(TypeError):
-        Project(keywords=list_with_none)  # List containing None, should raise TypeError
+    with pytest.raises(ValidationError):
+        Project(license=456)
 
-
-# More edge case tests can be added to cover additional scenarios specific to the Project class.
-
-
-# Test edge cases for string attributes that are URIs or supposed to follow a specific format
-def test_project_string_format_edge_cases() -> None:
-    """Test edge cases for string attributes that should follow specific formats, like URIs."""
-    # These are not valid URIs but are being used to test the system's robustness against incorrect formats
-    invalid_uri = "invalid_uri"
-    project = Project(
-        pref_name=create_langstring("Test String Formats"),
-        creators=[invalid_uri],
-        contributors=[invalid_uri],
-        landing_pages=[invalid_uri],
-        sources=[invalid_uri],
-    )
-    # Assert that the class can handle incorrect formats; this may vary depending on class constraints
-    assert project.creators[0] == invalid_uri, "String URI attribute 'creators' should accept any string."
-    assert project.contributors[0] == invalid_uri, "String URI attribute 'contributors' should accept any string."
-    assert project.landing_pages[0] == invalid_uri, "String URI attribute 'landing_pages' should accept any string."
-    assert project.sources[0] == invalid_uri, "String URI attribute 'sources' should accept any string."
+    with pytest.raises(ValidationError):
+        Project(publisher=789)
 
 
-# Test the resilience of the class against attributes with unexpected data types
-def test_project_unexpected_data_types_handling() -> None:
-    """Test the resilience of the class against attributes with unexpected data types."""
-    # Passing an integer where a list is expected
-    with pytest.raises(TypeError):
-        Project(elements=123)
+def test_project_boolean_values_in_lists() -> None:
+    """Test assigning boolean values in list attributes."""
+    with pytest.raises(ValidationError):
+        Project(acronyms=[True, False])
 
-    # Passing a dictionary where a string is expected
-    with pytest.raises(TypeError):
-        Project(namespace={"invalid": "type"})
-
-    # Passing a list where a LangString is expected
-    with pytest.raises(TypeError):
-        Project(pref_name=["Not", "LangString"])
-
-
-def test_project_mixed_none_and_valid_values_handling() -> None:
-    """Test that providing a list with mixed None and valid string values for list attributes raises TypeError."""
-    with pytest.raises(TypeError, match="All elements in 'contributors' must be of type str."):
-        Project(
-            pref_name=create_langstring("Test Mixed None"),
-            contributors=[None, "http://validcontributor.com"],  # This should raise a TypeError
-        )
-
-
-# Test the class's ability to handle exceptionally large values for string-type attributes
-def test_project_large_string_values_handling() -> None:
-    """Test the class's ability to handle exceptionally large values for string-type attributes."""
-    large_string = "a" * int(1e6)  # 1 million characters
-    project = Project(
-        pref_name=create_langstring("Test Large String"),
-        namespace=large_string,
-        license=large_string,
-        publisher=large_string,
-    )
-    assert project.namespace == large_string, "String attribute 'namespace' should handle large string values."
-    assert project.license == large_string, "String attribute 'license' should handle large string values."
-    assert project.publisher == large_string, "String attribute 'publisher' should handle large string values."
+    with pytest.raises(ValidationError):
+        Project(bibliographic_citations=[True, False])

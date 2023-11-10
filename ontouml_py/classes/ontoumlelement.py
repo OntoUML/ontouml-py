@@ -34,7 +34,10 @@ class OntoumlElement(ABC, BaseModel):
         Pydantic's configuration settings for the OntoumlElement model.
 
         :cvar validate_assignment: Enables validation of field values upon assignment.
-        :cvar extra: Controls the behavior of the model regarding unexpected fields, set to 'forbid' to disallow extra fields.
+        :vartype validate_assignment: bool
+        :cvar extra: Controls the behavior of the model regarding unexpected fields, set to 'forbid' to disallow \
+        extra fields.
+        :vartype extra: str
         """
 
         validate_assignment = True
