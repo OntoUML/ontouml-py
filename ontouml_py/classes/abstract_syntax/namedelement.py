@@ -5,21 +5,20 @@ OntoUML model. It extends the OntoumlElement class and includes additional attri
 named elements' details such as their preferred name, alternative names, descriptions, editorial notes, as well as
 lists of creators and contributors.
 """
-
-import datetime
 from abc import abstractmethod
+from typing import Optional
 
 from langstring_lib.langstring import LangString
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
-from ontouml_py.utils.utils import validate_and_set
 
 
 class NamedElement(OntoumlElement):
-    """An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+    """
+    An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
 
-    The class provides functionality for managing named elements, including their preferred name, alternative names,
-    descriptions, and editorial notes.
+    This class provides functionality for managing named elements, including their preferred name, alternative names,
+    descriptions, editorial notes, as well as lists of creators and contributors.
 
     :ivar pref_name: The preferred name of the element, represented as a LangString object.
     :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
@@ -27,53 +26,37 @@ class NamedElement(OntoumlElement):
     :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
     :ivar creators: A list of URIs represented as strings identifying the creators of the element.
     :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-
     """
 
-    @abstractmethod
-    def __init__(
-        self,
-        # INHERITED ATTRIBUTES
-        created: datetime = None,
-        modified: datetime = None,
-        # CLASS'S ATTRIBUTES
-        pref_name: LangString = None,
-        alt_names: list[LangString] = None,
-        description: LangString = None,
-        editorial_notes: list[LangString] = None,
-        creators: list[str] = None,
-        contributors: list[str] = None,
-    ):
-        """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
+    pref_name: Optional[LangString] = None
+    alt_names: list[LangString] = []
+    description: Optional[LangString] = None
+    editorial_notes: list[LangString] = []
+    creators: list[str] = []
+    contributors: list[str] = []
 
-        :param created: The datetime instance representing when the element was created. If not provided, the current
-        time is used by default.
-        :type created: Optional[datetime], optional
-        :param modified: The datetime instance representing when the element was last modified. This is optional and
-        can be left as None if the element has not been modified.
-        :type modified: Optional[datetime], optional
-        :param pref_name: The preferred name of the element, represented as a LangString object.
-        :type pref_name: Optional[LangString], optional
-        :param alt_names: A list of alternative names for the element, each represented as a LangString object.
-        :type alt_names: Optional[List[LangString]], optional
-        :param description: A LangString object representing the description of the element.
-        :type description: Optional[LangString], optional
-        :param editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-        :type editorial_notes: Optional[list[LangString]], optional
-        :param creators: A list of strings representing the URIs of the creators of the element.
-        :type creators: Optional[List[str]], optional
-        :param contributors: A list of strings representing the URIs of the contributors to the element.
-        :type contributors: Optional[List[str]], optional
+    class Config:
         """
-        # Allows the initialization of the created attribute without overwriting the default value.
-        if created is None:
-            super().__init__(modified=modified)
-        else:
-            super().__init__(created=created, modified=modified)
+        Pydantic's configuration settings for the OntoumlElement model.
 
-        validate_and_set(self, "pref_name", pref_name, LangString)
-        validate_and_set(self, "alt_names", alt_names, list[LangString])
-        validate_and_set(self, "description", description, LangString)
-        validate_and_set(self, "editorial_notes", editorial_notes, list[LangString])
-        validate_and_set(self, "creators", creators, list[str])
-        validate_and_set(self, "contributors", contributors, list[str])
+        :cvar validate_assignment: Enables validation of field values upon assignment.
+        :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid' to disallow extra fields.
+        """
+
+        arbitrary_types_allowed = True
+        validate_assignment = True
+        extra = "forbid"
+
+    @abstractmethod
+    def __init__(self, **data):
+        """
+        Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
+
+        Inherits 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for
+        additional attributes specific to NamedElement.
+
+        :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
+        :type data: dict
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
+        """
+        super().__init__(**data)

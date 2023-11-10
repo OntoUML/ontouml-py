@@ -41,6 +41,24 @@ def test_ontouml_element_init(concrete_ontouml_element: ConcreteOntoumlElement) 
     assert isinstance(concrete_ontouml_element.id, uuid.UUID), "The 'id' attribute must be initialized as a UUID."
 
 
+def test_abstract_class() -> None:
+    """Test if the class OntoumlElement can be directly instantiated.
+
+    :raises ValidationError: If the instantiation occurs.
+    """
+    with pytest.raises(TypeError, match="Can't instantiate abstract class"):
+        OntoumlElement()
+
+
+def test_abstract_class_with_id() -> None:
+    """Test if the class OntoumlElement can be directly instantiated.
+
+    :raises ValidationError: If the instantiation occurs.
+    """
+    with pytest.raises(TypeError, match="Can't instantiate abstract class"):
+        OntoumlElement(id=uuid.uuid4())
+
+
 def test_invalid_created_argument_type() -> None:
     """Test passing an invalid 'created' argument type during initialization of ConcreteOntoumlElement.
 
@@ -303,7 +321,8 @@ def test_invalid_types_for_created_and_modified() -> None:
     with pytest.raises(ValidationError):
         ConcreteOntoumlElement(modified="invalid-type")
 
-def test_default_id_immutable()->None:
+
+def test_default_id_immutable() -> None:
     """Test that the default 'id' is immutable."""
     element = ConcreteOntoumlElement()
     original_id = element.id
@@ -311,14 +330,23 @@ def test_default_id_immutable()->None:
         element.id = uuid.uuid4()
     assert element.id == original_id, "The default 'id' should be immutable."
 
-def test_modified_accept_none_post_instantiation()->None:
+
+def test_modified_accept_none_post_instantiation() -> None:
     """Test that the 'modified' attribute can be set to None after instantiation."""
     element = ConcreteOntoumlElement()
     element.modified = None
     assert element.modified is None, "The 'modified' attribute should accept None post-instantiation."
 
-def test_error_when_modified_before_created()->None:
+
+def test_error_when_modified_before_created() -> None:
     """Test an error is raised if 'modified' is set to a datetime before 'created'."""
     element = ConcreteOntoumlElement()
     with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
         element.modified = element.created - timedelta(days=1)
+
+
+def test_non_existent_attribute() -> None:
+    """Test if attribution to a non-existent attribute will result in an error."""
+    element = ConcreteOntoumlElement()
+    with pytest.raises(ValidationError, match=r"Object has no attribute"):
+        element.att = 1

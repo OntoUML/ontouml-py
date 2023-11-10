@@ -1,310 +1,328 @@
-import datetime
-from typing import Optional, List
+from typing import List
 
 import pytest
 from langstring_lib.langstring import LangString
+from pydantic import ValidationError
 
 from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
 
 
-class NamedElementStub(NamedElement):
-    """A stub class that extends the abstract NamedElement class for testing purposes."""
-
-    def __init__(
-        self,
-        created: Optional[datetime.datetime] = None,
-        modified: Optional[datetime.datetime] = None,
-        pref_name: Optional[LangString] = None,
-        alt_names: Optional[List[LangString]] = None,
-        description: Optional[LangString] = None,
-        editorial_notes: Optional[List[LangString]] = None,
-        creators: Optional[List[str]] = None,
-        contributors: Optional[List[str]] = None,
-    ):
-        super().__init__(created, modified, pref_name, alt_names, description, editorial_notes, creators, contributors)
+# Concrete subclass for testing
+class ConcreteNamedElement(NamedElement):
+    def __init__(self, **data):
+        super().__init__(**data)
 
 
-# Test cases
-@pytest.mark.parametrize(
-    "created, modified, expected_created",
-    [
-        (None, None, datetime.datetime.now()),
-        (datetime.datetime(2021, 1, 1), None, datetime.datetime(2021, 1, 1)),
-    ],
-)
-def test_namedelement_initialization(
-    created: Optional[datetime.datetime], modified: Optional[datetime.datetime], expected_created: datetime.datetime
+@pytest.fixture
+def valid_langstring() -> LangString:
+    """Provides a valid LangString object for testing."""
+    return LangString("Test LangString")
+
+
+@pytest.fixture
+def valid_langstring_list() -> List[LangString]:
+    """Provides a list of valid LangString objects for testing."""
+    return [LangString("LangString 1"), LangString("LangString 2")]
+
+
+@pytest.fixture
+def invalid_langstring() -> str:
+    return "Invalid LangString"
+
+
+def test_namedelement_instantiation_with_arguments(
+    valid_langstring: LangString, valid_langstring_list: List[LangString]
 ) -> None:
-    """Test the initialization of NamedElementStub, ensuring it sets the 'created' and 'modified' dates correctly.
-
-    :param created: The date the element is created or None to test the default behavior.
-    :param modified: The date the element was last modified or None if it hasn't been modified.
-    :param expected_created: The expected value of the 'created' attribute after initialization.
     """
-    element = NamedElementStub(created=created, modified=modified)
-    assert element.created.date() == expected_created.date(), "The 'created' date should match the expected date"
-    if modified:
-        assert element.modified == modified, "The 'modified' date should be set when provided"
-    else:
-        assert element.modified is None, "The 'modified' date should be None when not provided"
+    Test the instantiation of NamedElement with specific arguments.
 
-
-@pytest.mark.parametrize(
-    "pref_name",
-    [
-        (LangString("Test Name")),
-    ],
-)
-def test_namedelement_pref_name_initialization(pref_name: LangString) -> None:
-    """Test the initialization of NamedElementStub, ensuring it sets the 'pref_name' attribute correctly.
-
-    :param pref_name: The preferred name of the element, as a LangString object.
+    :param valid_langstring: A valid LangString object.
+    :param valid_langstring_list: A list of valid LangString objects.
+    :raises AssertionError: If attributes are not set as expected.
     """
-    element = NamedElementStub(pref_name=pref_name)
-    assert element.pref_name == pref_name, "The 'pref_name' should be set correctly during initialization"
-
-
-# Test the validation logic for 'alt_names'
-@pytest.mark.parametrize(
-    "alt_names, is_valid",
-    [
-        ([LangString("Alternative Name 1"), LangString("Alternative Name 2")], True),
-        ([], True),
-        # Testing empty list of alternative names
-        (None, True),  # Testing 'None' as a value for 'alt_names'
-        ([123, "Invalid LangString"], False),  # Testing invalid list contents
-    ],
-)
-def test_namedelement_alt_names_validation(alt_names: Optional[List[LangString]], is_valid: bool) -> None:
-    """Test the validation of 'alt_names' attribute during the initialization of NamedElementStub.
-
-    :param alt_names: A list of alternative names or None.
-    :param is_valid: Boolean indicating whether the 'alt_names' is valid or not.
-    """
-    if is_valid:
-        element = NamedElementStub(alt_names=alt_names)
-        assert element.alt_names == alt_names, "The 'alt_names' should be set correctly when valid"
-    else:
-        with pytest.raises(TypeError):
-            NamedElementStub(alt_names=alt_names)
-
-
-# Test the setting and validation logic for 'description' and 'editorial_notes'
-@pytest.mark.parametrize(
-    "description, editorial_notes",
-    [
-        (LangString("Description text"), LangString("Editorial notes text")),
-        (None, None),
-        # Testing 'None' values for both attributes
-        (LangString(""), LangString("")),  # Testing empty LangString objects
-    ],
-)
-def test_namedelement_description_editorial_notes_initialization(
-    description: Optional[LangString], editorial_notes: Optional[LangString]
-) -> None:
-    """Test the initialization of NamedElementStub, ensuring 'description' and 'editorial_notes' are set correctly.
-
-    :param description: A LangString object representing the description or None.
-    :param editorial_notes: A LangString object representing the editorial notes or None.
-    """
-    element = NamedElementStub(description=description, editorial_notes=editorial_notes)
-    assert element.description == description, "The 'description' should be set correctly during initialization"
+    element = ConcreteNamedElement(
+        pref_name=valid_langstring,
+        alt_names=valid_langstring_list,
+        description=valid_langstring,
+        editorial_notes=valid_langstring_list,
+        creators=["http://creator1.com"],
+        contributors=["http://contributor1.com"],
+    )
+    assert element.pref_name == valid_langstring, "pref_name should be initialized with the given LangString"
     assert (
-        element.editorial_notes == editorial_notes
-    ), "The 'editorial_notes' should be set correctly during initialization"
+        element.alt_names == valid_langstring_list
+    ), "alt_names should be initialized with the given list of LangString"
+    assert element.description == valid_langstring, "description should be initialized with the given LangString"
+    assert (
+        element.editorial_notes == valid_langstring_list
+    ), "editorial_notes should be initialized with the given list of LangString"
+    assert element.creators == ["http://creator1.com"], "creators should be initialized with the given list of URIs"
+    assert element.contributors == [
+        "http://contributor1.com"
+    ], "contributors should be initialized with the given list of URIs"
 
 
-# Test to ensure that the current time is used by default for 'created' attribute when it is not provided
-def test_namedelement_default_created_time() -> None:
-    """Test the default behavior of the 'created' attribute to ensure it is set to the current time when not \
-    provided."""
-    element = NamedElementStub()
-    assert element.created <= datetime.datetime.now(), "The 'created' attribute should default to the current time"
-    assert element.created > datetime.datetime.now() - datetime.timedelta(
-        seconds=1
-    ), "The 'created' attribute should be very close to the current time"
+def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: LangString) -> None:
+    """
+    Test modifying NamedElement attributes after instantiation.
+
+    :param valid_langstring: A valid LangString object.
+    :raises AssertionError: If attributes are not updated as expected.
+    """
+    element = ConcreteNamedElement()
+    element.pref_name = valid_langstring
+    assert element.pref_name == valid_langstring, "pref_name should be updatable post-instantiation"
 
 
-# Test invalid argument types for 'pref_name', 'description', and 'editorial_notes'
-@pytest.mark.parametrize(
-    "attr_name, invalid_value",
-    [
-        ("pref_name", "Invalid type"),  # Non-LangString type for 'pref_name'
-        ("description", 123),  # Non-LangString type for 'description'
-        ("editorial_notes", "Not a list of LangString"),  # Not a list type for 'editorial_notes'
-        ("editorial_notes", [123]),  # List with incorrect inner type for 'editorial_notes'
-    ],
-)
-def test_namedelement_invalid_argument_types(attr_name: str, invalid_value) -> None:
-    """Test the initialization of NamedElementStub with invalid argument types.
+def test_namedelement_type_validation() -> None:
+    """
+    Test type validation for NamedElement attributes.
 
-    :param attr_name: Name of the attribute being tested.
-    :param invalid_value: An invalid value for the attribute.
+    :raises ValidationError: If the wrong type is assigned to an attribute.
+    """
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(pref_name="Invalid Type")  # Expect LangString, not str
+
+
+def test_namedelement_abstract_class_enforcement() -> None:
+    """
+    Test that NamedElement cannot be instantiated directly due to its abstract nature.
+
+    :raises TypeError: If NamedElement is instantiated directly.
     """
     with pytest.raises(TypeError):
-        NamedElementStub(**{attr_name: invalid_value})
+        _ = NamedElement()  # Abstract class should not be instantiated
 
 
-# Test invalid argument values for 'alt_names'
-@pytest.mark.parametrize(
-    "invalid_alt_names",
-    [
-        ("Invalid type"),  # Single non-LangString type in list
-        (["Valid", 123, "Invalid"]),  # Mixed types, with invalid entries
-        (123),  # Non-list type
-    ],
-)
-def test_namedelement_invalid_alt_names_values(invalid_alt_names) -> None:
-    """Test the initialization of NamedElementStub with invalid values for 'alt_names'.
-
-    :param invalid_alt_names: An invalid value for the 'alt_names' list.
+def test_namedelement_default_values() -> None:
     """
-    with pytest.raises((TypeError, ValueError)):
-        NamedElementStub(alt_names=invalid_alt_names)
+    Test the default values of NamedElement attributes upon instantiation.
 
-
-# Test for attributes set as None to verify that they are allowed and handled correctly
-@pytest.mark.parametrize(
-    "attr_name",
-    [
-        ("pref_name"),
-        ("description"),
-        ("editorial_notes"),
-    ],
-)
-def test_namedelement_attributes_set_as_none(attr_name: str) -> None:
-    """Test the initialization of NamedElementStub with attributes set as None.
-
-    :param attr_name: Name of the attribute being tested.
+    :raises AssertionError: If default values are not as expected.
     """
-    element = NamedElementStub(**{attr_name: None})
-    assert getattr(element, attr_name) is None, f"The '{attr_name}' attribute should be allowed to be set as None"
+    element = ConcreteNamedElement()
+    assert element.pref_name is None, "pref_name should default to None"
+    assert element.alt_names == [], "alt_names should default to an empty list"
+    assert element.description is None, "description should default to None"
+    assert element.editorial_notes == [], "editorial_notes should default to an empty list"
+    assert element.creators == [], "creators should default to an empty list"
+    assert element.contributors == [], "contributors should default to an empty list"
 
 
-# Test edge cases for 'pref_name', 'description', and 'editorial_notes' with unusual but valid inputs
-@pytest.mark.parametrize(
-    "attr_name, edge_case_value",
-    [
-        ("pref_name", LangString("")),  # Empty string in LangString for 'pref_name'
-        ("description", LangString(" ")),  # Whitespace string in LangString for 'description'
-        ("editorial_notes", LangString("\n")),  # Newline character in LangString for 'editorial_notes'
-    ],
-)
-def test_namedelement_edge_cases_for_langstring_attributes(attr_name: str, edge_case_value: LangString) -> None:
-    """Test the initialization of NamedElementStub with edge case values for LangString attributes.
-
-    :param attr_name: Name of the attribute being tested.
-    :param edge_case_value: An edge case LangString value for the attribute.
+def test_namedelement_custom_initialization(valid_langstring: LangString) -> None:
     """
-    element = NamedElementStub(**{attr_name: edge_case_value})
-    assert (
-        getattr(element, attr_name) == edge_case_value
-    ), f"The '{attr_name}' attribute should handle edge case LangString values"
+    Test custom initialization of NamedElement attributes.
 
-
-# Test edge cases for 'alt_names' with unusual but valid inputs
-@pytest.mark.parametrize(
-    "edge_case_alt_names",
-    [
-        ([LangString("")]),  # List with empty string LangString
-        ([LangString(" "), LangString("\t")]),  # List with whitespace and tab characters in LangString
-        ([LangString("Name")] * 100),  # List with a large number of the same LangString
-    ],
-)
-def test_namedelement_edge_cases_for_alt_names(edge_case_alt_names: List[LangString]) -> None:
-    """Test the initialization of NamedElementStub with edge case values for 'alt_names' list.
-
-    :param edge_case_alt_names: An edge case list of LangString objects for 'alt_names'.
+    :param valid_langstring: A valid LangString object.
+    :raises AssertionError: If custom initialization does not work as expected.
     """
-    element = NamedElementStub(alt_names=edge_case_alt_names)
-    assert element.alt_names == edge_case_alt_names, "The 'alt_names' attribute should handle edge case lists"
+    custom_pref_name = LangString("Custom Name")
+    element = ConcreteNamedElement(pref_name=custom_pref_name)
+    assert element.pref_name == custom_pref_name, "pref_name should be customizable during initialization"
 
 
-# Test initialization with edge case datetime values
-@pytest.mark.parametrize(
-    "created, modified",
-    [
-        (datetime.datetime.min, datetime.datetime.min),  # Testing minimum possible datetime
-        (datetime.datetime.max, datetime.datetime.max),  # Testing maximum possible datetime
-    ],
-)
-def test_namedelement_edge_cases_for_datetime_attributes(
-    created: datetime.datetime, modified: datetime.datetime
-) -> None:
-    """Test the initialization of NamedElementStub with edge case datetime values for 'created' and 'modified'.
-
-    :param created: An edge case datetime value for when the element was created.
-    :param modified: An edge case datetime value for when the element was last modified.
+def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> None:
     """
-    element = NamedElementStub(created=created, modified=modified)
-    assert element.created == created, "The 'created' attribute should handle edge case datetime values"
-    assert element.modified == modified, "The 'modified' attribute should handle edge case datetime values"
+    Test updating list attributes of NamedElement post-instantiation.
 
-
-# Test the initialization and validation logic for 'creators'
-@pytest.mark.parametrize(
-    "creators, is_valid",
-    [
-        (["http://creator1.com", "http://creator2.com"], True),  # Valid URIs
-        ([], True),  # Testing empty list of creators
-        (None, True),  # Testing 'None' as a value for 'creators'
-        (["not-a-uri", 123], False),  # Testing invalid list contents: not valid URIs and wrong type
-    ],
-)
-def test_namedelement_creators_validation(creators: Optional[List[str]], is_valid: bool) -> None:
-    """Test the validation of 'creators' attribute during the initialization of NamedElementStub.
-
-    :param creators: A list of URIs or None.
-    :param is_valid: Boolean indicating whether the 'creators' is valid or not.
+    :param valid_langstring: A valid LangString object.
+    :raises AssertionError: If list attributes are not updatable.
     """
-    if is_valid:
-        element = NamedElementStub(creators=creators)
-        assert element.creators == creators, "The 'creators' should be set correctly when valid"
-    else:
-        with pytest.raises((TypeError, ValueError)):
-            NamedElementStub(creators=creators)
+    element = ConcreteNamedElement()
+    element.alt_names.append(valid_langstring)
+    element.editorial_notes.append(valid_langstring)
+    assert valid_langstring in element.alt_names, "alt_names should be updatable post-instantiation"
+    assert valid_langstring in element.editorial_notes, "editorial_notes should be updatable post-instantiation"
 
 
-# Test the initialization and validation logic for 'contributors'
-@pytest.mark.parametrize(
-    "contributors, is_valid",
-    [
-        (["http://contributor1.com", "http://contributor2.com"], True),  # Valid URIs
-        ([], True),  # Testing empty list of contributors
-        (None, True),  # Testing 'None' as a value for 'contributors'
-        (["not-a-uri", 123], False),  # Testing invalid list contents: not valid URIs and wrong type
-    ],
-)
-def test_namedelement_contributors_validation(contributors: Optional[List[str]], is_valid: bool) -> None:
-    """Test the validation of 'contributors' attribute during the initialization of NamedElementStub.
-
-    :param contributors: A list of URIs or None.
-    :param is_valid: Boolean indicating whether the 'contributors' is valid or not.
+def test_namedelement_invalid_list_type_assignment() -> None:
     """
-    if is_valid:
-        element = NamedElementStub(contributors=contributors)
-        assert element.contributors == contributors, "The 'contributors' should be set correctly when valid"
-    else:
-        with pytest.raises((TypeError, ValueError)):
-            NamedElementStub(contributors=contributors)
+    Test assignment of invalid types to list attributes of NamedElement.
 
-
-# Test edge cases for 'creators' and 'contributors' with unusual but valid inputs
-@pytest.mark.parametrize(
-    "attr_name, edge_case_values",
-    [
-        ("creators", ["http://creator.com", ""]),  # Testing a valid URI and an empty string
-        ("contributors", ["http://contributor.com", " ", "http://contributor2.com"]),  # Valid URIs and a whitespace
-    ],
-)
-def test_namedelement_edge_cases_for_uri_attributes(attr_name: str, edge_case_values: List[str]) -> None:
-    """Test the initialization of NamedElementStub with edge case values for URI attributes.
-
-    :param attr_name: Name of the attribute being tested.
-    :param edge_case_values: An edge case list of URIs for the attribute.
+    :raises ValidationError: If invalid types are assigned to list attributes.
     """
-    kwargs = {attr_name: edge_case_values}
-    element = NamedElementStub(**kwargs)
-    assert (
-        getattr(element, attr_name) == edge_case_values
-    ), f"The '{attr_name}' attribute should handle edge case URI values"
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(alt_names=["Invalid"])  # Expect list of LangString, not list of str
+
+
+# Test initialization with invalid value and valid type
+def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> None:
+    """
+    Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
+
+    :param invalid_langstring: A string that is not a valid LangString object.
+    :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
+    """
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(pref_name=invalid_langstring)
+
+
+# Test initialization with invalid type
+def test_initialization_with_invalid_type() -> None:
+    """
+    Test the instantiation of NamedElement with an invalid type for 'pref_name'.
+
+    :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
+    """
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(pref_name=123)
+
+
+# Test initialization with empty list for 'alt_names'
+def test_initialization_with_empty_list() -> None:
+    """
+    Test the instantiation of NamedElement with an empty list for 'alt_names'.
+
+    :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
+    """
+    element = ConcreteNamedElement(alt_names=[])
+    assert element.alt_names == [], "alt_names should be correctly initialized as an empty list."
+
+
+# Test post-initialization assertions with invalid value and valid type
+def test_post_initialization_with_invalid_value(valid_langstring: LangString) -> None:
+    """
+    Test assigning an invalid value but valid type to 'pref_name' after instantiation.
+
+    :param valid_langstring: A valid LangString object.
+    :raises ValidationError: If an invalid value is assigned post-instantiation.
+    """
+    element = ConcreteNamedElement(pref_name=valid_langstring)
+    with pytest.raises(ValidationError):
+        element.pref_name = "Invalid value"
+
+
+# Test post-initialization assertions with invalid type
+def test_post_initialization_with_invalid_type() -> None:
+    """
+    Test assigning an invalid type to 'pref_name' after instantiation.
+
+    :raises ValidationError: If an incorrect type is assigned post-instantiation.
+    """
+    element = ConcreteNamedElement()
+    with pytest.raises(ValidationError):
+        element.pref_name = 123
+
+
+# Test post-initialization assertions with empty list for 'alt_names'
+def test_post_initialization_with_empty_list() -> None:
+    """
+    Test assigning an empty list to 'alt_names' after instantiation.
+
+    :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
+    """
+    element = ConcreteNamedElement()
+    element.alt_names = []
+    assert element.alt_names == [], "alt_names should be correctly set to an empty list post-instantiation."
+
+
+# Edge case tests for 'pref_name'
+@pytest.mark.parametrize("edge_case_value", [LangString(""), LangString(" "), LangString("\n")])
+def test_pref_name_edge_cases(edge_case_value: LangString) -> None:
+    """
+    Test initializing NamedElement with edge case LangString values for 'pref_name'.
+
+    :param edge_case_value: A LangString object with edge case content.
+    :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
+    """
+    element = ConcreteNamedElement(pref_name=edge_case_value)
+    assert element.pref_name == edge_case_value, "pref_name should correctly handle edge case LangString values."
+
+
+# Edge case tests for 'alt_names'
+@pytest.mark.parametrize("edge_case_list", [[], [LangString("")], [LangString(" "), LangString("\n")]])
+def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
+    """
+    Test initializing NamedElement with edge case lists for 'alt_names'.
+
+    :param edge_case_list: A list of LangString objects with edge case content.
+    :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
+    """
+    element = ConcreteNamedElement(alt_names=edge_case_list)
+    assert element.alt_names == edge_case_list, "alt_names should correctly handle edge case lists."
+
+
+# Edge case tests for 'creators' and 'contributors'
+@pytest.mark.parametrize("edge_case_list", [[], [" "], ["http://example.com", ""]])
+def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
+    """
+    Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
+
+    :param edge_case_list: A list of strings with edge case URI content.
+    :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
+    """
+    element = ConcreteNamedElement(creators=edge_case_list, contributors=edge_case_list)
+    assert element.creators == edge_case_list, "creators should correctly handle edge case lists."
+    assert element.contributors == edge_case_list, "contributors should correctly handle edge case lists."
+
+
+# Test with null values in list attributes
+def test_rejection_of_null_values_in_list_attributes() -> None:
+    """
+    Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
+
+    :raises ValidationError: If lists with None elements are assigned.
+    """
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(alt_names=[None])
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(editorial_notes=[None])
+
+
+# Test with extremely long strings
+def test_extremely_long_strings() -> None:
+    """
+    Test assigning extremely long strings to string-based attributes.
+
+    :raises AssertionError: If extremely long strings are not handled correctly.
+    """
+    long_string = "a" * 10000
+    element = ConcreteNamedElement(pref_name=LangString(long_string), description=LangString(long_string))
+    assert element.pref_name.text == long_string, "pref_name should correctly handle extremely long strings."
+    assert element.description.text == long_string, "description should correctly handle extremely long strings."
+
+
+# Test with special characters and Unicode
+@pytest.mark.parametrize("special_string", ["特殊字符", "😊", "♠♥♦♣"])
+def test_special_characters_and_unicode(special_string) -> None:
+    """
+    Test assigning strings with special characters and Unicode to string-based attributes.
+
+    :param special_string: A string containing special characters or Unicode.
+    :raises AssertionError: If special characters and Unicode are not handled correctly.
+    """
+    element = ConcreteNamedElement(pref_name=LangString(special_string))
+    assert element.pref_name.text == special_string, "pref_name should correctly handle special characters and Unicode."
+
+
+def test_alt_names_and_editorial_notes_with_valid_data() -> None:
+    """
+    Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
+
+    :raises AssertionError: If valid data is not handled correctly.
+    """
+    valid_langstring_list = [LangString("Test String 1"), LangString("Test String 2")]
+    element = ConcreteNamedElement(alt_names=valid_langstring_list, editorial_notes=valid_langstring_list)
+    assert element.alt_names == valid_langstring_list, "alt_names should accept a valid LangString list."
+    assert element.editorial_notes == valid_langstring_list, "editorial_notes should accept a valid LangString list."
+
+    empty_element = ConcreteNamedElement(alt_names=[], editorial_notes=[])
+    assert empty_element.alt_names == [], "alt_names should accept an empty list."
+    assert empty_element.editorial_notes == [], "editorial_notes should accept an empty list."
+
+
+def test_rejection_of_invalid_data_in_list_attributes() -> None:
+    """
+    Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'
+    raises a validation error.
+
+    :raises ValidationError: If invalid data is assigned.
+    """
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(alt_names=[None])
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(alt_names=["Invalid Type"])
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(editorial_notes=[None])
+    with pytest.raises(ValidationError):
+        ConcreteNamedElement(editorial_notes=["Invalid Type"])
