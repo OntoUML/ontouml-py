@@ -1,0 +1,614 @@
+:py:mod:`ontouml_py.tests.test_project`
+=======================================
+
+.. py:module:: ontouml_py.tests.test_project
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_project.OntoumlElementStub
+   ontouml_py.tests.test_project.AnotherOntoumlElementStub
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_project.create_langstring
+   ontouml_py.tests.test_project.create_ontoumlelement
+   ontouml_py.tests.test_project.valid_langstring_list
+   ontouml_py.tests.test_project.valid_ontoumlelement_list
+   ontouml_py.tests.test_project.test_project_initialization
+   ontouml_py.tests.test_project.test_project_mutable_update_empty_values
+   ontouml_py.tests.test_project.test_project_invalid_value_in_list_post_init
+   ontouml_py.tests.test_project.test_project_invalid_type_in_list_post_init
+   ontouml_py.tests.test_project.test_project_none_in_list_post_init
+   ontouml_py.tests.test_project.test_project_empty_string_in_list_post_init
+   ontouml_py.tests.test_project.test_project_update_list_with_mixed_values
+   ontouml_py.tests.test_project.test_project_update_list_with_mixed_types
+   ontouml_py.tests.test_project.test_project_interaction_with_langstring_complex
+   ontouml_py.tests.test_project.test_project_datetime_with_different_timezones
+   ontouml_py.tests.test_project.test_project_extreme_values_handling
+   ontouml_py.tests.test_project.test_project_default_values_initialization
+   ontouml_py.tests.test_project.test_project_large_list_attributes
+   ontouml_py.tests.test_project.test_project_extreme_string_values
+   ontouml_py.tests.test_project.test_project_mixing_types_in_lists
+   ontouml_py.tests.test_project.test_project_empty_values_post_initialization
+   ontouml_py.tests.test_project.test_project_future_past_dates
+   ontouml_py.tests.test_project.test_project_assigning_null_to_optional_fields
+   ontouml_py.tests.test_project.test_project_datetime_boundaries
+   ontouml_py.tests.test_project.test_project_empty_and_null_lists
+   ontouml_py.tests.test_project.test_project_numerical_values_for_strings
+   ontouml_py.tests.test_project.test_project_boolean_values_in_lists
+   ontouml_py.tests.test_project.test_project_add_valid_element
+   ontouml_py.tests.test_project.test_project_add_duplicate_element
+   ontouml_py.tests.test_project.test_project_add_incorrect_type_element
+   ontouml_py.tests.test_project.test_project_maintain_inverse_relationship
+   ontouml_py.tests.test_project.test_project_add_none_element
+   ontouml_py.tests.test_project.test_project_add_multiple_elements
+   ontouml_py.tests.test_project.test_project_add_element_already_in_other_project
+   ontouml_py.tests.test_project.test_project_add_self_as_element
+   ontouml_py.tests.test_project.test_project_add_various_subclasses_of_elements
+   ontouml_py.tests.test_project.test_project_add_mixed_valid_invalid_elements
+   ontouml_py.tests.test_project.test_project_add_elements_with_duplicates
+   ontouml_py.tests.test_project.test_project_add_element_updates_in_project
+   ontouml_py.tests.test_project.test_project_add_custom_attribute_elements
+   ontouml_py.tests.test_project.test_project_add_large_number_unique_elements
+   ontouml_py.tests.test_project.test_project_remove_specific_element
+   ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects
+   ontouml_py.tests.test_project.test_project_remove_nonexistent_element
+   ontouml_py.tests.test_project.test_project_remove_none_element
+   ontouml_py.tests.test_project.test_project_remove_all_elements_of_type
+   ontouml_py.tests.test_project.test_project_remove_element_updates_in_project
+   ontouml_py.tests.test_project.test_project_remove_elements_added_via_list
+   ontouml_py.tests.test_project.test_project_remove_element_check_others_remain
+   ontouml_py.tests.test_project.test_project_remove_multiple_different_elements
+   ontouml_py.tests.test_project.test_project_remove_custom_attribute_element
+   ontouml_py.tests.test_project.test_project_remove_modified_elements
+   ontouml_py.tests.test_project.test_project_remove_elements_in_reverse_order
+   ontouml_py.tests.test_project.test_project_remove_elements_nested_projects
+   ontouml_py.tests.test_project.test_project_repeated_add_remove_element
+   ontouml_py.tests.test_project.test_project_remove_elements_conditional_filter
+   ontouml_py.tests.test_project.test_project_remove_elements_check_count
+   ontouml_py.tests.test_project.test_project_remove_random_elements
+   ontouml_py.tests.test_project.test_project_remove_all_elements_empty_state
+   ontouml_py.tests.test_project.test_project_remove_nonexistent_element2
+   ontouml_py.tests.test_project.test_project_remove_element_others_unchanged
+   ontouml_py.tests.test_project.test_project_remove_modified_element
+   ontouml_py.tests.test_project.test_project_remove_elements_by_filter
+   ontouml_py.tests.test_project.test_project_sequential_remove_elements
+   ontouml_py.tests.test_project.test_project_remove_element_unaffected_properties
+   ontouml_py.tests.test_project.test_project_remove_elements_check_empty_each_time
+   ontouml_py.tests.test_project.test_project_remove_elements_check_in_project
+   ontouml_py.tests.test_project.test_project_remove_element_ensure_order
+   ontouml_py.tests.test_project.test_project_remove_random_element
+   ontouml_py.tests.test_project.test_project_remove_elements_impact_on_properties
+
+
+
+.. py:function:: create_langstring(text)
+
+   Create a LangString object from a given text.
+
+   :param text: The text to be converted into a LangString.
+   :type text: str
+   :return: A LangString object containing the provided text.
+   :rtype: LangString
+
+
+.. py:class:: OntoumlElementStub
+
+
+   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+
+   A stub class for OntoumlElement.
+
+   This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
+   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
+   typically instantiated to create simple examples of OntoumlElement objects.
+
+
+.. py:class:: AnotherOntoumlElementStub
+
+
+   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+
+   A second stub class for OntoumlElement.
+
+   This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
+   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
+   typically instantiated to create simple examples of OntoumlElement objects.
+
+
+.. py:function:: create_ontoumlelement()
+
+   Create and return an instance of OntoumlElementStub.
+
+   :return: An instance of OntoumlElementStub.
+   :rtype: OntoumlElementStub
+
+
+.. py:function:: valid_langstring_list()
+
+   Provide a fixture for creating a list of valid LangString objects.
+
+   :return: A list of LangString objects.
+   :rtype: list[LangString]
+
+
+.. py:function:: valid_ontoumlelement_list()
+
+   Provide a fixture for creating a list of valid OntoumlElementStub objects.
+
+   :return: A list of OntoumlElementStub objects.
+   :rtype: list[OntoumlElementStub]
+
+
+.. py:function:: test_project_initialization(valid_langstring_list, valid_ontoumlelement_list)
+
+   Test the successful initialization of a Project instance with valid parameters.
+
+   :param valid_langstring_list: A list of LangString objects for testing.
+   :type valid_langstring_list: list[LangString]
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+
+
+.. py:function:: test_project_mutable_update_empty_values()
+
+   Test updating project attributes to empty values after non-empty initialization.
+
+   :raises AssertionError: If the attributes don't update to empty values correctly.
+
+
+.. py:function:: test_project_invalid_value_in_list_post_init()
+
+   Test assigning an invalid value in a list attribute after non-empty initialization.
+
+   :raises ValidationError: If the list accepts an invalid value.
+
+
+.. py:function:: test_project_invalid_type_in_list_post_init()
+
+   Test assigning an invalid type in a list attribute after non-empty initialization.
+
+   :raises ValidationError: If the list accepts an invalid type.
+
+
+.. py:function:: test_project_none_in_list_post_init()
+
+   Test assigning None to a list attribute after non-empty initialization.
+
+   :raises ValueError: If None is assigned to a list attribute.
+
+
+.. py:function:: test_project_empty_string_in_list_post_init()
+
+   Test appending an empty string to a list attribute after non-empty initialization.
+
+   :raises AssertionError: If empty string in list is not handled correctly.
+
+
+.. py:function:: test_project_update_list_with_mixed_values()
+
+   Test updating a list attribute with a mix of valid and None values.
+
+   :raises ValidationError: If mixed values are incorrectly accepted.
+
+
+.. py:function:: test_project_update_list_with_mixed_types()
+
+   Test updating a list attribute with a mix of valid and invalid types.
+
+   :raises ValidationError: If mixed types are incorrectly accepted.
+
+
+.. py:function:: test_project_interaction_with_langstring_complex()
+
+   Test Project initialization with complex LangString objects.
+
+   :raises AssertionError: If complex LangString objects are not handled correctly.
+
+
+.. py:function:: test_project_datetime_with_different_timezones()
+
+   Test Project initialization with datetime objects in different time zones.
+
+   :raises AssertionError: If datetime objects with different time zones are not handled correctly.
+
+
+.. py:function:: test_project_extreme_values_handling()
+
+   Test Project handling extreme and boundary values in attributes.
+
+   :raises AssertionError: If extreme and boundary values are not handled correctly.
+
+
+.. py:function:: test_project_default_values_initialization()
+
+   Test initialization of Project with default values.
+
+   :raises AssertionError: If default values are not set correctly.
+
+
+.. py:function:: test_project_large_list_attributes()
+
+   Test handling large lists for list-type attributes.
+
+
+.. py:function:: test_project_extreme_string_values()
+
+   Test handling extreme string values for string-type attributes.
+
+
+.. py:function:: test_project_mixing_types_in_lists()
+
+   Test assigning mixed types in list attributes.
+
+
+.. py:function:: test_project_empty_values_post_initialization()
+
+   Test assigning empty values to attributes post-initialization.
+
+
+.. py:function:: test_project_future_past_dates()
+
+   Test setting future and past dates for datetime attributes.
+
+
+.. py:function:: test_project_assigning_null_to_optional_fields()
+
+   Test assigning None to optional fields.
+
+
+.. py:function:: test_project_datetime_boundaries()
+
+   Test setting the minimum and maximum datetime values.
+
+
+.. py:function:: test_project_empty_and_null_lists()
+
+   Test handling empty lists for list attributes.
+
+
+.. py:function:: test_project_numerical_values_for_strings()
+
+   Test assigning numerical values to string attributes.
+
+
+.. py:function:: test_project_boolean_values_in_lists()
+
+   Test assigning boolean values in list attributes.
+
+
+.. py:function:: test_project_add_valid_element()
+
+   Test adding a valid OntoumlElement to a Project instance.
+
+   :raises AssertionError: If the element is not added correctly to the Project.
+
+
+.. py:function:: test_project_add_duplicate_element()
+
+   Test adding a duplicate OntoumlElement to a Project instance.
+
+   :raises AssertionError: If the duplicate element is added to the Project.
+
+
+.. py:function:: test_project_add_incorrect_type_element()
+
+   Test adding an element of incorrect type to a Project instance.
+
+   :raises ValidationError: If an element of incorrect type is added to the Project.
+
+
+.. py:function:: test_project_maintain_inverse_relationship()
+
+   Test maintaining the inverse relationship when adding an OntoumlElement to a Project.
+
+   :raises AssertionError: If the inverse relationship is not maintained correctly.
+
+
+.. py:function:: test_project_add_none_element()
+
+   Test adding None as an element to a Project instance.
+
+   :raises TypeError: If None is added as an element to the Project.
+
+
+.. py:function:: test_project_add_multiple_elements(valid_ontoumlelement_list)
+
+   Test adding multiple OntoumlElement objects to a Project instance.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If the elements are not added correctly to the Project.
+
+
+.. py:function:: test_project_add_element_already_in_other_project()
+
+   Test adding an OntoumlElement that is already part of another Project instance.
+
+   :raises AssertionError: If the element is not added to both projects correctly.
+
+
+.. py:function:: test_project_add_self_as_element()
+
+   Test adding the Project instance itself as an element.
+
+   :raises TypeError: If the Project instance is added as its own element.
+
+
+.. py:function:: test_project_add_various_subclasses_of_elements()
+
+   Test adding various concrete subclasses of OntoumlElement to a Project instance.
+
+   :raises AssertionError: If different subclasses of elements are not added correctly.
+
+
+.. py:function:: test_project_add_mixed_valid_invalid_elements()
+
+   Test adding a mix of valid and invalid instances to a Project instance.
+
+   :raises ValidationError: If invalid instances are added to the Project.
+
+
+.. py:function:: test_project_add_elements_with_duplicates(valid_ontoumlelement_list)
+
+   Test adding elements to a Project instance where some elements have already been added.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If duplicate handling is not correct.
+
+
+.. py:function:: test_project_add_element_updates_in_project()
+
+   Test if adding an element to a Project instance updates the element's in_project attribute.
+
+   :raises AssertionError: If the element's in_project attribute is not updated.
+
+
+.. py:function:: test_project_add_custom_attribute_elements()
+
+   Test adding elements with custom attributes to a Project instance.
+
+   :raises AssertionError: If elements with custom attributes are not handled correctly.
+
+
+.. py:function:: test_project_add_large_number_unique_elements()
+
+   Test adding a large number of unique elements to a Project instance.
+
+   :raises AssertionError: If the large number of elements are not handled correctly.
+
+
+.. py:function:: test_project_remove_specific_element(valid_ontoumlelement_list)
+
+   Test removing a specific element from a Project instance.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If the specific element is not removed correctly.
+
+
+.. py:function:: test_project_remove_element_from_multiple_projects()
+
+   Test removing an OntoumlElement that is part of multiple Project instances.
+
+   :raises AssertionError: If the element is not correctly removed from one project while remaining in others.
+
+
+.. py:function:: test_project_remove_nonexistent_element()
+
+   Test removing an OntoumlElement that does not exist in the Project.
+
+   :raises AssertionError: If the removal operation affects the Project incorrectly.
+
+
+.. py:function:: test_project_remove_none_element()
+
+   Test removing None from a Project instance.
+
+   :raises TypeError: If None is attempted to be removed from the Project.
+
+
+.. py:function:: test_project_remove_all_elements_of_type()
+
+   Test removing all elements of a specific type from a Project instance.
+
+   :raises AssertionError: If not all elements of the specific type are removed.
+
+
+.. py:function:: test_project_remove_element_updates_in_project()
+
+   Test if removing an element from a Project instance updates the element's in_project attribute.
+
+   :raises AssertionError: If the element's in_project attribute is not updated.
+
+
+.. py:function:: test_project_remove_elements_added_via_list(valid_ontoumlelement_list)
+
+   Test removing elements from a Project instance that were added via a list.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If elements are not removed correctly.
+
+
+.. py:function:: test_project_remove_element_check_others_remain()
+
+   Test removing a specific element from a Project and checking that other elements remain.
+
+   :raises AssertionError: If other elements are affected by the removal of one.
+
+
+.. py:function:: test_project_remove_multiple_different_elements(valid_ontoumlelement_list)
+
+   Test removing multiple different elements from a Project instance.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If the elements are not removed correctly.
+
+
+.. py:function:: test_project_remove_custom_attribute_element()
+
+   Test removing an element with custom attributes from a Project instance.
+
+   :raises AssertionError: If the element with custom attributes is not removed correctly.
+
+
+.. py:function:: test_project_remove_modified_elements(valid_ontoumlelement_list)
+
+   Test removing elements from a Project after they have been modified.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If modified elements are not removed correctly.
+
+
+.. py:function:: test_project_remove_elements_in_reverse_order(valid_ontoumlelement_list)
+
+   Test removing elements from a Project in the reverse order of their addition.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If elements are not removed correctly in reverse order.
+
+
+.. py:function:: test_project_remove_elements_nested_projects()
+
+   Test removing elements from a Project where elements are part of nested projects.
+
+   :raises AssertionError: If nested elements are not handled correctly during removal.
+
+
+.. py:function:: test_project_repeated_add_remove_element()
+
+   Test repeatedly adding and removing the same OntoumlElement to/from a Project.
+
+   :raises AssertionError: If the element is not handled correctly during repeated add/remove operations.
+
+
+.. py:function:: test_project_remove_elements_conditional_filter(valid_ontoumlelement_list)
+
+   Test removing elements from a Project using a conditional filter.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If elements are not correctly removed based on a conditional filter.
+
+
+.. py:function:: test_project_remove_elements_check_count(valid_ontoumlelement_list)
+
+   Test removing elements from a Project and checking the project's elements count.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If the project's elements count is not updated correctly.
+
+
+.. py:function:: test_project_remove_random_elements(valid_ontoumlelement_list)
+
+   Test removing a random selection of elements from a Project instance.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If random elements are not removed correctly.
+
+
+.. py:function:: test_project_remove_all_elements_empty_state(valid_ontoumlelement_list)
+
+   Test removing all elements from a Project and checking if the project is empty.
+
+   :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :raises AssertionError: If the project is not empty after removing all elements.
+
+
+.. py:function:: test_project_remove_nonexistent_element2()
+
+   Test removing an element that does not belong to the Project instance.
+
+   :raises AssertionError: If removing a nonexistent element affects the project's elements.
+
+
+.. py:function:: test_project_remove_element_others_unchanged()
+
+   Test removing a single element from a Project and ensuring other elements remain unchanged.
+
+   :raises AssertionError: If other elements are affected by the removal.
+
+
+.. py:function:: test_project_remove_modified_element()
+
+   Test removing an element from a Project after modifying its properties.
+
+   :raises AssertionError: If the modified element is not removed correctly.
+
+
+.. py:function:: test_project_remove_elements_by_filter()
+
+   Test removing elements from a Project using a filter function.
+
+   :raises AssertionError: If elements are not removed according to the filter function.
+
+
+.. py:function:: test_project_sequential_remove_elements()
+
+   Test removing elements from a Project sequentially.
+
+   :raises AssertionError: If elements are not removed correctly when done sequentially.
+
+
+.. py:function:: test_project_remove_element_unaffected_properties()
+
+   Test removing an element from a Project and ensuring project properties remain unaffected.
+
+   :raises AssertionError: If project properties are affected by the element removal.
+
+
+.. py:function:: test_project_remove_elements_check_empty_each_time()
+
+   Test removing elements from a Project and checking for an empty state after each removal.
+
+   :raises AssertionError: If the project is not empty when expected.
+
+
+.. py:function:: test_project_remove_elements_check_in_project()
+
+   Test removing elements from a Project and checking their in_project attribute.
+
+   :raises AssertionError: If in_project attribute of elements is not updated correctly.
+
+
+.. py:function:: test_project_remove_element_ensure_order()
+
+   Test removing an element from a Project and ensuring the order of remaining elements.
+
+   :raises AssertionError: If the order of remaining elements is not as expected.
+
+
+.. py:function:: test_project_remove_random_element()
+
+   Test removing a randomly chosen element from a Project.
+
+   :raises AssertionError: If the randomly chosen element is not removed correctly.
+
+
+.. py:function:: test_project_remove_elements_impact_on_properties()
+
+   Test removing elements from a Project and checking the impact on other project properties.
+
+   :raises AssertionError: If other project properties are affected by element removal.
+
+

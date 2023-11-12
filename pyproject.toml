@@ -16,11 +16,12 @@ exclude = ["ontouml-py/tests"]
 "PyPi Project" = "https://pypi.org/project/ontouml-py/"
 
 [tool.poetry.dependencies]
-importlib = "^1.0.4"
-python = "^3.09"
 langstring = "^1.0.0b0"
+python = "^3.09"
+pydantic = "^2.4.2"
 
 [tool.poetry.group.dev.dependencies]
+loguru = "^0.7.2"
 myst-parser = "^2.0.0"
 poetry = "^1.6.1"
 pre-commit = "^3.4.0"

@@ -1,0 +1,6 @@
+:py:mod:`ontouml_py.classes.concrete_syntax`
+============================================
+
+.. py:module:: ontouml_py.classes.concrete_syntax
+
+

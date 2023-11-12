@@ -1,0 +1,98 @@
+:py:mod:`ontouml_py.classes.ontoumlelement`
+===========================================
+
+.. py:module:: ontouml_py.classes.ontoumlelement
+
+.. autoapi-nested-parse::
+
+   This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model. It includes attributes for unique identification, creation, and modification timestamps, ensuring these properties are present across all OntoUML elements. The class also incorporates validations to enforce the integrity of these attributes.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.ontoumlelement.OntoumlElement
+
+
+
+
+.. py:class:: OntoumlElement(**data)
+
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`pydantic.BaseModel`
+
+   Abstract base class representing a generic element within an OntoUML model.
+
+   This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation
+   and modification, and a relationship to OntoUML projects.
+
+   :ivar id: A unique identifier for the element, automatically generated upon instantiation.
+   :vartype id: uuid.UUID
+   :ivar created: Timestamp when the element was created, defaults to the current time.
+   :vartype created: datetime
+   :ivar modified: Timestamp when the element was last modified, can be None if not modified.
+   :vartype modified: Optional[datetime]
+   :ivar in_project: List of projects this element is part of. Direct modification is restricted.
+   :vartype in_project: list['Project']
+
+   .. py:class:: Config
+
+
+      Configuration settings for the OntoumlElement model using Pydantic.
+
+      :cvar validate_assignment: Specifies if field values should be validated upon assignment.
+      :vartype validate_assignment: bool
+      :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow them.
+      :vartype extra: str
+
+      .. py:attribute:: validate_assignment
+         :value: True
+
+         
+
+      .. py:attribute:: extra
+         :value: 'forbid'
+
+         
+
+
+   .. py:attribute:: id
+      :type: uuid.UUID
+
+      
+
+   .. py:attribute:: created
+      :type: datetime.datetime
+
+      
+
+   .. py:attribute:: modified
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: in_project
+      :type: list[NewType('Project', None)]
+
+      
+
+   .. py:method:: __setattr__(key, value)
+
+      Set attribute values, enforcing read-only constraints and logical validation.
+
+      Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.
+
+      :param key: The attribute name to set.
+      :type key: str
+      :param value: The value to set for the attribute.
+      :type value: Any
+      :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
+
+
+

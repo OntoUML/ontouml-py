@@ -1,0 +1,241 @@
+:py:mod:`ontouml_py.tests.test_namedelement`
+============================================
+
+.. py:module:: ontouml_py.tests.test_namedelement
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_namedelement.ConcreteNamedElement
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.tests.test_namedelement.valid_langstring
+   ontouml_py.tests.test_namedelement.valid_langstring_list
+   ontouml_py.tests.test_namedelement.invalid_langstring
+   ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments
+   ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation
+   ontouml_py.tests.test_namedelement.test_namedelement_type_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement
+   ontouml_py.tests.test_namedelement.test_namedelement_default_values
+   ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes
+   ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment
+   ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type
+   ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type
+   ontouml_py.tests.test_namedelement.test_initialization_with_empty_list
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list
+   ontouml_py.tests.test_namedelement.test_pref_name_edge_cases
+   ontouml_py.tests.test_namedelement.test_alt_names_edge_cases
+   ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases
+   ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes
+   ontouml_py.tests.test_namedelement.test_extremely_long_strings
+   ontouml_py.tests.test_namedelement.test_special_characters_and_unicode
+   ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data
+   ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes
+
+
+
+.. py:class:: ConcreteNamedElement(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.namedelement.NamedElement`
+
+   A concrete subclass of NamedElement for testing purposes.
+
+   This class inherits from NamedElement and allows the instantiation of NamedElement objects,
+   which is normally an abstract class and cannot be instantiated directly.
+
+
+.. py:function:: valid_langstring()
+
+   Provides a valid LangString object for testing.
+
+
+.. py:function:: valid_langstring_list()
+
+   Provides a list of valid LangString objects for testing.
+
+
+.. py:function:: invalid_langstring()
+
+
+.. py:function:: test_namedelement_instantiation_with_arguments(valid_langstring, valid_langstring_list)
+
+   Test the instantiation of NamedElement with specific arguments.
+
+   :param valid_langstring: A valid LangString object.
+   :param valid_langstring_list: A list of valid LangString objects.
+   :raises AssertionError: If attributes are not set as expected.
+
+
+.. py:function:: test_namedelement_modifying_attributes_post_instantiation(valid_langstring)
+
+   Test modifying NamedElement attributes after instantiation.
+
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If attributes are not updated as expected.
+
+
+.. py:function:: test_namedelement_type_validation()
+
+   Test type validation for NamedElement attributes.
+
+   :raises ValidationError: If the wrong type is assigned to an attribute.
+
+
+.. py:function:: test_namedelement_abstract_class_enforcement()
+
+   Test that NamedElement cannot be instantiated directly due to its abstract nature.
+
+   :raises TypeError: If NamedElement is instantiated directly.
+
+
+.. py:function:: test_namedelement_default_values()
+
+   Test the default values of NamedElement attributes upon instantiation.
+
+   :raises AssertionError: If default values are not as expected.
+
+
+.. py:function:: test_namedelement_custom_initialization(valid_langstring)
+
+   Test custom initialization of NamedElement attributes.
+
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If custom initialization does not work as expected.
+
+
+.. py:function:: test_namedelement_updating_list_attributes(valid_langstring)
+
+   Test updating list attributes of NamedElement post-instantiation.
+
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If list attributes are not updatable.
+
+
+.. py:function:: test_namedelement_invalid_list_type_assignment()
+
+   Test assignment of invalid types to list attributes of NamedElement.
+
+   :raises ValidationError: If invalid types are assigned to list attributes.
+
+
+.. py:function:: test_initialization_with_invalid_value_and_type(invalid_langstring)
+
+   Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
+
+   :param invalid_langstring: A string that is not a valid LangString object.
+   :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
+
+
+.. py:function:: test_initialization_with_invalid_type()
+
+   Test the instantiation of NamedElement with an invalid type for 'pref_name'.
+
+   :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
+
+
+.. py:function:: test_initialization_with_empty_list()
+
+   Test the instantiation of NamedElement with an empty list for 'alt_names'.
+
+   :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
+
+
+.. py:function:: test_post_initialization_with_invalid_value(valid_langstring)
+
+   Test assigning an invalid value but valid type to 'pref_name' after instantiation.
+
+   :param valid_langstring: A valid LangString object.
+   :raises ValidationError: If an invalid value is assigned post-instantiation.
+
+
+.. py:function:: test_post_initialization_with_invalid_type()
+
+   Test assigning an invalid type to 'pref_name' after instantiation.
+
+   :raises ValidationError: If an incorrect type is assigned post-instantiation.
+
+
+.. py:function:: test_post_initialization_with_empty_list()
+
+   Test assigning an empty list to 'alt_names' after instantiation.
+
+   :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
+
+
+.. py:function:: test_pref_name_edge_cases(edge_case_value)
+
+   Test initializing NamedElement with edge case LangString values for 'pref_name'.
+
+   :param edge_case_value: A LangString object with edge case content.
+   :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
+
+
+.. py:function:: test_alt_names_edge_cases(edge_case_list)
+
+   Test initializing NamedElement with edge case lists for 'alt_names'.
+
+   :param edge_case_list: A list of LangString objects with edge case content.
+   :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
+
+
+.. py:function:: test_uri_lists_edge_cases(edge_case_list)
+
+   Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
+
+   :param edge_case_list: A list of strings with edge case URI content.
+   :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
+
+
+.. py:function:: test_rejection_of_null_values_in_list_attributes()
+
+   Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
+
+   :raises ValidationError: If lists with None elements are assigned.
+
+
+.. py:function:: test_extremely_long_strings()
+
+   Test assigning extremely long strings to string-based attributes.
+
+   :raises AssertionError: If extremely long strings are not handled correctly.
+
+
+.. py:function:: test_special_characters_and_unicode(special_string)
+
+   Test assigning strings with special characters and Unicode to string-based attributes.
+
+   :param special_string: A string containing special characters or Unicode.
+   :raises AssertionError: If special characters and Unicode are not handled correctly.
+
+
+.. py:function:: test_alt_names_and_editorial_notes_with_valid_data()
+
+   Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
+
+   :raises AssertionError: If valid data is not handled correctly.
+
+
+.. py:function:: test_rejection_of_invalid_data_in_list_attributes()
+
+   Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'
+   raises a validation error.
+
+   :raises ValidationError: If invalid data is assigned.
+
+
