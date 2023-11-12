@@ -12,7 +12,7 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_namedelement.NamedElementStub
+   ontouml_py.tests.test_namedelement.ConcreteNamedElement
 
 
 
@@ -21,134 +21,221 @@ Functions
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_namedelement.test_namedelement_initialization
-   ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization
-   ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation
-   ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization
-   ontouml_py.tests.test_namedelement.test_namedelement_default_created_time
-   ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types
-   ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values
-   ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none
-   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes
-   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names
-   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes
-   ontouml_py.tests.test_namedelement.test_namedelement_creators_validation
-   ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation
-   ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes
+   ontouml_py.tests.test_namedelement.valid_langstring
+   ontouml_py.tests.test_namedelement.valid_langstring_list
+   ontouml_py.tests.test_namedelement.invalid_langstring
+   ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments
+   ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation
+   ontouml_py.tests.test_namedelement.test_namedelement_type_validation
+   ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement
+   ontouml_py.tests.test_namedelement.test_namedelement_default_values
+   ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization
+   ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes
+   ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment
+   ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type
+   ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type
+   ontouml_py.tests.test_namedelement.test_initialization_with_empty_list
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type
+   ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list
+   ontouml_py.tests.test_namedelement.test_pref_name_edge_cases
+   ontouml_py.tests.test_namedelement.test_alt_names_edge_cases
+   ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases
+   ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes
+   ontouml_py.tests.test_namedelement.test_extremely_long_strings
+   ontouml_py.tests.test_namedelement.test_special_characters_and_unicode
+   ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data
+   ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes
 
 
 
-.. py:class:: NamedElementStub(created = None, modified = None, pref_name = None, alt_names = None, description = None, editorial_notes = None, creators = None, contributors = None)
+.. py:class:: ConcreteNamedElement(**data)
 
 
    Bases: :py:obj:`ontouml_py.classes.abstract_syntax.namedelement.NamedElement`
 
-   A stub class that extends the abstract NamedElement class for testing purposes.
+   A concrete subclass of NamedElement for testing purposes.
+
+   This class inherits from NamedElement and allows the instantiation of NamedElement objects,
+   which is normally an abstract class and cannot be instantiated directly.
 
 
-.. py:function:: test_namedelement_initialization(created, modified, expected_created)
+.. py:function:: valid_langstring()
 
-   Test the initialization of NamedElementStub, ensuring it sets the 'created' and 'modified' dates correctly.
-
-   :param created: The date the element is created or None to test the default behavior.
-   :param modified: The date the element was last modified or None if it hasn't been modified.
-   :param expected_created: The expected value of the 'created' attribute after initialization.
+   Provides a valid LangString object for testing.
 
 
-.. py:function:: test_namedelement_pref_name_initialization(pref_name)
+.. py:function:: valid_langstring_list()
 
-   Test the initialization of NamedElementStub, ensuring it sets the 'pref_name' attribute correctly.
-
-   :param pref_name: The preferred name of the element, as a LangString object.
+   Provides a list of valid LangString objects for testing.
 
 
-.. py:function:: test_namedelement_alt_names_validation(alt_names, is_valid)
-
-   Test the validation of 'alt_names' attribute during the initialization of NamedElementStub.
-
-   :param alt_names: A list of alternative names or None.
-   :param is_valid: Boolean indicating whether the 'alt_names' is valid or not.
+.. py:function:: invalid_langstring()
 
 
-.. py:function:: test_namedelement_description_editorial_notes_initialization(description, editorial_notes)
+.. py:function:: test_namedelement_instantiation_with_arguments(valid_langstring, valid_langstring_list)
 
-   Test the initialization of NamedElementStub, ensuring 'description' and 'editorial_notes' are set correctly.
+   Test the instantiation of NamedElement with specific arguments.
 
-   :param description: A LangString object representing the description or None.
-   :param editorial_notes: A LangString object representing the editorial notes or None.
-
-
-.. py:function:: test_namedelement_default_created_time()
-
-   Test the default behavior of the 'created' attribute to ensure it is set to the current time when not     provided.
+   :param valid_langstring: A valid LangString object.
+   :param valid_langstring_list: A list of valid LangString objects.
+   :raises AssertionError: If attributes are not set as expected.
 
 
-.. py:function:: test_namedelement_invalid_argument_types(attr_name, invalid_value)
+.. py:function:: test_namedelement_modifying_attributes_post_instantiation(valid_langstring)
 
-   Test the initialization of NamedElementStub with invalid argument types.
+   Test modifying NamedElement attributes after instantiation.
 
-   :param attr_name: Name of the attribute being tested.
-   :param invalid_value: An invalid value for the attribute.
-
-
-.. py:function:: test_namedelement_invalid_alt_names_values(invalid_alt_names)
-
-   Test the initialization of NamedElementStub with invalid values for 'alt_names'.
-
-   :param invalid_alt_names: An invalid value for the 'alt_names' list.
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If attributes are not updated as expected.
 
 
-.. py:function:: test_namedelement_attributes_set_as_none(attr_name)
+.. py:function:: test_namedelement_type_validation()
 
-   Test the initialization of NamedElementStub with attributes set as None.
+   Test type validation for NamedElement attributes.
 
-   :param attr_name: Name of the attribute being tested.
-
-
-.. py:function:: test_namedelement_edge_cases_for_langstring_attributes(attr_name, edge_case_value)
-
-   Test the initialization of NamedElementStub with edge case values for LangString attributes.
-
-   :param attr_name: Name of the attribute being tested.
-   :param edge_case_value: An edge case LangString value for the attribute.
+   :raises ValidationError: If the wrong type is assigned to an attribute.
 
 
-.. py:function:: test_namedelement_edge_cases_for_alt_names(edge_case_alt_names)
+.. py:function:: test_namedelement_abstract_class_enforcement()
 
-   Test the initialization of NamedElementStub with edge case values for 'alt_names' list.
+   Test that NamedElement cannot be instantiated directly due to its abstract nature.
 
-   :param edge_case_alt_names: An edge case list of LangString objects for 'alt_names'.
-
-
-.. py:function:: test_namedelement_edge_cases_for_datetime_attributes(created, modified)
-
-   Test the initialization of NamedElementStub with edge case datetime values for 'created' and 'modified'.
-
-   :param created: An edge case datetime value for when the element was created.
-   :param modified: An edge case datetime value for when the element was last modified.
+   :raises TypeError: If NamedElement is instantiated directly.
 
 
-.. py:function:: test_namedelement_creators_validation(creators, is_valid)
+.. py:function:: test_namedelement_default_values()
 
-   Test the validation of 'creators' attribute during the initialization of NamedElementStub.
+   Test the default values of NamedElement attributes upon instantiation.
 
-   :param creators: A list of URIs or None.
-   :param is_valid: Boolean indicating whether the 'creators' is valid or not.
-
-
-.. py:function:: test_namedelement_contributors_validation(contributors, is_valid)
-
-   Test the validation of 'contributors' attribute during the initialization of NamedElementStub.
-
-   :param contributors: A list of URIs or None.
-   :param is_valid: Boolean indicating whether the 'contributors' is valid or not.
+   :raises AssertionError: If default values are not as expected.
 
 
-.. py:function:: test_namedelement_edge_cases_for_uri_attributes(attr_name, edge_case_values)
+.. py:function:: test_namedelement_custom_initialization(valid_langstring)
 
-   Test the initialization of NamedElementStub with edge case values for URI attributes.
+   Test custom initialization of NamedElement attributes.
 
-   :param attr_name: Name of the attribute being tested.
-   :param edge_case_values: An edge case list of URIs for the attribute.
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If custom initialization does not work as expected.
+
+
+.. py:function:: test_namedelement_updating_list_attributes(valid_langstring)
+
+   Test updating list attributes of NamedElement post-instantiation.
+
+   :param valid_langstring: A valid LangString object.
+   :raises AssertionError: If list attributes are not updatable.
+
+
+.. py:function:: test_namedelement_invalid_list_type_assignment()
+
+   Test assignment of invalid types to list attributes of NamedElement.
+
+   :raises ValidationError: If invalid types are assigned to list attributes.
+
+
+.. py:function:: test_initialization_with_invalid_value_and_type(invalid_langstring)
+
+   Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
+
+   :param invalid_langstring: A string that is not a valid LangString object.
+   :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
+
+
+.. py:function:: test_initialization_with_invalid_type()
+
+   Test the instantiation of NamedElement with an invalid type for 'pref_name'.
+
+   :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
+
+
+.. py:function:: test_initialization_with_empty_list()
+
+   Test the instantiation of NamedElement with an empty list for 'alt_names'.
+
+   :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
+
+
+.. py:function:: test_post_initialization_with_invalid_value(valid_langstring)
+
+   Test assigning an invalid value but valid type to 'pref_name' after instantiation.
+
+   :param valid_langstring: A valid LangString object.
+   :raises ValidationError: If an invalid value is assigned post-instantiation.
+
+
+.. py:function:: test_post_initialization_with_invalid_type()
+
+   Test assigning an invalid type to 'pref_name' after instantiation.
+
+   :raises ValidationError: If an incorrect type is assigned post-instantiation.
+
+
+.. py:function:: test_post_initialization_with_empty_list()
+
+   Test assigning an empty list to 'alt_names' after instantiation.
+
+   :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
+
+
+.. py:function:: test_pref_name_edge_cases(edge_case_value)
+
+   Test initializing NamedElement with edge case LangString values for 'pref_name'.
+
+   :param edge_case_value: A LangString object with edge case content.
+   :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
+
+
+.. py:function:: test_alt_names_edge_cases(edge_case_list)
+
+   Test initializing NamedElement with edge case lists for 'alt_names'.
+
+   :param edge_case_list: A list of LangString objects with edge case content.
+   :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
+
+
+.. py:function:: test_uri_lists_edge_cases(edge_case_list)
+
+   Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
+
+   :param edge_case_list: A list of strings with edge case URI content.
+   :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
+
+
+.. py:function:: test_rejection_of_null_values_in_list_attributes()
+
+   Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
+
+   :raises ValidationError: If lists with None elements are assigned.
+
+
+.. py:function:: test_extremely_long_strings()
+
+   Test assigning extremely long strings to string-based attributes.
+
+   :raises AssertionError: If extremely long strings are not handled correctly.
+
+
+.. py:function:: test_special_characters_and_unicode(special_string)
+
+   Test assigning strings with special characters and Unicode to string-based attributes.
+
+   :param special_string: A string containing special characters or Unicode.
+   :raises AssertionError: If special characters and Unicode are not handled correctly.
+
+
+.. py:function:: test_alt_names_and_editorial_notes_with_valid_data()
+
+   Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
+
+   :raises AssertionError: If valid data is not handled correctly.
+
+
+.. py:function:: test_rejection_of_invalid_data_in_list_attributes()
+
+   Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'
+   raises a validation error.
+
+   :raises ValidationError: If invalid data is assigned.
 
 

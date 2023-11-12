@@ -1,5 +1,5 @@
 :py:mod:`ontouml_py.classes.abstract_syntax`
-=============================================
+============================================
 
 .. py:module:: ontouml_py.classes.abstract_syntax
 
@@ -11,5 +11,6 @@ Submodules
    :maxdepth: 1
 
    namedelement/index.rst
+   project/index.rst
 
 

@@ -53,7 +53,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../classes/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../functions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.functions</span></code></a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.utils</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -97,8 +96,8 @@
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.NamedElementStub" title="ontouml_py.tests.test_namedelement.NamedElementStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedElementStub</span></code></a></p></td>
-<td><p>A stub class that extends the abstract NamedElement class for testing purposes.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.ConcreteNamedElement" title="ontouml_py.tests.test_namedelement.ConcreteNamedElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcreteNamedElement</span></code></a></p></td>
+<td><p>A concrete subclass of NamedElement for testing purposes.</p></td>
 </tr>
 </tbody>
 </table>
@@ -107,142 +106,138 @@
 <h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_initialization" title="ontouml_py.tests.test_namedelement.test_namedelement_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_initialization</span></code></a>(created, modified, ...)</p></td>
-<td><p>Test the initialization of NamedElementStub, ensuring it sets the 'created' and 'modified' dates correctly.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.valid_langstring" title="ontouml_py.tests.test_namedelement.valid_langstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_langstring</span></code></a>()</p></td>
+<td><p>Provides a valid LangString object for testing.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization" title="ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_pref_name_initialization</span></code></a>(pref_name)</p></td>
-<td><p>Test the initialization of NamedElementStub, ensuring it sets the 'pref_name' attribute correctly.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.valid_langstring_list" title="ontouml_py.tests.test_namedelement.valid_langstring_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_langstring_list</span></code></a>()</p></td>
+<td><p>Provides a list of valid LangString objects for testing.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation" title="ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_alt_names_validation</span></code></a>(alt_names, is_valid)</p></td>
-<td><p>Test the validation of 'alt_names' attribute during the initialization of NamedElementStub.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.invalid_langstring" title="ontouml_py.tests.test_namedelement.invalid_langstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invalid_langstring</span></code></a>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization" title="ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_description_editorial_notes_initialization</span></code></a>(...)</p></td>
-<td><p>Test the initialization of NamedElementStub, ensuring 'description' and 'editorial_notes' are set correctly.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments" title="ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_instantiation_with_arguments</span></code></a>(...)</p></td>
+<td><p>Test the instantiation of NamedElement with specific arguments.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_default_created_time" title="ontouml_py.tests.test_namedelement.test_namedelement_default_created_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_default_created_time</span></code></a>()</p></td>
-<td><p>Test the default behavior of the 'created' attribute to ensure it is set to the current time when not     provided.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation" title="ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_modifying_attributes_post_instantiation</span></code></a>(...)</p></td>
+<td><p>Test modifying NamedElement attributes after instantiation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types" title="ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_invalid_argument_types</span></code></a>(attr_name, ...)</p></td>
-<td><p>Test the initialization of NamedElementStub with invalid argument types.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_type_validation" title="ontouml_py.tests.test_namedelement.test_namedelement_type_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_type_validation</span></code></a>()</p></td>
+<td><p>Test type validation for NamedElement attributes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values" title="ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_invalid_alt_names_values</span></code></a>(invalid_alt_names)</p></td>
-<td><p>Test the initialization of NamedElementStub with invalid values for 'alt_names'.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement" title="ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_abstract_class_enforcement</span></code></a>()</p></td>
+<td><p>Test that NamedElement cannot be instantiated directly due to its abstract nature.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none" title="ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_attributes_set_as_none</span></code></a>(attr_name)</p></td>
-<td><p>Test the initialization of NamedElementStub with attributes set as None.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_default_values" title="ontouml_py.tests.test_namedelement.test_namedelement_default_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_default_values</span></code></a>()</p></td>
+<td><p>Test the default values of NamedElement attributes upon instantiation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes" title="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_edge_cases_for_langstring_attributes</span></code></a>(...)</p></td>
-<td><p>Test the initialization of NamedElementStub with edge case values for LangString attributes.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization" title="ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_custom_initialization</span></code></a>(valid_langstring)</p></td>
+<td><p>Test custom initialization of NamedElement attributes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names" title="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_edge_cases_for_alt_names</span></code></a>(...)</p></td>
-<td><p>Test the initialization of NamedElementStub with edge case values for 'alt_names' list.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes" title="ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_updating_list_attributes</span></code></a>(...)</p></td>
+<td><p>Test updating list attributes of NamedElement post-instantiation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes" title="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_edge_cases_for_datetime_attributes</span></code></a>(...)</p></td>
-<td><p>Test the initialization of NamedElementStub with edge case datetime values for 'created' and 'modified'.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment" title="ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_invalid_list_type_assignment</span></code></a>()</p></td>
+<td><p>Test assignment of invalid types to list attributes of NamedElement.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_creators_validation" title="ontouml_py.tests.test_namedelement.test_namedelement_creators_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_creators_validation</span></code></a>(creators, is_valid)</p></td>
-<td><p>Test the validation of 'creators' attribute during the initialization of NamedElementStub.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type" title="ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_initialization_with_invalid_value_and_type</span></code></a>(...)</p></td>
+<td><p>Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation" title="ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_contributors_validation</span></code></a>(...)</p></td>
-<td><p>Test the validation of 'contributors' attribute during the initialization of NamedElementStub.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type" title="ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_initialization_with_invalid_type</span></code></a>()</p></td>
+<td><p>Test the instantiation of NamedElement with an invalid type for 'pref_name'.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes" title="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_namedelement_edge_cases_for_uri_attributes</span></code></a>(...)</p></td>
-<td><p>Test the initialization of NamedElementStub with edge case values for URI attributes.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_initialization_with_empty_list" title="ontouml_py.tests.test_namedelement.test_initialization_with_empty_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_initialization_with_empty_list</span></code></a>()</p></td>
+<td><p>Test the instantiation of NamedElement with an empty list for 'alt_names'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value" title="ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_post_initialization_with_invalid_value</span></code></a>(...)</p></td>
+<td><p>Test assigning an invalid value but valid type to 'pref_name' after instantiation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type" title="ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_post_initialization_with_invalid_type</span></code></a>()</p></td>
+<td><p>Test assigning an invalid type to 'pref_name' after instantiation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list" title="ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_post_initialization_with_empty_list</span></code></a>()</p></td>
+<td><p>Test assigning an empty list to 'alt_names' after instantiation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_pref_name_edge_cases" title="ontouml_py.tests.test_namedelement.test_pref_name_edge_cases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_pref_name_edge_cases</span></code></a>(edge_case_value)</p></td>
+<td><p>Test initializing NamedElement with edge case LangString values for 'pref_name'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_alt_names_edge_cases" title="ontouml_py.tests.test_namedelement.test_alt_names_edge_cases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_alt_names_edge_cases</span></code></a>(edge_case_list)</p></td>
+<td><p>Test initializing NamedElement with edge case lists for 'alt_names'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases" title="ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_uri_lists_edge_cases</span></code></a>(edge_case_list)</p></td>
+<td><p>Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes" title="ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_rejection_of_null_values_in_list_attributes</span></code></a>()</p></td>
+<td><p>Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_extremely_long_strings" title="ontouml_py.tests.test_namedelement.test_extremely_long_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_extremely_long_strings</span></code></a>()</p></td>
+<td><p>Test assigning extremely long strings to string-based attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_special_characters_and_unicode" title="ontouml_py.tests.test_namedelement.test_special_characters_and_unicode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_special_characters_and_unicode</span></code></a>(special_string)</p></td>
+<td><p>Test assigning strings with special characters and Unicode to string-based attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data" title="ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_alt_names_and_editorial_notes_with_valid_data</span></code></a>()</p></td>
+<td><p>Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes" title="ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_rejection_of_invalid_data_in_list_attributes</span></code></a>()</p></td>
+<td><p>Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.NamedElementStub">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">NamedElementStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">created</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pref_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editorial_notes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contributors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.NamedElementStub" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.ConcreteNamedElement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">ConcreteNamedElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.ConcreteNamedElement" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../classes/abstract_syntax/namedelement/index.html#ontouml_py.classes.abstract_syntax.namedelement.NamedElement" title="ontouml_py.classes.abstract_syntax.namedelement.NamedElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_syntax.namedelement.NamedElement</span></code></a></p>
-<p>A stub class that extends the abstract NamedElement class for testing purposes.</p>
+<p>A concrete subclass of NamedElement for testing purposes.</p>
+<p>This class inherits from NamedElement and allows the instantiation of NamedElement objects,
+which is normally an abstract class and cannot be instantiated directly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.valid_langstring">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">valid_langstring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.valid_langstring" title="Link to this definition"></a></dt>
+<dd><p>Provides a valid LangString object for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>langstring_lib.langstring.LangString</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.valid_langstring_list">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">valid_langstring_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.valid_langstring_list" title="Link to this definition"></a></dt>
+<dd><p>Provides a list of valid LangString objects for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[langstring_lib.langstring.LangString]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.invalid_langstring">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">invalid_langstring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.invalid_langstring" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_instantiation_with_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_langstring</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_langstring_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_instantiation_with_arguments" title="Link to this definition"></a></dt>
+<dd><p>Test the instantiation of NamedElement with specific arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>created</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – </p></li>
-<li><p><strong>modified</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – </p></li>
-<li><p><strong>pref_name</strong> (<em>Optional</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – </p></li>
-<li><p><strong>alt_names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – </p></li>
-<li><p><strong>editorial_notes</strong> (<em>Optional</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – </p></li>
-<li><p><strong>creators</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>contributors</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>valid_langstring</strong> (<em>langstring_lib.langstring.LangString</em>) – A valid LangString object.</p></li>
+<li><p><strong>valid_langstring_list</strong> (<em>list</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – A list of valid LangString objects.</p></li>
 </ul>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_initialization">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_created</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_initialization" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub, ensuring it sets the ‘created’ and ‘modified’ dates correctly.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>created</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – The date the element is created or None to test the default behavior.</p></li>
-<li><p><strong>modified</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – The date the element was last modified or None if it hasn’t been modified.</p></li>
-<li><p><strong>expected_created</strong> (<em>datetime.datetime</em>) – The expected value of the ‘created’ attribute after initialization.</p></li>
-</ul>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If attributes are not set as expected.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_pref_name_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pref_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_pref_name_initialization" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub, ensuring it sets the ‘pref_name’ attribute correctly.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pref_name</strong> (<em>langstring_lib.langstring.LangString</em>) – The preferred name of the element, as a LangString object.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_alt_names_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alt_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_valid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_alt_names_validation" title="Link to this definition"></a></dt>
-<dd><p>Test the validation of ‘alt_names’ attribute during the initialization of NamedElementStub.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>alt_names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em><em>]</em>) – A list of alternative names or None.</p></li>
-<li><p><strong>is_valid</strong> (<em>bool</em>) – Boolean indicating whether the ‘alt_names’ is valid or not.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_description_editorial_notes_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editorial_notes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_description_editorial_notes_initialization" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub, ensuring ‘description’ and ‘editorial_notes’ are set correctly.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – A LangString object representing the description or None.</p></li>
-<li><p><strong>editorial_notes</strong> (<em>Optional</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – A LangString object representing the editorial notes or None.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_default_created_time">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_default_created_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_default_created_time" title="Link to this definition"></a></dt>
-<dd><p>Test the default behavior of the ‘created’ attribute to ensure it is set to the current time when not     provided.</p>
-<dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
@@ -250,15 +245,29 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_invalid_argument_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalid_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_argument_types" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with invalid argument types.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_modifying_attributes_post_instantiation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_langstring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_modifying_attributes_post_instantiation" title="Link to this definition"></a></dt>
+<dd><p>Test modifying NamedElement attributes after instantiation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>attr_name</strong> (<em>str</em>) – Name of the attribute being tested.</p></li>
-<li><p><strong>invalid_value</strong> – An invalid value for the attribute.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>valid_langstring</strong> (<em>langstring_lib.langstring.LangString</em>) – A valid LangString object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If attributes are not updated as expected.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_type_validation">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_type_validation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_type_validation" title="Link to this definition"></a></dt>
+<dd><p>Test type validation for NamedElement attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If the wrong type is assigned to an attribute.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -267,12 +276,12 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_invalid_alt_names_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_alt_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_alt_names_values" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with invalid values for ‘alt_names’.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_abstract_class_enforcement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_abstract_class_enforcement" title="Link to this definition"></a></dt>
+<dd><p>Test that NamedElement cannot be instantiated directly due to its abstract nature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>invalid_alt_names</strong> – An invalid value for the ‘alt_names’ list.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If NamedElement is instantiated directly.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -281,12 +290,12 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_attributes_set_as_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_attributes_set_as_none" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with attributes set as None.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_default_values">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_default_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_default_values" title="Link to this definition"></a></dt>
+<dd><p>Test the default values of NamedElement attributes upon instantiation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>attr_name</strong> (<em>str</em>) – Name of the attribute being tested.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If default values are not as expected.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -295,15 +304,46 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_edge_cases_for_langstring_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_case_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_langstring_attributes" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with edge case values for LangString attributes.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_custom_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_langstring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_custom_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test custom initialization of NamedElement attributes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>attr_name</strong> (<em>str</em>) – Name of the attribute being tested.</p></li>
-<li><p><strong>edge_case_value</strong> (<em>langstring_lib.langstring.LangString</em>) – An edge case LangString value for the attribute.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>valid_langstring</strong> (<em>langstring_lib.langstring.LangString</em>) – A valid LangString object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If custom initialization does not work as expected.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_updating_list_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_langstring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_updating_list_attributes" title="Link to this definition"></a></dt>
+<dd><p>Test updating list attributes of NamedElement post-instantiation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>valid_langstring</strong> (<em>langstring_lib.langstring.LangString</em>) – A valid LangString object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If list attributes are not updatable.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_invalid_list_type_assignment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_invalid_list_type_assignment" title="Link to this definition"></a></dt>
+<dd><p>Test assignment of invalid types to list attributes of NamedElement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If invalid types are assigned to list attributes.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -312,12 +352,29 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_edge_cases_for_alt_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_case_alt_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_alt_names" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with edge case values for ‘alt_names’ list.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_initialization_with_invalid_value_and_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invalid_langstring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_initialization_with_invalid_value_and_type" title="Link to this definition"></a></dt>
+<dd><p>Test the instantiation of NamedElement with an invalid value but valid type for ‘pref_name’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>edge_case_alt_names</strong> (<em>List</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – An edge case list of LangString objects for ‘alt_names’.</p>
+<dd class="field-odd"><p><strong>invalid_langstring</strong> (<em>str</em>) – A string that is not a valid LangString object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValidationError</strong> – If an invalid value is assigned to a field expecting a LangString.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_initialization_with_invalid_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_initialization_with_invalid_type" title="Link to this definition"></a></dt>
+<dd><p>Test the instantiation of NamedElement with an invalid type for ‘pref_name’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If an incorrect type is assigned to a field expecting a LangString.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -326,15 +383,12 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_edge_cases_for_datetime_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_datetime_attributes" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with edge case datetime values for ‘created’ and ‘modified’.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_initialization_with_empty_list">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_initialization_with_empty_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_initialization_with_empty_list" title="Link to this definition"></a></dt>
+<dd><p>Test the instantiation of NamedElement with an empty list for ‘alt_names’.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>created</strong> (<em>datetime.datetime</em>) – An edge case datetime value for when the element was created.</p></li>
-<li><p><strong>modified</strong> (<em>datetime.datetime</em>) – An edge case datetime value for when the element was last modified.</p></li>
-</ul>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If ‘alt_names’ does not correctly handle being set to an empty list.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -343,15 +397,29 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_creators_validation">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_creators_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">creators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_valid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_creators_validation" title="Link to this definition"></a></dt>
-<dd><p>Test the validation of ‘creators’ attribute during the initialization of NamedElementStub.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_post_initialization_with_invalid_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_langstring</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_value" title="Link to this definition"></a></dt>
+<dd><p>Test assigning an invalid value but valid type to ‘pref_name’ after instantiation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>creators</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – A list of URIs or None.</p></li>
-<li><p><strong>is_valid</strong> (<em>bool</em>) – Boolean indicating whether the ‘creators’ is valid or not.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>valid_langstring</strong> (<em>langstring_lib.langstring.LangString</em>) – A valid LangString object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValidationError</strong> – If an invalid value is assigned post-instantiation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_post_initialization_with_invalid_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_invalid_type" title="Link to this definition"></a></dt>
+<dd><p>Test assigning an invalid type to ‘pref_name’ after instantiation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If an incorrect type is assigned post-instantiation.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -360,15 +428,12 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_contributors_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contributors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_valid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_contributors_validation" title="Link to this definition"></a></dt>
-<dd><p>Test the validation of ‘contributors’ attribute during the initialization of NamedElementStub.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_post_initialization_with_empty_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_post_initialization_with_empty_list" title="Link to this definition"></a></dt>
+<dd><p>Test assigning an empty list to ‘alt_names’ after instantiation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>contributors</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – A list of URIs or None.</p></li>
-<li><p><strong>is_valid</strong> (<em>bool</em>) – Boolean indicating whether the ‘contributors’ is valid or not.</p></li>
-</ul>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If ‘alt_names’ does not correctly handle being set to an empty list post-instantiation.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -377,15 +442,123 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_namedelement_edge_cases_for_uri_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_case_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_namedelement_edge_cases_for_uri_attributes" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of NamedElementStub with edge case values for URI attributes.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_pref_name_edge_cases">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_pref_name_edge_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_case_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_pref_name_edge_cases" title="Link to this definition"></a></dt>
+<dd><p>Test initializing NamedElement with edge case LangString values for ‘pref_name’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>attr_name</strong> (<em>str</em>) – Name of the attribute being tested.</p></li>
-<li><p><strong>edge_case_values</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – An edge case list of URIs for the attribute.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>edge_case_value</strong> (<em>langstring_lib.langstring.LangString</em>) – A LangString object with edge case content.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If ‘pref_name’ does not handle edge case values correctly.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_alt_names_edge_cases">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_alt_names_edge_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_case_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_alt_names_edge_cases" title="Link to this definition"></a></dt>
+<dd><p>Test initializing NamedElement with edge case lists for ‘alt_names’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edge_case_list</strong> (<em>list</em><em>[</em><em>langstring_lib.langstring.LangString</em><em>]</em>) – A list of LangString objects with edge case content.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If ‘alt_names’ does not handle edge case lists correctly.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_uri_lists_edge_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_case_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_uri_lists_edge_cases" title="Link to this definition"></a></dt>
+<dd><p>Test initializing NamedElement with edge case lists for ‘creators’ and ‘contributors’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edge_case_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of strings with edge case URI content.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If ‘creators’ or ‘contributors’ do not handle edge case lists correctly.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_rejection_of_null_values_in_list_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_rejection_of_null_values_in_list_attributes" title="Link to this definition"></a></dt>
+<dd><p>Test that assigning lists with None elements to ‘alt_names’ and ‘editorial_notes’ raises a validation error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If lists with None elements are assigned.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_extremely_long_strings">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_extremely_long_strings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_extremely_long_strings" title="Link to this definition"></a></dt>
+<dd><p>Test assigning extremely long strings to string-based attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If extremely long strings are not handled correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_special_characters_and_unicode">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_special_characters_and_unicode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">special_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_special_characters_and_unicode" title="Link to this definition"></a></dt>
+<dd><p>Test assigning strings with special characters and Unicode to string-based attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>special_string</strong> – A string containing special characters or Unicode.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If special characters and Unicode are not handled correctly.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_alt_names_and_editorial_notes_with_valid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data" title="Link to this definition"></a></dt>
+<dd><p>Test assigning valid data to ‘alt_names’ and ‘editorial_notes’ in NamedElement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If valid data is not handled correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_namedelement.</span></span><span class="sig-name descname"><span class="pre">test_rejection_of_invalid_data_in_list_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes" title="Link to this definition"></a></dt>
+<dd><p>Test that assigning invalid data (lists containing None or other types) to ‘alt_names’ and ‘editorial_notes’
+raises a validation error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If invalid data is assigned.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>

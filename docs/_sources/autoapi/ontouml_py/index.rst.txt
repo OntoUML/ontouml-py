@@ -13,6 +13,5 @@ Subpackages
    classes/index.rst
    functions/index.rst
    tests/index.rst
-   utils/index.rst
 
 

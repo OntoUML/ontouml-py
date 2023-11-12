@@ -12,6 +12,6 @@ Submodules
 
    test_namedelement/index.rst
    test_ontoumlelement/index.rst
-   test_validate_and_set/index.rst
+   test_project/index.rst
 
 

@@ -3,12 +3,6 @@
 
 .. py:module:: ontouml_py.tests.test_ontoumlelement
 
-.. autoapi-nested-parse::
-
-   This module contains tests for the OntoumlElement class, ensuring that initialization and attribute access behave
-   as expected.
-
-
 
 Module Contents
 ---------------
@@ -18,7 +12,7 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_ontoumlelement.StubOntoumlElement
+   ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement
 
 
 
@@ -27,114 +21,355 @@ Functions
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_ontoumlelement.stub_ontouml_element
+   ontouml_py.tests.test_ontoumlelement.concrete_ontouml_element
+   ontouml_py.tests.test_ontoumlelement.project
+   ontouml_py.tests.test_ontoumlelement.projects
    ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init
+   ontouml_py.tests.test_ontoumlelement.test_abstract_class
+   ontouml_py.tests.test_ontoumlelement.test_abstract_class_with_id
    ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type
    ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type
    ontouml_py.tests.test_ontoumlelement.test_unknown_argument
-   ontouml_py.tests.test_ontoumlelement.test_none_argument
+   ontouml_py.tests.test_ontoumlelement.test_none_argument_for_modified
    ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future
    ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation
    ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time
    ontouml_py.tests.test_ontoumlelement.test_id_read_only
+   ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_uuid
+   ontouml_py.tests.test_ontoumlelement.test_id_read_only_post_initialization
+   ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_datetime
+   ontouml_py.tests.test_ontoumlelement.test_created_read_only_post_initialization
+   ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_valid_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_none
+   ontouml_py.tests.test_ontoumlelement.test_modified_update_with_invalid_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_update_with_valid_datetime
+   ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_non_uuid
+   ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_future_datetime
+   ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_past_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_same_as_created_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_update_to_none_post_initialization
+   ontouml_py.tests.test_ontoumlelement.test_modified_update_to_future_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_update_to_past_datetime
+   ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_invalid_type
+   ontouml_py.tests.test_ontoumlelement.test_default_values_for_created_and_modified
+   ontouml_py.tests.test_ontoumlelement.test_future_dates_for_created_and_modified
+   ontouml_py.tests.test_ontoumlelement.test_updating_modified_post_instantiation
+   ontouml_py.tests.test_ontoumlelement.test_custom_id_initialization
+   ontouml_py.tests.test_ontoumlelement.test_instantiation_with_no_arguments
+   ontouml_py.tests.test_ontoumlelement.test_modified_same_as_created_at_initialization
+   ontouml_py.tests.test_ontoumlelement.test_instantiation_with_partial_arguments
+   ontouml_py.tests.test_ontoumlelement.test_invalid_types_for_created_and_modified
+   ontouml_py.tests.test_ontoumlelement.test_default_id_immutable
+   ontouml_py.tests.test_ontoumlelement.test_modified_accept_none_post_instantiation
+   ontouml_py.tests.test_ontoumlelement.test_error_when_modified_before_created
+   ontouml_py.tests.test_ontoumlelement.test_non_existent_attribute
+   ontouml_py.tests.test_ontoumlelement.test_addition_updates_in_project
+   ontouml_py.tests.test_ontoumlelement.test_in_project_integrity_multiple_additions
+   ontouml_py.tests.test_ontoumlelement.test_direct_modification_of_in_project_raises_error
+   ontouml_py.tests.test_ontoumlelement.test_removal_from_one_project_keeps_in_others
+   ontouml_py.tests.test_ontoumlelement.test_in_project_not_affected_by_external_list_changes
+   ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions
+   ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects
+   ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition
 
 
 
-.. py:class:: StubOntoumlElement(created = datetime.now(), modified = None)
+.. py:class:: ConcreteOntoumlElement(**data)
 
 
    Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
 
-   A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.
-
-   :ivar _id: The read-only unique identifier of the OntoumlElement.
-   :vartype _id: uuid.UUID
-
-   .. py:property:: id
-      :type: uuid.UUID
-
-      Overrides the id property to directly access the protected _id attribute.
-
-      :return: The unique identifier of the OntoumlElement.
-      :rtype: uuid.UUID
+   A concrete subclass of OntoumlElement for testing purposes.
 
 
+.. py:function:: concrete_ontouml_element()
 
-.. py:function:: stub_ontouml_element()
+   Provides a fixture for creating a concrete OntoumlElement instance for testing.
 
-   Provides a fixture for creating a stub OntoumlElement instance for testing.
-
-   :return: An instance of the stub subclass of OntoumlElement.
-   :rtype: StubOntoumlElement
+   :return: An instance of ConcreteOntoumlElement.
+   :rtype: ConcreteOntoumlElement
 
 
-.. py:function:: test_ontouml_element_init(stub_ontouml_element)
+.. py:function:: project()
 
-   Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
-   attributes are set appropriately.
+   Provides a fixture for creating a Project instance for testing.
 
-    :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-    :type stub_ontouml_element: StubOntoumlElement
-    :raises AssertionError: If the id attribute is not an instance of uuid.UUID.
+   :return: An instance of Project.
+   :rtype: Project
+
+
+.. py:function:: projects()
+
+   Provides a fixture for creating a list of Project instances for testing.
+
+   :return: A list of Project instances.
+   :rtype: list[Project]
+
+
+.. py:function:: test_ontouml_element_init(concrete_ontouml_element)
+
+   Test the initialization of a ConcreteOntoumlElement instance.
+
+   Ensures that the 'id' attribute is initialized as a UUID.
+
+   :param concrete_ontouml_element: A fixture instance of ConcreteOntoumlElement.
+   :type concrete_ontouml_element: ConcreteOntoumlElement
+   :raises AssertionError: If the 'id' attribute is not correctly initialized as a UUID.
+
+
+.. py:function:: test_abstract_class()
+
+   Test if the class OntoumlElement can be directly instantiated.
+
+   :raises ValidationError: If the instantiation occurs.
+
+
+.. py:function:: test_abstract_class_with_id()
+
+   Test if the class OntoumlElement can be directly instantiated.
+
+   :raises ValidationError: If the instantiation occurs.
 
 
 .. py:function:: test_invalid_created_argument_type()
 
-   Test the initialization of a StubOntoumlElement with an invalid 'created' argument type to ensure it raises
-   a TypeError.
+   Test passing an invalid 'created' argument type during initialization of ConcreteOntoumlElement.
+
+   :raises ValidationError: If a non-datetime value is passed for 'created'.
 
 
 .. py:function:: test_invalid_modified_argument_type()
 
-   Test the initialization of a StubOntoumlElement with an invalid 'modified' argument type to ensure it raises
-   a TypeError.
+   Test passing an invalid 'modified' argument type during initialization of ConcreteOntoumlElement.
+
+   :raises ValidationError: If a non-datetime value is passed for 'modified'.
 
 
-.. py:function:: test_unknown_argument(stub_ontouml_element)
+.. py:function:: test_unknown_argument()
 
-   Test the initialization of a StubOntoumlElement with an unknown argument to ensure it raises a TypeError.
+   Test passing an unknown argument during initialization of ConcreteOntoumlElement.
 
-   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-   :type stub_ontouml_element: StubOntoumlElement
-
-
-.. py:function:: test_none_argument(stub_ontouml_element)
-
-   Test the initialization of a StubOntoumlElement with None as an argument to ensure it handles None correctly.
-
-   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-   :type stub_ontouml_element: StubOntoumlElement
+   :raises TypeError: If an unexpected keyword argument is provided.
 
 
-.. py:function:: test_creation_time_in_future(stub_ontouml_element)
+.. py:function:: test_none_argument_for_modified()
 
-   Test the initialization of a StubOntoumlElement with a creation time set in the future to ensure it handles
-   future datetime correctly.
+   Test passing None for the 'modified' attribute in ConcreteOntoumlElement.
 
-   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-   :type stub_ontouml_element: StubOntoumlElement
+   Ensures None can be assigned to 'modified' without errors.
 
-
-.. py:function:: test_modification_time_before_creation(stub_ontouml_element)
-
-   Test the initialization of a StubOntoumlElement with a modification time set before the creation time to
-   ensure logical consistency is maintained.
-
-   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-   :type stub_ontouml_element: StubOntoumlElement
+   :raises AssertionError: If 'modified' cannot be set to None.
 
 
-.. py:function:: test_same_creation_and_modification_time(stub_ontouml_element)
+.. py:function:: test_creation_time_in_future()
 
-   Test the initialization of a StubOntoumlElement with the same creation and modification time to ensure
-   it is handled appropriately.
+   Test setting a future datetime for the 'created' attribute in ConcreteOntoumlElement.
 
-   :param stub_ontouml_element: A fixture instance of the stub subclass of OntoumlElement.
-   :type stub_ontouml_element: StubOntoumlElement
+   Ensures future datetime values are accepted for 'created'.
+
+   :raises AssertionError: If future datetime values are not accepted for 'created'.
 
 
-.. py:function:: test_id_read_only(stub_ontouml_element)
+.. py:function:: test_modification_time_before_creation()
 
-   Test that the id attribute is read-only by attempting to assign a new value to it after instantiation.
+   Test setting a modification time earlier than creation time in ConcreteOntoumlElement.
+
+   :raises ValidationError: If 'modified' is set to a datetime earlier than 'created'.
+
+
+.. py:function:: test_same_creation_and_modification_time()
+
+   Test setting the same creation and modification time in ConcreteOntoumlElement.
+
+   Ensures that 'modified' can be the same as 'created' without errors.
+
+   :raises AssertionError: If 'modified' cannot be set to the same datetime as 'created'.
+
+
+.. py:function:: test_id_read_only(concrete_ontouml_element)
+
+   Test the immutability of the 'id' attribute in ConcreteOntoumlElement.
+
+   :raises ValueError: If attempting to modify the 'id' attribute after initialization.
+
+
+.. py:function:: test_id_initialization_with_uuid()
+
+   Test initializing the 'id' attribute with a UUID.
+
+
+.. py:function:: test_id_read_only_post_initialization(concrete_ontouml_element)
+
+   Test that the 'id' attribute is read-only after initialization.
+
+
+.. py:function:: test_created_initialization_with_datetime()
+
+   Test initializing the 'created' attribute with a specific datetime.
+
+
+.. py:function:: test_created_read_only_post_initialization(concrete_ontouml_element)
+
+   Test that the 'created' attribute is read-only after initialization.
+
+
+.. py:function:: test_modified_initialization_with_valid_datetime(concrete_ontouml_element)
+
+   Test initializing the 'modified' attribute with a valid datetime greater than 'created'.
+
+
+.. py:function:: test_modified_initialization_with_none(concrete_ontouml_element)
+
+   Test initializing the 'modified' attribute with None.
+
+
+.. py:function:: test_modified_update_with_invalid_datetime(concrete_ontouml_element)
+
+   Test updating the 'modified' attribute with a datetime earlier than 'created'.
+
+
+.. py:function:: test_modified_update_with_valid_datetime(concrete_ontouml_element)
+
+   Test updating the 'modified' attribute with a valid datetime greater than 'created'.
+
+
+.. py:function:: test_id_initialization_with_non_uuid()
+
+   Test initializing the 'id' attribute with a non-UUID value.
+
+
+.. py:function:: test_created_initialization_with_future_datetime()
+
+   Test initializing the 'created' attribute with a future datetime.
+
+
+.. py:function:: test_created_initialization_with_past_datetime()
+
+   Test initializing the 'created' attribute with a past datetime.
+
+
+.. py:function:: test_modified_initialization_with_same_as_created_datetime()
+
+   Test initializing the 'modified' attribute with a datetime equal to 'created'.
+
+
+.. py:function:: test_modified_update_to_none_post_initialization(concrete_ontouml_element)
+
+   Test updating the 'modified' attribute to None after initialization.
+
+
+.. py:function:: test_modified_update_to_future_datetime(concrete_ontouml_element)
+
+   Test updating the 'modified' attribute to a future datetime.
+
+
+.. py:function:: test_modified_update_to_past_datetime(concrete_ontouml_element)
+
+   Test updating the 'modified' attribute to a past datetime earlier than 'created'.
+
+
+.. py:function:: test_modified_initialization_with_invalid_type()
+
+   Test initializing the 'modified' attribute with an invalid type.
+
+
+.. py:function:: test_default_values_for_created_and_modified()
+
+   Test the default values for 'created' and 'modified' attributes.
+
+
+.. py:function:: test_future_dates_for_created_and_modified()
+
+   Test setting future datetime values for 'created' and 'modified' attributes.
+
+
+.. py:function:: test_updating_modified_post_instantiation()
+
+   Test updating the 'modified' attribute to a valid datetime after instantiation.
+
+
+.. py:function:: test_custom_id_initialization()
+
+   Test initializing with a custom UUID for 'id'.
+
+
+.. py:function:: test_instantiation_with_no_arguments()
+
+   Test instantiation of ConcreteOntoumlElement with no arguments.
+
+
+.. py:function:: test_modified_same_as_created_at_initialization()
+
+   Test setting 'modified' the same as 'created' during initialization.
+
+
+.. py:function:: test_instantiation_with_partial_arguments()
+
+   Test instantiation of ConcreteOntoumlElement with partial arguments.
+
+
+.. py:function:: test_invalid_types_for_created_and_modified()
+
+   Test passing invalid types for 'created' and 'modified' attributes.
+
+
+.. py:function:: test_default_id_immutable()
+
+   Test that the default 'id' is immutable.
+
+
+.. py:function:: test_modified_accept_none_post_instantiation()
+
+   Test that the 'modified' attribute can be set to None after instantiation.
+
+
+.. py:function:: test_error_when_modified_before_created()
+
+   Test an error is raised if 'modified' is set to a datetime before 'created'.
+
+
+.. py:function:: test_non_existent_attribute()
+
+   Test if attribution to a non-existent attribute will result in an error.
+
+
+.. py:function:: test_addition_updates_in_project(concrete_ontouml_element, project)
+
+   Test that adding an element to a project updates its `in_project` attribute.
+
+
+.. py:function:: test_in_project_integrity_multiple_additions(concrete_ontouml_element, projects)
+
+   Test integrity of `in_project` list after adding the element to multiple projects.
+
+
+.. py:function:: test_direct_modification_of_in_project_raises_error(concrete_ontouml_element)
+
+   Test that direct modification of `in_project` attribute raises an error.
+
+
+.. py:function:: test_removal_from_one_project_keeps_in_others(concrete_ontouml_element, projects)
+
+   Test removing element from one project keeps it in other projects.
+
+
+.. py:function:: test_in_project_not_affected_by_external_list_changes(concrete_ontouml_element, project)
+
+   Test that external changes to a list do not affect `in_project`.
+
+
+.. py:function:: test_no_duplicates_in_project_after_repeated_additions(concrete_ontouml_element, project)
+
+   Test that `in_project` contains no duplicates after repeated additions.
+
+
+.. py:function:: test_project_not_in_in_project_after_removal_from_multiple_projects(concrete_ontouml_element, projects)
+
+   Test that a project is not in `in_project` after being removed from multiple projects.
+
+
+.. py:function:: test_in_project_correct_after_removal_and_readdition(concrete_ontouml_element, project)
+
+   Test `in_project` is correct after removing and re-adding an element.
 
 

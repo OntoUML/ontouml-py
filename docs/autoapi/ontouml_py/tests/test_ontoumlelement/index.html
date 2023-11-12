@@ -21,7 +21,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="ontouml_py.tests.test_validate_and_set" href="../test_validate_and_set/index.html" />
+    <link rel="next" title="ontouml_py.tests.test_project" href="../test_project/index.html" />
     <link rel="prev" title="ontouml_py.tests.test_namedelement" href="../test_namedelement/index.html" /> 
 </head>
 
@@ -53,7 +53,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../classes/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../functions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.functions</span></code></a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.utils</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -91,16 +90,14 @@
              
   <section id="module-ontouml_py.tests.test_ontoumlelement">
 <span id="ontouml-py-tests-test-ontoumlelement"></span><h1><a class="reference internal" href="#module-ontouml_py.tests.test_ontoumlelement" title="ontouml_py.tests.test_ontoumlelement"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.tests.test_ontoumlelement</span></code></a><a class="headerlink" href="#module-ontouml_py.tests.test_ontoumlelement" title="Link to this heading"></a></h1>
-<p>This module contains tests for the OntoumlElement class, ensuring that initialization and attribute access behave
-as expected.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StubOntoumlElement</span></code></a></p></td>
-<td><p>A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcreteOntoumlElement</span></code></a></p></td>
+<td><p>A concrete subclass of OntoumlElement for testing purposes.</p></td>
 </tr>
 </tbody>
 </table>
@@ -109,105 +106,249 @@ as expected.</p>
 <h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.stub_ontouml_element" title="ontouml_py.tests.test_ontoumlelement.stub_ontouml_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stub_ontouml_element</span></code></a>()</p></td>
-<td><p>Provides a fixture for creating a stub OntoumlElement instance for testing.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.concrete_ontouml_element" title="ontouml_py.tests.test_ontoumlelement.concrete_ontouml_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concrete_ontouml_element</span></code></a>()</p></td>
+<td><p>Provides a fixture for creating a concrete OntoumlElement instance for testing.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init" title="ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_ontouml_element_init</span></code></a>(stub_ontouml_element)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.project" title="ontouml_py.tests.test_ontoumlelement.project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">project</span></code></a>()</p></td>
+<td><p>Provides a fixture for creating a Project instance for testing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.projects" title="ontouml_py.tests.test_ontoumlelement.projects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">projects</span></code></a>()</p></td>
+<td><p>Provides a fixture for creating a list of Project instances for testing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init" title="ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_ontouml_element_init</span></code></a>(concrete_ontouml_element)</p></td>
+<td><p>Test the initialization of a ConcreteOntoumlElement instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_abstract_class" title="ontouml_py.tests.test_ontoumlelement.test_abstract_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_abstract_class</span></code></a>()</p></td>
+<td><p>Test if the class OntoumlElement can be directly instantiated.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_abstract_class_with_id" title="ontouml_py.tests.test_ontoumlelement.test_abstract_class_with_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_abstract_class_with_id</span></code></a>()</p></td>
+<td><p>Test if the class OntoumlElement can be directly instantiated.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type" title="ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_invalid_created_argument_type</span></code></a>()</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with an invalid 'created' argument type to ensure it raises</p></td>
+<td><p>Test passing an invalid 'created' argument type during initialization of ConcreteOntoumlElement.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type" title="ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_invalid_modified_argument_type</span></code></a>()</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with an invalid 'modified' argument type to ensure it raises</p></td>
+<td><p>Test passing an invalid 'modified' argument type during initialization of ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_unknown_argument" title="ontouml_py.tests.test_ontoumlelement.test_unknown_argument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_unknown_argument</span></code></a>(stub_ontouml_element)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with an unknown argument to ensure it raises a TypeError.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_unknown_argument" title="ontouml_py.tests.test_ontoumlelement.test_unknown_argument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_unknown_argument</span></code></a>()</p></td>
+<td><p>Test passing an unknown argument during initialization of ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_none_argument" title="ontouml_py.tests.test_ontoumlelement.test_none_argument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_none_argument</span></code></a>(stub_ontouml_element)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with None as an argument to ensure it handles None correctly.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_none_argument_for_modified" title="ontouml_py.tests.test_ontoumlelement.test_none_argument_for_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_none_argument_for_modified</span></code></a>()</p></td>
+<td><p>Test passing None for the 'modified' attribute in ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future" title="ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_creation_time_in_future</span></code></a>(stub_ontouml_element)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with a creation time set in the future to ensure it handles</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future" title="ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_creation_time_in_future</span></code></a>()</p></td>
+<td><p>Test setting a future datetime for the 'created' attribute in ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation" title="ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modification_time_before_creation</span></code></a>(...)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with a modification time set before the creation time to</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation" title="ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modification_time_before_creation</span></code></a>()</p></td>
+<td><p>Test setting a modification time earlier than creation time in ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time" title="ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_same_creation_and_modification_time</span></code></a>(...)</p></td>
-<td><p>Test the initialization of a StubOntoumlElement with the same creation and modification time to ensure</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time" title="ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_same_creation_and_modification_time</span></code></a>()</p></td>
+<td><p>Test setting the same creation and modification time in ConcreteOntoumlElement.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only" title="ontouml_py.tests.test_ontoumlelement.test_id_read_only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_id_read_only</span></code></a>(stub_ontouml_element)</p></td>
-<td><p>Test that the id attribute is read-only by attempting to assign a new value to it after instantiation.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only" title="ontouml_py.tests.test_ontoumlelement.test_id_read_only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_id_read_only</span></code></a>(concrete_ontouml_element)</p></td>
+<td><p>Test the immutability of the 'id' attribute in ConcreteOntoumlElement.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_uuid" title="ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_uuid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_id_initialization_with_uuid</span></code></a>()</p></td>
+<td><p>Test initializing the 'id' attribute with a UUID.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only_post_initialization" title="ontouml_py.tests.test_ontoumlelement.test_id_read_only_post_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_id_read_only_post_initialization</span></code></a>(...)</p></td>
+<td><p>Test that the 'id' attribute is read-only after initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_datetime" title="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_created_initialization_with_datetime</span></code></a>()</p></td>
+<td><p>Test initializing the 'created' attribute with a specific datetime.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_created_read_only_post_initialization" title="ontouml_py.tests.test_ontoumlelement.test_created_read_only_post_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_created_read_only_post_initialization</span></code></a>(...)</p></td>
+<td><p>Test that the 'created' attribute is read-only after initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_valid_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_valid_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_initialization_with_valid_datetime</span></code></a>(...)</p></td>
+<td><p>Test initializing the 'modified' attribute with a valid datetime greater than 'created'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_none" title="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_initialization_with_none</span></code></a>(...)</p></td>
+<td><p>Test initializing the 'modified' attribute with None.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_with_invalid_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_update_with_invalid_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_update_with_invalid_datetime</span></code></a>(...)</p></td>
+<td><p>Test updating the 'modified' attribute with a datetime earlier than 'created'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_with_valid_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_update_with_valid_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_update_with_valid_datetime</span></code></a>(...)</p></td>
+<td><p>Test updating the 'modified' attribute with a valid datetime greater than 'created'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_non_uuid" title="ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_non_uuid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_id_initialization_with_non_uuid</span></code></a>()</p></td>
+<td><p>Test initializing the 'id' attribute with a non-UUID value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_future_datetime" title="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_future_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_created_initialization_with_future_datetime</span></code></a>()</p></td>
+<td><p>Test initializing the 'created' attribute with a future datetime.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_past_datetime" title="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_past_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_created_initialization_with_past_datetime</span></code></a>()</p></td>
+<td><p>Test initializing the 'created' attribute with a past datetime.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_same_as_created_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_same_as_created_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_initialization_with_same_as_created_datetime</span></code></a>()</p></td>
+<td><p>Test initializing the 'modified' attribute with a datetime equal to 'created'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_none_post_initialization" title="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_none_post_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_update_to_none_post_initialization</span></code></a>(...)</p></td>
+<td><p>Test updating the 'modified' attribute to None after initialization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_future_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_future_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_update_to_future_datetime</span></code></a>(...)</p></td>
+<td><p>Test updating the 'modified' attribute to a future datetime.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_past_datetime" title="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_past_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_update_to_past_datetime</span></code></a>(...)</p></td>
+<td><p>Test updating the 'modified' attribute to a past datetime earlier than 'created'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_invalid_type" title="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_invalid_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_initialization_with_invalid_type</span></code></a>()</p></td>
+<td><p>Test initializing the 'modified' attribute with an invalid type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_default_values_for_created_and_modified" title="ontouml_py.tests.test_ontoumlelement.test_default_values_for_created_and_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_default_values_for_created_and_modified</span></code></a>()</p></td>
+<td><p>Test the default values for 'created' and 'modified' attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_future_dates_for_created_and_modified" title="ontouml_py.tests.test_ontoumlelement.test_future_dates_for_created_and_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_future_dates_for_created_and_modified</span></code></a>()</p></td>
+<td><p>Test setting future datetime values for 'created' and 'modified' attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_updating_modified_post_instantiation" title="ontouml_py.tests.test_ontoumlelement.test_updating_modified_post_instantiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_updating_modified_post_instantiation</span></code></a>()</p></td>
+<td><p>Test updating the 'modified' attribute to a valid datetime after instantiation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_custom_id_initialization" title="ontouml_py.tests.test_ontoumlelement.test_custom_id_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_custom_id_initialization</span></code></a>()</p></td>
+<td><p>Test initializing with a custom UUID for 'id'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_instantiation_with_no_arguments" title="ontouml_py.tests.test_ontoumlelement.test_instantiation_with_no_arguments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_instantiation_with_no_arguments</span></code></a>()</p></td>
+<td><p>Test instantiation of ConcreteOntoumlElement with no arguments.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_same_as_created_at_initialization" title="ontouml_py.tests.test_ontoumlelement.test_modified_same_as_created_at_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_same_as_created_at_initialization</span></code></a>()</p></td>
+<td><p>Test setting 'modified' the same as 'created' during initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_instantiation_with_partial_arguments" title="ontouml_py.tests.test_ontoumlelement.test_instantiation_with_partial_arguments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_instantiation_with_partial_arguments</span></code></a>()</p></td>
+<td><p>Test instantiation of ConcreteOntoumlElement with partial arguments.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_types_for_created_and_modified" title="ontouml_py.tests.test_ontoumlelement.test_invalid_types_for_created_and_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_invalid_types_for_created_and_modified</span></code></a>()</p></td>
+<td><p>Test passing invalid types for 'created' and 'modified' attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_default_id_immutable" title="ontouml_py.tests.test_ontoumlelement.test_default_id_immutable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_default_id_immutable</span></code></a>()</p></td>
+<td><p>Test that the default 'id' is immutable.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_modified_accept_none_post_instantiation" title="ontouml_py.tests.test_ontoumlelement.test_modified_accept_none_post_instantiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_modified_accept_none_post_instantiation</span></code></a>()</p></td>
+<td><p>Test that the 'modified' attribute can be set to None after instantiation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_error_when_modified_before_created" title="ontouml_py.tests.test_ontoumlelement.test_error_when_modified_before_created"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_error_when_modified_before_created</span></code></a>()</p></td>
+<td><p>Test an error is raised if 'modified' is set to a datetime before 'created'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_non_existent_attribute" title="ontouml_py.tests.test_ontoumlelement.test_non_existent_attribute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_non_existent_attribute</span></code></a>()</p></td>
+<td><p>Test if attribution to a non-existent attribute will result in an error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_addition_updates_in_project" title="ontouml_py.tests.test_ontoumlelement.test_addition_updates_in_project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_addition_updates_in_project</span></code></a>(...)</p></td>
+<td><p>Test that adding an element to a project updates its <cite>in_project</cite> attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_integrity_multiple_additions" title="ontouml_py.tests.test_ontoumlelement.test_in_project_integrity_multiple_additions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_in_project_integrity_multiple_additions</span></code></a>(...)</p></td>
+<td><p>Test integrity of <cite>in_project</cite> list after adding the element to multiple projects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_direct_modification_of_in_project_raises_error" title="ontouml_py.tests.test_ontoumlelement.test_direct_modification_of_in_project_raises_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_direct_modification_of_in_project_raises_error</span></code></a>(...)</p></td>
+<td><p>Test that direct modification of <cite>in_project</cite> attribute raises an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_removal_from_one_project_keeps_in_others" title="ontouml_py.tests.test_ontoumlelement.test_removal_from_one_project_keeps_in_others"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_removal_from_one_project_keeps_in_others</span></code></a>(...)</p></td>
+<td><p>Test removing element from one project keeps it in other projects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_not_affected_by_external_list_changes" title="ontouml_py.tests.test_ontoumlelement.test_in_project_not_affected_by_external_list_changes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_in_project_not_affected_by_external_list_changes</span></code></a>(...)</p></td>
+<td><p>Test that external changes to a list do not affect <cite>in_project</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions" title="ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_no_duplicates_in_project_after_repeated_additions</span></code></a>(...)</p></td>
+<td><p>Test that <cite>in_project</cite> contains no duplicates after repeated additions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects" title="ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_not_in_in_project_after_removal_from_multiple_projects</span></code></a>(...)</p></td>
+<td><p>Test that a project is not in <cite>in_project</cite> after being removed from multiple projects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition" title="ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_in_project_correct_after_removal_and_readdition</span></code></a>(...)</p></td>
+<td><p>Test <cite>in_project</cite> is correct after removing and re-adding an element.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">StubOntoumlElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">created</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.now()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">ConcreteOntoumlElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../classes/ontoumlelement/index.html#ontouml_py.classes.ontoumlelement.OntoumlElement" title="ontouml_py.classes.ontoumlelement.OntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.ontoumlelement.OntoumlElement</span></code></a></p>
-<p>A stub subclass of OntoumlElement for testing purposes, as OntoumlElement is an abstract class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>_id</strong> (<em>uuid.UUID</em>) – The read-only unique identifier of the OntoumlElement.</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>created</strong> (<em>datetime.datetime</em>) – </p></li>
-<li><p><strong>modified</strong> (<em>datetime.datetime</em>) – </p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement.id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uuid.UUID</span></em><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement.id" title="Link to this definition"></a></dt>
-<dd><p>Overrides the id property to directly access the protected _id attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The unique identifier of the OntoumlElement.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>uuid.UUID</p>
-</dd>
-</dl>
-</dd></dl>
-
+<p>A concrete subclass of OntoumlElement for testing purposes.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.stub_ontouml_element">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">stub_ontouml_element</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.stub_ontouml_element" title="Link to this definition"></a></dt>
-<dd><p>Provides a fixture for creating a stub OntoumlElement instance for testing.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.concrete_ontouml_element">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">concrete_ontouml_element</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.concrete_ontouml_element" title="Link to this definition"></a></dt>
+<dd><p>Provides a fixture for creating a concrete OntoumlElement instance for testing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>An instance of the stub subclass of OntoumlElement.</p>
+<dd class="field-odd"><p>An instance of ConcreteOntoumlElement.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement">StubOntoumlElement</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement">ConcreteOntoumlElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.project">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.project" title="Link to this definition"></a></dt>
+<dd><p>Provides a fixture for creating a Project instance for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An instance of Project.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project">Project</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.projects">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">projects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.projects" title="Link to this definition"></a></dt>
+<dd><p>Provides a fixture for creating a list of Project instances for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of Project instances.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project">Project</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_ontouml_element_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement instance to ensure that the id, created, and modified
-attributes are set appropriately.</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">param stub_ontouml_element<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A fixture instance of the stub subclass of OntoumlElement.</p>
-</dd>
-<dt class="field-even">type stub_ontouml_element<span class="colon">:</span></dt>
-<dd class="field-even"><p>StubOntoumlElement</p>
-</dd>
-<dt class="field-odd">raises AssertionError<span class="colon">:</span></dt>
-<dd class="field-odd"><p>If the id attribute is not an instance of uuid.UUID.</p>
-</dd>
-</dl>
-</div></blockquote>
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_ontouml_element_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_ontouml_element_init" title="Link to this definition"></a></dt>
+<dd><p>Test the initialization of a ConcreteOntoumlElement instance.</p>
+<p>Ensures that the ‘id’ attribute is initialized as a UUID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – </p>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – A fixture instance of ConcreteOntoumlElement.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the ‘id’ attribute is not correctly initialized as a UUID.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_abstract_class">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_abstract_class</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_abstract_class" title="Link to this definition"></a></dt>
+<dd><p>Test if the class OntoumlElement can be directly instantiated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If the instantiation occurs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_abstract_class_with_id">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_abstract_class_with_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_abstract_class_with_id" title="Link to this definition"></a></dt>
+<dd><p>Test if the class OntoumlElement can be directly instantiated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If the instantiation occurs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -215,82 +356,585 @@ attributes are set appropriately.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type">
 <span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_invalid_created_argument_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_created_argument_type" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with an invalid ‘created’ argument type to ensure it raises
-a TypeError.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_invalid_modified_argument_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with an invalid ‘modified’ argument type to ensure it raises
-a TypeError.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_unknown_argument">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_unknown_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_unknown_argument" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with an unknown argument to ensure it raises a TypeError.</p>
+<dd><p>Test passing an invalid ‘created’ argument type during initialization of ConcreteOntoumlElement.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – A fixture instance of the stub subclass of OntoumlElement.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If a non-datetime value is passed for ‘created’.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_none_argument">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_none_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_none_argument" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with None as an argument to ensure it handles None correctly.</p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_invalid_modified_argument_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_modified_argument_type" title="Link to this definition"></a></dt>
+<dd><p>Test passing an invalid ‘modified’ argument type during initialization of ConcreteOntoumlElement.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – A fixture instance of the stub subclass of OntoumlElement.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If a non-datetime value is passed for ‘modified’.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_unknown_argument">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_unknown_argument</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_unknown_argument" title="Link to this definition"></a></dt>
+<dd><p>Test passing an unknown argument during initialization of ConcreteOntoumlElement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If an unexpected keyword argument is provided.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_none_argument_for_modified">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_none_argument_for_modified</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_none_argument_for_modified" title="Link to this definition"></a></dt>
+<dd><p>Test passing None for the ‘modified’ attribute in ConcreteOntoumlElement.</p>
+<p>Ensures None can be assigned to ‘modified’ without errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If ‘modified’ cannot be set to None.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_creation_time_in_future</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with a creation time set in the future to ensure it handles
-future datetime correctly.</p>
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_creation_time_in_future</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_creation_time_in_future" title="Link to this definition"></a></dt>
+<dd><p>Test setting a future datetime for the ‘created’ attribute in ConcreteOntoumlElement.</p>
+<p>Ensures future datetime values are accepted for ‘created’.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – A fixture instance of the stub subclass of OntoumlElement.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If future datetime values are not accepted for ‘created’.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modification_time_before_creation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with a modification time set before the creation time to
-ensure logical consistency is maintained.</p>
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modification_time_before_creation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modification_time_before_creation" title="Link to this definition"></a></dt>
+<dd><p>Test setting a modification time earlier than creation time in ConcreteOntoumlElement.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – A fixture instance of the stub subclass of OntoumlElement.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If ‘modified’ is set to a datetime earlier than ‘created’.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_same_creation_and_modification_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time" title="Link to this definition"></a></dt>
-<dd><p>Test the initialization of a StubOntoumlElement with the same creation and modification time to ensure
-it is handled appropriately.</p>
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_same_creation_and_modification_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_same_creation_and_modification_time" title="Link to this definition"></a></dt>
+<dd><p>Test setting the same creation and modification time in ConcreteOntoumlElement.</p>
+<p>Ensures that ‘modified’ can be the same as ‘created’ without errors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – A fixture instance of the stub subclass of OntoumlElement.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If ‘modified’ cannot be set to the same datetime as ‘created’.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_id_read_only">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_id_read_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stub_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only" title="Link to this definition"></a></dt>
-<dd><p>Test that the id attribute is read-only by attempting to assign a new value to it after instantiation.</p>
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_id_read_only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only" title="Link to this definition"></a></dt>
+<dd><p>Test the immutability of the ‘id’ attribute in ConcreteOntoumlElement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If attempting to modify the ‘id’ attribute after initialization.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_uuid">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_id_initialization_with_uuid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_uuid" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘id’ attribute with a UUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_id_read_only_post_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_id_read_only_post_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_id_read_only_post_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test that the ‘id’ attribute is read-only after initialization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stub_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.StubOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.StubOntoumlElement"><em>StubOntoumlElement</em></a>) – </p>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_created_initialization_with_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘created’ attribute with a specific datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_created_read_only_post_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_created_read_only_post_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_created_read_only_post_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test that the ‘created’ attribute is read-only after initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_valid_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_initialization_with_valid_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_valid_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘modified’ attribute with a valid datetime greater than ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_initialization_with_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_none" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘modified’ attribute with None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_update_with_invalid_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_update_with_invalid_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_with_invalid_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute with a datetime earlier than ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_update_with_valid_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_update_with_valid_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_with_valid_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute with a valid datetime greater than ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_non_uuid">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_id_initialization_with_non_uuid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_id_initialization_with_non_uuid" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘id’ attribute with a non-UUID value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_future_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_created_initialization_with_future_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_future_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘created’ attribute with a future datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_past_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_created_initialization_with_past_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_created_initialization_with_past_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘created’ attribute with a past datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_same_as_created_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_initialization_with_same_as_created_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_same_as_created_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘modified’ attribute with a datetime equal to ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_none_post_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_update_to_none_post_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_none_post_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute to None after initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_future_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_update_to_future_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_future_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute to a future datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_update_to_past_datetime">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_update_to_past_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_update_to_past_datetime" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute to a past datetime earlier than ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_invalid_type">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_initialization_with_invalid_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_initialization_with_invalid_type" title="Link to this definition"></a></dt>
+<dd><p>Test initializing the ‘modified’ attribute with an invalid type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_default_values_for_created_and_modified">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_default_values_for_created_and_modified</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_default_values_for_created_and_modified" title="Link to this definition"></a></dt>
+<dd><p>Test the default values for ‘created’ and ‘modified’ attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_future_dates_for_created_and_modified">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_future_dates_for_created_and_modified</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_future_dates_for_created_and_modified" title="Link to this definition"></a></dt>
+<dd><p>Test setting future datetime values for ‘created’ and ‘modified’ attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_updating_modified_post_instantiation">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_updating_modified_post_instantiation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_updating_modified_post_instantiation" title="Link to this definition"></a></dt>
+<dd><p>Test updating the ‘modified’ attribute to a valid datetime after instantiation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_custom_id_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_custom_id_initialization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_custom_id_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test initializing with a custom UUID for ‘id’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_instantiation_with_no_arguments">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_instantiation_with_no_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_instantiation_with_no_arguments" title="Link to this definition"></a></dt>
+<dd><p>Test instantiation of ConcreteOntoumlElement with no arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_same_as_created_at_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_same_as_created_at_initialization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_same_as_created_at_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test setting ‘modified’ the same as ‘created’ during initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_instantiation_with_partial_arguments">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_instantiation_with_partial_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_instantiation_with_partial_arguments" title="Link to this definition"></a></dt>
+<dd><p>Test instantiation of ConcreteOntoumlElement with partial arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_invalid_types_for_created_and_modified">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_invalid_types_for_created_and_modified</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_invalid_types_for_created_and_modified" title="Link to this definition"></a></dt>
+<dd><p>Test passing invalid types for ‘created’ and ‘modified’ attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_default_id_immutable">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_default_id_immutable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_default_id_immutable" title="Link to this definition"></a></dt>
+<dd><p>Test that the default ‘id’ is immutable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_modified_accept_none_post_instantiation">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_modified_accept_none_post_instantiation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_modified_accept_none_post_instantiation" title="Link to this definition"></a></dt>
+<dd><p>Test that the ‘modified’ attribute can be set to None after instantiation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_error_when_modified_before_created">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_error_when_modified_before_created</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_error_when_modified_before_created" title="Link to this definition"></a></dt>
+<dd><p>Test an error is raised if ‘modified’ is set to a datetime before ‘created’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_non_existent_attribute">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_non_existent_attribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_non_existent_attribute" title="Link to this definition"></a></dt>
+<dd><p>Test if attribution to a non-existent attribute will result in an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_addition_updates_in_project">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_addition_updates_in_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_addition_updates_in_project" title="Link to this definition"></a></dt>
+<dd><p>Test that adding an element to a project updates its <cite>in_project</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>project</strong> (<a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_in_project_integrity_multiple_additions">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_in_project_integrity_multiple_additions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_integrity_multiple_additions" title="Link to this definition"></a></dt>
+<dd><p>Test integrity of <cite>in_project</cite> list after adding the element to multiple projects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>projects</strong> (<em>list</em><em>[</em><a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_direct_modification_of_in_project_raises_error">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_direct_modification_of_in_project_raises_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_direct_modification_of_in_project_raises_error" title="Link to this definition"></a></dt>
+<dd><p>Test that direct modification of <cite>in_project</cite> attribute raises an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_removal_from_one_project_keeps_in_others">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_removal_from_one_project_keeps_in_others</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_removal_from_one_project_keeps_in_others" title="Link to this definition"></a></dt>
+<dd><p>Test removing element from one project keeps it in other projects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>projects</strong> (<em>list</em><em>[</em><a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_in_project_not_affected_by_external_list_changes">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_in_project_not_affected_by_external_list_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_not_affected_by_external_list_changes" title="Link to this definition"></a></dt>
+<dd><p>Test that external changes to a list do not affect <cite>in_project</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>project</strong> (<a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_no_duplicates_in_project_after_repeated_additions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions" title="Link to this definition"></a></dt>
+<dd><p>Test that <cite>in_project</cite> contains no duplicates after repeated additions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>project</strong> (<a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_project_not_in_in_project_after_removal_from_multiple_projects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects" title="Link to this definition"></a></dt>
+<dd><p>Test that a project is not in <cite>in_project</cite> after being removed from multiple projects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>projects</strong> (<em>list</em><em>[</em><a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_ontoumlelement.</span></span><span class="sig-name descname"><span class="pre">test_in_project_correct_after_removal_and_readdition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concrete_ontouml_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition" title="Link to this definition"></a></dt>
+<dd><p>Test <cite>in_project</cite> is correct after removing and re-adding an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>concrete_ontouml_element</strong> (<a class="reference internal" href="#ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement" title="ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement"><em>ConcreteOntoumlElement</em></a>) – </p></li>
+<li><p><strong>project</strong> (<a class="reference internal" href="../../classes/abstract_syntax/project/index.html#ontouml_py.classes.abstract_syntax.project.Project" title="ontouml_py.classes.abstract_syntax.project.Project"><em>ontouml_py.classes.abstract_syntax.project.Project</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -304,7 +948,7 @@ it is handled appropriately.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../test_namedelement/index.html" class="btn btn-neutral float-left" title="ontouml_py.tests.test_namedelement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../test_validate_and_set/index.html" class="btn btn-neutral float-right" title="ontouml_py.tests.test_validate_and_set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../test_project/index.html" class="btn btn-neutral float-right" title="ontouml_py.tests.test_project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
