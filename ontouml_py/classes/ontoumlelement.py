@@ -14,32 +14,32 @@ class OntoumlElement(ABC, BaseModel):
     """
     Abstract base class representing a generic element within an OntoUML model.
 
-    This class is intended as a base for all OntoUML elements, providing unique identifier generation and
-    timestamp management for creation and modification times. It should not be instantiated directly.
+    This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation
+    and modification, and a relationship to OntoUML projects.
 
-    :ivar id: A unique identifier for the element, generated upon instantiation.
+    :ivar id: A unique identifier for the element, automatically generated upon instantiation.
     :vartype id: uuid.UUID
-    :ivar created: The timestamp when the element was created, defaults to the current time.
+    :ivar created: Timestamp when the element was created, defaults to the current time.
     :vartype created: datetime
-    :ivar modified: The timestamp when the element was last modified, defaults to None.
+    :ivar modified: Timestamp when the element was last modified, can be None if not modified.
     :vartype modified: Optional[datetime]
+    :ivar in_project: List of projects this element is part of. Direct modification is restricted.
+    :vartype in_project: list['Project']
     """
-
     id: uuid.UUID = Field(default_factory=uuid.uuid4)
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = None
+    in_project: list['Project'] = Field(default_factory=list)  # Forward declaration of Project
 
     class Config:
         """
-        Pydantic's configuration settings for the OntoumlElement model.
+        Configuration settings for the OntoumlElement model using Pydantic.
 
-        :cvar validate_assignment: Enables validation of field values upon assignment.
+        :cvar validate_assignment: Specifies if field values should be validated upon assignment.
         :vartype validate_assignment: bool
-        :cvar extra: Controls the behavior of the model regarding unexpected fields, set to 'forbid' to disallow \
-        extra fields.
+        :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow them.
         :vartype extra: str
         """
-
         validate_assignment = True
         extra = "forbid"
 
@@ -48,31 +48,36 @@ class OntoumlElement(ABC, BaseModel):
         """
         Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
 
-        Validates that the 'modified' attribute, if set, is not earlier than the 'created' attribute.
+        Ensures that 'modified' is not earlier than 'created' and prevents direct initialization of 'in_project'.
 
-        :param data: Fields to be set on the model instance.
+        :param data: Fields to be set on the model instance, excluding 'in_project'.
         :type data: dict
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly initialized.
         """
         super().__init__(**data)
         if self.modified is not None and self.modified < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
+        if "in_project" in data.keys():
+            raise ValueError("Attribute 'in_project' cannot be modified via OntoumlElement. "
+                             "This operation should be done via class Project.")
 
     def __setattr__(self, key, value) -> None:
         """
-        Set attribute value with validation for read-only fields and custom logic.
+        Sets attribute values, enforcing read-only constraints and logical validation.
 
-        Prevents modification of 'id' and 'created' attributes and ensures that 'modified', if set,
-        is not earlier than 'created'.
+        Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.
 
         :param key: The attribute name to set.
         :type key: str
         :param value: The value to set for the attribute.
         :type value: Any
-        :raises ValueError: If trying to modify read-only fields or if 'modified' is earlier than 'created'.
+        :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
         """
         if key in ["id", "created"] and hasattr(self, key):
             raise ValueError(f"Attribute '{key}' is read-only and cannot be modified.")
+        if key == "in_project" and hasattr(self, key):
+            raise ValueError("Attribute 'in_project' cannot be modified via OntoumlElement. "
+                             "This operation should be done via class Project.")
         if key == "modified" and value is not None and value < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         super().__setattr__(key, value)

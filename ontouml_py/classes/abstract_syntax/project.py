@@ -7,7 +7,7 @@ keywords, and landing pages, among others, providing a comprehensive representat
 from typing import Optional
 
 from langstring_lib.langstring import LangString
-from pydantic import Field
+from pydantic import Field, PrivateAttr
 
 from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
 from ontouml_py.classes.ontoumlelement import OntoumlElement
@@ -17,11 +17,13 @@ class Project(NamedElement):
     """
     A concrete class representing an OntoUML Project, extending the NamedElement class.
 
-    This class manages project-related elements including acronyms, bibliographic citations, keywords, landing pages,
-    and more, providing a rich representation of project metadata.
+    Manages project-related elements such as acronyms, bibliographic citations, keywords, landing pages, and more,
+    providing a comprehensive representation of project metadata.
 
-    :ivar elements: List of OntoumlElement objects in the project.
-    :vartype elements: list[OntoumlElement]
+    The 'elements' attribute is implemented as a read-only property to maintain control over the list of elements
+    and enforce the inverse relationship with OntoumlElement instances. The actual data is stored in the private
+    attribute '_elements', which can be manipulated via add_element and remove_element methods.
+
     :ivar acronyms: List of acronyms associated with the project.
     :vartype acronyms: list[str]
     :ivar bibliographic_citations: Bibliographic citations related to the project.
@@ -51,8 +53,9 @@ class Project(NamedElement):
     :ivar publisher: Publisher of the project. Optional.
     :vartype publisher: Optional[str]
     """
-
-    elements: list[OntoumlElement] = Field(default_factory=list)
+    # Private attributes
+    _elements: list[OntoumlElement] = PrivateAttr(default_factory=list)
+    # Public attributes
     acronyms: list[str] = Field(default_factory=list)
     bibliographic_citations: list[str] = Field(default_factory=list)
     keywords: list[LangString] = Field(default_factory=list)
@@ -79,7 +82,6 @@ class Project(NamedElement):
         :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid'.
         :vartype extra: str
         """
-
         arbitrary_types_allowed = True
         validate_assignment = True
         extra = "forbid"
@@ -94,3 +96,41 @@ class Project(NamedElement):
         :type data: dict
         """
         super().__init__(**data)
+        self._elements = data.get("elements", [])
+
+    def add_element(self, element: OntoumlElement) -> None:
+        """
+        Add an OntoumlElement to the project. Ensures that the element is not a Project itself.
+        Also updates the inverse relationship in OntoumlElement.
+
+        :param element: The OntoumlElement to be added to the project.
+        :type element: OntoumlElement
+        """
+        if not isinstance(element, Project):
+            self._elements.append(element)
+            if self not in element.in_project:
+                element.in_project.append(self)
+
+    def remove_element(self, element: OntoumlElement) -> None:
+        """
+        Remove an OntoumlElement from the project if it exists.
+        Also updates the inverse relationship in OntoumlElement.
+
+        :param element: The OntoumlElement to be removed from the project.
+        :type element: OntoumlElement
+        """
+        if element in self._elements:
+            self._elements.remove(element)
+            if self in element.in_project:
+                element.in_project.remove(self)
+
+    @property
+    def elements(self) -> list[OntoumlElement]:
+        """
+        Provide read-only access to the elements attribute. This is a workaround to prevent direct modification
+        of the 'elements' list. Modifications should be done using add_element and remove_element methods.
+
+        :return: A list of OntoumlElement objects.
+        :rtype: list[OntoumlElement]
+        """
+        return self._elements
