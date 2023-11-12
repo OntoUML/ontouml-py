@@ -100,13 +100,17 @@ class Project(NamedElement):
 
     def add_element(self, element: OntoumlElement) -> None:
         """
-        Add an OntoumlElement to the project. Ensures that the element is not a Project itself.
-        Also updates the inverse relationship in OntoumlElement.
+        Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project itself.
+        Also updates the inverse relationship in OntoumlElement and checks for duplicates.
 
         :param element: The OntoumlElement to be added to the project.
         :type element: OntoumlElement
+        :raises TypeError: If the element is not an instance of OntoumlElement.
         """
-        if not isinstance(element, Project):
+        if not isinstance(element, OntoumlElement):
+            raise TypeError("Element must be an instance of OntoumlElement.")
+
+        if not isinstance(element, Project) and element not in self._elements:
             self._elements.append(element)
             if self not in element.in_project:
                 element.in_project.append(self)
@@ -118,7 +122,11 @@ class Project(NamedElement):
 
         :param element: The OntoumlElement to be removed from the project.
         :type element: OntoumlElement
+        :raises TypeError: If the element is None.
         """
+        if not isinstance(element, OntoumlElement):
+            raise TypeError(f"Element '{element}' cannot be removed as it is not a valid OntoumlElement.")
+
         if element in self._elements:
             self._elements.remove(element)
             if self in element.in_project:

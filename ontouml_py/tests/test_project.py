@@ -34,12 +34,29 @@ class OntoumlElementStub(OntoumlElement):
         """
         Initialize a new instance of OntoumlElementStub.
 
-        As a stub implementation, this constructor intentionally does not perform any additional initialization
-        beyond that provided by the OntoumlElement class. It serves to allow the creation of OntoumlElementStub
-        instances where an actual OntoumlElement object is needed, but without any specialized behavior or attributes.
+        As a stub implementation, this constructor initializes all attributes inherited from OntoumlElement,
+        including 'in_project'.
         """
-        # intentionally empty
-        pass
+        super().__init__()
+
+
+class AnotherOntoumlElementStub(OntoumlElement):
+    """
+    A second stub class for OntoumlElement.
+
+    This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
+    It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
+    typically instantiated to create simple examples of OntoumlElement objects.
+    """
+
+    def __init__(self):
+        """
+        Initialize a new instance of AnotherOntoumlElementStub.
+
+        As a stub implementation, this constructor initializes all attributes inherited from OntoumlElement,
+        including 'in_project'.
+        """
+        super().__init__()
 
 
 def create_ontoumlelement() -> OntoumlElementStub:
@@ -93,7 +110,6 @@ def test_project_initialization(
         editorial_notes=valid_langstring_list,
         creators=["http://creator1.com", "http://creator2.com"],
         contributors=["http://contributor1.com", "http://contributor2.com"],
-        elements=valid_ontoumlelement_list,
         acronyms=["P1", "P2"],
         bibliographic_citations=["Citation1", "Citation2"],
         keywords=valid_langstring_list,
@@ -110,7 +126,11 @@ def test_project_initialization(
         publisher="Publisher Name",
     )
 
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+
     # Assertions to validate initialization
+    assert project.elements == valid_ontoumlelement_list, "Project should have the correct 'elements'."
     assert project.pref_name.text == "Project Name", "Project should have the correct 'pref_name'."
     assert project.alt_names == valid_langstring_list, "Project should have the correct 'alt_names'."
     assert project.description.text == "Project Description", "Project should have the correct 'description'."
@@ -123,7 +143,6 @@ def test_project_initialization(
         "http://contributor1.com",
         "http://contributor2.com",
     ], "Project should have the correct 'contributors'."
-    assert project.elements == valid_ontoumlelement_list, "Project should have the correct 'elements'."
     assert project.acronyms == ["P1", "P2"], "Project should have the correct 'acronyms'."
     assert project.bibliographic_citations == [
         "Citation1",
@@ -304,7 +323,11 @@ def test_project_large_list_attributes() -> None:
     large_elements = [OntoumlElementStub() for _ in range(1000)]
     large_strings = ["string" * 100 for _ in range(1000)]
 
-    project = Project(elements=large_elements, acronyms=large_strings, bibliographic_citations=large_strings)
+    project = Project(acronyms=large_strings, bibliographic_citations=large_strings)
+
+    # Manually add elements using the add_element method
+    for element in large_elements:
+        project.add_element(element)
 
     assert len(project.elements) == 1000, "Should handle large lists for 'elements'."
     assert len(project.acronyms) == 1000, "Should handle large lists for 'acronyms'."
@@ -379,12 +402,16 @@ def test_project_datetime_boundaries() -> None:
 
 
 def test_project_empty_and_null_lists() -> None:
-    """Test handling empty and None lists for list attributes."""
+    """Test handling empty lists for list attributes."""
     project = Project()
-    project.elements = []
 
-    assert project.elements == [], "Should handle empty list for 'elements'."
+    # Remove elements if any (though it should be initialized empty)
+    for element in project.elements:
+        project.remove_element(element)
 
+    assert project.elements == [], "Elements should be an empty list after removal."
+
+    # Testing setting to None should raise an error
     with pytest.raises(ValidationError):
         project.acronyms = None
 
@@ -408,3 +435,718 @@ def test_project_boolean_values_in_lists() -> None:
 
     with pytest.raises(ValidationError):
         Project(bibliographic_citations=[True, False])
+
+
+# Test adding valid OntoumlElement to Project
+def test_project_add_valid_element() -> None:
+    """
+    Test adding a valid OntoumlElement to a Project instance.
+
+    :raises AssertionError: If the element is not added correctly to the Project.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    assert element in project.elements, "Valid element should be added to the Project."
+
+
+# Test for adding duplicate OntoumlElement to Project
+def test_project_add_duplicate_element() -> None:
+    """
+    Test adding a duplicate OntoumlElement to a Project instance.
+
+    :raises AssertionError: If the duplicate element is added to the Project.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    project.add_element(element)  # Adding the same element again
+    assert project.elements.count(element) == 1, "Duplicate element should not be added to the Project."
+
+
+# Test for adding incorrect type to Project
+def test_project_add_incorrect_type_element() -> None:
+    """
+    Test adding an element of incorrect type to a Project instance.
+
+    :raises ValidationError: If an element of incorrect type is added to the Project.
+    """
+    project = Project()
+    incorrect_element = "Not an OntoumlElement"
+    with pytest.raises(TypeError):
+        project.add_element(incorrect_element)
+
+
+# Test for maintaining inverse relationship with OntoumlElement
+def test_project_maintain_inverse_relationship() -> None:
+    """
+    Test maintaining the inverse relationship when adding an OntoumlElement to a Project.
+
+    :raises AssertionError: If the inverse relationship is not maintained correctly.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    assert project in element.in_project, "Project should be in the 'in_project' list of the added element."
+
+
+# Test adding None as an element
+def test_project_add_none_element() -> None:
+    """
+    Test adding None as an element to a Project instance.
+
+    :raises TypeError: If None is added as an element to the Project.
+    """
+    project = Project()
+    with pytest.raises(TypeError):
+        project.add_element(None)
+
+
+# Test adding multiple elements
+def test_project_add_multiple_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test adding multiple OntoumlElement objects to a Project instance.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If the elements are not added correctly to the Project.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    assert project.elements == valid_ontoumlelement_list, "All elements should be added to the Project."
+
+
+# Test adding an element that is already part of another project
+def test_project_add_element_already_in_other_project() -> None:
+    """
+    Test adding an OntoumlElement that is already part of another Project instance.
+
+    :raises AssertionError: If the element is not added to both projects correctly.
+    """
+    project1 = Project()
+    project2 = Project()
+    element = create_ontoumlelement()
+    project1.add_element(element)
+    project2.add_element(element)
+    assert element in project1.elements and element in project2.elements, "Element should be part of both projects."
+
+
+# Test adding an element that is the project itself (should be forbidden)
+def test_project_add_self_as_element() -> None:
+    """
+    Test adding the Project instance itself as an element.
+
+    :raises TypeError: If the Project instance is added as its own element.
+    """
+    project = Project()
+    project.add_element(project)
+
+    assert not project.elements
+
+
+# Test adding elements of different concrete subclasses of OntoumlElement
+def test_project_add_various_subclasses_of_elements() -> None:
+    """
+    Test adding various concrete subclasses of OntoumlElement to a Project instance.
+
+    :raises AssertionError: If different subclasses of elements are not added correctly.
+    """
+    project = Project()
+    element1 = OntoumlElementStub()
+    element2 = AnotherOntoumlElementStub()
+    project.add_element(element1)
+    project.add_element(element2)
+    assert (
+        element1 in project.elements and element2 in project.elements
+    ), "Different subclasses of elements should be added correctly."
+
+
+# Test adding elements with a mix of valid and invalid instances
+def test_project_add_mixed_valid_invalid_elements() -> None:
+    """
+    Test adding a mix of valid and invalid instances to a Project instance.
+
+    :raises ValidationError: If invalid instances are added to the Project.
+    """
+    project = Project()
+    valid_element = create_ontoumlelement()
+    invalid_element = "Invalid Element"
+    with pytest.raises(TypeError):
+        project.add_element(valid_element)
+        project.add_element(invalid_element)
+
+
+# Test adding elements where some have already been added
+def test_project_add_elements_with_duplicates(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test adding elements to a Project instance where some elements have already been added.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If duplicate handling is not correct.
+    """
+    project = Project()
+    project.add_element(valid_ontoumlelement_list[0])
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+
+    unique_elements = []
+    for element in project.elements:
+        if element not in unique_elements:
+            unique_elements.append(element)
+
+    assert len(project.elements) == len(unique_elements), "Duplicates should not be added."
+
+
+# Test adding an element and checking if its in_project attribute is updated
+def test_project_add_element_updates_in_project() -> None:
+    """
+    Test if adding an element to a Project instance updates the element's in_project attribute.
+
+    :raises AssertionError: If the element's in_project attribute is not updated.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    assert project in element.in_project, "The element's in_project attribute should include this project."
+
+
+# Test adding elements with custom attributes
+def test_project_add_custom_attribute_elements() -> None:
+    """
+    Test adding elements with custom attributes to a Project instance.
+
+    :raises AssertionError: If elements with custom attributes are not handled correctly.
+    """
+
+    class CustomOntoumlElement(OntoumlElement):
+        custom_attr: str = "Custom Value"
+
+        def __init__(self, **data):
+            super().__init__(**data)
+
+    project = Project()
+    custom_element = CustomOntoumlElement()
+    project.add_element(custom_element)
+
+    assert custom_element in project.elements, "Custom element should be added to the Project."
+    assert custom_element.custom_attr == "Custom Value", "Custom attribute should be set correctly."
+
+
+# Test adding a large number of unique elements
+def test_project_add_large_number_unique_elements() -> None:
+    """
+    Test adding a large number of unique elements to a Project instance.
+
+    :raises AssertionError: If the large number of elements are not handled correctly.
+    """
+    project = Project()
+    for _ in range(1000):
+        unique_element = OntoumlElementStub()
+        project.add_element(unique_element)
+    assert len(project.elements) == 1000, "A large number of unique elements should be handled correctly."
+
+
+# Test removing a specific element from Project
+def test_project_remove_specific_element(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing a specific element from a Project instance.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If the specific element is not removed correctly.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    element_to_remove = valid_ontoumlelement_list[0]
+    project.remove_element(element_to_remove)
+    assert element_to_remove not in project.elements, "Specific element should be removed from the Project."
+
+
+# Test removing an element that is part of multiple projects
+def test_project_remove_element_from_multiple_projects() -> None:
+    """
+    Test removing an OntoumlElement that is part of multiple Project instances.
+
+    :raises AssertionError: If the element is not correctly removed from one project while remaining in others.
+    """
+    project1 = Project()
+    project2 = Project()
+    element = create_ontoumlelement()
+    project1.add_element(element)
+    project2.add_element(element)
+    project1.remove_element(element)
+    assert element not in project1.elements and element in project2.elements, (
+        "Element should be removed only from the specified Project."
+    )
+
+
+# Test removing an element that does not exist in Project
+def test_project_remove_nonexistent_element() -> None:
+    """
+    Test removing an OntoumlElement that does not exist in the Project.
+
+    :raises AssertionError: If the removal operation affects the Project incorrectly.
+    """
+    project = Project()
+    nonexistent_element = create_ontoumlelement()
+    project.remove_element(nonexistent_element)
+    assert nonexistent_element not in project.elements, "Nonexistent element should not affect the Project."
+
+
+# Test removing None from Project
+def test_project_remove_none_element() -> None:
+    """
+    Test removing None from a Project instance.
+
+    :raises TypeError: If None is attempted to be removed from the Project.
+    """
+    project = Project()
+    with pytest.raises(TypeError):
+        project.remove_element(None)
+
+
+# Test removing all elements of a specific type from Project
+def test_project_remove_all_elements_of_type() -> None:
+    """
+    Test removing all elements of a specific type from a Project instance.
+
+    :raises AssertionError: If not all elements of the specific type are removed.
+    """
+    project = Project()
+    for _ in range(5):
+        project.add_element(OntoumlElementStub())
+        project.add_element(AnotherOntoumlElementStub())
+    for element in project.elements[:]:
+        if isinstance(element, OntoumlElementStub):
+            project.remove_element(element)
+    assert all(not isinstance(el, OntoumlElementStub) for el in project.elements), (
+        "All elements of specific type should be removed."
+    )
+
+
+# Test removing an element and checking if its in_project attribute is updated
+def test_project_remove_element_updates_in_project() -> None:
+    """
+    Test if removing an element from a Project instance updates the element's in_project attribute.
+
+    :raises AssertionError: If the element's in_project attribute is not updated.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    project.remove_element(element)
+    assert project not in element.in_project, (
+        "The element's in_project attribute should not include this project after removal."
+    )
+
+
+# Test removing elements added via a list
+def test_project_remove_elements_added_via_list(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing elements from a Project instance that were added via a list.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If elements are not removed correctly.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    for element in valid_ontoumlelement_list:
+        project.remove_element(element)
+    assert not project.elements, "All elements added via a list should be removed."
+
+
+# Test removing an element and checking other elements remain
+def test_project_remove_element_check_others_remain() -> None:
+    """
+    Test removing a specific element from a Project and checking that other elements remain.
+
+    :raises AssertionError: If other elements are affected by the removal of one.
+    """
+    project = Project()
+    element_to_remove = create_ontoumlelement()
+    other_element = create_ontoumlelement()
+    project.add_element(element_to_remove)
+    project.add_element(other_element)
+    project.remove_element(element_to_remove)
+    assert other_element in project.elements, "Other elements should remain after removing a specific element."
+
+
+# Test removing multiple different elements from Project
+def test_project_remove_multiple_different_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing multiple different elements from a Project instance.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If the elements are not removed correctly.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    for element in valid_ontoumlelement_list[::2]:  # Remove every other element
+        project.remove_element(element)
+    expected_remaining = valid_ontoumlelement_list[1::2]
+    assert all(el in project.elements for el in expected_remaining), (
+        "Multiple different elements should be removed correctly."
+    )
+
+
+# Test removing an element with custom attributes from Project
+def test_project_remove_custom_attribute_element() -> None:
+    """
+    Test removing an element with custom attributes from a Project instance.
+
+    :raises AssertionError: If the element with custom attributes is not removed correctly.
+    """
+
+    class CustomOntoumlElement(OntoumlElement):
+        custom_attr: str = "Custom Value"
+
+        def __init__(self, **data):
+            super().__init__(**data)
+
+    project = Project()
+    custom_element = CustomOntoumlElement()
+    project.add_element(custom_element)
+    project.remove_element(custom_element)
+    assert custom_element not in project.elements, "Custom element should be removed from the Project."
+
+
+# Test removing elements after modifying them
+def test_project_remove_modified_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing elements from a Project after they have been modified.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If modified elements are not removed correctly.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+        element.modified = datetime.now()  # Modify the element
+    for element in valid_ontoumlelement_list:
+        project.remove_element(element)
+    assert not project.elements, "Modified elements should be removed correctly."
+
+
+# Test removing elements in reverse order of addition
+def test_project_remove_elements_in_reverse_order(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing elements from a Project in the reverse order of their addition.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If elements are not removed correctly in reverse order.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    for element in reversed(valid_ontoumlelement_list):
+        project.remove_element(element)
+    assert not project.elements, "Elements should be removed correctly in reverse order."
+
+
+# Test removing elements that are part of nested projects
+def test_project_remove_elements_nested_projects() -> None:
+    """
+    Test removing elements from a Project where elements are part of nested projects.
+
+    :raises AssertionError: If nested elements are not handled correctly during removal.
+    """
+    parent_project = Project()
+    child_project = Project()
+    element = create_ontoumlelement()
+    parent_project.add_element(child_project)
+    child_project.add_element(element)
+    parent_project.remove_element(child_project)
+    assert child_project not in parent_project.elements, "Nested project should be removed from the parent project."
+    assert element in child_project.elements, (
+        "Elements in the nested project should remain after removal from the parent project."
+    )
+
+
+# Test repeatedly adding and removing the same element
+def test_project_repeated_add_remove_element() -> None:
+    """
+    Test repeatedly adding and removing the same OntoumlElement to/from a Project.
+
+    :raises AssertionError: If the element is not handled correctly during repeated add/remove operations.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    for _ in range(5):
+        project.add_element(element)
+        project.remove_element(element)
+    assert element not in project.elements, "Element should be correctly handled during repeated add/remove operations."
+
+
+# Test removing elements using a conditional filter
+def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing elements from a Project using a conditional filter.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If elements are not correctly removed based on a conditional filter.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        element.modified = datetime.now() if element.id.int % 2 == 0 else None
+        project.add_element(element)
+    for element in project.elements[:]:
+        if element.modified is not None:
+            project.remove_element(element)
+    assert all(element.modified is None for element in project.elements), (
+        "Elements should be removed based on the conditional filter."
+    )
+
+
+# Test removing elements and checking the project's elements count
+def test_project_remove_elements_check_count(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing elements from a Project and checking the project's elements count.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If the project's elements count is not updated correctly.
+    """
+    project = Project()
+    initial_count = 0
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+        initial_count += 1
+    for element in valid_ontoumlelement_list:
+        project.remove_element(element)
+        initial_count -= 1
+        assert len(project.elements) == initial_count, (
+            "Project's elements count should be updated correctly after each removal."
+        )
+
+
+# Test removing a random selection of elements from Project
+def test_project_remove_random_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing a random selection of elements from a Project instance.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If random elements are not removed correctly.
+    """
+    import random
+
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    random_elements = random.sample(valid_ontoumlelement_list, len(valid_ontoumlelement_list) // 2)
+    for element in random_elements:
+        project.remove_element(element)
+    assert all(element not in project.elements for element in random_elements), (
+        "Randomly selected elements should be removed correctly."
+    )
+
+
+# Test removing all elements and checking project's empty state
+def test_project_remove_all_elements_empty_state(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+    """
+    Test removing all elements from a Project and checking if the project is empty.
+
+    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
+    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :raises AssertionError: If the project is not empty after removing all elements.
+    """
+    project = Project()
+    for element in valid_ontoumlelement_list:
+        project.add_element(element)
+    for element in valid_ontoumlelement_list:
+        project.remove_element(element)
+    assert not project.elements, "Project should be empty after removing all elements."
+
+
+# Test removing an element that does not belong to the project
+def test_project_remove_nonexistent_element2() -> None:
+    """
+    Test removing an element that does not belong to the Project instance.
+
+    :raises AssertionError: If removing a nonexistent element affects the project's elements.
+    """
+    project = Project()
+    nonexistent_element = create_ontoumlelement()
+    initial_elements = project.elements.copy()
+    project.remove_element(nonexistent_element)
+    assert project.elements == initial_elements, (
+        "Removing a nonexistent element should not affect the project's elements."
+    )
+
+# Test removing an element and ensuring other elements remain unchanged
+def test_project_remove_element_others_unchanged() -> None:
+    """
+    Test removing a single element from a Project and ensuring other elements remain unchanged.
+
+    :raises AssertionError: If other elements are affected by the removal.
+    """
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(5)]
+    for element in elements:
+        project.add_element(element)
+    element_to_remove = elements[2]
+    project.remove_element(element_to_remove)
+    assert element_to_remove not in project.elements, "Removed element should not be in the project."
+    assert all(el in project.elements for el in elements if el != element_to_remove), ("Other elements should "
+                                                                                       "remain unchanged.")
+
+# Test removing an element by modifying its properties before removal
+def test_project_remove_modified_element() -> None:
+    """
+    Test removing an element from a Project after modifying its properties.
+
+    :raises AssertionError: If the modified element is not removed correctly.
+    """
+    project = Project()
+    element = create_ontoumlelement()
+    project.add_element(element)
+    # Modify an existing attribute instead of 'custom_property'
+    element.modified = datetime.now()  # Assuming 'modified' is an existing attribute
+    project.remove_element(element)
+    assert element not in project.elements, "Modified element should be removed from the project."
+
+# Test removing elements from a Project using a filter function
+def test_project_remove_elements_by_filter() -> None:
+    """
+    Test removing elements from a Project using a filter function.
+
+    :raises AssertionError: If elements are not removed according to the filter function.
+    """
+    project = Project()
+    for i in range(10):
+        element = create_ontoumlelement()
+        # Assuming 'modified' is an existing attribute, update it with a datetime
+        element.modified = datetime(2020, 1, 1, i)  # Example modification
+        project.add_element(element)
+
+    # Use a filter function based on the 'modified' attribute
+    filter_function = lambda el: el.modified.hour < 5
+    for element in project.elements[:]:
+        if filter_function(element):
+            project.remove_element(element)
+
+    assert all(
+        filter_function(el) is False for el in project.elements
+    ), "Elements should be removed according to the filter function."
+
+
+# Test removing elements sequentially from a Project
+def test_project_sequential_remove_elements() -> None:
+    """
+    Test removing elements from a Project sequentially.
+
+    :raises AssertionError: If elements are not removed correctly when done sequentially.
+    """
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(5)]
+    for element in elements:
+        project.add_element(element)
+    for element in elements:
+        project.remove_element(element)
+        assert element not in project.elements, "Element should be removed sequentially from the project."
+
+# Test removing an element and ensuring project properties are unaffected
+def test_project_remove_element_unaffected_properties() -> None:
+    """
+    Test removing an element from a Project and ensuring project properties remain unaffected.
+
+    :raises AssertionError: If project properties are affected by the element removal.
+    """
+    project = Project(pref_name=create_langstring("Test Project"))
+    element = create_ontoumlelement()
+    project.add_element(element)
+    project.remove_element(element)
+    assert project.pref_name.text == "Test Project", ("Project properties should remain unaffected after "
+                                                      "element removal.")
+
+# Test removing elements and checking for empty state after each removal
+def test_project_remove_elements_check_empty_each_time() -> None:
+    """
+    Test removing elements from a Project and checking for an empty state after each removal.
+
+    :raises AssertionError: If the project is not empty when expected.
+    """
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(3)]
+    for element in elements:
+        project.add_element(element)
+    while elements:
+        element = elements.pop()
+        project.remove_element(element)
+        if elements:
+            assert project.elements, "Project should not be empty until the last element is removed."
+        else:
+            assert not project.elements, "Project should be empty after the last element is removed."
+
+# Test removing elements and checking their in_project attribute
+def test_project_remove_elements_check_in_project() -> None:
+    """
+    Test removing elements from a Project and checking their in_project attribute.
+
+    :raises AssertionError: If in_project attribute of elements is not updated correctly.
+    """
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(3)]
+    for element in elements:
+        project.add_element(element)
+    for element in elements:
+        project.remove_element(element)
+        assert project not in element.in_project, ("Removed element's in_project attribute should not include "
+                                                   "the project.")
+
+# Test removing an element and ensuring the order of remaining elements
+def test_project_remove_element_ensure_order() -> None:
+    """
+    Test removing an element from a Project and ensuring the order of remaining elements.
+
+    :raises AssertionError: If the order of remaining elements is not as expected.
+    """
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(5)]
+    for element in elements:
+        project.add_element(element)
+    project.remove_element(elements[2])
+    expected_order = elements[:2] + elements[3:]
+    assert project.elements == expected_order, "Order of remaining elements should be maintained after removal."
+
+# Test removing a randomly chosen element from a Project
+def test_project_remove_random_element() -> None:
+    """
+    Test removing a randomly chosen element from a Project.
+
+    :raises AssertionError: If the randomly chosen element is not removed correctly.
+    """
+    import random
+    project = Project()
+    elements = [create_ontoumlelement() for _ in range(10)]
+    for element in elements:
+        project.add_element(element)
+    random_element = random.choice(elements)
+    project.remove_element(random_element)
+    assert random_element not in project.elements, "Randomly chosen element should be removed from the project."
+
+# Test removing elements and checking impact on other project properties
+def test_project_remove_elements_impact_on_properties() -> None:
+    """
+    Test removing elements from a Project and checking the impact on other project properties.
+
+    :raises AssertionError: If other project properties are affected by element removal.
+    """
+    project = Project(namespace="http://example.org/ns")
+    elements = [create_ontoumlelement() for _ in range(3)]
+    for element in elements:
+        project.add_element(element)
+    for element in elements:
+        project.remove_element(element)
+    assert project.namespace == "http://example.org/ns", ("Project namespace should remain unchanged after "
+                                                          "element removal.")
