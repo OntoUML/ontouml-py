@@ -1026,7 +1026,7 @@ def test_project_remove_elements_by_filter() -> None:
     for i in range(10):
         element = create_ontoumlelement()
         # Assuming 'modified' is an existing attribute, update it with a datetime
-        element.modified = datetime(2020, 1, 1, i)  # Example modification
+        element.modified = datetime(2099, 1, 1, i)  # Example modification
         project.add_element(element)
 
     # Use a filter function based on the 'modified' attribute
@@ -1038,6 +1038,7 @@ def test_project_remove_elements_by_filter() -> None:
     assert all(
         filter_function(el) is False for el in project.elements
     ), "Elements should be removed according to the filter function."
+
 
 
 # Test removing elements sequentially from a Project
