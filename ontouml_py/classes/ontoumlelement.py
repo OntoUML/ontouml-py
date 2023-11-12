@@ -1,7 +1,7 @@
 """This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model. It includes \
 attributes for unique identification, creation, and modification timestamps, ensuring these properties are present \
 across all OntoUML elements. The class also incorporates validations to enforce the integrity of these attributes."""
-
+import typing
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
@@ -26,10 +26,11 @@ class OntoumlElement(ABC, BaseModel):
     :ivar in_project: List of projects this element is part of. Direct modification is restricted.
     :vartype in_project: list['Project']
     """
+
     id: uuid.UUID = Field(default_factory=uuid.uuid4)
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = None
-    in_project: list['Project'] = Field(default_factory=list)  # Forward declaration of Project
+    in_project: list[typing.NewType("Project", None)] = Field(default_factory=list)  # Forward declaration of Project
 
     class Config:
         """
@@ -40,6 +41,7 @@ class OntoumlElement(ABC, BaseModel):
         :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow them.
         :vartype extra: str
         """
+
         validate_assignment = True
         extra = "forbid"
 
@@ -52,18 +54,21 @@ class OntoumlElement(ABC, BaseModel):
 
         :param data: Fields to be set on the model instance, excluding 'in_project'.
         :type data: dict
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly initialized.
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is \
+        directly initialized.
         """
         super().__init__(**data)
         if self.modified is not None and self.modified < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         if "in_project" in data.keys():
-            raise ValueError("Attribute 'in_project' cannot be modified via OntoumlElement. "
-                             "This operation should be done via class Project.")
+            raise ValueError(
+                "Attribute 'in_project' cannot be modified via OntoumlElement. "
+                "This operation should be done via class Project."
+            )
 
     def __setattr__(self, key, value) -> None:
         """
-        Sets attribute values, enforcing read-only constraints and logical validation.
+        Set attribute values, enforcing read-only constraints and logical validation.
 
         Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.
 
@@ -76,8 +81,10 @@ class OntoumlElement(ABC, BaseModel):
         if key in ["id", "created"] and hasattr(self, key):
             raise ValueError(f"Attribute '{key}' is read-only and cannot be modified.")
         if key == "in_project" and hasattr(self, key):
-            raise ValueError("Attribute 'in_project' cannot be modified via OntoumlElement. "
-                             "This operation should be done via class Project.")
+            raise ValueError(
+                "Attribute 'in_project' cannot be modified via OntoumlElement. "
+                "This operation should be done via class Project."
+            )
         if key == "modified" and value is not None and value < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         super().__setattr__(key, value)

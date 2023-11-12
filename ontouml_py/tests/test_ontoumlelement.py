@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import pytest
 from pydantic import ValidationError
 
+from ontouml_py.classes.abstract_syntax.project import Project
 from ontouml_py.classes.ontoumlelement import OntoumlElement
 
 
@@ -27,6 +28,26 @@ def concrete_ontouml_element() -> ConcreteOntoumlElement:
     :rtype: ConcreteOntoumlElement
     """
     return ConcreteOntoumlElement()
+
+
+@pytest.fixture
+def project() -> Project:
+    """Provides a fixture for creating a Project instance for testing.
+
+    :return: An instance of Project.
+    :rtype: Project
+    """
+    return Project()
+
+
+@pytest.fixture
+def projects() -> list[Project]:
+    """Provides a fixture for creating a list of Project instances for testing.
+
+    :return: A list of Project instances.
+    :rtype: list[Project]
+    """
+    return [Project() for _ in range(5)]
 
 
 def test_ontouml_element_init(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
@@ -228,18 +249,18 @@ def test_modified_initialization_with_same_as_created_datetime() -> None:
 def test_modified_update_to_none_post_initialization(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
     """Test updating the 'modified' attribute to None after initialization."""
     concrete_ontouml_element.modified = None
-    assert concrete_ontouml_element.modified is None, (
-        "The 'modified' attribute should be settable to None " "after initialization."
-    )
+    assert (
+        concrete_ontouml_element.modified is None
+    ), "The 'modified' attribute should be settable to None after initialization."
 
 
 def test_modified_update_to_future_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
     """Test updating the 'modified' attribute to a future datetime."""
     future_datetime = datetime.now() + timedelta(days=5)
     concrete_ontouml_element.modified = future_datetime
-    assert concrete_ontouml_element.modified == future_datetime, (
-        "The 'modified' attribute should accept " "future datetime values."
-    )
+    assert (
+        concrete_ontouml_element.modified == future_datetime
+    ), "The 'modified' attribute should accept future datetime values."
 
 
 def test_modified_update_to_past_datetime(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
@@ -258,9 +279,9 @@ def test_modified_initialization_with_invalid_type() -> None:
 def test_default_values_for_created_and_modified() -> None:
     """Test the default values for 'created' and 'modified' attributes."""
     element = ConcreteOntoumlElement()
-    assert isinstance(element.created, datetime), (
-        "The 'created' attribute should have a default value of the " "current datetime."
-    )
+    assert isinstance(
+        element.created, datetime
+    ), "The 'created' attribute should have a default value of the current datetime."
     assert element.modified is None, "The 'modified' attribute should have a default value of None."
 
 
@@ -277,9 +298,9 @@ def test_updating_modified_post_instantiation() -> None:
     element = ConcreteOntoumlElement()
     new_modified_time = datetime.now() + timedelta(hours=1)
     element.modified = new_modified_time
-    assert element.modified == new_modified_time, (
-        "The 'modified' attribute should be updatable to a valid datetime " "after instantiation."
-    )
+    assert (
+        element.modified == new_modified_time
+    ), "The 'modified' attribute should be updatable to a valid datetime after instantiation."
 
 
 def test_custom_id_initialization() -> None:
@@ -301,9 +322,9 @@ def test_modified_same_as_created_at_initialization() -> None:
     """Test setting 'modified' the same as 'created' during initialization."""
     now = datetime.now()
     element = ConcreteOntoumlElement(created=now, modified=now)
-    assert element.modified == now, (
-        "The 'modified' attribute should be able to be set the same as 'created' " "at initialization."
-    )
+    assert (
+        element.modified == now
+    ), "The 'modified' attribute should be able to be set the same as 'created' at initialization."
 
 
 def test_instantiation_with_partial_arguments() -> None:
@@ -350,3 +371,82 @@ def test_non_existent_attribute() -> None:
     element = ConcreteOntoumlElement()
     with pytest.raises(ValidationError, match=r"Object has no attribute"):
         element.att = 1
+
+
+def test_addition_updates_in_project(concrete_ontouml_element: ConcreteOntoumlElement, project: Project) -> None:
+    """Test that adding an element to a project updates its `in_project` attribute."""
+    project.add_element(concrete_ontouml_element)
+    assert project in concrete_ontouml_element.in_project, "Project should be in element's `in_project` list."
+
+
+def test_in_project_integrity_multiple_additions(
+    concrete_ontouml_element: ConcreteOntoumlElement, projects: list[Project]
+) -> None:
+    """Test integrity of `in_project` list after adding the element to multiple projects."""
+    for proj in projects:
+        proj.add_element(concrete_ontouml_element)
+    assert all(
+        proj in concrete_ontouml_element.in_project for proj in projects
+    ), "All projects should be in `in_project` list."
+
+
+def test_direct_modification_of_in_project_raises_error(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
+    """Test that direct modification of `in_project` attribute raises an error."""
+    with pytest.raises(ValueError):
+        concrete_ontouml_element.in_project = []
+
+
+def test_removal_from_one_project_keeps_in_others(
+    concrete_ontouml_element: ConcreteOntoumlElement, projects: list[Project]
+) -> None:
+    """Test removing element from one project keeps it in other projects."""
+    for proj in projects:
+        proj.add_element(concrete_ontouml_element)
+    projects[0].remove_element(concrete_ontouml_element)
+    assert all(
+        proj in concrete_ontouml_element.in_project for proj in projects[1:]
+    ), "Element should remain in other projects."
+
+
+def test_in_project_not_affected_by_external_list_changes(
+    concrete_ontouml_element: ConcreteOntoumlElement, project: Project
+) -> None:
+    """Test that external changes to a list do not affect `in_project`."""
+    temp_list = [project]
+    project.add_element(concrete_ontouml_element)
+    temp_list.clear()
+    assert (
+        project in concrete_ontouml_element.in_project
+    ), "`in_project` should not be affected by external list changes."
+
+
+def test_no_duplicates_in_project_after_repeated_additions(
+    concrete_ontouml_element: ConcreteOntoumlElement, project: Project
+) -> None:
+    """Test that `in_project` contains no duplicates after repeated additions."""
+    for _ in range(5):
+        project.add_element(concrete_ontouml_element)
+    assert concrete_ontouml_element.in_project.count(project) == 1, "No duplicates should be in `in_project`."
+
+
+def test_project_not_in_in_project_after_removal_from_multiple_projects(
+    concrete_ontouml_element: ConcreteOntoumlElement, projects: list[Project]
+) -> None:
+    """Test that a project is not in `in_project` after being removed from multiple projects."""
+    for proj in projects:
+        proj.add_element(concrete_ontouml_element)
+    for proj in projects:
+        proj.remove_element(concrete_ontouml_element)
+    assert all(
+        proj not in concrete_ontouml_element.in_project for proj in projects
+    ), "Removed projects should not be in `in_project`."
+
+
+def test_in_project_correct_after_removal_and_readdition(
+    concrete_ontouml_element: ConcreteOntoumlElement, project: Project
+) -> None:
+    """Test `in_project` is correct after removing and re-adding an element."""
+    project.add_element(concrete_ontouml_element)
+    project.remove_element(concrete_ontouml_element)
+    project.add_element(concrete_ontouml_element)
+    assert project in concrete_ontouml_element.in_project, "`in_project` should be correct after re-adding element."

@@ -53,6 +53,7 @@ class Project(NamedElement):
     :ivar publisher: Publisher of the project. Optional.
     :vartype publisher: Optional[str]
     """
+
     # Private attributes
     _elements: list[OntoumlElement] = PrivateAttr(default_factory=list)
     # Public attributes
@@ -82,6 +83,7 @@ class Project(NamedElement):
         :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid'.
         :vartype extra: str
         """
+
         arbitrary_types_allowed = True
         validate_assignment = True
         extra = "forbid"
@@ -100,8 +102,8 @@ class Project(NamedElement):
 
     def add_element(self, element: OntoumlElement) -> None:
         """
-        Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project itself.
-        Also updates the inverse relationship in OntoumlElement and checks for duplicates.
+        Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project \
+        itself. Also updates the inverse relationship in OntoumlElement and checks for duplicates.
 
         :param element: The OntoumlElement to be added to the project.
         :type element: OntoumlElement
@@ -117,8 +119,7 @@ class Project(NamedElement):
 
     def remove_element(self, element: OntoumlElement) -> None:
         """
-        Remove an OntoumlElement from the project if it exists.
-        Also updates the inverse relationship in OntoumlElement.
+        Remove an OntoumlElement from the project if it exists. Also updates the inverse relationship in OntoumlElement.
 
         :param element: The OntoumlElement to be removed from the project.
         :type element: OntoumlElement
@@ -135,7 +136,7 @@ class Project(NamedElement):
     @property
     def elements(self) -> list[OntoumlElement]:
         """
-        Provide read-only access to the elements attribute. This is a workaround to prevent direct modification
+        Provide read-only access to the elements attribute. This is a workaround to prevent direct modification \
         of the 'elements' list. Modifications should be done using add_element and remove_element methods.
 
         :return: A list of OntoumlElement objects.

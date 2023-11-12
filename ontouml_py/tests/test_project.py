@@ -678,9 +678,9 @@ def test_project_remove_element_from_multiple_projects() -> None:
     project1.add_element(element)
     project2.add_element(element)
     project1.remove_element(element)
-    assert element not in project1.elements and element in project2.elements, (
-        "Element should be removed only from the specified Project."
-    )
+    assert (
+        element not in project1.elements and element in project2.elements
+    ), "Element should be removed only from the specified Project."
 
 
 # Test removing an element that does not exist in Project
@@ -722,9 +722,9 @@ def test_project_remove_all_elements_of_type() -> None:
     for element in project.elements[:]:
         if isinstance(element, OntoumlElementStub):
             project.remove_element(element)
-    assert all(not isinstance(el, OntoumlElementStub) for el in project.elements), (
-        "All elements of specific type should be removed."
-    )
+    assert all(
+        not isinstance(el, OntoumlElementStub) for el in project.elements
+    ), "All elements of specific type should be removed."
 
 
 # Test removing an element and checking if its in_project attribute is updated
@@ -738,9 +738,9 @@ def test_project_remove_element_updates_in_project() -> None:
     element = create_ontoumlelement()
     project.add_element(element)
     project.remove_element(element)
-    assert project not in element.in_project, (
-        "The element's in_project attribute should not include this project after removal."
-    )
+    assert (
+        project not in element.in_project
+    ), "The element's in_project attribute should not include this project after removal."
 
 
 # Test removing elements added via a list
@@ -791,9 +791,9 @@ def test_project_remove_multiple_different_elements(valid_ontoumlelement_list: l
     for element in valid_ontoumlelement_list[::2]:  # Remove every other element
         project.remove_element(element)
     expected_remaining = valid_ontoumlelement_list[1::2]
-    assert all(el in project.elements for el in expected_remaining), (
-        "Multiple different elements should be removed correctly."
-    )
+    assert all(
+        el in project.elements for el in expected_remaining
+    ), "Multiple different elements should be removed correctly."
 
 
 # Test removing an element with custom attributes from Project
@@ -866,9 +866,9 @@ def test_project_remove_elements_nested_projects() -> None:
     child_project.add_element(element)
     parent_project.remove_element(child_project)
     assert child_project not in parent_project.elements, "Nested project should be removed from the parent project."
-    assert element in child_project.elements, (
-        "Elements in the nested project should remain after removal from the parent project."
-    )
+    assert (
+        element in child_project.elements
+    ), "Elements in the nested project should remain after removal from the parent project."
 
 
 # Test repeatedly adding and removing the same element
@@ -902,9 +902,9 @@ def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: l
     for element in project.elements[:]:
         if element.modified is not None:
             project.remove_element(element)
-    assert all(element.modified is None for element in project.elements), (
-        "Elements should be removed based on the conditional filter."
-    )
+    assert all(
+        element.modified is None for element in project.elements
+    ), "Elements should be removed based on the conditional filter."
 
 
 # Test removing elements and checking the project's elements count
@@ -924,9 +924,9 @@ def test_project_remove_elements_check_count(valid_ontoumlelement_list: list[Ont
     for element in valid_ontoumlelement_list:
         project.remove_element(element)
         initial_count -= 1
-        assert len(project.elements) == initial_count, (
-            "Project's elements count should be updated correctly after each removal."
-        )
+        assert (
+            len(project.elements) == initial_count
+        ), "Project's elements count should be updated correctly after each removal."
 
 
 # Test removing a random selection of elements from Project
@@ -946,9 +946,9 @@ def test_project_remove_random_elements(valid_ontoumlelement_list: list[OntoumlE
     random_elements = random.sample(valid_ontoumlelement_list, len(valid_ontoumlelement_list) // 2)
     for element in random_elements:
         project.remove_element(element)
-    assert all(element not in project.elements for element in random_elements), (
-        "Randomly selected elements should be removed correctly."
-    )
+    assert all(
+        element not in project.elements for element in random_elements
+    ), "Randomly selected elements should be removed correctly."
 
 
 # Test removing all elements and checking project's empty state
@@ -979,9 +979,10 @@ def test_project_remove_nonexistent_element2() -> None:
     nonexistent_element = create_ontoumlelement()
     initial_elements = project.elements.copy()
     project.remove_element(nonexistent_element)
-    assert project.elements == initial_elements, (
-        "Removing a nonexistent element should not affect the project's elements."
-    )
+    assert (
+        project.elements == initial_elements
+    ), "Removing a nonexistent element should not affect the project's elements."
+
 
 # Test removing an element and ensuring other elements remain unchanged
 def test_project_remove_element_others_unchanged() -> None:
@@ -997,8 +998,10 @@ def test_project_remove_element_others_unchanged() -> None:
     element_to_remove = elements[2]
     project.remove_element(element_to_remove)
     assert element_to_remove not in project.elements, "Removed element should not be in the project."
-    assert all(el in project.elements for el in elements if el != element_to_remove), ("Other elements should "
-                                                                                       "remain unchanged.")
+    assert all(el in project.elements for el in elements if el != element_to_remove), (
+        "Other elements should " "remain unchanged."
+    )
+
 
 # Test removing an element by modifying its properties before removal
 def test_project_remove_modified_element() -> None:
@@ -1014,6 +1017,7 @@ def test_project_remove_modified_element() -> None:
     element.modified = datetime.now()  # Assuming 'modified' is an existing attribute
     project.remove_element(element)
     assert element not in project.elements, "Modified element should be removed from the project."
+
 
 # Test removing elements from a Project using a filter function
 def test_project_remove_elements_by_filter() -> None:
@@ -1040,7 +1044,6 @@ def test_project_remove_elements_by_filter() -> None:
     ), "Elements should be removed according to the filter function."
 
 
-
 # Test removing elements sequentially from a Project
 def test_project_sequential_remove_elements() -> None:
     """
@@ -1056,6 +1059,7 @@ def test_project_sequential_remove_elements() -> None:
         project.remove_element(element)
         assert element not in project.elements, "Element should be removed sequentially from the project."
 
+
 # Test removing an element and ensuring project properties are unaffected
 def test_project_remove_element_unaffected_properties() -> None:
     """
@@ -1067,8 +1071,10 @@ def test_project_remove_element_unaffected_properties() -> None:
     element = create_ontoumlelement()
     project.add_element(element)
     project.remove_element(element)
-    assert project.pref_name.text == "Test Project", ("Project properties should remain unaffected after "
-                                                      "element removal.")
+    assert project.pref_name.text == "Test Project", (
+        "Project properties should remain unaffected after " "element removal."
+    )
+
 
 # Test removing elements and checking for empty state after each removal
 def test_project_remove_elements_check_empty_each_time() -> None:
@@ -1089,6 +1095,7 @@ def test_project_remove_elements_check_empty_each_time() -> None:
         else:
             assert not project.elements, "Project should be empty after the last element is removed."
 
+
 # Test removing elements and checking their in_project attribute
 def test_project_remove_elements_check_in_project() -> None:
     """
@@ -1102,8 +1109,10 @@ def test_project_remove_elements_check_in_project() -> None:
         project.add_element(element)
     for element in elements:
         project.remove_element(element)
-        assert project not in element.in_project, ("Removed element's in_project attribute should not include "
-                                                   "the project.")
+        assert project not in element.in_project, (
+            "Removed element's in_project attribute should not include " "the project."
+        )
+
 
 # Test removing an element and ensuring the order of remaining elements
 def test_project_remove_element_ensure_order() -> None:
@@ -1120,6 +1129,7 @@ def test_project_remove_element_ensure_order() -> None:
     expected_order = elements[:2] + elements[3:]
     assert project.elements == expected_order, "Order of remaining elements should be maintained after removal."
 
+
 # Test removing a randomly chosen element from a Project
 def test_project_remove_random_element() -> None:
     """
@@ -1128,6 +1138,7 @@ def test_project_remove_random_element() -> None:
     :raises AssertionError: If the randomly chosen element is not removed correctly.
     """
     import random
+
     project = Project()
     elements = [create_ontoumlelement() for _ in range(10)]
     for element in elements:
@@ -1135,6 +1146,7 @@ def test_project_remove_random_element() -> None:
     random_element = random.choice(elements)
     project.remove_element(random_element)
     assert random_element not in project.elements, "Randomly chosen element should be removed from the project."
+
 
 # Test removing elements and checking impact on other project properties
 def test_project_remove_elements_impact_on_properties() -> None:
@@ -1149,5 +1161,6 @@ def test_project_remove_elements_impact_on_properties() -> None:
         project.add_element(element)
     for element in elements:
         project.remove_element(element)
-    assert project.namespace == "http://example.org/ns", ("Project namespace should remain unchanged after "
-                                                          "element removal.")
+    assert project.namespace == "http://example.org/ns", (
+        "Project namespace should remain unchanged after " "element removal."
+    )
