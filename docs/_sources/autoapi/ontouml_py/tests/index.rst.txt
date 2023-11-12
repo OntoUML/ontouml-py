@@ -1,0 +1,17 @@
+:py:mod:`ontouml_py.tests`
+==========================
+
+.. py:module:: ontouml_py.tests
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   test_namedelement/index.rst
+   test_ontoumlelement/index.rst
+   test_project/index.rst
+
+
