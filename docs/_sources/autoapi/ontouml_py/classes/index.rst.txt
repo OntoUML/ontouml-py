@@ -1,0 +1,25 @@
+:py:mod:`ontouml_py.classes`
+============================
+
+.. py:module:: ontouml_py.classes
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   abstract_syntax/index.rst
+   concrete_syntax/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   ontoumlelement/index.rst
+
+
