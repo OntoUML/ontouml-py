@@ -370,7 +370,7 @@ def test_non_existent_attribute() -> None:
     """Test if attribution to a non-existent attribute will result in an error."""
     element = ConcreteOntoumlElement()
     with pytest.raises(ValidationError, match=r"Object has no attribute"):
-        element.att = 1
+        element.att = 1  # noqa
 
 
 def test_addition_updates_in_project(concrete_ontouml_element: ConcreteOntoumlElement, project: Project) -> None:

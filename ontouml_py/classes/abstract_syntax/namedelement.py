@@ -42,7 +42,7 @@ class NamedElement(OntoumlElement):
     creators: list[str] = Field(default_factory=list)
     contributors: list[str] = Field(default_factory=list)
 
-    class Config:
+    class Config:  # noqa (disables Vulture)
         """
         Pydantic's configuration settings for the NamedElement model.
 
@@ -54,9 +54,9 @@ class NamedElement(OntoumlElement):
         :vartype extra: str
         """
 
-        arbitrary_types_allowed = True
-        validate_assignment = True
-        extra = "forbid"
+        arbitrary_types_allowed = True  # noqa
+        validate_assignment = True  # noqa
+        extra = "forbid"  # noqa
 
     @abstractmethod
     def __init__(self, **data):

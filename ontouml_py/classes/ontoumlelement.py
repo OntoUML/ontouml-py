@@ -32,7 +32,7 @@ class OntoumlElement(ABC, BaseModel):
     modified: Optional[datetime] = None
     in_project: list[typing.NewType("Project", None)] = Field(default_factory=list)  # Forward declaration of Project
 
-    class Config:
+    class Config:  # noqa (disable Vulture)
         """
         Configuration settings for the OntoumlElement model using Pydantic.
 
@@ -42,8 +42,8 @@ class OntoumlElement(ABC, BaseModel):
         :vartype extra: str
         """
 
-        validate_assignment = True
-        extra = "forbid"
+        validate_assignment = True  # noqa
+        extra = "forbid"  # noqa
 
     @abstractmethod
     def __init__(self, **data) -> None:

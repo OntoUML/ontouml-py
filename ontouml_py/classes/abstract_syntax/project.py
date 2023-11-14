@@ -72,7 +72,7 @@ class Project(NamedElement):
     designed_for_task: list[str] = Field(default_factory=list)
     publisher: Optional[str] = None
 
-    class Config:
+    class Config:  # noqa (disable Vulture)
         """
         Configuration settings for the Project model using Pydantic.
 
@@ -84,9 +84,9 @@ class Project(NamedElement):
         :vartype extra: str
         """
 
-        arbitrary_types_allowed = True
-        validate_assignment = True
-        extra = "forbid"
+        arbitrary_types_allowed = True  # noqa
+        validate_assignment = True  # noqa
+        extra = "forbid"  # noqa
 
     def __init__(self, **data) -> None:
         """
