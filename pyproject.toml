@@ -42,3 +42,13 @@ line-length = 120
 [tool.vulture]
 paths = ["."]
 exclude = ["docs/", "sphinx/"]
+
+[tool.mypy]
+exclude= '^ontouml_py/tests'
+strict = true
+plugins = "pydantic.mypy"
+
+[tool.pylint]
+ignore-paths= '^(ontouml_py/tests|docs|sphinx)'
+max-line-length=120
+disable= 'E0401'

@@ -6,9 +6,9 @@ elements' details such as their preferred name, alternative names, descriptions,
 creators and contributors.
 """
 from abc import abstractmethod
-from typing import Optional
+from typing import Any, Optional
 
-from langstring_lib.langstring import LangString
+from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field
 
 from ontouml_py.classes.ontoumlelement import OntoumlElement
@@ -37,7 +37,7 @@ class NamedElement(OntoumlElement):
     creators: list[str] = Field(default_factory=list)
     contributors: list[str] = Field(default_factory=list)
 
-    class Config:  # noqa (disables Vulture)
+    class Config:  # noqa (disables Vulture) # pylint: disable=R0903,R0801
         """Pydantic's configuration settings for the NamedElement model.
 
         :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
@@ -46,12 +46,12 @@ class NamedElement(OntoumlElement):
         :vartype extra: str
         """
 
-        arbitrary_types_allowed = True  # noqa
-        validate_assignment = True  # noqa
-        extra = "forbid"  # noqa
+        arbitrary_types_allowed = True  # noqa (Vulture)
+        validate_assignment = True  # noqa (Vulture)
+        extra = "forbid"  # noqa (Vulture)
 
     @abstractmethod
-    def __init__(self, **data):
+    def __init__(self, **data: dict[str, Any]):
         """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
 
         Inherits 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for

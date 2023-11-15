@@ -8,6 +8,7 @@ The module is designed for software developers and maintainers to streamline doc
 import os
 import shutil
 import subprocess
+import sys
 
 from loguru import logger
 
@@ -50,17 +51,17 @@ def execute_documentation_commands() -> None:
         logger.info("Commands 'make clean' and 'make html' successfully executed.")
     except subprocess.CalledProcessError as e:
         logger.error(f"Commands 'make clean' and 'make html' failed with return code {e.returncode}: {e.cmd}")
-        exit(1)
-    except Exception as e:
+        sys.exit(1)
+    except Exception as e:  # pylint: disable=W0718
         logger.error(f"An error occurred: {e}")
-        exit(1)
+        sys.exit(1)
 
     try:
         sphinx_dir_html = os.path.join(sphinx_dir, "_build", "html")
         # Copy the contents of the source directory to the destination directory
         shutil.copytree(sphinx_dir_html, docs_dir, dirs_exist_ok=True)
         logger.info(f"Contents of '{sphinx_dir_html}' copied to '{docs_dir}' successfully.")
-    except Exception as e:
+    except Exception as e:  # pylint: disable=W0718
         logger.error(f"Error: {e}")
 
     logger.info("Executing command 'make clean'")
@@ -69,18 +70,13 @@ def execute_documentation_commands() -> None:
         logger.info("Commands 'make clean' and 'make html' successfully executed.")
     except subprocess.CalledProcessError as e:
         logger.error(f"Commands 'make clean' and 'make html' failed with return code {e.returncode}: {e.cmd}")
-        exit(1)
-    except Exception as e:
+        sys.exit(1)
+    except Exception as e:  # pylint: disable=W0718
         logger.error(f"An error occurred: {e}")
-        exit(1)
+        sys.exit(1)
 
     logger.info("Documentation commands executed successfully.")
 
 
 if __name__ == "__main__":
-    """This block serves as the main entry point when the script is executed directly.
-
-    It orchestrates documentation-related tasks within a software project, including generating, cleaning, and copying
-    Sphinx documentation.
-    """
     execute_documentation_commands()

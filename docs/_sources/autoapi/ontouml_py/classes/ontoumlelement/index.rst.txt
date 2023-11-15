@@ -26,6 +26,18 @@ Classes
 
 
 
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.ontoumlelement.Project
+
+
+.. py:data:: Project
+
+   
+
 .. py:class:: OntoumlElement(**data)
 
 
@@ -78,7 +90,7 @@ Classes
       
 
    .. py:attribute:: in_project
-      :type: list[NewType('Project', None)]
+      :type: list[Project]
 
       
 

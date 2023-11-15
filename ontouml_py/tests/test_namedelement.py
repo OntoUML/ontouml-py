@@ -1,5 +1,7 @@
+from typing import Any
+
 import pytest
-from langstring_lib.langstring import LangString
+from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
 from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
@@ -13,7 +15,7 @@ class ConcreteNamedElement(NamedElement):
     abstract class and cannot be instantiated directly.
     """
 
-    def __init__(self, **data):
+    def __init__(self, **data: dict[str, Any]):
         """Initialize a new instance of ConcreteNamedElement.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.

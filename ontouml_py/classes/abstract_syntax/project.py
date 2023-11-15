@@ -4,9 +4,9 @@ The Project class extends NamedElement to include project-specific details such 
 and landing pages, among others, providing a comprehensive representation of a project's metadata.
 """
 
-from typing import Optional
+from typing import Any, Optional
 
-from langstring_lib.langstring import LangString
+from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, PrivateAttr
 
 from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
@@ -55,7 +55,7 @@ class Project(NamedElement):
     designed_for_task: list[str] = Field(default_factory=list)
     publisher: Optional[str] = None
 
-    class Config:  # noqa (disable Vulture)
+    class Config:  # noqa (disable Vulture) # pylint: disable=R0903,R0801
         """Configuration settings for the Project model using Pydantic.
 
         :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
@@ -67,7 +67,7 @@ class Project(NamedElement):
         validate_assignment = True  # noqa
         extra = "forbid"  # noqa
 
-    def __init__(self, **data) -> None:
+    def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new Project instance.
 
         Inherits attributes from NamedElement and adds additional project-specific attributes.
@@ -76,7 +76,10 @@ class Project(NamedElement):
         :type data: dict
         """
         super().__init__(**data)
-        self._elements = data.get("elements", [])
+        elements = data.get("elements")
+        if elements is not None and not isinstance(elements, list):
+            raise TypeError("Expected 'elements' to be a list")
+        self._elements: list[OntoumlElement] = elements if elements is not None else []
 
     def add_element(self, element: OntoumlElement) -> None:
         """Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project \

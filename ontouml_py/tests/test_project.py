@@ -1,7 +1,9 @@
+import uuid
 from datetime import datetime, timedelta, timezone
+from typing import Any
 
 import pytest
-from langstring_lib.langstring import LangString
+from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
 from ontouml_py.classes.abstract_syntax.project import Project
@@ -590,7 +592,7 @@ def test_project_add_custom_attribute_elements() -> None:
     class CustomOntoumlElement(OntoumlElement):
         custom_attr: str = "Custom Value"
 
-        def __init__(self, **data):
+        def __init__(self, **data: dict[str, Any]):
             super().__init__(**data)
 
     project = Project()
@@ -763,7 +765,7 @@ def test_project_remove_custom_attribute_element() -> None:
     class CustomOntoumlElement(OntoumlElement):
         custom_attr: str = "Custom Value"
 
-        def __init__(self, **data):
+        def __init__(self, **data: dict[str, Any]):
             super().__init__(**data)
 
     project = Project()
@@ -848,7 +850,8 @@ def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: l
     """
     project = Project()
     for element in valid_ontoumlelement_list:
-        element.modified = datetime.now() if element.id.int % 2 == 0 else None
+        element_id_as_int = int(uuid.UUID(element.id))
+        element.modified = datetime.now() if element_id_as_int % 2 == 0 else None
         project.add_element(element)
     for element in project.elements[:]:
         if element.modified is not None:
@@ -944,9 +947,9 @@ def test_project_remove_element_others_unchanged() -> None:
     element_to_remove = elements[2]
     project.remove_element(element_to_remove)
     assert element_to_remove not in project.elements, "Removed element should not be in the project."
-    assert all(el in project.elements for el in elements if el != element_to_remove), (
-        "Other elements should " "remain unchanged."
-    )
+    assert all(
+        el in project.elements for el in elements if el != element_to_remove
+    ), "Other elements should remain unchanged."
 
 
 # Test removing an element by modifying its properties before removal
@@ -1013,9 +1016,9 @@ def test_project_remove_element_unaffected_properties() -> None:
     element = create_ontoumlelement()
     project.add_element(element)
     project.remove_element(element)
-    assert project.pref_name.text == "Test Project", (
-        "Project properties should remain unaffected after " "element removal."
-    )
+    assert (
+        project.pref_name.text == "Test Project"
+    ), "Project properties should remain unaffected after element removal."
 
 
 # Test removing elements and checking for empty state after each removal
@@ -1049,9 +1052,9 @@ def test_project_remove_elements_check_in_project() -> None:
         project.add_element(element)
     for element in elements:
         project.remove_element(element)
-        assert project not in element.in_project, (
-            "Removed element's in_project attribute should not include " "the project."
-        )
+        assert (
+            project not in element.in_project
+        ), "Removed element's in_project attribute should not include the project."
 
 
 # Test removing an element and ensuring the order of remaining elements
@@ -1098,6 +1101,6 @@ def test_project_remove_elements_impact_on_properties() -> None:
         project.add_element(element)
     for element in elements:
         project.remove_element(element)
-    assert project.namespace == "http://example.org/ns", (
-        "Project namespace should remain unchanged after " "element removal."
-    )
+    assert (
+        project.namespace == "http://example.org/ns"
+    ), "Project namespace should remain unchanged after element removal."

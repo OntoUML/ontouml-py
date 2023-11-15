@@ -8,9 +8,12 @@ import typing
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from pydantic import BaseModel, Field
+
+# Necessary for the forward declaration of Project class.
+Project = typing.NewType("Project", object)  # Define a new type named 'Project' based on 'object'
 
 
 class OntoumlElement(ABC, BaseModel):
@@ -26,14 +29,12 @@ class OntoumlElement(ABC, BaseModel):
     :vartype in_project: list['Project']
     """
 
-    id: str = Field(default_factory=uuid.uuid4)
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = None
-    in_project: list[typing.NewType("Project", None)] = Field(  # noqa:F821 (flake8)
-        default_factory=list
-    )  # Forward declaration of Project
+    in_project: list[Project] = Field(default_factory=list)  # noqa:F821 (flake8) # Forward declaration of Project
 
-    class Config:  # noqa (disable Vulture)
+    class Config:  # noqa (disable Vulture) # pylint: disable=R0903,R0801
         """Configuration settings for the OntoumlElement model using Pydantic.
 
         :cvar validate_assignment: Specifies if field values should be validated upon assignment. :vartype
@@ -45,7 +46,7 @@ class OntoumlElement(ABC, BaseModel):
         extra = "forbid"  # noqa: Vulture
 
     @abstractmethod
-    def __init__(self, **data) -> None:
+    def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
 
         Ensures that 'modified' is not earlier than 'created' and prevents direct initialization of 'in_project'.
@@ -58,13 +59,13 @@ class OntoumlElement(ABC, BaseModel):
         super().__init__(**data)
         if self.modified is not None and self.modified < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
-        if "in_project" in data.keys():
+        if "in_project" in data:
             raise ValueError(
                 "Attribute 'in_project' cannot be modified via OntoumlElement. "
                 "This operation should be done via class Project."
             )
 
-    def __setattr__(self, key, value) -> None:
+    def __setattr__(self, key: str, value: typing.Any) -> None:
         """Set attribute values, enforcing read-only constraints and logical validation.
 
         Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.

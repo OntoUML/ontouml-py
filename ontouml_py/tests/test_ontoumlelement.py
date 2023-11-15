@@ -59,7 +59,7 @@ def test_ontouml_element_init(concrete_ontouml_element: ConcreteOntoumlElement) 
     :type concrete_ontouml_element: ConcreteOntoumlElement
     :raises AssertionError: If the 'id' attribute is not correctly initialized as a UUID.
     """
-    assert isinstance(concrete_ontouml_element.id, uuid.UUID), "The 'id' attribute must be initialized as a UUID."
+    assert isinstance(concrete_ontouml_element.id, str), "The 'id' attribute must be initialized as a string."
 
 
 def test_abstract_class() -> None:
@@ -159,7 +159,7 @@ def test_id_read_only(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
     :raises ValueError: If attempting to modify the 'id' attribute after initialization.
     """
     with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        concrete_ontouml_element.id = uuid.uuid4()
+        concrete_ontouml_element.id = str(uuid.uuid4())
 
 
 def test_id_initialization_with_uuid() -> None:
@@ -172,7 +172,7 @@ def test_id_initialization_with_uuid() -> None:
 def test_id_read_only_post_initialization(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
     """Test that the 'id' attribute is read-only after initialization."""
     with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        concrete_ontouml_element.id = uuid.uuid4()
+        concrete_ontouml_element.id = str(uuid.uuid4())
 
 
 def test_created_initialization_with_datetime() -> None:
@@ -313,7 +313,7 @@ def test_custom_id_initialization() -> None:
 def test_instantiation_with_no_arguments() -> None:
     """Test instantiation of ConcreteOntoumlElement with no arguments."""
     element = ConcreteOntoumlElement()
-    assert isinstance(element.id, uuid.UUID), "The 'id' attribute should have a UUID value by default."
+    assert isinstance(element.id, str), "The 'id' attribute should have a UUID string value by default."
     assert isinstance(element.created, datetime), "The 'created' attribute should have a datetime value by default."
     assert element.modified is None, "The 'modified' attribute should be None by default."
 
@@ -348,7 +348,7 @@ def test_default_id_immutable() -> None:
     element = ConcreteOntoumlElement()
     original_id = element.id
     with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        element.id = uuid.uuid4()
+        element.id = str(uuid.uuid4())
     assert element.id == original_id, "The default 'id' should be immutable."
 
 
