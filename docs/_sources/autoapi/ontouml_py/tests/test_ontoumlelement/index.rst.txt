@@ -235,7 +235,7 @@ Functions
 
 .. py:function:: test_id_initialization_with_non_uuid()
 
-   Test initializing the 'id' attribute with a non-UUID value.
+   Test initializing the 'id' attribute with a non-string value.
 
 
 .. py:function:: test_created_initialization_with_future_datetime()

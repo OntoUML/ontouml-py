@@ -18,7 +18,7 @@ class OntoumlElement(ABC, BaseModel):
     and modification, and a relationship to OntoUML projects.
 
     :ivar id: A unique identifier for the element, automatically generated upon instantiation.
-    :vartype id: uuid.UUID
+    :vartype id: str
     :ivar created: Timestamp when the element was created, defaults to the current time.
     :vartype created: datetime
     :ivar modified: Timestamp when the element was last modified, can be None if not modified.
@@ -27,10 +27,12 @@ class OntoumlElement(ABC, BaseModel):
     :vartype in_project: list['Project']
     """
 
-    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    id: str = Field(default_factory=uuid.uuid4)
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = None
-    in_project: list[typing.NewType("Project", None)] = Field(default_factory=list)  # Forward declaration of Project
+    in_project: list[typing.NewType("Project", None)] = Field(  # noqa:F821 (flake8)
+        default_factory=list
+    )  # Forward declaration of Project
 
     class Config:  # noqa (disable Vulture)
         """
@@ -42,8 +44,8 @@ class OntoumlElement(ABC, BaseModel):
         :vartype extra: str
         """
 
-        validate_assignment = True  # noqa
-        extra = "forbid"  # noqa
+        validate_assignment = True  # noqa: Vulture
+        extra = "forbid"  # noqa: Vulture
 
     @abstractmethod
     def __init__(self, **data) -> None:

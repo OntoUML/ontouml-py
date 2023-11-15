@@ -33,7 +33,7 @@ Classes
    and modification, and a relationship to OntoUML projects.
 
    :ivar id: A unique identifier for the element, automatically generated upon instantiation.
-   :vartype id: uuid.UUID
+   :vartype id: str
    :ivar created: Timestamp when the element was created, defaults to the current time.
    :vartype created: datetime
    :ivar modified: Timestamp when the element was last modified, can be None if not modified.
@@ -63,7 +63,7 @@ Classes
 
 
    .. py:attribute:: id
-      :type: uuid.UUID
+      :type: str
 
       
 

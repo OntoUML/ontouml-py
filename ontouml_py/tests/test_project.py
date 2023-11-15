@@ -1034,7 +1034,7 @@ def test_project_remove_elements_by_filter() -> None:
         project.add_element(element)
 
     # Use a filter function based on the 'modified' attribute
-    filter_function = lambda el: el.modified.hour < 5
+    filter_function = lambda el: el.modified.hour < 5  # noqa:E731 (flake8)
     for element in project.elements[:]:
         if filter_function(element):
             project.remove_element(element)

@@ -164,7 +164,7 @@ def test_id_read_only(concrete_ontouml_element: ConcreteOntoumlElement) -> None:
 
 def test_id_initialization_with_uuid() -> None:
     """Test initializing the 'id' attribute with a UUID."""
-    custom_id = uuid.uuid4()
+    custom_id = str(uuid.uuid4())
     element = ConcreteOntoumlElement(id=custom_id)
     assert element.id == custom_id, "The 'id' attribute should be initialized with the specified UUID."
 
@@ -220,9 +220,9 @@ def test_modified_update_with_valid_datetime(concrete_ontouml_element: ConcreteO
 
 
 def test_id_initialization_with_non_uuid() -> None:
-    """Test initializing the 'id' attribute with a non-UUID value."""
-    with pytest.raises(ValidationError, match=r"Input should be a valid UUID"):
-        ConcreteOntoumlElement(id="non-uuid-value")
+    """Test initializing the 'id' attribute with a non-string value."""
+    with pytest.raises(ValidationError, match=r"Input should be a valid string"):
+        ConcreteOntoumlElement(id=1)
 
 
 def test_created_initialization_with_future_datetime() -> None:
@@ -305,7 +305,7 @@ def test_updating_modified_post_instantiation() -> None:
 
 def test_custom_id_initialization() -> None:
     """Test initializing with a custom UUID for 'id'."""
-    custom_uuid = uuid.uuid4()
+    custom_uuid = str(uuid.uuid4())
     element = ConcreteOntoumlElement(id=custom_uuid)
     assert element.id == custom_uuid, "The 'id' attribute should accept a custom UUID during initialization."
 
