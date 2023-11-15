@@ -7,16 +7,14 @@ from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
 
 # Concrete subclass for testing
 class ConcreteNamedElement(NamedElement):
-    """
-    A concrete subclass of NamedElement for testing purposes.
+    """A concrete subclass of NamedElement for testing purposes.
 
-    This class inherits from NamedElement and allows the instantiation of NamedElement objects,
-    which is normally an abstract class and cannot be instantiated directly.
+    This class inherits from NamedElement and allows the instantiation of NamedElement objects, which is normally an
+    abstract class and cannot be instantiated directly.
     """
 
     def __init__(self, **data):
-        """
-        Initialize a new instance of ConcreteNamedElement.
+        """Initialize a new instance of ConcreteNamedElement.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict
@@ -44,8 +42,7 @@ def invalid_langstring() -> str:
 def test_namedelement_instantiation_with_arguments(
     valid_langstring: LangString, valid_langstring_list: list[LangString]
 ) -> None:
-    """
-    Test the instantiation of NamedElement with specific arguments.
+    """Test the instantiation of NamedElement with specific arguments.
 
     :param valid_langstring: A valid LangString object.
     :param valid_langstring_list: A list of valid LangString objects.
@@ -74,8 +71,7 @@ def test_namedelement_instantiation_with_arguments(
 
 
 def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: LangString) -> None:
-    """
-    Test modifying NamedElement attributes after instantiation.
+    """Test modifying NamedElement attributes after instantiation.
 
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If attributes are not updated as expected.
@@ -86,8 +82,7 @@ def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: 
 
 
 def test_namedelement_type_validation() -> None:
-    """
-    Test type validation for NamedElement attributes.
+    """Test type validation for NamedElement attributes.
 
     :raises ValidationError: If the wrong type is assigned to an attribute.
     """
@@ -96,8 +91,7 @@ def test_namedelement_type_validation() -> None:
 
 
 def test_namedelement_abstract_class_enforcement() -> None:
-    """
-    Test that NamedElement cannot be instantiated directly due to its abstract nature.
+    """Test that NamedElement cannot be instantiated directly due to its abstract nature.
 
     :raises TypeError: If NamedElement is instantiated directly.
     """
@@ -106,8 +100,7 @@ def test_namedelement_abstract_class_enforcement() -> None:
 
 
 def test_namedelement_default_values() -> None:
-    """
-    Test the default values of NamedElement attributes upon instantiation.
+    """Test the default values of NamedElement attributes upon instantiation.
 
     :raises AssertionError: If default values are not as expected.
     """
@@ -121,8 +114,7 @@ def test_namedelement_default_values() -> None:
 
 
 def test_namedelement_custom_initialization(valid_langstring: LangString) -> None:
-    """
-    Test custom initialization of NamedElement attributes.
+    """Test custom initialization of NamedElement attributes.
 
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If custom initialization does not work as expected.
@@ -133,8 +125,7 @@ def test_namedelement_custom_initialization(valid_langstring: LangString) -> Non
 
 
 def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> None:
-    """
-    Test updating list attributes of NamedElement post-instantiation.
+    """Test updating list attributes of NamedElement post-instantiation.
 
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If list attributes are not updatable.
@@ -147,8 +138,7 @@ def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> 
 
 
 def test_namedelement_invalid_list_type_assignment() -> None:
-    """
-    Test assignment of invalid types to list attributes of NamedElement.
+    """Test assignment of invalid types to list attributes of NamedElement.
 
     :raises ValidationError: If invalid types are assigned to list attributes.
     """
@@ -158,8 +148,7 @@ def test_namedelement_invalid_list_type_assignment() -> None:
 
 # Test initialization with invalid value and valid type
 def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> None:
-    """
-    Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
+    """Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
 
     :param invalid_langstring: A string that is not a valid LangString object.
     :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
@@ -170,8 +159,7 @@ def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> 
 
 # Test initialization with invalid type
 def test_initialization_with_invalid_type() -> None:
-    """
-    Test the instantiation of NamedElement with an invalid type for 'pref_name'.
+    """Test the instantiation of NamedElement with an invalid type for 'pref_name'.
 
     :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
     """
@@ -181,8 +169,7 @@ def test_initialization_with_invalid_type() -> None:
 
 # Test initialization with empty list for 'alt_names'
 def test_initialization_with_empty_list() -> None:
-    """
-    Test the instantiation of NamedElement with an empty list for 'alt_names'.
+    """Test the instantiation of NamedElement with an empty list for 'alt_names'.
 
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
     """
@@ -192,8 +179,7 @@ def test_initialization_with_empty_list() -> None:
 
 # Test post-initialization assertions with invalid value and valid type
 def test_post_initialization_with_invalid_value(valid_langstring: LangString) -> None:
-    """
-    Test assigning an invalid value but valid type to 'pref_name' after instantiation.
+    """Test assigning an invalid value but valid type to 'pref_name' after instantiation.
 
     :param valid_langstring: A valid LangString object.
     :raises ValidationError: If an invalid value is assigned post-instantiation.
@@ -205,8 +191,7 @@ def test_post_initialization_with_invalid_value(valid_langstring: LangString) ->
 
 # Test post-initialization assertions with invalid type
 def test_post_initialization_with_invalid_type() -> None:
-    """
-    Test assigning an invalid type to 'pref_name' after instantiation.
+    """Test assigning an invalid type to 'pref_name' after instantiation.
 
     :raises ValidationError: If an incorrect type is assigned post-instantiation.
     """
@@ -217,8 +202,7 @@ def test_post_initialization_with_invalid_type() -> None:
 
 # Test post-initialization assertions with empty list for 'alt_names'
 def test_post_initialization_with_empty_list() -> None:
-    """
-    Test assigning an empty list to 'alt_names' after instantiation.
+    """Test assigning an empty list to 'alt_names' after instantiation.
 
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
     """
@@ -230,8 +214,7 @@ def test_post_initialization_with_empty_list() -> None:
 # Edge case tests for 'pref_name'
 @pytest.mark.parametrize("edge_case_value", [LangString(""), LangString(" "), LangString("\n")])
 def test_pref_name_edge_cases(edge_case_value: LangString) -> None:
-    """
-    Test initializing NamedElement with edge case LangString values for 'pref_name'.
+    """Test initializing NamedElement with edge case LangString values for 'pref_name'.
 
     :param edge_case_value: A LangString object with edge case content.
     :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
@@ -243,8 +226,7 @@ def test_pref_name_edge_cases(edge_case_value: LangString) -> None:
 # Edge case tests for 'alt_names'
 @pytest.mark.parametrize("edge_case_list", [[], [LangString("")], [LangString(" "), LangString("\n")]])
 def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
-    """
-    Test initializing NamedElement with edge case lists for 'alt_names'.
+    """Test initializing NamedElement with edge case lists for 'alt_names'.
 
     :param edge_case_list: A list of LangString objects with edge case content.
     :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
@@ -256,8 +238,7 @@ def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
 # Edge case tests for 'creators' and 'contributors'
 @pytest.mark.parametrize("edge_case_list", [[], [" "], ["http://example.com", ""]])
 def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
-    """
-    Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
+    """Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
 
     :param edge_case_list: A list of strings with edge case URI content.
     :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
@@ -269,8 +250,7 @@ def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
 
 # Test with null values in list attributes
 def test_rejection_of_null_values_in_list_attributes() -> None:
-    """
-    Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
+    """Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
 
     :raises ValidationError: If lists with None elements are assigned.
     """
@@ -282,8 +262,7 @@ def test_rejection_of_null_values_in_list_attributes() -> None:
 
 # Test with extremely long strings
 def test_extremely_long_strings() -> None:
-    """
-    Test assigning extremely long strings to string-based attributes.
+    """Test assigning extremely long strings to string-based attributes.
 
     :raises AssertionError: If extremely long strings are not handled correctly.
     """
@@ -296,8 +275,7 @@ def test_extremely_long_strings() -> None:
 # Test with special characters and Unicode
 @pytest.mark.parametrize("special_string", ["特殊字符", "😊", "♠♥♦♣"])
 def test_special_characters_and_unicode(special_string) -> None:
-    """
-    Test assigning strings with special characters and Unicode to string-based attributes.
+    """Test assigning strings with special characters and Unicode to string-based attributes.
 
     :param special_string: A string containing special characters or Unicode.
     :raises AssertionError: If special characters and Unicode are not handled correctly.
@@ -307,8 +285,7 @@ def test_special_characters_and_unicode(special_string) -> None:
 
 
 def test_alt_names_and_editorial_notes_with_valid_data() -> None:
-    """
-    Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
+    """Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
 
     :raises AssertionError: If valid data is not handled correctly.
     """
@@ -323,8 +300,7 @@ def test_alt_names_and_editorial_notes_with_valid_data() -> None:
 
 
 def test_rejection_of_invalid_data_in_list_attributes() -> None:
-    """
-    Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'
+    """Test that assigning invalid data (lists containing None or other types) to 'alt_names' and 'editorial_notes'
     raises a validation error.
 
     :raises ValidationError: If invalid data is assigned.

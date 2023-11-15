@@ -13,8 +13,7 @@ from loguru import logger
 
 
 def execute_documentation_commands() -> None:
-    """
-    Execute a sequence of documentation-related commands.
+    """Execute a sequence of documentation-related commands.
 
     This function orchestrates a series of commands to generate and manage Sphinx documentation:
         1. Remove the 'docs' directory and its contents.
@@ -80,7 +79,8 @@ def execute_documentation_commands() -> None:
 
 if __name__ == "__main__":
     """This block serves as the main entry point when the script is executed directly.
-    It orchestrates documentation-related tasks within a software project, including generating, cleaning, and
-    copying Sphinx documentation.
+
+    It orchestrates documentation-related tasks within a software project, including generating, cleaning, and copying
+    Sphinx documentation.
     """
     execute_documentation_commands()

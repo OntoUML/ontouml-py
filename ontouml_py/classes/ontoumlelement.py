@@ -1,6 +1,9 @@
-"""This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model. It includes \
-attributes for unique identification, creation, and modification timestamps, ensuring these properties are present \
-across all OntoUML elements. The class also incorporates validations to enforce the integrity of these attributes."""
+"""This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model.
+
+It includes \ attributes for unique identification, creation, and modification timestamps, ensuring these properties are
+present \ across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
+attributes.
+"""
 import typing
 import uuid
 from abc import ABC, abstractmethod
@@ -11,19 +14,15 @@ from pydantic import BaseModel, Field
 
 
 class OntoumlElement(ABC, BaseModel):
-    """
-    Abstract base class representing a generic element within an OntoUML model.
+    """Abstract base class representing a generic element within an OntoUML model.
 
-    This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation
-    and modification, and a relationship to OntoUML projects.
+    This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation and
+    modification, and a relationship to OntoUML projects.
 
-    :ivar id: A unique identifier for the element, automatically generated upon instantiation.
-    :vartype id: str
-    :ivar created: Timestamp when the element was created, defaults to the current time.
-    :vartype created: datetime
-    :ivar modified: Timestamp when the element was last modified, can be None if not modified.
-    :vartype modified: Optional[datetime]
-    :ivar in_project: List of projects this element is part of. Direct modification is restricted.
+    :ivar id: A unique identifier for the element, automatically generated upon instantiation. :vartype id: str :ivar
+    created: Timestamp when the element was created, defaults to the current time. :vartype created: datetime :ivar
+    modified: Timestamp when the element was last modified, can be None if not modified. :vartype modified:
+    Optional[datetime] :ivar in_project: List of projects this element is part of. Direct modification is restricted.
     :vartype in_project: list['Project']
     """
 
@@ -35,13 +34,11 @@ class OntoumlElement(ABC, BaseModel):
     )  # Forward declaration of Project
 
     class Config:  # noqa (disable Vulture)
-        """
-        Configuration settings for the OntoumlElement model using Pydantic.
+        """Configuration settings for the OntoumlElement model using Pydantic.
 
-        :cvar validate_assignment: Specifies if field values should be validated upon assignment.
-        :vartype validate_assignment: bool
-        :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow them.
-        :vartype extra: str
+        :cvar validate_assignment: Specifies if field values should be validated upon assignment. :vartype
+        validate_assignment: bool :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow
+        them. :vartype extra: str
         """
 
         validate_assignment = True  # noqa: Vulture
@@ -49,15 +46,14 @@ class OntoumlElement(ABC, BaseModel):
 
     @abstractmethod
     def __init__(self, **data) -> None:
-        """
-        Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
+        """Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
 
         Ensures that 'modified' is not earlier than 'created' and prevents direct initialization of 'in_project'.
 
         :param data: Fields to be set on the model instance, excluding 'in_project'.
         :type data: dict
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is \
-        directly initialized.
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is \ directly
+            initialized.
         """
         super().__init__(**data)
         if self.modified is not None and self.modified < self.created:
@@ -69,8 +65,7 @@ class OntoumlElement(ABC, BaseModel):
             )
 
     def __setattr__(self, key, value) -> None:
-        """
-        Set attribute values, enforcing read-only constraints and logical validation.
+        """Set attribute values, enforcing read-only constraints and logical validation.
 
         Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.
 
