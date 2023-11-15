@@ -1,7 +1,7 @@
 """This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model.
 
-It includes \ attributes for unique identification, creation, and modification timestamps, ensuring these properties are
-present \ across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
+It includes attributes for unique identification, creation, and modification timestamps, ensuring these properties are
+present across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
 attributes.
 """
 import typing
@@ -52,7 +52,7 @@ class OntoumlElement(ABC, BaseModel):
 
         :param data: Fields to be set on the model instance, excluding 'in_project'.
         :type data: dict
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is \ directly
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
             initialized.
         """
         super().__init__(**data)

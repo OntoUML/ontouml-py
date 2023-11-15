@@ -112,8 +112,8 @@ Functions
    A stub class for OntoumlElement.
 
    This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
-   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
-   typically instantiated to create simple examples of OntoumlElement objects.
+   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is typically
+   instantiated to create simple examples of OntoumlElement objects.
 
 
 .. py:class:: AnotherOntoumlElementStub
@@ -124,8 +124,8 @@ Functions
    A second stub class for OntoumlElement.
 
    This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
-   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is
-   typically instantiated to create simple examples of OntoumlElement objects.
+   It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is typically
+   instantiated to create simple examples of OntoumlElement objects.
 
 
 .. py:function:: create_ontoumlelement()

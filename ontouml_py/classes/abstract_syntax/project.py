@@ -95,7 +95,7 @@ class Project(NamedElement):
                 element.in_project.append(self)
 
     def remove_element(self, element: OntoumlElement) -> None:
-        """Remove an OntoumlElement from the project if it exists. Also updates the inverse relationship in
+        """Remove an OntoumlElement from the project if it exists. Also updates the inverse relationship in \
         OntoumlElement.
 
         :param element: The OntoumlElement to be removed from the project.
@@ -112,7 +112,7 @@ class Project(NamedElement):
 
     @property
     def elements(self) -> list[OntoumlElement]:
-        """Provide read-only access to the elements attribute. This is a workaround to prevent direct modification \ of
+        """Provide read-only access to the elements attribute. This is a workaround to prevent direct modification of \
         the 'elements' list. Modifications should be done using add_element and remove_element methods.
 
         :return: A list of OntoumlElement objects.

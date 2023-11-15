@@ -56,8 +56,8 @@ Functions
 
    A concrete subclass of NamedElement for testing purposes.
 
-   This class inherits from NamedElement and allows the instantiation of NamedElement objects,
-   which is normally an abstract class and cannot be instantiated directly.
+   This class inherits from NamedElement and allows the instantiation of NamedElement objects, which is normally an
+   abstract class and cannot be instantiated directly.
 
 
 .. py:function:: valid_langstring()
