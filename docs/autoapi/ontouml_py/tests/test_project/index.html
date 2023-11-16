@@ -95,10 +95,10 @@
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OntoumlElementStub</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a></p></td>
 <td><p>A stub class for OntoumlElement.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.AnotherOntoumlElementStub" title="ontouml_py.tests.test_project.AnotherOntoumlElementStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnotherOntoumlElementStub</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.Link" title="ontouml_py.tests.test_project.Link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
 <td><p>A second stub class for OntoumlElement.</p></td>
 </tr>
 </tbody>
@@ -222,41 +222,35 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_add_element_updates_in_project" title="ontouml_py.tests.test_project.test_project_add_element_updates_in_project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_add_element_updates_in_project</span></code></a>()</p></td>
 <td><p>Test if adding an element to a Project instance updates the element's in_project attribute.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_add_custom_attribute_elements" title="ontouml_py.tests.test_project.test_project_add_custom_attribute_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_add_custom_attribute_elements</span></code></a>()</p></td>
-<td><p>Test adding elements with custom attributes to a Project instance.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_add_large_number_unique_elements" title="ontouml_py.tests.test_project.test_project_add_large_number_unique_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_add_large_number_unique_elements</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_add_large_number_unique_elements" title="ontouml_py.tests.test_project.test_project_add_large_number_unique_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_add_large_number_unique_elements</span></code></a>()</p></td>
 <td><p>Test adding a large number of unique elements to a Project instance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_specific_element" title="ontouml_py.tests.test_project.test_project_remove_specific_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_specific_element</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_specific_element" title="ontouml_py.tests.test_project.test_project_remove_specific_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_specific_element</span></code></a>(...)</p></td>
 <td><p>Test removing a specific element from a Project instance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects" title="ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_from_multiple_projects</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects" title="ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_from_multiple_projects</span></code></a>()</p></td>
 <td><p>Test removing an OntoumlElement that is part of multiple Project instances.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_nonexistent_element" title="ontouml_py.tests.test_project.test_project_remove_nonexistent_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_nonexistent_element</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_nonexistent_element" title="ontouml_py.tests.test_project.test_project_remove_nonexistent_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_nonexistent_element</span></code></a>()</p></td>
 <td><p>Test removing an OntoumlElement that does not exist in the Project.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_none_element" title="ontouml_py.tests.test_project.test_project_remove_none_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_none_element</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_none_element" title="ontouml_py.tests.test_project.test_project_remove_none_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_none_element</span></code></a>()</p></td>
 <td><p>Test removing None from a Project instance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_all_elements_of_type" title="ontouml_py.tests.test_project.test_project_remove_all_elements_of_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_all_elements_of_type</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_all_elements_of_type" title="ontouml_py.tests.test_project.test_project_remove_all_elements_of_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_all_elements_of_type</span></code></a>()</p></td>
 <td><p>Test removing all elements of a specific type from a Project instance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_updates_in_project" title="ontouml_py.tests.test_project.test_project_remove_element_updates_in_project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_updates_in_project</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_updates_in_project" title="ontouml_py.tests.test_project.test_project_remove_element_updates_in_project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_updates_in_project</span></code></a>()</p></td>
 <td><p>Test if removing an element from a Project instance updates the element's in_project attribute.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_elements_added_via_list" title="ontouml_py.tests.test_project.test_project_remove_elements_added_via_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_elements_added_via_list</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_elements_added_via_list" title="ontouml_py.tests.test_project.test_project_remove_elements_added_via_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_elements_added_via_list</span></code></a>(...)</p></td>
 <td><p>Test removing elements from a Project instance that were added via a list.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_check_others_remain" title="ontouml_py.tests.test_project.test_project_remove_element_check_others_remain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_check_others_remain</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_element_check_others_remain" title="ontouml_py.tests.test_project.test_project_remove_element_check_others_remain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_element_check_others_remain</span></code></a>()</p></td>
 <td><p>Test removing a specific element from a Project and checking that other elements remain.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_multiple_different_elements" title="ontouml_py.tests.test_project.test_project_remove_multiple_different_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_multiple_different_elements</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_multiple_different_elements" title="ontouml_py.tests.test_project.test_project_remove_multiple_different_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_multiple_different_elements</span></code></a>(...)</p></td>
 <td><p>Test removing multiple different elements from a Project instance.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_custom_attribute_element" title="ontouml_py.tests.test_project.test_project_remove_custom_attribute_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_custom_attribute_element</span></code></a>()</p></td>
-<td><p>Test removing an element with custom attributes from a Project instance.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_modified_elements" title="ontouml_py.tests.test_project.test_project_remove_modified_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_modified_elements</span></code></a>(...)</p></td>
 <td><p>Test removing elements from a Project after they have been modified.</p></td>
@@ -315,6 +309,24 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_remove_elements_impact_on_properties" title="ontouml_py.tests.test_project.test_project_remove_elements_impact_on_properties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_remove_elements_impact_on_properties</span></code></a>()</p></td>
 <td><p>Test removing elements from a Project and checking the impact on other project properties.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_with_valid_root_package" title="ontouml_py.tests.test_project.test_project_with_valid_root_package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_with_valid_root_package</span></code></a>()</p></td>
+<td><p>Test the initialization of a Project instance with a valid Package as root_package.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_root_package_initialization_none" title="ontouml_py.tests.test_project.test_project_root_package_initialization_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_root_package_initialization_none</span></code></a>()</p></td>
+<td><p>Test the initialization of a Project instance with no root_package specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_setting_root_package_post_initialization" title="ontouml_py.tests.test_project.test_project_setting_root_package_post_initialization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_setting_root_package_post_initialization</span></code></a>()</p></td>
+<td><p>Test setting the root_package of a Project instance after initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_setting_invalid_root_package" title="ontouml_py.tests.test_project.test_project_setting_invalid_root_package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_setting_invalid_root_package</span></code></a>()</p></td>
+<td><p>Test setting an invalid type as root_package of a Project instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_resetting_root_package_to_none" title="ontouml_py.tests.test_project.test_project_resetting_root_package_to_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_resetting_root_package_to_none</span></code></a>()</p></td>
+<td><p>Test resetting the root_package of a Project instance to None.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.tests.test_project.test_project_root_package_independence_from_other_projects" title="ontouml_py.tests.test_project.test_project_root_package_independence_from_other_projects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_project_root_package_independence_from_other_projects</span></code></a>()</p></td>
+<td><p>Test that setting root_package in one Project instance doesn't affect another.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py function">
@@ -335,9 +347,9 @@
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_project.OntoumlElementStub">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">OntoumlElementStub</span></span><a class="headerlink" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../classes/ontoumlelement/index.html#ontouml_py.classes.ontoumlelement.OntoumlElement" title="ontouml_py.classes.ontoumlelement.OntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.ontoumlelement.OntoumlElement</span></code></a></p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.Package">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">Package</span></span><a class="headerlink" href="#ontouml_py.tests.test_project.Package" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../classes/abstract_syntax/abstract_classes/modelelement/index.html#ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement</span></code></a></p>
 <p>A stub class for OntoumlElement.</p>
 <p>This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
 It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is typically
@@ -345,9 +357,9 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_project.AnotherOntoumlElementStub">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">AnotherOntoumlElementStub</span></span><a class="headerlink" href="#ontouml_py.tests.test_project.AnotherOntoumlElementStub" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../classes/ontoumlelement/index.html#ontouml_py.classes.ontoumlelement.OntoumlElement" title="ontouml_py.classes.ontoumlelement.OntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.ontoumlelement.OntoumlElement</span></code></a></p>
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.Link">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">Link</span></span><a class="headerlink" href="#ontouml_py.tests.test_project.Link" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../classes/abstract_syntax/abstract_classes/modelelement/index.html#ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement</span></code></a></p>
 <p>A second stub class for OntoumlElement.</p>
 <p>This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
 It does not introduce additional attributes or methods beyond those inherited from OntoumlElement, and is typically
@@ -363,7 +375,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd class="field-odd"><p>An instance of OntoumlElementStub.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub">OntoumlElementStub</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package">Package</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -391,7 +403,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd class="field-odd"><p>A list of OntoumlElementStub objects.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub">OntoumlElementStub</a>]</p>
+<dd class="field-even"><p>list[<a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package">Package</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -404,7 +416,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>valid_langstring_list</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – A list of LangString objects for testing.</p></li>
-<li><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p></li>
+<li><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -753,7 +765,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test adding multiple OntoumlElement objects to a Project instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If the elements are not added correctly to the Project.</p>
@@ -826,7 +838,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test adding elements to a Project instance where some elements have already been added.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If duplicate handling is not correct.</p>
@@ -844,20 +856,6 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>AssertionError</strong> – If the element’s in_project attribute is not updated.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_add_custom_attribute_elements">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_add_custom_attribute_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_add_custom_attribute_elements" title="Link to this definition"></a></dt>
-<dd><p>Test adding elements with custom attributes to a Project instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>AssertionError</strong> – If elements with custom attributes are not handled correctly.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -885,7 +883,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing a specific element from a Project instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If the specific element is not removed correctly.</p>
@@ -972,7 +970,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing elements from a Project instance that were added via a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If elements are not removed correctly.</p>
@@ -1003,7 +1001,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing multiple different elements from a Project instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If the elements are not removed correctly.</p>
@@ -1015,26 +1013,12 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_remove_custom_attribute_element">
-<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_remove_custom_attribute_element</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_remove_custom_attribute_element" title="Link to this definition"></a></dt>
-<dd><p>Test removing an element with custom attributes from a Project instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>AssertionError</strong> – If the element with custom attributes is not removed correctly.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_remove_modified_elements">
 <span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_remove_modified_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_ontoumlelement_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_remove_modified_elements" title="Link to this definition"></a></dt>
 <dd><p>Test removing elements from a Project after they have been modified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If modified elements are not removed correctly.</p>
@@ -1051,7 +1035,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing elements from a Project in the reverse order of their addition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If elements are not removed correctly in reverse order.</p>
@@ -1096,7 +1080,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing elements from a Project using a conditional filter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If elements are not correctly removed based on a conditional filter.</p>
@@ -1113,7 +1097,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing elements from a Project and checking the project’s elements count.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If the project’s elements count is not updated correctly.</p>
@@ -1130,7 +1114,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing a random selection of elements from a Project instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If random elements are not removed correctly.</p>
@@ -1147,7 +1131,7 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dd><p>Test removing all elements from a Project and checking if the project is empty.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.OntoumlElementStub" title="ontouml_py.tests.test_project.OntoumlElementStub"><em>OntoumlElementStub</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
+<dd class="field-odd"><p><strong>valid_ontoumlelement_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#ontouml_py.tests.test_project.Package" title="ontouml_py.tests.test_project.Package"><em>Package</em></a><em>]</em>) – A list of OntoumlElementStub objects for testing.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>AssertionError</strong> – If the project is not empty after removing all elements.</p>
@@ -1305,6 +1289,90 @@ instantiated to create simple examples of OntoumlElement objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>AssertionError</strong> – If other project properties are affected by element removal.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_with_valid_root_package">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_with_valid_root_package</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_with_valid_root_package" title="Link to this definition"></a></dt>
+<dd><p>Test the initialization of a Project instance with a valid Package as root_package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If the root_package attribute is not set correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_root_package_initialization_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_root_package_initialization_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_root_package_initialization_none" title="Link to this definition"></a></dt>
+<dd><p>Test the initialization of a Project instance with no root_package specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If the root_package attribute is not None by default.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_setting_root_package_post_initialization">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_setting_root_package_post_initialization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_setting_root_package_post_initialization" title="Link to this definition"></a></dt>
+<dd><p>Test setting the root_package of a Project instance after initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If the root_package attribute cannot be set post initialization.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_setting_invalid_root_package">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_setting_invalid_root_package</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_setting_invalid_root_package" title="Link to this definition"></a></dt>
+<dd><p>Test setting an invalid type as root_package of a Project instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValidationError</strong> – If an invalid type is assigned to root_package.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_resetting_root_package_to_none">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_resetting_root_package_to_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_resetting_root_package_to_none" title="Link to this definition"></a></dt>
+<dd><p>Test resetting the root_package of a Project instance to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If the root_package attribute cannot be reset to None.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ontouml_py.tests.test_project.test_project_root_package_independence_from_other_projects">
+<span class="sig-prename descclassname"><span class="pre">ontouml_py.tests.test_project.</span></span><span class="sig-name descname"><span class="pre">test_project_root_package_independence_from_other_projects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.tests.test_project.test_project_root_package_independence_from_other_projects" title="Link to this definition"></a></dt>
+<dd><p>Test that setting root_package in one Project instance doesn’t affect another.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If root_package in one Project instance affects another.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>

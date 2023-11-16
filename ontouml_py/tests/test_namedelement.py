@@ -4,24 +4,41 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
+from ontouml_py.classes.abstract_syntax.abstract_classes.modelelement import (
+    ModelElement,
+)
+from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
+    NamedElement,
+)
 
 
 # Concrete subclass for testing
-class ConcreteNamedElement(NamedElement):
+class Project(NamedElement):
     """A concrete subclass of NamedElement for testing purposes.
+
+    Note that this is not the OntoUML Project, but just a class used for testing.
 
     This class inherits from NamedElement and allows the instantiation of NamedElement objects, which is normally an
     abstract class and cannot be instantiated directly.
     """
 
     def __init__(self, **data: dict[str, Any]):
-        """Initialize a new instance of ConcreteNamedElement.
+        """Initialize a new instance of Project.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict
         """
         super().__init__(**data)
+
+
+class InvalidSubclass(NamedElement):
+    def __init__(self, **data: dict[str, Any]):
+        super().__init__(**data)
+
+
+class Link(ModelElement):
+    def __init__(self):
+        pass
 
 
 @pytest.fixture
@@ -50,7 +67,7 @@ def test_namedelement_instantiation_with_arguments(
     :param valid_langstring_list: A list of valid LangString objects.
     :raises AssertionError: If attributes are not set as expected.
     """
-    element = ConcreteNamedElement(
+    element = Project(
         pref_name=valid_langstring,
         alt_names=valid_langstring_list,
         description=valid_langstring,
@@ -78,7 +95,7 @@ def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: 
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If attributes are not updated as expected.
     """
-    element = ConcreteNamedElement()
+    element = Project()
     element.pref_name = valid_langstring
     assert element.pref_name == valid_langstring, "pref_name should be updatable post-instantiation"
 
@@ -89,7 +106,7 @@ def test_namedelement_type_validation() -> None:
     :raises ValidationError: If the wrong type is assigned to an attribute.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(pref_name="Invalid Type")  # Expect LangString, not str
+        Project(pref_name="Invalid Type")  # Expect LangString, not str
 
 
 def test_namedelement_abstract_class_enforcement() -> None:
@@ -106,7 +123,7 @@ def test_namedelement_default_values() -> None:
 
     :raises AssertionError: If default values are not as expected.
     """
-    element = ConcreteNamedElement()
+    element = Project()
     assert element.pref_name is None, "pref_name should default to None"
     assert element.alt_names == [], "alt_names should default to an empty list"
     assert element.description is None, "description should default to None"
@@ -122,7 +139,7 @@ def test_namedelement_custom_initialization(valid_langstring: LangString) -> Non
     :raises AssertionError: If custom initialization does not work as expected.
     """
     custom_pref_name = LangString("Custom Name")
-    element = ConcreteNamedElement(pref_name=custom_pref_name)
+    element = Project(pref_name=custom_pref_name)
     assert element.pref_name == custom_pref_name, "pref_name should be customizable during initialization"
 
 
@@ -132,7 +149,7 @@ def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> 
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If list attributes are not updatable.
     """
-    element = ConcreteNamedElement()
+    element = Project()
     element.alt_names.append(valid_langstring)
     element.editorial_notes.append(valid_langstring)
     assert valid_langstring in element.alt_names, "alt_names should be updatable post-instantiation"
@@ -145,7 +162,7 @@ def test_namedelement_invalid_list_type_assignment() -> None:
     :raises ValidationError: If invalid types are assigned to list attributes.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(alt_names=["Invalid"])  # Expect list of LangString, not list of str
+        Project(alt_names=["Invalid"])  # Expect list of LangString, not list of str
 
 
 # Test initialization with invalid value and valid type
@@ -156,7 +173,7 @@ def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> 
     :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(pref_name=invalid_langstring)
+        Project(pref_name=invalid_langstring)
 
 
 # Test initialization with invalid type
@@ -166,7 +183,7 @@ def test_initialization_with_invalid_type() -> None:
     :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(pref_name=123)
+        Project(pref_name=123)
 
 
 # Test initialization with empty list for 'alt_names'
@@ -175,7 +192,7 @@ def test_initialization_with_empty_list() -> None:
 
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
     """
-    element = ConcreteNamedElement(alt_names=[])
+    element = Project(alt_names=[])
     assert element.alt_names == [], "alt_names should be correctly initialized as an empty list."
 
 
@@ -186,7 +203,7 @@ def test_post_initialization_with_invalid_value(valid_langstring: LangString) ->
     :param valid_langstring: A valid LangString object.
     :raises ValidationError: If an invalid value is assigned post-instantiation.
     """
-    element = ConcreteNamedElement(pref_name=valid_langstring)
+    element = Project(pref_name=valid_langstring)
     with pytest.raises(ValidationError):
         element.pref_name = "Invalid value"
 
@@ -197,7 +214,7 @@ def test_post_initialization_with_invalid_type() -> None:
 
     :raises ValidationError: If an incorrect type is assigned post-instantiation.
     """
-    element = ConcreteNamedElement()
+    element = Project()
     with pytest.raises(ValidationError):
         element.pref_name = 123
 
@@ -208,7 +225,7 @@ def test_post_initialization_with_empty_list() -> None:
 
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
     """
-    element = ConcreteNamedElement()
+    element = Project()
     element.alt_names = []
     assert element.alt_names == [], "alt_names should be correctly set to an empty list post-instantiation."
 
@@ -221,7 +238,7 @@ def test_pref_name_edge_cases(edge_case_value: LangString) -> None:
     :param edge_case_value: A LangString object with edge case content.
     :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
     """
-    element = ConcreteNamedElement(pref_name=edge_case_value)
+    element = Project(pref_name=edge_case_value)
     assert element.pref_name == edge_case_value, "pref_name should correctly handle edge case LangString values."
 
 
@@ -233,7 +250,7 @@ def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
     :param edge_case_list: A list of LangString objects with edge case content.
     :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
     """
-    element = ConcreteNamedElement(alt_names=edge_case_list)
+    element = Project(alt_names=edge_case_list)
     assert element.alt_names == edge_case_list, "alt_names should correctly handle edge case lists."
 
 
@@ -245,7 +262,7 @@ def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
     :param edge_case_list: A list of strings with edge case URI content.
     :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
     """
-    element = ConcreteNamedElement(creators=edge_case_list, contributors=edge_case_list)
+    element = Project(creators=edge_case_list, contributors=edge_case_list)
     assert element.creators == edge_case_list, "creators should correctly handle edge case lists."
     assert element.contributors == edge_case_list, "contributors should correctly handle edge case lists."
 
@@ -257,9 +274,9 @@ def test_rejection_of_null_values_in_list_attributes() -> None:
     :raises ValidationError: If lists with None elements are assigned.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(alt_names=[None])
+        Project(alt_names=[None])
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(editorial_notes=[None])
+        Project(editorial_notes=[None])
 
 
 # Test with extremely long strings
@@ -269,7 +286,7 @@ def test_extremely_long_strings() -> None:
     :raises AssertionError: If extremely long strings are not handled correctly.
     """
     long_string = "a" * 10000
-    element = ConcreteNamedElement(pref_name=LangString(long_string), description=LangString(long_string))
+    element = Project(pref_name=LangString(long_string), description=LangString(long_string))
     assert element.pref_name.text == long_string, "pref_name should correctly handle extremely long strings."
     assert element.description.text == long_string, "description should correctly handle extremely long strings."
 
@@ -282,7 +299,7 @@ def test_special_characters_and_unicode(special_string) -> None:
     :param special_string: A string containing special characters or Unicode.
     :raises AssertionError: If special characters and Unicode are not handled correctly.
     """
-    element = ConcreteNamedElement(pref_name=LangString(special_string))
+    element = Project(pref_name=LangString(special_string))
     assert element.pref_name.text == special_string, "pref_name should correctly handle special characters and Unicode."
 
 
@@ -292,11 +309,11 @@ def test_alt_names_and_editorial_notes_with_valid_data() -> None:
     :raises AssertionError: If valid data is not handled correctly.
     """
     valid_langstring_list = [LangString("Test String 1"), LangString("Test String 2")]
-    element = ConcreteNamedElement(alt_names=valid_langstring_list, editorial_notes=valid_langstring_list)
+    element = Project(alt_names=valid_langstring_list, editorial_notes=valid_langstring_list)
     assert element.alt_names == valid_langstring_list, "alt_names should accept a valid LangString list."
     assert element.editorial_notes == valid_langstring_list, "editorial_notes should accept a valid LangString list."
 
-    empty_element = ConcreteNamedElement(alt_names=[], editorial_notes=[])
+    empty_element = Project(alt_names=[], editorial_notes=[])
     assert empty_element.alt_names == [], "alt_names should accept an empty list."
     assert empty_element.editorial_notes == [], "editorial_notes should accept an empty list."
 
@@ -308,10 +325,43 @@ def test_rejection_of_invalid_data_in_list_attributes() -> None:
     :raises ValidationError: If invalid data is assigned.
     """
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(alt_names=[None])
+        Project(alt_names=[None])
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(alt_names=["Invalid Type"])
+        Project(alt_names=["Invalid Type"])
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(editorial_notes=[None])
+        Project(editorial_notes=[None])
     with pytest.raises(ValidationError):
-        ConcreteNamedElement(editorial_notes=["Invalid Type"])
+        Project(editorial_notes=["Invalid Type"])
+
+
+def test_valid_subclass_instantiation() -> None:
+    """Test instantiation of valid subclasses defined in the allowed subclasses list.
+
+    :raises AssertionError: If instantiation of a valid subclass raises an unexpected ValueError.
+    """
+    try:
+        project_instance = Project()  # noqa:F841 (flake8)
+        model_element_instance = Link()  # concrete subclass of ModelElement  # noqa:F841 (flake8)
+    except ValueError:
+        pytest.fail("Instantiation of valid subclasses should not raise ValueError.")
+
+
+def test_invalid_subclass_instantiation() -> None:
+    """Test that instantiating an undefined subclass raises a ValueError.
+
+    :raises ValueError: When an undefined subclass is instantiated.
+    """
+    with pytest.raises(ValueError) as exc_info:
+        _ = InvalidSubclass()
+    assert "not an allowed subclass" in str(exc_info.value), "ValueError should mention subclass restriction."
+
+
+def test_error_message_for_invalid_subclass() -> None:
+    """Test the error message for instantiating an invalid subclass.
+
+    :raises AssertionError: If the error message does not match the expected format.
+    """
+    with pytest.raises(ValueError) as exc_info:
+        _ = InvalidSubclass()
+    expected_msg_part = "not an allowed subclass"
+    assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."

@@ -12,7 +12,8 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_ontoumlelement.ConcreteOntoumlElement
+   ontouml_py.tests.test_ontoumlelement.Project
+   ontouml_py.tests.test_ontoumlelement.Shape
 
 
 
@@ -71,23 +72,29 @@ Functions
    ontouml_py.tests.test_ontoumlelement.test_no_duplicates_in_project_after_repeated_additions
    ontouml_py.tests.test_ontoumlelement.test_project_not_in_in_project_after_removal_from_multiple_projects
    ontouml_py.tests.test_ontoumlelement.test_in_project_correct_after_removal_and_readdition
+   ontouml_py.tests.test_ontoumlelement.test_instantiation_allowed_subclass_namedelement
+   ontouml_py.tests.test_ontoumlelement.test_instantiation_allowed_subclass_shape
+   ontouml_py.tests.test_ontoumlelement.test_instantiation_disallowed_subclass
+   ontouml_py.tests.test_ontoumlelement.test_deep_inheritance_chain_allowed_subclass
+   ontouml_py.tests.test_ontoumlelement.test_dynamic_class_creation_instantiation
+   ontouml_py.tests.test_ontoumlelement.test_error_message_disallowed_subclass
 
 
 
-.. py:class:: ConcreteOntoumlElement(**data)
+.. py:class:: Project(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement`
 
    A concrete subclass of OntoumlElement for testing purposes.
 
 
 .. py:function:: concrete_ontouml_element()
 
-   Provides a fixture for creating a concrete OntoumlElement instance for testing.
+   Provides a fixture for creating a concrete OntoumlElement instance (of Package type) for testing.
 
    :return: An instance of ConcreteOntoumlElement.
-   :rtype: ConcreteOntoumlElement
+   :rtype: Package
 
 
 .. py:function:: project()
@@ -113,7 +120,7 @@ Functions
    Ensures that the 'id' attribute is initialized as a UUID.
 
    :param concrete_ontouml_element: A fixture instance of ConcreteOntoumlElement.
-   :type concrete_ontouml_element: ConcreteOntoumlElement
+   :type concrete_ontouml_element: Package
    :raises AssertionError: If the 'id' attribute is not correctly initialized as a UUID.
 
 
@@ -371,5 +378,52 @@ Functions
 .. py:function:: test_in_project_correct_after_removal_and_readdition(concrete_ontouml_element, project)
 
    Test `in_project` is correct after removing and re-adding an element.
+
+
+.. py:class:: Shape(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+
+   Abstract base class representing a generic element within an OntoUML model.
+
+   This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation and
+   modification, and a relationship to OntoUML projects.
+
+   :ivar id: A unique identifier for the element, automatically generated upon instantiation. :vartype id: str :ivar
+   created: Timestamp when the element was created, defaults to the current time. :vartype created: datetime :ivar
+   modified: Timestamp when the element was last modified, can be None if not modified. :vartype modified:
+   Optional[datetime] :ivar in_project: List of projects this element is part of. Direct modification is restricted.
+   :vartype in_project: list['Project']
+
+
+.. py:function:: test_instantiation_allowed_subclass_namedelement()
+
+   Test instantiation of a class allowed in _allowed_subclasses.
+
+
+.. py:function:: test_instantiation_allowed_subclass_shape()
+
+   Test instantiation of a class allowed in _allowed_subclasses.
+
+
+.. py:function:: test_instantiation_disallowed_subclass()
+
+   Test instantiation of a class not allowed in _allowed_subclasses.
+
+
+.. py:function:: test_deep_inheritance_chain_allowed_subclass()
+
+   Test instantiation of a class in a deep inheritance chain that is allowed.
+
+
+.. py:function:: test_dynamic_class_creation_instantiation()
+
+   Test dynamic creation and instantiation of a subclass.
+
+
+.. py:function:: test_error_message_disallowed_subclass()
+
+   Test the error message for instantiating a disallowed subclass.
 
 

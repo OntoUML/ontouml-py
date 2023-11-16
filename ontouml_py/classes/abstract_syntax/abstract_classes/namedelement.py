@@ -54,10 +54,30 @@ class NamedElement(OntoumlElement):
     def __init__(self, **data: dict[str, Any]):
         """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
 
-        Inherits 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for
+        Inherit 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for
         additional attributes specific to NamedElement.
+
+        This class is designed to function as the exclusive categorizer for the subclasses 'Project' and 'ModelElement'
+        within an OntoUML metamodel. It ensures that no instances of other subclasses are created, maintaining the
+        integrity of the generalization set.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict
         """
+        # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
+        _allowed_subclasses = ["Project", "ModelElement"]
+
+        # Check the entire inheritance chain
+        current_class = self.__class__
+        while current_class != object:
+            if current_class.__name__ in _allowed_subclasses:
+                break
+            current_class = current_class.__bases__[0]
+        else:
+            allowed = ", ".join(_allowed_subclasses)
+            raise ValueError(
+                f"'{self.__class__.__name__}' is not an allowed subclass. "
+                f"Only these subclasses are permitted: {allowed}."
+            )
+        # Sets attributes
         super().__init__(**data)

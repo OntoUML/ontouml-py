@@ -52,3 +52,9 @@ plugins = "pydantic.mypy"
 ignore-paths= '^(ontouml_py/tests|docs|sphinx)'
 max-line-length=120
 disable= 'E0401'
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+extend-plugins = "flake8-unused-arguments"

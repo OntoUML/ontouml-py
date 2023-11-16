@@ -1,7 +1,7 @@
-:py:mod:`ontouml_py.classes.abstract_syntax.project`
-====================================================
+:py:mod:`ontouml_py.classes.abstract_syntax.concrete_classes.project`
+=====================================================================
 
-.. py:module:: ontouml_py.classes.abstract_syntax.project
+.. py:module:: ontouml_py.classes.abstract_syntax.concrete_classes.project
 
 .. autoapi-nested-parse::
 
@@ -20,7 +20,7 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.classes.abstract_syntax.project.Project
+   ontouml_py.classes.abstract_syntax.concrete_classes.project.Project
 
 
 
@@ -28,7 +28,7 @@ Classes
 .. py:class:: Project(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement`
 
    A concrete class representing an OntoUML Project, extending the NamedElement class.
 
@@ -158,6 +158,11 @@ Classes
 
    .. py:attribute:: publisher
       :type: Optional[str]
+
+      
+
+   .. py:attribute:: root_package
+      :type: Optional[ontouml_py.classes.abstract_syntax.concrete_classes.package.Package]
 
       
 

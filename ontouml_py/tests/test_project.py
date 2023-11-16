@@ -1,13 +1,17 @@
 import uuid
 from datetime import datetime, timedelta, timezone
-from typing import Any
 
 import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_syntax.project import Project
-from ontouml_py.classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.abstract_syntax.abstract_classes.modelelement import (
+    ModelElement,
+)
+from ontouml_py.classes.abstract_syntax.concrete_classes.package import (
+    Package as RealPackage,
+)
+from ontouml_py.classes.abstract_syntax.concrete_classes.project import Project
 
 
 # Utility functions and fixtures
@@ -22,7 +26,7 @@ def create_langstring(text: str) -> LangString:
     return LangString(text)
 
 
-class OntoumlElementStub(OntoumlElement):
+class Package(ModelElement):
     """A stub class for OntoumlElement.
 
     This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
@@ -31,7 +35,7 @@ class OntoumlElementStub(OntoumlElement):
     """
 
     def __init__(self):
-        """Initialize a new instance of OntoumlElementStub.
+        """Initialize a new instance of Package.
 
         As a stub implementation, this constructor initializes all attributes inherited from OntoumlElement, including
         'in_project'.
@@ -39,7 +43,7 @@ class OntoumlElementStub(OntoumlElement):
         super().__init__()
 
 
-class AnotherOntoumlElementStub(OntoumlElement):
+class Link(ModelElement):
     """A second stub class for OntoumlElement.
 
     This class serves as a concrete subclass of OntoumlElement, primarily used for testing and demonstration purposes.
@@ -48,7 +52,7 @@ class AnotherOntoumlElementStub(OntoumlElement):
     """
 
     def __init__(self):
-        """Initialize a new instance of AnotherOntoumlElementStub.
+        """Initialize a new instance of Link.
 
         As a stub implementation, this constructor initializes all attributes inherited from OntoumlElement, including
         'in_project'.
@@ -56,13 +60,13 @@ class AnotherOntoumlElementStub(OntoumlElement):
         super().__init__()
 
 
-def create_ontoumlelement() -> OntoumlElementStub:
+def create_ontoumlelement() -> Package:
     """Create and return an instance of OntoumlElementStub.
 
     :return: An instance of OntoumlElementStub.
-    :rtype: OntoumlElementStub
+    :rtype: Package
     """
-    return OntoumlElementStub()
+    return Package()
 
 
 @pytest.fixture
@@ -76,25 +80,25 @@ def valid_langstring_list() -> list[LangString]:
 
 
 @pytest.fixture
-def valid_ontoumlelement_list() -> list[OntoumlElementStub]:
+def valid_ontoumlelement_list() -> list[Package]:
     """Provide a fixture for creating a list of valid OntoumlElementStub objects.
 
     :return: A list of OntoumlElementStub objects.
-    :rtype: list[OntoumlElementStub]
+    :rtype: list[Package]
     """
-    return [OntoumlElementStub(), OntoumlElementStub()]
+    return [Package(), Package()]
 
 
 # Test for successful initialization of Project
 def test_project_initialization(
-    valid_langstring_list: list[LangString], valid_ontoumlelement_list: list[OntoumlElementStub]
+    valid_langstring_list: list[LangString], valid_ontoumlelement_list: list[Package]
 ) -> None:
     """Test the successful initialization of a Project instance with valid parameters.
 
     :param valid_langstring_list: A list of LangString objects for testing.
     :type valid_langstring_list: list[LangString]
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     """
     project = Project(
         pref_name=create_langstring("Project Name"),
@@ -302,7 +306,7 @@ def test_project_default_values_initialization() -> None:
 
 def test_project_large_list_attributes() -> None:
     """Test handling large lists for list-type attributes."""
-    large_elements = [OntoumlElementStub() for _ in range(1000)]
+    large_elements = [Package() for _ in range(1000)]
     large_strings = ["string" * 100 for _ in range(1000)]
 
     project = Project(acronyms=large_strings, bibliographic_citations=large_strings)
@@ -331,7 +335,7 @@ def test_project_extreme_string_values() -> None:
 def test_project_mixing_types_in_lists() -> None:
     """Test assigning mixed types in list attributes."""
     with pytest.raises(ValidationError):
-        Project(elements=[123, OntoumlElementStub()])  # Mixing int and OntoumlElement in 'elements'
+        Project(elements=[123, Package()])  # Mixing int and OntoumlElement in 'elements'
 
     with pytest.raises(ValidationError):
         Project(acronyms=[True, "ACR"])  # Mixing bool and str in 'acronyms'
@@ -480,11 +484,11 @@ def test_project_add_none_element() -> None:
 
 
 # Test adding multiple elements
-def test_project_add_multiple_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_add_multiple_elements(valid_ontoumlelement_list: list[Package]) -> None:
     """Test adding multiple OntoumlElement objects to a Project instance.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If the elements are not added correctly to the Project.
     """
     project = Project()
@@ -526,8 +530,8 @@ def test_project_add_various_subclasses_of_elements() -> None:
     :raises AssertionError: If different subclasses of elements are not added correctly.
     """
     project = Project()
-    element1 = OntoumlElementStub()
-    element2 = AnotherOntoumlElementStub()
+    element1 = Package()
+    element2 = Link()
     project.add_element(element1)
     project.add_element(element2)
     assert (
@@ -550,11 +554,11 @@ def test_project_add_mixed_valid_invalid_elements() -> None:
 
 
 # Test adding elements where some have already been added
-def test_project_add_elements_with_duplicates(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_add_elements_with_duplicates(valid_ontoumlelement_list: list[Package]) -> None:
     """Test adding elements to a Project instance where some elements have already been added.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If duplicate handling is not correct.
     """
     project = Project()
@@ -582,27 +586,6 @@ def test_project_add_element_updates_in_project() -> None:
     assert project in element.in_project, "The element's in_project attribute should include this project."
 
 
-# Test adding elements with custom attributes
-def test_project_add_custom_attribute_elements() -> None:
-    """Test adding elements with custom attributes to a Project instance.
-
-    :raises AssertionError: If elements with custom attributes are not handled correctly.
-    """
-
-    class CustomOntoumlElement(OntoumlElement):
-        custom_attr: str = "Custom Value"
-
-        def __init__(self, **data: dict[str, Any]):
-            super().__init__(**data)
-
-    project = Project()
-    custom_element = CustomOntoumlElement()
-    project.add_element(custom_element)
-
-    assert custom_element in project.elements, "Custom element should be added to the Project."
-    assert custom_element.custom_attr == "Custom Value", "Custom attribute should be set correctly."
-
-
 # Test adding a large number of unique elements
 def test_project_add_large_number_unique_elements() -> None:
     """Test adding a large number of unique elements to a Project instance.
@@ -611,17 +594,17 @@ def test_project_add_large_number_unique_elements() -> None:
     """
     project = Project()
     for _ in range(1000):
-        unique_element = OntoumlElementStub()
+        unique_element = Package()
         project.add_element(unique_element)
     assert len(project.elements) == 1000, "A large number of unique elements should be handled correctly."
 
 
 # Test removing a specific element from Project
-def test_project_remove_specific_element(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_specific_element(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing a specific element from a Project instance.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If the specific element is not removed correctly.
     """
     project = Project()
@@ -680,13 +663,13 @@ def test_project_remove_all_elements_of_type() -> None:
     """
     project = Project()
     for _ in range(5):
-        project.add_element(OntoumlElementStub())
-        project.add_element(AnotherOntoumlElementStub())
+        project.add_element(Package())
+        project.add_element(Link())
     for element in project.elements[:]:
-        if isinstance(element, OntoumlElementStub):
+        if isinstance(element, Package):
             project.remove_element(element)
     assert all(
-        not isinstance(el, OntoumlElementStub) for el in project.elements
+        not isinstance(el, Package) for el in project.elements
     ), "All elements of specific type should be removed."
 
 
@@ -706,11 +689,11 @@ def test_project_remove_element_updates_in_project() -> None:
 
 
 # Test removing elements added via a list
-def test_project_remove_elements_added_via_list(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_elements_added_via_list(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing elements from a Project instance that were added via a list.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If elements are not removed correctly.
     """
     project = Project()
@@ -737,11 +720,11 @@ def test_project_remove_element_check_others_remain() -> None:
 
 
 # Test removing multiple different elements from Project
-def test_project_remove_multiple_different_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_multiple_different_elements(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing multiple different elements from a Project instance.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If the elements are not removed correctly.
     """
     project = Project()
@@ -755,32 +738,12 @@ def test_project_remove_multiple_different_elements(valid_ontoumlelement_list: l
     ), "Multiple different elements should be removed correctly."
 
 
-# Test removing an element with custom attributes from Project
-def test_project_remove_custom_attribute_element() -> None:
-    """Test removing an element with custom attributes from a Project instance.
-
-    :raises AssertionError: If the element with custom attributes is not removed correctly.
-    """
-
-    class CustomOntoumlElement(OntoumlElement):
-        custom_attr: str = "Custom Value"
-
-        def __init__(self, **data: dict[str, Any]):
-            super().__init__(**data)
-
-    project = Project()
-    custom_element = CustomOntoumlElement()
-    project.add_element(custom_element)
-    project.remove_element(custom_element)
-    assert custom_element not in project.elements, "Custom element should be removed from the Project."
-
-
 # Test removing elements after modifying them
-def test_project_remove_modified_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_modified_elements(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing elements from a Project after they have been modified.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If modified elements are not removed correctly.
     """
     project = Project()
@@ -793,11 +756,11 @@ def test_project_remove_modified_elements(valid_ontoumlelement_list: list[Ontoum
 
 
 # Test removing elements in reverse order of addition
-def test_project_remove_elements_in_reverse_order(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_elements_in_reverse_order(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing elements from a Project in the reverse order of their addition.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If elements are not removed correctly in reverse order.
     """
     project = Project()
@@ -841,11 +804,11 @@ def test_project_repeated_add_remove_element() -> None:
 
 
 # Test removing elements using a conditional filter
-def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing elements from a Project using a conditional filter.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If elements are not correctly removed based on a conditional filter.
     """
     project = Project()
@@ -862,11 +825,11 @@ def test_project_remove_elements_conditional_filter(valid_ontoumlelement_list: l
 
 
 # Test removing elements and checking the project's elements count
-def test_project_remove_elements_check_count(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_elements_check_count(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing elements from a Project and checking the project's elements count.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If the project's elements count is not updated correctly.
     """
     project = Project()
@@ -883,11 +846,11 @@ def test_project_remove_elements_check_count(valid_ontoumlelement_list: list[Ont
 
 
 # Test removing a random selection of elements from Project
-def test_project_remove_random_elements(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_random_elements(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing a random selection of elements from a Project instance.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If random elements are not removed correctly.
     """
     import random
@@ -904,11 +867,11 @@ def test_project_remove_random_elements(valid_ontoumlelement_list: list[OntoumlE
 
 
 # Test removing all elements and checking project's empty state
-def test_project_remove_all_elements_empty_state(valid_ontoumlelement_list: list[OntoumlElementStub]) -> None:
+def test_project_remove_all_elements_empty_state(valid_ontoumlelement_list: list[Package]) -> None:
     """Test removing all elements from a Project and checking if the project is empty.
 
     :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[OntoumlElementStub]
+    :type valid_ontoumlelement_list: list[Package]
     :raises AssertionError: If the project is not empty after removing all elements.
     """
     project = Project()
@@ -1104,3 +1067,66 @@ def test_project_remove_elements_impact_on_properties() -> None:
     assert (
         project.namespace == "http://example.org/ns"
     ), "Project namespace should remain unchanged after element removal."
+
+
+def test_project_with_valid_root_package() -> None:
+    """Test the initialization of a Project instance with a valid Package as root_package.
+
+    :raises AssertionError: If the root_package attribute is not set correctly.
+    """
+    valid_package = RealPackage()
+    project = Project(root_package=valid_package)
+    assert project.root_package == valid_package, "root_package should be set correctly with a valid Package instance."
+
+
+def test_project_root_package_initialization_none() -> None:
+    """Test the initialization of a Project instance with no root_package specified.
+
+    :raises AssertionError: If the root_package attribute is not None by default.
+    """
+    project = Project()
+    assert project.root_package is None, "root_package should be None by default."
+
+
+def test_project_setting_root_package_post_initialization() -> None:
+    """Test setting the root_package of a Project instance after initialization.
+
+    :raises AssertionError: If the root_package attribute cannot be set post initialization.
+    """
+    project = Project()
+    valid_package = RealPackage()
+    project.root_package = valid_package
+    assert project.root_package == valid_package, "Should be able to set root_package post initialization."
+
+
+def test_project_setting_invalid_root_package() -> None:
+    """Test setting an invalid type as root_package of a Project instance.
+
+    :raises ValidationError: If an invalid type is assigned to root_package.
+    """
+    project = Project()
+    with pytest.raises(ValidationError):
+        project.root_package = "Invalid Package Type"  # Assigning string instead of Package instance
+
+
+def test_project_resetting_root_package_to_none() -> None:
+    """Test resetting the root_package of a Project instance to None.
+
+    :raises AssertionError: If the root_package attribute cannot be reset to None.
+    """
+    valid_package = RealPackage()
+    project = Project(root_package=valid_package)
+    project.root_package = None
+    assert project.root_package is None, "Should be able to reset root_package to None."
+
+
+def test_project_root_package_independence_from_other_projects() -> None:
+    """Test that setting root_package in one Project instance doesn't affect another.
+
+    :raises AssertionError: If root_package in one Project instance affects another.
+    """
+    package1 = RealPackage()
+    package2 = RealPackage()
+    project1 = Project(root_package=package1)
+    project2 = Project(root_package=package2)
+    assert project1.root_package != project2.root_package, "Each project should have an independent root_package."

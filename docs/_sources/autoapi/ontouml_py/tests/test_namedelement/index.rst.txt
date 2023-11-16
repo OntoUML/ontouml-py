@@ -12,7 +12,9 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_namedelement.ConcreteNamedElement
+   ontouml_py.tests.test_namedelement.Project
+   ontouml_py.tests.test_namedelement.InvalidSubclass
+   ontouml_py.tests.test_namedelement.Link
 
 
 
@@ -46,18 +48,63 @@ Functions
    ontouml_py.tests.test_namedelement.test_special_characters_and_unicode
    ontouml_py.tests.test_namedelement.test_alt_names_and_editorial_notes_with_valid_data
    ontouml_py.tests.test_namedelement.test_rejection_of_invalid_data_in_list_attributes
+   ontouml_py.tests.test_namedelement.test_valid_subclass_instantiation
+   ontouml_py.tests.test_namedelement.test_invalid_subclass_instantiation
+   ontouml_py.tests.test_namedelement.test_error_message_for_invalid_subclass
 
 
 
-.. py:class:: ConcreteNamedElement(**data)
+.. py:class:: Project(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement`
 
    A concrete subclass of NamedElement for testing purposes.
 
+   Note that this is not the OntoUML Project, but just a class used for testing.
+
    This class inherits from NamedElement and allows the instantiation of NamedElement objects, which is normally an
    abstract class and cannot be instantiated directly.
+
+
+.. py:class:: InvalidSubclass(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement`
+
+   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+
+   This class provides functionality for managing named elements, including their preferred name, alternative names,
+   descriptions, editorial notes, as well as lists of creators and contributors.
+
+   :ivar pref_name: The preferred name of the element, represented as a LangString object. :vartype pref_name:
+   Optional[LangString] :ivar alt_names: A list of alternative names for the element, each represented as a LangString
+   object. :vartype alt_names: list[LangString] :ivar description: A LangString object representing the description of
+   the element. :vartype description: Optional[LangString] :ivar editorial_notes: A list of LangString objects
+   containing editorial notes associated with the element. :vartype editorial_notes: list[LangString] :ivar creators: A
+   list of URIs represented as strings identifying the creators of the element. :vartype creators: list[str] :ivar
+   contributors: A list of URIs represented as strings identifying the contributors to the element. :vartype
+   contributors: list[str]
+
+
+.. py:class:: Link
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement`
+
+   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+
+   This class provides functionality for managing named elements, including their preferred name, alternative names,
+   descriptions, editorial notes, as well as lists of creators and contributors.
+
+   :ivar pref_name: The preferred name of the element, represented as a LangString object. :vartype pref_name:
+   Optional[LangString] :ivar alt_names: A list of alternative names for the element, each represented as a LangString
+   object. :vartype alt_names: list[LangString] :ivar description: A LangString object representing the description of
+   the element. :vartype description: Optional[LangString] :ivar editorial_notes: A list of LangString objects
+   containing editorial notes associated with the element. :vartype editorial_notes: list[LangString] :ivar creators: A
+   list of URIs represented as strings identifying the creators of the element. :vartype creators: list[str] :ivar
+   contributors: A list of URIs represented as strings identifying the contributors to the element. :vartype
+   contributors: list[str]
 
 
 .. py:function:: valid_langstring()
@@ -237,5 +284,26 @@ Functions
    raises a validation error.
 
    :raises ValidationError: If invalid data is assigned.
+
+
+.. py:function:: test_valid_subclass_instantiation()
+
+   Test instantiation of valid subclasses defined in the allowed subclasses list.
+
+   :raises AssertionError: If instantiation of a valid subclass raises an unexpected ValueError.
+
+
+.. py:function:: test_invalid_subclass_instantiation()
+
+   Test that instantiating an undefined subclass raises a ValueError.
+
+   :raises ValueError: When an undefined subclass is instantiated.
+
+
+.. py:function:: test_error_message_for_invalid_subclass()
+
+   Test the error message for instantiating an invalid subclass.
+
+   :raises AssertionError: If the error message does not match the expected format.
 
 

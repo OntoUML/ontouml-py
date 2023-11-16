@@ -4,13 +4,13 @@
 .. py:module:: ontouml_py.classes.abstract_syntax
 
 
-Submodules
-----------
+Subpackages
+-----------
 .. toctree::
    :titlesonly:
-   :maxdepth: 1
+   :maxdepth: 3
 
-   namedelement/index.rst
-   project/index.rst
+   abstract_classes/index.rst
+   concrete_classes/index.rst
 
 

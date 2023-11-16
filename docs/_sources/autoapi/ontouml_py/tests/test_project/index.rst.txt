@@ -12,8 +12,8 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.tests.test_project.OntoumlElementStub
-   ontouml_py.tests.test_project.AnotherOntoumlElementStub
+   ontouml_py.tests.test_project.Package
+   ontouml_py.tests.test_project.Link
 
 
 
@@ -60,7 +60,6 @@ Functions
    ontouml_py.tests.test_project.test_project_add_mixed_valid_invalid_elements
    ontouml_py.tests.test_project.test_project_add_elements_with_duplicates
    ontouml_py.tests.test_project.test_project_add_element_updates_in_project
-   ontouml_py.tests.test_project.test_project_add_custom_attribute_elements
    ontouml_py.tests.test_project.test_project_add_large_number_unique_elements
    ontouml_py.tests.test_project.test_project_remove_specific_element
    ontouml_py.tests.test_project.test_project_remove_element_from_multiple_projects
@@ -71,7 +70,6 @@ Functions
    ontouml_py.tests.test_project.test_project_remove_elements_added_via_list
    ontouml_py.tests.test_project.test_project_remove_element_check_others_remain
    ontouml_py.tests.test_project.test_project_remove_multiple_different_elements
-   ontouml_py.tests.test_project.test_project_remove_custom_attribute_element
    ontouml_py.tests.test_project.test_project_remove_modified_elements
    ontouml_py.tests.test_project.test_project_remove_elements_in_reverse_order
    ontouml_py.tests.test_project.test_project_remove_elements_nested_projects
@@ -91,6 +89,12 @@ Functions
    ontouml_py.tests.test_project.test_project_remove_element_ensure_order
    ontouml_py.tests.test_project.test_project_remove_random_element
    ontouml_py.tests.test_project.test_project_remove_elements_impact_on_properties
+   ontouml_py.tests.test_project.test_project_with_valid_root_package
+   ontouml_py.tests.test_project.test_project_root_package_initialization_none
+   ontouml_py.tests.test_project.test_project_setting_root_package_post_initialization
+   ontouml_py.tests.test_project.test_project_setting_invalid_root_package
+   ontouml_py.tests.test_project.test_project_resetting_root_package_to_none
+   ontouml_py.tests.test_project.test_project_root_package_independence_from_other_projects
 
 
 
@@ -104,10 +108,10 @@ Functions
    :rtype: LangString
 
 
-.. py:class:: OntoumlElementStub
+.. py:class:: Package
 
 
-   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement`
 
    A stub class for OntoumlElement.
 
@@ -116,10 +120,10 @@ Functions
    instantiated to create simple examples of OntoumlElement objects.
 
 
-.. py:class:: AnotherOntoumlElementStub
+.. py:class:: Link
 
 
-   Bases: :py:obj:`ontouml_py.classes.ontoumlelement.OntoumlElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_syntax.abstract_classes.modelelement.ModelElement`
 
    A second stub class for OntoumlElement.
 
@@ -133,7 +137,7 @@ Functions
    Create and return an instance of OntoumlElementStub.
 
    :return: An instance of OntoumlElementStub.
-   :rtype: OntoumlElementStub
+   :rtype: Package
 
 
 .. py:function:: valid_langstring_list()
@@ -149,7 +153,7 @@ Functions
    Provide a fixture for creating a list of valid OntoumlElementStub objects.
 
    :return: A list of OntoumlElementStub objects.
-   :rtype: list[OntoumlElementStub]
+   :rtype: list[Package]
 
 
 .. py:function:: test_project_initialization(valid_langstring_list, valid_ontoumlelement_list)
@@ -159,7 +163,7 @@ Functions
    :param valid_langstring_list: A list of LangString objects for testing.
    :type valid_langstring_list: list[LangString]
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
 
 
 .. py:function:: test_project_mutable_update_empty_values()
@@ -329,7 +333,7 @@ Functions
    Test adding multiple OntoumlElement objects to a Project instance.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If the elements are not added correctly to the Project.
 
 
@@ -366,7 +370,7 @@ Functions
    Test adding elements to a Project instance where some elements have already been added.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If duplicate handling is not correct.
 
 
@@ -375,13 +379,6 @@ Functions
    Test if adding an element to a Project instance updates the element's in_project attribute.
 
    :raises AssertionError: If the element's in_project attribute is not updated.
-
-
-.. py:function:: test_project_add_custom_attribute_elements()
-
-   Test adding elements with custom attributes to a Project instance.
-
-   :raises AssertionError: If elements with custom attributes are not handled correctly.
 
 
 .. py:function:: test_project_add_large_number_unique_elements()
@@ -396,7 +393,7 @@ Functions
    Test removing a specific element from a Project instance.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If the specific element is not removed correctly.
 
 
@@ -440,7 +437,7 @@ Functions
    Test removing elements from a Project instance that were added via a list.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If elements are not removed correctly.
 
 
@@ -456,15 +453,8 @@ Functions
    Test removing multiple different elements from a Project instance.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If the elements are not removed correctly.
-
-
-.. py:function:: test_project_remove_custom_attribute_element()
-
-   Test removing an element with custom attributes from a Project instance.
-
-   :raises AssertionError: If the element with custom attributes is not removed correctly.
 
 
 .. py:function:: test_project_remove_modified_elements(valid_ontoumlelement_list)
@@ -472,7 +462,7 @@ Functions
    Test removing elements from a Project after they have been modified.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If modified elements are not removed correctly.
 
 
@@ -481,7 +471,7 @@ Functions
    Test removing elements from a Project in the reverse order of their addition.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If elements are not removed correctly in reverse order.
 
 
@@ -504,7 +494,7 @@ Functions
    Test removing elements from a Project using a conditional filter.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If elements are not correctly removed based on a conditional filter.
 
 
@@ -513,7 +503,7 @@ Functions
    Test removing elements from a Project and checking the project's elements count.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If the project's elements count is not updated correctly.
 
 
@@ -522,7 +512,7 @@ Functions
    Test removing a random selection of elements from a Project instance.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If random elements are not removed correctly.
 
 
@@ -531,7 +521,7 @@ Functions
    Test removing all elements from a Project and checking if the project is empty.
 
    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-   :type valid_ontoumlelement_list: list[OntoumlElementStub]
+   :type valid_ontoumlelement_list: list[Package]
    :raises AssertionError: If the project is not empty after removing all elements.
 
 
@@ -610,5 +600,47 @@ Functions
    Test removing elements from a Project and checking the impact on other project properties.
 
    :raises AssertionError: If other project properties are affected by element removal.
+
+
+.. py:function:: test_project_with_valid_root_package()
+
+   Test the initialization of a Project instance with a valid Package as root_package.
+
+   :raises AssertionError: If the root_package attribute is not set correctly.
+
+
+.. py:function:: test_project_root_package_initialization_none()
+
+   Test the initialization of a Project instance with no root_package specified.
+
+   :raises AssertionError: If the root_package attribute is not None by default.
+
+
+.. py:function:: test_project_setting_root_package_post_initialization()
+
+   Test setting the root_package of a Project instance after initialization.
+
+   :raises AssertionError: If the root_package attribute cannot be set post initialization.
+
+
+.. py:function:: test_project_setting_invalid_root_package()
+
+   Test setting an invalid type as root_package of a Project instance.
+
+   :raises ValidationError: If an invalid type is assigned to root_package.
+
+
+.. py:function:: test_project_resetting_root_package_to_none()
+
+   Test resetting the root_package of a Project instance to None.
+
+   :raises AssertionError: If the root_package attribute cannot be reset to None.
+
+
+.. py:function:: test_project_root_package_independence_from_other_projects()
+
+   Test that setting root_package in one Project instance doesn't affect another.
+
+   :raises AssertionError: If root_package in one Project instance affects another.
 
 

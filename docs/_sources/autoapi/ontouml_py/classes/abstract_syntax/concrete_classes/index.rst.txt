@@ -1,0 +1,16 @@
+:py:mod:`ontouml_py.classes.abstract_syntax.concrete_classes`
+=============================================================
+
+.. py:module:: ontouml_py.classes.abstract_syntax.concrete_classes
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   package/index.rst
+   project/index.rst
+
+

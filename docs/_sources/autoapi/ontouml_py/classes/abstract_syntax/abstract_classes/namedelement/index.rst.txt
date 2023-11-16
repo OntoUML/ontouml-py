@@ -1,7 +1,7 @@
-:py:mod:`ontouml_py.classes.abstract_syntax.namedelement`
-=========================================================
+:py:mod:`ontouml_py.classes.abstract_syntax.abstract_classes.namedelement`
+==========================================================================
 
-.. py:module:: ontouml_py.classes.abstract_syntax.namedelement
+.. py:module:: ontouml_py.classes.abstract_syntax.abstract_classes.namedelement
 
 .. autoapi-nested-parse::
 
@@ -22,7 +22,7 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.classes.abstract_syntax.namedelement.NamedElement
+   ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement
 
 
 

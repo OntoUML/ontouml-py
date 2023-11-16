@@ -31,7 +31,7 @@ repos:
         stages:
           - pre-push
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -40,7 +40,7 @@ repos:
       - id: check-merge-conflict
       # - id: no-commit-to-branch    # To be included when other contributions join the project
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 23.9.1
+    rev: 23.11.0
     hooks:
       - id: black
         args: [ --line-length=120 ]
@@ -52,6 +52,7 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
+        additional_dependencies: [Flake8-pyproject]
         args: [ --max-line-length=120 ]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.7.0
@@ -61,7 +62,7 @@ repos:
         pass_filenames: false
         args: ['.']
   - repo: https://github.com/PyCQA/pylint
-    rev: v3.0.2
+    rev: v3.0.1
     hooks:
       - id: pylint
   - repo: https://github.com/pycqa/pydocstyle

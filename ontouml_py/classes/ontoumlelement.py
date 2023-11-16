@@ -8,12 +8,12 @@ import typing
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, NewType, Optional
 
 from pydantic import BaseModel, Field
 
-# Necessary for the forward declaration of Project class.
-Project = typing.NewType("Project", object)  # Define a new type named 'Project' based on 'object'
+# Workaround necessary for the forward declaration of the 'Project' class.
+Project = NewType("Project", object)  # Define a new type named 'Project' based on 'object'
 
 
 class OntoumlElement(ABC, BaseModel):
@@ -56,7 +56,26 @@ class OntoumlElement(ABC, BaseModel):
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
             initialized.
         """
+        # List of allowed subclasses: OntoumlElement is a categorizer of a complete generalization set
+        _allowed_subclasses = ["NamedElement", "Shape"]
+
+        # Check the entire inheritance chain
+        current_class = self.__class__
+        while current_class != object:
+            if current_class.__name__ in _allowed_subclasses:
+                break
+            current_class = current_class.__bases__[0]
+        else:
+            allowed = ", ".join(_allowed_subclasses)
+            raise ValueError(
+                f"'{self.__class__.__name__}' is not an allowed subclass. "
+                f"Only these subclasses are permitted: {allowed}."
+            )
+
+        # Sets attributes
         super().__init__(**data)
+
+        # Additional validations
         if self.modified is not None and self.modified < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         if "in_project" in data:

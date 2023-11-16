@@ -9,7 +9,10 @@ from typing import Any, Optional
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, PrivateAttr
 
-from ontouml_py.classes.abstract_syntax.namedelement import NamedElement
+from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
+    NamedElement,
+)
+from ontouml_py.classes.abstract_syntax.concrete_classes.package import Package
 from ontouml_py.classes.ontoumlelement import OntoumlElement
 
 
@@ -54,6 +57,8 @@ class Project(NamedElement):
     contexts: list[str] = Field(default_factory=list)
     designed_for_task: list[str] = Field(default_factory=list)
     publisher: Optional[str] = None
+    root_package: Optional[Package] = None
+    # TODO (@pedropaulofb): Add representationStyle
 
     class Config:  # noqa (disable Vulture) # pylint: disable=R0903,R0801
         """Configuration settings for the Project model using Pydantic.
