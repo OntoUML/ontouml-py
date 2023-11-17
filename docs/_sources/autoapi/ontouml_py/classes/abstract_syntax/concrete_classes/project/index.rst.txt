@@ -52,31 +52,6 @@ Classes
    Tasks for which the project is designed. :vartype designed_for_task: list[str] :ivar publisher: Publisher of the
    project. Optional. :vartype publisher: Optional[str]
 
-   .. py:class:: Config
-
-
-      Configuration settings for the Project model using Pydantic.
-
-      :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
-      validate_assignment: Enables validation of field values on assignment. :vartype validate_assignment: bool :cvar
-      extra: Controls the behavior regarding unexpected fields, set to 'forbid'. :vartype extra: str
-
-      .. py:attribute:: arbitrary_types_allowed
-         :value: True
-
-         
-
-      .. py:attribute:: validate_assignment
-         :value: True
-
-         
-
-      .. py:attribute:: extra
-         :value: 'forbid'
-
-         
-
-
    .. py:property:: elements
       :type: list[ontouml_py.classes.ontoumlelement.OntoumlElement]
 
@@ -163,6 +138,10 @@ Classes
 
    .. py:attribute:: root_package
       :type: Optional[ontouml_py.classes.abstract_syntax.concrete_classes.package.Package]
+
+      
+
+   .. py:attribute:: model_config
 
       
 

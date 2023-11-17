@@ -130,35 +130,6 @@ containing editorial notes associated with the element. :vartype editorial_notes
 list of URIs represented as strings identifying the creators of the element. :vartype creators: list[str] :ivar
 contributors: A list of URIs represented as strings identifying the contributors to the element. :vartype
 contributors: list[str]</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config" title="Link to this definition"></a></dt>
-<dd><p>Pydantic’s configuration settings for the NamedElement model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>arbitrary_types_allowed</strong> – Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar</p>
-</dd>
-</dl>
-<p>validate_assignment: Enables validation of field values upon assignment. :vartype validate_assignment: bool
-:cvar extra: Controls the behavior regarding unexpected fields, set to ‘forbid’ to disallow extra fields.
-:vartype extra: str</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.arbitrary_types_allowed">
-<span class="sig-name descname"><span class="pre">arbitrary_types_allowed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.arbitrary_types_allowed" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.validate_assignment">
-<span class="sig-name descname"><span class="pre">validate_assignment</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.validate_assignment" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.extra">
-<span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'forbid'</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.Config.extra" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.pref_name">
 <span class="sig-name descname"><span class="pre">pref_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">langstring_lib.langstring.LangString</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.pref_name" title="Link to this definition"></a></dt>
@@ -187,6 +158,11 @@ contributors: list[str]</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.contributors">
 <span class="sig-name descname"><span class="pre">contributors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.contributors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.abstract_classes.namedelement.NamedElement.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

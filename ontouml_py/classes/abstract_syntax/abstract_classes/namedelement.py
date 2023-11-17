@@ -37,18 +37,14 @@ class NamedElement(OntoumlElement):
     creators: list[str] = Field(default_factory=list)
     contributors: list[str] = Field(default_factory=list)
 
-    class Config:  # noqa (disables Vulture) # pylint: disable=R0903,R0801
-        """Pydantic's configuration settings for the NamedElement model.
-
-        :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
-        validate_assignment: Enables validation of field values upon assignment. :vartype validate_assignment: bool
-        :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid' to disallow extra fields.
-        :vartype extra: str
-        """
-
-        arbitrary_types_allowed = True  # noqa (Vulture)
-        validate_assignment = True  # noqa (Vulture)
-        extra = "forbid"  # noqa (Vulture)
+    # Pydantic's configuration settings for the NamedElement class.
+    model_config = {  # noqa (vulture)
+        "arbitrary_types_allowed": True,
+        "validate_assignment": True,
+        "extra": "forbid",
+        "str_strip_whitespace": True,
+        "validate_all": True,
+    }
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]):

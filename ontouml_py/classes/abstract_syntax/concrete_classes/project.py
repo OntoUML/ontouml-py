@@ -60,17 +60,14 @@ class Project(NamedElement):
     root_package: Optional[Package] = None
     # TODO (@pedropaulofb): Add representationStyle
 
-    class Config:  # noqa (disable Vulture) # pylint: disable=R0903,R0801
-        """Configuration settings for the Project model using Pydantic.
-
-        :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
-        validate_assignment: Enables validation of field values on assignment. :vartype validate_assignment: bool :cvar
-        extra: Controls the behavior regarding unexpected fields, set to 'forbid'. :vartype extra: str
-        """
-
-        arbitrary_types_allowed = True  # noqa
-        validate_assignment = True  # noqa
-        extra = "forbid"  # noqa
+    # Configuration settings for the Project model using Pydantic.
+    model_config = {  # noqa (vulture)
+        "arbitrary_types_allowed": True,
+        "validate_assignment": True,
+        "extra": "forbid",
+        "str_strip_whitespace": True,
+        "validate_all": True,
+    }
 
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new Project instance.

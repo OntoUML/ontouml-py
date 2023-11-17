@@ -34,16 +34,13 @@ class OntoumlElement(ABC, BaseModel):
     modified: Optional[datetime] = None
     in_project: list[Project] = Field(default_factory=list)  # noqa:F821 (flake8) # Forward declaration of Project
 
-    class Config:  # noqa (disable Vulture) # pylint: disable=R0903,R0801
-        """Configuration settings for the OntoumlElement model using Pydantic.
-
-        :cvar validate_assignment: Specifies if field values should be validated upon assignment. :vartype
-        validate_assignment: bool :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow
-        them. :vartype extra: str
-        """
-
-        validate_assignment = True  # noqa: Vulture
-        extra = "forbid"  # noqa: Vulture
+    # Pydantic's configuration settings for the OntoumlElement class.
+    model_config = {  # noqa (vulture)
+        "validate_assignment": True,
+        "extra": "forbid",
+        "str_strip_whitespace": True,
+        "validate_all": True,
+    }
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]) -> None:

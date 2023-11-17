@@ -139,29 +139,6 @@ modification, and a relationship to OntoUML projects.</p>
 modified: Timestamp when the element was last modified, can be None if not modified. :vartype modified:
 Optional[datetime] :ivar in_project: List of projects this element is part of. Direct modification is restricted.
 :vartype in_project: list[‘Project’]</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.Config" title="Link to this definition"></a></dt>
-<dd><p>Configuration settings for the OntoumlElement model using Pydantic.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>validate_assignment</strong> – Specifies if field values should be validated upon assignment. :vartype</p>
-</dd>
-</dl>
-<p>validate_assignment: bool :cvar extra: Determines the handling of unexpected fields, set to ‘forbid’ to disallow
-them. :vartype extra: str</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.Config.validate_assignment">
-<span class="sig-name descname"><span class="pre">validate_assignment</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.Config.validate_assignment" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.Config.extra">
-<span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'forbid'</span></em><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.Config.extra" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.id" title="Link to this definition"></a></dt>
@@ -180,6 +157,11 @@ them. :vartype extra: str</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.in_project">
 <span class="sig-name descname"><span class="pre">in_project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../abstract_syntax/concrete_classes/project/index.html#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project" title="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project"><span class="pre">Project</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.in_project" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.ontoumlelement.OntoumlElement.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.ontoumlelement.OntoumlElement.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

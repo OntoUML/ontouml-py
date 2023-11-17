@@ -46,32 +46,6 @@ Classes
    contributors: A list of URIs represented as strings identifying the contributors to the element. :vartype
    contributors: list[str]
 
-   .. py:class:: Config
-
-
-      Pydantic's configuration settings for the NamedElement model.
-
-      :cvar arbitrary_types_allowed: Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar
-      validate_assignment: Enables validation of field values upon assignment. :vartype validate_assignment: bool
-      :cvar extra: Controls the behavior regarding unexpected fields, set to 'forbid' to disallow extra fields.
-      :vartype extra: str
-
-      .. py:attribute:: arbitrary_types_allowed
-         :value: True
-
-         
-
-      .. py:attribute:: validate_assignment
-         :value: True
-
-         
-
-      .. py:attribute:: extra
-         :value: 'forbid'
-
-         
-
-
    .. py:attribute:: pref_name
       :type: Optional[langstring_lib.langstring.LangString]
 
@@ -99,6 +73,10 @@ Classes
 
    .. py:attribute:: contributors
       :type: list[str]
+
+      
+
+   .. py:attribute:: model_config
 
       
 

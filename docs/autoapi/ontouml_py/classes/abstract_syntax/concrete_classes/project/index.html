@@ -135,34 +135,6 @@ themes: list[str] :ivar license: Licensing information of the project. Optional.
 :ivar contexts: Contexts for which the project is designed. :vartype contexts: list[str] :ivar designed_for_task:
 Tasks for which the project is designed. :vartype designed_for_task: list[str] :ivar publisher: Publisher of the
 project. Optional. :vartype publisher: Optional[str]</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config" title="Link to this definition"></a></dt>
-<dd><p>Configuration settings for the Project model using Pydantic.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>arbitrary_types_allowed</strong> – Allows custom types like LangString. :vartype arbitrary_types_allowed: bool :cvar</p>
-</dd>
-</dl>
-<p>validate_assignment: Enables validation of field values on assignment. :vartype validate_assignment: bool :cvar
-extra: Controls the behavior regarding unexpected fields, set to ‘forbid’. :vartype extra: str</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.arbitrary_types_allowed">
-<span class="sig-name descname"><span class="pre">arbitrary_types_allowed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.arbitrary_types_allowed" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.validate_assignment">
-<span class="sig-name descname"><span class="pre">validate_assignment</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.validate_assignment" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.extra">
-<span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'forbid'</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.Config.extra" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.elements">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../ontoumlelement/index.html#ontouml_py.classes.ontoumlelement.OntoumlElement" title="ontouml_py.classes.ontoumlelement.OntoumlElement"><span class="pre">ontouml_py.classes.ontoumlelement.OntoumlElement</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.elements" title="Link to this definition"></a></dt>
@@ -255,6 +227,11 @@ extra: Controls the behavior regarding unexpected fields, set to ‘forbid’. :
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.root_package">
 <span class="sig-name descname"><span class="pre">root_package</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../package/index.html#ontouml_py.classes.abstract_syntax.concrete_classes.package.Package" title="ontouml_py.classes.abstract_syntax.concrete_classes.package.Package"><span class="pre">ontouml_py.classes.abstract_syntax.concrete_classes.package.Package</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.root_package" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_syntax.concrete_classes.project.Project.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

@@ -54,26 +54,6 @@ Attributes
    Optional[datetime] :ivar in_project: List of projects this element is part of. Direct modification is restricted.
    :vartype in_project: list['Project']
 
-   .. py:class:: Config
-
-
-      Configuration settings for the OntoumlElement model using Pydantic.
-
-      :cvar validate_assignment: Specifies if field values should be validated upon assignment. :vartype
-      validate_assignment: bool :cvar extra: Determines the handling of unexpected fields, set to 'forbid' to disallow
-      them. :vartype extra: str
-
-      .. py:attribute:: validate_assignment
-         :value: True
-
-         
-
-      .. py:attribute:: extra
-         :value: 'forbid'
-
-         
-
-
    .. py:attribute:: id
       :type: str
 
@@ -91,6 +71,10 @@ Attributes
 
    .. py:attribute:: in_project
       :type: list[Project]
+
+      
+
+   .. py:attribute:: model_config
 
       
 
