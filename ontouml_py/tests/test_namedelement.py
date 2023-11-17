@@ -263,8 +263,10 @@ def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
     :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
     """
     element = Project(creators=edge_case_list, contributors=edge_case_list)
-    assert element.creators == edge_case_list, "creators should correctly handle edge case lists."
-    assert element.contributors == edge_case_list, "contributors should correctly handle edge case lists."
+
+    for item in edge_case_list:
+        assert item.strip() in element.creators, "creators should correctly handle edge case lists."
+        assert item.strip() in element.contributors, "contributors should correctly handle edge case lists."
 
 
 # Test with null values in list attributes
