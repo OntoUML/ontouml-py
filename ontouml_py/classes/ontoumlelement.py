@@ -2,9 +2,8 @@
 
 It includes attributes for unique identification, creation, and modification timestamps, ensuring these properties are
 present across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
-attributes.
+attributes and restricts direct modification of certain fields.
 """
-import typing
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
@@ -19,14 +18,18 @@ Project = NewType("Project", object)  # Define a new type named 'Project' based 
 class OntoumlElement(ABC, BaseModel):
     """Abstract base class representing a generic element within an OntoUML model.
 
-    This class provides base features for OntoUML elements, including a unique identifier, timestamps for creation and
-    modification, and a relationship to OntoUML projects.
+    Provides base features for OntoUML elements, including a unique identifier, timestamps for creation and
+    modification, and a relationship to OntoUML projects. It enforces read-only constraints on certain attributes and
+    includes validation logic to maintain the integrity of these attributes.
 
-    :ivar id: A unique identifier for the element, automatically generated upon instantiation. :vartype id: str :ivar
-    created: Timestamp when the element was created, defaults to the current time. :vartype created: datetime :ivar
-    modified: Timestamp when the element was last modified, can be None if not modified. :vartype modified:
-    Optional[datetime] :ivar in_project: List of projects this element is part of. Direct modification is restricted.
-    :vartype in_project: list['Project']
+    :ivar id: A unique identifier for the element, automatically generated upon instantiation.
+    :vartype id: str
+    :ivar created: Timestamp when the element was created, defaults to the current time.
+    :vartype created: datetime
+    :ivar modified: Timestamp when the element was last modified, can be None if not modified.
+    :vartype modified: Optional[datetime]
+    :ivar in_project: List of projects this element is part of. Direct modification is restricted.
+    :vartype in_project: list[Project]
     """
 
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -39,7 +42,7 @@ class OntoumlElement(ABC, BaseModel):
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
-        "validate_all": True,
+        "validate_default": True,
     }
 
     @abstractmethod
@@ -49,7 +52,7 @@ class OntoumlElement(ABC, BaseModel):
         Ensures that 'modified' is not earlier than 'created' and prevents direct initialization of 'in_project'.
 
         :param data: Fields to be set on the model instance, excluding 'in_project'.
-        :type data: dict
+        :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
             initialized.
         """
@@ -81,10 +84,10 @@ class OntoumlElement(ABC, BaseModel):
                 "This operation should be done via class Project."
             )
 
-    def __setattr__(self, key: str, value: typing.Any) -> None:
-        """Set attribute values, enforcing read-only constraints and logical validation.
+    def __setattr__(self, key: str, value: Any) -> None:
+        """Set attribute values, enforcing logical validation.
 
-        Prevents modification of 'id', 'created', and 'in_project'. Validates 'modified' against 'created'.
+        Prevents modification of 'in_project'. Validates 'modified' against 'created'.
 
         :param key: The attribute name to set.
         :type key: str
@@ -92,8 +95,6 @@ class OntoumlElement(ABC, BaseModel):
         :type value: Any
         :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
         """
-        if key in ["id", "created"] and hasattr(self, key):
-            raise ValueError(f"Attribute '{key}' is read-only and cannot be modified.")
         if key == "in_project" and hasattr(self, key):
             raise ValueError(
                 "Attribute 'in_project' cannot be modified via OntoumlElement. "
