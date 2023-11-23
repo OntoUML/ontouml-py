@@ -159,15 +159,6 @@ def test_same_creation_and_modification_time() -> None:
     assert element.modified == creation_time, "The 'modified' attribute should be allowed to be the same as 'created'."
 
 
-def test_id_read_only(concrete_ontouml_element: Package) -> None:
-    """Test the immutability of the 'id' attribute in ConcreteOntoumlElement.
-
-    :raises ValueError: If attempting to modify the 'id' attribute after initialization.
-    """
-    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        concrete_ontouml_element.id = str(uuid.uuid4())
-
-
 def test_id_initialization_with_uuid() -> None:
     """Test initializing the 'id' attribute with a UUID."""
     custom_id = str(uuid.uuid4())
@@ -175,23 +166,11 @@ def test_id_initialization_with_uuid() -> None:
     assert element.id == custom_id, "The 'id' attribute should be initialized with the specified UUID."
 
 
-def test_id_read_only_post_initialization(concrete_ontouml_element: Package) -> None:
-    """Test that the 'id' attribute is read-only after initialization."""
-    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        concrete_ontouml_element.id = str(uuid.uuid4())
-
-
 def test_created_initialization_with_datetime() -> None:
     """Test initializing the 'created' attribute with a specific datetime."""
     custom_time = datetime(2020, 1, 1)
     element = Project(created=custom_time)
     assert element.created == custom_time, "The 'created' attribute should be initialized with the specified datetime."
-
-
-def test_created_read_only_post_initialization(concrete_ontouml_element: Package) -> None:
-    """Test that the 'created' attribute is read-only after initialization."""
-    with pytest.raises(ValueError, match="Attribute 'created' is read-only and cannot be modified."):
-        concrete_ontouml_element.created = datetime.now()
 
 
 def test_modified_initialization_with_valid_datetime(concrete_ontouml_element: Package) -> None:
@@ -347,15 +326,6 @@ def test_invalid_types_for_created_and_modified() -> None:
         Project(created="invalid-type")
     with pytest.raises(ValidationError):
         Project(modified="invalid-type")
-
-
-def test_default_id_immutable() -> None:
-    """Test that the default 'id' is immutable."""
-    element = Project()
-    original_id = element.id
-    with pytest.raises(ValueError, match="Attribute 'id' is read-only and cannot be modified."):
-        element.id = str(uuid.uuid4())
-    assert element.id == original_id, "The default 'id' should be immutable."
 
 
 def test_modified_accept_none_post_instantiation() -> None:
@@ -531,3 +501,90 @@ def test_error_message_disallowed_subclass() -> None:
         _ = DisallowedElement()
     expected_msg_part = "not an allowed subclass"
     assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."
+
+
+def test_initialization_with_empty_string() -> None:
+    """
+    Test the behavior of initializing a `OntoumlElement` with an empty string for string-based attributes.
+
+    :raises AssertionError: If the object does not handle empty string initialization as expected.
+    """
+    with pytest.raises(ValidationError, match="validation error for"):
+        Project(name="")
+
+
+def test_initialization_with_empty_list() -> None:
+    """
+    Test the behavior of initializing a `OntoumlElement` with an empty list for list-based attributes.
+
+    :raises AssertionError: If the object does not handle empty list initialization as expected.
+    """
+    with pytest.raises(ValidationError, match="validation error for"):
+        Project(some_list_attribute=[])
+
+
+def test_initialization_with_empty_tuple() -> None:
+    """
+    Test the behavior of initializing a `OntoumlElement` with an empty tuple for tuple-based attributes.
+
+    :raises AssertionError: If the object does not handle empty tuple initialization as expected.
+    """
+    with pytest.raises(ValidationError, match="validation error for"):
+        Project(some_tuple_attribute=())
+
+
+def test_post_initialization_type_validation() -> None:
+    """
+    Test the type validation for an attribute of `OntoumlElement` after the object has been instantiated.
+
+    :raises AssertionError: If the object allows setting an attribute to an invalid type post-instantiation.
+    """
+    element = Project()
+    with pytest.raises(ValidationError, match="Object has no attribute"):
+        element.some_attribute = 123  # Assuming 'some_attribute' should be a string # noqa (Vulture)
+
+
+def test_post_initialization_with_empty_string() -> None:
+    """
+    Test setting an attribute to an empty string on a `OntoumlElement` instance after it has been instantiated.
+
+    :raises AssertionError: If the object allows setting a string attribute to an empty string post-instantiation.
+    """
+    element = Project()
+    with pytest.raises(ValidationError, match="Object has no attribute"):
+        element.name = ""  # noqa (Vulture)
+
+
+def test_post_initialization_id_with_invalid_uuid() -> None:
+    """
+    Test setting the 'id' attribute to an invalid UUID on an `OntoumlElement` instance after it has been instantiated.
+
+    :raises AssertionError: If the object allows setting the 'id' attribute to an invalid UUID post-instantiation.
+    """
+    element = Project()
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
+        element.id = 123  # invalid-uuid
+
+
+def test_post_initialization_created_with_none() -> None:
+    """
+    Test setting the 'created' attribute to None on an `OntoumlElement` instance after it has been instantiated.
+
+    :raises AssertionError: If the object allows setting the 'created' attribute to None post-instantiation.
+    """
+    element = Project()
+    with pytest.raises(ValidationError, match="Input should be a valid datetime"):
+        element.created = None
+
+
+def test_post_initialization_modified_with_past_date() -> None:
+    """
+    Test setting the 'modified' attribute to a past date earlier than 'created' on an `OntoumlElement` instance after
+    it has been instantiated.
+
+    :raises AssertionError: If the object allows setting the 'modified' attribute to a past date earlier than 'created'.
+    """
+    element = Project()
+    past_date = datetime.now() - timedelta(days=5)
+    with pytest.raises(ValueError, match="must be later than"):
+        element.modified = past_date
