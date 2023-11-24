@@ -9,7 +9,7 @@ homepage = "https://w3id.org/ontouml/ontouml-py"
 repository = "https://w3id.org/ontouml/ontouml-py"
 documentation = "https://w3id.org/ontouml/ontouml-py/docs"
 keywords = ["semantic-web", "knowledge-graph", "ontouml", "ontology-driven-development", "ontouml-vocabulary", "ontouml-metamodel"]
-packages = [{ include = "ontouml-py" }]
+packages = [{ include = "ontouml-py/src" }]
 exclude = ["ontouml-py/tests"]
 
 [tool.poetry.urls]
@@ -44,12 +44,12 @@ paths = ["."]
 exclude = ["docs/", "sphinx/"]
 
 [tool.mypy]
-exclude= '^ontouml_py/tests'
+exclude= '^tests'
 strict = true
 plugins = "pydantic.mypy"
 
 [tool.pylint]
-ignore-paths= '^(ontouml_py/tests|docs|sphinx)'
+ignore-paths= '^(tests|docs|sphinx)'
 max-line-length=120
 disable= 'E0401'
 

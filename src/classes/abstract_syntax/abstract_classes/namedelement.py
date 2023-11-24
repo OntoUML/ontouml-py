@@ -1,9 +1,9 @@
 """Module for the abstract NamedElement class within an OntoUML model.
 
-This module defines the NamedElement class, which is an abstract class designed to represent elements with names in an
-OntoUML model. It extends the OntoumlElement class and includes additional attributes and validation for managing named
-elements' details such as their preferred name, alternative names, descriptions, editorial notes, as well as lists of
-creators and contributors.
+This module defines the NamedElement class, an abstract class representing elements with names in an OntoUML model. It
+extends the OntoumlElement class and includes additional attributes and validation for managing named elements' details
+such as their preferred name, alternative names, descriptions, editorial notes, as well as lists of creators and
+contributors.
 """
 from abc import abstractmethod
 from typing import Any, Optional
@@ -11,7 +11,7 @@ from typing import Any, Optional
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field
 
-from ontouml_py.classes.ontoumlelement import OntoumlElement
+from src.classes.ontoumlelement import OntoumlElement
 
 
 class NamedElement(OntoumlElement):
@@ -20,8 +20,8 @@ class NamedElement(OntoumlElement):
     This class provides functionality for managing named elements, including their preferred name, alternative names,
     descriptions, editorial notes, as well as lists of creators and contributors.
 
-    :ivar pref_name: The preferred name of the element, represented as a LangString object.
-    :vartype pref_name: Optional[LangString]
+    :ivar names: The preferred names of the element, represented as a list of LangStrings.
+    :vartype names: list[LangString]
     :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
     :vartype alt_names: list[LangString]
     :ivar description: A LangString object representing the description of the element.
@@ -34,7 +34,7 @@ class NamedElement(OntoumlElement):
     :vartype contributors: list[str]
     """
 
-    pref_name: Optional[LangString] = None
+    names: list[LangString] = Field(default_factory=list)
     alt_names: list[LangString] = Field(default_factory=list)
     description: Optional[LangString] = None
     editorial_notes: list[LangString] = Field(default_factory=list)
@@ -54,15 +54,13 @@ class NamedElement(OntoumlElement):
     def __init__(self, **data: dict[str, Any]):
         """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
 
-        Inherit 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for
-        additional attributes specific to NamedElement.
-
-        This class is designed to function as the exclusive categorizer for the subclasses 'Project' and 'ModelElement'
-        within an OntoUML metamodel. It ensures that no instances of other subclasses are created, maintaining the
-        integrity of the generalization set.
+        Inherits 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for
+        additional attributes specific to NamedElement. This class functions as the exclusive categorizer for the
+        subclasses 'Project' and 'ModelElement' within an OntoUML metamodel, ensuring that no instances of other
+        subclasses are created, maintaining the integrity of the generalization set.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
-        :type data: dict
+        :type data: dict[str, Any]
         """
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
         _allowed_subclasses = ["Project", "ModelElement"]

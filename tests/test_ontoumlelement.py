@@ -4,14 +4,10 @@ from datetime import datetime, timedelta
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
-    NamedElement,
-)
-from ontouml_py.classes.abstract_syntax.concrete_classes.package import Package
-from ontouml_py.classes.abstract_syntax.concrete_classes.project import (
-    Project as RealProject,
-)
-from ontouml_py.classes.ontoumlelement import OntoumlElement
+from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_syntax.concrete_classes.package import Package
+from src.classes.abstract_syntax.concrete_classes.project import Project as RealProject
+from src.classes.ontoumlelement import OntoumlElement
 
 
 class Project(NamedElement):

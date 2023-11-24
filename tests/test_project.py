@@ -5,13 +5,9 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.modelelement import (
-    ModelElement,
-)
-from ontouml_py.classes.abstract_syntax.concrete_classes.package import (
-    Package as RealPackage,
-)
-from ontouml_py.classes.abstract_syntax.concrete_classes.project import Project
+from src.classes.abstract_syntax.abstract_classes.modelelement import ModelElement
+from src.classes.abstract_syntax.concrete_classes.package import Package as RealPackage
+from src.classes.abstract_syntax.concrete_classes.project import Project
 
 
 # Utility functions and fixtures
@@ -128,7 +124,7 @@ def test_project_initialization(
 
     # Assertions to validate initialization
     assert project.elements == valid_ontoumlelement_list, "Project should have the correct 'elements'."
-    assert project.pref_name.text == "Project Name", "Project should have the correct 'pref_name'."
+    assert project.names.text == "Project Name", "Project should have the correct 'names'."
     assert project.alt_names == valid_langstring_list, "Project should have the correct 'alt_names'."
     assert project.description.text == "Project Description", "Project should have the correct 'description'."
     assert project.editorial_notes == valid_langstring_list, "Project should have the correct 'editorial_notes'."
@@ -169,9 +165,9 @@ def test_project_mutable_update_empty_values() -> None:
     :raises AssertionError: If the attributes don't update to empty values correctly.
     """
     project = Project(pref_name=create_langstring("Initial"), alt_names=[create_langstring("Alt")])
-    project.pref_name = create_langstring("")
+    project.names = create_langstring("")
     project.alt_names = []
-    assert project.pref_name.text == "" and project.alt_names == [], "Should update to empty values correctly."
+    assert project.names.text == "" and project.alt_names == [], "Should update to empty values correctly."
 
 
 def test_project_invalid_value_in_list_post_init() -> None:
@@ -979,9 +975,7 @@ def test_project_remove_element_unaffected_properties() -> None:
     element = create_ontoumlelement()
     project.add_element(element)
     project.remove_element(element)
-    assert (
-        project.pref_name.text == "Test Project"
-    ), "Project properties should remain unaffected after element removal."
+    assert project.names.text == "Test Project", "Project properties should remain unaffected after element removal."
 
 
 # Test removing elements and checking for empty state after each removal

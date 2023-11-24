@@ -1,8 +1,6 @@
 from typing import Any
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.modelelement import (
-    ModelElement,
-)
+from src.classes.abstract_syntax.abstract_classes.modelelement import ModelElement
 
 
 class Package(ModelElement):

@@ -34,4 +34,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Testing with pytest
-        run: pytest ./ontouml_py/tests
+        run: pytest ./src/tests

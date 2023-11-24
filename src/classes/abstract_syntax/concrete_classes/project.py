@@ -9,11 +9,9 @@ from typing import Any, Optional
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, PrivateAttr
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
-    NamedElement,
-)
-from ontouml_py.classes.abstract_syntax.concrete_classes.package import Package
-from ontouml_py.classes.ontoumlelement import OntoumlElement
+from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_syntax.concrete_classes.package import Package
+from src.classes.ontoumlelement import OntoumlElement
 
 
 class Project(NamedElement):

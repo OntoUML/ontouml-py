@@ -4,12 +4,8 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.modelelement import (
-    ModelElement,
-)
-from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
-    NamedElement,
-)
+from src.classes.abstract_syntax.abstract_classes.modelelement import ModelElement
+from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
 
 
 # Concrete subclass for testing
@@ -68,14 +64,14 @@ def test_namedelement_instantiation_with_arguments(
     :raises AssertionError: If attributes are not set as expected.
     """
     element = Project(
-        pref_name=valid_langstring,
+        names=[valid_langstring],
         alt_names=valid_langstring_list,
         description=valid_langstring,
         editorial_notes=valid_langstring_list,
         creators=["http://creator1.com"],
         contributors=["http://contributor1.com"],
     )
-    assert element.pref_name == valid_langstring, "pref_name should be initialized with the given LangString"
+    assert element.names == [valid_langstring], "names should be initialized with the given list of LangString"
     assert (
         element.alt_names == valid_langstring_list
     ), "alt_names should be initialized with the given list of LangString"
@@ -96,8 +92,8 @@ def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: 
     :raises AssertionError: If attributes are not updated as expected.
     """
     element = Project()
-    element.pref_name = valid_langstring
-    assert element.pref_name == valid_langstring, "pref_name should be updatable post-instantiation"
+    element.names = [valid_langstring]
+    assert element.names == [valid_langstring], "names should be updatable post-instantiation"
 
 
 def test_namedelement_type_validation() -> None:
@@ -106,7 +102,7 @@ def test_namedelement_type_validation() -> None:
     :raises ValidationError: If the wrong type is assigned to an attribute.
     """
     with pytest.raises(ValidationError):
-        Project(pref_name="Invalid Type")  # Expect LangString, not str
+        Project(names=["Invalid Type"])  # Expect list of LangString, not list of str
 
 
 def test_namedelement_abstract_class_enforcement() -> None:
@@ -124,7 +120,7 @@ def test_namedelement_default_values() -> None:
     :raises AssertionError: If default values are not as expected.
     """
     element = Project()
-    assert element.pref_name is None, "pref_name should default to None"
+    assert element.names == [], "names should default to an empty list"
     assert element.alt_names == [], "alt_names should default to an empty list"
     assert element.description is None, "description should default to None"
     assert element.editorial_notes == [], "editorial_notes should default to an empty list"
@@ -138,9 +134,9 @@ def test_namedelement_custom_initialization(valid_langstring: LangString) -> Non
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If custom initialization does not work as expected.
     """
-    custom_pref_name = LangString("Custom Name")
-    element = Project(pref_name=custom_pref_name)
-    assert element.pref_name == custom_pref_name, "pref_name should be customizable during initialization"
+    custom_names = [LangString("Custom Name")]
+    element = Project(names=custom_names)
+    assert element.names == custom_names, "names should be customizable during initialization"
 
 
 def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> None:
@@ -167,23 +163,23 @@ def test_namedelement_invalid_list_type_assignment() -> None:
 
 # Test initialization with invalid value and valid type
 def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> None:
-    """Test the instantiation of NamedElement with an invalid value but valid type for 'pref_name'.
+    """Test the instantiation of NamedElement with an invalid value but valid type for 'names'.
 
     :param invalid_langstring: A string that is not a valid LangString object.
     :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
     """
     with pytest.raises(ValidationError):
-        Project(pref_name=invalid_langstring)
+        Project(names=[invalid_langstring])
 
 
 # Test initialization with invalid type
 def test_initialization_with_invalid_type() -> None:
-    """Test the instantiation of NamedElement with an invalid type for 'pref_name'.
+    """Test the instantiation of NamedElement with an invalid type for 'names'.
 
     :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
     """
     with pytest.raises(ValidationError):
-        Project(pref_name=123)
+        Project(names=[123])
 
 
 # Test initialization with empty list for 'alt_names'
@@ -197,26 +193,26 @@ def test_initialization_with_empty_list() -> None:
 
 
 # Test post-initialization assertions with invalid value and valid type
-def test_post_initialization_with_invalid_value(valid_langstring: LangString) -> None:
-    """Test assigning an invalid value but valid type to 'pref_name' after instantiation.
+def test_post_initialization_with_invalid_value(valid_langstring_list: list[LangString]) -> None:
+    """Test assigning an invalid value but valid type to 'names' after instantiation.
 
-    :param valid_langstring: A valid LangString object.
+    :param valid_langstring_list: A list of valid LangString objects.
     :raises ValidationError: If an invalid value is assigned post-instantiation.
     """
-    element = Project(pref_name=valid_langstring)
+    element = Project(names=valid_langstring_list)
     with pytest.raises(ValidationError):
-        element.pref_name = "Invalid value"
+        element.names = ["Invalid value"]
 
 
 # Test post-initialization assertions with invalid type
 def test_post_initialization_with_invalid_type() -> None:
-    """Test assigning an invalid type to 'pref_name' after instantiation.
+    """Test assigning an invalid type to 'names' after instantiation.
 
     :raises ValidationError: If an incorrect type is assigned post-instantiation.
     """
     element = Project()
     with pytest.raises(ValidationError):
-        element.pref_name = 123
+        element.names = [123]
 
 
 # Test post-initialization assertions with empty list for 'alt_names'
@@ -230,16 +226,16 @@ def test_post_initialization_with_empty_list() -> None:
     assert element.alt_names == [], "alt_names should be correctly set to an empty list post-instantiation."
 
 
-# Edge case tests for 'pref_name'
+# Edge case tests for 'names'
 @pytest.mark.parametrize("edge_case_value", [LangString(""), LangString(" "), LangString("\n")])
-def test_pref_name_edge_cases(edge_case_value: LangString) -> None:
-    """Test initializing NamedElement with edge case LangString values for 'pref_name'.
+def test_names_edge_cases(edge_case_value: LangString) -> None:
+    """Test initializing NamedElement with edge case LangString values for 'names'.
 
     :param edge_case_value: A LangString object with edge case content.
-    :raises AssertionError: If 'pref_name' does not handle edge case values correctly.
+    :raises AssertionError: If 'names' does not handle edge case values correctly.
     """
-    element = Project(pref_name=edge_case_value)
-    assert element.pref_name == edge_case_value, "pref_name should correctly handle edge case LangString values."
+    element = Project(names=[edge_case_value])
+    assert element.names == [edge_case_value], "names should correctly handle edge case LangString values."
 
 
 # Edge case tests for 'alt_names'
@@ -288,8 +284,10 @@ def test_extremely_long_strings() -> None:
     :raises AssertionError: If extremely long strings are not handled correctly.
     """
     long_string = "a" * 10000
-    element = Project(pref_name=LangString(long_string), description=LangString(long_string))
-    assert element.pref_name.text == long_string, "pref_name should correctly handle extremely long strings."
+    long_langstring = LangString(long_string)
+    element = Project(names=[long_langstring], description=long_langstring)
+
+    assert element.names[0].text == long_string, "names should correctly handle extremely long strings."
     assert element.description.text == long_string, "description should correctly handle extremely long strings."
 
 
@@ -301,8 +299,10 @@ def test_special_characters_and_unicode(special_string) -> None:
     :param special_string: A string containing special characters or Unicode.
     :raises AssertionError: If special characters and Unicode are not handled correctly.
     """
-    element = Project(pref_name=LangString(special_string))
-    assert element.pref_name.text == special_string, "pref_name should correctly handle special characters and Unicode."
+    special_langstring = LangString(special_string)
+    element = Project(names=[special_langstring])
+
+    assert element.names[0].text == special_string, "names should correctly handle special characters and Unicode."
 
 
 def test_alt_names_and_editorial_notes_with_valid_data() -> None:

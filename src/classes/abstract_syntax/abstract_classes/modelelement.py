@@ -3,9 +3,7 @@ from typing import Any, NewType
 
 from pydantic import Field
 
-from ontouml_py.classes.abstract_syntax.abstract_classes.namedelement import (
-    NamedElement,
-)
+from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
 
 # Workaround necessary for the forward declaration of Project class.
 Package = NewType("Package", object)  # Define a new type named 'Package' based on 'object'
