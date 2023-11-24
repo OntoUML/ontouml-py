@@ -12,7 +12,7 @@ Package = NewType("Package", object)  # Define a new type named 'Package' based 
 class ModelElement(NamedElement):
     # TODO (@pedropaulofb): Check how to implement this default_factory.
     #  Contained_in can relate a NamedElement to a Package or it may be empty.
-    contained_in: Package = Field(default_factory=object)  # Forward declaration of Project
+    contained_in: Package = Field(default_factory=object)  # Forward declaration of Project # noqa (Vulture)
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]) -> None:

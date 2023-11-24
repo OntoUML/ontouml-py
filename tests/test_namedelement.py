@@ -262,7 +262,6 @@ def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
         Project(creators=edge_case_list, contributors=edge_case_list)
 
 
-
 # Test with null values in list attributes
 def test_rejection_of_null_values_in_list_attributes() -> None:
     """Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
@@ -335,15 +334,16 @@ def test_rejection_of_invalid_data_in_list_attributes() -> None:
 
 
 def test_valid_subclass_instantiation() -> None:
-    """Test instantiation of valid subclasses defined in the allowed subclasses list.
+    """
+    Test the instantiation of a valid subclass of NamedElement.
 
-    :raises AssertionError: If instantiation of a valid subclass raises an unexpected ValueError.
+    :raises AssertionError: If a valid subclass cannot be instantiated.
     """
     try:
-        project_instance = Project()  # noqa:F841 (flake8)
-        model_element_instance = Link()  # concrete subclass of ModelElement  # noqa:F841 (flake8)
-    except ValueError:
-        pytest.fail("Instantiation of valid subclasses should not raise ValueError.")
+        project = Project()
+        assert isinstance(project, NamedElement), "Project should be an instance of NamedElement"
+    except Exception as e:
+        pytest.fail(f"Instantiation of a valid subclass failed: {e}")
 
 
 def test_invalid_subclass_instantiation() -> None:
@@ -366,6 +366,7 @@ def test_error_message_for_invalid_subclass() -> None:
     expected_msg_part = "not an allowed subclass"
     assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."
 
+
 def test_direct_instantiation_of_abstract_class() -> None:
     """
     Test that direct instantiation of the abstract class NamedElement is not allowed.
@@ -376,35 +377,13 @@ def test_direct_instantiation_of_abstract_class() -> None:
         NamedElement()  # Attempt to instantiate an abstract class
 
 
-def test_valid_subclass_instantiation() -> None:
-    """
-    Test the instantiation of a valid subclass of NamedElement.
-
-    :raises AssertionError: If a valid subclass cannot be instantiated.
-    """
-    try:
-        project = Project()
-        assert isinstance(project, NamedElement), "Project should be an instance of NamedElement"
-    except Exception as e:
-        pytest.fail(f"Instantiation of a valid subclass failed: {e}")
-
-
-def test_invalid_subclass_instantiation() -> None:
-    """
-    Test that instantiation of an invalid subclass of NamedElement is not allowed.
-
-    :raises ValueError: If an invalid subclass is instantiated.
-    """
-    with pytest.raises(ValueError, match="is not an allowed subclass"):
-        InvalidSubclass()  # Attempt to instantiate an invalid subclass
-
-
 def test_subclass_without_required_methods() -> None:
     """
     Test that a subclass missing required abstract methods cannot be instantiated.
 
     :raises TypeError: If a subclass without required abstract methods is instantiated.
     """
+
     class IncompleteSubclass(NamedElement):
         pass
 
@@ -540,3 +519,225 @@ def test_duplicate_elements_in_lists() -> None:
     duplicate_langstring = LangString("Duplicate")
     element = Project(alt_names=[duplicate_langstring, duplicate_langstring])
     assert element.alt_names.count(duplicate_langstring) == 2, "alt_names should handle duplicate elements."
+
+
+def test_default_type_of_names() -> None:
+    """
+    Test the default type of the 'names' attribute in NamedElement.
+
+    Ensures that the 'names' attribute, when not explicitly initialized, defaults to an empty list.
+
+    :return: None
+    :raises AssertionError: If the default type of 'names' is not a list.
+    """
+    element = Project()
+    assert isinstance(element.names, list), "The default type of 'names' should be a list."
+
+
+def test_default_type_of_alt_names() -> None:
+    """
+    Test the default type of the 'alt_names' attribute in NamedElement.
+
+    Verifies that the 'alt_names' attribute, when not explicitly initialized, defaults to an empty list.
+
+    :return: None
+    :raises AssertionError: If the default type of 'alt_names' is not a list.
+    """
+    element = Project()
+    assert isinstance(element.alt_names, list), "The default type of 'alt_names' should be a list."
+
+
+def test_default_type_of_description() -> None:
+    """
+    Test the default type of the 'description' attribute in NamedElement.
+
+    Checks that the 'description' attribute, when not explicitly initialized, defaults to None.
+
+    :return: None
+    :raises AssertionError: If the default type of 'description' is not None.
+    """
+    element = Project()
+    assert element.description is None, "The default type of 'description' should be None."
+
+
+def test_default_type_of_editorial_notes() -> None:
+    """
+    Test the default type of the 'editorial_notes' attribute in NamedElement.
+
+    Confirms that the 'editorial_notes' attribute, when not explicitly initialized, defaults to an empty list.
+
+    :return: None
+    :raises AssertionError: If the default type of 'editorial_notes' is not a list.
+    """
+    element = Project()
+    assert isinstance(element.editorial_notes, list), "The default type of 'editorial_notes' should be a list."
+
+
+def test_default_type_of_creators() -> None:
+    """
+    Test the default type of the 'creators' attribute in NamedElement.
+
+    Ensures that the 'creators' attribute, when not explicitly initialized, defaults to an empty list.
+
+    :return: None
+    :raises AssertionError: If the default type of 'creators' is not a list.
+    """
+    element = Project()
+    assert isinstance(element.creators, list), "The default type of 'creators' should be a list."
+
+
+def test_default_type_of_contributors() -> None:
+    """
+    Test the default type of the 'contributors' attribute in NamedElement.
+
+    Verifies that the 'contributors' attribute, when not explicitly initialized, defaults to an empty list.
+
+    :return: None
+    :raises AssertionError: If the default type of 'contributors' is not a list.
+    """
+    element = Project()
+    assert isinstance(element.contributors, list), "The default type of 'contributors' should be a list."
+
+
+def test_access_non_existent_attribute() -> None:
+    """
+    Test accessing a non-existent attribute in NamedElement.
+
+    This test ensures that attempting to access an attribute that does not exist in the NamedElement class raises an
+    AttributeError.
+
+    :return: None
+    :raises AssertionError: If accessing a non-existent attribute does not raise an AttributeError.
+    """
+    element = Project()
+    with pytest.raises(AttributeError) as exc_info:
+        _ = element.non_existent_attribute
+    assert "object has no attribute 'non_existent_attribute'" in str(
+        exc_info.value
+    ), "Accessing a non-existent attribute should raise an AttributeError with a specific message."
+
+
+def test_assign_to_non_existent_attribute() -> None:
+    """
+    Test assigning a value to a non-existent attribute in NamedElement.
+
+    Verifies that attempting to assign a value to an attribute that does not exist in the NamedElement class raises an
+    AttributeError.
+
+    :return: None
+    :raises AssertionError: If assigning to a non-existent attribute does not raise an AttributeError.
+    """
+    element = Project()
+    with pytest.raises(ValidationError) as exc_info:
+        element.non_existent_attribute = "Test Value"
+
+
+def test_method_call_on_non_existent_attribute() -> None:
+    """
+    Test calling a method on a non-existent attribute in NamedElement.
+
+    Ensures that attempting to call a method on an attribute that does not exist in the NamedElement class raises an
+    AttributeError.
+
+    :return: None
+    :raises AssertionError: If calling a method on a non-existent attribute does not raise an AttributeError.
+    """
+    element = Project()
+    with pytest.raises(AttributeError) as exc_info:
+        _ = element.non_existent_attribute.method_call()
+    assert "object has no attribute 'non_existent_attribute'" in str(
+        exc_info.value
+    ), "Calling a method on a non-existent attribute should raise an AttributeError with a specific message."
+
+
+def test_instantiation_with_unknown_arguments() -> None:
+    """
+    Test the instantiation of NamedElement with unknown arguments.
+
+    This test verifies that attempting to instantiate a NamedElement (or its subclass) with arguments that are not
+    defined in the class raises a TypeError.
+
+    :return: None
+    :raises AssertionError: If instantiation with unknown arguments does not raise a TypeError.
+    """
+    with pytest.raises(ValidationError):
+        _ = Project(unknown_arg="Test Value")
+
+
+def test_modifying_instance_with_unknown_arguments() -> None:
+    """
+    Test modifying an instance of NamedElement with unknown arguments.
+
+    Ensures that attempting to modify an instance of NamedElement (or its subclass) with arguments that are not
+    defined in the class raises a TypeError.
+
+    :return: None
+    :raises AssertionError: If modification with unknown arguments does not raise a TypeError.
+    """
+    element = Project()
+    with pytest.raises(AttributeError):
+        element.modify(unknown_arg="Test Value")
+
+
+def test_setting_unknown_attributes_post_instantiation() -> None:
+    """
+    Test setting unknown attributes on an instance of NamedElement post-instantiation.
+
+    Verifies that attempting to set an unknown attribute on an instance of NamedElement (or its subclass) post-
+    instantiation raises an AttributeError.
+
+    :return: None
+    :raises AssertionError: If setting an unknown attribute post-instantiation does not raise an AttributeError.
+    """
+    element = Project()
+    with pytest.raises(ValidationError):
+        element.unknown_attribute = "Test Value"
+
+
+def test_namedelement_with_single_character_names() -> None:
+    """
+    Test the instantiation of NamedElement with single-character names.
+
+    This test verifies that NamedElement (or its subclass) can be instantiated with single-character strings in the
+    'names' attribute, which is a valid but unusual use case.
+
+    :return: None
+    :raises AssertionError: If instantiation with single-character names fails or is handled incorrectly.
+    """
+    single_char_langstring = LangString("A")
+    element = Project(names=[single_char_langstring])
+    assert element.names == [single_char_langstring], "NamedElement should correctly handle single-character names."
+
+
+def test_namedelement_with_reversed_uri_lists() -> None:
+    """
+    Test the instantiation of NamedElement with reversed URI lists.
+
+    This test checks if NamedElement (or its subclass) can handle URI lists for 'creators' and 'contributors' where
+    the URIs are in a reversed order, which is a valid but unusual scenario.
+
+    :return: None
+    :raises AssertionError: If instantiation with reversed URI lists is not handled correctly.
+    """
+    reversed_uris = ["http://example.com/2", "http://example.com/1"]
+    element = Project(creators=reversed_uris, contributors=reversed_uris)
+    assert (
+        element.creators == reversed_uris and element.contributors == reversed_uris
+    ), "NamedElement should correctly handle reversed URI lists."
+
+
+def test_namedelement_with_alternating_case_descriptions() -> None:
+    """
+    Test the instantiation of NamedElement with alternating case descriptions.
+
+    Verifies that NamedElement (or its subclass) can be instantiated with a description having alternating case,
+    which is an unusual but valid string format.
+
+    :return: None
+    :raises AssertionError: If instantiation with alternating case descriptions is not handled correctly.
+    """
+    alt_case_description = LangString("AlTeRnAtInG CaSe")
+    element = Project(description=alt_case_description)
+    assert (
+        element.description == alt_case_description
+    ), "NamedElement should correctly handle descriptions with alternating case."

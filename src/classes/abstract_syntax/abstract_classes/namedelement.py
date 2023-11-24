@@ -8,10 +8,8 @@ contributors.
 from abc import abstractmethod
 from typing import Any, Optional
 
-from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, field_validator
-from pydantic_core import ValidationError
 
 from src.classes.ontoumlelement import OntoumlElement
 
@@ -52,9 +50,9 @@ class NamedElement(OntoumlElement):
         "validate_default": True,
     }
 
-    @field_validator('creators', 'contributors', mode='after')
+    @field_validator("creators", "contributors", mode="after")
     @classmethod
-    def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:
+    def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:  # noqa (vulture)
         for elem in checked_list:
             if elem == "":
                 raise ValueError("Empty strings are not allowed")
