@@ -20,14 +20,18 @@ class NamedElement(OntoumlElement):
     This class provides functionality for managing named elements, including their preferred name, alternative names,
     descriptions, editorial notes, as well as lists of creators and contributors.
 
-    :ivar pref_name: The preferred name of the element, represented as a LangString object. :vartype pref_name:
-    Optional[LangString] :ivar alt_names: A list of alternative names for the element, each represented as a LangString
-    object. :vartype alt_names: list[LangString] :ivar description: A LangString object representing the description of
-    the element. :vartype description: Optional[LangString] :ivar editorial_notes: A list of LangString objects
-    containing editorial notes associated with the element. :vartype editorial_notes: list[LangString] :ivar creators: A
-    list of URIs represented as strings identifying the creators of the element. :vartype creators: list[str] :ivar
-    contributors: A list of URIs represented as strings identifying the contributors to the element. :vartype
-    contributors: list[str]
+    :ivar pref_name: The preferred name of the element, represented as a LangString object.
+    :vartype pref_name: Optional[LangString]
+    :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
+    :vartype alt_names: list[LangString]
+    :ivar description: A LangString object representing the description of the element.
+    :vartype description: Optional[LangString]
+    :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
+    :vartype editorial_notes: list[LangString]
+    :ivar creators: A list of URIs represented as strings identifying the creators of the element.
+    :vartype creators: list[str]
+    :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
+    :vartype contributors: list[str]
     """
 
     pref_name: Optional[LangString] = None
@@ -43,7 +47,7 @@ class NamedElement(OntoumlElement):
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
-        "validate_all": True,
+        "validate_default": True,
     }
 
     @abstractmethod
