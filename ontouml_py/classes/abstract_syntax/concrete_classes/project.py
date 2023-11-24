@@ -26,18 +26,34 @@ class Project(NamedElement):
     enforce the inverse relationship with OntoumlElement instances. The actual data is stored in the private attribute
     '_elements', which can be manipulated via add_element and remove_element methods.
 
-    :ivar acronyms: List of acronyms associated with the project. :vartype acronyms: list[str] :ivar
-    bibliographic_citations: Bibliographic citations related to the project. :vartype bibliographic_citations: list[str]
-    :ivar keywords: Keywords describing the project. :vartype keywords: list[LangString] :ivar landing_pages: URLs to
-    landing pages of the project. :vartype landing_pages: list[str] :ivar languages: Languages used in the project.
-    :vartype languages: list[str] :ivar namespace: Namespace of the project. Optional. :vartype namespace: Optional[str]
-    :ivar sources: Sources of information for the project. :vartype sources: list[str] :ivar access_rights: Information
-    about access rights for the project. :vartype access_rights: list[str] :ivar ontology_types: Types of ontologies
-    used in the project. :vartype ontology_types: list[str] :ivar themes: Themes associated with the project. :vartype
-    themes: list[str] :ivar license: Licensing information of the project. Optional. :vartype license: Optional[str]
-    :ivar contexts: Contexts for which the project is designed. :vartype contexts: list[str] :ivar designed_for_task:
-    Tasks for which the project is designed. :vartype designed_for_task: list[str] :ivar publisher: Publisher of the
-    project. Optional. :vartype publisher: Optional[str]
+    :ivar acronyms: List of acronyms associated with the project.
+    :vartype acronyms: list[str]
+    :ivar bibliographic_citations: Bibliographic citations related to the project.
+    :vartype bibliographic_citations: list[str]
+    :ivar keywords: Keywords describing the project.
+    :vartype keywords: list[LangString]
+    :ivar landing_pages: URLs to landing pages of the project.
+    :vartype landing_pages: list[str]
+    :ivar languages: Languages used in the project.
+    :vartype languages: list[str]
+    :ivar namespace: Namespace of the project. Optional.
+    :vartype namespace: Optional[str]
+    :ivar sources: Sources of information for the project.
+    :vartype sources: list[str]
+    :ivar access_rights: Information about access rights for the project.
+    :vartype access_rights: list[str]
+    :ivar ontology_types: Types of ontologies used in the project.
+    :vartype ontology_types: list[str]
+    :ivar themes: Themes associated with the project.
+    :vartype themes: list[str]
+    :ivar license: Licensing information of the project. Optional.
+    :vartype license: Optional[str]
+    :ivar contexts: Contexts for which the project is designed.
+    :vartype contexts: list[str]
+    :ivar designed_for_task: Tasks for which the project is designed.
+    :vartype designed_for_task: list[str]
+    :ivar publisher: Publisher of the project. Optional.
+    :vartype publisher: Optional[str]
     """
 
     # Private attributes
@@ -66,7 +82,7 @@ class Project(NamedElement):
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
-        "validate_all": True,
+        "validate_default": True,
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
