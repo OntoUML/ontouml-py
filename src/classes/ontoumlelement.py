@@ -32,7 +32,7 @@ class OntoumlElement(ABC, BaseModel):
     :vartype in_project: list[Project]
     """
 
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    id: str = Field(min_length=3, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = None
     in_project: list[Project] = Field(default_factory=list)  # noqa:F821 (flake8) # Forward declaration of Project

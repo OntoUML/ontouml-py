@@ -584,3 +584,24 @@ def test_post_initialization_modified_with_past_date() -> None:
     past_date = datetime.now() - timedelta(days=5)
     with pytest.raises(ValueError, match="must be later than"):
         element.modified = past_date
+
+
+@pytest.mark.parametrize("new_id", ["", "1", "12"])
+def test_id_with_not_enough_chars(new_id:str) -> None:
+    """
+    Test setting the id attribute to strings with less than 3 chars.
+
+    :raises AssertionError: If the object allows setting the id with less than 3 chars.
+    """
+    element = Project()
+    with pytest.raises(ValueError):
+        element.id = new_id
+
+@pytest.mark.parametrize("new_id", ["111", "2222", "abc"])
+def test_id_with_enough_chars(new_id:str) -> None:
+    """
+    Test setting the id attribute to strings with 3 or more chars.
+    """
+    element = Project()
+    element.id = new_id
+    assert element.id
