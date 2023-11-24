@@ -251,18 +251,16 @@ def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
 
 
 # Edge case tests for 'creators' and 'contributors'
-@pytest.mark.parametrize("edge_case_list", [[], [" "], ["http://example.com", ""]])
+@pytest.mark.parametrize("edge_case_list", [[" "], [""], ["http://example.com", ""], ["http://example.com", " "]])
 def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
     """Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
 
     :param edge_case_list: A list of strings with edge case URI content.
     :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
     """
-    element = Project(creators=edge_case_list, contributors=edge_case_list)
+    with pytest.raises(ValidationError):
+        Project(creators=edge_case_list, contributors=edge_case_list)
 
-    for item in edge_case_list:
-        assert item.strip() in element.creators, "creators should correctly handle edge case lists."
-        assert item.strip() in element.contributors, "contributors should correctly handle edge case lists."
 
 
 # Test with null values in list attributes
@@ -367,3 +365,178 @@ def test_error_message_for_invalid_subclass() -> None:
         _ = InvalidSubclass()
     expected_msg_part = "not an allowed subclass"
     assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."
+
+def test_direct_instantiation_of_abstract_class() -> None:
+    """
+    Test that direct instantiation of the abstract class NamedElement is not allowed.
+
+    :raises TypeError: If NamedElement is instantiated directly.
+    """
+    with pytest.raises(TypeError, match="Can't instantiate abstract class NamedElement"):
+        NamedElement()  # Attempt to instantiate an abstract class
+
+
+def test_valid_subclass_instantiation() -> None:
+    """
+    Test the instantiation of a valid subclass of NamedElement.
+
+    :raises AssertionError: If a valid subclass cannot be instantiated.
+    """
+    try:
+        project = Project()
+        assert isinstance(project, NamedElement), "Project should be an instance of NamedElement"
+    except Exception as e:
+        pytest.fail(f"Instantiation of a valid subclass failed: {e}")
+
+
+def test_invalid_subclass_instantiation() -> None:
+    """
+    Test that instantiation of an invalid subclass of NamedElement is not allowed.
+
+    :raises ValueError: If an invalid subclass is instantiated.
+    """
+    with pytest.raises(ValueError, match="is not an allowed subclass"):
+        InvalidSubclass()  # Attempt to instantiate an invalid subclass
+
+
+def test_subclass_without_required_methods() -> None:
+    """
+    Test that a subclass missing required abstract methods cannot be instantiated.
+
+    :raises TypeError: If a subclass without required abstract methods is instantiated.
+    """
+    class IncompleteSubclass(NamedElement):
+        pass
+
+    with pytest.raises(TypeError, match="Can't instantiate abstract class IncompleteSubclass"):
+        IncompleteSubclass()  # Attempt to instantiate a subclass without implementing abstract methods
+
+
+def test_subclass_with_all_required_methods() -> None:
+    """
+    Test the instantiation of a subclass that implements all required abstract methods of NamedElement.
+
+    :raises AssertionError: If a subclass with all required methods cannot be instantiated.
+    """
+
+    try:
+        complete_subclass = Project()
+        assert isinstance(complete_subclass, NamedElement), "CompleteSubclass should be an instance of NamedElement"
+    except Exception as e:
+        pytest.fail(f"Instantiation of a complete subclass failed: {e}")
+
+
+# Test with mixed valid and invalid LangString objects in lists
+def test_mixed_valid_invalid_langstring_in_lists() -> None:
+    """
+    Test the instantiation of NamedElement with a mix of valid and invalid LangString objects in lists.
+
+    :raises ValidationError: If lists contain invalid LangString objects.
+    """
+    valid_langstring = LangString("Valid LangString")
+    invalid_langstring = "Invalid LangString"
+    with pytest.raises(ValidationError):
+        Project(names=[valid_langstring, invalid_langstring])
+
+
+# Test with extremely short strings
+@pytest.mark.parametrize("short_string", ["a", " ", ""])
+def test_extremely_short_strings(short_string: str) -> None:
+    """
+    Test assigning extremely short strings to string-based attributes of NamedElement.
+
+    :param short_string: A string containing a single character or whitespace.
+    :raises AssertionError: If extremely short strings are not handled correctly.
+    """
+    short_langstring = LangString(short_string)
+    element = Project(names=[short_langstring])
+    assert element.names[0].text == short_string, "names should correctly handle extremely short strings."
+
+
+# Test with numeric and special characters in URIs
+@pytest.mark.parametrize("uri", ["http://example1.com/123", "http://example2.com/?q=♠♥♦♣"])
+def test_numeric_special_characters_in_uris(uri: str) -> None:
+    """
+    Test initializing NamedElement with URIs containing numeric and special characters.
+
+    :param uri: A URI string containing numeric and/or special characters.
+    :raises AssertionError: If URIs with numeric and special characters are not handled correctly.
+    """
+    element = Project(creators=[uri], contributors=[uri])
+    assert uri in element.creators, "creators should correctly handle URIs with numeric and special characters."
+    assert uri in element.contributors, "contributors should correctly handle URIs with numeric and special characters."
+
+
+# Test with null values for optional attributes
+def test_null_values_for_optional_attributes() -> None:
+    """
+    Test assigning null values to optional attributes of NamedElement.
+
+    :raises AssertionError: If null values for optional attributes are not handled correctly.
+    """
+    element = Project(description=None)
+    assert element.description is None, "Optional attribute 'description' should accept null values."
+
+
+# Test with different types of whitespace in strings
+@pytest.mark.parametrize("whitespace", ["\t", "\n", "\r", " \t\n"])
+def test_whitespace_in_strings(whitespace: str) -> None:
+    """
+    Test assigning strings with different types of whitespace to string-based attributes of NamedElement.
+
+    :param whitespace: A string containing various types of whitespace characters.
+    :raises AssertionError: If strings with different types of whitespace are not handled correctly.
+    """
+    whitespace_langstring = LangString(whitespace)
+    element = Project(names=[whitespace_langstring])
+    assert element.names[0].text == whitespace, "names should correctly handle strings with various whitespace."
+
+
+# Test with maximum number of elements in lists
+def test_maximum_elements_in_lists() -> None:
+    """
+    Test assigning the maximum number of elements to list attributes of NamedElement.
+
+    :raises AssertionError: If lists do not handle the maximum number of elements correctly.
+    """
+    max_elements = [LangString(f"LangString {i}") for i in range(1000)]
+    element = Project(alt_names=max_elements, editorial_notes=max_elements)
+    assert element.alt_names == max_elements, "alt_names should handle maximum number of elements."
+    assert element.editorial_notes == max_elements, "editorial_notes should handle maximum number of elements."
+
+
+# Test with empty strings in URI lists
+def test_empty_strings_in_uri_lists() -> None:
+    """
+    Test assigning lists containing empty strings to URI attributes of NamedElement.
+
+    :raises ValidationError: If lists contain empty strings for URI attributes.
+    """
+    with pytest.raises(ValidationError):
+        Project(creators=[""], contributors=[""])
+
+
+# Test with mixed case strings
+@pytest.mark.parametrize("mixed_case_string", ["MixedCase", "MIXED", "mixed"])
+def test_mixed_case_strings(mixed_case_string: str) -> None:
+    """
+    Test assigning mixed case strings to string-based attributes of NamedElement.
+
+    :param mixed_case_string: A string containing mixed case characters.
+    :raises AssertionError: If mixed case strings are not handled correctly.
+    """
+    mixed_case_langstring = LangString(mixed_case_string)
+    element = Project(names=[mixed_case_langstring])
+    assert element.names[0].text == mixed_case_string, "names should correctly handle mixed case strings."
+
+
+# Test with duplicate elements in lists
+def test_duplicate_elements_in_lists() -> None:
+    """
+    Test assigning lists with duplicate elements to list attributes of NamedElement.
+
+    :raises AssertionError: If lists do not handle duplicate elements correctly.
+    """
+    duplicate_langstring = LangString("Duplicate")
+    element = Project(alt_names=[duplicate_langstring, duplicate_langstring])
+    assert element.alt_names.count(duplicate_langstring) == 2, "alt_names should handle duplicate elements."

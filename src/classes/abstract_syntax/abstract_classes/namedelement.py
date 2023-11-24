@@ -8,8 +8,10 @@ contributors.
 from abc import abstractmethod
 from typing import Any, Optional
 
+from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
-from pydantic import Field
+from pydantic import Field, field_validator
+from pydantic_core import ValidationError
 
 from src.classes.ontoumlelement import OntoumlElement
 
@@ -38,8 +40,8 @@ class NamedElement(OntoumlElement):
     alt_names: list[LangString] = Field(default_factory=list)
     description: Optional[LangString] = None
     editorial_notes: list[LangString] = Field(default_factory=list)
-    creators: list[str] = Field(default_factory=list)
-    contributors: list[str] = Field(default_factory=list)
+    creators: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list
+    contributors: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list
 
     # Pydantic's configuration settings for the NamedElement class.
     model_config = {  # noqa (vulture)
@@ -49,6 +51,14 @@ class NamedElement(OntoumlElement):
         "str_strip_whitespace": True,
         "validate_default": True,
     }
+
+    @field_validator('creators', 'contributors', mode='after')
+    @classmethod
+    def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:
+        for elem in checked_list:
+            if elem == "":
+                raise ValueError("Empty strings are not allowed")
+        return checked_list
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]):
