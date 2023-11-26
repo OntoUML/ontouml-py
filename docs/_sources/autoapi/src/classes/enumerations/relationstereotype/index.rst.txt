@@ -1,0 +1,160 @@
+:py:mod:`src.classes.enumerations.relationstereotype`
+=====================================================
+
+.. py:module:: src.classes.enumerations.relationstereotype
+
+.. autoapi-nested-parse::
+
+   This module defines the RelationStereotype enumeration, a subclass of OntoumlEnum, representing different stereotypes
+   applicable to relations in OntoUML.
+
+   Classes:
+       RelationStereotype (OntoumlEnum): Enumerates different stereotypes for relations in OntoUML.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   src.classes.enumerations.relationstereotype.RelationStereotype
+
+
+
+
+.. py:class:: RelationStereotype
+
+
+   Bases: :py:obj:`src.classes.enumerations.ontouml_enum.OntoumlEnum`
+
+   An enumeration representing different stereotypes applicable to relations in OntoUML.
+
+   This enum classifies various stereotypes that can be assigned to relational elements in an OntoUML model. It extends
+   OntoumlEnum to leverage automatic CamelCase conversion of member names.
+
+   Members:
+       BRINGS_ABOUT: Represents a 'brings about' stereotype.
+       CHARACTERIZATION: Represents a characterization stereotype.
+       COMPARATIVE: Represents a comparative stereotype.
+       COMPONENT_OF: Represents a 'component of' stereotype.
+       CREATION: Represents a creation stereotype.
+       DERIVATION: Represents a derivation stereotype.
+       EXTERNAL_DEPENDENCE: Represents an 'external dependence' stereotype.
+       HISTORICAL_DEPENDENCE: Represents a 'historical dependence' stereotype.
+       INSTANTIATION: Represents an instantiation stereotype.
+       MANIFESTATION: Represents a manifestation stereotype.
+       MATERIAL: Represents a material stereotype.
+       MEDIATION: Represents a mediation stereotype.
+       MEMBER_OF: Represents a 'member of' stereotype.
+       PARTICIPATION: Represents a participation stereotype.
+       PARTICIPATIONAL: Represents a participational stereotype.
+       SUB_COLLECTION_OF: Represents a 'sub-collection of' stereotype.
+       SUB_QUANTITY_OF: Represents a 'sub-quantity of' stereotype.
+       TERMINATION: Represents a termination stereotype.
+       TRIGGERS: Represents a triggers stereotype.
+
+   Each member of this enum is automatically converted to CamelCase format upon initialization.
+
+   Methods:
+       __init__: Initializes a new member of the RelationStereotype enum.
+
+   .. py:attribute:: BRINGS_ABOUT
+      :value: ()
+
+      
+
+   .. py:attribute:: CHARACTERIZATION
+      :value: ()
+
+      
+
+   .. py:attribute:: COMPARATIVE
+      :value: ()
+
+      
+
+   .. py:attribute:: COMPONENT_OF
+      :value: ()
+
+      
+
+   .. py:attribute:: CREATION
+      :value: ()
+
+      
+
+   .. py:attribute:: DERIVATION
+      :value: ()
+
+      
+
+   .. py:attribute:: EXTERNAL_DEPENDENCE
+      :value: ()
+
+      
+
+   .. py:attribute:: HISTORICAL_DEPENDENCE
+      :value: ()
+
+      
+
+   .. py:attribute:: INSTANTIATION
+      :value: ()
+
+      
+
+   .. py:attribute:: MANIFESTATION
+      :value: ()
+
+      
+
+   .. py:attribute:: MATERIAL
+      :value: ()
+
+      
+
+   .. py:attribute:: MEDIATION
+      :value: ()
+
+      
+
+   .. py:attribute:: MEMBER_OF
+      :value: ()
+
+      
+
+   .. py:attribute:: PARTICIPATION
+      :value: ()
+
+      
+
+   .. py:attribute:: PARTICIPATIONAL
+      :value: ()
+
+      
+
+   .. py:attribute:: SUB_COLLECTION_OF
+      :value: ()
+
+      
+
+   .. py:attribute:: SUB_QUANTITY_OF
+      :value: ()
+
+      
+
+   .. py:attribute:: TERMINATION
+      :value: ()
+
+      
+
+   .. py:attribute:: TRIGGERS
+      :value: ()
+
+      
+
+

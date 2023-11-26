@@ -1,0 +1,112 @@
+:py:mod:`src.classes.enumerations.ontologicalnature`
+====================================================
+
+.. py:module:: src.classes.enumerations.ontologicalnature
+
+.. autoapi-nested-parse::
+
+   This module defines the OntologicalNature enumeration, a subclass of OntoumlEnum, representing different kinds of
+   ontological natures in OntoUML.
+
+   Classes:
+       OntologicalNature (OntoumlEnum): Enumerates different kinds of ontological natures.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   src.classes.enumerations.ontologicalnature.OntologicalNature
+
+
+
+
+.. py:class:: OntologicalNature
+
+
+   Bases: :py:obj:`src.classes.enumerations.ontouml_enum.OntoumlEnum`
+
+   An enumeration representing different kinds of ontological natures in OntoUML.
+
+   This enum classifies various ontological natures that can be assigned to elements in an OntoUML model. It extends
+   OntoumlEnum to leverage automatic CamelCase conversion of member names.
+
+   Members:
+       ABSTRACT_NATURE: Represents an abstract nature.
+       COLLECTIVE_NATURE: Represents a collective nature.
+       EVENT_NATURE: Represents an event nature.
+       EXTRINSIC_MODE_NATURE: Represents an extrinsic mode nature.
+       FUNCTIONAL_COMPLEX_NATURE: Represents a functional complex nature.
+       INTRINSIC_MODE_NATURE: Represents an intrinsic mode nature.
+       QUALITY_NATURE: Represents a quality nature.
+       QUANTITY_NATURE: Represents a quantity nature.
+       RELATOR_NATURE: Represents a relator nature.
+       SITUATION_NATURE: Represents a situation nature.
+       TYPE_NATURE: Represents a type nature.
+
+   Each member of this enum is automatically converted to CamelCase format upon initialization.
+
+   Methods:
+       __init__: Initializes a new member of the OntologicalNature enum.
+
+   .. py:attribute:: ABSTRACT_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: COLLECTIVE_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: EVENT_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: EXTRINSIC_MODE_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: FUNCTIONAL_COMPLEX_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: INTRINSIC_MODE_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: QUALITY_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: QUANTITY_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: RELATOR_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: SITUATION_NATURE
+      :value: ()
+
+      
+
+   .. py:attribute:: TYPE_NATURE
+      :value: ()
+
+      
+
+

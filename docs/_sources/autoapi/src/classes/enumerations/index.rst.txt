@@ -1,0 +1,22 @@
+:py:mod:`src.classes.enumerations`
+==================================
+
+.. py:module:: src.classes.enumerations
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   aggregationkind/index.rst
+   classstereotype/index.rst
+   ontologicalnature/index.rst
+   ontologyrepresentationstyle/index.rst
+   ontouml_enum/index.rst
+   propertystereotype/index.rst
+   relationstereotype/index.rst
+   utils_enumerations/index.rst
+
+

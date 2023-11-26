@@ -1,0 +1,69 @@
+:py:mod:`src.classes.enumerations.ontouml_enum`
+===============================================
+
+.. py:module:: src.classes.enumerations.ontouml_enum
+
+.. autoapi-nested-parse::
+
+   This module defines a base class for creating enumerations in OntoUML, where enum members are automatically converted
+   to CamelCase format and a utility method is provided to retrieve all enum members.
+
+   Classes:
+       OntoumlEnum (Enum, metaclass=EnumABCMeta): An abstract base class for OntoUML enumerations.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   src.classes.enumerations.ontouml_enum.EnumABCMeta
+   src.classes.enumerations.ontouml_enum.OntoumlEnum
+
+
+
+
+.. py:class:: EnumABCMeta
+
+
+   Bases: :py:obj:`enum.EnumMeta`, :py:obj:`abc.ABCMeta`
+
+   A metaclass that combines the functionalities of EnumMeta and ABCMeta.
+
+   This metaclass is used to create abstract base classes that are also enums, allowing for the creation of enums
+   with abstract methods.
+
+
+.. py:class:: OntoumlEnum
+
+
+   Bases: :py:obj:`enum.Enum`
+
+   An abstract base class for OntoUML enumerations.
+
+   This class converts enum member names to CamelCase format and provides a method to retrieve all enum members.
+   Subclasses should define their enum members as usual, and they will automatically be converted to CamelCase.
+
+   Attributes:
+       _value_ (str): The CamelCase formatted string value of the enum member.
+
+   Methods:
+       __init__(): Initializes a new enum member, converting its name to CamelCase.
+       get_members(): Returns the keys of all members of the enum class.
+
+   .. py:method:: get_members()
+      :classmethod:
+
+      Returns the keys of the enum members.
+
+      This method retrieves the keys (names) of all members of the enum class.
+
+      :return: The keys of the enum members.
+      :rtype: KeysView[str]
+
+
+

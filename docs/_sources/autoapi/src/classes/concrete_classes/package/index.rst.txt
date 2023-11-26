@@ -1,0 +1,43 @@
+:py:mod:`src.classes.concrete_classes.package`
+==============================================
+
+.. py:module:: src.classes.concrete_classes.package
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   src.classes.concrete_classes.package.Package
+
+
+
+
+.. py:class:: Package(**data)
+
+
+   Bases: :py:obj:`src.classes.abstract_classes.modelelement.ModelElement`
+
+   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+
+   This class provides functionality for managing named elements, including their preferred name, alternative names,
+   descriptions, editorial notes, as well as lists of creators and contributors.
+
+   :ivar names: The preferred names of the element, represented as a list of LangStrings.
+   :vartype names: list[LangString]
+   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
+   :vartype alt_names: list[LangString]
+   :ivar description: A LangString object representing the description of the element.
+   :vartype description: Optional[LangString]
+   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
+   :vartype editorial_notes: list[LangString]
+   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
+   :vartype creators: list[str]
+   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
+   :vartype contributors: list[str]
+
+

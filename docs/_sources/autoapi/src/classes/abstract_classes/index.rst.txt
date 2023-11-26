@@ -1,0 +1,17 @@
+:py:mod:`src.classes.abstract_classes`
+======================================
+
+.. py:module:: src.classes.abstract_classes
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   modelelement/index.rst
+   namedelement/index.rst
+   ontoumlelement/index.rst
+
+
