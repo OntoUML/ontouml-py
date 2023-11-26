@@ -13,22 +13,15 @@ class OntologyRepresentationStyle(OntoumlEnum):
     """
     Enumerates different styles of ontology representation in OntoUML.
 
-    This enumeration class inherits from OntoumlEnum and automatically converts its member names to CamelCase format.
-    It provides a clear and standardized way to refer to different ontology representation styles.
+    This enumeration class inherits from OntoumlEnum and automatically sets the value of each enum member to a
+    CamelCase string corresponding to its name. It provides a clear and standardized way to refer to different ontology
+    representation styles.
 
-    Members:
-        ONTOUML_STYLE: Represents the OntoUML style of ontology representation.
-        UFO_STYLE: Represents the UFO style of ontology representation.
+    :cvar ONTOUML_STYLE: Represents the OntoUML style of ontology representation.
+    :vartype ONTOUML_STYLE: str
+    :cvar UFO_STYLE: Represents the UFO style of ontology representation.
+    :vartype UFO_STYLE: str
     """
 
-    ONTOUML_STYLE = ()
-    UFO_STYLE = ()
-
-    def __init__(self) -> None:
-        """
-        Initializes a new member of the OntologyRepresentationStyle enum.
-
-        This constructor calls the superclass constructor to ensure the name of the enum member is converted to
-        CamelCase format.
-        """
-        super().__init__()
+    ONTOUML_STYLE = "ontoumlStyle"
+    UFO_STYLE = "ufoStyle"

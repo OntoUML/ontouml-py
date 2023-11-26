@@ -14,7 +14,7 @@ class OntologicalNature(OntoumlEnum):
     An enumeration representing different kinds of ontological natures in OntoUML.
 
     This enum classifies various ontological natures that can be assigned to elements in an OntoUML model. It extends
-    OntoumlEnum to leverage automatic CamelCase conversion of member names.
+    OntoumlEnum.
 
     Members:
         ABSTRACT_NATURE: Represents an abstract nature.
@@ -28,30 +28,16 @@ class OntologicalNature(OntoumlEnum):
         RELATOR_NATURE: Represents a relator nature.
         SITUATION_NATURE: Represents a situation nature.
         TYPE_NATURE: Represents a type nature.
-
-    Each member of this enum is automatically converted to CamelCase format upon initialization.
-
-    Methods:
-        __init__: Initializes a new member of the OntologicalNature enum.
     """
 
-    ABSTRACT_NATURE = ()
-    COLLECTIVE_NATURE = ()
-    EVENT_NATURE = ()
-    EXTRINSIC_MODE_NATURE = ()
-    FUNCTIONAL_COMPLEX_NATURE = ()
-    INTRINSIC_MODE_NATURE = ()
-    QUALITY_NATURE = ()
-    QUANTITY_NATURE = ()
-    RELATOR_NATURE = ()
-    SITUATION_NATURE = ()
-    TYPE_NATURE = ()
-
-    def __init__(self) -> None:
-        """
-        Initializes a new member of the OntologicalNature enum.
-
-        This constructor calls the superclass constructor to ensure the name of the enum member is converted to
-        CamelCase format.
-        """
-        super().__init__()
+    ABSTRACT_NATURE = "abstractNature"
+    COLLECTIVE_NATURE = "collectiveNature"
+    EVENT_NATURE = "eventNature"
+    EXTRINSIC_MODE_NATURE = "extrinsicModeNature"
+    FUNCTIONAL_COMPLEX_NATURE = "functionalComplexNature"
+    INTRINSIC_MODE_NATURE = "intrinsicModeNature"
+    QUALITY_NATURE = "qualityNature"
+    QUANTITY_NATURE = "quantityNature"
+    RELATOR_NATURE = "relatorNature"
+    SITUATION_NATURE = "situationNature"
+    TYPE_NATURE = "typeNature"

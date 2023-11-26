@@ -1,16 +1,10 @@
 """
-This module defines a base class for creating enumerations in OntoUML, where enum members are automatically converted
-to CamelCase format and a utility method is provided to retrieve all enum members.
-
-Classes:
-    OntoumlEnum (Enum, metaclass=EnumABCMeta): An abstract base class for OntoUML enumerations.
+This module defines a base class for creating enumerations in OntoUML.
 """
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 from enum import Enum, EnumMeta
 from typing import KeysView
-
-from src.classes.enumerations.utils_enumerations import enum_literal_to_camel_case
 
 
 class EnumABCMeta(EnumMeta, ABCMeta):
@@ -26,28 +20,9 @@ class OntoumlEnum(Enum, metaclass=EnumABCMeta):
     """
     An abstract base class for OntoUML enumerations.
 
-    This class converts enum member names to CamelCase format and provides a method to retrieve all enum members.
-    Subclasses should define their enum members as usual, and they will automatically be converted to CamelCase.
-
-    Attributes:
-        _value_ (str): The CamelCase formatted string value of the enum member.
-
-    Methods:
-        __init__(): Initializes a new enum member, converting its name to CamelCase.
-        get_members(): Returns the keys of all members of the enum class.
+    This class provides a framework for creating enumerations in OntoUML. It allows for the definition of enum members
+    in subclasses, which can be used to represent various categorizations and types within the OntoUML model.
     """
-
-    @abstractmethod
-    def __init__(self) -> None:
-        """
-        Initializes a new enum member, converting its name to CamelCase.
-
-        This method is called automatically for each enum member when the enum class is created. It converts the
-        member's name from uppercase with underscores to CamelCase format.
-
-        :raises ValueError: If the name is not in the expected uppercase and underscore format.
-        """
-        self._value_ = enum_literal_to_camel_case(self.name)
 
     @classmethod
     def get_members(cls) -> KeysView[str]:

@@ -14,7 +14,7 @@ class RelationStereotype(OntoumlEnum):
     An enumeration representing different stereotypes applicable to relations in OntoUML.
 
     This enum classifies various stereotypes that can be assigned to relational elements in an OntoUML model. It extends
-    OntoumlEnum to leverage automatic CamelCase conversion of member names.
+    OntoumlEnum.
 
     Members:
         BRINGS_ABOUT: Represents a 'brings about' stereotype.
@@ -36,38 +36,24 @@ class RelationStereotype(OntoumlEnum):
         SUB_QUANTITY_OF: Represents a 'sub-quantity of' stereotype.
         TERMINATION: Represents a termination stereotype.
         TRIGGERS: Represents a triggers stereotype.
-
-    Each member of this enum is automatically converted to CamelCase format upon initialization.
-
-    Methods:
-        __init__: Initializes a new member of the RelationStereotype enum.
     """
 
-    BRINGS_ABOUT = ()
-    CHARACTERIZATION = ()
-    COMPARATIVE = ()
-    COMPONENT_OF = ()
-    CREATION = ()
-    DERIVATION = ()
-    EXTERNAL_DEPENDENCE = ()
-    HISTORICAL_DEPENDENCE = ()
-    INSTANTIATION = ()
-    MANIFESTATION = ()
-    MATERIAL = ()
-    MEDIATION = ()
-    MEMBER_OF = ()
-    PARTICIPATION = ()
-    PARTICIPATIONAL = ()
-    SUB_COLLECTION_OF = ()
-    SUB_QUANTITY_OF = ()
-    TERMINATION = ()
-    TRIGGERS = ()
-
-    def __init__(self) -> None:
-        """
-        Initializes a new member of the RelationStereotype enum.
-
-        This constructor calls the superclass constructor to ensure the name of the enum member is converted to
-        CamelCase format.
-        """
-        super().__init__()
+    BRINGS_ABOUT = "bringsAbout"
+    CHARACTERIZATION = "characterization"
+    COMPARATIVE = "comparative"
+    COMPONENT_OF = "componentOf"
+    CREATION = "creation"
+    DERIVATION = "derivation"
+    EXTERNAL_DEPENDENCE = "externalDependence"
+    HISTORICAL_DEPENDENCE = "historicalDependence"
+    INSTANTIATION = "instantiation"
+    MANIFESTATION = "manifestation"
+    MATERIAL = "material"
+    MEDIATION = "mediation"
+    MEMBER_OF = "memberOf"
+    PARTICIPATION = "participation"
+    PARTICIPATIONAL = "participational"
+    SUB_COLLECTION_OF = "subCollectionOf"
+    SUB_QUANTITY_OF = "subQuantityOf"
+    TERMINATION = "termination"
+    TRIGGERS = "triggers"

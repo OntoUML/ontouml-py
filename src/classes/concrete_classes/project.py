@@ -13,6 +13,9 @@ from pydantic import Field, PrivateAttr, field_validator
 from src.classes.abstract_classes.namedelement import NamedElement
 from src.classes.abstract_classes.ontoumlelement import OntoumlElement
 from src.classes.concrete_classes.package import Package
+from src.classes.enumerations.ontologyrepresentationstyle import (
+    OntologyRepresentationStyle,
+)
 
 
 class Project(NamedElement):
@@ -73,7 +76,7 @@ class Project(NamedElement):
     designed_for_task: list[str] = Field(default_factory=list)
     publisher: Optional[str] = Field(min_length=1, default=None)
     root_package: Optional[Package] = Field(default=None)
-    # TODO (@pedropaulofb): Add representationStyle
+    representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
     # Configuration settings for the Project model using Pydantic.
     model_config = {  # noqa (vulture)
@@ -112,6 +115,7 @@ class Project(NamedElement):
         :param data: Fields to be set on the model instance.
         :type data: dict
         """
+        ic(data)
         super().__init__(**data)
         elements = data.get("elements")
         if elements is not None and not isinstance(elements, list):

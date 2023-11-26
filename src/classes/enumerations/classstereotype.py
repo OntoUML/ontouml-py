@@ -45,33 +45,24 @@ class ClassStereotype(OntoumlEnum):
         __init__: Initializes a new member of the ClassStereotype enum.
     """
 
-    ABSTRACT = ()
-    CATEGORY = ()
-    COLLECTIVE = ()
-    DATATYPE = ()
-    ENUMERATION = ()
-    EVENT = ()
-    HISTORICAL_ROLE = ()
-    HISTORICAL_ROLE_MIXIN = ()
-    KIND = ()
-    MIXIN = ()
-    MODE = ()
-    PHASE = ()
-    PHASE_MIXIN = ()
-    QUALITY = ()
-    QUANTITY = ()
-    RELATOR = ()
-    ROLE = ()
-    ROLE_MIXIN = ()
-    SITUATION = ()
-    SUB_KIND = ()
-    TYPE = ()
-
-    def __init__(self) -> None:
-        """
-        Initializes a new member of the ClassStereotype enum.
-
-        This constructor calls the superclass constructor to ensure the name of the enum member is converted to
-        CamelCase format.
-        """
-        super().__init__()
+    ABSTRACT = "abstract"
+    CATEGORY = "category"
+    COLLECTIVE = "collective"
+    DATATYPE = "datatype"
+    ENUMERATION = "enumeration"
+    EVENT = "event"
+    HISTORICAL_ROLE = "historicalRole"
+    HISTORICAL_ROLE_MIXIN = "historicalRoleMixin"
+    KIND = "kind"
+    MIXIN = "mixin"
+    MODE = "mode"
+    PHASE = "phase"
+    PHASE_MIXIN = "phaseMixin"
+    QUALITY = "quality"
+    QUANTITY = "quantity"
+    RELATOR = "relator"
+    ROLE = "role"
+    ROLE_MIXIN = "roleMixin"
+    SITUATION = "situation"
+    SUBKIND = "subkind"
+    TYPE = "type"
