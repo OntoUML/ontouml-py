@@ -34,12 +34,12 @@ class NamedElement(OntoumlElement):
     :vartype contributors: list[str]
     """
 
-    names: list[LangString] = Field(default_factory=list)
-    alt_names: list[LangString] = Field(default_factory=list)
+    names: set[LangString] = Field(default_factory=set)
+    alt_names: set[LangString] = Field(default_factory=set)
     description: Optional[LangString] = Field(default=None)
-    editorial_notes: list[LangString] = Field(default_factory=list)
-    creators: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list
-    contributors: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list
+    editorial_notes: set[LangString] = Field(default_factory=set)
+    creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
+    contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
 
     # Pydantic's configuration settings for the NamedElement class.
     model_config = {  # noqa (vulture)
@@ -52,7 +52,7 @@ class NamedElement(OntoumlElement):
 
     @field_validator("creators", "contributors", mode="after")
     @classmethod
-    def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:  # noqa (vulture)
+    def ensure_non_empty(cls, checked_list: set[str]) -> set[str]:  # noqa (vulture)
         for elem in checked_list:
             if elem == "":
                 raise ValueError("Empty strings are not allowed")
@@ -87,3 +87,4 @@ class NamedElement(OntoumlElement):
             )
         # Sets attributes
         super().__init__(**data)
+

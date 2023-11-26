@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime, timedelta
 
 import pytest
+from icecream import ic
 from pydantic import ValidationError
 
 from src.classes.abstract_classes.namedelement import NamedElement
@@ -398,7 +399,8 @@ def test_no_duplicates_in_project_after_repeated_additions(
     """Test that `in_project` contains no duplicates after repeated additions."""
     for _ in range(5):
         project.add_element(concrete_ontouml_element)
-    assert concrete_ontouml_element.in_project.count(project) == 1, "No duplicates should be in `in_project`."
+    assert len(project._elements) == 1, "No duplicates should be in '_elements'."
+    assert len(concrete_ontouml_element.in_project) == 1, "No duplicates should be in 'in_project'."
 
 
 def test_project_not_in_in_project_after_removal_from_multiple_projects(

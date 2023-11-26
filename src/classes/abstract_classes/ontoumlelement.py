@@ -35,7 +35,7 @@ class OntoumlElement(ABC, BaseModel):
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
-    in_project: list[Project] = Field(default_factory=list)  # noqa:F821 (flake8) # Forward declaration of Project
+    in_project: set[Project] = Field(default_factory=set)  # noqa:F821 (flake8) # Forward declaration of Project
 
     # Pydantic's configuration settings for the OntoumlElement class.
     model_config = {  # noqa (vulture)

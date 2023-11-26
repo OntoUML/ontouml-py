@@ -719,7 +719,7 @@ def test_namedelement_with_reversed_uri_lists() -> None:
     :return: None
     :raises AssertionError: If instantiation with reversed URI lists is not handled correctly.
     """
-    reversed_uris = ["http://example.com/2", "http://example.com/1"]
+    reversed_uris = set(["http://example.com/2", "http://example.com/1"])
     element = Project(creators=reversed_uris, contributors=reversed_uris)
     assert (
         element.creators == reversed_uris and element.contributors == reversed_uris

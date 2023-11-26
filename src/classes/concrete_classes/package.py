@@ -11,3 +11,12 @@ class Package(ModelElement):
         :type data: dict
         """
         super().__init__(**data)
+
+    def __eq__(self, other):
+        if not isinstance(other, Package):
+            return NotImplemented
+        return self.id == other.id  # Assuming 'id' is a unique identifier for Project instances
+
+    def __hash__(self):
+        return hash(self.id)  # Hash based on a unique identifier
+

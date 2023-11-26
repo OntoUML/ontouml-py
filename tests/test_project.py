@@ -6,8 +6,9 @@ from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
 from src.classes.abstract_classes.modelelement import ModelElement
-from src.classes.concrete_classes import Project
 from src.classes.concrete_classes.package import Package as RealPackage
+from src.classes.concrete_classes.project import Project
+from src.classes.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
 
 
 # Utility functions and fixtures
@@ -19,7 +20,7 @@ def create_langstring(text: str) -> LangString:
     :return: A LangString object containing the provided text.
     :rtype: LangString
     """
-    return LangString(text)
+    return LangString(text, "en")
 
 
 class Package(ModelElement):
@@ -85,77 +86,112 @@ def valid_ontoumlelement_list() -> list[Package]:
     return [Package(), Package()]
 
 
-# Test for successful initialization of Project
-def test_project_initialization(
-    valid_langstring_list: list[LangString], valid_ontoumlelement_list: list[Package]
-) -> None:
-    """Test the successful initialization of a Project instance with valid parameters.
+def test_project_string_attributes(valid_langstring_list: list[LangString]) -> None:
+    """
+    Test the initialization of Project's string type attributes.
 
     :param valid_langstring_list: A list of LangString objects for testing.
     :type valid_langstring_list: list[LangString]
-    :param valid_ontoumlelement_list: A list of OntoumlElementStub objects for testing.
-    :type valid_ontoumlelement_list: list[Package]
     """
     project = Project(
-        pref_name=create_langstring("Project Name"),
+        names=[create_langstring("Project Name")],
         alt_names=valid_langstring_list,
         description=create_langstring("Project Description"),
         editorial_notes=valid_langstring_list,
-        creators=["http://creator1.com", "http://creator2.com"],
-        contributors=["http://contributor1.com", "http://contributor2.com"],
-        acronyms=["P1", "P2"],
-        bibliographic_citations=["Citation1", "Citation2"],
-        keywords=valid_langstring_list,
-        landing_pages=["http://landingpage1.com", "http://landingpage2.com"],
-        languages=["en", "pt"],
+        creators=["http://creator1.com"],
+        contributors=["http://contributor1.com"],
+        acronyms=["P1"],
+        bibliographic_citations=["Citation1"],
+        keywords=["my_keyword1", "my_keyword2"],
+        landing_pages=["http://landingpage1.com"],
+        languages=["en"],
         namespace="http://example.org/ns",
-        sources=["http://source1.com", "http://source2.com"],
-        access_rights=["Public", "Restricted"],
-        ontology_types=["Formal", "Informal"],
-        themes=["Theme1", "Theme2"],
+        sources=["http://source1.com"],
+        access_rights=["Public"],
+        ontology_types=["Formal"],
+        themes=["Theme1"],
         license="CC BY 4.0",
-        contexts=["Context1", "Context2"],
-        designed_for_task=["Task1", "Task2"],
+        contexts=["Context1"],
+        designed_for_task=["Task1"],
         publisher="Publisher Name",
+        representation_style=OntologyRepresentationStyle.ONTOUML_STYLE,
     )
 
-    for element in valid_ontoumlelement_list:
-        project.add_element(element)
+    assert project.namespace == "http://example.org/ns", "Project should have the correct 'namespace'."
+    assert project.license == "CC BY 4.0", "Project should have the correct 'license'."
+    assert project.publisher == "Publisher Name", "Project should have the correct 'publisher'."
 
-    # Assertions to validate initialization
-    assert project.elements == valid_ontoumlelement_list, "Project should have the correct 'elements'."
-    assert project.names.text == "Project Name", "Project should have the correct 'names'."
+
+def test_project_langstring_attributes(valid_langstring_list: list[LangString]) -> None:
+    """
+    Test the initialization of Project's LangString type attributes.
+
+    :param valid_langstring_list: A list of LangString objects for testing.
+    :type valid_langstring_list: list[LangString]
+    """
+    project = Project(
+        names=[create_langstring("Project Name")],
+        alt_names=valid_langstring_list,
+        description=create_langstring("Project Description"),
+        editorial_notes=valid_langstring_list,
+        creators=["http://creator1.com"],
+        contributors=["http://contributor1.com"],
+        acronyms=["P1"],
+        bibliographic_citations=["Citation1"],
+        keywords=valid_langstring_list,
+        landing_pages=["http://landingpage1.com"],
+        languages=["en"],
+        namespace="http://example.org/ns",
+        sources=["http://source1.com"],
+        access_rights=["Public"],
+        ontology_types=["Formal"],
+        themes=["Theme1"],
+        license="CC BY 4.0",
+        contexts=["Context1"],
+        designed_for_task=["Task1"],
+        publisher="Publisher Name",
+        representation_style=OntologyRepresentationStyle.ONTOUML_STYLE,
+    )
+
+    assert project.names[0].text == "Project Name", "Project should have the correct 'names'."
     assert project.alt_names == valid_langstring_list, "Project should have the correct 'alt_names'."
     assert project.description.text == "Project Description", "Project should have the correct 'description'."
     assert project.editorial_notes == valid_langstring_list, "Project should have the correct 'editorial_notes'."
-    assert project.creators == [
-        "http://creator1.com",
-        "http://creator2.com",
-    ], "Project should have the correct 'creators'."
-    assert project.contributors == [
-        "http://contributor1.com",
-        "http://contributor2.com",
-    ], "Project should have the correct 'contributors'."
-    assert project.acronyms == ["P1", "P2"], "Project should have the correct 'acronyms'."
-    assert project.bibliographic_citations == [
-        "Citation1",
-        "Citation2",
-    ], "Project should have the correct 'bibliographic_citations'."
     assert project.keywords == valid_langstring_list, "Project should have the correct 'keywords'."
-    assert project.landing_pages == [
-        "http://landingpage1.com",
-        "http://landingpage2.com",
-    ], "Project should have the correct 'landing_pages'."
-    assert project.languages == ["en", "pt"], "Project should have the correct 'languages'."
-    assert project.namespace == "http://example.org/ns", "Project should have the correct 'namespace'."
-    assert project.sources == ["http://source1.com", "http://source2.com"], "Project should have the correct 'sources'."
-    assert project.access_rights == ["Public", "Restricted"], "Project should have the correct 'access_rights'."
-    assert project.ontology_types == ["Formal", "Informal"], "Project should have the correct 'ontology_types'."
-    assert project.themes == ["Theme1", "Theme2"], "Project should have the correct 'themes'."
-    assert project.license == "CC BY 4.0", "Project should have the correct 'license'."
-    assert project.contexts == ["Context1", "Context2"], "Project should have the correct 'contexts'."
-    assert project.designed_for_task == ["Task1", "Task2"], "Project should have the correct 'designed_for_task'."
-    assert project.publisher == "Publisher Name", "Project should have the correct 'publisher'."
+
+
+def test_project_list_attributes(valid_langstring_list: list[LangString]) -> None:
+    """
+    Test the initialization of Project's list type attributes.
+
+    :param valid_langstring_list: A list of LangString objects for testing.
+    :type valid_langstring_list: list[LangString]
+    """
+    project = Project(
+        names=[create_langstring("Project Name")],
+        alt_names=valid_langstring_list,
+        description=create_langstring("Project Description"),
+        editorial_notes=valid_langstring_list,
+        creators=["http://creator1.com"],
+        contributors=["http://contributor1.com"],
+        acronyms=["P1"],
+        bibliographic_citations=["Citation1"],
+        keywords=valid_langstring_list,
+        landing_pages=["http://landingpage1.com"],
+        languages=["en"],
+        namespace="http://example.org/ns",
+        sources=["http://source1.com"],
+        access_rights=["Public"],
+        ontology_types=["Formal"],
+        themes=["Theme1"],
+        license="CC BY 4.0",
+        contexts=["Context1"],
+        designed_for_task=["Task1"],
+        publisher="Publisher Name",
+        representation_style=OntologyRepresentationStyle.ONTOUML_STYLE,
+    )
+
+    assert project
 
 
 # Test assertion after non-empty creation with empty string, list, or tuple - mutability test
@@ -164,10 +200,15 @@ def test_project_mutable_update_empty_values() -> None:
 
     :raises AssertionError: If the attributes don't update to empty values correctly.
     """
-    project = Project(pref_name=create_langstring("Initial"), alt_names=[create_langstring("Alt")])
-    project.names = create_langstring("")
-    project.alt_names = []
-    assert project.names.text == "" and project.alt_names == [], "Should update to empty values correctly."
+    project = Project(
+        names=[create_langstring("Initial1"), create_langstring("Initial2")],
+        alt_names=[create_langstring("Alt1"), create_langstring("Alt2")],
+    )
+    ls1 = create_langstring("a")
+    ls2 = create_langstring("b")
+    project.names = [ls1]
+    project.alt_names = [ls2]
+    assert project.names[0] == ls1 and project.alt_names[0] == ls2, "Should update to empty values correctly."
 
 
 def test_project_invalid_value_in_list_post_init() -> None:
@@ -337,16 +378,28 @@ def test_project_mixing_types_in_lists() -> None:
         Project(acronyms=[True, "ACR"])  # Mixing bool and str in 'acronyms'
 
 
+def test_project_non_empty_values_post_initialization() -> None:
+    """Test assigning empty values to attributes post-initialization."""
+    project = Project(names=[create_langstring("Test")])
+    project.namespace = "a"
+    project.license = "b"
+    project.publisher = "c"
+
+    assert project.namespace == "a", "Should allow setting empty string for 'namespace' post-initialization."
+    assert project.license == "b", "Should allow setting empty string for 'license' post-initialization."
+    assert project.publisher == "c", "Should allow setting empty string for 'publisher' post-initialization."
+
+
 def test_project_empty_values_post_initialization() -> None:
     """Test assigning empty values to attributes post-initialization."""
-    project = Project(pref_name=create_langstring("Test"))
-    project.namespace = ""
-    project.license = ""
-    project.publisher = ""
+    project = Project(names=[create_langstring("Test")])
 
-    assert project.namespace == "", "Should allow setting empty string for 'namespace' post-initialization."
-    assert project.license == "", "Should allow setting empty string for 'license' post-initialization."
-    assert project.publisher == "", "Should allow setting empty string for 'publisher' post-initialization."
+    with pytest.raises(ValidationError):
+        project.namespace = ""
+    with pytest.raises(ValidationError):
+        project.license = ""
+    with pytest.raises(ValidationError):
+        project.publisher = ""
 
 
 def test_project_future_past_dates() -> None:
@@ -971,11 +1024,11 @@ def test_project_remove_element_unaffected_properties() -> None:
 
     :raises AssertionError: If project properties are affected by the element removal.
     """
-    project = Project(pref_name=create_langstring("Test Project"))
+    project = Project(names=[create_langstring("Test Project")])
     element = create_ontoumlelement()
     project.add_element(element)
     project.remove_element(element)
-    assert project.names.text == "Test Project", "Project properties should remain unaffected after element removal."
+    assert project.names[0].text == "Test Project", "Project properties should remain unaffected after element removal."
 
 
 # Test removing elements and checking for empty state after each removal
@@ -1124,3 +1177,107 @@ def test_project_root_package_independence_from_other_projects() -> None:
     project1 = Project(root_package=package1)
     project2 = Project(root_package=package2)
     assert project1.root_package != project2.root_package, "Each project should have an independent root_package."
+
+
+def test_project_keywords_attribute() -> None:
+    """
+    Test the assignment and retrieval of the 'keywords' attribute in a Project instance.
+
+    :raises AssertionError: If the 'keywords' attribute does not store or return LangString objects correctly.
+    """
+    project = Project()
+    test_keywords = [LangString("Ontology"), LangString("Modeling")]
+    project.keywords = test_keywords
+    assert (
+        project.keywords == test_keywords
+    ), "The 'keywords' attribute should correctly store and return LangString objects."
+
+
+def test_project_license_attribute() -> None:
+    """
+    Test the assignment and retrieval of the 'license' attribute in a Project instance.
+
+    :raises AssertionError: If the 'license' attribute does not store or return the license string correctly.
+    """
+    project = Project()
+    test_license = "MIT License"
+    project.license = test_license
+    assert (
+        project.license == test_license
+    ), "The 'license' attribute should correctly store and return the license string."
+
+
+def test_project_publisher_attribute() -> None:
+    """
+    Test the assignment and retrieval of the 'publisher' attribute in a Project instance.
+
+    :raises AssertionError: If the 'publisher' attribute does not store or return the publisher string correctly.
+    """
+    project = Project()
+    test_publisher = "Springer"
+    project.publisher = test_publisher
+    assert (
+        project.publisher == test_publisher
+    ), "The 'publisher' attribute should correctly store and return the publisher string."
+
+
+def test_project_representation_style_attribute() -> None:
+    """
+    Test the assignment and retrieval of the 'representation_style' attribute in a Project instance.
+
+    :raises AssertionError: If the 'representation_style' attribute does not store or return the OntologyRepresentationStyle enum correctly.
+    """
+    project = Project()
+    test_style = OntologyRepresentationStyle.ONTOUML_STYLE
+    project.representation_style = test_style
+    assert (
+        project.representation_style == test_style
+    ), "The 'representation_style' attribute should correctly store and return the OntologyRepresentationStyle enum value."
+
+
+# Test initialization with invalid values but valid types
+
+def test_project_initialization_with_invalid_acronyms():
+    """
+    Test the initialization of a Project instance with invalid acronyms (valid type: list of strings, but invalid values).
+
+    :raises AssertionError: If the Project instance does not raise a ValueError for invalid acronyms.
+    """
+    invalid_acronyms = ["", "   ", " \n\t"]
+    for acronym in invalid_acronyms:
+        with pytest.raises(ValidationError, match="validation error for"):
+            Project(acronyms=[acronym])
+
+def test_project_initialization_with_invalid_bibliographic_citations():
+    """
+    Test the initialization of a Project instance with invalid bibliographic citations (valid type: list of strings, but invalid values).
+
+    :raises AssertionError: If the Project instance does not raise a ValueError for invalid bibliographic citations.
+    """
+    invalid_citations = ["", "   ", " \n\t"]
+    for citation in invalid_citations:
+        with pytest.raises(ValidationError, match="validation error for"):
+            Project(bibliographic_citations=[citation])
+
+def test_project_initialization_with_invalid_keywords():
+    """
+    Test the initialization of a Project instance with invalid keywords (valid type: list of LangString, but invalid values).
+
+    :raises AssertionError: If the Project instance does not raise a ValueError for invalid keywords.
+    """
+    invalid_keywords = [LangString(""), LangString("   "), LangString(" \n\t")]
+    for keyword in invalid_keywords:
+        with pytest.raises(ValidationError, match="validation error for"):
+            Project(keywords=[keyword])
+
+def test_project_initialization_with_invalid_landing_pages():
+    """
+    Test the initialization of a Project instance with invalid landing pages (valid type: list of strings, but invalid values).
+
+    :raises AssertionError: If the Project instance does not raise a ValueError for invalid landing pages.
+    """
+    invalid_pages = ["", "   ", " \n\t"]
+    for page in invalid_pages:
+        with pytest.raises(ValidationError, match="validation error for"):
+            Project(landing_pages=[page])
+
