@@ -6,7 +6,6 @@ and landing pages, among others, providing a comprehensive representation of a p
 
 from typing import Any, Optional
 
-from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, PrivateAttr, field_validator
 
@@ -19,7 +18,8 @@ from src.classes.enumerations.ontologyrepresentationstyle import (
 
 
 class Project(NamedElement):
-    """A concrete class representing an OntoUML Project, extending the NamedElement class.
+    """
+    A concrete class representing an OntoUML Project, extending the NamedElement class.
 
     Manages project-related elements such as acronyms, bibliographic citations, keywords, landing pages, and more,
     providing a comprehensive representation of project metadata.
@@ -56,6 +56,10 @@ class Project(NamedElement):
     :vartype designed_for_task: list[str]
     :ivar publisher: Publisher of the project. Optional.
     :vartype publisher: Optional[str]
+    :ivar root_package: Root package of the project. Optional.
+    :vartype root_package: Optional[Package]
+    :ivar representation_style: Style of ontology representation used in the project.
+    :vartype representation_style: OntologyRepresentationStyle
     """
 
     # Private attributes
@@ -102,20 +106,30 @@ class Project(NamedElement):
     )
     @classmethod
     def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:  # noqa (vulture)
+        """
+        Validates that the provided list does not contain empty strings.
+
+        :param checked_list: The list to be validated.
+        :type checked_list: list[str]
+        :return: The validated list.
+        :rtype: list[str]
+        :raises ValueError: If any element in the list is an empty string.
+        """
         for elem in checked_list:
             if elem == "":
                 raise ValueError("Empty strings are not allowed")
         return checked_list
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Project instance.
+        """
+        Initialize a new Project instance.
 
         Inherits attributes from NamedElement and adds additional project-specific attributes.
 
         :param data: Fields to be set on the model instance.
-        :type data: dict
+        :type data: dict[str, Any]
+        :raises TypeError: If 'elements' is provided and is not a list.
         """
-        ic(data)
         super().__init__(**data)
         elements = data.get("elements")
         if elements is not None and not isinstance(elements, list):
@@ -123,8 +137,11 @@ class Project(NamedElement):
         self._elements: list[OntoumlElement] = elements if elements is not None else []
 
     def add_element(self, element: OntoumlElement) -> None:
-        """Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project \
-        itself. Also updates the inverse relationship in OntoumlElement and checks for duplicates.
+        """
+        Add an OntoumlElement to the project.
+
+        Ensures that the element is of the correct type and not a Project itself. Also updates the inverse relationship
+        in OntoumlElement and checks for duplicates.
 
         :param element: The OntoumlElement to be added to the project.
         :type element: OntoumlElement
@@ -139,12 +156,14 @@ class Project(NamedElement):
                 element.in_project.append(self)
 
     def remove_element(self, element: OntoumlElement) -> None:
-        """Remove an OntoumlElement from the project if it exists. Also updates the inverse relationship in \
-        OntoumlElement.
+        """
+        Remove an OntoumlElement from the project if it exists.
+
+        Also updates the inverse relationship in OntoumlElement.
 
         :param element: The OntoumlElement to be removed from the project.
         :type element: OntoumlElement
-        :raises TypeError: If the element is None.
+        :raises TypeError: If the element is not a valid OntoumlElement.
         """
         if not isinstance(element, OntoumlElement):
             raise TypeError(f"Element '{element}' cannot be removed as it is not a valid OntoumlElement.")
@@ -156,8 +175,11 @@ class Project(NamedElement):
 
     @property
     def elements(self) -> list[OntoumlElement]:
-        """Provide read-only access to the elements attribute. This is a workaround to prevent direct modification of \
-        the 'elements' list. Modifications should be done using add_element and remove_element methods.
+        """
+        Provide read-only access to the elements attribute.
+
+        This is a workaround to prevent direct modification of the 'elements' list. Modifications should be done using
+        add_element and remove_element methods.
 
         :return: A list of OntoumlElement objects.
         :rtype: list[OntoumlElement]
