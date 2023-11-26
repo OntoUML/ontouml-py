@@ -1,6 +1,7 @@
 from typing import Any
 
 import pytest
+from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
@@ -64,25 +65,23 @@ def test_namedelement_instantiation_with_arguments(
     :raises AssertionError: If attributes are not set as expected.
     """
     element = Project(
-        names=[valid_langstring],
-        alt_names=valid_langstring_list,
+        names={valid_langstring},
+        alt_names=set(valid_langstring_list),
         description=valid_langstring,
-        editorial_notes=valid_langstring_list,
-        creators=["http://creator1.com"],
-        contributors=["http://contributor1.com"],
+        editorial_notes=set(valid_langstring_list),
+        creators={"http://creator1.com"},
+        contributors={"http://contributor1.com"},
     )
-    assert element.names == [valid_langstring], "names should be initialized with the given list of LangString"
+    assert element.names == set([valid_langstring]), "names should be initialized with the given list of LangString"
     assert (
-        element.alt_names == valid_langstring_list
+        element.alt_names == set(valid_langstring_list)
     ), "alt_names should be initialized with the given list of LangString"
     assert element.description == valid_langstring, "description should be initialized with the given LangString"
     assert (
-        element.editorial_notes == valid_langstring_list
+        element.editorial_notes == set(valid_langstring_list)
     ), "editorial_notes should be initialized with the given list of LangString"
-    assert element.creators == ["http://creator1.com"], "creators should be initialized with the given list of URIs"
-    assert element.contributors == [
-        "http://contributor1.com"
-    ], "contributors should be initialized with the given list of URIs"
+    assert element.creators == set(["http://creator1.com"]), "creators should be initialized with the given list of URIs"
+    assert element.contributors == set(["http://contributor1.com"]), "contributors should be initialized with the given list of URIs"
 
 
 def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: LangString) -> None:
@@ -92,8 +91,8 @@ def test_namedelement_modifying_attributes_post_instantiation(valid_langstring: 
     :raises AssertionError: If attributes are not updated as expected.
     """
     element = Project()
-    element.names = [valid_langstring]
-    assert element.names == [valid_langstring], "names should be updatable post-instantiation"
+    element.names = set([valid_langstring])
+    assert element.names == set([valid_langstring]), "names should be updatable post-instantiation"
 
 
 def test_namedelement_type_validation() -> None:
@@ -102,7 +101,7 @@ def test_namedelement_type_validation() -> None:
     :raises ValidationError: If the wrong type is assigned to an attribute.
     """
     with pytest.raises(ValidationError):
-        Project(names=["Invalid Type"])  # Expect list of LangString, not list of str
+        Project(names="Invalid Type")  # Expect set of LangString, not str
 
 
 def test_namedelement_abstract_class_enforcement() -> None:
@@ -120,12 +119,12 @@ def test_namedelement_default_values() -> None:
     :raises AssertionError: If default values are not as expected.
     """
     element = Project()
-    assert element.names == [], "names should default to an empty list"
-    assert element.alt_names == [], "alt_names should default to an empty list"
+    assert element.names == set(), "names should default to an empty list"
+    assert element.alt_names == set(), "alt_names should default to an empty list"
     assert element.description is None, "description should default to None"
-    assert element.editorial_notes == [], "editorial_notes should default to an empty list"
-    assert element.creators == [], "creators should default to an empty list"
-    assert element.contributors == [], "contributors should default to an empty list"
+    assert element.editorial_notes == set(), "editorial_notes should default to an empty list"
+    assert element.creators == set(), "creators should default to an empty list"
+    assert element.contributors == set(), "contributors should default to an empty list"
 
 
 def test_namedelement_custom_initialization(valid_langstring: LangString) -> None:
@@ -134,7 +133,7 @@ def test_namedelement_custom_initialization(valid_langstring: LangString) -> Non
     :param valid_langstring: A valid LangString object.
     :raises AssertionError: If custom initialization does not work as expected.
     """
-    custom_names = [LangString("Custom Name")]
+    custom_names = {LangString("Custom Name")}
     element = Project(names=custom_names)
     assert element.names == custom_names, "names should be customizable during initialization"
 
@@ -146,8 +145,8 @@ def test_namedelement_updating_list_attributes(valid_langstring: LangString) -> 
     :raises AssertionError: If list attributes are not updatable.
     """
     element = Project()
-    element.alt_names.append(valid_langstring)
-    element.editorial_notes.append(valid_langstring)
+    element.alt_names.add(valid_langstring)
+    element.editorial_notes.add(valid_langstring)
     assert valid_langstring in element.alt_names, "alt_names should be updatable post-instantiation"
     assert valid_langstring in element.editorial_notes, "editorial_notes should be updatable post-instantiation"
 
@@ -188,8 +187,8 @@ def test_initialization_with_empty_list() -> None:
 
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list.
     """
-    element = Project(alt_names=[])
-    assert element.alt_names == [], "alt_names should be correctly initialized as an empty list."
+    element = Project()
+    assert element.alt_names == set(), "alt_names should be correctly initialized as an empty list."
 
 
 # Test post-initialization assertions with invalid value and valid type
@@ -222,32 +221,51 @@ def test_post_initialization_with_empty_list() -> None:
     :raises AssertionError: If 'alt_names' does not correctly handle being set to an empty list post-instantiation.
     """
     element = Project()
-    element.alt_names = []
-    assert element.alt_names == [], "alt_names should be correctly set to an empty list post-instantiation."
+    element.alt_names = set()
+    assert element.alt_names == set(), "alt_names should be correctly set to an empty list post-instantiation."
 
 
 # Edge case tests for 'names'
-@pytest.mark.parametrize("edge_case_value", [LangString(""), LangString(" "), LangString("\n")])
-def test_names_edge_cases(edge_case_value: LangString) -> None:
-    """Test initializing NamedElement with edge case LangString values for 'names'.
+@pytest.mark.parametrize(
+    "edge_case_value",
+    [
+        set([LangString("")]),
+        set([LangString(" ")]),
+        set([LangString("\n")])
+    ]
+)
+def test_names_edge_cases(edge_case_value: set[LangString]) -> None:
+    """
+    Test initializing NamedElement with edge case LangString values for 'names'.
 
-    :param edge_case_value: A LangString object with edge case content.
+    :param edge_case_value: A set containing a LangString object with edge case content.
     :raises AssertionError: If 'names' does not handle edge case values correctly.
     """
-    element = Project(names=[edge_case_value])
-    assert element.names == [edge_case_value], "names should correctly handle edge case LangString values."
+    ic(edge_case_value)
+    ic(type(edge_case_value))
+    element = Project(names=edge_case_value)
+    ic(element.names)
+    ic(type(element.names))
+    assert element.names == edge_case_value, "Names should correctly handle edge case LangString values."
+
 
 
 # Edge case tests for 'alt_names'
-@pytest.mark.parametrize("edge_case_list", [[], [LangString("")], [LangString(" "), LangString("\n")]])
+@pytest.mark.parametrize(
+    "edge_case_list",
+    [[], [LangString("")], [LangString(" "), LangString("\n")]]
+)
 def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
-    """Test initializing NamedElement with edge case lists for 'alt_names'.
+    """
+    Test initializing NamedElement with edge case lists for 'alt_names'.
 
     :param edge_case_list: A list of LangString objects with edge case content.
     :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
     """
-    element = Project(alt_names=edge_case_list)
-    assert element.alt_names == edge_case_list, "alt_names should correctly handle edge case lists."
+    element = Project(alt_names=set(edge_case_list))
+    expected_set = set(edge_case_list)
+    assert element.alt_names == expected_set, "alt_names should correctly handle edge case lists."
+
 
 
 # Edge case tests for 'creators' and 'contributors'
@@ -282,10 +300,10 @@ def test_extremely_long_strings() -> None:
     """
     long_string = "a" * 10000
     long_langstring = LangString(long_string)
-    element = Project(names=[long_langstring], description=long_langstring)
+    element = Project(names={long_langstring}, description=long_langstring)
 
-    assert element.names[0].text == long_string, "names should correctly handle extremely long strings."
-    assert element.description.text == long_string, "description should correctly handle extremely long strings."
+    assert element.names == {long_langstring}, "names should correctly handle extremely long strings."
+    assert element.description == long_langstring, "description should correctly handle extremely long strings."
 
 
 # Test with special characters and Unicode
@@ -296,25 +314,48 @@ def test_special_characters_and_unicode(special_string) -> None:
     :param special_string: A string containing special characters or Unicode.
     :raises AssertionError: If special characters and Unicode are not handled correctly.
     """
-    special_langstring = LangString(special_string)
-    element = Project(names=[special_langstring])
+    special_langstring = {LangString(special_string)}
+    element = Project(names=special_langstring)
 
-    assert element.names[0].text == special_string, "names should correctly handle special characters and Unicode."
+    assert element.names == special_langstring, "names should correctly handle special characters and Unicode."
 
 
-def test_alt_names_and_editorial_notes_with_valid_data() -> None:
-    """Test assigning valid data to 'alt_names' and 'editorial_notes' in NamedElement.
-
-    :raises AssertionError: If valid data is not handled correctly.
+def test_attributes_with_non_empty_valid_data() -> None:
     """
-    valid_langstring_list = [LangString("Test String 1"), LangString("Test String 2")]
-    element = Project(alt_names=valid_langstring_list, editorial_notes=valid_langstring_list)
-    assert element.alt_names == valid_langstring_list, "alt_names should accept a valid LangString list."
-    assert element.editorial_notes == valid_langstring_list, "editorial_notes should accept a valid LangString list."
+    Test assigning non-empty valid data to 'alt_names' and 'editorial_notes' in NamedElement.
 
-    empty_element = Project(alt_names=[], editorial_notes=[])
-    assert empty_element.alt_names == [], "alt_names should accept an empty list."
-    assert empty_element.editorial_notes == [], "editorial_notes should accept an empty list."
+    This test ensures that both 'alt_names' and 'editorial_notes' attributes correctly handle
+    non-empty sets of LangString objects.
+
+    :param None: This test function does not accept any parameters.
+    :return: None
+    :raises AssertionError: If non-empty valid data is not handled correctly.
+    """
+    valid_langstring_set = set([LangString("Test String 1"), LangString("Test String 2")])
+    element = Project(alt_names=valid_langstring_set, editorial_notes=valid_langstring_set)
+
+    assert element.alt_names == valid_langstring_set, \
+        "The 'alt_names' attribute should correctly store a non-empty set of valid LangString objects."
+    assert element.editorial_notes == valid_langstring_set, \
+        "The 'editorial_notes' attribute should correctly store a non-empty set of valid LangString objects."
+
+def test_attributes_with_empty_data() -> None:
+    """
+    Test assigning empty sets to 'alt_names' and 'editorial_notes' in NamedElement.
+
+    This test verifies that both 'alt_names' and 'editorial_notes' attributes can handle
+    empty sets without issues.
+
+    :param None: This test function does not accept any parameters.
+    :return: None
+    :raises AssertionError: If empty sets are not handled correctly.
+    """
+    empty_element = Project(alt_names=set(), editorial_notes=set())
+
+    assert empty_element.alt_names == set(), \
+        "The 'alt_names' attribute should correctly handle an empty set."
+    assert empty_element.editorial_notes == set(), \
+        "The 'editorial_notes' attribute should correctly handle an empty set."
 
 
 def test_rejection_of_invalid_data_in_list_attributes() -> None:
@@ -428,8 +469,8 @@ def test_extremely_short_strings(short_string: str) -> None:
     :raises AssertionError: If extremely short strings are not handled correctly.
     """
     short_langstring = LangString(short_string)
-    element = Project(names=[short_langstring])
-    assert element.names[0].text == short_string, "names should correctly handle extremely short strings."
+    element = Project(names={short_langstring})
+    assert element.names == {short_langstring}, "names should correctly handle extremely short strings."
 
 
 # Test with numeric and special characters in URIs
@@ -467,8 +508,9 @@ def test_whitespace_in_strings(whitespace: str) -> None:
     :raises AssertionError: If strings with different types of whitespace are not handled correctly.
     """
     whitespace_langstring = LangString(whitespace)
-    element = Project(names=[whitespace_langstring])
-    assert element.names[0].text == whitespace, "names should correctly handle strings with various whitespace."
+    element = Project(names=set([whitespace_langstring]))
+    assert whitespace_langstring in element.names, "names should correctly handle strings with various whitespace."
+
 
 
 # Test with maximum number of elements in lists
@@ -478,7 +520,7 @@ def test_maximum_elements_in_lists() -> None:
 
     :raises AssertionError: If lists do not handle the maximum number of elements correctly.
     """
-    max_elements = [LangString(f"LangString {i}") for i in range(1000)]
+    max_elements = set([LangString(f"LangString {i}") for i in range(1000)])
     element = Project(alt_names=max_elements, editorial_notes=max_elements)
     assert element.alt_names == max_elements, "alt_names should handle maximum number of elements."
     assert element.editorial_notes == max_elements, "editorial_notes should handle maximum number of elements."
@@ -504,9 +546,9 @@ def test_mixed_case_strings(mixed_case_string: str) -> None:
     :param mixed_case_string: A string containing mixed case characters.
     :raises AssertionError: If mixed case strings are not handled correctly.
     """
-    mixed_case_langstring = LangString(mixed_case_string)
-    element = Project(names=[mixed_case_langstring])
-    assert element.names[0].text == mixed_case_string, "names should correctly handle mixed case strings."
+    mixed_case_langstring = {LangString(mixed_case_string)}
+    element = Project(names=mixed_case_langstring)
+    assert element.names == mixed_case_langstring, "names should correctly handle mixed case strings."
 
 
 # Test with duplicate elements in lists
@@ -517,8 +559,8 @@ def test_duplicate_elements_in_lists() -> None:
     :raises AssertionError: If lists do not handle duplicate elements correctly.
     """
     duplicate_langstring = LangString("Duplicate")
-    element = Project(alt_names=[duplicate_langstring, duplicate_langstring])
-    assert element.alt_names.count(duplicate_langstring) == 2, "alt_names should handle duplicate elements."
+    element = Project(alt_names=set([duplicate_langstring, duplicate_langstring]))
+    assert len(element.alt_names) == 1, "alt_names should handle duplicate elements, resulting in a single inclusion."
 
 
 def test_default_type_of_names() -> None:
@@ -531,7 +573,7 @@ def test_default_type_of_names() -> None:
     :raises AssertionError: If the default type of 'names' is not a list.
     """
     element = Project()
-    assert isinstance(element.names, list), "The default type of 'names' should be a list."
+    assert isinstance(element.names, set), "The default type of 'names' should be a list."
 
 
 def test_default_type_of_alt_names() -> None:
@@ -544,7 +586,7 @@ def test_default_type_of_alt_names() -> None:
     :raises AssertionError: If the default type of 'alt_names' is not a list.
     """
     element = Project()
-    assert isinstance(element.alt_names, list), "The default type of 'alt_names' should be a list."
+    assert isinstance(element.alt_names, set), "The default type of 'alt_names' should be a list."
 
 
 def test_default_type_of_description() -> None:
@@ -570,7 +612,7 @@ def test_default_type_of_editorial_notes() -> None:
     :raises AssertionError: If the default type of 'editorial_notes' is not a list.
     """
     element = Project()
-    assert isinstance(element.editorial_notes, list), "The default type of 'editorial_notes' should be a list."
+    assert isinstance(element.editorial_notes, set), "The default type of 'editorial_notes' should be a list."
 
 
 def test_default_type_of_creators() -> None:
@@ -583,7 +625,7 @@ def test_default_type_of_creators() -> None:
     :raises AssertionError: If the default type of 'creators' is not a list.
     """
     element = Project()
-    assert isinstance(element.creators, list), "The default type of 'creators' should be a list."
+    assert isinstance(element.creators, set), "The default type of 'creators' should be a list."
 
 
 def test_default_type_of_contributors() -> None:
@@ -596,7 +638,7 @@ def test_default_type_of_contributors() -> None:
     :raises AssertionError: If the default type of 'contributors' is not a list.
     """
     element = Project()
-    assert isinstance(element.contributors, list), "The default type of 'contributors' should be a list."
+    assert isinstance(element.contributors, set), "The default type of 'contributors' should be a list."
 
 
 def test_access_non_existent_attribute() -> None:
@@ -704,9 +746,10 @@ def test_namedelement_with_single_character_names() -> None:
     :return: None
     :raises AssertionError: If instantiation with single-character names fails or is handled incorrectly.
     """
-    single_char_langstring = LangString("A")
-    element = Project(names=[single_char_langstring])
-    assert element.names == [single_char_langstring], "NamedElement should correctly handle single-character names."
+    single_char_langstring = LangString("A","en")
+    element = Project(names={single_char_langstring})
+    assert single_char_langstring in element.names, "NamedElement should correctly handle single-character names."
+
 
 
 def test_namedelement_with_reversed_uri_lists() -> None:

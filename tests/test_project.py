@@ -1237,6 +1237,7 @@ def test_project_representation_style_attribute() -> None:
 
 # Test initialization with invalid values but valid types
 
+
 def test_project_initialization_with_invalid_acronyms():
     """
     Test the initialization of a Project instance with invalid acronyms (valid type: list of strings, but invalid values).
@@ -1247,6 +1248,7 @@ def test_project_initialization_with_invalid_acronyms():
     for acronym in invalid_acronyms:
         with pytest.raises(ValidationError, match="validation error for"):
             Project(acronyms=[acronym])
+
 
 def test_project_initialization_with_invalid_bibliographic_citations():
     """
@@ -1259,6 +1261,7 @@ def test_project_initialization_with_invalid_bibliographic_citations():
         with pytest.raises(ValidationError, match="validation error for"):
             Project(bibliographic_citations=[citation])
 
+
 def test_project_initialization_with_invalid_keywords():
     """
     Test the initialization of a Project instance with invalid keywords (valid type: list of LangString, but invalid values).
@@ -1270,6 +1273,7 @@ def test_project_initialization_with_invalid_keywords():
         with pytest.raises(ValidationError, match="validation error for"):
             Project(keywords=[keyword])
 
+
 def test_project_initialization_with_invalid_landing_pages():
     """
     Test the initialization of a Project instance with invalid landing pages (valid type: list of strings, but invalid values).
@@ -1280,4 +1284,3 @@ def test_project_initialization_with_invalid_landing_pages():
     for page in invalid_pages:
         with pytest.raises(ValidationError, match="validation error for"):
             Project(landing_pages=[page])
-
