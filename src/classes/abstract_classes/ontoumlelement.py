@@ -34,7 +34,7 @@ class OntoumlElement(ABC, BaseModel):
 
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
-    modified: Optional[datetime] = None
+    modified: Optional[datetime] = Field(default=None)
     in_project: list[Project] = Field(default_factory=list)  # noqa:F821 (flake8) # Forward declaration of Project
 
     # Pydantic's configuration settings for the OntoumlElement class.
@@ -57,7 +57,7 @@ class OntoumlElement(ABC, BaseModel):
             initialized.
         """
         # List of allowed subclasses: OntoumlElement is a categorizer of a complete generalization set
-        _allowed_subclasses = [ "NamedElement", "Shape", "View"]
+        _allowed_subclasses = ["NamedElement", "Shape", "View"]
 
         # Check the entire inheritance chain
         current_class = self.__class__

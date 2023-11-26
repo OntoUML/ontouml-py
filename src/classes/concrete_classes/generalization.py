@@ -1,7 +1,7 @@
-from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_classes.namedelement import NamedElement
 
 
-class Literal(NamedElement):
+class Generalization(NamedElement):
     # Configuration settings for the Project model using Pydantic.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,

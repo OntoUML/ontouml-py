@@ -1,4 +1,4 @@
-from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_classes.namedelement import NamedElement
 
 
 class Class(NamedElement):

@@ -6,12 +6,13 @@ and landing pages, among others, providing a comprehensive representation of a p
 
 from typing import Any, Optional
 
+from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
-from pydantic import Field, PrivateAttr
+from pydantic import Field, PrivateAttr, field_validator
 
-from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
-from src.classes.abstract_syntax.concrete_classes.package import Package
-from src.classes.ontoumlelement import OntoumlElement
+from src.classes.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_classes.ontoumlelement import OntoumlElement
+from src.classes.concrete_classes.package import Package
 
 
 class Project(NamedElement):
@@ -62,16 +63,16 @@ class Project(NamedElement):
     keywords: list[LangString] = Field(default_factory=list)
     landing_pages: list[str] = Field(default_factory=list)
     languages: list[str] = Field(default_factory=list)
-    namespace: Optional[str] = None
+    namespace: Optional[str] = Field(min_length=1, default=None)
     sources: list[str] = Field(default_factory=list)
     access_rights: list[str] = Field(default_factory=list)
     ontology_types: list[str] = Field(default_factory=list)
     themes: list[str] = Field(default_factory=list)
-    license: Optional[str] = None
+    license: Optional[str] = Field(min_length=1, default=None)
     contexts: list[str] = Field(default_factory=list)
     designed_for_task: list[str] = Field(default_factory=list)
-    publisher: Optional[str] = None
-    root_package: Optional[Package] = None
+    publisher: Optional[str] = Field(min_length=1, default=None)
+    root_package: Optional[Package] = Field(default=None)
     # TODO (@pedropaulofb): Add representationStyle
 
     # Configuration settings for the Project model using Pydantic.
@@ -82,6 +83,26 @@ class Project(NamedElement):
         "str_strip_whitespace": True,
         "validate_default": True,
     }
+
+    @field_validator(
+        "acronyms",
+        "bibliographic_citations",
+        "landing_pages",
+        "languages",
+        "sources",
+        "access_rights",
+        "ontology_types",
+        "themes",
+        "contexts",
+        "designed_for_task",
+        mode="after",
+    )
+    @classmethod
+    def ensure_non_empty(cls, checked_list: list[str]) -> list[str]:  # noqa (vulture)
+        for elem in checked_list:
+            if elem == "":
+                raise ValueError("Empty strings are not allowed")
+        return checked_list
 
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new Project instance.

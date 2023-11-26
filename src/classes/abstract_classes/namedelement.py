@@ -11,7 +11,7 @@ from typing import Any, Optional
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, field_validator
 
-from src.classes.ontoumlelement import OntoumlElement
+from src.classes.abstract_classes.ontoumlelement import OntoumlElement
 
 
 class NamedElement(OntoumlElement):
@@ -36,7 +36,7 @@ class NamedElement(OntoumlElement):
 
     names: list[LangString] = Field(default_factory=list)
     alt_names: list[LangString] = Field(default_factory=list)
-    description: Optional[LangString] = None
+    description: Optional[LangString] = Field(default=None)
     editorial_notes: list[LangString] = Field(default_factory=list)
     creators: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list
     contributors: list[str] = Field(default_factory=list)  # Empty strings are not allowed in the list

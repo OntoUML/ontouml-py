@@ -5,9 +5,9 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from src.classes.abstract_syntax.abstract_classes.modelelement import ModelElement
-from src.classes.abstract_syntax.concrete_classes.package import Package as RealPackage
-from src.classes.abstract_syntax.concrete_classes.project import Project
+from src.classes.abstract_classes.modelelement import ModelElement
+from src.classes.concrete_classes import Project
+from src.classes.concrete_classes.package import Package as RealPackage
 
 
 # Utility functions and fixtures

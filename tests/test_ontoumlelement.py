@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 import pytest
 from pydantic import ValidationError
 
-from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
-from src.classes.abstract_syntax.concrete_classes.package import Package
-from src.classes.abstract_syntax.concrete_classes.project import Project as RealProject
-from src.classes.ontoumlelement import OntoumlElement
+from src.classes.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_classes.ontoumlelement import OntoumlElement
+from src.classes.concrete_classes.package import Package
+from src.classes.concrete_classes.project import Project as RealProject
 
 
 class Project(NamedElement):
@@ -596,8 +596,9 @@ def test_id_with_not_enough_chars() -> None:
     with pytest.raises(ValueError):
         element.id = ""
 
+
 @pytest.mark.parametrize("new_id", ["1", "22", "a"])
-def test_id_with_enough_chars(new_id:str) -> None:
+def test_id_with_enough_chars(new_id: str) -> None:
     """
     Test setting the id attribute to strings with 1 or more chars.
     """

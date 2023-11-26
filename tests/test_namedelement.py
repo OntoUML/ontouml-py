@@ -4,8 +4,8 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from src.classes.abstract_syntax.abstract_classes.modelelement import ModelElement
-from src.classes.abstract_syntax.abstract_classes.namedelement import NamedElement
+from src.classes.abstract_classes.modelelement import ModelElement
+from src.classes.abstract_classes.namedelement import NamedElement
 
 
 # Concrete subclass for testing
