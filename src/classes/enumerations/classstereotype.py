@@ -8,6 +8,7 @@ Classes:
 
 from src.classes.enumerations.ontouml_enum import OntoumlEnum
 
+
 class ClassStereotype(OntoumlEnum):
     """
     An enumeration representing different stereotypes applicable to classes in OntoUML.

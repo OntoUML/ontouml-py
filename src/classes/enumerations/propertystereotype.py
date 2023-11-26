@@ -8,6 +8,7 @@ Classes:
 
 from src.classes.enumerations.ontouml_enum import OntoumlEnum
 
+
 class PropertyStereotype(OntoumlEnum):
     """
     An enumeration representing different stereotypes applicable to properties in OntoUML.

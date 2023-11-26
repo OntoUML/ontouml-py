@@ -8,6 +8,7 @@ Classes:
 
 from src.classes.enumerations.ontouml_enum import OntoumlEnum
 
+
 class RelationStereotype(OntoumlEnum):
     """
     An enumeration representing different stereotypes applicable to relations in OntoUML.

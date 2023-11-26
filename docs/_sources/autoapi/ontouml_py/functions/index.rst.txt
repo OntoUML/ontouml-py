@@ -1,6 +1,0 @@
-:py:mod:`ontouml_py.functions`
-==============================
-
-.. py:module:: ontouml_py.functions
-
-
