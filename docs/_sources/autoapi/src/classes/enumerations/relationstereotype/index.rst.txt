@@ -26,7 +26,7 @@ Classes
 
 
 
-.. py:class:: RelationStereotype
+.. py:class:: RelationStereotype(*args, **kwds)
 
 
    Bases: :py:obj:`src.classes.enumerations.ontouml_enum.OntoumlEnum`
@@ -34,7 +34,7 @@ Classes
    An enumeration representing different stereotypes applicable to relations in OntoUML.
 
    This enum classifies various stereotypes that can be assigned to relational elements in an OntoUML model. It extends
-   OntoumlEnum to leverage automatic CamelCase conversion of member names.
+   OntoumlEnum.
 
    Members:
        BRINGS_ABOUT: Represents a 'brings about' stereotype.
@@ -57,103 +57,98 @@ Classes
        TERMINATION: Represents a termination stereotype.
        TRIGGERS: Represents a triggers stereotype.
 
-   Each member of this enum is automatically converted to CamelCase format upon initialization.
-
-   Methods:
-       __init__: Initializes a new member of the RelationStereotype enum.
-
    .. py:attribute:: BRINGS_ABOUT
-      :value: ()
+      :value: 'bringsAbout'
 
       
 
    .. py:attribute:: CHARACTERIZATION
-      :value: ()
+      :value: 'characterization'
 
       
 
    .. py:attribute:: COMPARATIVE
-      :value: ()
+      :value: 'comparative'
 
       
 
    .. py:attribute:: COMPONENT_OF
-      :value: ()
+      :value: 'componentOf'
 
       
 
    .. py:attribute:: CREATION
-      :value: ()
+      :value: 'creation'
 
       
 
    .. py:attribute:: DERIVATION
-      :value: ()
+      :value: 'derivation'
 
       
 
    .. py:attribute:: EXTERNAL_DEPENDENCE
-      :value: ()
+      :value: 'externalDependence'
 
       
 
    .. py:attribute:: HISTORICAL_DEPENDENCE
-      :value: ()
+      :value: 'historicalDependence'
 
       
 
    .. py:attribute:: INSTANTIATION
-      :value: ()
+      :value: 'instantiation'
 
       
 
    .. py:attribute:: MANIFESTATION
-      :value: ()
+      :value: 'manifestation'
 
       
 
    .. py:attribute:: MATERIAL
-      :value: ()
+      :value: 'material'
 
       
 
    .. py:attribute:: MEDIATION
-      :value: ()
+      :value: 'mediation'
 
       
 
    .. py:attribute:: MEMBER_OF
-      :value: ()
+      :value: 'memberOf'
 
       
 
    .. py:attribute:: PARTICIPATION
-      :value: ()
+      :value: 'participation'
 
       
 
    .. py:attribute:: PARTICIPATIONAL
-      :value: ()
+      :value: 'participational'
 
       
 
    .. py:attribute:: SUB_COLLECTION_OF
-      :value: ()
+      :value: 'subCollectionOf'
 
       
 
    .. py:attribute:: SUB_QUANTITY_OF
-      :value: ()
+      :value: 'subQuantityOf'
 
       
 
    .. py:attribute:: TERMINATION
-      :value: ()
+      :value: 'termination'
 
       
 
    .. py:attribute:: TRIGGERS
-      :value: ()
+      :value: 'triggers'
 
       
 

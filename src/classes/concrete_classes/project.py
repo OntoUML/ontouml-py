@@ -6,8 +6,6 @@ and landing pages, among others, providing a comprehensive representation of a p
 
 from typing import Any, Optional
 
-from icecream import ic
-from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, PrivateAttr, field_validator
 
 from src.classes.abstract_classes.namedelement import NamedElement
@@ -34,7 +32,7 @@ class Project(NamedElement):
     :ivar bibliographic_citations: Bibliographic citations related to the project.
     :vartype bibliographic_citations: set[str]
     :ivar keywords: Keywords describing the project.
-    :vartype keywords: set[LangString]
+    :vartype keywords: set[str]
     :ivar landing_pages: URLs to landing pages of the project.
     :vartype landing_pages: set[str]
     :ivar languages: Languages used in the project.
@@ -185,13 +183,3 @@ class Project(NamedElement):
         :rtype: set[OntoumlElement]
         """
         return self._elements
-
-    # Necessary to make it hashable
-    def __eq__(self, other):
-        if not isinstance(other, Project):
-            return NotImplemented
-        return self.id == other.id  # Assuming 'id' is a unique identifier for Project instances
-
-    # Necessary to make it hashable
-    def __hash__(self):
-        return hash(self.id)  # Hash based on a unique identifier

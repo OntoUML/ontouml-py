@@ -87,4 +87,3 @@ class NamedElement(OntoumlElement):
             )
         # Sets attributes
         super().__init__(**data)
-

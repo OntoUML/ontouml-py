@@ -26,7 +26,7 @@ Classes
 
 
 
-.. py:class:: ClassStereotype
+.. py:class:: ClassStereotype(*args, **kwds)
 
 
    Bases: :py:obj:`src.classes.enumerations.ontouml_enum.OntoumlEnum`
@@ -65,107 +65,107 @@ Classes
        __init__: Initializes a new member of the ClassStereotype enum.
 
    .. py:attribute:: ABSTRACT
-      :value: ()
+      :value: 'abstract'
 
       
 
    .. py:attribute:: CATEGORY
-      :value: ()
+      :value: 'category'
 
       
 
    .. py:attribute:: COLLECTIVE
-      :value: ()
+      :value: 'collective'
 
       
 
    .. py:attribute:: DATATYPE
-      :value: ()
+      :value: 'datatype'
 
       
 
    .. py:attribute:: ENUMERATION
-      :value: ()
+      :value: 'enumeration'
 
       
 
    .. py:attribute:: EVENT
-      :value: ()
+      :value: 'event'
 
       
 
    .. py:attribute:: HISTORICAL_ROLE
-      :value: ()
+      :value: 'historicalRole'
 
       
 
    .. py:attribute:: HISTORICAL_ROLE_MIXIN
-      :value: ()
+      :value: 'historicalRoleMixin'
 
       
 
    .. py:attribute:: KIND
-      :value: ()
+      :value: 'kind'
 
       
 
    .. py:attribute:: MIXIN
-      :value: ()
+      :value: 'mixin'
 
       
 
    .. py:attribute:: MODE
-      :value: ()
+      :value: 'mode'
 
       
 
    .. py:attribute:: PHASE
-      :value: ()
+      :value: 'phase'
 
       
 
    .. py:attribute:: PHASE_MIXIN
-      :value: ()
+      :value: 'phaseMixin'
 
       
 
    .. py:attribute:: QUALITY
-      :value: ()
+      :value: 'quality'
 
       
 
    .. py:attribute:: QUANTITY
-      :value: ()
+      :value: 'quantity'
 
       
 
    .. py:attribute:: RELATOR
-      :value: ()
+      :value: 'relator'
 
       
 
    .. py:attribute:: ROLE
-      :value: ()
+      :value: 'role'
 
       
 
    .. py:attribute:: ROLE_MIXIN
-      :value: ()
+      :value: 'roleMixin'
 
       
 
    .. py:attribute:: SITUATION
-      :value: ()
+      :value: 'situation'
 
       
 
-   .. py:attribute:: SUB_KIND
-      :value: ()
+   .. py:attribute:: SUBKIND
+      :value: 'subkind'
 
       
 
    .. py:attribute:: TYPE
-      :value: ()
+      :value: 'type'
 
       
 

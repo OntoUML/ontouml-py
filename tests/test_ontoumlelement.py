@@ -2,7 +2,6 @@ import uuid
 from datetime import datetime, timedelta
 
 import pytest
-from icecream import ic
 from pydantic import ValidationError
 
 from src.classes.abstract_classes.namedelement import NamedElement
@@ -607,3 +606,105 @@ def test_id_with_enough_chars(new_id: str) -> None:
     element = Project()
     element.id = new_id
     assert element.id
+
+
+# Test for successful initialization
+def test_ontoumlelement_initialization(concrete_ontouml_element: Package) -> None:
+    """
+    Test the successful initialization of an OntoumlElement instance.
+
+    :return: None
+    :raises AssertionError: If the OntoumlElement instance does not initialize correctly.
+    """
+    element = concrete_ontouml_element
+    assert isinstance(element, OntoumlElement), "OntoumlElement should initialize successfully."
+
+
+def test_ontoumlelement_modification_date_validation(concrete_ontouml_element: Package) -> None:
+    """
+    Test that the modification date cannot be set earlier than the creation date.
+
+    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
+    :type concrete_ontouml_element: Package
+    :return: None
+    :raises AssertionError: If the modification date is incorrectly set earlier than the creation date.
+    """
+    element = concrete_ontouml_element
+    with pytest.raises(ValueError) as excinfo:
+        element.modified = element.created - timedelta(days=1)
+    assert "The 'modified' datetime must be later than the 'created' datetime." in str(
+        excinfo.value
+    ), "Modification date should not be earlier than creation date."
+
+
+def test_ontoumlelement_in_project_modification_restriction(concrete_ontouml_element: Package) -> None:
+    """
+    Test that the in_project attribute cannot be directly modified.
+
+    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
+    :type concrete_ontouml_element: Package
+    :return: None
+    :raises AssertionError: If the in_project attribute is modified directly.
+    """
+    element = concrete_ontouml_element
+    with pytest.raises(ValueError) as excinfo:
+        element.in_project = {Project()}
+    assert (
+        "Attribute 'in_project' cannot be modified via OntoumlElement. This operation should be done via class Project."
+        in str(excinfo.value)
+    ), "Direct modification of in_project should be restricted."
+
+
+def test_ontoumlelement_hashability(concrete_ontouml_element: Package) -> None:
+    """
+    Test that OntoumlElement instances are hashable and their hash is based on the unique identifier.
+
+    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
+    :type concrete_ontouml_element: Package
+    :return: None
+    :raises AssertionError: If OntoumlElement instances are not hashable or their hash is not based on the id.
+    """
+    element1 = concrete_ontouml_element
+    element2 = concrete_ontouml_element.__class__()  # Create a new instance with a different id
+
+    # Ensure that the IDs are different
+    assert element1.id != element2.id, "The two elements should have different ids for this test."
+
+    element_set = {element1, element2}
+    assert len(element_set) == 2, "OntoumlElement instances should be uniquely hashable based on their id."
+
+
+# Test for equality based on unique identifier
+def test_ontoumlelement_equality(concrete_ontouml_element: Package) -> None:
+    """
+    Test that OntoumlElement instances are considered equal if they have the same unique identifier.
+
+    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
+    :type concrete_ontouml_element: Package
+    :return: None
+    :raises AssertionError: If OntoumlElement instances with the same id are not considered equal.
+    """
+    element1 = concrete_ontouml_element
+    element2 = concrete_ontouml_element.__class__()
+    element2.id = element1.id
+    assert element1 == element2, "OntoumlElement instances with the same id should be considered equal."
+
+
+# Test for subclass restriction
+def test_ontoumlelement_subclass_restriction() -> None:
+    """
+    Test that OntoumlElement cannot be instantiated if it is not a subclass of allowed types.
+
+    :return: None
+    :raises AssertionError: If OntoumlElement is instantiated as an unauthorized subclass.
+    """
+
+    class UnauthorizedElement(OntoumlElement):
+        def __init__(self, **data):
+            super().__init__(**data)
+
+    with pytest.raises(ValueError) as excinfo:
+        UnauthorizedElement()
+    assert "is not an allowed subclass" in str(
+        excinfo.value
+    ), "OntoumlElement should not be instantiated as an unauthorized subclass."

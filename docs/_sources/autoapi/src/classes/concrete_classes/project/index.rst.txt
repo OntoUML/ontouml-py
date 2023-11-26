@@ -40,70 +40,77 @@ Classes
    '_elements', which can be manipulated via add_element and remove_element methods.
 
    :ivar acronyms: List of acronyms associated with the project.
-   :vartype acronyms: list[str]
+   :vartype acronyms: set[str]
    :ivar bibliographic_citations: Bibliographic citations related to the project.
-   :vartype bibliographic_citations: list[str]
+   :vartype bibliographic_citations: set[str]
    :ivar keywords: Keywords describing the project.
-   :vartype keywords: list[LangString]
+   :vartype keywords: set[str]
    :ivar landing_pages: URLs to landing pages of the project.
-   :vartype landing_pages: list[str]
+   :vartype landing_pages: set[str]
    :ivar languages: Languages used in the project.
-   :vartype languages: list[str]
+   :vartype languages: set[str]
    :ivar namespace: Namespace of the project. Optional.
    :vartype namespace: Optional[str]
    :ivar sources: Sources of information for the project.
-   :vartype sources: list[str]
+   :vartype sources: set[str]
    :ivar access_rights: Information about access rights for the project.
-   :vartype access_rights: list[str]
+   :vartype access_rights: set[str]
    :ivar ontology_types: Types of ontologies used in the project.
-   :vartype ontology_types: list[str]
+   :vartype ontology_types: set[str]
    :ivar themes: Themes associated with the project.
-   :vartype themes: list[str]
+   :vartype themes: set[str]
    :ivar license: Licensing information of the project. Optional.
    :vartype license: Optional[str]
    :ivar contexts: Contexts for which the project is designed.
-   :vartype contexts: list[str]
+   :vartype contexts: set[str]
    :ivar designed_for_task: Tasks for which the project is designed.
-   :vartype designed_for_task: list[str]
+   :vartype designed_for_task: set[str]
    :ivar publisher: Publisher of the project. Optional.
    :vartype publisher: Optional[str]
+   :ivar root_package: Root package of the project. Optional.
+   :vartype root_package: Optional[Package]
+   :ivar representation_style: Style of ontology representation used in the project.
+   :vartype representation_style: OntologyRepresentationStyle
 
    .. py:property:: elements
-      :type: list[src.classes.abstract_classes.ontoumlelement.OntoumlElement]
+      :type: set[src.classes.abstract_classes.ontoumlelement.OntoumlElement]
 
-      Provide read-only access to the elements attribute. This is a workaround to prevent direct modification of         the 'elements' list. Modifications should be done using add_element and remove_element methods.
+      Provide read-only access to the elements attribute.
+
+      This is a workaround to prevent direct modification of the 'elements' list. Modifications should be done using
+      add_element and remove_element methods.
 
       :return: A list of OntoumlElement objects.
-      :rtype: list[OntoumlElement]
+      :rtype: set[OntoumlElement]
 
 
    .. py:attribute:: _elements
-      :type: list[src.classes.abstract_classes.ontoumlelement.OntoumlElement]
+      :type: set[src.classes.abstract_classes.ontoumlelement.OntoumlElement]
 
       
 
    .. py:attribute:: acronyms
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: bibliographic_citations
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: keywords
-      :type: list[langstring_lib.langstring.LangString]
+      :type: set[str]
 
       
 
    .. py:attribute:: landing_pages
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: languages
-      :type: list[str]
+      :type: set[str]
 
       
 
@@ -113,22 +120,22 @@ Classes
       
 
    .. py:attribute:: sources
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: access_rights
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: ontology_types
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: themes
-      :type: list[str]
+      :type: set[str]
 
       
 
@@ -138,12 +145,12 @@ Classes
       
 
    .. py:attribute:: contexts
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: designed_for_task
-      :type: list[str]
+      :type: set[str]
 
       
 
@@ -157,6 +164,11 @@ Classes
 
       
 
+   .. py:attribute:: representation_style
+      :type: src.classes.enumerations.ontologyrepresentationstyle.OntologyRepresentationStyle
+
+      
+
    .. py:attribute:: model_config
 
       
@@ -164,10 +176,21 @@ Classes
    .. py:method:: ensure_non_empty(checked_list)
       :classmethod:
 
+      Validates that the provided list does not contain empty strings.
+
+      :param checked_list: The list to be validated.
+      :type checked_list: set[str]
+      :return: The validated list.
+      :rtype: set[str]
+      :raises ValueError: If any element in the list is an empty string.
+
 
    .. py:method:: add_element(element)
 
-      Add an OntoumlElement to the project. Ensures that the element is of the correct type and not a Project         itself. Also updates the inverse relationship in OntoumlElement and checks for duplicates.
+      Add an OntoumlElement to the project.
+
+      Ensures that the element is of the correct type and not a Project itself. Also updates the inverse relationship
+      in OntoumlElement and checks for duplicates.
 
       :param element: The OntoumlElement to be added to the project.
       :type element: OntoumlElement
@@ -176,11 +199,13 @@ Classes
 
    .. py:method:: remove_element(element)
 
-      Remove an OntoumlElement from the project if it exists. Also updates the inverse relationship in         OntoumlElement.
+      Remove an OntoumlElement from the project if it exists.
+
+      Also updates the inverse relationship in OntoumlElement.
 
       :param element: The OntoumlElement to be removed from the project.
       :type element: OntoumlElement
-      :raises TypeError: If the element is None.
+      :raises TypeError: If the element is not a valid OntoumlElement.
 
 
 

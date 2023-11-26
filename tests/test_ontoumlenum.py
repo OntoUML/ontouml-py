@@ -15,8 +15,8 @@ def test_get_members():
     """
 
     class TestEnum(OntoumlEnum):
-        FIRST_MEMBER = ()
-        SECOND_MEMBER = ()
+        FIRST_MEMBER = ()  # noqa (Vulture)
+        SECOND_MEMBER = ()  # noqa (Vulture)
 
     members = TestEnum.get_members()
     expected_members = {"FIRST_MEMBER", "SECOND_MEMBER"}
@@ -29,8 +29,8 @@ def test_enum_member_uniqueness():
     """
 
     class TestEnum(OntoumlEnum):
-        MEMBER_ONE = ()
-        MEMBER_TWO = ()
+        MEMBER_ONE = ()  # noqa (Vulture)
+        MEMBER_TWO = ()  # noqa (Vulture)
 
     assert len(TestEnum) == len(set(TestEnum)), "Enum members should be unique"
 

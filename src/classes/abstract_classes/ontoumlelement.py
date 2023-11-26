@@ -103,3 +103,35 @@ class OntoumlElement(ABC, BaseModel):
         if key == "modified" and value is not None and value < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         super().__setattr__(key, value)
+
+    def __eq__(self, other: object) -> bool:
+        """
+        Determine if two OntoumlElement instances are equal based on their unique identifiers.
+
+        This method is necessary to make instances of OntoumlElement hashable, allowing them to be compared
+        based on their 'id' attribute. It assumes that 'id' is a unique identifier for each instance.
+
+        :param other: The other object to compare with the current instance.
+        :type other: object
+        :return: Returns True if both instances have the same 'id', False otherwise. If 'other' is not an instance
+                 of OntoumlElement, the method returns NotImplemented.
+        :rtype: bool
+        :raises NotImplemented: If 'other' is not an instance of OntoumlElement.
+        """
+        if not isinstance(other, OntoumlElement):
+            return NotImplemented
+        return self.id == other.id  # Assuming 'id' is a unique identifier for Project instances
+
+    def __hash__(self) -> int:
+        """
+        Compute the hash value of an OntoumlElement instance.
+
+        This method is essential for making OntoumlElement instances hashable. It uses the unique identifier 'id'
+        of the instance to compute the hash. This ensures that each OntoumlElement instance has a unique hash value
+        based on its 'id', which is crucial for using these instances in hash-based collections like sets or as keys
+        in dictionaries.
+
+        :return: The hash value of the instance, computed based on its 'id'.
+        :rtype: int
+        """
+        return hash(self.id)  # Hash based on a unique identifier

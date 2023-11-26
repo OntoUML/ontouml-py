@@ -51,12 +51,12 @@ Classes
    :vartype contributors: list[str]
 
    .. py:attribute:: names
-      :type: list[langstring_lib.langstring.LangString]
+      :type: set[langstring_lib.langstring.LangString]
 
       
 
    .. py:attribute:: alt_names
-      :type: list[langstring_lib.langstring.LangString]
+      :type: set[langstring_lib.langstring.LangString]
 
       
 
@@ -66,17 +66,17 @@ Classes
       
 
    .. py:attribute:: editorial_notes
-      :type: list[langstring_lib.langstring.LangString]
+      :type: set[langstring_lib.langstring.LangString]
 
       
 
    .. py:attribute:: creators
-      :type: list[str]
+      :type: set[str]
 
       
 
    .. py:attribute:: contributors
-      :type: list[str]
+      :type: set[str]
 
       
 

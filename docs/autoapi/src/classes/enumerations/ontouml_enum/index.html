@@ -90,12 +90,7 @@
              
   <section id="module-src.classes.enumerations.ontouml_enum">
 <span id="src-classes-enumerations-ontouml-enum"></span><h1><a class="reference internal" href="#module-src.classes.enumerations.ontouml_enum" title="src.classes.enumerations.ontouml_enum"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.classes.enumerations.ontouml_enum</span></code></a><a class="headerlink" href="#module-src.classes.enumerations.ontouml_enum" title="Link to this heading"></a></h1>
-<p>This module defines a base class for creating enumerations in OntoUML, where enum members are automatically converted
-to CamelCase format and a utility method is provided to retrieve all enum members.</p>
-<dl class="simple">
-<dt>Classes:</dt><dd><p>OntoumlEnum (Enum, metaclass=EnumABCMeta): An abstract base class for OntoUML enumerations.</p>
-</dd>
-</dl>
+<p>This module defines a base class for creating enumerations in OntoUML.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -121,18 +116,11 @@ with abstract methods.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="src.classes.enumerations.ontouml_enum.OntoumlEnum">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.classes.enumerations.ontouml_enum.</span></span><span class="sig-name descname"><span class="pre">OntoumlEnum</span></span><a class="headerlink" href="#src.classes.enumerations.ontouml_enum.OntoumlEnum" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.classes.enumerations.ontouml_enum.</span></span><span class="sig-name descname"><span class="pre">OntoumlEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.classes.enumerations.ontouml_enum.OntoumlEnum" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>An abstract base class for OntoUML enumerations.</p>
-<p>This class converts enum member names to CamelCase format and provides a method to retrieve all enum members.
-Subclasses should define their enum members as usual, and they will automatically be converted to CamelCase.</p>
-<dl class="simple">
-<dt>Attributes:</dt><dd><p>_value_ (str): The CamelCase formatted string value of the enum member.</p>
-</dd>
-<dt>Methods:</dt><dd><p>__init__(): Initializes a new enum member, converting its name to CamelCase.
-get_members(): Returns the keys of all members of the enum class.</p>
-</dd>
-</dl>
+<p>This class provides a framework for creating enumerations in OntoUML. It allows for the definition of enum members
+in subclasses, which can be used to represent various categorizations and types within the OntoUML model.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.classes.enumerations.ontouml_enum.OntoumlEnum.get_members">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_members</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.classes.enumerations.ontouml_enum.OntoumlEnum.get_members" title="Link to this definition"></a></dt>
