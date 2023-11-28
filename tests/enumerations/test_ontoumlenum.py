@@ -8,8 +8,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 def test_get_members():
-    """
-    Test the get_members class method of OntoumlEnum.
+    """Test the get_members class method of OntoumlEnum.
 
     This test checks if the get_members method correctly returns the keys of all enum members.
     """
@@ -24,9 +23,7 @@ def test_get_members():
 
 
 def test_enum_member_uniqueness():
-    """
-    Test that all enum members are unique.
-    """
+    """Test that all enum members are unique."""
 
     class TestEnum(OntoumlEnum):
         MEMBER_ONE = ()  # noqa (Vulture)
@@ -36,9 +33,7 @@ def test_enum_member_uniqueness():
 
 
 def test_enum_member_type():
-    """
-    Test that enum members are instances of the OntoumlEnum class.
-    """
+    """Test that enum members are instances of the OntoumlEnum class."""
 
     class TestEnum(OntoumlEnum):
         MEMBER = ()

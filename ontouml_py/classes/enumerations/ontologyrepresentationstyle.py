@@ -10,8 +10,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class OntologyRepresentationStyle(OntoumlEnum):
-    """
-    Enumerates different styles of ontology representation in OntoUML.
+    """Enumerates different styles of ontology representation in OntoUML.
 
     This enumeration class inherits from OntoumlEnum and automatically sets the value of each enum member to a
     CamelCase string corresponding to its name. It provides a clear and standardized way to refer to different ontology

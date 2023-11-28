@@ -10,8 +10,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class ClassStereotype(OntoumlEnum):
-    """
-    An enumeration representing different stereotypes applicable to classes in OntoUML.
+    """An enumeration representing different stereotypes applicable to classes in OntoUML.
 
     This enum classifies various stereotypes that can be assigned to class elements in an OntoUML model. It extends
     OntoumlEnum to leverage automatic CamelCase conversion of member names.

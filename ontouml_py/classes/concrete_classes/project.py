@@ -17,8 +17,7 @@ from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
 
 
 class Project(NamedElement):
-    """
-    A concrete class representing an OntoUML Project, extending the NamedElement class.
+    """A concrete class representing an OntoUML Project, extending the NamedElement class.
 
     Manages project-related elements such as acronyms, bibliographic citations, keywords, landing pages, and more,
     providing a comprehensive representation of project metadata.
@@ -121,8 +120,7 @@ class Project(NamedElement):
         return checked_list
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        """
-        Initialize a new Project instance.
+        """Initialize a new Project instance.
 
         Inherits attributes from NamedElement and adds additional project-specific attributes.
 
@@ -136,9 +134,8 @@ class Project(NamedElement):
             raise TypeError("Expected 'elements' to be a set")
         self._elements: set[OntoumlElement] = elements if elements is not None else set()
 
-    def add_element(self, element: OntoumlElement) -> None:
-        """
-        Add an OntoumlElement to the project.
+    def add_element(self, element_type: OntoumlElement, *args, **kwargs):
+        """Add an OntoumlElement to the project.
 
         Ensures that the element is of the correct type and not a Project itself. Also updates the inverse relationship
         in OntoumlElement and checks for duplicates.
@@ -147,15 +144,22 @@ class Project(NamedElement):
         :type element: OntoumlElement
         :raises TypeError: If the element is not an instance of OntoumlElement.
         """
-        if not isinstance(element, OntoumlElement):
+
+        if element_type not in OntoumlElement.get_all_subclasses():
             raise TypeError("Element must be an instance of OntoumlElement.")
-        if not isinstance(element, Project):
-            element.in_project.add(self)  # direct relation
-            self._elements.add(element)  # inverse relation
+        else:
+            new_element = element_type(self, *args, **kwargs)
+
+        if isinstance(new_element, Project):
+            raise AssertionError("A Project cannot be added to other Project.")
+        else:
+            new_element.in_project.add(self)  # direct relation
+            self._elements.add(new_element)  # inverse relation
+
+        return new_element
 
     def remove_element(self, element: OntoumlElement) -> None:
-        """
-        Remove an OntoumlElement from the project if it exists.
+        """Remove an OntoumlElement from the project if it exists.
 
         Also updates the inverse relationship in OntoumlElement.
 
@@ -173,8 +177,7 @@ class Project(NamedElement):
 
     @property
     def elements(self) -> set[OntoumlElement]:
-        """
-        Provide read-only access to the elements attribute.
+        """Provide read-only access to the elements attribute.
 
         This is a workaround to prevent direct modification of the 'elements' list. Modifications should be done using
         add_element and remove_element methods.

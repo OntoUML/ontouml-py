@@ -10,8 +10,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class OntologicalNature(OntoumlEnum):
-    """
-    An enumeration representing different kinds of ontological natures in OntoUML.
+    """An enumeration representing different kinds of ontological natures in OntoUML.
 
     This enum classifies various ontological natures that can be assigned to elements in an OntoUML model. It extends
     OntoumlEnum.

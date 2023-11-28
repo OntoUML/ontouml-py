@@ -10,8 +10,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class RelationStereotype(OntoumlEnum):
-    """
-    An enumeration representing different stereotypes applicable to relations in OntoUML.
+    """An enumeration representing different stereotypes applicable to relations in OntoUML.
 
     This enum classifies various stereotypes that can be assigned to relational elements in an OntoUML model. It extends
     OntoumlEnum.

@@ -10,8 +10,7 @@ from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class PropertyStereotype(OntoumlEnum):
-    """
-    An enumeration representing different stereotypes applicable to properties in OntoUML.
+    """An enumeration representing different stereotypes applicable to properties in OntoUML.
 
     This enum classifies various stereotypes that can be assigned to property elements in an OntoUML model. It extends
     OntoumlEnum.

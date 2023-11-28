@@ -90,8 +90,7 @@ def valid_ontoumlelement_set() -> set[Package]:
 
 
 def test_project_string_attributes(valid_langstring_set) -> None:
-    """
-    Test the initialization of Project's string type attributes.
+    """Test the initialization of Project's string type attributes.
 
     :param valid_langstring_list: A list of LangString objects for testing.
     :type valid_langstring_list: list[LangString]
@@ -126,8 +125,7 @@ def test_project_string_attributes(valid_langstring_set) -> None:
 
 
 def test_project_langstring_attributes(valid_langstring_set) -> None:
-    """
-    Test the initialization of Project's LangString type attributes.
+    """Test the initialization of Project's LangString type attributes.
 
     :param valid_langstring_list: A list of LangString objects for testing.
     :type valid_langstring_list: list[LangString]
@@ -165,8 +163,7 @@ def test_project_langstring_attributes(valid_langstring_set) -> None:
 
 
 def test_project_list_attributes(valid_langstring_set) -> None:
-    """
-    Test the initialization of Project's list type attributes.
+    """Test the initialization of Project's list type attributes.
 
     :param valid_langstring_list: A list of LangString objects for testing.
     :type valid_langstring_list: list[LangString]
@@ -247,8 +244,7 @@ def test_project_none_in_list_post_init() -> None:
 
 
 def test_project_add_empty_string_to_set_post_init() -> None:
-    """
-    Test adding an empty string to a set attribute after non-empty initialization.
+    """Test adding an empty string to a set attribute after non-empty initialization.
 
     This test ensures that the set attribute can handle the addition of an empty string
     after being initialized with a non-empty value.
@@ -262,8 +258,7 @@ def test_project_add_empty_string_to_set_post_init() -> None:
 
 
 def test_project_update_set_with_mixed_values() -> None:
-    """
-    Test updating a set attribute with a mix of valid and None values.
+    """Test updating a set attribute with a mix of valid and None values.
 
     This test checks if the set attribute correctly rejects the addition of None values
     when it's updated with a mix of valid strings and None.
@@ -276,8 +271,7 @@ def test_project_update_set_with_mixed_values() -> None:
 
 
 def test_project_update_set_with_mixed_types() -> None:
-    """
-    Test updating a set attribute with a mix of valid and invalid types.
+    """Test updating a set attribute with a mix of valid and invalid types.
 
     This test verifies if the set attribute correctly rejects the addition of elements
     of incorrect types (e.g., integers) when updated with a mix of valid strings and other types.
@@ -290,8 +284,7 @@ def test_project_update_set_with_mixed_types() -> None:
 
 
 def test_project_interaction_with_langstring_complex() -> None:
-    """
-    Test Project initialization with complex LangString objects.
+    """Test Project initialization with complex LangString objects.
 
     This test ensures that the Project class can handle initialization with complex LangString objects,
     correctly storing and retrieving their properties.
@@ -329,8 +322,7 @@ def test_project_extreme_values_handling() -> None:
 
 
 def test_project_default_values_initialization() -> None:
-    """
-    Test initialization of Project with default values.
+    """Test initialization of Project with default values.
 
     This test verifies that all attributes of the Project class are correctly initialized to their default values,
     which are typically empty sets or None, as appropriate.
@@ -359,8 +351,7 @@ def test_project_default_values_initialization() -> None:
 
 
 def test_project_large_set_attributes() -> None:
-    """
-    Test handling large sets for set-type attributes.
+    """Test handling large sets for set-type attributes.
 
     This test verifies that the Project class can handle large sets for its set-type attributes,
     such as 'elements', 'acronyms', and 'bibliographic_citations'.
@@ -460,8 +451,7 @@ def test_project_datetime_boundaries() -> None:
 
 
 def test_project_empty_and_null_sets() -> None:
-    """
-    Test handling empty sets for set attributes.
+    """Test handling empty sets for set attributes.
 
     This test ensures that the Project class correctly handles empty sets for its set attributes,
     and raises appropriate errors when attempting to set them to None.
@@ -504,8 +494,7 @@ def test_project_boolean_values_in_lists() -> None:
 
 # Test adding valid OntoumlElement to Project
 def test_project_add_valid_element() -> None:
-    """
-    Test adding a valid OntoumlElement to a Project instance.
+    """Test adding a valid OntoumlElement to a Project instance.
 
     This test verifies that a valid OntoumlElement can be successfully added to a Project instance,
     ensuring the element is correctly included in the Project's elements set.
@@ -519,8 +508,7 @@ def test_project_add_valid_element() -> None:
 
 
 def test_project_add_duplicate_element() -> None:
-    """
-    Test adding a duplicate OntoumlElement to a Project instance.
+    """Test adding a duplicate OntoumlElement to a Project instance.
 
     This test ensures that when a duplicate OntoumlElement is added to a Project instance,
     it is not duplicated within the Project's elements set.
@@ -550,8 +538,7 @@ def test_project_add_incorrect_type_element() -> None:
 
 
 def test_project_maintain_inverse_relationship() -> None:
-    """
-    Test maintaining the inverse relationship when adding an OntoumlElement to a Project.
+    """Test maintaining the inverse relationship when adding an OntoumlElement to a Project.
 
     This test verifies that the inverse relationship between a Project and an OntoumlElement is correctly maintained
     when an element is added to a Project.
@@ -578,8 +565,7 @@ def test_project_add_none_element() -> None:
 
 # Test adding multiple elements
 def test_project_add_multiple_elements(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test adding multiple OntoumlElement objects to a Project instance.
+    """Test adding multiple OntoumlElement objects to a Project instance.
 
     This test ensures that multiple OntoumlElement objects can be successfully added to a Project instance,
     and verifies that all elements are correctly included in the Project's elements set.
@@ -596,8 +582,7 @@ def test_project_add_multiple_elements(valid_ontoumlelement_set: set[OntoumlElem
 
 
 def test_project_add_large_number_unique_elements() -> None:
-    """
-    Test adding a large number of unique elements to a Project instance.
+    """Test adding a large number of unique elements to a Project instance.
 
     This test ensures that a Project instance can handle a large number of unique OntoumlElement objects
     without issues.
@@ -625,8 +610,7 @@ def test_project_add_self_as_element() -> None:
 
 
 def test_project_add_various_subclasses_of_elements() -> None:
-    """
-    Test adding various concrete subclasses of OntoumlElement to a Project instance.
+    """Test adding various concrete subclasses of OntoumlElement to a Project instance.
 
     This test verifies that different subclasses of OntoumlElement can be successfully added to a Project instance.
 
@@ -658,8 +642,7 @@ def test_project_add_mixed_valid_invalid_elements() -> None:
 
 
 def test_project_add_elements_with_duplicates(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test adding elements to a Project instance where some elements have already been added.
+    """Test adding elements to a Project instance where some elements have already been added.
 
     This test ensures that when elements, including duplicates, are added to a Project instance,
     only unique elements are retained in the Project's elements set.
@@ -679,8 +662,7 @@ def test_project_add_elements_with_duplicates(valid_ontoumlelement_set: set[Onto
 
 
 def test_project_add_element_updates_in_project() -> None:
-    """
-    Test if adding an element to a Project instance updates the element's in_project attribute.
+    """Test if adding an element to a Project instance updates the element's in_project attribute.
 
     This test verifies that the in_project attribute of an OntoumlElement is correctly updated
     to include the Project instance it is added to.
@@ -695,8 +677,7 @@ def test_project_add_element_updates_in_project() -> None:
 
 
 def test_project_remove_specific_element(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test removing a specific element from a Project instance.
+    """Test removing a specific element from a Project instance.
 
     This test ensures that a specific OntoumlElement can be removed from a Project instance correctly.
 
@@ -714,8 +695,7 @@ def test_project_remove_specific_element(valid_ontoumlelement_set: set[OntoumlEl
 
 
 def test_project_remove_element_from_multiple_projects() -> None:
-    """
-    Test removing an OntoumlElement that is part of multiple Project instances.
+    """Test removing an OntoumlElement that is part of multiple Project instances.
 
     This test verifies that removing an OntoumlElement from one Project instance does not affect its presence in \
     other Project instances.
@@ -735,8 +715,7 @@ def test_project_remove_element_from_multiple_projects() -> None:
 
 
 def test_project_remove_nonexistent_element() -> None:
-    """
-    Test removing an OntoumlElement that does not exist in the Project.
+    """Test removing an OntoumlElement that does not exist in the Project.
 
     This test ensures that attempting to remove a nonexistent element does not affect the Project instance.
 
@@ -761,8 +740,7 @@ def test_project_remove_none_element() -> None:
 
 
 def test_project_remove_all_elements_of_type() -> None:
-    """
-    Test removing all elements of a specific type from a Project instance.
+    """Test removing all elements of a specific type from a Project instance.
 
     This test verifies that all elements of a specific subclass of OntoumlElement can be removed from a \
     Project instance.
@@ -783,8 +761,7 @@ def test_project_remove_all_elements_of_type() -> None:
 
 
 def test_project_remove_element_updates_in_project() -> None:
-    """
-    Test if removing an element from a Project instance updates the element's in_project attribute.
+    """Test if removing an element from a Project instance updates the element's in_project attribute.
 
     This test ensures that the in_project attribute of an OntoumlElement is correctly updated when it is \
     removed from a Project instance.
@@ -874,8 +851,7 @@ def test_project_remove_modified_elements(valid_ontoumlelement_set) -> None:
 
 
 def test_project_remove_elements_in_reverse_order(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test removing elements from a Project in the reverse order of their addition.
+    """Test removing elements from a Project in the reverse order of their addition.
 
     This test verifies that elements can be removed from a Project instance in the reverse order of their addition.
 
@@ -925,8 +901,7 @@ def test_project_repeated_add_remove_element() -> None:
 
 
 def test_project_remove_elements_conditional_filter(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test removing elements from a Project using a conditional filter.
+    """Test removing elements from a Project using a conditional filter.
 
     This test ensures that elements can be selectively removed from a Project instance based on a specific condition.
 
@@ -1001,8 +976,7 @@ def test_project_remove_nonexistent_element2() -> None:
 
 
 def test_project_remove_element_others_unchanged() -> None:
-    """
-    Test removing a single element from a Project and ensuring other elements remain unchanged.
+    """Test removing a single element from a Project and ensuring other elements remain unchanged.
 
     This test verifies that removing one element from a Project does not affect the other elements in the Project.
 
@@ -1037,8 +1011,7 @@ def test_project_remove_modified_element() -> None:
 
 
 def test_project_remove_elements_by_filter() -> None:
-    """
-    Test removing elements from a Project using a filter function.
+    """Test removing elements from a Project using a filter function.
 
     This test ensures that elements can be selectively removed from a Project instance based on a filter function.
 
@@ -1076,8 +1049,7 @@ def test_project_sequential_remove_elements() -> None:
 
 
 def test_project_remove_element_unaffected_properties() -> None:
-    """
-    Test removing an element from a Project and ensuring project properties remain unaffected.
+    """Test removing an element from a Project and ensuring project properties remain unaffected.
 
     This test checks that the removal of an element from a Project does not impact the Project's other properties.
 
@@ -1130,8 +1102,7 @@ def test_project_remove_elements_check_in_project() -> None:
 
 
 def test_project_remove_element_ensure_order() -> None:
-    """
-    Test removing an element from a Project and ensuring the order of remaining elements.
+    """Test removing an element from a Project and ensuring the order of remaining elements.
 
     This test verifies that the order of elements in a Project is maintained after an element is removed.
 
@@ -1166,8 +1137,7 @@ def test_project_remove_random_element1() -> None:
 
 
 def test_project_remove_random_elements2(valid_ontoumlelement_set: set[OntoumlElement]) -> None:
-    """
-    Test removing a random selection of elements from a Project instance.
+    """Test removing a random selection of elements from a Project instance.
 
     This test verifies that a randomly selected subset of elements can be removed from a Project instance correctly.
 
@@ -1211,8 +1181,7 @@ def test_project_remove_elements_impact_on_properties() -> None:
 
 
 def test_project_with_valid_root_package() -> None:
-    """
-    Test the initialization of a Project instance with a valid Package as root_package.
+    """Test the initialization of a Project instance with a valid Package as root_package.
 
     This test ensures that a Project can be correctly initialized with a valid Package object as its root_package.
 
@@ -1278,8 +1247,7 @@ def test_project_root_package_independence_from_other_projects() -> None:
 
 
 def test_project_keywords_attribute() -> None:
-    """
-    Test the assignment and retrieval of the 'keywords' attribute in a Project instance.
+    """Test the assignment and retrieval of the 'keywords' attribute in a Project instance.
 
     :raises AssertionError: If the 'keywords' attribute does not store or return LangString objects correctly.
     """
@@ -1292,8 +1260,7 @@ def test_project_keywords_attribute() -> None:
 
 
 def test_project_license_attribute() -> None:
-    """
-    Test the assignment and retrieval of the 'license' attribute in a Project instance.
+    """Test the assignment and retrieval of the 'license' attribute in a Project instance.
 
     :raises AssertionError: If the 'license' attribute does not store or return the license string correctly.
     """
@@ -1306,8 +1273,7 @@ def test_project_license_attribute() -> None:
 
 
 def test_project_publisher_attribute() -> None:
-    """
-    Test the assignment and retrieval of the 'publisher' attribute in a Project instance.
+    """Test the assignment and retrieval of the 'publisher' attribute in a Project instance.
 
     :raises AssertionError: If the 'publisher' attribute does not store or return the publisher string correctly.
     """
@@ -1320,8 +1286,7 @@ def test_project_publisher_attribute() -> None:
 
 
 def test_project_representation_style_attribute() -> None:
-    """
-    Test the assignment and retrieval of the 'representation_style' attribute in a Project instance.
+    """Test the assignment and retrieval of the 'representation_style' attribute in a Project instance.
 
     :raises AssertionError: If the 'representation_style' attribute does not store or return the \
     OntologyRepresentationStyle enum correctly.
@@ -1339,8 +1304,7 @@ def test_project_representation_style_attribute() -> None:
 
 
 def test_project_initialization_with_invalid_acronyms():
-    """
-    Test the initialization of a Project instance with invalid acronyms (valid type: list of strings, \
+    """Test the initialization of a Project instance with invalid acronyms (valid type: list of strings, \
     but invalid values).
 
     :raises AssertionError: If the Project instance does not raise a ValueError for invalid acronyms.
@@ -1352,8 +1316,7 @@ def test_project_initialization_with_invalid_acronyms():
 
 
 def test_project_initialization_with_invalid_bibliographic_citations():
-    """
-    Test the initialization of a Project instance with invalid bibliographic citations (valid type: list of \
+    """Test the initialization of a Project instance with invalid bibliographic citations (valid type: list of \
     strings, but invalid values).
 
     :raises AssertionError: If the Project instance does not raise a ValueError for invalid bibliographic citations.
@@ -1365,8 +1328,7 @@ def test_project_initialization_with_invalid_bibliographic_citations():
 
 
 def test_project_initialization_with_invalid_keywords():
-    """
-    Test the initialization of a Project instance with invalid keywords (valid type: list of LangString, but \
+    """Test the initialization of a Project instance with invalid keywords (valid type: list of LangString, but \
     invalid values).
 
     :raises AssertionError: If the Project instance does not raise a ValueError for invalid keywords.
@@ -1378,8 +1340,7 @@ def test_project_initialization_with_invalid_keywords():
 
 
 def test_project_initialization_with_invalid_landing_pages():
-    """
-    Test the initialization of a Project instance with invalid landing pages (valid type: list of strings, but \
+    """Test the initialization of a Project instance with invalid landing pages (valid type: list of strings, but \
     invalid values).
 
     :raises AssertionError: If the Project instance does not raise a ValueError for invalid landing pages.

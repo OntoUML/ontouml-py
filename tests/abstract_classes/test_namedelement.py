@@ -231,8 +231,7 @@ def test_post_initialization_with_empty_list() -> None:
 # Edge case tests for 'names'
 @pytest.mark.parametrize("edge_case_value", [set([LangString("")]), set([LangString(" ")]), set([LangString("\n")])])
 def test_names_edge_cases(edge_case_value: set[LangString]) -> None:
-    """
-    Test initializing NamedElement with edge case LangString values for 'names'.
+    """Test initializing NamedElement with edge case LangString values for 'names'.
 
     :param edge_case_value: A set containing a LangString object with edge case content.
     :raises AssertionError: If 'names' does not handle edge case values correctly.
@@ -244,8 +243,7 @@ def test_names_edge_cases(edge_case_value: set[LangString]) -> None:
 # Edge case tests for 'alt_names'
 @pytest.mark.parametrize("edge_case_list", [[], [LangString("")], [LangString(" "), LangString("\n")]])
 def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
-    """
-    Test initializing NamedElement with edge case lists for 'alt_names'.
+    """Test initializing NamedElement with edge case lists for 'alt_names'.
 
     :param edge_case_list: A list of LangString objects with edge case content.
     :raises AssertionError: If 'alt_names' does not handle edge case lists correctly.
@@ -308,8 +306,7 @@ def test_special_characters_and_unicode(special_string) -> None:
 
 
 def test_attributes_with_non_empty_valid_data() -> None:
-    """
-    Test assigning non-empty valid data to 'alt_names' and 'editorial_notes' in NamedElement.
+    """Test assigning non-empty valid data to 'alt_names' and 'editorial_notes' in NamedElement.
 
     This test ensures that both 'alt_names' and 'editorial_notes' attributes correctly handle
     non-empty sets of LangString objects.
@@ -330,8 +327,7 @@ def test_attributes_with_non_empty_valid_data() -> None:
 
 
 def test_attributes_with_empty_data() -> None:
-    """
-    Test assigning empty sets to 'alt_names' and 'editorial_notes' in NamedElement.
+    """Test assigning empty sets to 'alt_names' and 'editorial_notes' in NamedElement.
 
     This test verifies that both 'alt_names' and 'editorial_notes' attributes can handle
     empty sets without issues.
@@ -365,8 +361,7 @@ def test_rejection_of_invalid_data_in_list_attributes() -> None:
 
 
 def test_valid_subclass_instantiation() -> None:
-    """
-    Test the instantiation of a valid subclass of NamedElement.
+    """Test the instantiation of a valid subclass of NamedElement.
 
     :raises AssertionError: If a valid subclass cannot be instantiated.
     """
@@ -399,8 +394,7 @@ def test_error_message_for_invalid_subclass() -> None:
 
 
 def test_direct_instantiation_of_abstract_class() -> None:
-    """
-    Test that direct instantiation of the abstract class NamedElement is not allowed.
+    """Test that direct instantiation of the abstract class NamedElement is not allowed.
 
     :raises TypeError: If NamedElement is instantiated directly.
     """
@@ -409,8 +403,7 @@ def test_direct_instantiation_of_abstract_class() -> None:
 
 
 def test_subclass_without_required_methods() -> None:
-    """
-    Test that a subclass missing required abstract methods cannot be instantiated.
+    """Test that a subclass missing required abstract methods cannot be instantiated.
 
     :raises TypeError: If a subclass without required abstract methods is instantiated.
     """
@@ -423,8 +416,7 @@ def test_subclass_without_required_methods() -> None:
 
 
 def test_subclass_with_all_required_methods() -> None:
-    """
-    Test the instantiation of a subclass that implements all required abstract methods of NamedElement.
+    """Test the instantiation of a subclass that implements all required abstract methods of NamedElement.
 
     :raises AssertionError: If a subclass with all required methods cannot be instantiated.
     """
@@ -438,8 +430,7 @@ def test_subclass_with_all_required_methods() -> None:
 
 # Test with mixed valid and invalid LangString objects in lists
 def test_mixed_valid_invalid_langstring_in_lists() -> None:
-    """
-    Test the instantiation of NamedElement with a mix of valid and invalid LangString objects in lists.
+    """Test the instantiation of NamedElement with a mix of valid and invalid LangString objects in lists.
 
     :raises ValidationError: If lists contain invalid LangString objects.
     """
@@ -452,8 +443,7 @@ def test_mixed_valid_invalid_langstring_in_lists() -> None:
 # Test with extremely short strings
 @pytest.mark.parametrize("short_string", ["a", " ", ""])
 def test_extremely_short_strings(short_string: str) -> None:
-    """
-    Test assigning extremely short strings to string-based attributes of NamedElement.
+    """Test assigning extremely short strings to string-based attributes of NamedElement.
 
     :param short_string: A string containing a single character or whitespace.
     :raises AssertionError: If extremely short strings are not handled correctly.
@@ -466,8 +456,7 @@ def test_extremely_short_strings(short_string: str) -> None:
 # Test with numeric and special characters in URIs
 @pytest.mark.parametrize("uri", ["http://example1.com/123", "http://example2.com/?q=♠♥♦♣"])
 def test_numeric_special_characters_in_uris(uri: str) -> None:
-    """
-    Test initializing NamedElement with URIs containing numeric and special characters.
+    """Test initializing NamedElement with URIs containing numeric and special characters.
 
     :param uri: A URI string containing numeric and/or special characters.
     :raises AssertionError: If URIs with numeric and special characters are not handled correctly.
@@ -479,8 +468,7 @@ def test_numeric_special_characters_in_uris(uri: str) -> None:
 
 # Test with null values for optional attributes
 def test_null_values_for_optional_attributes() -> None:
-    """
-    Test assigning null values to optional attributes of NamedElement.
+    """Test assigning null values to optional attributes of NamedElement.
 
     :raises AssertionError: If null values for optional attributes are not handled correctly.
     """
@@ -491,8 +479,7 @@ def test_null_values_for_optional_attributes() -> None:
 # Test with different types of whitespace in strings
 @pytest.mark.parametrize("whitespace", ["\t", "\n", "\r", " \t\n"])
 def test_whitespace_in_strings(whitespace: str) -> None:
-    """
-    Test assigning strings with different types of whitespace to string-based attributes of NamedElement.
+    """Test assigning strings with different types of whitespace to string-based attributes of NamedElement.
 
     :param whitespace: A string containing various types of whitespace characters.
     :raises AssertionError: If strings with different types of whitespace are not handled correctly.
@@ -504,8 +491,7 @@ def test_whitespace_in_strings(whitespace: str) -> None:
 
 # Test with maximum number of elements in lists
 def test_maximum_elements_in_lists() -> None:
-    """
-    Test assigning the maximum number of elements to list attributes of NamedElement.
+    """Test assigning the maximum number of elements to list attributes of NamedElement.
 
     :raises AssertionError: If lists do not handle the maximum number of elements correctly.
     """
@@ -517,8 +503,7 @@ def test_maximum_elements_in_lists() -> None:
 
 # Test with empty strings in URI lists
 def test_empty_strings_in_uri_lists() -> None:
-    """
-    Test assigning lists containing empty strings to URI attributes of NamedElement.
+    """Test assigning lists containing empty strings to URI attributes of NamedElement.
 
     :raises ValidationError: If lists contain empty strings for URI attributes.
     """
@@ -529,8 +514,7 @@ def test_empty_strings_in_uri_lists() -> None:
 # Test with mixed case strings
 @pytest.mark.parametrize("mixed_case_string", ["MixedCase", "MIXED", "mixed"])
 def test_mixed_case_strings(mixed_case_string: str) -> None:
-    """
-    Test assigning mixed case strings to string-based attributes of NamedElement.
+    """Test assigning mixed case strings to string-based attributes of NamedElement.
 
     :param mixed_case_string: A string containing mixed case characters.
     :raises AssertionError: If mixed case strings are not handled correctly.
@@ -542,8 +526,7 @@ def test_mixed_case_strings(mixed_case_string: str) -> None:
 
 # Test with duplicate elements in lists
 def test_duplicate_elements_in_lists() -> None:
-    """
-    Test assigning lists with duplicate elements to list attributes of NamedElement.
+    """Test assigning lists with duplicate elements to list attributes of NamedElement.
 
     :raises AssertionError: If lists do not handle duplicate elements correctly.
     """
@@ -553,8 +536,7 @@ def test_duplicate_elements_in_lists() -> None:
 
 
 def test_default_type_of_names() -> None:
-    """
-    Test the default type of the 'names' attribute in NamedElement.
+    """Test the default type of the 'names' attribute in NamedElement.
 
     Ensures that the 'names' attribute, when not explicitly initialized, defaults to an empty list.
 
@@ -566,8 +548,7 @@ def test_default_type_of_names() -> None:
 
 
 def test_default_type_of_alt_names() -> None:
-    """
-    Test the default type of the 'alt_names' attribute in NamedElement.
+    """Test the default type of the 'alt_names' attribute in NamedElement.
 
     Verifies that the 'alt_names' attribute, when not explicitly initialized, defaults to an empty list.
 
@@ -579,8 +560,7 @@ def test_default_type_of_alt_names() -> None:
 
 
 def test_default_type_of_description() -> None:
-    """
-    Test the default type of the 'description' attribute in NamedElement.
+    """Test the default type of the 'description' attribute in NamedElement.
 
     Checks that the 'description' attribute, when not explicitly initialized, defaults to None.
 
@@ -592,8 +572,7 @@ def test_default_type_of_description() -> None:
 
 
 def test_default_type_of_editorial_notes() -> None:
-    """
-    Test the default type of the 'editorial_notes' attribute in NamedElement.
+    """Test the default type of the 'editorial_notes' attribute in NamedElement.
 
     Confirms that the 'editorial_notes' attribute, when not explicitly initialized, defaults to an empty list.
 
@@ -605,8 +584,7 @@ def test_default_type_of_editorial_notes() -> None:
 
 
 def test_default_type_of_creators() -> None:
-    """
-    Test the default type of the 'creators' attribute in NamedElement.
+    """Test the default type of the 'creators' attribute in NamedElement.
 
     Ensures that the 'creators' attribute, when not explicitly initialized, defaults to an empty list.
 
@@ -618,8 +596,7 @@ def test_default_type_of_creators() -> None:
 
 
 def test_default_type_of_contributors() -> None:
-    """
-    Test the default type of the 'contributors' attribute in NamedElement.
+    """Test the default type of the 'contributors' attribute in NamedElement.
 
     Verifies that the 'contributors' attribute, when not explicitly initialized, defaults to an empty list.
 
@@ -631,8 +608,7 @@ def test_default_type_of_contributors() -> None:
 
 
 def test_access_non_existent_attribute() -> None:
-    """
-    Test accessing a non-existent attribute in NamedElement.
+    """Test accessing a non-existent attribute in NamedElement.
 
     This test ensures that attempting to access an attribute that does not exist in the NamedElement class raises an
     AttributeError.
@@ -649,8 +625,7 @@ def test_access_non_existent_attribute() -> None:
 
 
 def test_assign_to_non_existent_attribute() -> None:
-    """
-    Test assigning a value to a non-existent attribute in NamedElement.
+    """Test assigning a value to a non-existent attribute in NamedElement.
 
     Verifies that attempting to assign a value to an attribute that does not exist in the NamedElement class raises an
     AttributeError.
@@ -664,8 +639,7 @@ def test_assign_to_non_existent_attribute() -> None:
 
 
 def test_method_call_on_non_existent_attribute() -> None:
-    """
-    Test calling a method on a non-existent attribute in NamedElement.
+    """Test calling a method on a non-existent attribute in NamedElement.
 
     Ensures that attempting to call a method on an attribute that does not exist in the NamedElement class raises an
     AttributeError.
@@ -682,8 +656,7 @@ def test_method_call_on_non_existent_attribute() -> None:
 
 
 def test_instantiation_with_unknown_arguments() -> None:
-    """
-    Test the instantiation of NamedElement with unknown arguments.
+    """Test the instantiation of NamedElement with unknown arguments.
 
     This test verifies that attempting to instantiate a NamedElement (or its subclass) with arguments that are not
     defined in the class raises a TypeError.
@@ -696,8 +669,7 @@ def test_instantiation_with_unknown_arguments() -> None:
 
 
 def test_modifying_instance_with_unknown_arguments() -> None:
-    """
-    Test modifying an instance of NamedElement with unknown arguments.
+    """Test modifying an instance of NamedElement with unknown arguments.
 
     Ensures that attempting to modify an instance of NamedElement (or its subclass) with arguments that are not
     defined in the class raises a TypeError.
@@ -711,8 +683,7 @@ def test_modifying_instance_with_unknown_arguments() -> None:
 
 
 def test_setting_unknown_attributes_post_instantiation() -> None:
-    """
-    Test setting unknown attributes on an instance of NamedElement post-instantiation.
+    """Test setting unknown attributes on an instance of NamedElement post-instantiation.
 
     Verifies that attempting to set an unknown attribute on an instance of NamedElement (or its subclass) post-
     instantiation raises an AttributeError.
@@ -726,8 +697,7 @@ def test_setting_unknown_attributes_post_instantiation() -> None:
 
 
 def test_namedelement_with_single_character_names() -> None:
-    """
-    Test the instantiation of NamedElement with single-character names.
+    """Test the instantiation of NamedElement with single-character names.
 
     This test verifies that NamedElement (or its subclass) can be instantiated with single-character strings in the
     'names' attribute, which is a valid but unusual use case.
@@ -741,8 +711,7 @@ def test_namedelement_with_single_character_names() -> None:
 
 
 def test_namedelement_with_reversed_uri_lists() -> None:
-    """
-    Test the instantiation of NamedElement with reversed URI lists.
+    """Test the instantiation of NamedElement with reversed URI lists.
 
     This test checks if NamedElement (or its subclass) can handle URI lists for 'creators' and 'contributors' where
     the URIs are in a reversed order, which is a valid but unusual scenario.
@@ -758,8 +727,7 @@ def test_namedelement_with_reversed_uri_lists() -> None:
 
 
 def test_namedelement_with_alternating_case_descriptions() -> None:
-    """
-    Test the instantiation of NamedElement with alternating case descriptions.
+    """Test the instantiation of NamedElement with alternating case descriptions.
 
     Verifies that NamedElement (or its subclass) can be instantiated with a description having alternating case,
     which is an unusual but valid string format.

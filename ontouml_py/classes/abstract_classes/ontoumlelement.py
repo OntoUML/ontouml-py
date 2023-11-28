@@ -11,15 +11,15 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
-from ontouml_py.utils import ensure_valid_subclasses
+from ontouml_py.utils import validate_subclasses
 
 
 class OntoumlElement(ABC, BaseModel):
     """Abstract base class representing a generic element within an OntoUML model.
 
-    Provides base features for OntoUML elements, including a unique identifier, timestamps for creation and
-    modification, and a relationship to OntoUML projects. It enforces read-only constraints on certain attributes and
-    includes validation logic to maintain the integrity of these attributes.
+    This class provides foundational attributes and methods for all OntoUML elements, including unique identification
+    and timestamps for creation and modification. It enforces constraints on certain attributes and includes validation
+    logic to maintain their integrity.
 
     :ivar id: A unique identifier for the element, automatically generated upon instantiation.
     :vartype id: str
@@ -27,14 +27,11 @@ class OntoumlElement(ABC, BaseModel):
     :vartype created: datetime
     :ivar modified: Timestamp when the element was last modified, can be None if not modified.
     :vartype modified: Optional[datetime]
-    :ivar in_project: List of projects this element is part of. Direct modification is restricted.
-    :vartype in_project: list[Project]
     """
 
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
-    in_project: set['Project'] = Field(default_factory=set)  # Forward declaration of Project
 
     # Pydantic's configuration settings for the OntoumlElement class.
     model_config = {  # noqa (vulture)
@@ -48,17 +45,13 @@ class OntoumlElement(ABC, BaseModel):
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new OntoumlElement instance. This method is abstract and should be implemented by subclasses.
 
-        Ensures that 'modified' is not earlier than 'created' and prevents direct initialization of 'in_project'.
+        Ensures that 'modified' is not earlier than 'created'.
 
-        :param data: Fields to be set on the model instance, excluding 'in_project'.
+        :param data: Fields to be set on the model instance.
         :type data: dict[str, Any]
-        :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
-            initialized.
+        :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-        # List of allowed subclasses: OntoumlElement is a categorizer of a complete generalization set
-        _allowed_subclasses = ["NamedElement", "Shape", "View"]
-
-        ensure_valid_subclasses(self, _allowed_subclasses)
+        validate_subclasses(self, ["NamedElement", "Shape", "View"])
 
         # Sets attributes
         super().__init__(**data)
@@ -66,16 +59,9 @@ class OntoumlElement(ABC, BaseModel):
         # Additional validations
         if self.modified is not None and self.modified < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
-        if "in_project" in data:
-            raise ValueError(
-                "Attribute 'in_project' cannot be modified via OntoumlElement. "
-                "This operation should be done via class Project."
-            )
 
     def __setattr__(self, key: str, value: Any) -> None:
-        """Set attribute values, enforcing logical validation.
-
-        Prevents modification of 'in_project'. Validates 'modified' against 'created'.
+        """Set attribute values. Validates 'modified' against 'created'.
 
         :param key: The attribute name to set.
         :type key: str
@@ -83,43 +69,52 @@ class OntoumlElement(ABC, BaseModel):
         :type value: Any
         :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
         """
-        if key == "in_project" and hasattr(self, key):
-            raise ValueError(
-                "Attribute 'in_project' cannot be modified via OntoumlElement. "
-                "This operation should be done via class Project."
-            )
         if key == "modified" and value is not None and value < self.created:
             raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
         super().__setattr__(key, value)
 
     def __eq__(self, other: object) -> bool:
-        """
-        Determine if two OntoumlElement instances are equal based on their unique identifiers.
-
-        This method is necessary to make instances of OntoumlElement hashable, allowing them to be compared
-        based on their 'id' attribute. It assumes that 'id' is a unique identifier for each instance.
-
+        """Determine if two OntoumlElement instances are equal based on their unique identifiers.
+        
+        This method overrides the default equality comparison behavior. It is essential for comparing instances
+        of OntoumlElement, particularly in collections and when ensuring uniqueness. Equality is determined solely
+        based on the 'id' attribute, which is assumed to be a unique identifier for each instance.
+        
         :param other: The other object to compare with the current instance.
         :type other: object
-        :return: Returns True if both instances have the same 'id', False otherwise. If 'other' is not an instance
-                 of OntoumlElement, the method returns NotImplemented.
+        :return: True if both instances have the same 'id', False otherwise. Returns NotImplemented if 'other' is not
+                 an instance of OntoumlElement.
         :rtype: bool
-        :raises NotImplemented: If 'other' is not an instance of OntoumlElement.
+        :raises TypeError: If 'other' is not an instance of OntoumlElement and cannot be compared.
         """
         if not isinstance(other, OntoumlElement):
             return NotImplemented
         return self.id == other.id  # Assuming 'id' is a unique identifier for Project instances
 
     def __hash__(self) -> int:
-        """
-        Compute the hash value of an OntoumlElement instance.
-
-        This method is essential for making OntoumlElement instances hashable. It uses the unique identifier 'id'
-        of the instance to compute the hash. This ensures that each OntoumlElement instance has a unique hash value
-        based on its 'id', which is crucial for using these instances in hash-based collections like sets or as keys
-        in dictionaries.
-
-        :return: The hash value of the instance, computed based on its 'id'.
+        """Compute the hash value of an OntoumlElement instance based on its unique identifier.
+    
+        This method enables OntoumlElement instances to be used in hash-based data structures like sets and dicts.
+        The hash value is computed using the 'id' attribute, ensuring that each instance has a distinct hash value
+        corresponding to its unique identifier.
+    
+        :return: The hash value of the instance, computed using its 'id'.
         :rtype: int
         """
         return hash(self.id)  # Hash based on a unique identifier
+
+    @classmethod
+    def get_all_subclasses(cls) -> list[type]:
+        """Recursively gather all subclasses of the OntoumlElement class.
+    
+        This class method is useful for operations that require knowledge of all existing subclasses of OntoumlElement,
+        such as type checking and instance creation based on type. It traverses the subclass hierarchy recursively
+        to find all derived classes.
+    
+        :return: A list containing all subclasses of OntoumlElement.
+        :rtype: list[type]
+        """
+        subclasses = cls.__subclasses__()
+        for subclass in subclasses:
+            subclasses.extend(subclass.get_all_subclasses())
+        return subclasses
