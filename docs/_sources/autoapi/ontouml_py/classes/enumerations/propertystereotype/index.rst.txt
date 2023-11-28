@@ -1,0 +1,49 @@
+:py:mod:`ontouml_py.classes.enumerations.propertystereotype`
+============================================================
+
+.. py:module:: ontouml_py.classes.enumerations.propertystereotype
+
+.. autoapi-nested-parse::
+
+   This module defines the PropertyStereotype enumeration, a subclass of OntoumlEnum, representing different stereotypes applicable to properties in OntoUML.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype
+
+
+
+
+.. py:class:: PropertyStereotype(*args, **kwds)
+
+
+   Bases: :py:obj:`ontouml_py.classes.enumerations.ontouml_enum.OntoumlEnum`
+
+   An enumeration representing different stereotypes applicable to properties in OntoUML.
+
+   This enum classifies various stereotypes that can be assigned to property elements in an OntoUML model. It extends
+   OntoumlEnum.
+
+   Members:
+       BEGIN: Represents a 'begin' stereotype, typically used for temporal properties.
+       END: Represents an 'end' stereotype, often associated with the termination of temporal properties.
+
+   .. py:attribute:: BEGIN
+      :value: 'begin'
+
+      
+
+   .. py:attribute:: END
+      :value: 'end'
+
+      
+
+

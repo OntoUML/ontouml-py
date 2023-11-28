@@ -1,10 +1,5 @@
-"""
-This module defines the AggregationKind enumeration, a subclass of OntoumlEnum, representing different kinds of
-aggregation in OntoUML.
-
-Classes:
-    AggregationKind (OntoumlEnum): Enumerates different kinds of aggregation.
-"""
+"""This module defines the AggregationKind enumeration, a subclass of OntoumlEnum, representing different kinds of \
+aggregation in OntoUML."""
 
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 

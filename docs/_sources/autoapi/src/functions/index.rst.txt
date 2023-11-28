@@ -1,6 +1,0 @@
-:py:mod:`src.functions`
-=======================
-
-.. py:module:: src.functions
-
-

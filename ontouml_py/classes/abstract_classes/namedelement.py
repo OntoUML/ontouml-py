@@ -8,8 +8,7 @@ contributors.
 from abc import abstractmethod
 from typing import Any, Optional
 
-from icecream import ic
-from langstring_lib.langstring import LangString  # type: ignore
+from langstring import LangString
 from pydantic import Field, field_validator
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
@@ -61,7 +60,7 @@ class NamedElement(OntoumlElement):
         return checked_list
 
     @abstractmethod
-    def __init__(self, **data: dict[str, Any]):
+    def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new NamedElement instance, ensuring proper initialization of attributes with validation.
 
         Inherits 'created', 'modified', and 'id' initialization from OntoumlElement, and adds initialization for

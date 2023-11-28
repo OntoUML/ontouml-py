@@ -1,10 +1,9 @@
 from typing import Any
 
 import pytest
-from langstring_lib.langstring import LangString  # type: ignore
+from langstring import LangString
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 
 
@@ -18,7 +17,7 @@ class Project(NamedElement):
     abstract class and cannot be instantiated directly.
     """
 
-    def __init__(self, **data: dict[str, Any]):
+    def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new instance of Project.
 
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
@@ -28,13 +27,8 @@ class Project(NamedElement):
 
 
 class InvalidSubclass(NamedElement):
-    def __init__(self, **data: dict[str, Any]):
+    def __init__(self, **data: dict[str, Any]) -> None:
         super().__init__(**data)
-
-
-class Link(ModelElement):
-    def __init__(self):
-        pass
 
 
 @pytest.fixture

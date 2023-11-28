@@ -1,0 +1,25 @@
+:py:mod:`ontouml_py.classes.concrete_classes`
+=============================================
+
+.. py:module:: ontouml_py.classes.concrete_classes
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   binaryrelation/index.rst
+   class/index.rst
+   generalization/index.rst
+   generalizationset/index.rst
+   link/index.rst
+   literal/index.rst
+   naryrelation/index.rst
+   note/index.rst
+   package/index.rst
+   project/index.rst
+   property/index.rst
+
+

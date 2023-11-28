@@ -1,0 +1,31 @@
+:py:mod:`ontouml_py.classes.concrete_classes.package`
+=====================================================
+
+.. py:module:: ontouml_py.classes.concrete_classes.package
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.concrete_classes.package.Package
+
+
+
+
+.. py:class:: Package(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
+
+   Represents a model element, inheriting properties from both NamedElement and ProjectElement.
+
+   :ivar custom_properties: A set of custom properties associated with the model element. Each property is a tuple
+       containing a string key and a value of any type.
+   :vartype custom_properties: Set[Tuple[str, Any]]
+
+

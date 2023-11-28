@@ -41,7 +41,7 @@ line-length = 120
 
 [tool.vulture]
 paths = ["."]
-exclude = ["docs/", "sphinx/", "src/classes/enumerations/"]
+exclude = ["docs/", "sphinx/", "ontouml_py/classes/enumerations/", "venv/"]
 
 [tool.mypy]
 exclude= '^tests'

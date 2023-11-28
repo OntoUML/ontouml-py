@@ -10,6 +10,7 @@ from pydantic import Field, PrivateAttr, field_validator
 
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
 from ontouml_py.classes.concrete_classes.package import Package
 from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
     OntologyRepresentationStyle,
@@ -61,7 +62,7 @@ class Project(NamedElement):
     """
 
     # Private attributes
-    _elements: set[OntoumlElement] = PrivateAttr(default_factory=set)
+    _elements: set[ProjectElement] = PrivateAttr(default_factory=set)
     # Public attributes
     acronyms: set[str] = Field(default_factory=set)
     bibliographic_citations: set[str] = Field(default_factory=set)
@@ -132,41 +133,41 @@ class Project(NamedElement):
         elements = data.get("elements")
         if elements is not None and not isinstance(elements, set):
             raise TypeError("Expected 'elements' to be a set")
-        self._elements: set[OntoumlElement] = elements if elements is not None else set()
+        self._elements: set[ProjectElement] = elements if elements is not None else set()
 
-    def add_element(self, element: OntoumlElement) -> None:
+    def add_element(self, element: ProjectElement) -> None:
+        """Add a ProjectElement to the project.
+
+        Ensures that the element is of the correct type. Also updates the inverse relationship in ProjectElement.
+
+        :param element: The ProjectElement to be added to the project.
+        :type element: ProjectElement
+        :raises TypeError: If the element is not an instance of ProjectElement.
         """
-        Add an OntoumlElement to the project.
+        if not isinstance(element, ProjectElement):
+            raise TypeError("Element must be an instance of ProjectElement.")
 
-        Ensures that the element is of the correct type and not a Project itself. Also updates the inverse relationship
-        in OntoumlElement and checks for duplicates.
+        element.in_project = self  # direct relation
+        self._elements.add(element)  # inverse relation
 
-        :param element: The OntoumlElement to be added to the project.
-        :type element: OntoumlElement
-        :raises TypeError: If the element is not an instance of OntoumlElement.
+    def remove_element(self, element: ProjectElement) -> None:
+        """Remove a ProjectElement from the project if it exists.
+
+        Also updates the inverse relationship in ProjectElement.
+
+        :param element: The ProjectElement to be removed from the project.
+        :type element: ProjectElement
+        :raises TypeError: If the element is not a valid ProjectElement.
         """
-        if not isinstance(element, OntoumlElement):
-            raise TypeError("Element must be an instance of OntoumlElement.")
-        if not isinstance(element, Project):
-            element.in_project.add(self)  # direct relation
-            self._elements.add(element)  # inverse relation
-
-    def remove_element(self, element: OntoumlElement) -> None:
-        """Remove an OntoumlElement from the project if it exists.
-
-        Also updates the inverse relationship in OntoumlElement.
-
-        :param element: The OntoumlElement to be removed from the project.
-        :type element: OntoumlElement
-        :raises TypeError: If the element is not a valid OntoumlElement.
-        """
-        if not isinstance(element, OntoumlElement):
-            raise TypeError(f"Element '{element}' cannot be removed as it is not a valid OntoumlElement.")
+        if not isinstance(element, ProjectElement):
+            raise TypeError(f"Element '{element}' cannot be removed as it is not a valid ProjectElement.")
 
         if element in self._elements:
             self._elements.remove(element)
             if self in element.in_project:
-                element.in_project.remove(self)
+                element.in_project = None
+        else:
+            raise ValueError(f"Element '{element}' cannot be removed because is not part of the project.")
 
     @property
     def elements(self) -> set[OntoumlElement]:

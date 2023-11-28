@@ -1,3 +1,8 @@
+"""This utility module contains a collection of helper functions that provide general-purpose functionalities \
+for the project. These utilities are designed to be reusable and can be employed across various modules and components \
+ of the project."""
+
+
 def validate_subclasses(analyzed_class: object, allowed_subclasses: list[str]) -> None:
     """Ensures that the given class is a subclass of one of the allowed subclasses.
 

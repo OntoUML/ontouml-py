@@ -1,10 +1,5 @@
-"""
-This module defines the OntologyRepresentationStyle enumeration, a subclass of OntoumlEnum, for representing different
-styles of ontology representation in OntoUML.
-
-Classes:
-    OntologyRepresentationStyle (OntoumlEnum): Enumerates different styles of ontology representation.
-"""
+"""This module defines the OntologyRepresentationStyle enumeration, a subclass of OntoumlEnum, for representing \
+different styles of ontology representation in OntoUML."""
 
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 

@@ -1,0 +1,51 @@
+:py:mod:`ontouml_py.classes.enumerations.ontologyrepresentationstyle`
+=====================================================================
+
+.. py:module:: ontouml_py.classes.enumerations.ontologyrepresentationstyle
+
+.. autoapi-nested-parse::
+
+   This module defines the OntologyRepresentationStyle enumeration, a subclass of OntoumlEnum, for representing different styles of ontology representation in OntoUML.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.enumerations.ontologyrepresentationstyle.OntologyRepresentationStyle
+
+
+
+
+.. py:class:: OntologyRepresentationStyle(*args, **kwds)
+
+
+   Bases: :py:obj:`ontouml_py.classes.enumerations.ontouml_enum.OntoumlEnum`
+
+   Enumerates different styles of ontology representation in OntoUML.
+
+   This enumeration class inherits from OntoumlEnum and automatically sets the value of each enum member to a
+   CamelCase string corresponding to its name. It provides a clear and standardized way to refer to different ontology
+   representation styles.
+
+   :cvar ONTOUML_STYLE: Represents the OntoUML style of ontology representation.
+   :vartype ONTOUML_STYLE: str
+   :cvar UFO_STYLE: Represents the UFO style of ontology representation.
+   :vartype UFO_STYLE: str
+
+   .. py:attribute:: ONTOUML_STYLE
+      :value: 'ontoumlStyle'
+
+      
+
+   .. py:attribute:: UFO_STYLE
+      :value: 'ufoStyle'
+
+      
+
+

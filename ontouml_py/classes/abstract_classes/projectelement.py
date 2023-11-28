@@ -26,7 +26,7 @@ class ProjectElement(OntoumlElement):
     :vartype in_project: Project
     """
 
-    in_project: Optional["Project"] = Field(default=None)  # Forward declaration of Project
+    in_project: Optional[object] = Field(default=None)  # The type is ensured by the init restriction
 
     # Pydantic's configuration settings for the class.
     model_config = {
@@ -48,12 +48,11 @@ class ProjectElement(OntoumlElement):
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
                             initialized.
         """
-        # List of allowed subclasses
-        _allowed_subclasses = ["ModelElement"]
-        validate_subclasses(self, _allowed_subclasses)
+        validate_subclasses(self, ["ModelElement", "Diagram", "Shape", "View"])
+        super().__init__(**data)
 
         # Additional validations
         if "in_project" in data:
             raise ValueError(
-                "Attribute 'in_project' is a read-only property. This operation should be done via the Project class."
+                "Attribute 'in_project' is a read-only property. This operation should be done via Project class."
             )

@@ -1,0 +1,52 @@
+:py:mod:`ontouml_py.classes.abstract_classes.projectelement`
+============================================================
+
+.. py:module:: ontouml_py.classes.abstract_classes.projectelement
+
+.. autoapi-nested-parse::
+
+   Module for the ProjectElement class within an OntoUML model.
+
+   This module defines the ProjectElement class, an abstract class that represents elements associated with a project in
+   an OntoUML model. It extends the OntoumlElement class and includes an additional read-only attribute to link the element
+   to a specific project. The module ensures that the elements are part of valid subclasses and enforces specific
+   constraints on attribute initialization and management.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.abstract_classes.projectelement.ProjectElement
+
+
+
+
+.. py:class:: ProjectElement(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.ontoumlelement.OntoumlElement`
+
+   Abstract class representing an element that is part of a project in an OntoUML model.
+
+   This class extends OntoumlElement and includes an additional attribute to link the element to a specific project.
+   The `in_project` attribute is read-only and should be managed through the Project class.
+
+   :ivar in_project: Reference to the Project instance this element belongs to. This is a read-only attribute.
+   :vartype in_project: Project
+
+   .. py:attribute:: in_project
+      :type: Optional[object]
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

@@ -1,6 +1,4 @@
-"""
-This module defines a base class for creating enumerations in OntoUML.
-"""
+"""This module defines a base class for creating enumerations in OntoUML."""
 
 from abc import ABCMeta
 from enum import Enum, EnumMeta

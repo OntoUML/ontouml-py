@@ -1,0 +1,35 @@
+:py:mod:`ontouml_py.utils`
+==========================
+
+.. py:module:: ontouml_py.utils
+
+.. autoapi-nested-parse::
+
+   This utility module contains a collection of helper functions that provide general-purpose functionalities for the project. These utilities are designed to be reusable and can be employed across various modules and components  of the project.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.utils.validate_subclasses
+
+
+
+.. py:function:: validate_subclasses(analyzed_class, allowed_subclasses)
+
+   Ensures that the given class is a subclass of one of the allowed subclasses.
+
+   :param analyzed_class: The class to be analyzed for subclass validation.
+   :type analyzed_class: object
+   :param allowed_subclasses: A list of allowed subclass names.
+   :type allowed_subclasses: list[str]
+   :raises ValueError: If the analyzed class is not a subclass of any allowed subclasses.
+
+

@@ -8,16 +8,6 @@ from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
 from ontouml_py.classes.concrete_classes.project import Project
 
 
-@pytest.fixture
-def projects() -> list[Project]:
-    """Provides a fixture for creating a list of Project instances for testing.
-
-    :return: A list of Project instances.
-    :rtype: list[Project]
-    """
-    return [Project() for _ in range(5)]
-
-
 def test_abstract_class() -> None:
     """Test if the class OntoumlElement can be directly instantiated.
 
