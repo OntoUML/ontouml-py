@@ -6,7 +6,7 @@ Classes:
     RelationStereotype (OntoumlEnum): Enumerates different stereotypes for relations in OntoUML.
 """
 
-from src.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class RelationStereotype(OntoumlEnum):

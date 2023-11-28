@@ -8,10 +8,10 @@ from typing import Any, Optional
 
 from pydantic import Field, PrivateAttr, field_validator
 
-from src.classes.abstract_classes.namedelement import NamedElement
-from src.classes.abstract_classes.ontoumlelement import OntoumlElement
-from src.classes.concrete_classes.package import Package
-from src.classes.enumerations.ontologyrepresentationstyle import (
+from ontouml_py.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.concrete_classes.package import Package
+from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
     OntologyRepresentationStyle,
 )
 

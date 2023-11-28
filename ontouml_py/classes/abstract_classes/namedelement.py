@@ -11,7 +11,8 @@ from typing import Any, Optional
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, field_validator
 
-from src.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.utils import ensure_valid_subclasses
 
 
 class NamedElement(OntoumlElement):
@@ -72,18 +73,7 @@ class NamedElement(OntoumlElement):
         """
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
         _allowed_subclasses = ["Project", "ModelElement"]
+        ensure_valid_subclasses(self, _allowed_subclasses)
 
-        # Check the entire inheritance chain
-        current_class = self.__class__
-        while current_class != object:
-            if current_class.__name__ in _allowed_subclasses:
-                break
-            current_class = current_class.__bases__[0]
-        else:
-            allowed = ", ".join(_allowed_subclasses)
-            raise ValueError(
-                f"'{self.__class__.__name__}' is not an allowed subclass. "
-                f"Only these subclasses are permitted: {allowed}."
-            )
         # Sets attributes
         super().__init__(**data)

@@ -6,7 +6,7 @@ Classes:
     PropertyStereotype (OntoumlEnum): Enumerates different stereotypes for properties in OntoUML.
 """
 
-from src.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class PropertyStereotype(OntoumlEnum):

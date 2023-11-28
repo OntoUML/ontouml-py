@@ -34,7 +34,7 @@ github_username = "pedropaulofb"
 github_repository = "ontouml/ontouml-py"
 
 autoapi_dirs = [
-    "../src/",
+    "../ontouml_py/",
 ]
 
 templates_path = ["_templates"]

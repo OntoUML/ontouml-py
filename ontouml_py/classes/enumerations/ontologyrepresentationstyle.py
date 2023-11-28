@@ -6,7 +6,7 @@ Classes:
     OntologyRepresentationStyle (OntoumlEnum): Enumerates different styles of ontology representation.
 """
 
-from src.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class OntologyRepresentationStyle(OntoumlEnum):

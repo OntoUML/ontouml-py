@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 import pytest
 from pydantic import ValidationError
 
-from src.classes.abstract_classes.namedelement import NamedElement
-from src.classes.abstract_classes.ontoumlelement import OntoumlElement
-from src.classes.concrete_classes.package import Package
-from src.classes.concrete_classes.project import Project as RealProject
+from ontouml_py.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.concrete_classes.package import Package
+from ontouml_py.classes.concrete_classes.project import Project as RealProject
 
 
 class Project(NamedElement):
@@ -61,6 +61,7 @@ def test_ontouml_element_init(concrete_ontouml_element: Package) -> None:
     :type concrete_ontouml_element: Package
     :raises AssertionError: If the 'id' attribute is not correctly initialized as a UUID.
     """
+
     assert isinstance(concrete_ontouml_element.id, str), "The 'id' attribute must be initialized as a string."
 
 

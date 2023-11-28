@@ -1,7 +1,11 @@
-from src.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 
 
-class NaryRelation(NamedElement):
+class GeneralizationSet(NamedElement):
+    is_disjoint: bool = False
+    is_complete: bool = False
+    # TODO (@pedropaulofb): Add generalizations
+
     # Configuration settings for the Project model using Pydantic.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,

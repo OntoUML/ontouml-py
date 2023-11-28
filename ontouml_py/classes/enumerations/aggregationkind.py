@@ -6,7 +6,7 @@ Classes:
     AggregationKind (OntoumlEnum): Enumerates different kinds of aggregation.
 """
 
-from src.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class AggregationKind(OntoumlEnum):

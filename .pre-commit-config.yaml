@@ -1,13 +1,15 @@
-exclude: ^(docs|sphinx)
+exclude: ^(sphinx|doc)
 
 repos:
   - repo: local
     hooks:
-      - id: run_tests
-        name: run pytest tests
-        entry: pytest -p no:warnings ./tests
+      - id: pre_commit_autoupdate
+        name: pre-commit autoupdate
+        entry: pre-commit autoupdate
         language: system
         pass_filenames: false
+        stages:
+          - pre-push
       - id: poetry-update
         name: poetry update
         entry: poetry update
@@ -15,6 +17,11 @@ repos:
         pass_filenames: false
         stages:
           - pre-push
+      - id: run_tests
+        name: run pytest tests
+        entry: pytest -p no:warnings ./tests
+        language: system
+        pass_filenames: false
       - id: update_requirements
         name: update requirements.txt
         entry: poetry export -f requirements.txt --output requirements.txt --with dev
@@ -36,37 +43,19 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: check-ast
-      - id: check-merge-conflict
       - id: check-case-conflict
-        stages:
-          - pre-push
+      - id: check-merge-conflict
       # - id: no-commit-to-branch    # To be included when other contributions join the project
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.11.0
     hooks:
       - id: black
         args: [ --line-length=120 ]
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
     hooks:
       - id: flake8
-        additional_dependencies: [ Flake8-pyproject ]
         args: [ --max-line-length=120 ]
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
-    hooks:
-      - id: mypy
-        language: system
-        pass_filenames: false
-        args: [ '.' ]
-  - repo: https://github.com/PyCQA/pylint
-    rev: v3.0.1
-    hooks:
-      - id: pylint
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.3.0
     hooks:
@@ -76,10 +65,6 @@ repos:
         entry: pydocstyle
         language: python
         types: [ python ]
-  - repo: https://github.com/jendrikseipp/vulture
-    rev: v2.10
-    hooks:
-      - id: vulture
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.3.2
     hooks:
@@ -87,6 +72,10 @@ repos:
         files: pyproject.toml
         stages:
           - pre-push
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: v2.10
+    hooks:
+      - id: vulture
   - repo: https://gitlab.com/smop/pre-commit-hooks
     rev: v1.0.0
     hooks:

@@ -1,4 +1,4 @@
-from src.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 
 
 class BinaryRelation(NamedElement):

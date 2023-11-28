@@ -5,11 +5,11 @@ import pytest
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import ValidationError
 
-from src.classes.abstract_classes.modelelement import ModelElement
-from src.classes.abstract_classes.ontoumlelement import OntoumlElement
-from src.classes.concrete_classes.package import Package as RealPackage
-from src.classes.concrete_classes.project import Project
-from src.classes.enumerations.ontologyrepresentationstyle import (
+from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.concrete_classes.package import Package as RealPackage
+from ontouml_py.classes.concrete_classes.project import Project
+from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
     OntologyRepresentationStyle,
 )
 

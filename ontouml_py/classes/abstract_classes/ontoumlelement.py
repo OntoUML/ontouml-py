@@ -7,12 +7,11 @@ attributes and restricts direct modification of certain fields.
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, NewType, Optional
+from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
-# Workaround necessary for the forward declaration of the 'Project' class.
-Project = NewType("Project", object)  # Define a new type named 'Project' based on 'object'
+from ontouml_py.utils import ensure_valid_subclasses
 
 
 class OntoumlElement(ABC, BaseModel):
@@ -35,7 +34,7 @@ class OntoumlElement(ABC, BaseModel):
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
-    in_project: set[Project] = Field(default_factory=set)  # noqa:F821 (flake8) # Forward declaration of Project
+    in_project: set['Project'] = Field(default_factory=set)  # Forward declaration of Project
 
     # Pydantic's configuration settings for the OntoumlElement class.
     model_config = {  # noqa (vulture)
@@ -59,18 +58,7 @@ class OntoumlElement(ABC, BaseModel):
         # List of allowed subclasses: OntoumlElement is a categorizer of a complete generalization set
         _allowed_subclasses = ["NamedElement", "Shape", "View"]
 
-        # Check the entire inheritance chain
-        current_class = self.__class__
-        while current_class != object:
-            if current_class.__name__ in _allowed_subclasses:
-                break
-            current_class = current_class.__bases__[0]
-        else:
-            allowed = ", ".join(_allowed_subclasses)
-            raise ValueError(
-                f"'{self.__class__.__name__}' is not an allowed subclass. "
-                f"Only these subclasses are permitted: {allowed}."
-            )
+        ensure_valid_subclasses(self, _allowed_subclasses)
 
         # Sets attributes
         super().__init__(**data)

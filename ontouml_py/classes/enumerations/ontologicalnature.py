@@ -6,7 +6,7 @@ Classes:
     OntologicalNature (OntoumlEnum): Enumerates different kinds of ontological natures.
 """
 
-from src.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
 class OntologicalNature(OntoumlEnum):

@@ -1,7 +1,7 @@
-from src.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 
 
-class Note(NamedElement):
+class Link(NamedElement):
     # Configuration settings for the Project model using Pydantic.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
