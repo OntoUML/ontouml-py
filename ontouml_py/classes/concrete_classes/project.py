@@ -134,8 +134,9 @@ class Project(NamedElement):
             raise TypeError("Expected 'elements' to be a set")
         self._elements: set[OntoumlElement] = elements if elements is not None else set()
 
-    def add_element(self, element_type: OntoumlElement, *args, **kwargs):
-        """Add an OntoumlElement to the project.
+    def add_element(self, element: OntoumlElement) -> None:
+        """
+        Add an OntoumlElement to the project.
 
         Ensures that the element is of the correct type and not a Project itself. Also updates the inverse relationship
         in OntoumlElement and checks for duplicates.
@@ -144,19 +145,11 @@ class Project(NamedElement):
         :type element: OntoumlElement
         :raises TypeError: If the element is not an instance of OntoumlElement.
         """
-
-        if element_type not in OntoumlElement.get_all_subclasses():
+        if not isinstance(element, OntoumlElement):
             raise TypeError("Element must be an instance of OntoumlElement.")
-        else:
-            new_element = element_type(self, *args, **kwargs)
-
-        if isinstance(new_element, Project):
-            raise AssertionError("A Project cannot be added to other Project.")
-        else:
-            new_element.in_project.add(self)  # direct relation
-            self._elements.add(new_element)  # inverse relation
-
-        return new_element
+        if not isinstance(element, Project):
+            element.in_project.add(self)  # direct relation
+            self._elements.add(element)  # inverse relation
 
     def remove_element(self, element: OntoumlElement) -> None:
         """Remove an OntoumlElement from the project if it exists.

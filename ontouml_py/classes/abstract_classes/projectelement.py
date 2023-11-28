@@ -1,29 +1,14 @@
-"""
-Module for the ProjectElement class within an OntoUML model.
+"""Module for the ProjectElement class within an OntoUML model.
 
 This module defines the ProjectElement class, an abstract class that represents elements associated with a project in
 an OntoUML model. It extends the OntoumlElement class and includes an additional read-only attribute to link the element
 to a specific project. The module ensures that the elements are part of valid subclasses and enforces specific
 constraints on attribute initialization and management.
-
-Classes:
-    ProjectElement: An abstract class representing an element that is part of a project in an OntoUML model.
-
-The ProjectElement class is designed to be extended by concrete classes representing different types of elements within
-a project. It includes validation to ensure that elements are correctly associated with a project and that the
-'in_project' attribute is managed appropriately.
-
-Typical usage example:
-
-class ConcreteProjectElement(ProjectElement):
-    def __init__(self, **data):
-        super().__init__(**data)
-        # Additional initialization for the concrete element
 """
 
 
 from abc import abstractmethod
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -41,9 +26,9 @@ class ProjectElement(OntoumlElement):
     :vartype in_project: Project
     """
 
-    in_project: "Project" = Field()  # Forward declaration of Project
+    in_project: Optional["Project"] = Field(default=None)  # Forward declaration of Project
 
-    # Pydantic's configuration settings for the OntoumlElement class.
+    # Pydantic's configuration settings for the class.
     model_config = {
         "validate_assignment": True,
         "extra": "forbid",

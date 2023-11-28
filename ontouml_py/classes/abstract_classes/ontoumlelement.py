@@ -33,7 +33,7 @@ class OntoumlElement(ABC, BaseModel):
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
 
-    # Pydantic's configuration settings for the OntoumlElement class.
+    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "validate_assignment": True,
         "extra": "forbid",
@@ -75,11 +75,11 @@ class OntoumlElement(ABC, BaseModel):
 
     def __eq__(self, other: object) -> bool:
         """Determine if two OntoumlElement instances are equal based on their unique identifiers.
-        
+
         This method overrides the default equality comparison behavior. It is essential for comparing instances
         of OntoumlElement, particularly in collections and when ensuring uniqueness. Equality is determined solely
         based on the 'id' attribute, which is assumed to be a unique identifier for each instance.
-        
+
         :param other: The other object to compare with the current instance.
         :type other: object
         :return: True if both instances have the same 'id', False otherwise. Returns NotImplemented if 'other' is not
@@ -93,28 +93,12 @@ class OntoumlElement(ABC, BaseModel):
 
     def __hash__(self) -> int:
         """Compute the hash value of an OntoumlElement instance based on its unique identifier.
-    
+
         This method enables OntoumlElement instances to be used in hash-based data structures like sets and dicts.
         The hash value is computed using the 'id' attribute, ensuring that each instance has a distinct hash value
         corresponding to its unique identifier.
-    
+
         :return: The hash value of the instance, computed using its 'id'.
         :rtype: int
         """
         return hash(self.id)  # Hash based on a unique identifier
-
-    @classmethod
-    def get_all_subclasses(cls) -> list[type]:
-        """Recursively gather all subclasses of the OntoumlElement class.
-    
-        This class method is useful for operations that require knowledge of all existing subclasses of OntoumlElement,
-        such as type checking and instance creation based on type. It traverses the subclass hierarchy recursively
-        to find all derived classes.
-    
-        :return: A list containing all subclasses of OntoumlElement.
-        :rtype: list[type]
-        """
-        subclasses = cls.__subclasses__()
-        for subclass in subclasses:
-            subclasses.extend(subclass.get_all_subclasses())
-        return subclasses

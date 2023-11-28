@@ -8,6 +8,7 @@ contributors.
 from abc import abstractmethod
 from typing import Any, Optional
 
+from icecream import ic
 from langstring_lib.langstring import LangString  # type: ignore
 from pydantic import Field, field_validator
 
@@ -42,7 +43,7 @@ class NamedElement(OntoumlElement):
     creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
     contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
 
-    # Pydantic's configuration settings for the NamedElement class.
+    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
@@ -72,8 +73,7 @@ class NamedElement(OntoumlElement):
         :type data: dict[str, Any]
         """
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
-        _allowed_subclasses = ["Project", "ModelElement"]
-        validate_subclasses(self, _allowed_subclasses)
+        validate_subclasses(self, ["Diagram", "ModelElement", "Project"])
 
         # Sets attributes
         super().__init__(**data)

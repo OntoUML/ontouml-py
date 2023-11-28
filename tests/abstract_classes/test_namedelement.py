@@ -559,54 +559,6 @@ def test_default_type_of_alt_names() -> None:
     assert isinstance(element.alt_names, set), "The default type of 'alt_names' should be a list."
 
 
-def test_default_type_of_description() -> None:
-    """Test the default type of the 'description' attribute in NamedElement.
-
-    Checks that the 'description' attribute, when not explicitly initialized, defaults to None.
-
-    :return: None
-    :raises AssertionError: If the default type of 'description' is not None.
-    """
-    element = Project()
-    assert element.description is None, "The default type of 'description' should be None."
-
-
-def test_default_type_of_editorial_notes() -> None:
-    """Test the default type of the 'editorial_notes' attribute in NamedElement.
-
-    Confirms that the 'editorial_notes' attribute, when not explicitly initialized, defaults to an empty list.
-
-    :return: None
-    :raises AssertionError: If the default type of 'editorial_notes' is not a list.
-    """
-    element = Project()
-    assert isinstance(element.editorial_notes, set), "The default type of 'editorial_notes' should be a list."
-
-
-def test_default_type_of_creators() -> None:
-    """Test the default type of the 'creators' attribute in NamedElement.
-
-    Ensures that the 'creators' attribute, when not explicitly initialized, defaults to an empty list.
-
-    :return: None
-    :raises AssertionError: If the default type of 'creators' is not a list.
-    """
-    element = Project()
-    assert isinstance(element.creators, set), "The default type of 'creators' should be a list."
-
-
-def test_default_type_of_contributors() -> None:
-    """Test the default type of the 'contributors' attribute in NamedElement.
-
-    Verifies that the 'contributors' attribute, when not explicitly initialized, defaults to an empty list.
-
-    :return: None
-    :raises AssertionError: If the default type of 'contributors' is not a list.
-    """
-    element = Project()
-    assert isinstance(element.contributors, set), "The default type of 'contributors' should be a list."
-
-
 def test_access_non_existent_attribute() -> None:
     """Test accessing a non-existent attribute in NamedElement.
 

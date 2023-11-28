@@ -12,7 +12,7 @@ class ModelElement(ProjectElement, NamedElement):
     custom_properties: set[tuple[str, Any]] = Field(default_factory=set)
     contained_in: Optional["Package"] = Field(default=None)  # Forward declaration of 'Package'
 
-    # Pydantic's configuration settings for the NamedElement class.
+    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
