@@ -71,7 +71,7 @@ Classes
    :vartype representation_style: OntologyRepresentationStyle
 
    .. py:property:: elements
-      :type: set[ontouml_py.classes.abstract_classes.ontoumlelement.OntoumlElement]
+      :type: set[ontouml_py.classes.abstract_classes.projectelement.ProjectElement]
 
       Provide a read-only view of the project's elements.
 
@@ -79,8 +79,8 @@ Classes
       use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's
       elements collection is maintained.
 
-      :return: A set of OntoumlElement objects that are part of the project.
-      :rtype: set[OntoumlElement]
+      :return: A set of ProjectElement objects that are part of the project.
+      :rtype: set[ProjectElement]
 
 
    .. py:attribute:: _elements

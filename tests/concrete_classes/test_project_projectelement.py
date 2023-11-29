@@ -6,7 +6,7 @@ from ontouml_py.classes.concrete_classes.project import Project
 
 @pytest.fixture
 def sample_project() -> Project:
-    """ "Fixture to create a sample Project instance for testing.
+    """Fixture to create a sample Project instance for testing.
 
     :return: An instance of Project for testing purposes.
     """
@@ -15,7 +15,7 @@ def sample_project() -> Project:
 
 @pytest.fixture
 def sample_element() -> ProjectElement:
-    """ "Fixture to create a sample ProjectElement instance for testing.
+    """Fixture to create a sample ProjectElement instance for testing.
 
     :return: An instance of ProjectElement for testing purposes.
     """

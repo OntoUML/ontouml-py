@@ -1,3 +1,12 @@
+"""Module for the Package class within an OntoUML model.
+
+This module defines the Package class, a concrete implementation of the Packageable abstract class. The Package class
+represents a container in the OntoUML model, capable of holding other Packageable elements (here called contents).
+It provides functionalities to add and remove contents, ensuring type safety and maintaining the integrity of the
+model's structure. The class also includes private attributes to manage its contents and configuration settings for
+validation and assignment.
+"""
+
 from typing import Any
 
 from pydantic import PrivateAttr
@@ -6,7 +15,7 @@ from ontouml_py.classes.abstract_classes.packageable import Packageable
 
 
 class Package(Packageable):
-    """"Represents a package in an OntoUML model, extending Packageable.
+    """Represents a package in an OntoUML model, extending Packageable.
 
     A Package is a container for other Packageable contents, providing a way to group and organize these contents
     within the OntoUML model. It supports operations to add and remove contents, ensuring the integrity and consistency
@@ -15,6 +24,7 @@ class Package(Packageable):
     :ivar _contents: A private set of Packageable contents contained within the package.
     :vartype _contents: set[Packageable]
     """
+
     # Private attributes
     _contents: set[Packageable] = PrivateAttr(default_factory=set)
 
@@ -28,7 +38,7 @@ class Package(Packageable):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        """"Initialize a new Package instance with specified attributes.
+        """Initialize a new Package instance with specified attributes.
 
         This constructor sets up the package with the provided data, ensuring that all package-specific attributes
         are correctly initialized. It also validates the 'contents' attribute to ensure it is a set, reflecting the
@@ -46,7 +56,7 @@ class Package(Packageable):
         self._contents: set[Packageable] = contents if contents is not None else set()
 
     def add_content(self, content: Packageable) -> None:
-        """"Add a new content to the package's collection of contents.
+        """Add a new content to the package's collection of contents.
 
         This method ensures that only instances of Packageable or its subclasses are added to the package. It also
         establishes a bidirectional relationship between the package and the content.
@@ -66,7 +76,7 @@ class Package(Packageable):
         self._contents.add(content)  # inverse relation
 
     def remove_content(self, content: Packageable) -> None:
-        """"Remove an existing content from the package's collection of contents.
+        """Remove an existing content from the package's collection of contents.
 
         This method ensures that the content to be removed is actually part of the package. It also updates the
         content's 'in_package' attribute to None, effectively breaking the bidirectional relationship.
@@ -88,7 +98,7 @@ class Package(Packageable):
 
     @property
     def contents(self) -> set[Packageable]:
-        """"Provide a read-only view of the package's contents.
+        """Provide a read-only view of the package's contents.
 
         This property is a safeguard to prevent direct modification of the 'contents' set. To add or remove contents,
         use the 'add_content' and 'remove_content' methods. This design ensures that the integrity of the package's

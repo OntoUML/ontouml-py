@@ -20,7 +20,7 @@ class UnrelatedClass:
 
 
 def test_validate_subclasses_with_valid_subclass():
-    """ "Test validate_subclasses function with a valid subclass.
+    """Test validate_subclasses function with a valid subclass.
 
     :raises AssertionError: If the function does not recognize a valid subclass.
     """
@@ -31,7 +31,7 @@ def test_validate_subclasses_with_valid_subclass():
 
 
 def test_validate_subclasses_with_invalid_subclass():
-    """ "Test validate_subclasses function with an invalid subclass.
+    """Test validate_subclasses function with an invalid subclass.
 
     :raises AssertionError: If the function incorrectly accepts an invalid subclass.
     """
@@ -43,7 +43,7 @@ def test_validate_subclasses_with_invalid_subclass():
 
 
 def test_validate_subclasses_with_base_class():
-    """ "Test validate_subclasses function with the base class itself.
+    """Test validate_subclasses function with the base class itself.
 
     :raises AssertionError: If the function does not recognize the base class as a valid subclass.
     """
@@ -54,7 +54,7 @@ def test_validate_subclasses_with_base_class():
 
 
 def test_validate_subclasses_with_empty_allowed_subclasses():
-    """ "Test validate_subclasses function with an empty list of allowed subclasses.
+    """Test validate_subclasses function with an empty list of allowed subclasses.
 
     :raises AssertionError: If the function does not raise ValueError for an empty list of allowed subclasses.
     """
@@ -66,7 +66,7 @@ def test_validate_subclasses_with_empty_allowed_subclasses():
 
 
 def test_validate_subclasses_with_indirect_subclass():
-    """ "Test validate_subclasses function with an indirect subclass in a hierarchy A > B > C.
+    """Test validate_subclasses function with an indirect subclass in a hierarchy A > B > C.
 
     :raises AssertionError: If the function does not recognize an indirect subclass.
     """
@@ -77,7 +77,7 @@ def test_validate_subclasses_with_indirect_subclass():
 
 
 def test_validate_subclasses_with_multiple_inheritance():
-    """ "Test validate_subclasses function with a class inheriting from multiple parents.
+    """Test validate_subclasses function with a class inheriting from multiple parents.
 
     :raises AssertionError: If the function does not correctly handle multiple inheritance.
     """

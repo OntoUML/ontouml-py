@@ -11,6 +11,16 @@
    present across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
    attributes and restricts direct modification of certain fields.
 
+   Note on Elements and Projects in the Metamodel:
+   According to the underlying language metamodel on which this software is based, all elements are conceptually either a
+   Project or contained within a Project. In essence, no element exists independently outside the context of a Project.
+   However, to facilitate the manipulation and management of these elements in the software, the code allows the creation
+   and existence of elements outside a Project. It's important to note that while this flexibility aids in the
+   development and testing process, the serialization and output of these elements in the supported formats are
+   exclusively handled through the Project class. Consequently, only elements that are part of a Project are considered
+   for serialization and included in the final output. This design decision aligns with the metamodel's principles while
+   providing practical usability in the software environment.
+
 
 
 Module Contents

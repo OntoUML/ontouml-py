@@ -93,6 +93,12 @@
              
   <section id="module-ontouml_py.classes.abstract_classes.packageable">
 <span id="ontouml-py-classes-abstract-classes-packageable"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.abstract_classes.packageable" title="ontouml_py.classes.abstract_classes.packageable"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.packageable</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.abstract_classes.packageable" title="Link to this heading"></a></h1>
+<p>Module for the Packageable class within an OntoUML model.</p>
+<p>This module introduces the Packageable abstract class, a foundational element in the OntoUML model hierarchy. The
+Packageable class serves as a base for all elements that can be contained within a Package (here called ‘contents’).
+It includes an abstract method for initialization and a private attribute to track the package a content belongs to.
+This design ensures that contents in the OntoUML model can be organized and managed within packages, maintaining model
+coherence and structure.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -100,7 +106,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.abstract_classes.packageable.Packageable" title="ontouml_py.classes.abstract_classes.packageable.Packageable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Packageable</span></code></a></p></td>
-<td><p>Represents a model element, inheriting properties from both NamedElement and ProjectElement.</p></td>
+<td><p>Abstract class representing elements that can be contained within a package in an OntoUML model.</p></td>
 </tr>
 </tbody>
 </table>
@@ -108,25 +114,55 @@
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.packageable.Packageable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.abstract_classes.packageable.</span></span><span class="sig-name descname"><span class="pre">Packageable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../modelelement/index.html#ontouml_py.classes.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.modelelement.ModelElement</span></code></a></p>
-<p>Represents a model element, inheriting properties from both NamedElement and ProjectElement.</p>
+<p>Abstract class representing elements that can be contained within a package in an OntoUML model.</p>
+<p>This class extends ModelElement and includes an additional attribute to link the element to a specific package.
+The <cite>in_package</cite> attribute is a private attribute, managed through specific methods, ensuring that each element
+is correctly associated with a package in the OntoUML model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>custom_properties</strong> (<em>Set</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – A set of custom properties associated with the model element. Each property is a tuple
-containing a string key and a value of any type.</p>
+<dd class="field-odd"><p><strong>_in_package</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../concrete_classes/package/index.html#ontouml_py.classes.concrete_classes.package.Package" title="ontouml_py.classes.concrete_classes.package.Package"><em>Package</em></a><em>]</em>) – Reference to the Package instance this element is contained in. This is a private attribute.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
 </dd>
 </dl>
-<dl class="py attribute">
+<dl class="py property">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.packageable.Packageable.in_package">
-<span class="sig-name descname"><span class="pre">in_package</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable.in_package" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_package</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../concrete_classes/package/index.html#ontouml_py.classes.concrete_classes.package.Package" title="ontouml_py.classes.concrete_classes.package.Package"><span class="pre">Package</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable.in_package" title="Link to this definition"></a></dt>
+<dd><p>Read-only property to access the package this element is contained in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Package instance containing this element, if any.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="../../concrete_classes/package/index.html#ontouml_py.classes.concrete_classes.package.Package" title="ontouml_py.classes.concrete_classes.package.Package">Package</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.packageable.Packageable._in_package">
+<span class="sig-name descname"><span class="pre">_in_package</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../concrete_classes/package/index.html#ontouml_py.classes.concrete_classes.package.Package" title="ontouml_py.classes.concrete_classes.package.Package"><span class="pre">Package</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable._in_package" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.packageable.Packageable.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.packageable.Packageable.__set_in_package">
+<span class="sig-name descname"><span class="pre">__set_in_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_package</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.packageable.Packageable.__set_in_package" title="Link to this definition"></a></dt>
+<dd><p>Set the package this element is contained in. This method is private and should be used internally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_package</strong> (<a class="reference internal" href="../../concrete_classes/package/index.html#ontouml_py.classes.concrete_classes.package.Package" title="ontouml_py.classes.concrete_classes.package.Package"><em>Package</em></a>) – The Package instance to set as the container of this element.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

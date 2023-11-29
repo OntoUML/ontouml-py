@@ -17,7 +17,7 @@ def sample_package() -> Package:
 
 
 def test_validate_root_package_with_valid_package(sample_project: Project, sample_package: Package) -> None:
-    """ "Test validate_root_package method with a valid package that is part of the project.
+    """Test validate_root_package method with a valid package that is part of the project.
 
     :param sample_project: A sample Project instance for testing.
     :param sample_package: A sample Package instance for testing.
@@ -29,7 +29,7 @@ def test_validate_root_package_with_valid_package(sample_project: Project, sampl
 
 
 def test_validate_root_package_with_invalid_package(sample_project: Project, sample_package: Package) -> None:
-    """ "Test validate_root_package method with a package that is not part of the project.
+    """Test validate_root_package method with a package that is not part of the project.
 
     :param sample_project: A sample Project instance for testing.
     :param sample_package: A sample Package instance for testing.
@@ -39,7 +39,7 @@ def test_validate_root_package_with_invalid_package(sample_project: Project, sam
 
 
 def test_validate_root_package_with_none(sample_project: Project) -> None:
-    """ "Test validate_root_package method with None as the root package.
+    """Test validate_root_package method with None as the root package.
 
     :param sample_project: A sample Project instance for testing.
     """
@@ -48,7 +48,7 @@ def test_validate_root_package_with_none(sample_project: Project) -> None:
 
 
 def test_validate_root_package_with_incorrect_type(sample_project: Project) -> None:
-    """ "Test validate_root_package method with an object that is not a Package instance.
+    """Test validate_root_package method with an object that is not a Package instance.
 
     :param sample_project: A sample Project instance for testing.
     """
@@ -57,7 +57,7 @@ def test_validate_root_package_with_incorrect_type(sample_project: Project) -> N
 
 
 def test_reset_root_package_to_none(sample_project: Project, sample_package: Package) -> None:
-    """ "Test resetting the root package of a project to None after setting it to a valid package.
+    """Test resetting the root package of a project to None after setting it to a valid package.
 
     This test ensures that a project's root package can be reset to None after being initially set to a valid package
     that is part of the project's elements.
@@ -74,7 +74,7 @@ def test_reset_root_package_to_none(sample_project: Project, sample_package: Pac
 
 
 def test_reset_root_package_to_valid_package(sample_project: Project, sample_package: Package) -> None:
-    """ "Test resetting the root package of a project to a valid package after setting it to None.
+    """Test resetting the root package of a project to a valid package after setting it to None.
 
     This test checks if a project's root package can be reset to a valid package that is part of the project's elements
     after being initially set to None.
@@ -94,7 +94,7 @@ def test_reset_root_package_to_valid_package(sample_project: Project, sample_pac
 
 
 def test_project_initialization_with_invalid_root_package(sample_package: Package) -> None:
-    """ "Test the initialization of a Project instance with a root package that is not part of the project.
+    """Test the initialization of a Project instance with a root package that is not part of the project.
 
     :param sample_package: A sample Package instance for testing.
     :return: None
@@ -105,7 +105,7 @@ def test_project_initialization_with_invalid_root_package(sample_package: Packag
 
 
 def test_project_initialization_with_none_root_package() -> None:
-    """ "Test the initialization of a Project instance with None as the root package.
+    """Test the initialization of a Project instance with None as the root package.
 
     :return: None
     :raises ValueError: If the Project instance does not initialize correctly when root package is None.

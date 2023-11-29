@@ -3,6 +3,17 @@
 
 .. py:module:: ontouml_py.classes.abstract_classes.packageable
 
+.. autoapi-nested-parse::
+
+   Module for the Packageable class within an OntoUML model.
+
+   This module introduces the Packageable abstract class, a foundational element in the OntoUML model hierarchy. The
+   Packageable class serves as a base for all elements that can be contained within a Package (here called 'contents').
+   It includes an abstract method for initialization and a private attribute to track the package a content belongs to.
+   This design ensures that contents in the OntoUML model can be organized and managed within packages, maintaining model
+   coherence and structure.
+
+
 
 Module Contents
 ---------------
@@ -22,19 +33,39 @@ Classes
 
    Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   Represents a model element, inheriting properties from both NamedElement and ProjectElement.
+   Abstract class representing elements that can be contained within a package in an OntoUML model.
 
-   :ivar custom_properties: A set of custom properties associated with the model element. Each property is a tuple
-       containing a string key and a value of any type.
-   :vartype custom_properties: Set[Tuple[str, Any]]
+   This class extends ModelElement and includes an additional attribute to link the element to a specific package.
+   The `in_package` attribute is a private attribute, managed through specific methods, ensuring that each element
+   is correctly associated with a package in the OntoUML model.
 
-   .. py:attribute:: in_package
-      :type: Optional[object]
+   :ivar _in_package: Reference to the Package instance this element is contained in. This is a private attribute.
+   :vartype _in_package: Optional[Package]
+
+   .. py:property:: in_package
+      :type: Optional[Package]
+
+      Read-only property to access the package this element is contained in.
+
+      :return: The Package instance containing this element, if any.
+      :rtype: Optional[Package]
+
+
+   .. py:attribute:: _in_package
+      :type: Optional[Package]
 
       
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: __set_in_package(new_package)
+
+      Set the package this element is contained in. This method is private and should be used internally.
+
+      :param new_package: The Package instance to set as the container of this element.
+      :type new_package: Package
+
 
 
