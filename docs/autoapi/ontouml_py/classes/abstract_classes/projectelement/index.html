@@ -94,10 +94,10 @@
   <section id="module-ontouml_py.classes.abstract_classes.projectelement">
 <span id="ontouml-py-classes-abstract-classes-projectelement"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.abstract_classes.projectelement" title="ontouml_py.classes.abstract_classes.projectelement"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.projectelement</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.abstract_classes.projectelement" title="Link to this heading"></a></h1>
 <p>Module for the ProjectElement class within an OntoUML model.</p>
-<p>This module defines the ProjectElement class, an abstract class that represents elements associated with a project in
-an OntoUML model. It extends the OntoumlElement class and includes an additional read-only attribute to link the element
-to a specific project. The module ensures that the elements are part of valid subclasses and enforces specific
-constraints on attribute initialization and management.</p>
+<p>This module defines the ProjectElement class, an abstract class representing elements associated with a project in
+an OntoUML model. It extends the OntoumlElement class, adding a read-only attribute to link the element to a specific
+project. The module ensures elements are part of valid subclasses and enforces constraints on attribute initialization
+and management.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -115,24 +115,56 @@ constraints on attribute initialization and management.</p>
 <dd><p>Bases: <a class="reference internal" href="../ontoumlelement/index.html#ontouml_py.classes.abstract_classes.ontoumlelement.OntoumlElement" title="ontouml_py.classes.abstract_classes.ontoumlelement.OntoumlElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.ontoumlelement.OntoumlElement</span></code></a></p>
 <p>Abstract class representing an element that is part of a project in an OntoUML model.</p>
 <p>This class extends OntoumlElement and includes an additional attribute to link the element to a specific project.
-The <cite>in_project</cite> attribute is read-only and should be managed through the Project class.</p>
+The <cite>in_project</cite> attribute is read-only and should be managed through the Project class, ensuring that each
+element is correctly associated with the intended project context, thus maintaining the integrity of the OntoUML
+model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>in_project</strong> (<a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project"><em>Project</em></a>) – Reference to the Project instance this element belongs to. This is a read-only attribute.</p>
+<dd class="field-odd"><p><strong>in_project</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project"><em>Project</em></a><em>]</em>) – Reference to the Project instance this element belongs to. This is a read-only attribute.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
 </dd>
 </dl>
-<dl class="py attribute">
+<dl class="py property">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.projectelement.ProjectElement.in_project">
-<span class="sig-name descname"><span class="pre">in_project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.projectelement.ProjectElement.in_project" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project"><span class="pre">Project</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.projectelement.ProjectElement.in_project" title="Link to this definition"></a></dt>
+<dd><p>Read-only property to access the project this element belongs to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The project instance to which this element is associated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project">Project</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.projectelement.ProjectElement._in_project">
+<span class="sig-name descname"><span class="pre">_in_project</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project"><span class="pre">Project</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.projectelement.ProjectElement._in_project" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.projectelement.ProjectElement.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.projectelement.ProjectElement.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.projectelement.ProjectElement.__set_in_project">
+<span class="sig-name descname"><span class="pre">__set_in_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.projectelement.ProjectElement.__set_in_project" title="Link to this definition"></a></dt>
+<dd><p>Protected method to set the project. Not part of the public API.</p>
+<p>This method is used internally by the Project class to establish or break the association between this element
+and a project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>project</strong> (<a class="reference internal" href="../../concrete_classes/project/index.html#ontouml_py.classes.concrete_classes.project.Project" title="ontouml_py.classes.concrete_classes.project.Project"><em>Project</em></a>) – The project instance to associate with this element.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

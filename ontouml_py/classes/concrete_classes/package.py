@@ -1,9 +1,9 @@
 from typing import Any
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.classes.abstract_classes.packageable import Packageable
 
 
-class Package(ModelElement):
+class Package(Packageable):
     # Private attributes
     # _contents: set[Packageable] = PrivateAttr(default_factory=set)
     # Public attributes
@@ -14,3 +14,6 @@ class Package(ModelElement):
         :type data: dict
         """
         super().__init__(**data)
+
+
+# A package cannot contain itself!

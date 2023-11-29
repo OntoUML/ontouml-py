@@ -18,7 +18,7 @@ from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
 
 
 class Project(NamedElement):
-    """Represents an OntoUML Project, extending NamedElement with additional project-specific metadata.
+    """Represent an OntoUML Project, extending NamedElement with additional project-specific metadata.
 
     This class encapsulates various aspects of a project, such as acronyms, bibliographic citations, keywords,
     landing pages, and more. It provides a structured way to represent and access these details. The 'elements'
@@ -27,7 +27,7 @@ class Project(NamedElement):
 
     :ivar acronyms: A set of acronyms associated with the project, aiding in its identification and reference.
     :vartype acronyms: set[str]
-    :ivar bibliographic_citations: A collection of bibliographic citations that reference or are relevant to the project.
+    :ivar bibliographic_citations: A collection of bibliographic citations that reference/are relevant to the project
     :vartype bibliographic_citations: set[str]
     :ivar keywords: Descriptive keywords that encapsulate the essence and focus areas of the project.
     :vartype keywords: set[str]
@@ -88,6 +88,43 @@ class Project(NamedElement):
         "validate_default": True,
     }
 
+    def __init__(self, **data: dict[str, Any]) -> None:
+        """Initialize a new Project instance with specified attributes.
+
+        This constructor sets up the project with the provided data, ensuring that all project-specific attributes
+        are correctly initialized. It also validates the 'elements' attribute to ensure it is a set, reflecting the
+        project's structure.
+
+        :param data: Fields to be set on the model instance, including project-specific attributes.
+        :type data: dict[str, Any]
+        :raises TypeError: If 'elements' is provided and is not a set, ensuring correct data structure.
+        """
+        super().__init__(**data)
+        elements = data.get("elements")
+
+        if elements is not None and not isinstance(elements, set):
+            raise TypeError("Expected 'elements' to be a set")
+        self._elements: set[ProjectElement] = elements if elements is not None else set()
+
+        if "root_package" in data:
+            self.__validate_root_package(data.get("root_package"))
+
+    def __setattr__(self, key, value):
+        """Override the default attribute setting behavior to include validation for 'root_package'.
+
+        This method intercepts the setting of the 'root_package' attribute to ensure that the assigned package is
+        a part of the project's elements. If the validation fails, a ValueError is raised.
+
+        :param key: The name of the attribute to be set.
+        :param value: The value to be assigned to the attribute.
+        :type key: str
+        :type value: Any
+        :raises ValueError: If 'root_package' is set to a package not in the project's elements.
+        """
+        if key == "root_package":
+            self.__validate_root_package(value)
+        super().__setattr__(key, value)
+
     @field_validator(
         "acronyms",
         "bibliographic_citations",
@@ -118,7 +155,7 @@ class Project(NamedElement):
         return checked_list
 
     def __validate_root_package(self, package):
-        """Validates if the provided package is a part of the project's elements.
+        """Validate if the provided package is a part of the project's elements.
 
         This method checks if the specified package is included in the project's elements set. It is used to ensure
         that the root package is a valid and integral part of the project's structure.
@@ -130,45 +167,8 @@ class Project(NamedElement):
         if package is not None and package not in self._elements:
             raise ValueError("The root_package must be an element of the project.")
 
-    def __init__(self, **data: dict[str, Any]) -> None:
-        """Initializes a new Project instance with specified attributes.
-
-        This constructor sets up the project with the provided data, ensuring that all project-specific attributes
-        are correctly initialized. It also validates the 'elements' attribute to ensure it is a set, reflecting the
-        project's structure.
-
-        :param data: Fields to be set on the model instance, including project-specific attributes.
-        :type data: dict[str, Any]
-        :raises TypeError: If 'elements' is provided and is not a set, ensuring correct data structure.
-        """
-        super().__init__(**data)
-        elements = data.get("elements")
-
-        if elements is not None and not isinstance(elements, set):
-            raise TypeError("Expected 'elements' to be a set")
-        self._elements: set[ProjectElement] = elements if elements is not None else set()
-
-        if "root_package" in data:
-            self.__validate_root_package(data.get("root_package"))
-
-    def __setattr__(self, key, value):
-        """Overrides the default attribute setting behavior to include validation for 'root_package'.
-
-        This method intercepts the setting of the 'root_package' attribute to ensure that the assigned package is
-        a part of the project's elements. If the validation fails, a ValueError is raised.
-
-        :param key: The name of the attribute to be set.
-        :param value: The value to be assigned to the attribute.
-        :type key: str
-        :type value: Any
-        :raises ValueError: If 'root_package' is set to a package not in the project's elements.
-        """
-        if key == "root_package":
-            self.__validate_root_package(value)
-        super().__setattr__(key, value)
-
     def add_element(self, element: ProjectElement) -> None:
-        """Adds a new element to the project's collection of elements.
+        """Add a new element to the project's collection of elements.
 
         This method ensures that only instances of ProjectElement or its subclasses are added to the project. It also
         establishes a bidirectional relationship between the project and the element by setting the element's
@@ -181,11 +181,11 @@ class Project(NamedElement):
         if not isinstance(element, ProjectElement):
             raise TypeError("Element must be an instance of ProjectElement.")
 
-        element.in_project = self  # direct relation
+        element._ProjectElement__set_in_project(self)  # direct relation
         self._elements.add(element)  # inverse relation
 
     def remove_element(self, element: ProjectElement) -> None:
-        """Removes an existing element from the project's collection of elements.
+        """Remove an existing element from the project's collection of elements.
 
         This method ensures that the element to be removed is actually part of the project. It also updates the
         element's 'in_project' attribute to None, effectively breaking the bidirectional relationship.
@@ -201,13 +201,13 @@ class Project(NamedElement):
         if element in self._elements:
             self._elements.remove(element)
             if self in element.in_project:
-                element.in_project = None
+                element._ProjectElement__set_in_project(None)
         else:
             raise ValueError(f"Element '{element}' cannot be removed because is not part of the project.")
 
     @property
     def elements(self) -> set[OntoumlElement]:
-        """Provides a read-only view of the project's elements.
+        """Provide a read-only view of the project's elements.
 
         This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
         use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's

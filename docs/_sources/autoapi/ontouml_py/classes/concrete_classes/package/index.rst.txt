@@ -20,7 +20,7 @@ Classes
 .. py:class:: Package(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.packageable.Packageable`
 
    Represents a model element, inheriting properties from both NamedElement and ProjectElement.
 

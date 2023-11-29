@@ -28,7 +28,7 @@ def sample_element() -> ProjectElement:
 
 
 def test_add_valid_element_to_project(sample_project: Project, sample_element: ProjectElement):
-    """ "Test adding a valid ProjectElement to a Project.
+    """Test adding a valid ProjectElement to a Project.
 
     :param sample_project: A sample Project instance.
     :param sample_element: A sample ProjectElement instance.
@@ -39,7 +39,7 @@ def test_add_valid_element_to_project(sample_project: Project, sample_element: P
 
 
 def test_remove_element_from_project(sample_project: Project, sample_element: ProjectElement):
-    """ "Test removing a ProjectElement from a Project.
+    """Test removing a ProjectElement from a Project.
 
     :param sample_project: A sample Project instance.
     :param sample_element: A sample ProjectElement instance.
@@ -47,11 +47,11 @@ def test_remove_element_from_project(sample_project: Project, sample_element: Pr
     """
     sample_project.add_element(sample_element)
     sample_project.remove_element(sample_element)
-    assert sample_element not in sample_project.elements, "ProjectElement should be removed from Project's elements"
+    assert sample_project.elements == set(), "ProjectElement should be removed from Project's elements"
 
 
 def test_add_invalid_element_type_to_project(sample_project: Project):
-    """ "Test adding an invalid type (not a ProjectElement) to a Project.
+    """Test adding an invalid type (not a ProjectElement) to a Project.
 
     :param sample_project: A sample Project instance.
     :raises TypeError: If a non-ProjectElement type is added to the project.
@@ -61,7 +61,7 @@ def test_add_invalid_element_type_to_project(sample_project: Project):
 
 
 def test_remove_nonexistent_element_from_project(sample_project: Project, sample_element: ProjectElement):
-    """ "Test removing a non-existent ProjectElement from a Project.
+    """Test removing a non-existent ProjectElement from a Project.
 
     :param sample_project: A sample Project instance.
     :param sample_element: A sample ProjectElement instance.

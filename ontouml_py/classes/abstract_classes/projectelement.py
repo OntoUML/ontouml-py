@@ -1,16 +1,16 @@
 """Module for the ProjectElement class within an OntoUML model.
 
-This module defines the ProjectElement class, an abstract class that represents elements associated with a project in
-an OntoUML model. It extends the OntoumlElement class and includes an additional read-only attribute to link the element
-to a specific project. The module ensures that the elements are part of valid subclasses and enforces specific
-constraints on attribute initialization and management.
+This module defines the ProjectElement class, an abstract class representing elements associated with a project in
+an OntoUML model. It extends the OntoumlElement class, adding a read-only attribute to link the element to a specific
+project. The module ensures elements are part of valid subclasses and enforces constraints on attribute initialization
+and management.
 """
 
 
 from abc import abstractmethod
 from typing import Any, Optional
 
-from pydantic import Field
+from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
 from ontouml_py.utils import validate_subclasses
@@ -20,13 +20,15 @@ class ProjectElement(OntoumlElement):
     """Abstract class representing an element that is part of a project in an OntoUML model.
 
     This class extends OntoumlElement and includes an additional attribute to link the element to a specific project.
-    The `in_project` attribute is read-only and should be managed through the Project class.
+    The `in_project` attribute is read-only and should be managed through the Project class, ensuring that each
+    element is correctly associated with the intended project context, thus maintaining the integrity of the OntoUML
+    model.
 
     :ivar in_project: Reference to the Project instance this element belongs to. This is a read-only attribute.
-    :vartype in_project: Project
+    :vartype in_project: Optional[Project]
     """
 
-    in_project: Optional[object] = Field(default=None)  # The type is ensured by the init restriction
+    _in_project: Optional["Project"] = PrivateAttr(default=None)
 
     # Pydantic's configuration settings for the class.
     model_config = {
@@ -51,8 +53,22 @@ class ProjectElement(OntoumlElement):
         validate_subclasses(self, ["ModelElement", "Diagram", "Shape", "View"])
         super().__init__(**data)
 
-        # Additional validations
-        if "in_project" in data:
-            raise ValueError(
-                "Attribute 'in_project' is a read-only property. This operation should be done via Project class."
-            )
+    @property
+    def in_project(self) -> Optional["Project"]:
+        """Read-only property to access the project this element belongs to.
+
+        :return: The project instance to which this element is associated.
+        :rtype: Optional[Project]
+        """
+        return self._in_project
+
+    def __set_in_project(self, project: "Project") -> None:
+        """Protected method to set the project. Not part of the public API.
+
+        This method is used internally by the Project class to establish or break the association between this element
+        and a project.
+
+        :param project: The project instance to associate with this element.
+        :type project: Project
+        """
+        self._in_project = project
