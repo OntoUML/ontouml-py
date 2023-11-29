@@ -1,5 +1,4 @@
-"""
-Tests Subpackage for OntoUML Python Project
+"""Tests Package for OntoUML Python Project.
 ============================================
 
 This subpackage contains a comprehensive suite of tests designed to ensure the robustness and correctness of the \

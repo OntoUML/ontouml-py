@@ -22,7 +22,7 @@ class OntoumlEnum(Enum, metaclass=EnumABCMeta):
 
     @classmethod
     def get_members(cls) -> KeysView[str]:
-        """Returns the keys of the enum members.
+        """Return the keys of the enum members.
 
         This method retrieves the keys (names) of all members of the enum class.
 

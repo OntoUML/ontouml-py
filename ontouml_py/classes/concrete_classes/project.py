@@ -18,46 +18,44 @@ from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
 
 
 class Project(NamedElement):
-    """A concrete class representing an OntoUML Project, extending the NamedElement class.
+    """Represents an OntoUML Project, extending NamedElement with additional project-specific metadata.
 
-    Manages project-related elements such as acronyms, bibliographic citations, keywords, landing pages, and more,
-    providing a comprehensive representation of project metadata.
+    This class encapsulates various aspects of a project, such as acronyms, bibliographic citations, keywords,
+    landing pages, and more. It provides a structured way to represent and access these details. The 'elements'
+    attribute, which holds the project elements, is managed through specific methods to ensure integrity and
+    consistency of the project's structure.
 
-    The 'elements' attribute is implemented as a read-only property to maintain control over the list of elements and
-    enforce the inverse relationship with OntoumlElement instances. The actual data is stored in the private attribute
-    '_elements', which can be manipulated via add_element and remove_element methods.
-
-    :ivar acronyms: List of acronyms associated with the project.
+    :ivar acronyms: A set of acronyms associated with the project, aiding in its identification and reference.
     :vartype acronyms: set[str]
-    :ivar bibliographic_citations: Bibliographic citations related to the project.
+    :ivar bibliographic_citations: A collection of bibliographic citations that reference or are relevant to the project.
     :vartype bibliographic_citations: set[str]
-    :ivar keywords: Keywords describing the project.
+    :ivar keywords: Descriptive keywords that encapsulate the essence and focus areas of the project.
     :vartype keywords: set[str]
-    :ivar landing_pages: URLs to landing pages of the project.
+    :ivar landing_pages: URLs pointing to web pages that provide an entry point or overview of the project.
     :vartype landing_pages: set[str]
-    :ivar languages: Languages used in the project.
+    :ivar languages: The set of languages that are used or supported within the scope of the project.
     :vartype languages: set[str]
-    :ivar namespace: Namespace of the project. Optional.
+    :ivar namespace: An optional namespace that provides a unique context for the project's elements.
     :vartype namespace: Optional[str]
-    :ivar sources: Sources of information for the project.
+    :ivar sources: A set of sources or references that have contributed information to the project.
     :vartype sources: set[str]
-    :ivar access_rights: Information about access rights for the project.
+    :ivar access_rights: Information detailing the access rights and restrictions associated with the project.
     :vartype access_rights: set[str]
-    :ivar ontology_types: Types of ontologies used in the project.
+    :ivar ontology_types: The types of ontologies that are utilized or represented in the project.
     :vartype ontology_types: set[str]
-    :ivar themes: Themes associated with the project.
+    :ivar themes: Themes or topics that are central or relevant to the project's objectives and content.
     :vartype themes: set[str]
-    :ivar license: Licensing information of the project. Optional.
+    :ivar license: Optional licensing information, specifying the legal usage terms of the project's outputs.
     :vartype license: Optional[str]
-    :ivar contexts: Contexts for which the project is designed.
+    :ivar contexts: The contexts or environments for which the project is specifically designed.
     :vartype contexts: set[str]
-    :ivar designed_for_task: Tasks for which the project is designed.
+    :ivar designed_for_task: A set of tasks or objectives that the project is intended to address or facilitate.
     :vartype designed_for_task: set[str]
-    :ivar publisher: Publisher of the project. Optional.
+    :ivar publisher: The entity responsible for publishing or disseminating the project, optional.
     :vartype publisher: Optional[str]
-    :ivar root_package: Root package of the project. Optional.
+    :ivar root_package: The root package of the project, serving as the entry point for the project's structure.
     :vartype root_package: Optional[Package]
-    :ivar representation_style: Style of ontology representation used in the project.
+    :ivar representation_style: The style or methodology used for representing the ontologies within the project.
     :vartype representation_style: OntologyRepresentationStyle
     """
 
@@ -105,9 +103,8 @@ class Project(NamedElement):
         mode="after",
     )
     @classmethod
-    def ensure_non_empty(cls, checked_list: set[str]) -> set[str]:  # noqa (vulture)
-        """
-        Validates that the provided list does not contain empty strings.
+    def __ensure_non_empty(cls, checked_list: set[str]) -> set[str]:
+        """Validate that the provided list does not contain empty strings.
 
         :param checked_list: The list to be validated.
         :type checked_list: set[str]
@@ -120,29 +117,66 @@ class Project(NamedElement):
                 raise ValueError("Empty strings are not allowed")
         return checked_list
 
+    def __validate_root_package(self, package):
+        """Validates if the provided package is a part of the project's elements.
+
+        This method checks if the specified package is included in the project's elements set. It is used to ensure
+        that the root package is a valid and integral part of the project's structure.
+
+        :param package: The package to be validated as part of the project.
+        :type package: Optional[Package]
+        :raises ValueError: If the package is not included in the project's elements.
+        """
+        if package is not None and package not in self._elements:
+            raise ValueError("The root_package must be an element of the project.")
+
     def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Project instance.
+        """Initializes a new Project instance with specified attributes.
 
-        Inherits attributes from NamedElement and adds additional project-specific attributes.
+        This constructor sets up the project with the provided data, ensuring that all project-specific attributes
+        are correctly initialized. It also validates the 'elements' attribute to ensure it is a set, reflecting the
+        project's structure.
 
-        :param data: Fields to be set on the model instance.
+        :param data: Fields to be set on the model instance, including project-specific attributes.
         :type data: dict[str, Any]
-        :raises TypeError: If 'elements' is provided and is not a list.
+        :raises TypeError: If 'elements' is provided and is not a set, ensuring correct data structure.
         """
         super().__init__(**data)
         elements = data.get("elements")
+
         if elements is not None and not isinstance(elements, set):
             raise TypeError("Expected 'elements' to be a set")
         self._elements: set[ProjectElement] = elements if elements is not None else set()
 
+        if "root_package" in data:
+            self.__validate_root_package(data.get("root_package"))
+
+    def __setattr__(self, key, value):
+        """Overrides the default attribute setting behavior to include validation for 'root_package'.
+
+        This method intercepts the setting of the 'root_package' attribute to ensure that the assigned package is
+        a part of the project's elements. If the validation fails, a ValueError is raised.
+
+        :param key: The name of the attribute to be set.
+        :param value: The value to be assigned to the attribute.
+        :type key: str
+        :type value: Any
+        :raises ValueError: If 'root_package' is set to a package not in the project's elements.
+        """
+        if key == "root_package":
+            self.__validate_root_package(value)
+        super().__setattr__(key, value)
+
     def add_element(self, element: ProjectElement) -> None:
-        """Add a ProjectElement to the project.
+        """Adds a new element to the project's collection of elements.
 
-        Ensures that the element is of the correct type. Also updates the inverse relationship in ProjectElement.
+        This method ensures that only instances of ProjectElement or its subclasses are added to the project. It also
+        establishes a bidirectional relationship between the project and the element by setting the element's
+        'in_project' attribute to this project instance.
 
-        :param element: The ProjectElement to be added to the project.
+        :param element: The ProjectElement to be added.
         :type element: ProjectElement
-        :raises TypeError: If the element is not an instance of ProjectElement.
+        :raises TypeError: If the provided element is not an instance of ProjectElement.
         """
         if not isinstance(element, ProjectElement):
             raise TypeError("Element must be an instance of ProjectElement.")
@@ -151,13 +185,15 @@ class Project(NamedElement):
         self._elements.add(element)  # inverse relation
 
     def remove_element(self, element: ProjectElement) -> None:
-        """Remove a ProjectElement from the project if it exists.
+        """Removes an existing element from the project's collection of elements.
 
-        Also updates the inverse relationship in ProjectElement.
+        This method ensures that the element to be removed is actually part of the project. It also updates the
+        element's 'in_project' attribute to None, effectively breaking the bidirectional relationship.
 
-        :param element: The ProjectElement to be removed from the project.
+        :param element: The ProjectElement to be removed.
         :type element: ProjectElement
         :raises TypeError: If the element is not a valid ProjectElement.
+        :raises ValueError: If the element is not part of the project.
         """
         if not isinstance(element, ProjectElement):
             raise TypeError(f"Element '{element}' cannot be removed as it is not a valid ProjectElement.")
@@ -171,12 +207,13 @@ class Project(NamedElement):
 
     @property
     def elements(self) -> set[OntoumlElement]:
-        """Provide read-only access to the elements attribute.
+        """Provides a read-only view of the project's elements.
 
-        This is a workaround to prevent direct modification of the 'elements' list. Modifications should be done using
-        add_element and remove_element methods.
+        This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
+        use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's
+        elements collection is maintained.
 
-        :return: A list of OntoumlElement objects.
+        :return: A set of OntoumlElement objects that are part of the project.
         :rtype: set[OntoumlElement]
         """
         return self._elements

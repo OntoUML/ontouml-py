@@ -24,7 +24,7 @@ Functions
 
 .. py:function:: validate_subclasses(analyzed_class, allowed_subclasses)
 
-   Ensures that the given class is a subclass of one of the allowed subclasses.
+   Ensure that the given class is a subclass of one of the allowed subclasses.
 
    :param analyzed_class: The class to be analyzed for subclass validation.
    :type analyzed_class: object

@@ -1,0 +1,6 @@
+:py:mod:`ontouml_py.classes.abstract_classes.packageable`
+=========================================================
+
+.. py:module:: ontouml_py.classes.abstract_classes.packageable
+
+

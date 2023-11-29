@@ -4,7 +4,7 @@ for the project. These utilities are designed to be reusable and can be employed
 
 
 def validate_subclasses(analyzed_class: object, allowed_subclasses: list[str]) -> None:
-    """Ensures that the given class is a subclass of one of the allowed subclasses.
+    """Ensure that the given class is a subclass of one of the allowed subclasses.
 
     :param analyzed_class: The class to be analyzed for subclass validation.
     :type analyzed_class: object

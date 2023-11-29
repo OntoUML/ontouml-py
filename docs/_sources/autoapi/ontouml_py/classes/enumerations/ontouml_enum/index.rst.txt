@@ -47,7 +47,7 @@ Classes
    .. py:method:: get_members()
       :classmethod:
 
-      Returns the keys of the enum members.
+      Return the keys of the enum members.
 
       This method retrieves the keys (names) of all members of the enum class.
 
