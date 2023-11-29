@@ -262,7 +262,7 @@ from ontouml_py.ontoumlelement import OUClass
 new_ou_class = OUClass(URIRef("example_id"))
 
 # Add the new element to ou_graph
-ou_graph.add_element(new_ou_class)
+ou_graph.add_content(new_ou_class)
 ```
 4. Writing OntoUML Elements to an RDF Graph
 If you wish to export your OntoUML elements from OUGraph to an RDF graph, you can utilize the write_graph method.

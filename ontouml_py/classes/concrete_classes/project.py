@@ -9,7 +9,6 @@ from typing import Any, Optional
 from pydantic import Field, PrivateAttr, field_validator
 
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
-from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
 from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
 from ontouml_py.classes.concrete_classes.package import Package
 from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
@@ -100,8 +99,8 @@ class Project(NamedElement):
         :raises TypeError: If 'elements' is provided and is not a set, ensuring correct data structure.
         """
         super().__init__(**data)
-        elements = data.get("elements")
 
+        elements = data.get("elements")
         if elements is not None and not isinstance(elements, set):
             raise TypeError("Expected 'elements' to be a set")
         self._elements: set[ProjectElement] = elements if elements is not None else set()
@@ -206,14 +205,14 @@ class Project(NamedElement):
             raise ValueError(f"Element '{element}' cannot be removed because is not part of the project.")
 
     @property
-    def elements(self) -> set[OntoumlElement]:
+    def elements(self) -> set[ProjectElement]:
         """Provide a read-only view of the project's elements.
 
         This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
         use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's
         elements collection is maintained.
 
-        :return: A set of OntoumlElement objects that are part of the project.
-        :rtype: set[OntoumlElement]
+        :return: A set of ProjectElement objects that are part of the project.
+        :rtype: set[ProjectElement]
         """
         return self._elements
