@@ -5,9 +5,11 @@ Classifier in an OntoUML model. It includes an attribute to link the property to
 """
 from typing import Any, Optional
 
-from pydantic import PrivateAttr
+from pydantic import PrivateAttr, Field
 
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
+from ontouml_py.classes.enumerations.aggregationkind import AggregationKind
+from ontouml_py.classes.enumerations.propertystereotype import PropertyStereotype
 
 
 class Property(Decoratable):
@@ -21,7 +23,17 @@ class Property(Decoratable):
     :vartype is_property_of: Optional[Classifier]
     """
 
+    # Private attributes
     _is_property_of: Optional["Classifier"] = PrivateAttr(default=None)
+    # Public attributes
+    is_read_only: bool = Field(default=False)
+    aggregation_kind: AggregationKind = Field(default=AggregationKind.NONE)
+    stereotype: Optional[PropertyStereotype] = Field(default=None)
+    # TODO (@pedropaulofb): The cardinality must be created together with the property, as it is mandatory.
+    # cardinality: Cardinality = Field(default=None)
+    property_type: Optional["Classifier"] = Field(default=None)
+    subsetted_by: set["Property"] = Field(default_factory=set)
+    redefined_by: set["Property"] = Field(default_factory=set)
 
     # Pydantic's configuration settings for the class.
     model_config = {

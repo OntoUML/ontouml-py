@@ -53,6 +53,36 @@ Classes
 
       
 
+   .. py:attribute:: is_read_only
+      :type: bool
+
+      
+
+   .. py:attribute:: aggregation_kind
+      :type: ontouml_py.classes.enumerations.aggregationkind.AggregationKind
+
+      
+
+   .. py:attribute:: stereotype
+      :type: Optional[ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype]
+
+      
+
+   .. py:attribute:: property_type
+      :type: Optional[Classifier]
+
+      
+
+   .. py:attribute:: subsetted_by
+      :type: set[Property]
+
+      
+
+   .. py:attribute:: redefined_by
+      :type: set[Property]
+
+      
+
    .. py:attribute:: model_config
 
       

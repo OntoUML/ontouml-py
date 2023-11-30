@@ -23,7 +23,7 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="ontouml_py.classes.enumerations" href="../../enumerations/index.html" />
+    <link rel="next" title="ontouml_py.classes.datatypes" href="../../datatypes/index.html" />
     <link rel="prev" title="ontouml_py.classes.concrete_classes.project" href="../project/index.html" /> 
 </head>
 
@@ -143,6 +143,36 @@ attribute, accessible and modifiable through its property and setter method.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.is_read_only">
+<span class="sig-name descname"><span class="pre">is_read_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.is_read_only" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.aggregation_kind">
+<span class="sig-name descname"><span class="pre">aggregation_kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../enumerations/aggregationkind/index.html#ontouml_py.classes.enumerations.aggregationkind.AggregationKind" title="ontouml_py.classes.enumerations.aggregationkind.AggregationKind"><span class="pre">ontouml_py.classes.enumerations.aggregationkind.AggregationKind</span></a></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.aggregation_kind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.stereotype">
+<span class="sig-name descname"><span class="pre">stereotype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../enumerations/propertystereotype/index.html#ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype" title="ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype"><span class="pre">ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.stereotype" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.property_type">
+<span class="sig-name descname"><span class="pre">property_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">Classifier</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.property_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.subsetted_by">
+<span class="sig-name descname"><span class="pre">subsetted_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><span class="pre">Property</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.subsetted_by" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.redefined_by">
+<span class="sig-name descname"><span class="pre">redefined_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><span class="pre">Property</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.redefined_by" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -172,7 +202,7 @@ attribute, accessible and modifiable through its property and setter method.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../project/index.html" class="btn btn-neutral float-left" title="ontouml_py.classes.concrete_classes.project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../enumerations/index.html" class="btn btn-neutral float-right" title="ontouml_py.classes.enumerations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../datatypes/index.html" class="btn btn-neutral float-right" title="ontouml_py.classes.datatypes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

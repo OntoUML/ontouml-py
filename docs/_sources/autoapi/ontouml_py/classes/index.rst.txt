@@ -12,6 +12,7 @@ Subpackages
 
    abstract_classes/index.rst
    concrete_classes/index.rst
+   datatypes/index.rst
    enumerations/index.rst
 
 

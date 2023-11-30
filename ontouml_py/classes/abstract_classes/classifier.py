@@ -102,3 +102,6 @@ class Classifier(Decoratable, Packageable):
         :rtype: set[Property]
         """
         return self._properties
+
+
+Property.model_rebuild()
