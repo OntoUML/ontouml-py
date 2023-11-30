@@ -8,7 +8,6 @@ from pydantic import Field
 
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
-from ontouml_py.utils import validate_subclasses
 
 
 class ModelElement(NamedElement, ProjectElement):
@@ -39,8 +38,7 @@ class ModelElement(NamedElement, ProjectElement):
         :type data: Dict[str, Any]
         :raises ValueError: If the instance does not belong to the allowed subclasses.
         """
-        validate_subclasses(
-            self,
+        self._validate_subclasses(
             ["Decoratable", "Generalization", "GeneralizationSet", "Link", "Literal", "Note", "Package", "Packageable"],
         )
         super().__init__(**data)

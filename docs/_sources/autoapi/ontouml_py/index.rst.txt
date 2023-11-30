@@ -11,15 +11,5 @@ Subpackages
    :maxdepth: 3
 
    classes/index.rst
-   functions/index.rst
-
-
-Submodules
-----------
-.. toctree::
-   :titlesonly:
-   :maxdepth: 1
-
-   utils/index.rst
 
 

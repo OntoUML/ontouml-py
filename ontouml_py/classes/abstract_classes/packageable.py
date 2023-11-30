@@ -13,7 +13,6 @@ from typing import Any, Optional
 from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from ontouml_py.utils import validate_subclasses
 
 
 class Packageable(ModelElement):
@@ -48,7 +47,7 @@ class Packageable(ModelElement):
         :type data: dict[str, Any]
         :raises ValueError: If 'in_package' is directly initialized.
         """
-        validate_subclasses(self, ["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Link"])
+        self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Link"])
         super().__init__(**data)
 
     @property

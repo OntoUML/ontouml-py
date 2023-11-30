@@ -13,7 +13,6 @@ from typing import Any, Optional
 from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
-from ontouml_py.utils import validate_subclasses
 
 
 class ProjectElement(OntoumlElement):
@@ -50,7 +49,7 @@ class ProjectElement(OntoumlElement):
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
                             initialized.
         """
-        validate_subclasses(self, ["ModelElement", "Diagram", "Shape", "View"])
+        self._validate_subclasses(["ModelElement", "Diagram", "Shape", "View"])
         super().__init__(**data)
 
     @property

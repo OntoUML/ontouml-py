@@ -13,7 +13,6 @@ from pydantic import Field, PrivateAttr
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.abstract_classes.packageable import Packageable
 from ontouml_py.classes.concrete_classes.property import Property
-from ontouml_py.utils import validate_subclasses
 
 
 class Classifier(Decoratable, Packageable):
@@ -54,8 +53,7 @@ class Classifier(Decoratable, Packageable):
         :type data: dict[str, Any]
         :raises TypeError: If 'properties' is provided but is not a set.
         """
-        validate_subclasses(
-            self,
+        self._validate_subclasses(
             ["Class", "Relation"],
         )
         super().__init__(**data)

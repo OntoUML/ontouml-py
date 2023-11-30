@@ -22,8 +22,6 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
-from ontouml_py.utils import validate_subclasses
-
 
 class OntoumlElement(ABC, BaseModel):
     """Abstract base class representing a generic element within an OntoUML model.
@@ -62,7 +60,7 @@ class OntoumlElement(ABC, BaseModel):
         :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-        validate_subclasses(self, ["NamedElement", "Project", "ProjectElement", "Shape", "View"])
+        self._validate_subclasses(["NamedElement", "Project", "ProjectElement", "Shape", "View"])
 
         # Sets attributes
         super().__init__(**data)
@@ -113,3 +111,23 @@ class OntoumlElement(ABC, BaseModel):
         :rtype: int
         """
         return hash(self.id)  # Hash based on a unique identifier
+
+    @classmethod
+    def _validate_subclasses(cls, allowed_subclasses: list[str]) -> None:
+        """Ensure that the given class is a subclass of one of the allowed subclasses.
+
+        :param allowed_subclasses: A list of allowed subclass names.
+        :type allowed_subclasses: list[str]
+        :raises ValueError: If the analyzed class is not a subclass of any allowed subclasses.
+        """
+        current_class = cls
+        while current_class != object:
+            if current_class.__name__ in allowed_subclasses:
+                return
+            current_class = current_class.__bases__[0]
+        else:
+            allowed = ", ".join(allowed_subclasses)
+
+            raise ValueError(
+                f"'{cls.__name__}' is not an allowed subclass. " f"Only these subclasses are permitted: {allowed}."
+            )

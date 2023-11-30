@@ -112,4 +112,14 @@ Classes
       :rtype: int
 
 
+   .. py:method:: _validate_subclasses(allowed_subclasses)
+      :classmethod:
+
+      Ensure that the given class is a subclass of one of the allowed subclasses.
+
+      :param allowed_subclasses: A list of allowed subclass names.
+      :type allowed_subclasses: list[str]
+      :raises ValueError: If the analyzed class is not a subclass of any allowed subclasses.
+
+
 

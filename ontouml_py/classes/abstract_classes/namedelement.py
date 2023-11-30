@@ -12,7 +12,6 @@ from langstring import LangString
 from pydantic import Field, field_validator
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
-from ontouml_py.utils import validate_subclasses
 
 
 class NamedElement(OntoumlElement):
@@ -72,7 +71,7 @@ class NamedElement(OntoumlElement):
         :type data: dict[str, Any]
         """
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
-        validate_subclasses(self, ["Diagram", "ModelElement", "Project"])
+        self._validate_subclasses(["Diagram", "ModelElement", "Project"])
 
         # Sets attributes
         super().__init__(**data)
