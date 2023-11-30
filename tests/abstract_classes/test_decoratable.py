@@ -23,8 +23,7 @@ def default_decoratable():
 
 
 def test_decoratable_initialization(default_decoratable: Property):
-    """
-    Test the initialization of a Decoratable instance.
+    """Test the initialization of a Decoratable instance.
 
     :param default_decoratable: Fixture providing a default instance of Property.
     :return: None
@@ -33,8 +32,7 @@ def test_decoratable_initialization(default_decoratable: Property):
 
 
 def test_decoratable_is_derived_attribute(default_decoratable: Property):
-    """
-    Test setting the 'is_derived' attribute of a Decoratable instance.
+    """Test setting the 'is_derived' attribute of a Decoratable instance.
 
     :param default_decoratable: Fixture providing a default instance of Property.
     :return: None
@@ -46,8 +44,7 @@ def test_decoratable_is_derived_attribute(default_decoratable: Property):
 
 
 def test_decoratable_invalid_subclass_initialization():
-    """
-    Test the initialization of a Decoratable instance with an invalid subclass.
+    """Test the initialization of a Decoratable instance with an invalid subclass.
 
     :raises TypeError: If an invalid subclass is used to initialize a Decoratable instance.
     """
@@ -56,8 +53,7 @@ def test_decoratable_invalid_subclass_initialization():
 
 
 def test_decoratable_valid_subclass_initialization():
-    """
-    Test the initialization of a Decoratable instance with valid subclasses.
+    """Test the initialization of a Decoratable instance with valid subclasses.
 
     :return: None
     """
@@ -65,3 +61,26 @@ def test_decoratable_valid_subclass_initialization():
     property_instance = Property()
     assert isinstance(classifier_instance, Decoratable), "Classifier should be a valid subclass of Decoratable."
     assert isinstance(property_instance, Decoratable), "Property should be a valid subclass of Decoratable."
+
+
+def test_decoratable_is_derived_mutability():
+    """Test the mutability of the `is_derived` attribute in a `Decoratable` subclass.
+
+    This test verifies that the `is_derived` attribute of a `Decoratable` subclass can be changed after initialization,
+    ensuring that the attribute is mutable and behaves as expected.
+
+    :param: None
+    :return: None
+    :raises: AssertionError if the mutability of `is_derived` does not behave as expected.
+    """
+    # Initialize a subclass instance with `is_derived` set to False
+    classifier = Classifier(is_derived=False)
+
+    # Assert initial state of `is_derived`
+    assert not classifier.is_derived, "Initially, `is_derived` should be False."
+
+    # Change the state of `is_derived` to True
+    classifier.is_derived = True
+
+    # Assert the changed state of `is_derived`
+    assert classifier.is_derived, "After modification, `is_derived` should be True."

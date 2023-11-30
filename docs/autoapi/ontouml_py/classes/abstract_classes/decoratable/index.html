@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ontouml_py.classes.abstract_classes.modelelement &mdash; ontouml-py  documentation</title>
+  <title>ontouml_py.classes.abstract_classes.decoratable &mdash; ontouml-py  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=eafc0fe6" />
@@ -23,8 +23,8 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="ontouml_py.classes.abstract_classes.namedelement" href="../namedelement/index.html" />
-    <link rel="prev" title="ontouml_py.classes.abstract_classes.decoratable" href="../decoratable/index.html" /> 
+    <link rel="next" title="ontouml_py.classes.abstract_classes.modelelement" href="../modelelement/index.html" />
+    <link rel="prev" title="ontouml_py.classes.abstract_classes.classifier" href="../classifier/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -81,9 +81,9 @@
           <li class="breadcrumb-item"><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py</span></code></a></li>
           <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.modelelement</span></code></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.decoratable</span></code></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../../_sources/autoapi/ontouml_py/classes/abstract_classes/modelelement/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../../_sources/autoapi/ontouml_py/classes/abstract_classes/decoratable/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -91,42 +91,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-ontouml_py.classes.abstract_classes.modelelement">
-<span id="ontouml-py-classes-abstract-classes-modelelement"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.abstract_classes.modelelement" title="ontouml_py.classes.abstract_classes.modelelement"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.modelelement</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.abstract_classes.modelelement" title="Link to this heading"></a></h1>
-<p>This module defines the ModelElement class, which represents a model element in an OntoUML model. It inherits properties from both NamedElement and ProjectElement, and includes additional features specific to model elements.</p>
+  <section id="module-ontouml_py.classes.abstract_classes.decoratable">
+<span id="ontouml-py-classes-abstract-classes-decoratable"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.abstract_classes.decoratable" title="ontouml_py.classes.abstract_classes.decoratable"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.decoratable</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.abstract_classes.decoratable" title="Link to this heading"></a></h1>
+<p>Module for the Decoratable class within an OntoUML model.</p>
+<p>This module defines the Decoratable class, an abstract class that represents elements in an OntoUML model that can be
+decorated with additional properties. It extends the ModelElement class and includes a boolean attribute to indicate
+whether the element is derived. The class is designed to be subclassed by specific types of model elements that can
+be decorated, such as classifiers and properties.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelElement</span></code></a></p></td>
-<td><p>Represents a model element, inheriting properties from both NamedElement and ProjectElement.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.abstract_classes.decoratable.Decoratable" title="ontouml_py.classes.abstract_classes.decoratable.Decoratable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Decoratable</span></code></a></p></td>
+<td><p>Abstract class representing a decoratable element in an OntoUML model.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.modelelement.ModelElement">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.abstract_classes.modelelement.</span></span><span class="sig-name descname"><span class="pre">ModelElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.modelelement.ModelElement" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../namedelement/index.html#ontouml_py.classes.abstract_classes.namedelement.NamedElement" title="ontouml_py.classes.abstract_classes.namedelement.NamedElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.namedelement.NamedElement</span></code></a>, <a class="reference internal" href="../projectelement/index.html#ontouml_py.classes.abstract_classes.projectelement.ProjectElement" title="ontouml_py.classes.abstract_classes.projectelement.ProjectElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.projectelement.ProjectElement</span></code></a></p>
-<p>Represents a model element, inheriting properties from both NamedElement and ProjectElement.</p>
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.decoratable.Decoratable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.abstract_classes.decoratable.</span></span><span class="sig-name descname"><span class="pre">Decoratable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.decoratable.Decoratable" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../modelelement/index.html#ontouml_py.classes.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.modelelement.ModelElement</span></code></a></p>
+<p>Abstract class representing a decoratable element in an OntoUML model.</p>
+<p>This class extends ModelElement to include the capability of being decorated. It introduces an attribute to
+indicate whether the element is derived. The class is intended to be subclassed by specific model elements that
+support decoration, such as classifiers and properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>custom_properties</strong> (<em>Set</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – A set of custom properties associated with the model element. Each property is a tuple
-containing a string key and a value of any type.</p>
+<dd class="field-odd"><p><strong>is_derived</strong> (<em>bool</em>) – Indicates whether the element is derived. Derived elements are typically computed or inferred
+from other elements.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.modelelement.ModelElement.custom_properties">
-<span class="sig-name descname"><span class="pre">custom_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.modelelement.ModelElement.custom_properties" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.decoratable.Decoratable.is_derived">
+<span class="sig-name descname"><span class="pre">is_derived</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ontouml_py.classes.abstract_classes.decoratable.Decoratable.is_derived" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.modelelement.ModelElement.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.modelelement.ModelElement.model_config" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.decoratable.Decoratable.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.decoratable.Decoratable.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -139,8 +146,8 @@ containing a string key and a value of any type.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../decoratable/index.html" class="btn btn-neutral float-left" title="ontouml_py.classes.abstract_classes.decoratable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../namedelement/index.html" class="btn btn-neutral float-right" title="ontouml_py.classes.abstract_classes.namedelement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../classifier/index.html" class="btn btn-neutral float-left" title="ontouml_py.classes.abstract_classes.classifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modelelement/index.html" class="btn btn-neutral float-right" title="ontouml_py.classes.abstract_classes.modelelement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,54 @@
+:py:mod:`ontouml_py.classes.abstract_classes.decoratable`
+=========================================================
+
+.. py:module:: ontouml_py.classes.abstract_classes.decoratable
+
+.. autoapi-nested-parse::
+
+   Module for the Decoratable class within an OntoUML model.
+
+   This module defines the Decoratable class, an abstract class that represents elements in an OntoUML model that can be
+   decorated with additional properties. It extends the ModelElement class and includes a boolean attribute to indicate
+   whether the element is derived. The class is designed to be subclassed by specific types of model elements that can
+   be decorated, such as classifiers and properties.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.classes.abstract_classes.decoratable.Decoratable
+
+
+
+
+.. py:class:: Decoratable(**data)
+
+
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
+
+   Abstract class representing a decoratable element in an OntoUML model.
+
+   This class extends ModelElement to include the capability of being decorated. It introduces an attribute to
+   indicate whether the element is derived. The class is intended to be subclassed by specific model elements that
+   support decoration, such as classifiers and properties.
+
+   :ivar is_derived: Indicates whether the element is derived. Derived elements are typically computed or inferred
+                     from other elements.
+   :vartype is_derived: bool
+
+   .. py:attribute:: is_derived
+      :type: bool
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

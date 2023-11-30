@@ -3,6 +3,14 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.property
 
+.. autoapi-nested-parse::
+
+   Module for the Property class within an OntoUML model.
+
+   This module defines the Property class, which extends the Decoratable class. Property represents a feature of a
+   Classifier in an OntoUML model. It includes an attribute to link the property to its owning classifier.
+
+
 
 Module Contents
 ---------------
@@ -20,28 +28,41 @@ Classes
 .. py:class:: Property(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.decoratable.Decoratable`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represent a property in an OntoUML model.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   This class extends Decoratable and includes an additional attribute to link the property to its owning classifier.
+   The `is_property_of` attribute is a reference to the Classifier instance that owns this property. It is a private
+   attribute, accessible and modifiable through its property and setter method.
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar is_property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
+   :vartype is_property_of: Optional[Classifier]
+
+   .. py:property:: is_property_of
+      :type: Optional[Classifier]
+
+      Get the owning classifier of this property.
+
+      :return: The Classifier instance that owns this property, if any.
+      :rtype: Optional[Classifier]
+
+
+   .. py:attribute:: _is_property_of
+      :type: Optional[Classifier]
+
+      
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: __set_is_property_of(owner)
+
+      Set the owning classifier of this property.
+
+      :param owner: The Classifier instance to be set as the owner of this property.
+      :type owner: Optional[Classifier]
+
 
 

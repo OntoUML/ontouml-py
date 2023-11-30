@@ -198,9 +198,8 @@ class Project(NamedElement):
             raise TypeError(f"Element '{element}' cannot be removed as it is not a valid ProjectElement.")
 
         if element in self._elements:
-            self._elements.remove(element)
-            if self in element.in_project:
-                element._ProjectElement__set_in_project(None)
+            self._elements.remove(element)  # direct relation
+            element._ProjectElement__set_in_project(None)  # inverse relation
         else:
             raise ValueError(f"Element '{element}' cannot be removed because is not part of the project.")
 

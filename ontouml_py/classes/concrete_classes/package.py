@@ -72,8 +72,8 @@ class Package(Packageable):
         if not isinstance(content, Packageable):
             raise TypeError("Content must be an instance of Packageable.")
 
-        content._Packageable__set_in_package(self)  # direct relation
-        self._contents.add(content)  # inverse relation
+        self._contents.add(content)  # direct relation
+        content._Packageable__set_in_package(self)  # inverse relation
 
     def remove_content(self, content: Packageable) -> None:
         """Remove an existing content from the package's collection of contents.
@@ -90,9 +90,8 @@ class Package(Packageable):
             raise TypeError(f"Content '{content}' cannot be removed as it is not a valid Packageable.")
 
         if content in self._contents:
-            self._contents.remove(content)
-            if self in content.in_package:
-                content._ProjectElement__set_in_project(None)
+            self._contents.remove(content)  # direct relation
+            content._ProjectElement__set_in_project(None)  # inverse relation
         else:
             raise ValueError(f"content '{content}' cannot be removed because is not part of the package.")
 

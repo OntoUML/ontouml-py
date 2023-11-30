@@ -10,6 +10,8 @@ Submodules
    :titlesonly:
    :maxdepth: 1
 
+   classifier/index.rst
+   decoratable/index.rst
    modelelement/index.rst
    namedelement/index.rst
    ontoumlelement/index.rst

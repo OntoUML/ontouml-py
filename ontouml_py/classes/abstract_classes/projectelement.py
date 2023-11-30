@@ -62,7 +62,7 @@ class ProjectElement(OntoumlElement):
         """
         return self._in_project
 
-    def __set_in_project(self, new_project: "Project") -> None:
+    def __set_in_project(self, new_project: Optional["Project"]) -> None:
         """Protected method to set the project. Not part of the public API.
 
         This method is used internally by the Project class to establish or break the association between this element
