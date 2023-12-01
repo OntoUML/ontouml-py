@@ -1,4 +1,5 @@
 import pytest
+
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 
 

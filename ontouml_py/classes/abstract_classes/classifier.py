@@ -14,6 +14,7 @@ from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.abstract_classes.packageable import Packageable
 from ontouml_py.classes.concrete_classes.property import Property
 
+
 # TODO (@pedropaulofb): Substitute [object] to ["Classifier"]
 
 

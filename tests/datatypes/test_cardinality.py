@@ -80,8 +80,7 @@ def test_cardinality_with_whitespace_string_bounds_error() -> None:
 
 
 def test_cardinality_with_integer_bounds_converted_to_string() -> None:
-    """
-    Test Cardinality with integer values for lower_bound and upper_bound, expecting conversion to strings.
+    """"Test Cardinality with integer values for lower_bound and upper_bound, expecting conversion to strings.
 
     :raises: ValueError: If the conversion from integer to string does not occur.
     """
@@ -92,8 +91,7 @@ def test_cardinality_with_integer_bounds_converted_to_string() -> None:
 
 
 def test_cardinality_with_mixed_none_and_valid_bound() -> None:
-    """
-    Test Cardinality with None for lower_bound and a valid integer for upper_bound.
+    """"Test Cardinality with None for lower_bound and a valid integer for upper_bound.
 
     :raises: ValueError: If the class does not handle None and valid bounds correctly.
     """
@@ -104,8 +102,7 @@ def test_cardinality_with_mixed_none_and_valid_bound() -> None:
 
 
 def test_cardinality_with_mixed_none_and_invalid_bound() -> None:
-    """
-    Test Cardinality with None for lower_bound and an invalid value for upper_bound, expecting an error.
+    """"Test Cardinality with None for lower_bound and an invalid value for upper_bound, expecting an error.
 
     :raises: ValueError: If the class does not handle None and invalid bounds correctly.
     """
@@ -114,8 +111,7 @@ def test_cardinality_with_mixed_none_and_invalid_bound() -> None:
 
 
 def test_cardinality_with_non_numeric_string_bounds() -> None:
-    """
-    Test Cardinality with non-numeric, non-'*' string values for bounds, expecting an error.
+    """"Test Cardinality with non-numeric, non-'*' string values for bounds, expecting an error.
 
     :raises: ValueError: If non-numeric, non-'*' string values are provided.
     """
@@ -128,8 +124,7 @@ from ontouml_py.classes.datatypes.cardinality import Cardinality
 
 
 def test_cardinality_with_invalid_type_for_lower_bound() -> None:
-    """
-    Test Cardinality with an invalid type (e.g., list) for lower_bound, expecting a TypeError.
+    """"Test Cardinality with an invalid type (e.g., list) for lower_bound, expecting a TypeError.
 
     :raises: TypeError: If an invalid type is used for lower_bound.
     """
@@ -138,8 +133,7 @@ def test_cardinality_with_invalid_type_for_lower_bound() -> None:
 
 
 def test_cardinality_with_invalid_type_for_upper_bound() -> None:
-    """
-    Test Cardinality with an invalid type (e.g., dict) for upper_bound, expecting a TypeError.
+    """"Test Cardinality with an invalid type (e.g., dict) for upper_bound, expecting a TypeError.
 
     :raises: TypeError: If an invalid type is used for upper_bound.
     """
@@ -148,8 +142,7 @@ def test_cardinality_with_invalid_type_for_upper_bound() -> None:
 
 
 def test_cardinality_with_invalid_types_for_both_bounds() -> None:
-    """
-    Test Cardinality with invalid types (e.g., tuple and float) for both lower_bound and upper_bound, expecting a TypeError.
+    """"Test Cardinality with invalid types (e.g., tuple and float) for both lower_bound and upper_bound, expecting a TypeError.
 
     :raises: TypeError: If invalid types are used for both bounds.
     """
