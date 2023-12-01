@@ -76,7 +76,7 @@ class Classifier(Decoratable, Packageable):
         if not isinstance(new_property, Property):
             raise TypeError("Property to be added must be an instance of Property.")
         self._properties.add(new_property)  # direct relation
-        new_property._Property__set_is_property_of(self)  # inverse relation
+        new_property._Property__set_property_of(self)  # inverse relation
 
     def remove_property(self, old_property: Property) -> None:
         """Remove a property from the classifier.
@@ -91,7 +91,7 @@ class Classifier(Decoratable, Packageable):
 
         if old_property in self._properties:
             self._properties.remove(old_property)  # direct relation
-            old_property._Property__set_is_property_of(None)  # inverse relation
+            old_property._Property__set_property_of(None)  # inverse relation
         else:
             raise ValueError(f"Property '{old_property}' cannot be removed because is not part of the classifier.")
 

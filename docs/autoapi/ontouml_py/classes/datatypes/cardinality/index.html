@@ -138,12 +138,12 @@ along with properties indicating whether the elements are ordered and unique.</p
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.datatypes.cardinality.Cardinality.lower_bound">
-<span class="sig-name descname"><span class="pre">lower_bound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.datatypes.cardinality.Cardinality.lower_bound" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lower_bound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.datatypes.cardinality.Cardinality.lower_bound" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.datatypes.cardinality.Cardinality.upper_bound">
-<span class="sig-name descname"><span class="pre">upper_bound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.datatypes.cardinality.Cardinality.upper_bound" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">upper_bound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.datatypes.cardinality.Cardinality.upper_bound" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -166,10 +166,12 @@ along with properties indicating whether the elements are ordered and unique.</p
 <span class="sig-name descname"><span class="pre">ensure_valid_multiplicity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.datatypes.cardinality.Cardinality.ensure_valid_multiplicity" title="Link to this definition"></a></dt>
 <dd><p>Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.</p>
 <p>This method checks for the logical consistency of the lower and upper bounds of the cardinality.
-It raises a ValueError if the bounds are not valid or logically inconsistent.</p>
+It ensures that the values are either integers or ‘*’, and that the lower bound is not greater than the upper
+bound. It raises a ValueError if the bounds are not valid, logically inconsistent, or if empty strings are
+provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the cardinality values do not follow the defined rules.</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the cardinality values do not follow the defined rules or if empty strings are used.</p>
 </dd>
 </dl>
 </dd></dl>

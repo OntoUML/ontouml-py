@@ -47,7 +47,7 @@ class Packageable(ModelElement):
         :type data: dict[str, Any]
         :raises ValueError: If 'in_package' is directly initialized.
         """
-        self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Link"])
+        self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Anchor"])
         super().__init__(**data)
 
     @property

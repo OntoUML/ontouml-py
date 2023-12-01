@@ -92,8 +92,11 @@
   <section id="module-ontouml_py.classes.concrete_classes.property">
 <span id="ontouml-py-classes-concrete-classes-property"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.concrete_classes.property" title="ontouml_py.classes.concrete_classes.property"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.concrete_classes.property</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.concrete_classes.property" title="Link to this heading"></a></h1>
 <p>Module for the Property class within an OntoUML model.</p>
-<p>This module defines the Property class, which extends the Decoratable class. Property represents a feature of a
-Classifier in an OntoUML model. It includes an attribute to link the property to its owning classifier.</p>
+<p>This module defines the Property class, which extends the Decoratable class from the ontouml_py package. The Property
+class represents a feature of a Classifier in an OntoUML model. It includes attributes and methods to define and
+manipulate properties of Classifiers, such as their read-only status, aggregation kind, stereotype, cardinality, type,
+and relationships with other properties. The module also includes necessary imports and configurations for the Property
+class to function within the broader OntoUML framework.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -110,20 +113,30 @@ Classifier in an OntoUML model. It includes an attribute to link the property to
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.concrete_classes.property.</span></span><span class="sig-name descname"><span class="pre">Property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../abstract_classes/decoratable/index.html#ontouml_py.classes.abstract_classes.decoratable.Decoratable" title="ontouml_py.classes.abstract_classes.decoratable.Decoratable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.decoratable.Decoratable</span></code></a></p>
 <p>Represent a property in an OntoUML model.</p>
-<p>This class extends Decoratable and includes an additional attribute to link the property to its owning classifier.
-The <cite>is_property_of</cite> attribute is a reference to the Classifier instance that owns this property. It is a private
-attribute, accessible and modifiable through its property and setter method.</p>
+<p>This class extends Decoratable and includes additional attributes to define the characteristics of a property
+within an OntoUML model. It represents a feature of a Classifier and includes attributes to specify its
+characteristics such as read-only status, aggregation kind, stereotype, cardinality, type, and relationships with
+other properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>is_property_of</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><em>Classifier</em></a><em>]</em>) – Reference to the Classifier instance that owns this property. This is a private attribute.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>is_read_only</strong> (<em>bool</em>) – Indicates if the property is read-only.</p></li>
+<li><p><strong>aggregation_kind</strong> (<a class="reference internal" href="../../enumerations/aggregationkind/index.html#ontouml_py.classes.enumerations.aggregationkind.AggregationKind" title="ontouml_py.classes.enumerations.aggregationkind.AggregationKind"><em>AggregationKind</em></a>) – Specifies the aggregation kind of the property.</p></li>
+<li><p><strong>stereotype</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../enumerations/propertystereotype/index.html#ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype" title="ontouml_py.classes.enumerations.propertystereotype.PropertyStereotype"><em>PropertyStereotype</em></a><em>]</em>) – The stereotype of the property, if any.</p></li>
+<li><p><strong>cardinality</strong> (<a class="reference internal" href="../../datatypes/cardinality/index.html#ontouml_py.classes.datatypes.cardinality.Cardinality" title="ontouml_py.classes.datatypes.cardinality.Cardinality"><em>Cardinality</em></a>) – The cardinality of the property. Must be set during initialization.</p></li>
+<li><p><strong>property_type</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><em>Classifier</em></a><em>]</em>) – The type of the property, referring to a Classifier.</p></li>
+<li><p><strong>subsetted_by</strong> (<em>Set</em><em>[</em><a class="reference internal" href="#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><em>Property</em></a><em>]</em>) – A set of properties that are subsetted by this property.</p></li>
+<li><p><strong>redefined_by</strong> (<em>Set</em><em>[</em><a class="reference internal" href="#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><em>Property</em></a><em>]</em>) – A set of properties that are redefined by this property.</p></li>
+<li><p><strong>property_of</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><em>Classifier</em></a><em>]</em>) – Reference to the Classifier instance that owns this property. This is a private attribute.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
+<dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Fields to be set on the model instance.</p>
 </dd>
 </dl>
 <dl class="py property">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.is_property_of">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_property_of</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">Classifier</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.is_property_of" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.property_of">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">property_of</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.property_of" title="Link to this definition"></a></dt>
 <dd><p>Get the owning classifier of this property.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -136,8 +149,8 @@ attribute, accessible and modifiable through its property and setter method.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property._is_property_of">
-<span class="sig-name descname"><span class="pre">_is_property_of</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">Classifier</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property._is_property_of" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property._property_of">
+<span class="sig-name descname"><span class="pre">_property_of</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property._property_of" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -156,8 +169,13 @@ attribute, accessible and modifiable through its property and setter method.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.cardinality">
+<span class="sig-name descname"><span class="pre">cardinality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.cardinality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.property_type">
-<span class="sig-name descname"><span class="pre">property_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">Classifier</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.property_type" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">property_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.property_type" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -176,8 +194,29 @@ attribute, accessible and modifiable through its property and setter method.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.__set_is_property_of">
-<span class="sig-name descname"><span class="pre">__set_is_property_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.__set_is_property_of" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.validate_cardinality_type">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_cardinality_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.validate_cardinality_type" title="Link to this definition"></a></dt>
+<dd><p>Validate the type of the cardinality attribute.</p>
+<p>Ensures that the cardinality attribute is of type Cardinality. Raises a TypeError if the check fails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>checked_value</strong> (<a class="reference internal" href="../../datatypes/cardinality/index.html#ontouml_py.classes.datatypes.cardinality.Cardinality" title="ontouml_py.classes.datatypes.cardinality.Cardinality"><em>Cardinality</em></a>) – The value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The checked value if validation is successful.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../datatypes/cardinality/index.html#ontouml_py.classes.datatypes.cardinality.Cardinality" title="ontouml_py.classes.datatypes.cardinality.Cardinality">Cardinality</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If the cardinality value is not of type Cardinality.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.property.Property.__set_property_of">
+<span class="sig-name descname"><span class="pre">__set_property_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.property.Property.__set_property_of" title="Link to this definition"></a></dt>
 <dd><p>Set the owning classifier of this property.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

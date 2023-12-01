@@ -17,7 +17,7 @@ from ontouml_py.classes.enumerations.propertystereotype import PropertyStereotyp
 
 
 class Property(Decoratable):
-    """"Represent a property in an OntoUML model.
+    """Represent a property in an OntoUML model.
 
     This class extends Decoratable and includes additional attributes to define the characteristics of a property
     within an OntoUML model. It represents a feature of a Classifier and includes attributes to specify its
@@ -38,15 +38,15 @@ class Property(Decoratable):
     :vartype subsetted_by: Set[Property]
     :ivar redefined_by: A set of properties that are redefined by this property.
     :vartype redefined_by: Set[Property]
-    :ivar is_property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
-    :vartype is_property_of: Optional[Classifier]
+    :ivar property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
+    :vartype property_of: Optional[Classifier]
 
     :param data: Fields to be set on the model instance.
     :type data: dict[str, Any]
     """
 
     # Private attributes
-    _is_property_of: Optional[object] = PrivateAttr(default=None)
+    _property_of: Optional[object] = PrivateAttr(default=None)
     # Public attributes
     is_read_only: bool = Field(default=False)
     aggregation_kind: AggregationKind = Field(default=AggregationKind.NONE)
@@ -66,7 +66,7 @@ class Property(Decoratable):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        """"Initialize a new Property instance.
+        """Initialize a new Property instance.
 
         Calls the initializer of the superclass (Decoratable) and sets up the Property-specific attributes.
 
@@ -77,7 +77,7 @@ class Property(Decoratable):
 
     @field_validator("cardinality", mode="after")
     @classmethod
-    def validate_cardinality_type(cls,checked_value:object)->Cardinality:
+    def validate_cardinality_type(cls, checked_value: object) -> Cardinality:
         """Validate the type of the cardinality attribute.
 
         Ensures that the cardinality attribute is of type Cardinality. Raises a TypeError if the check fails.
@@ -88,25 +88,23 @@ class Property(Decoratable):
         :rtype: Cardinality
         :raises TypeError: If the cardinality value is not of type Cardinality.
         """
-        if not isinstance(checked_value,Cardinality):
+        if not isinstance(checked_value, Cardinality):
             raise TypeError("A property's cardinality value must be of type Cardinality.")
         return checked_value
 
-
     @property
-    def is_property_of(self) -> Optional[object]:
-        """"Get the owning classifier of this property.
+    def property_of(self) -> Optional[object]:
+        """Get the owning classifier of this property.
 
         :return: The Classifier instance that owns this property, if any.
         :rtype: Optional[Classifier]
         """
-        return self._is_property_of
+        return self._property_of
 
-    def __set_is_property_of(self, owner: Optional[object]) -> None:
-        """"Set the owning classifier of this property.
+    def __set_property_of(self, owner: Optional[object]) -> None:
+        """Set the owning classifier of this property.
 
         :param owner: The Classifier instance to be set as the owner of this property.
         :type owner: Optional[Classifier]
         """
-        self._is_property_of = owner
-
+        self._property_of = owner

@@ -56,12 +56,12 @@ Classes
    :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
 
    .. py:attribute:: lower_bound
-      :type: Optional[str]
+      :type: Optional[str | int]
 
       
 
    .. py:attribute:: upper_bound
-      :type: Optional[str]
+      :type: Optional[str | int]
 
       
 
@@ -84,9 +84,11 @@ Classes
       Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
 
       This method checks for the logical consistency of the lower and upper bounds of the cardinality.
-      It raises a ValueError if the bounds are not valid or logically inconsistent.
+      It ensures that the values are either integers or '*', and that the lower bound is not greater than the upper
+      bound. It raises a ValueError if the bounds are not valid, logically inconsistent, or if empty strings are
+      provided.
 
-      :raises ValueError: If the cardinality values do not follow the defined rules.
+      :raises ValueError: If the cardinality values do not follow the defined rules or if empty strings are used.
 
 
 

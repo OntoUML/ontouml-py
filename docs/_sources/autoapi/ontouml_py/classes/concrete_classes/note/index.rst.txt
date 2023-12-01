@@ -3,6 +3,26 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.note
 
+.. autoapi-nested-parse::
+
+   This module defines the Note class as part of an OntoUML model.
+
+   The Note class is a specialized model element within the OntoUML framework. It is used to represent textual annotations
+   or comments that can be attached to other elements within an OntoUML model. The Note class extends the ModelElement
+   class, inheriting common features and adding specific attributes for handling textual content.
+
+   Classes:
+       Note: Represents a textual note in an OntoUML model.
+
+   Dependencies:
+       - LangString: A class used for handling language-specific string representations.
+       - ModelElement: The abstract base class from which Note inherits.
+
+   Example:
+       Creating a Note instance with specific text content:
+           note = Note(text=LangString("This is an example note","en"))
+
+
 
 Module Contents
 ---------------
@@ -20,25 +40,20 @@ Classes
 .. py:class:: Note(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represents a note in an OntoUML model.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   A note is a specialized model element that contains textual information. It extends the ModelElement class,
+   inheriting its attributes and methods, and adds a specific attribute for text content using the LangString type.
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar text: The textual content of the note.
+   :vartype text: LangString
+
+   .. py:attribute:: text
+      :type: langstring.LangString
+
+      
 
    .. py:attribute:: model_config
 

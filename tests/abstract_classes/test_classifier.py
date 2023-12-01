@@ -92,20 +92,20 @@ def test_classifier_abstractness_change() -> None:
 
 
 def test_property_association_on_addition() -> None:
-    """Test if a property's is_property_of is set correctly when added to a classifier."""
+    """Test if a property's property_of is set correctly when added to a classifier."""
     classifier = Class()
     prop = Property()
     classifier.add_property(prop)
-    assert prop.is_property_of == classifier, "Property's owner should be set to the classifier on addition."
+    assert prop.property_of == classifier, "Property's owner should be set to the classifier on addition."
 
 
 def test_property_disassociation_on_removal() -> None:
-    """Test if a property's is_property_of is set to None when removed from a classifier."""
+    """Test if a property's property_of is set to None when removed from a classifier."""
     classifier = Class()
     prop = Property()
     classifier.add_property(prop)
     classifier.remove_property(prop)
-    assert prop.is_property_of is None, "Property's owner should be None after removal from the classifier."
+    assert prop.property_of is None, "Property's owner should be None after removal from the classifier."
 
 
 def test_classifier_with_empty_properties() -> None:

@@ -55,7 +55,7 @@ class Cardinality(BaseModel):
 
     @model_validator(mode="after")
     def ensure_valid_multiplicity(self):
-        """"Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
+        """Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
 
         This method checks for the logical consistency of the lower and upper bounds of the cardinality.
         It ensures that the values are either integers or '*', and that the lower bound is not greater than the upper

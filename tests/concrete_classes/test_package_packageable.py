@@ -16,11 +16,11 @@ def empty_package() -> Package:
 def packageable_content() -> Packageable:
     """Fixture to create a mock Packageable instance."""
 
-    class Link(Packageable):
+    class Anchor(Packageable):
         def __init__(self):
             super().__init__()
 
-    return Link()
+    return Anchor()
 
 
 # Tests

@@ -39,6 +39,15 @@ class ModelElement(NamedElement, ProjectElement):
         :raises ValueError: If the instance does not belong to the allowed subclasses.
         """
         self._validate_subclasses(
-            ["Decoratable", "Generalization", "GeneralizationSet", "Link", "Literal", "Note", "Package", "Packageable"],
+            [
+                "Decoratable",
+                "Generalization",
+                "GeneralizationSet",
+                "Anchor",
+                "Literal",
+                "Note",
+                "Package",
+                "Packageable",
+            ],
         )
         super().__init__(**data)

@@ -24,12 +24,11 @@ def classifier_instance() -> Classifier:
         def __init__(self, **data: dict[str, Any]) -> None:
             super().__init__(**data)
 
-
     return Relation()
 
 
 def test_property_initialization(default_property: Property):
-    """"Test the initialization of a Property instance.
+    """Test the initialization of a Property instance.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -41,30 +40,28 @@ def test_property_initialization(default_property: Property):
     assert default_property.redefined_by == set(), "Default redefined_by should be an empty set"
 
 
-def test_property_is_property_of_setter(default_property: Property, classifier_instance: Classifier):
-    """"Test the setter for the is_property_of attribute of the Property class.
+def test_property_property_of_setter(default_property: Property, classifier_instance: Classifier):
+    """Test the setter for the property_of attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     :param classifier_instance: A Classifier instance created by the fixture.
     """
     classifier_instance.add_property(default_property)
-    assert (
-        default_property.is_property_of == classifier_instance
-    ), "is_property_of should reference the Classifier instance"
+    assert default_property.property_of == classifier_instance, "property_of should reference the Classifier instance"
 
 
-def test_property_is_property_of_getter(default_property: Property, classifier_instance: Classifier):
-    """"Test the getter for the is_property_of attribute of the Property class.
+def test_property_property_of_getter(default_property: Property, classifier_instance: Classifier):
+    """Test the getter for the property_of attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     :param classifier_instance: A Classifier instance created by the fixture.
     """
     classifier_instance.add_property(default_property)
-    assert default_property.is_property_of == classifier_instance, "Getter should return the set Classifier instance"
+    assert default_property.property_of == classifier_instance, "Getter should return the set Classifier instance"
 
 
 def test_property_read_only_flag(default_property: Property):
-    """"Test the modification and retrieval of the is_read_only attribute of the Property class.
+    """Test the modification and retrieval of the is_read_only attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -73,7 +70,7 @@ def test_property_read_only_flag(default_property: Property):
 
 
 def test_property_aggregation_kind(default_property: Property):
-    """"Test the modification and retrieval of the aggregation_kind attribute of the Property class.
+    """Test the modification and retrieval of the aggregation_kind attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -82,7 +79,7 @@ def test_property_aggregation_kind(default_property: Property):
 
 
 def test_property_stereotype(default_property: Property):
-    """"Test the modification and retrieval of the stereotype attribute of the Property class.
+    """Test the modification and retrieval of the stereotype attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -91,7 +88,7 @@ def test_property_stereotype(default_property: Property):
 
 
 def test_property_cardinality():
-    """"Test the modification and retrieval of the cardinality attribute of the Property class.
+    """Test the modification and retrieval of the cardinality attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -101,7 +98,7 @@ def test_property_cardinality():
 
 
 def test_property_type(default_property: Property, classifier_instance: Classifier):
-    """"Test the modification and retrieval of the property_type attribute of the Property class.
+    """Test the modification and retrieval of the property_type attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     :param classifier_instance: A Classifier instance created by the fixture.
@@ -113,7 +110,7 @@ def test_property_type(default_property: Property, classifier_instance: Classifi
 
 
 def test_property_subsetted_by(default_property: Property):
-    """"Test the modification and retrieval of the subsetted_by attribute of the Property class.
+    """Test the modification and retrieval of the subsetted_by attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -123,7 +120,7 @@ def test_property_subsetted_by(default_property: Property):
 
 
 def test_property_redefined_by(default_property: Property):
-    """"Test the modification and retrieval of the redefined_by attribute of the Property class.
+    """Test the modification and retrieval of the redefined_by attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
     """
@@ -133,18 +130,22 @@ def test_property_redefined_by(default_property: Property):
         redefined_property in default_property.redefined_by
     ), "redefined_by should include the added Property instance"
 
+
 def test_property_cardinality_validation_with_invalid_type():
     """Test that initializing Property with an invalid type for cardinality raises a TypeError."""
     with pytest.raises(TypeError):
         Property(cardinality="invalid_type")
 
+
 def test_property_default_cardinality_initialization():
     """Test the default initialization of the cardinality attribute."""
     property_instance = Property()
-    assert isinstance(property_instance.cardinality, Cardinality), "Default cardinality should be a Cardinality instance"
+    assert isinstance(
+        property_instance.cardinality, Cardinality
+    ), "Default cardinality should be a Cardinality instance"
+
 
 def test_property_cardinality_edge_cases():
     """Test edge cases for the cardinality attribute."""
     with pytest.raises(TypeError):
         Property(cardinality=None)
-

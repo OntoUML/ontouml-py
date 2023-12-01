@@ -10,11 +10,11 @@ Submodules
    :titlesonly:
    :maxdepth: 1
 
+   anchor/index.rst
    binaryrelation/index.rst
    class/index.rst
    generalization/index.rst
    generalizationset/index.rst
-   link/index.rst
    literal/index.rst
    naryrelation/index.rst
    note/index.rst
