@@ -77,7 +77,7 @@ class Property(Decoratable):
 
     @field_validator("cardinality", mode="after")
     @classmethod
-    def validate_cardinality_type(cls, checked_value: object) -> Cardinality:
+    def __validate_cardinality_type(cls, checked_value: object) -> Cardinality:
         """Validate the type of the cardinality attribute.
 
         Ensures that the cardinality attribute is of type Cardinality. Raises a TypeError if the check fails.

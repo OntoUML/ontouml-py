@@ -52,7 +52,7 @@ class NamedElement(OntoumlElement):
 
     @field_validator("creators", "contributors", mode="after")
     @classmethod
-    def ensure_non_empty(cls, checked_list: set[str]) -> set[str]:  # noqa (vulture)
+    def __ensure_non_empty(cls, checked_list: set[str]) -> set[str]:  # noqa (vulture)
         for elem in checked_list:
             if elem == "":
                 raise ValueError("Empty strings are not allowed")
