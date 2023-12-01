@@ -3,6 +3,15 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.literal
 
+.. autoapi-nested-parse::
+
+   This module is part of the ontouml_py package and defines the Literal class, a specialized type of ModelElement.
+
+   The Literal class represents literals in an ontological model, particularly for enumeration classes. It ensures that
+   literals are created and managed in a controlled manner, adhering to the constraints and structure of the ontological
+   model.
+
+
 
 Module Contents
 ---------------
@@ -17,31 +26,33 @@ Classes
 
 
 
-.. py:class:: Literal(**data)
+.. py:class:: Literal
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represent a literal in an ontological model, extending the ModelElement class.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
-
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   This class is designed to represent literals, which are specific values or identifiers in an enumeration.
+   It overrides the default constructor to prevent direct instantiation and provides a factory method for
+   controlled creation of literal instances.
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: _create_instance(**data)
+      :classmethod:
+
+      Factory method to create a new instance of Literal.
+
+      Creates a new instance of Literal, bypassing the overridden constructor. This method allows for the
+      controlled instantiation of literals, ensuring they are created in accordance with the model's constraints.
+
+      :param data: A dictionary containing the data needed to initialize the Literal.
+      :type data: dict
+      :return: A new instance of Literal.
+      :rtype: Literal
+
 
 

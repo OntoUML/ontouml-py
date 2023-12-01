@@ -3,6 +3,16 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.class
 
+.. autoapi-nested-parse::
+
+   This module defines classes and functionality for representing and manipulating ontological models.
+
+   It includes the definition of the `Class` class, which is a key component in the ontological model,
+   representing ontological classes with various attributes and behaviors. The module also includes
+   definitions for handling literals associated with these classes, ensuring that operations on these
+   classes adhere to certain ontological constraints.
+
+
 
 Module Contents
 ---------------
@@ -20,34 +30,89 @@ Classes
 .. py:class:: Class(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.classifier.Classifier`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represent a class in an ontological model.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   This class extends the Classifier class and includes additional properties and methods specific to
+   ontological classes. It supports operations like adding and removing literals, provided the class
+   conforms to certain constraints based on its stereotype.
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar is_powertype: Indicates if the class is a powertype.
+   :vartype is_powertype: bool
+   :ivar order: Represents the order of the class.
+   :vartype order: str
+   :ivar restricted_to: A set of ontological natures that the class is restricted to.
+   :vartype restricted_to: set[OntologicalNature]
+   :ivar stereotype: The stereotype of the class.
+   :vartype stereotype: ClassStereotype
+   :ivar literals: A set of literals associated with the class.
+   :vartype literals: set[Literal]
+   :ivar model_config: Pydantic's configuration settings for the class.
+   :vartype model_config: dict
 
    .. py:attribute:: is_powertype
       :type: bool
-      :value: False
+
+      
+
+   .. py:attribute:: order
+      :type: str
+
+      
+
+   .. py:attribute:: restricted_to
+      :type: set[ontouml_py.classes.enumerations.ontologicalnature.OntologicalNature]
+
+      
+
+   .. py:attribute:: stereotype
+      :type: ontouml_py.classes.enumerations.classstereotype.ClassStereotype
+
+      
+
+   .. py:attribute:: literals
+      :type: set[ontouml_py.classes.concrete_classes.literal.Literal]
 
       
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: validate_class()
+
+      Validate the class based on its literals and stereotype.
+
+      This method checks if the class conforms to the rules based on its stereotype. Specifically,
+      it ensures that only classes with the Enumeration stereotype can have literals.
+
+      :raises ValueError: If the class has literals but does not have an Enumeration stereotype.
+
+
+   .. py:method:: add_literal(**data)
+
+      Add a new literal to the class.
+
+      This method creates and adds a new instance of Literal to the class's set of literals. It first
+      checks if the class's stereotype is Enumeration, as only classes with this stereotype are allowed
+      to have literals.
+
+      :param data: A dictionary containing the data needed to create a new Literal.
+      :type data: dict
+      :raises ValueError: If the class's stereotype is not Enumeration.
+
+
+   .. py:method:: remove_literal(remove_id)
+
+      Remove a literal from the class based on its ID.
+
+      This method iterates over the class's literals and removes the one with the matching ID.
+      It validates that the class has an Enumeration stereotype before attempting removal.
+
+      :param remove_id: The ID of the literal to be removed.
+      :type remove_id: str
+      :raises ValueError: If the class does not have an Enumeration stereotype.
+
 
 
