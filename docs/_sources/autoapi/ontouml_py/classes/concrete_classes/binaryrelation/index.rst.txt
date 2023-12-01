@@ -20,25 +20,18 @@ Classes
 .. py:class:: BinaryRelation(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.relation.Relation`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Abstract base class for classifiers in an OntoUML model.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
+   their features. This class maintains a list of properties and an 'is_abstract' flag, defining whether the classifier
+   is abstract.
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar _properties: A list of Property instances associated with this classifier.
+   :vartype _properties: list[Property]
+   :ivar is_abstract: Indicates whether the classifier is abstract.
+   :vartype is_abstract: bool
 
    .. py:attribute:: model_config
 

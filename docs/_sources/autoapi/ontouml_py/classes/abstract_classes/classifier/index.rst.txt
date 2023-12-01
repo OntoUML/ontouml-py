@@ -35,25 +35,25 @@ Classes
    Abstract base class for classifiers in an OntoUML model.
 
    Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-   their features. This class maintains a set of properties and an 'is_abstract' flag, defining whether the classifier
+   their features. This class maintains a list of properties and an 'is_abstract' flag, defining whether the classifier
    is abstract.
 
-   :ivar _properties: A set of Property instances associated with this classifier.
-   :vartype _properties: set[Property]
+   :ivar _properties: A list of Property instances associated with this classifier.
+   :vartype _properties: list[Property]
    :ivar is_abstract: Indicates whether the classifier is abstract.
    :vartype is_abstract: bool
 
    .. py:property:: properties
-      :type: set[ontouml_py.classes.concrete_classes.property.Property]
+      :type: list[ontouml_py.classes.concrete_classes.property.Property]
 
-      Get the set of properties associated with the classifier.
+      Get the list of properties associated with the classifier.
 
-      :return: A set of Property instances.
-      :rtype: set[Property]
+      :return: A list of Property instances.
+      :rtype: list[Property]
 
 
    .. py:attribute:: _properties
-      :type: set[ontouml_py.classes.concrete_classes.property.Property]
+      :type: list[ontouml_py.classes.concrete_classes.property.Property]
 
       
 

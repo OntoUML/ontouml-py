@@ -98,26 +98,23 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.concrete_classes.naryrelation.NaryRelation" title="ontouml_py.classes.concrete_classes.naryrelation.NaryRelation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaryRelation</span></code></a></p></td>
-<td><p>An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.</p></td>
+<td><p>Abstract base class for classifiers in an OntoUML model.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.naryrelation.NaryRelation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.concrete_classes.naryrelation.</span></span><span class="sig-name descname"><span class="pre">NaryRelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.naryrelation.NaryRelation" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../abstract_classes/namedelement/index.html#ontouml_py.classes.abstract_classes.namedelement.NamedElement" title="ontouml_py.classes.abstract_classes.namedelement.NamedElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.namedelement.NamedElement</span></code></a></p>
-<p>An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.</p>
-<p>This class provides functionality for managing named elements, including their preferred name, alternative names,
-descriptions, editorial notes, as well as lists of creators and contributors.</p>
+<dd><p>Bases: <a class="reference internal" href="../../abstract_classes/relation/index.html#ontouml_py.classes.abstract_classes.relation.Relation" title="ontouml_py.classes.abstract_classes.relation.Relation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.relation.Relation</span></code></a></p>
+<p>Abstract base class for classifiers in an OntoUML model.</p>
+<p>Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
+their features. This class maintains a list of properties and an ‘is_abstract’ flag, defining whether the classifier
+is abstract.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>names</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – The preferred names of the element, represented as a list of LangStrings.</p></li>
-<li><p><strong>alt_names</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – A list of alternative names for the element, each represented as a LangString object.</p></li>
-<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>LangString</em><em>]</em>) – A LangString object representing the description of the element.</p></li>
-<li><p><strong>editorial_notes</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – A list of LangString objects containing editorial notes associated with the element.</p></li>
-<li><p><strong>creators</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of URIs represented as strings identifying the creators of the element.</p></li>
-<li><p><strong>contributors</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of URIs represented as strings identifying the contributors to the element.</p></li>
+<li><p><strong>_properties</strong> (<em>list</em><em>[</em><a class="reference internal" href="../property/index.html#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><em>Property</em></a><em>]</em>) – A list of Property instances associated with this classifier.</p></li>
+<li><p><strong>is_abstract</strong> (<em>bool</em>) – Indicates whether the classifier is abstract.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>

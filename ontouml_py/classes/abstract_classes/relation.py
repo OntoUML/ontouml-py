@@ -8,7 +8,6 @@ from ontouml_py.classes.enumerations.relationstereotype import RelationStereotyp
 
 
 class Relation(Classifier):
-
     stereotype: Optional[RelationStereotype] = Field(default=None)
 
     # Pydantic's configuration settings for the class.
@@ -26,6 +25,7 @@ class Relation(Classifier):
             ["BinaryRelation", "NaryRelation"],
         )
         super().__init__(**data)
+
 
 # TODO (pedropaulofb): Create methods for set relation ends.
 # Relation ends are derived from the properties that a relation has, as follows: a relation r between the classes \

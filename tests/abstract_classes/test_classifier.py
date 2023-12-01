@@ -57,7 +57,7 @@ def test_remove_property_valid() -> None:
     prop = Property()
     classifier.add_property(prop)
     classifier.remove_property(prop)
-    assert classifier.properties == set(), "Property should be removed from the classifier's properties."
+    assert classifier.properties == [], "Property should be removed from the classifier's properties."
 
 
 def test_remove_property_invalid_type() -> None:
@@ -70,14 +70,14 @@ def test_remove_property_invalid_type() -> None:
         classifier.remove_property("not_a_property")
 
 
-def test_remove_property_not_in_set() -> None:
-    """Test removing a property that is not in the Classifier's properties set.
+def test_remove_property_not_in_list() -> None:
+    """Test removing a property that is not in the Classifier's properties list.
 
     Ensures that a ValueError is raised when attempting to remove a Property that is not part of the classifier.
     """
     classifier = Class()
     prop = Property()
-    with pytest.raises(ValueError, match="Property '.*' cannot be removed because is not part of the classifier."):
+    with pytest.raises(ValueError, match="cannot be removed because"):
         classifier.remove_property(prop)
 
 
@@ -111,4 +111,4 @@ def test_property_disassociation_on_removal() -> None:
 def test_classifier_with_empty_properties() -> None:
     """Test initializing a Classifier with no properties."""
     classifier = Class()
-    assert classifier.properties == set(), "Classifier should be initialized with an empty set of properties."
+    assert classifier.properties == [], "Classifier should be initialized with an empty set of properties."

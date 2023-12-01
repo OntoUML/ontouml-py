@@ -1,7 +1,7 @@
-:py:mod:`ontouml_py.classes.concrete_classes.naryrelation`
-==========================================================
+:py:mod:`ontouml_py.classes.abstract_classes.relation`
+======================================================
 
-.. py:module:: ontouml_py.classes.concrete_classes.naryrelation
+.. py:module:: ontouml_py.classes.abstract_classes.relation
 
 
 Module Contents
@@ -12,15 +12,15 @@ Classes
 
 .. autoapisummary::
 
-   ontouml_py.classes.concrete_classes.naryrelation.NaryRelation
+   ontouml_py.classes.abstract_classes.relation.Relation
 
 
 
 
-.. py:class:: NaryRelation(**data)
+.. py:class:: Relation(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.relation.Relation`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.classifier.Classifier`
 
    Abstract base class for classifiers in an OntoUML model.
 
@@ -32,6 +32,11 @@ Classes
    :vartype _properties: list[Property]
    :ivar is_abstract: Indicates whether the classifier is abstract.
    :vartype is_abstract: bool
+
+   .. py:attribute:: stereotype
+      :type: Optional[ontouml_py.classes.enumerations.relationstereotype.RelationStereotype]
+
+      
 
    .. py:attribute:: model_config
 

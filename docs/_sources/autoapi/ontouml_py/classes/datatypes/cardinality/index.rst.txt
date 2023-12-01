@@ -56,12 +56,12 @@ Classes
    :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
 
    .. py:attribute:: lower_bound
-      :type: Optional[str | int]
+      :type: Optional[Union[str, int]]
 
       
 
    .. py:attribute:: upper_bound
-      :type: Optional[str | int]
+      :type: Optional[Union[str, int]]
 
       
 
@@ -79,7 +79,7 @@ Classes
 
       
 
-   .. py:method:: ensure_valid_multiplicity()
+   .. py:method:: __ensure_valid_multiplicity()
 
       Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
 

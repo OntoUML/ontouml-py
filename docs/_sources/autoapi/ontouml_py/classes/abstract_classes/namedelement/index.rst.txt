@@ -84,7 +84,7 @@ Classes
 
       
 
-   .. py:method:: ensure_non_empty(checked_list)
+   .. py:method:: __ensure_non_empty(checked_list)
       :classmethod:
 
 

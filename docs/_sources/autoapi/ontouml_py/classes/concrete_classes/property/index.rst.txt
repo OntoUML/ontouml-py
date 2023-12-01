@@ -113,7 +113,7 @@ Classes
 
       
 
-   .. py:method:: validate_cardinality_type(checked_value)
+   .. py:method:: __validate_cardinality_type(checked_value)
       :classmethod:
 
       Validate the type of the cardinality attribute.

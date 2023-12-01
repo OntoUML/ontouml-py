@@ -17,5 +17,6 @@ Submodules
    ontoumlelement/index.rst
    packageable/index.rst
    projectelement/index.rst
+   relation/index.rst
 
 

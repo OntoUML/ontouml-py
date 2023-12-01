@@ -4,7 +4,6 @@ from ontouml_py.classes.abstract_classes.relation import Relation
 
 
 class NaryRelation(Relation):
-
     # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,

@@ -39,8 +39,8 @@ class Cardinality(BaseModel):
     :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
     """
 
-    lower_bound: Optional[Union[str,int]] = Field(default=None)
-    upper_bound: Optional[Union[str,int]] = Field(default=None)
+    lower_bound: Optional[Union[str, int]] = Field(default=None)
+    upper_bound: Optional[Union[str, int]] = Field(default=None)
     is_ordered: bool = Field(default=False)
     is_unique: bool = Field(default=True)
 

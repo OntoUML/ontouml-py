@@ -22,17 +22,17 @@ class Classifier(Decoratable, Packageable):
     """Abstract base class for classifiers in an OntoUML model.
 
     Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-    their features. This class maintains a set of properties and an 'is_abstract' flag, defining whether the classifier
+    their features. This class maintains a list of properties and an 'is_abstract' flag, defining whether the classifier
     is abstract.
 
-    :ivar _properties: A set of Property instances associated with this classifier.
-    :vartype _properties: set[Property]
+    :ivar _properties: A list of Property instances associated with this classifier.
+    :vartype _properties: list[Property]
     :ivar is_abstract: Indicates whether the classifier is abstract.
     :vartype is_abstract: bool
     """
 
     # Private attributes
-    _properties: set[Property] = PrivateAttr(default_factory=set)
+    _properties: list[Property] = PrivateAttr(default_factory=list)
     # Public attributes
     is_abstract: bool = Field(default=False)
 
@@ -61,11 +61,6 @@ class Classifier(Decoratable, Packageable):
         )
         super().__init__(**data)
 
-        properties = data.get("properties")
-        if properties is not None and not isinstance(properties, set):
-            raise TypeError("Expected 'properties' to be a set")
-        self._properties: set[Property] = properties if properties is not None else set()
-
     def add_property(self, new_property: Property) -> None:
         """Add a property to the classifier.
 
@@ -75,7 +70,7 @@ class Classifier(Decoratable, Packageable):
         """
         if not isinstance(new_property, Property):
             raise TypeError("Property to be added must be an instance of Property.")
-        self._properties.add(new_property)  # direct relation
+        self._properties.append(new_property)  # direct relation
         new_property._Property__set_property_of(self)  # inverse relation
 
     def remove_property(self, old_property: Property) -> None:
@@ -96,10 +91,10 @@ class Classifier(Decoratable, Packageable):
             raise ValueError(f"Property '{old_property}' cannot be removed because is not part of the classifier.")
 
     @property
-    def properties(self) -> set[Property]:
-        """Get the set of properties associated with the classifier.
+    def properties(self) -> list[Property]:
+        """Get the list of properties associated with the classifier.
 
-        :return: A set of Property instances.
-        :rtype: set[Property]
+        :return: A list of Property instances.
+        :rtype: list[Property]
         """
         return self._properties
