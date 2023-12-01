@@ -19,7 +19,8 @@ Dependencies:
 """
 from typing import Optional
 
-from pydantic import Field, BaseModel, model_validator
+from icecream import ic
+from pydantic import Field, BaseModel, model_validator, field_validator
 
 
 class Cardinality(BaseModel):
@@ -39,8 +40,8 @@ class Cardinality(BaseModel):
     :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
     """
 
-    lower_bound: Optional[str] = Field(min_length=1, default=None)
-    upper_bound: Optional[str] = Field(min_length=1, default=None)
+    lower_bound: Optional[str | int] = Field(default=None)
+    upper_bound: Optional[str | int] = Field(default=None)
     is_ordered: bool = Field(default=False)
     is_unique: bool = Field(default=True)
 
@@ -55,26 +56,40 @@ class Cardinality(BaseModel):
 
     @model_validator(mode="after")
     def ensure_valid_multiplicity(self):
-        """Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
+        """
+        Validate the cardinality ensuring the lower and upper bounds are synchronized and valid.
 
         This method checks for the logical consistency of the lower and upper bounds of the cardinality.
-        It raises a ValueError if the bounds are not valid or logically inconsistent.
+        It ensures that the values are either integers or '*', and that the lower bound is not greater than the upper
+        bound. It raises a ValueError if the bounds are not valid, logically inconsistent, or if empty strings are
+        provided.
 
-        :raises ValueError: If the cardinality values do not follow the defined rules.
+        :raises ValueError: If the cardinality values do not follow the defined rules or if empty strings are used.
         """
+        # Ensuring cardinality value will be stored as a string even though received as an integer:
+        if isinstance(self.lower_bound, int):
+            self.lower_bound = str(self.lower_bound)
+        if isinstance(self.upper_bound, int):
+            self.upper_bound = str(self.upper_bound)
+
         # Ensuring synchronicity between lower and upper bounds
         if self.lower_bound and not self.upper_bound:
             self.upper_bound = self.lower_bound
         elif self.upper_bound and not self.lower_bound:
             self.lower_bound = self.upper_bound
 
+        rule01_error = "Forbidden cardinality value received. Allowed values are integers or '*'."
+
+        # Ensure minimum string size > 0 (i.e., empty strings are not allowed)
+        if (self.lower_bound == "") or (self.upper_bound == ""):
+            raise ValueError(rule01_error)
+
         # Verifying invalid digit
         rule1_lb = self.lower_bound and (self.lower_bound != "*" and not self.lower_bound.isdigit())
         rule1_ub = self.upper_bound and (self.upper_bound != "*" and not self.upper_bound.isdigit())
-        rule1_error = "Forbidden cardinality value received. Allowed values are integers or '*'."
 
         if rule1_lb or rule1_ub:
-            raise ValueError(rule1_error)
+            raise ValueError(rule01_error)
 
         # Verifying if lower bound is greater than the upper bound
         rule2_a = (self.lower_bound == "*") and (self.upper_bound != "*")

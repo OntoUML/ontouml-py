@@ -14,6 +14,8 @@ from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.abstract_classes.packageable import Packageable
 from ontouml_py.classes.concrete_classes.property import Property
 
+# TODO (@pedropaulofb): Substitute [object] to ["Classifier"]
+
 
 class Classifier(Decoratable, Packageable):
     """Abstract base class for classifiers in an OntoUML model.
@@ -100,6 +102,3 @@ class Classifier(Decoratable, Packageable):
         :rtype: set[Property]
         """
         return self._properties
-
-
-Property.model_rebuild()
