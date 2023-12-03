@@ -100,3 +100,16 @@ class Cardinality(BaseModel):
 
         if rule2_a or rule2_b:
             raise ValueError(rule2_error)
+
+    @classmethod
+    def create(cls):
+
+        lower_bound = input("Enter the lower bound for the new Cardinality (integer or '*'): ")
+        upper_bound = input("Enter the upper bound for the new Cardinality (integer or '*'): ")
+        is_ordered_input = input("Are the elements ordered? (yes/no): ")
+        is_unique_input = input("Are the elements unique? (yes/no): ")
+
+        is_ordered = is_ordered_input.lower() in ['y', 'yes', 'true', '1']
+        is_unique = is_unique_input.lower() in ['y', 'yes', 'true', '1']
+
+        return cls(lower_bound=lower_bound, upper_bound=upper_bound, is_ordered=is_ordered, is_unique=is_unique)
