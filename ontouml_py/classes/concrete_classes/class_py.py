@@ -18,12 +18,14 @@ module's purpose, while avoiding naming conflicts within the Python language."
 """
 from typing import Any
 
-from pydantic import Field, model_validator
+from icecream import ic
+from pydantic import Field, model_validator, field_validator
 
 from ontouml_py.classes.abstract_classes.classifier import Classifier
 from ontouml_py.classes.concrete_classes.literal import Literal
 from ontouml_py.classes.enumerations.classstereotype import ClassStereotype
 from ontouml_py.classes.enumerations.ontologicalnature import OntologicalNature
+from ontouml_py.classes.utils.nonemptyset import NonEmptySet
 
 
 class Class(Classifier):
@@ -52,7 +54,7 @@ class Class(Classifier):
     order: str = Field(min_length=1, default="1")
     restricted_to: set[OntologicalNature] = Field(default_factory=set)
     stereotype: ClassStereotype = Field()
-    literals: set[Literal] = Field(default_factory=set)
+    literals: set[Literal] = Field(default=None)
 
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
@@ -78,13 +80,19 @@ class Class(Classifier):
             raise ValueError("Only classes with stereotype Enumeration can have literals.")
 
         # Check if Enumeration classes have at least one literal, as required
-        if self.literals == set() and self.stereotype == ClassStereotype.ENUMERATION:
+        if len(self.literals) == 0 and self.stereotype == ClassStereotype.ENUMERATION:
             raise ValueError("Classes with stereotype Enumeration must have literals.")
 
         # A class only has order != 1 if it is a type
         # stereotype must match restricted_to (OntologicalNature)
         # etc.
 
+    @field_validator("literals",mode="after")
+    def __ensure_non_empty_set(cls, checked_value) -> NonEmptySet[Literal]:
+        ic(checked_value, type(checked_value))
+        non_empty_set = NonEmptySet.convert_set(checked_value)
+        ic(non_empty_set, type(non_empty_set))
+        return non_empty_set
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new instance of the Class.
 
@@ -93,3 +101,7 @@ class Class(Classifier):
         """
         super().__init__(**data)
 
+l = Literal()
+x = Class(stereotype=ClassStereotype.ENUMERATION, literals={l})
+ic(x.literals)
+print(x.literals)
