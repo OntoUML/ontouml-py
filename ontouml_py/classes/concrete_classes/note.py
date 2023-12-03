@@ -31,6 +31,8 @@ class Note(ModelElement):
 
     :ivar text: The textual content of the note.
     :vartype text: LangString
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     text: LangString = Field()

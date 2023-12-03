@@ -24,6 +24,8 @@ class Decoratable(ModelElement):
     :ivar is_derived: Indicates whether the element is derived. Derived elements are typically computed or inferred
                       from other elements.
     :vartype is_derived: bool
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     is_derived: bool = Field(default=False)

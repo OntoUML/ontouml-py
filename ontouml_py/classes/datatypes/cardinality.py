@@ -36,7 +36,8 @@ class Cardinality(BaseModel):
     :vartype is_ordered: bool
     :ivar is_unique: Flag indicating if the elements are unique. Defaults to True.
     :vartype is_unique: bool
-    :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     lower_bound: Optional[Union[str, int]] = Field(default=None)

@@ -42,6 +42,8 @@ class Class(Classifier):
     :vartype stereotype: ClassStereotype
     :ivar literals: A set of literals associated with the class.
     :vartype literals: set[Literal]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     # Private attribute

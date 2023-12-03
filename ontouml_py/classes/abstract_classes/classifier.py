@@ -29,6 +29,8 @@ class Classifier(Decoratable, Packageable):
     :vartype _properties: list[Property]
     :ivar is_abstract: Indicates whether the classifier is abstract.
     :vartype is_abstract: bool
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     # Private attributes

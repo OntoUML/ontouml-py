@@ -36,6 +36,8 @@ class OntoumlElement(ABC, BaseModel):
     :vartype created: datetime
     :ivar modified: Timestamp when the element was last modified, can be None if not modified.
     :vartype modified: Optional[datetime]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     # TODO (@pedropaulofb): Create a controller dictionary to store all OntoumlElements available.

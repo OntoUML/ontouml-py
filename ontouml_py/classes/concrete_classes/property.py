@@ -40,6 +40,8 @@ class Property(Decoratable):
     :vartype redefined_by: Set[Property]
     :ivar property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
     :vartype property_of: Optional[Classifier]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     # Private attributes

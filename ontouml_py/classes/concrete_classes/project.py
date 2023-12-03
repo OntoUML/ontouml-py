@@ -56,6 +56,8 @@ class Project(NamedElement):
     :vartype root_package: Optional[Package]
     :ivar representation_style: The style or methodology used for representing the ontologies within the project.
     :vartype representation_style: OntologyRepresentationStyle
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     # Private attributes

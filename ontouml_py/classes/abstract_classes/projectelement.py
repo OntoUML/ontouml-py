@@ -25,6 +25,8 @@ class ProjectElement(OntoumlElement):
 
     :ivar in_project: Reference to the Project instance this element belongs to. This is a read-only attribute.
     :vartype in_project: Optional[Project]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     _in_project: Optional["Project"] = PrivateAttr(default=None)

@@ -32,6 +32,8 @@ class NamedElement(OntoumlElement):
     :vartype creators: list[str]
     :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
     :vartype contributors: list[str]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     names: set[LangString] = Field(default_factory=set)

@@ -16,6 +16,8 @@ class ModelElement(NamedElement, ProjectElement):
     :ivar custom_properties: A set of custom properties associated with the model element. Each property is a tuple
         containing a string key and a value of any type.
     :vartype custom_properties: Set[Tuple[str, Any]]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     custom_properties: set[tuple[str, Any]] = Field(default_factory=set)
