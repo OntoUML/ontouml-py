@@ -91,6 +91,10 @@
              
   <section id="module-ontouml_py.classes.concrete_classes.generalization">
 <span id="ontouml-py-classes-concrete-classes-generalization"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.concrete_classes.generalization" title="ontouml_py.classes.concrete_classes.generalization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.concrete_classes.generalization</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.concrete_classes.generalization" title="Link to this heading"></a></h1>
+<p>This module defines the <cite>Generalization</cite> class, a component of the ontouml_py library. The <cite>Generalization</cite> class
+represents a generalization relationship in an ontological model, linking two classifiers in a hierarchy where one
+(classifier) is a generalization of the other. This module includes the necessary validations to ensure the integrity
+of the generalization relationship, such as preventing a classifier from being a generalization of itself.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -98,26 +102,23 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.concrete_classes.generalization.Generalization" title="ontouml_py.classes.concrete_classes.generalization.Generalization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Generalization</span></code></a></p></td>
-<td><p>An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.</p></td>
+<td><p>Represent a generalization relationship between two classifiers in an ontological model.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.concrete_classes.generalization.</span></span><span class="sig-name descname"><span class="pre">Generalization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../abstract_classes/namedelement/index.html#ontouml_py.classes.abstract_classes.namedelement.NamedElement" title="ontouml_py.classes.abstract_classes.namedelement.NamedElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.namedelement.NamedElement</span></code></a></p>
-<p>An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.</p>
-<p>This class provides functionality for managing named elements, including their preferred name, alternative names,
-descriptions, editorial notes, as well as lists of creators and contributors.</p>
+<dd><p>Bases: <a class="reference internal" href="../../abstract_classes/modelelement/index.html#ontouml_py.classes.abstract_classes.modelelement.ModelElement" title="ontouml_py.classes.abstract_classes.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.modelelement.ModelElement</span></code></a></p>
+<p>Represent a generalization relationship between two classifiers in an ontological model.</p>
+<p>This class extends <cite>ModelElement</cite> and is used to define a generalization, where one classifier (the general) is
+a generalization of another classifier (the specific).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>names</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – The preferred names of the element, represented as a list of LangStrings.</p></li>
-<li><p><strong>alt_names</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – A list of alternative names for the element, each represented as a LangString object.</p></li>
-<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>LangString</em><em>]</em>) – A LangString object representing the description of the element.</p></li>
-<li><p><strong>editorial_notes</strong> (<em>list</em><em>[</em><em>LangString</em><em>]</em>) – A list of LangString objects containing editorial notes associated with the element.</p></li>
-<li><p><strong>creators</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of URIs represented as strings identifying the creators of the element.</p></li>
-<li><p><strong>contributors</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of URIs represented as strings identifying the contributors to the element.</p></li>
+<li><p><strong>general</strong> (<a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><em>Classifier</em></a>) – The general classifier in the generalization relationship.</p></li>
+<li><p><strong>specific</strong> (<a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><em>Classifier</em></a>) – The specific classifier in the generalization relationship.</p></li>
+<li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
@@ -125,9 +126,31 @@ descriptions, editorial notes, as well as lists of creators and contributors.</p
 </dd>
 </dl>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization.general">
+<span class="sig-name descname"><span class="pre">general</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">ontouml_py.classes.abstract_classes.classifier.Classifier</span></a></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization.general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization.specific">
+<span class="sig-name descname"><span class="pre">specific</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../abstract_classes/classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><span class="pre">ontouml_py.classes.abstract_classes.classifier.Classifier</span></a></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization.specific" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization.ensure_irreflexive">
+<span class="sig-name descname"><span class="pre">ensure_irreflexive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization.ensure_irreflexive" title="Link to this definition"></a></dt>
+<dd><p>Validate that the generalization relationship is irreflexive.</p>
+<p>Ensures that the ‘general’ and ‘specific’ classifiers are not the same, as a classifier cannot generalize itself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If ‘general’ and ‘specific’ classifiers are the same.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

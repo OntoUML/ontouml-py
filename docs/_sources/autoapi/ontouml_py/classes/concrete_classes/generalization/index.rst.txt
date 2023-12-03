@@ -3,6 +3,14 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.generalization
 
+.. autoapi-nested-parse::
+
+   This module defines the `Generalization` class, a component of the ontouml_py library. The `Generalization` class
+   represents a generalization relationship in an ontological model, linking two classifiers in a hierarchy where one
+   (classifier) is a generalization of the other. This module includes the necessary validations to ensure the integrity
+   of the generalization relationship, such as preventing a classifier from being a generalization of itself.
+
+
 
 Module Contents
 ---------------
@@ -20,28 +28,41 @@ Classes
 .. py:class:: Generalization(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represent a generalization relationship between two classifiers in an ontological model.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   This class extends `ModelElement` and is used to define a generalization, where one classifier (the general) is
+   a generalization of another classifier (the specific).
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar general: The general classifier in the generalization relationship.
+   :vartype general: Classifier
+   :ivar specific: The specific classifier in the generalization relationship.
+   :vartype specific: Classifier
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
+
+   .. py:attribute:: general
+      :type: ontouml_py.classes.abstract_classes.classifier.Classifier
+
+      
+
+   .. py:attribute:: specific
+      :type: ontouml_py.classes.abstract_classes.classifier.Classifier
+
+      
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: ensure_irreflexive()
+
+      Validate that the generalization relationship is irreflexive.
+
+      Ensures that the 'general' and 'specific' classifiers are not the same, as a classifier cannot generalize itself.
+
+      :raises ValueError: If 'general' and 'specific' classifiers are the same.
+
 
 

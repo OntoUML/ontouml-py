@@ -87,7 +87,7 @@ def test_property_stereotype(default_property: Property):
     assert default_property.stereotype == PropertyStereotype.BEGIN, "stereotype should be set to BEGIN"
 
 
-def test_property_cardinality():
+def test_property_cardinality() -> None:
     """Test the modification and retrieval of the cardinality attribute of the Property class.
 
     :param default_property: A default Property instance created by the fixture.
@@ -131,13 +131,13 @@ def test_property_redefined_by(default_property: Property):
     ), "redefined_by should include the added Property instance"
 
 
-def test_property_cardinality_validation_with_invalid_type():
+def test_property_cardinality_validation_with_invalid_type() -> None:
     """Test that initializing Property with an invalid type for cardinality raises a TypeError."""
     with pytest.raises(TypeError):
         Property(cardinality="invalid_type")
 
 
-def test_property_default_cardinality_initialization():
+def test_property_default_cardinality_initialization() -> None:
     """Test the default initialization of the cardinality attribute."""
     property_instance = Property()
     assert isinstance(
@@ -145,7 +145,7 @@ def test_property_default_cardinality_initialization():
     ), "Default cardinality should be a Cardinality instance"
 
 
-def test_property_cardinality_edge_cases():
+def test_property_cardinality_edge_cases() -> None:
     """Test edge cases for the cardinality attribute."""
     with pytest.raises(TypeError):
         Property(cardinality=None)

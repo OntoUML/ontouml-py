@@ -7,7 +7,7 @@ Tests cover the initialization of enum members and the functionality of the get_
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 
-def test_get_members():
+def test_get_members() -> None:
     """Test the get_members class method of OntoumlEnum.
 
     This test checks if the get_members method correctly returns the keys of all enum members.
@@ -22,7 +22,7 @@ def test_get_members():
     assert set(members) == expected_members, f"Expected members {expected_members}, but got {members}"
 
 
-def test_enum_member_uniqueness():
+def test_enum_member_uniqueness() -> None:
     """Test that all enum members are unique."""
 
     class TestEnum(OntoumlEnum):
@@ -32,7 +32,7 @@ def test_enum_member_uniqueness():
     assert len(TestEnum) == len(set(TestEnum)), "Enum members should be unique"
 
 
-def test_enum_member_type():
+def test_enum_member_type() -> None:
     """Test that enum members are instances of the OntoumlEnum class."""
 
     class TestEnum(OntoumlEnum):

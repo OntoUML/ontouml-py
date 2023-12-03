@@ -18,7 +18,7 @@ class Property(Decoratable):
 
 
 @pytest.fixture
-def default_decoratable():
+def default_decoratable() -> Property:
     """Fixture to create a default instance of Property."""
     return Property()
 
@@ -44,7 +44,7 @@ def test_decoratable_is_derived_attribute(default_decoratable: Property):
     ), "Setting 'is_derived' to True should be reflected in the Decoratable instance."
 
 
-def test_decoratable_invalid_subclass_initialization():
+def test_decoratable_invalid_subclass_initialization() -> None:
     """Test the initialization of a Decoratable instance with an invalid subclass.
 
     :raises TypeError: If an invalid subclass is used to initialize a Decoratable instance.
@@ -53,7 +53,7 @@ def test_decoratable_invalid_subclass_initialization():
         Decoratable()  # Abstract class should not be instantiated directly
 
 
-def test_decoratable_valid_subclass_initialization():
+def test_decoratable_valid_subclass_initialization() -> None:
     """Test the initialization of a Decoratable instance with valid subclasses.
 
     :return: None
@@ -64,7 +64,7 @@ def test_decoratable_valid_subclass_initialization():
     assert isinstance(property_instance, Decoratable), "Property should be a valid subclass of Decoratable."
 
 
-def test_decoratable_is_derived_mutability():
+def test_decoratable_is_derived_mutability() -> None:
     """Test the mutability of the `is_derived` attribute in a `Decoratable` subclass.
 
     This test verifies that the `is_derived` attribute of a `Decoratable` subclass can be changed after initialization,
