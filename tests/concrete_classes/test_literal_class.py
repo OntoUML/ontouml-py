@@ -1,124 +1,100 @@
 import pytest
-from icecream import ic
 
-from ontouml_py.classes.concrete_classes.literal import Literal
 from ontouml_py.classes.concrete_classes.class_py import Class
+from ontouml_py.classes.concrete_classes.literal import Literal
 from ontouml_py.classes.enumerations.classstereotype import ClassStereotype
 
 
-def test_add_literal_to_enumeration_class() -> None:
-    """Test adding a literal to a class with Enumeration stereotype."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
+@pytest.fixture
+def enumeration_class() -> Class:
+    """Fixture to create an enumeration class instance."""
+    return Class(stereotype=ClassStereotype.ENUMERATION,
+                 literals={Literal(), Literal()})
 
-    enumeration_class.add_literal(literal)
+@pytest.fixture
+def non_enumeration_class() -> Class:
+    """Fixture to create a non-enumeration class instance."""
+    return Class(stereotype=ClassStereotype.KIND)
 
-    assert literal in enumeration_class.literals, "Literal should be added to the class's literals set."
+def test_enumeration_class_with_literals(enumeration_class: Class) -> None:
+    """Test that an enumeration class can have literals.
 
+    :param enumeration_class: A fixture providing an enumeration class instance.
+    """
+    assert len(enumeration_class.literals) > 0, "Enumeration class should be able to have literals."
 
-def test_add_literal_to_non_enumeration_class_raises_error() -> None:
-    """Test adding a literal to a class without Enumeration stereotype raises TypeError."""
-    non_enumeration_class = Class(stereotype=ClassStereotype.KIND)
-    literal = Literal()
+def test_non_enumeration_class_without_literals(non_enumeration_class: Class) -> None:
+    """Test that a non-enumeration class cannot have literals.
 
-    with pytest.raises(TypeError) as excinfo:
-        non_enumeration_class.add_literal(literal)
+    :param non_enumeration_class: A fixture providing a non-enumeration class instance.
+    """
+    assert not non_enumeration_class.literals, "Non-enumeration class should not have literals."
 
-    assert "Literals can only be added to classes stereotyped with ClassStereotype.ENUMERATION" in str(excinfo.value)
-
-
-def test_remove_literal_from_enumeration_class() -> None:
-    """Test removing a literal from a class with Enumeration stereotype."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    ic(enumeration_class.literals)
-    enumeration_class.add_literal(literal)
-    ic(enumeration_class.literals)
-    enumeration_class.remove_literal(literal)
-    ic(enumeration_class.literals)
-
-    assert literal not in enumeration_class.literals, "Literal should be removed from the class's literals set."
-
-
-def test_remove_literal_not_in_class_raises_error() -> None:
-    """Test removing a literal not in the class raises ValueError."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-
+def test_enumeration_class_requires_at_least_one_literal() -> None:
+    """Test that an enumeration class requires at least one literal."""
     with pytest.raises(ValueError) as excinfo:
-        enumeration_class.remove_literal(literal)
+        Class(stereotype=ClassStereotype.ENUMERATION, literals=set())
+    assert "must have literals" in str(excinfo.value), "Enumeration class should require at least one literal."
 
-    assert "cannot be removed because is not part of the class" in str(excinfo.value)
+def test_non_enumeration_class_cannot_have_literals() -> None:
+    """Test that a non-enumeration class cannot have literals."""
+    with pytest.raises(ValueError) as excinfo:
+        Class(stereotype=ClassStereotype.KIND, literals={Literal()})
+    assert "Only classes with stereotype Enumeration can have literals" in str(excinfo.value), \
+        "Non-enumeration class should not be able to have literals."
 
+def test_add_literal_to_enumeration_class(enumeration_class: Class) -> None:
+    """Test adding a literal to an enumeration class.
 
-def test_remove_literal_from_non_enumeration_class_raises_error() -> None:
-    """Test removing a literal from a class without Enumeration stereotype raises TypeError."""
-    non_enumeration_class = Class(stereotype=ClassStereotype.KIND)
-    literal = Literal()
+    :param enumeration_class: A fixture providing an enumeration class instance.
+    """
+    new_literal = Literal()
+    enumeration_class.literals.add(new_literal)
+    assert new_literal in enumeration_class.literals, "New literal should be added to the enumeration class."
 
-    with pytest.raises(TypeError) as excinfo:
-        non_enumeration_class.remove_literal(literal)
+def test_remove_literal_from_enumeration_class(enumeration_class: Class) -> None:
+    """Test removing a literal from an enumeration class.
 
-    assert "Literals can only be removed from classes stereotyped with ClassStereotype.ENUMERATION" in str(
-        excinfo.value
-    )
+    :param enumeration_class: A fixture providing an enumeration class instance.
+    """
+    literal_to_remove = next(iter(enumeration_class.literals))
+    enumeration_class.literals.remove(literal_to_remove)
+    assert literal_to_remove not in enumeration_class.literals, "Literal should be removed from the enumeration class."
 
+def test_enumeration_class_initialization_with_literals() -> None:
+    """Test the initialization of an enumeration class with literals."""
+    literals = {Literal(), Literal()}
+    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION, literals=literals)
+    assert enumeration_class.literals == literals, "Enumeration class should initialize with provided literals."
 
-def test_literal_in_class_property() -> None:
-    """Test the in_class property of Literal reflects the correct Class instance."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    enumeration_class.add_literal(literal)
+def test_enumeration_class_initialization_without_literals_fails() -> None:
+    """Test that initializing an enumeration class without literals raises an error."""
+    with pytest.raises(ValueError) as excinfo:
+        Class(stereotype=ClassStereotype.ENUMERATION)
+    assert "must have literals" in str(excinfo.value), "Enumeration class should not initialize without literals."
 
-    assert literal.in_class == enumeration_class, "Literal's in_class property should reference the containing class."
+def test_adding_literal_to_non_enumeration_class_fails(non_enumeration_class: Class) -> None:
+    """Test that adding a literal to a non-enumeration class raises an error.
 
+    :param non_enumeration_class: A fixture providing a non-enumeration class instance.
+    """
+    new_literal = Literal()
+    with pytest.raises(ValueError):
+        non_enumeration_class.literals.add(new_literal)
 
-def test_literal_set_in_class_internal_method() -> None:
-    """Test the internal method __set_in_class correctly sets the class of a Literal."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    literal._Literal__set_in_class(enumeration_class)
+def test_removing_all_literals_from_enumeration_class_fails(enumeration_class: Class) -> None:
+    """Test that removing all literals from an enumeration class raises an error.
 
-    assert literal.in_class == enumeration_class, "Literal's in_class should be set to the given class."
+    :param enumeration_class: A fixture providing an enumeration class instance.
+    """
+    with pytest.raises(ValueError):
+        enumeration_class.literals.clear()
 
+def test_updating_literals_in_enumeration_class(enumeration_class: Class) -> None:
+    """Test updating literals in an enumeration class.
 
-def test_adding_literal_sets_in_class_correctly() -> None:
-    """Test adding a literal to a class sets the literal's in_class property correctly."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    enumeration_class.add_literal(literal)
-
-    assert (
-        literal.in_class == enumeration_class
-    ), "Literal's in_class property should be set to the class it was added to."
-
-
-def test_removing_literal_unsets_in_class_correctly() -> None:
-    """Test removing a literal from a class unsets the literal's in_class property correctly."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    enumeration_class.add_literal(literal)
-    enumeration_class.remove_literal(literal)
-
-    assert literal.in_class is None, "Literal's in_class property should be None after being removed from the class."
-
-
-def test_adding_same_literal_multiple_times() -> None:
-    """Test adding the same literal multiple times to a class only adds it once."""
-    enumeration_class = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    enumeration_class.add_literal(literal)
-    enumeration_class.add_literal(literal)
-
-    assert len(enumeration_class.literals) == 1, "Class should only contain one instance of the literal."
-
-
-def test_adding_literal_to_multiple_classes() -> None:
-    """Test adding a literal to multiple classes and verify its in_class property."""
-    class1 = Class(stereotype=ClassStereotype.ENUMERATION)
-    class2 = Class(stereotype=ClassStereotype.ENUMERATION)
-    literal = Literal()
-    class1.add_literal(literal)
-    class2.add_literal(literal)
-
-    assert literal.in_class == class2, "Literal's in_class property should be set to the last class it was added to."
+    :param enumeration_class: A fixture providing an enumeration class instance.
+    """
+    new_literals = {Literal(), Literal()}
+    enumeration_class.literals = new_literals
+    assert enumeration_class.literals == new_literals, "Enumeration class literals should be updatable."

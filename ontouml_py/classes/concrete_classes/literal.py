@@ -1,7 +1,7 @@
 """This module is part of the ontouml_py class and defines the Literal class, a specialized type of ModelElement. \
 The Literal class represents literals in an ontological model, particularly for enumeration classes.
 
-Literals in this library traditionally exist as relational dependents of their classes, particularly in the context of
+Literals traditionally exist as relational dependents of their classes, particularly in the context of
 enumerations. However, to facilitate more versatile object manipulation, the library supports the creation of 'free'
 literals, independent of any class. This feature allows users to define literals without the immediate need to
 associate them with a specific class, providing a flexible workflow. These free literals can later be integrated into
@@ -43,26 +43,3 @@ class Literal(ModelElement):
         :type data: dict[str, Any]
         """
         super().__init__(**data)
-
-    @property
-    def in_class(self) -> Optional["Class"]:
-        """Provide a read-only view of the class this literal is part of.
-
-        This property allows access to the class that contains this literal, if any. It is designed to be read-only to
-        maintain the integrity of the relationship between the literal and its class.
-
-        :return: The class containing this literal, if it is part of one.
-        :rtype: Optional[Class]
-        """
-        return self._in_class
-
-    def __set_in_class(self, new_class: "Class") -> None:
-        """Internally set the class this literal is part of.
-
-        This method is intended for internal use to establish or update the relationship between this literal and its
-        containing class. It should not be used directly in client code.
-
-        :param new_class: The class to associate with this literal. Pass None to dissociate the literal from any class.
-        :type new_class: Optional[Class]
-        """
-        self._in_class = new_class
