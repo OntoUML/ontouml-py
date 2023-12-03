@@ -41,6 +41,8 @@ Classes
 
    :ivar _in_package: Reference to the Package instance this element is contained in. This is a private attribute.
    :vartype _in_package: Optional[Package]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:property:: in_package
       :type: Optional[Package]

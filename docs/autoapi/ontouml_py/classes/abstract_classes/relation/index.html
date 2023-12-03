@@ -91,6 +91,11 @@
              
   <section id="module-ontouml_py.classes.abstract_classes.relation">
 <span id="ontouml-py-classes-abstract-classes-relation"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.abstract_classes.relation" title="ontouml_py.classes.abstract_classes.relation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.relation</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.abstract_classes.relation" title="Link to this heading"></a></h1>
+<p>This module provides the <cite>Relation</cite> class, a subclass of <cite>Classifier</cite>, representing relations in an ontological model.
+It supports various relation stereotypes as defined in the <cite>RelationStereotype</cite> enumeration.</p>
+<p>The <cite>Relation</cite> class is an abstract base class and is intended to be subclassed by specific types of relations,
+such as <cite>BinaryRelation</cite> and <cite>NaryRelation</cite>. It includes validation for these subclasses and allows for the
+configuration of Pydantic model settings.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -98,7 +103,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.abstract_classes.relation.Relation" title="ontouml_py.classes.abstract_classes.relation.Relation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Relation</span></code></a></p></td>
-<td><p>Abstract base class for classifiers in an OntoUML model.</p></td>
+<td><p>Abstract base class for representing different types of relations in an ontological model.</p></td>
 </tr>
 </tbody>
 </table>
@@ -106,15 +111,14 @@
 <dt class="sig sig-object py" id="ontouml_py.classes.abstract_classes.relation.Relation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.abstract_classes.relation.</span></span><span class="sig-name descname"><span class="pre">Relation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.abstract_classes.relation.Relation" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../classifier/index.html#ontouml_py.classes.abstract_classes.classifier.Classifier" title="ontouml_py.classes.abstract_classes.classifier.Classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.classifier.Classifier</span></code></a></p>
-<p>Abstract base class for classifiers in an OntoUML model.</p>
-<p>Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-their features. This class maintains a list of properties and an ‘is_abstract’ flag, defining whether the classifier
-is abstract.</p>
+<p>Abstract base class for representing different types of relations in an ontological model.</p>
+<p>This class extends <cite>Classifier</cite> and adds support for relation stereotypes. It is designed to be subclassed
+by more specific relation types, such as binary and n-ary relations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>_properties</strong> (<em>list</em><em>[</em><a class="reference internal" href="../../concrete_classes/property/index.html#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><em>Property</em></a><em>]</em>) – A list of Property instances associated with this classifier.</p></li>
-<li><p><strong>is_abstract</strong> (<em>bool</em>) – Indicates whether the classifier is abstract.</p></li>
+<li><p><strong>stereotype</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../enumerations/relationstereotype/index.html#ontouml_py.classes.enumerations.relationstereotype.RelationStereotype" title="ontouml_py.classes.enumerations.relationstereotype.RelationStereotype"><em>RelationStereotype</em></a><em>]</em>) – The stereotype of the relation, defining its ontological nature.</p></li>
+<li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>

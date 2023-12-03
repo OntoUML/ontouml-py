@@ -24,11 +24,12 @@ class Packageable(ModelElement):
 
     :ivar _in_package: Reference to the Package instance this element is contained in. This is a private attribute.
     :vartype _in_package: Optional[Package]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
     _in_package: Optional["Package"] = PrivateAttr(default=None)
 
-    # Pydantic's configuration settings for the class.
     model_config = {
         "validate_assignment": True,
         "extra": "forbid",

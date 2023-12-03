@@ -38,6 +38,8 @@ class OntoumlElement(ABC, BaseModel):
     :vartype modified: Optional[datetime]
     """
 
+    # TODO (@pedropaulofb): Create a controller dictionary to store all OntoumlElements available.
+
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)

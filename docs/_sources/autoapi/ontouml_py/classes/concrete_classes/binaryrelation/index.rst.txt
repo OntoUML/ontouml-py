@@ -3,6 +3,15 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.binaryrelation
 
+.. autoapi-nested-parse::
+
+   This module provides the `BinaryRelation` class, a specific implementation of the `Relation` class for representing
+   binary relations in an ontological model. A binary relation is a relation that involves exactly two distinct entities.
+
+   The `BinaryRelation` class inherits from `Relation` and maintains the same configuration settings, allowing for
+   customization and validation of attributes specific to binary relations.
+
+
 
 Module Contents
 ---------------
@@ -22,16 +31,13 @@ Classes
 
    Bases: :py:obj:`ontouml_py.classes.abstract_classes.relation.Relation`
 
-   Abstract base class for classifiers in an OntoUML model.
+   Represent a binary relation in an ontological model.
 
-   Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-   their features. This class maintains a list of properties and an 'is_abstract' flag, defining whether the classifier
-   is abstract.
+   A binary relation is a type of relation that involves exactly two distinct entities. This class extends the
+   `Relation` class and inherits its properties and methods.
 
-   :ivar _properties: A list of Property instances associated with this classifier.
-   :vartype _properties: list[Property]
-   :ivar is_abstract: Indicates whether the classifier is abstract.
-   :vartype is_abstract: bool
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:attribute:: model_config
 

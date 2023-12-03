@@ -91,6 +91,10 @@
              
   <section id="module-ontouml_py.classes.concrete_classes.naryrelation">
 <span id="ontouml-py-classes-concrete-classes-naryrelation"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.concrete_classes.naryrelation" title="ontouml_py.classes.concrete_classes.naryrelation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.concrete_classes.naryrelation</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.concrete_classes.naryrelation" title="Link to this heading"></a></h1>
+<p>This module provides the <cite>NaryRelation</cite> class, a specific implementation of the <cite>Relation</cite> class for representing
+n-ary relations in an ontological model. An n-ary relation is a relation that involves more than two entities.</p>
+<p>The <cite>NaryRelation</cite> class inherits from <cite>Relation</cite> and maintains the same configuration settings, allowing for
+customization and validation of attributes specific to n-ary relations.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -98,7 +102,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ontouml_py.classes.concrete_classes.naryrelation.NaryRelation" title="ontouml_py.classes.concrete_classes.naryrelation.NaryRelation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaryRelation</span></code></a></p></td>
-<td><p>Abstract base class for classifiers in an OntoUML model.</p></td>
+<td><p>Represent an n-ary relation in an ontological model.</p></td>
 </tr>
 </tbody>
 </table>
@@ -106,16 +110,12 @@
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.naryrelation.NaryRelation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.classes.concrete_classes.naryrelation.</span></span><span class="sig-name descname"><span class="pre">NaryRelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.naryrelation.NaryRelation" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../abstract_classes/relation/index.html#ontouml_py.classes.abstract_classes.relation.Relation" title="ontouml_py.classes.abstract_classes.relation.Relation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.classes.abstract_classes.relation.Relation</span></code></a></p>
-<p>Abstract base class for classifiers in an OntoUML model.</p>
-<p>Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-their features. This class maintains a list of properties and an ‘is_abstract’ flag, defining whether the classifier
-is abstract.</p>
+<p>Represent an n-ary relation in an ontological model.</p>
+<p>An n-ary relation is a type of relation that involves more than two entities. This class extends the <cite>Relation</cite>
+class and inherits its properties and methods.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>_properties</strong> (<em>list</em><em>[</em><a class="reference internal" href="../property/index.html#ontouml_py.classes.concrete_classes.property.Property" title="ontouml_py.classes.concrete_classes.property.Property"><em>Property</em></a><em>]</em>) – A list of Property instances associated with this classifier.</p></li>
-<li><p><strong>is_abstract</strong> (<em>bool</em>) – Indicates whether the classifier is abstract.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>

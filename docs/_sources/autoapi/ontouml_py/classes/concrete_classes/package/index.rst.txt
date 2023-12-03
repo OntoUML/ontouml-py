@@ -41,6 +41,8 @@ Classes
 
    :ivar _contents: A private set of Packageable contents contained within the package.
    :vartype _contents: set[Packageable]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:property:: contents
       :type: set[ontouml_py.classes.abstract_classes.packageable.Packageable]

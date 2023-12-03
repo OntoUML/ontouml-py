@@ -1,9 +1,16 @@
-"""This module is part of the ontouml_py package and defines the Literal class, a specialized type of ModelElement.
+"""This module is part of the ontouml_py class and defines the Literal class, a specialized type of ModelElement. \
+The Literal class represents literals in an ontological model, particularly for enumeration classes.
 
-The Literal class represents literals in an ontological model, particularly for enumeration classes. It ensures that
-literals are created and managed in a controlled manner, adhering to the constraints and structure of the ontological
-model.
+Literals in this library traditionally exist as relational dependents of their classes, particularly in the context of
+enumerations. However, to facilitate more versatile object manipulation, the library supports the creation of 'free'
+literals, independent of any class. This feature allows users to define literals without the immediate need to
+associate them with a specific class, providing a flexible workflow. These free literals can later be integrated into
+classes as required, enhancing the dynamic interaction between literals and their associated classes.
 """
+from typing import Any, Optional
+
+from pydantic import PrivateAttr
+
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
 
 
@@ -11,11 +18,14 @@ class Literal(ModelElement):
     """Represent a literal in an ontological model, extending the ModelElement class.
 
     This class is designed to represent literals, which are specific values or identifiers in an enumeration.
-    It overrides the default constructor to prevent direct instantiation and provides a factory method for
-    controlled creation of literal instances.
+
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
-    # Pydantic's configuration settings for the class.
+    # Private attribute
+    _in_class: Optional["Class"] = PrivateAttr(default=None)
+
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
@@ -24,29 +34,35 @@ class Literal(ModelElement):
         "str_strip_whitespace": True,
     }
 
-    def __init__(self) -> None:
-        """Initialize a new instance of Literal.
+    def __init__(self, **data: dict[str, Any]) -> None:
+        """Initialize a new Literal instance.
 
-        Overrides the default constructor to prevent direct instantiation of the Literal class. Literals should
-        be created using the designated factory method `_create_instance`.
+        Calls the initializer of the superclass (ModelElement).
 
-        :raises ValueError: If an attempt is made to instantiate a Literal directly.
+        :param data: Fields to be set on the model instance.
+        :type data: dict[str, Any]
         """
-        raise ValueError("Literals must be created from their container class' add_literal method.")
+        super().__init__(**data)
 
-    @classmethod
-    def _create_instance(cls, **data):
-        """Factory method to create a new instance of Literal.
+    @property
+    def in_class(self) -> Optional["Class"]:
+        """Provide a read-only view of the class this literal is part of.
 
-        Creates a new instance of Literal, bypassing the overridden constructor. This method allows for the
-        controlled instantiation of literals, ensuring they are created in accordance with the model's constraints.
+        This property allows access to the class that contains this literal, if any. It is designed to be read-only to
+        maintain the integrity of the relationship between the literal and its class.
 
-        :param data: A dictionary containing the data needed to initialize the Literal.
-        :type data: dict
-        :return: A new instance of Literal.
-        :rtype: Literal
+        :return: The class containing this literal, if it is part of one.
+        :rtype: Optional[Class]
         """
-        new_instance = cls.__new__(cls)
-        ModelElement.__init__(new_instance, **data)
+        return self._in_class
 
-        return new_instance
+    def __set_in_class(self, new_class: "Class") -> None:
+        """Internally set the class this literal is part of.
+
+        This method is intended for internal use to establish or update the relationship between this literal and its
+        containing class. It should not be used directly in client code.
+
+        :param new_class: The class to associate with this literal. Pass None to dissociate the literal from any class.
+        :type new_class: Optional[Class]
+        """
+        self._in_class = new_class

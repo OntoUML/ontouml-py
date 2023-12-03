@@ -1,3 +1,10 @@
+"""This module provides the `Relation` class, a subclass of `Classifier`, representing relations in an ontological model.
+It supports various relation stereotypes as defined in the `RelationStereotype` enumeration.
+
+The `Relation` class is an abstract base class and is intended to be subclassed by specific types of relations,
+such as `BinaryRelation` and `NaryRelation`. It includes validation for these subclasses and allows for the
+configuration of Pydantic model settings.
+"""
 from abc import abstractmethod
 from typing import Any, Optional
 
@@ -8,9 +15,19 @@ from ontouml_py.classes.enumerations.relationstereotype import RelationStereotyp
 
 
 class Relation(Classifier):
+    """Abstract base class for representing different types of relations in an ontological model.
+
+    This class extends `Classifier` and adds support for relation stereotypes. It is designed to be subclassed
+    by more specific relation types, such as binary and n-ary relations.
+
+    :ivar stereotype: The stereotype of the relation, defining its ontological nature.
+    :vartype stereotype: Optional[RelationStereotype]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
+    """
+
     stereotype: Optional[RelationStereotype] = Field(default=None)
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
@@ -21,6 +38,12 @@ class Relation(Classifier):
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]) -> None:
+        """Initialize a new instance of the Relation class.
+
+        :param data: A dictionary of attributes to initialize the Relation instance with.
+        :type data: Dict[str, Any]
+        :raises ValueError: If the subclass is not among the allowed subclasses.
+        """
         self._validate_subclasses(
             ["BinaryRelation", "NaryRelation"],
         )

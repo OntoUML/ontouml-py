@@ -23,12 +23,13 @@ class Package(Packageable):
 
     :ivar _contents: A private set of Packageable contents contained within the package.
     :vartype _contents: set[Packageable]
+    :cvar model_config: Configuration settings for the Pydantic model.
+    :vartype model_config: Dict[str, Any]
     """
 
-    # Private attributes
+    # Private attribute
     _contents: set[Packageable] = PrivateAttr(default_factory=set)
 
-    # Configuration settings for the Project model using Pydantic.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
@@ -91,7 +92,7 @@ class Package(Packageable):
 
         if content in self._contents:
             self._contents.remove(content)  # direct relation
-            content._ProjectElement__set_in_project(None)  # inverse relation
+            content._Packageable__set_in_package(None)  # inverse relation
         else:
             raise ValueError(f"content '{content}' cannot be removed because is not part of the package.")
 

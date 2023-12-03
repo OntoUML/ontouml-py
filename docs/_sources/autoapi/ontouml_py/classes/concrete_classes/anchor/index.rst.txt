@@ -48,7 +48,7 @@ Classes
 
    Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   Represents an anchor in an OntoUML model.
+   Represent an anchor in an OntoUML model.
 
    An anchor is a specialized model element that links a note (note) to another model element (target). It
    extends the ModelElement class, inheriting its attributes and methods, and adds specific relationships to both a
@@ -58,9 +58,6 @@ Classes
    :vartype note: Note
    :ivar target: The model element that is being described or commented on by the note.
    :vartype target: ModelElement
-
-   :param data: Fields to be set on the model instance, including 'note' and 'target'.
-   :type data: dict[str, Any]
 
    .. py:attribute:: note
       :type: ontouml_py.classes.concrete_classes.note.Note

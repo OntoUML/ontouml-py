@@ -12,7 +12,7 @@ Submodules
 
    anchor/index.rst
    binaryrelation/index.rst
-   class/index.rst
+   class_py/index.rst
    generalization/index.rst
    generalizationset/index.rst
    literal/index.rst
