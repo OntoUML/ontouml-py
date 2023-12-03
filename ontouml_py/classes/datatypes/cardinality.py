@@ -28,14 +28,14 @@ class Cardinality(BaseModel):
     This class allows for the specification and validation of lower and upper bounds of cardinality,
     along with properties indicating whether the elements are ordered and unique.
 
-    :param lower_bound: The lower bound of the cardinality, either an integer as a string or '*'. Defaults to None.
-    :type lower_bound: Optional[str]
-    :param upper_bound: The upper bound of the cardinality, either an integer as a string or '*'. Defaults to None.
-    :type upper_bound: Optional[str]
-    :param is_ordered: Flag indicating if the elements are ordered. Defaults to False.
-    :type is_ordered: bool
-    :param is_unique: Flag indicating if the elements are unique. Defaults to True.
-    :type is_unique: bool
+    :ivar lower_bound: The lower bound of the cardinality, either an integer as a string or '*'. Defaults to None.
+    :vartype lower_bound: Optional[str]
+    :ivar upper_bound: The upper bound of the cardinality, either an integer as a string or '*'. Defaults to None.
+    :vartype upper_bound: Optional[str]
+    :ivar is_ordered: Flag indicating if the elements are ordered. Defaults to False.
+    :vartype is_ordered: bool
+    :ivar is_unique: Flag indicating if the elements are unique. Defaults to True.
+    :vartype is_unique: bool
     :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
     """
 

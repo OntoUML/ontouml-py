@@ -40,9 +40,6 @@ class Property(Decoratable):
     :vartype redefined_by: Set[Property]
     :ivar property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
     :vartype property_of: Optional[Classifier]
-
-    :param data: Fields to be set on the model instance.
-    :type data: dict[str, Any]
     """
 
     # Private attributes
