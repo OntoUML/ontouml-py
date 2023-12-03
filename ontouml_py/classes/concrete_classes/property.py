@@ -55,7 +55,6 @@ class Property(Decoratable):
     subsetted_by: set["Property"] = Field(default_factory=set)
     redefined_by: set["Property"] = Field(default_factory=set)
 
-    # Pydantic's configuration settings for the class.
     model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

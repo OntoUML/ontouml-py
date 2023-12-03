@@ -43,7 +43,6 @@ class NamedElement(OntoumlElement):
     creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
     contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

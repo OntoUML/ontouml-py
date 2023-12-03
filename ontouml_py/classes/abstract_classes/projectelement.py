@@ -31,7 +31,6 @@ class ProjectElement(OntoumlElement):
 
     _in_project: Optional["Project"] = PrivateAttr(default=None)
 
-    # Pydantic's configuration settings for the class.
     model_config = {
         "validate_assignment": True,
         "extra": "forbid",

@@ -46,7 +46,6 @@ class OntoumlElement(ABC, BaseModel):
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "validate_assignment": True,
         "extra": "forbid",

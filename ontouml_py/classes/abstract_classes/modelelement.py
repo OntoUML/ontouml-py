@@ -22,7 +22,6 @@ class ModelElement(NamedElement, ProjectElement):
 
     custom_properties: set[tuple[str, Any]] = Field(default_factory=set)
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

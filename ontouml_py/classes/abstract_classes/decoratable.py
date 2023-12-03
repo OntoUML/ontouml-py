@@ -30,7 +30,6 @@ class Decoratable(ModelElement):
 
     is_derived: bool = Field(default=False)
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

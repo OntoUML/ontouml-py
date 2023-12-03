@@ -38,7 +38,6 @@ class Classifier(Decoratable, Packageable):
     # Public attributes
     is_abstract: bool = Field(default=False)
 
-    # Pydantic's configuration settings for the class.
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

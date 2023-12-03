@@ -46,7 +46,7 @@ class Anchor(ModelElement):
     note: Note = Field()
     target: ModelElement = Field()
 
-    # Configuration settings for the Project model using Pydantic.
+    
     model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

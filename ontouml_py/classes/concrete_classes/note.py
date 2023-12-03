@@ -37,7 +37,7 @@ class Note(ModelElement):
 
     text: LangString = Field()
 
-    # Configuration settings for the Project model using Pydantic.
+    
     model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

@@ -45,7 +45,6 @@ class Cardinality(BaseModel):
     is_ordered: bool = Field(default=False)
     is_unique: bool = Field(default=True)
 
-    # Pydantic's configuration settings for the class.
     model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
