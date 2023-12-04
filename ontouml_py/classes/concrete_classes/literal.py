@@ -23,9 +23,6 @@ class Literal(ModelElement):
     :vartype model_config: Dict[str, Any]
     """
 
-    # Private attribute
-    _in_class: Optional["Class"] = PrivateAttr(default=None)
-
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

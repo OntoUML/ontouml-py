@@ -69,6 +69,8 @@ Classes
    :vartype root_package: Optional[Package]
    :ivar representation_style: The style or methodology used for representing the ontologies within the project.
    :vartype representation_style: OntologyRepresentationStyle
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:property:: elements
       :type: set[ontouml_py.classes.abstract_classes.projectelement.ProjectElement]

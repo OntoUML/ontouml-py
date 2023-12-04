@@ -1,0 +1,15 @@
+:py:mod:`ontouml_py.classes.utils`
+==================================
+
+.. py:module:: ontouml_py.classes.utils
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   nonemptyset/index.rst
+
+

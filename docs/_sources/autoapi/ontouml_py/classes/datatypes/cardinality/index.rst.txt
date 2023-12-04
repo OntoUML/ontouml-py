@@ -53,7 +53,8 @@ Classes
    :vartype is_ordered: bool
    :ivar is_unique: Flag indicating if the elements are unique. Defaults to True.
    :vartype is_unique: bool
-   :raises ValueError: If the lower or upper bounds are not valid according to the multiplicity rules.
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:attribute:: lower_bound
       :type: Optional[Union[str, int]]

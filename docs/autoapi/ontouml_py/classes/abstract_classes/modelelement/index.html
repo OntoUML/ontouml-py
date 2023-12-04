@@ -55,6 +55,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 </ul>
@@ -110,8 +111,11 @@
 <p>Represents a model element, inheriting properties from both NamedElement and ProjectElement.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>custom_properties</strong> (<em>Set</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – A set of custom properties associated with the model element. Each property is a tuple
-containing a string key and a value of any type.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_properties</strong> (<em>Set</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – A set of custom properties associated with the model element. Each property is a tuple
+containing a string key and a value of any type.</p></li>
+<li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>

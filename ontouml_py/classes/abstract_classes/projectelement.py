@@ -31,7 +31,7 @@ class ProjectElement(OntoumlElement):
 
     _in_project: Optional["Project"] = PrivateAttr(default=None)
 
-    model_config = {
+    model_config = {  # noqa (vulture)
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,

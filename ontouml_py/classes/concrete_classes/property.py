@@ -8,7 +8,7 @@ class to function within the broader OntoUML framework.
 """
 from typing import Any, Optional
 
-from pydantic import PrivateAttr, Field, field_validator, BaseModel
+from pydantic import PrivateAttr, Field, field_validator
 
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.datatypes.cardinality import Cardinality
@@ -55,7 +55,7 @@ class Property(Decoratable):
     subsetted_by: set["Property"] = Field(default_factory=set)
     redefined_by: set["Property"] = Field(default_factory=set)
 
-    model_config = {
+    model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

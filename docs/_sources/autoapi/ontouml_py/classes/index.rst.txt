@@ -14,5 +14,6 @@ Subpackages
    concrete_classes/index.rst
    datatypes/index.rst
    enumerations/index.rst
+   utils/index.rst
 
 

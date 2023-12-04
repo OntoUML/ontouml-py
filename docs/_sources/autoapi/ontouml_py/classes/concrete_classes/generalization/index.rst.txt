@@ -56,7 +56,7 @@ Classes
 
       
 
-   .. py:method:: ensure_irreflexive()
+   .. py:method:: __ensure_irreflexive()
 
       Validate that the generalization relationship is irreflexive.
 

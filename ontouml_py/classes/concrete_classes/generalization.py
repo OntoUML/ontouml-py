@@ -37,7 +37,7 @@ class Generalization(ModelElement):
     }
 
     @model_validator(mode="after")
-    def ensure_irreflexive(self):
+    def __ensure_irreflexive(self):
         """Validate that the generalization relationship is irreflexive.
 
         Ensures that the 'general' and 'specific' classifiers are not the same, as a classifier cannot generalize itself.

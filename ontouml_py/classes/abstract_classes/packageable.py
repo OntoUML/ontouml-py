@@ -30,7 +30,7 @@ class Packageable(ModelElement):
 
     _in_package: Optional["Package"] = PrivateAttr(default=None)
 
-    model_config = {
+    model_config = {  # noqa (vulture)
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,

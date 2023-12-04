@@ -3,6 +3,35 @@
 
 .. py:module:: ontouml_py.classes.concrete_classes.generalizationset
 
+.. autoapi-nested-parse::
+
+   This module defines the GeneralizationSet class, a key construct in ontological modeling within the ontouml_py library.
+
+   The GeneralizationSet class is used to represent a collection of generalizations, encapsulating the notions of
+   disjointness and completeness in a model. It extends the ModelElement class, inheriting its core properties and
+   behaviors, and adds specific attributes and methods relevant to the management of generalizations.
+
+   A GeneralizationSet is typically used in ontological models to express constraints and relationships between different
+   classes. It can specify whether the subclasses in the generalization are disjoint (no instances can be shared
+   among subclasses) and whether they are complete (the superclass is fully covered by the subclasses).
+
+   Key Features:
+   - Represents a set of generalizations in an ontological model.
+   - Supports disjointness and completeness constraints.
+   - Allows association with a categorizing class.
+
+   The module provides the necessary functionality to create, manipulate, and query GeneralizationSet instances, making
+   it a vital part of the ontouml_py library's support for advanced ontological modeling.
+
+   Classes:
+   - GeneralizationSet: Represents a set of generalizations with optional disjointness and completeness constraints.
+
+   Dependencies:
+   - ModelElement from ontouml_py.classes.abstract_classes.modelelement
+   - Class from ontouml_py.classes.concrete_classes.class_py
+   - Generalization from ontouml_py.classes.concrete_classes.generalization
+
+
 
 Module Contents
 ---------------
@@ -20,40 +49,57 @@ Classes
 .. py:class:: GeneralizationSet(**data)
 
 
-   Bases: :py:obj:`ontouml_py.classes.abstract_classes.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.classes.abstract_classes.modelelement.ModelElement`
 
-   An abstract class representing a named element within an OntoUML model, extending the OntoumlElement class.
+   Represent a set of generalizations in an ontological model, extending the ModelElement class.
 
-   This class provides functionality for managing named elements, including their preferred name, alternative names,
-   descriptions, editorial notes, as well as lists of creators and contributors.
+   A GeneralizationSet is a collection of Generalization instances, typically used to represent
+   disjointness and completeness constraints in a model.
 
-   :ivar names: The preferred names of the element, represented as a list of LangStrings.
-   :vartype names: list[LangString]
-   :ivar alt_names: A list of alternative names for the element, each represented as a LangString object.
-   :vartype alt_names: list[LangString]
-   :ivar description: A LangString object representing the description of the element.
-   :vartype description: Optional[LangString]
-   :ivar editorial_notes: A list of LangString objects containing editorial notes associated with the element.
-   :vartype editorial_notes: list[LangString]
-   :ivar creators: A list of URIs represented as strings identifying the creators of the element.
-   :vartype creators: list[str]
-   :ivar contributors: A list of URIs represented as strings identifying the contributors to the element.
-   :vartype contributors: list[str]
+   :ivar is_disjoint: Indicates if the generalizations in the set are disjoint.
+   :vartype is_disjoint: bool
+   :ivar is_complete: Indicates if the generalizations in the set are complete.
+   :vartype is_complete: bool
+   :ivar generalizations: A set of Generalization instances included in this generalization set.
+   :vartype generalizations: Set[Generalization]
+   :ivar categorizer: An optional Class instance that categorizes the generalization set.
+   :vartype categorizer: Optional[Class]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
 
    .. py:attribute:: is_disjoint
       :type: bool
-      :value: False
 
       
 
    .. py:attribute:: is_complete
       :type: bool
-      :value: False
+
+      
+
+   .. py:attribute:: generalizations
+      :type: set[object]
+
+      
+
+   .. py:attribute:: categorizer
+      :type: Optional[object]
 
       
 
    .. py:attribute:: model_config
 
       
+
+   .. py:method:: __ensure_generalizations_type(checked_set)
+      :classmethod:
+
+
+   .. py:method:: __ensure_categorizer_type(checked_value)
+      :classmethod:
+
+
+   .. py:method:: __validate_generalization_set()
+
 
 

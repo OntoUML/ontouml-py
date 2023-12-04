@@ -18,8 +18,7 @@ module's purpose, while avoiding naming conflicts within the Python language."
 """
 from typing import Any
 
-from icecream import ic
-from pydantic import Field, model_validator, field_validator
+from pydantic import Field, model_validator
 
 from ontouml_py.classes.abstract_classes.classifier import Classifier
 from ontouml_py.classes.concrete_classes.literal import Literal
@@ -43,7 +42,7 @@ class Class(Classifier):
     :vartype restricted_to: set[OntologicalNature]
     :ivar stereotype: The stereotype of the class.
     :vartype stereotype: ClassStereotype
-    :ivar literals: A set of literals associated with the class.
+    :ivar literals: A set of literals associated with the class. Must be managed internally after init.
     :vartype literals: set[Literal]
     :cvar model_config: Configuration settings for the Pydantic model.
     :vartype model_config: Dict[str, Any]
@@ -54,7 +53,7 @@ class Class(Classifier):
     order: str = Field(min_length=1, default="1")
     restricted_to: set[OntologicalNature] = Field(default_factory=set)
     stereotype: ClassStereotype = Field()
-    literals: set[Literal] = Field(default=None)
+    literals: set[Literal] = Field(default_factory=set)
 
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
@@ -65,7 +64,7 @@ class Class(Classifier):
     }
 
     @model_validator(mode="after")
-    def validate_class(self) -> None:
+    def __validate_class(self) -> None:
         """Validate the class based on its literals and stereotype.
 
         This method performs two checks:
@@ -82,17 +81,15 @@ class Class(Classifier):
         # Check if Enumeration classes have at least one literal, as required
         if len(self.literals) == 0 and self.stereotype == ClassStereotype.ENUMERATION:
             raise ValueError("Classes with stereotype Enumeration must have literals.")
+        elif self.stereotype == ClassStereotype.ENUMERATION and not isinstance(self.literals, NonEmptySet):
+            converted_literals = NonEmptySet.convert_set(self.literals)
+            # Workaround necessary to avoid recursively invoking the validation
+            self.__dict__["literals"] = converted_literals
 
         # A class only has order != 1 if it is a type
         # stereotype must match restricted_to (OntologicalNature)
         # etc.
 
-    @field_validator("literals",mode="after")
-    def __ensure_non_empty_set(cls, checked_value) -> NonEmptySet[Literal]:
-        ic(checked_value, type(checked_value))
-        non_empty_set = NonEmptySet.convert_set(checked_value)
-        ic(non_empty_set, type(non_empty_set))
-        return non_empty_set
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new instance of the Class.
 
@@ -101,7 +98,22 @@ class Class(Classifier):
         """
         super().__init__(**data)
 
-l = Literal()
-x = Class(stereotype=ClassStereotype.ENUMERATION, literals={l})
-ic(x.literals)
-print(x.literals)
+    def add_literal(self, literal: Literal) -> None:
+        """Add a literal to the class.
+
+        :param literal: The literal to be added.
+        :type literal: Literal
+        :raises ValueError: If the provided object is not of type Literal.
+        """
+        if not isinstance(literal, Literal):
+            raise ValueError("The method 'add_literal' only adds objects of type Literal.")
+        self.literals.add(literal)
+
+    def remove_literal(self, literal: Literal) -> None:
+        """Remove a literal from the class if it exists.
+
+        :param literal: The literal to be removed.
+        :type literal: Literal
+        """
+        if literal in self.literals:
+            self.literals.remove(literal)

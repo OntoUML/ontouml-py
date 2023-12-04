@@ -80,7 +80,6 @@ class Project(NamedElement):
     root_package: Optional[Package] = Field(default=None)
     representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
-    
     model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,

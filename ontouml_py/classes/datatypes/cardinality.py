@@ -45,7 +45,7 @@ class Cardinality(BaseModel):
     is_ordered: bool = Field(default=False)
     is_unique: bool = Field(default=True)
 
-    model_config = {
+    model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

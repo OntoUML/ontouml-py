@@ -55,6 +55,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 </ul>
@@ -92,15 +93,16 @@
   <section id="module-ontouml_py.classes.concrete_classes.class_py">
 <span id="ontouml-py-classes-concrete-classes-class-py"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.concrete_classes.class_py" title="ontouml_py.classes.concrete_classes.class_py"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.concrete_classes.class_py</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.concrete_classes.class_py" title="Link to this heading"></a></h1>
 <p>This module defines classes and functionality for representing and manipulating ontological models.</p>
-<p>It includes the definition of the <cite>Class</cite> class, which is a key component in the ontological model,
-representing ontological classes with various attributes and behaviors. The module also includes
-definitions for handling literals associated with these classes, ensuring that operations on these
-classes adhere to certain ontological constraints.</p>
+<p>It includes the definition of the <cite>Class</cite> class, which is a key component in the ontological model, representing
+ontological classes with various attributes and behaviors. The module also includes definitions for handling literals
+associated with these classes, ensuring that operations on these classes adhere to certain ontological constraints.</p>
 <p>In this library, a <cite>Class</cite> is initialized as an enumeration by providing a list of literals, which are integral to its
 definition. These literals, typically dependent on their classes, represent the finite set of values for enumeration
 instances. To enhance object manipulation flexibility, this library allows the creation of ‘free’ literals,
 independent of any class. Users can create these literals separately and later insert them into the appropriate
-classes, offering a dynamic approach to class and literal management.</p>
+classes, offering a dynamic approach to class and literal management.
+However, if the a Class’s instance is created with stereotype=ClassStereotype.ENUMERATION, a set of stereotypes must
+be provided at init time. I.e., it is not possible to have an enumeration without literals.</p>
 <p>The module is named class_py instead of class due to the fact that class is a reserved keyword in Python.
 As reserved keywords cannot be used as module names, class_py was chosen to maintain clarity and consistency with the
 module’s purpose, while avoiding naming conflicts within the Python language.”</p>
@@ -130,35 +132,14 @@ conforms to certain constraints based on its stereotype.</p>
 <li><p><strong>order</strong> (<em>str</em>) – Represents the order of the class.</p></li>
 <li><p><strong>restricted_to</strong> (<em>set</em><em>[</em><a class="reference internal" href="../../enumerations/ontologicalnature/index.html#ontouml_py.classes.enumerations.ontologicalnature.OntologicalNature" title="ontouml_py.classes.enumerations.ontologicalnature.OntologicalNature"><em>OntologicalNature</em></a><em>]</em>) – A set of ontological natures that the class is restricted to.</p></li>
 <li><p><strong>stereotype</strong> (<a class="reference internal" href="../../enumerations/classstereotype/index.html#ontouml_py.classes.enumerations.classstereotype.ClassStereotype" title="ontouml_py.classes.enumerations.classstereotype.ClassStereotype"><em>ClassStereotype</em></a>) – The stereotype of the class.</p></li>
-<li><p><strong>literals</strong> (<em>set</em><em>[</em><a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a><em>]</em>) – A set of literals associated with the class.</p></li>
+<li><p><strong>literals</strong> (<em>set</em><em>[</em><a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a><em>]</em>) – A set of literals associated with the class. Must be managed internally after init.</p></li>
+<li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
 </dd>
 </dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.literals">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">literals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><span class="pre">ontouml_py.classes.concrete_classes.literal.Literal</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.literals" title="Link to this definition"></a></dt>
-<dd><p>Provide a read-only view of the class’s literals.</p>
-<p>This property is a safeguard to prevent direct modification of the ‘literals’ set. To add or remove literals,
-use the ‘add_literal’ and ‘remove_literal’ methods. This design ensures that the integrity of the class’s
-literals collection is maintained.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A set of Literal objects that are part of the class.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>set[<a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal">Literal</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class._literals">
-<span class="sig-name descname"><span class="pre">_literals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><span class="pre">ontouml_py.classes.concrete_classes.literal.Literal</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class._literals" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.is_powertype">
 <span class="sig-name descname"><span class="pre">is_powertype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.is_powertype" title="Link to this definition"></a></dt>
@@ -180,19 +161,26 @@ literals collection is maintained.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.literals">
+<span class="sig-name descname"><span class="pre">literals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><span class="pre">ontouml_py.classes.concrete_classes.literal.Literal</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.literals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.model_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.validate_class">
-<span class="sig-name descname"><span class="pre">validate_class</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.validate_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.__validate_class">
+<span class="sig-name descname"><span class="pre">__validate_class</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.__validate_class" title="Link to this definition"></a></dt>
 <dd><p>Validate the class based on its literals and stereotype.</p>
-<p>This method checks if the class conforms to the rules based on its stereotype. Specifically,
-it ensures that only classes with the Enumeration stereotype can have literals.</p>
+<p>This method performs two checks:
+1. It ensures that only classes with the Enumeration stereotype can have literals.
+2. It ensures that classes with the Enumeration stereotype must have at least one literal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the class has literals but does not have an Enumeration stereotype.</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the class has literals but does not have an Enumeration stereotype, or if it is an
+Enumeration class without any literals.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -202,16 +190,14 @@ it ensures that only classes with the Enumeration stereotype can have literals.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.add_literal">
-<span class="sig-name descname"><span class="pre">add_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_literal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.add_literal" title="Link to this definition"></a></dt>
-<dd><p>Add a new literal to the class’s collection of literals.</p>
-<p>This method ensures that only instances of Literal or its subclasses are added to the class. It also
-establishes a bidirectional relationship between the class and the literal.</p>
+<span class="sig-name descname"><span class="pre">add_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">literal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.add_literal" title="Link to this definition"></a></dt>
+<dd><p>Add a literal to the class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>new_literal</strong> (<a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a>) – The Literal to be added.</p>
+<dd class="field-odd"><p><strong>literal</strong> (<a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a>) – The literal to be added.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>TypeError</strong> – If the provided new_literal is not an instance of Literal or if a class attempts to add itself.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If the provided object is not of type Literal.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
@@ -221,22 +207,14 @@ establishes a bidirectional relationship between the class and the literal.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.class_py.Class.remove_literal">
-<span class="sig-name descname"><span class="pre">remove_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_literal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.remove_literal" title="Link to this definition"></a></dt>
-<dd><p>Remove an existing content from the class’s collection of literals.</p>
-<p>This method ensures that the content to be removed is actually part of the class. It also updates the
-content’s ‘in_class’ attribute to None, effectively breaking the bidirectional relationship.</p>
+<span class="sig-name descname"><span class="pre">remove_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">literal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.class_py.Class.remove_literal" title="Link to this definition"></a></dt>
+<dd><p>Remove a literal from the class if it exists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>old_literal</strong> (<a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a>) – The Literal content to be removed.</p>
+<dd class="field-odd"><p><strong>literal</strong> (<a class="reference internal" href="../literal/index.html#ontouml_py.classes.concrete_classes.literal.Literal" title="ontouml_py.classes.concrete_classes.literal.Literal"><em>Literal</em></a>) – The literal to be removed.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>TypeError</strong> – If the content is not a valid Literal.</p></li>
-<li><p><strong>ValueError</strong> – If the content is not part of the class.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>

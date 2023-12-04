@@ -37,8 +37,7 @@ class Note(ModelElement):
 
     text: LangString = Field()
 
-    
-    model_config = {
+    model_config = {  # noqa (vulture)
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

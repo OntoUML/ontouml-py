@@ -55,6 +55,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 </ul>
@@ -129,7 +130,10 @@ class, inheriting common features and adding specific attributes for handling te
 inheriting its attributes and methods, and adds a specific attribute for text content using the LangString type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>text</strong> (<em>LangString</em>) – The textual content of the note.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>LangString</em>) – The textual content of the note.</p></li>
+<li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>

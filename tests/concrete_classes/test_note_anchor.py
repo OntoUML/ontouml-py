@@ -1,12 +1,12 @@
 from typing import Any
 
 import pytest
+from langstring import LangString
 from pydantic import ValidationError
 
-from ontouml_py.classes.concrete_classes.note import Note
-from ontouml_py.classes.concrete_classes.anchor import Anchor
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from langstring import LangString
+from ontouml_py.classes.concrete_classes.anchor import Anchor
+from ontouml_py.classes.concrete_classes.note import Note
 
 
 class Package(ModelElement):
