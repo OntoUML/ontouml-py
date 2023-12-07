@@ -97,7 +97,7 @@ def test_namedelement_type_validation() -> None:
 
     :raises ValidationError: If the wrong type is assigned to an attribute.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid set"):
         Project(names="Invalid Type")  # Expect set of LangString, not str
 
 
@@ -106,8 +106,8 @@ def test_namedelement_abstract_class_enforcement() -> None:
 
     :raises TypeError: If NamedElement is instantiated directly.
     """
-    with pytest.raises(TypeError):
-        _ = NamedElement()  # Abstract class should not be instantiated
+    with pytest.raises(TypeError, match="Can't instantiate abstract class NamedElement"):
+        NamedElement()  # Abstract class should not be instantiated
 
 
 def test_namedelement_default_values() -> None:
@@ -152,7 +152,7 @@ def test_namedelement_invalid_list_type_assignment() -> None:
 
     :raises ValidationError: If invalid types are assigned to list attributes.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="type=is_instance_of"):
         Project(alt_names=["Invalid"])  # Expect list of LangString, not list of str
 
 
@@ -163,7 +163,7 @@ def test_initialization_with_invalid_value_and_type(invalid_langstring: str) -> 
     :param invalid_langstring: A string that is not a valid LangString object.
     :raises ValidationError: If an invalid value is assigned to a field expecting a LangString.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="type=is_instance_of"):
         Project(names=[invalid_langstring])
 
 
@@ -173,7 +173,7 @@ def test_initialization_with_invalid_type() -> None:
 
     :raises ValidationError: If an incorrect type is assigned to a field expecting a LangString.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(names=[123])
 
 
@@ -195,7 +195,7 @@ def test_post_initialization_with_invalid_value(valid_langstring_list: list[Lang
     :raises ValidationError: If an invalid value is assigned post-instantiation.
     """
     element = Project(names=valid_langstring_list)
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         element.names = ["Invalid value"]
 
 
@@ -206,7 +206,7 @@ def test_post_initialization_with_invalid_type() -> None:
     :raises ValidationError: If an incorrect type is assigned post-instantiation.
     """
     element = Project()
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         element.names = [123]
 
 
@@ -264,9 +264,9 @@ def test_rejection_of_null_values_in_list_attributes() -> None:
 
     :raises ValidationError: If lists with None elements are assigned.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(alt_names=[None])
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(editorial_notes=[None])
 
 
@@ -343,13 +343,13 @@ def test_rejection_of_invalid_data_in_list_attributes() -> None:
 
     :raises ValidationError: If invalid data is assigned.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(alt_names=[None])
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(alt_names=["Invalid Type"])
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(editorial_notes=[None])
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         Project(editorial_notes=["Invalid Type"])
 
 
@@ -370,20 +370,9 @@ def test_invalid_subclass_instantiation() -> None:
 
     :raises ValueError: When an undefined subclass is instantiated.
     """
-    with pytest.raises(ValueError) as exc_info:
-        _ = InvalidSubclass()
-    assert "not an allowed subclass" in str(exc_info.value), "ValueError should mention subclass restriction."
+    with pytest.raises(ValueError, match="not an allowed subclass"):
+        InvalidSubclass()
 
-
-def test_error_message_for_invalid_subclass() -> None:
-    """Test the error message for instantiating an invalid subclass.
-
-    :raises AssertionError: If the error message does not match the expected format.
-    """
-    with pytest.raises(ValueError) as exc_info:
-        _ = InvalidSubclass()
-    expected_msg_part = "not an allowed subclass"
-    assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."
 
 
 def test_direct_instantiation_of_abstract_class() -> None:
@@ -393,19 +382,6 @@ def test_direct_instantiation_of_abstract_class() -> None:
     """
     with pytest.raises(TypeError, match="Can't instantiate abstract class NamedElement"):
         NamedElement()  # Attempt to instantiate an abstract class
-
-
-def test_subclass_without_required_methods() -> None:
-    """Test that a subclass missing required abstract methods cannot be instantiated.
-
-    :raises TypeError: If a subclass without required abstract methods is instantiated.
-    """
-
-    class IncompleteSubclass(NamedElement):
-        pass
-
-    with pytest.raises(TypeError, match="Can't instantiate abstract class IncompleteSubclass"):
-        IncompleteSubclass()  # Attempt to instantiate a subclass without implementing abstract methods
 
 
 def test_subclass_with_all_required_methods() -> None:
@@ -429,7 +405,7 @@ def test_mixed_valid_invalid_langstring_in_lists() -> None:
     """
     valid_langstring = LangString("Valid LangString")
     invalid_langstring = "Invalid LangString"
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="type=is_instance_of"):
         Project(names=[valid_langstring, invalid_langstring])
 
 
@@ -500,8 +476,9 @@ def test_empty_strings_in_uri_lists() -> None:
 
     :raises ValidationError: If lists contain empty strings for URI attributes.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Empty string found in"):
         Project(creators=[""], contributors=[""])
+
 
 
 # Test with mixed case strings
@@ -579,7 +556,7 @@ def test_assign_to_non_existent_attribute() -> None:
     :raises AssertionError: If assigning to a non-existent attribute does not raise an AttributeError.
     """
     element = Project()
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Object has no attribute 'non_existent_attribute'"):
         element.non_existent_attribute = "Test Value"
 
 
@@ -609,36 +586,8 @@ def test_instantiation_with_unknown_arguments() -> None:
     :return: None
     :raises AssertionError: If instantiation with unknown arguments does not raise a TypeError.
     """
-    with pytest.raises(ValidationError):
-        _ = Project(unknown_arg="Test Value")
-
-
-def test_modifying_instance_with_unknown_arguments() -> None:
-    """Test modifying an instance of NamedElement with unknown arguments.
-
-    Ensures that attempting to modify an instance of NamedElement (or its subclass) with arguments that are not
-    defined in the class raises a TypeError.
-
-    :return: None
-    :raises AssertionError: If modification with unknown arguments does not raise a TypeError.
-    """
-    element = Project()
-    with pytest.raises(AttributeError):
-        element.modify(unknown_arg="Test Value")
-
-
-def test_setting_unknown_attributes_post_instantiation() -> None:
-    """Test setting unknown attributes on an instance of NamedElement post-instantiation.
-
-    Verifies that attempting to set an unknown attribute on an instance of NamedElement (or its subclass) post-
-    instantiation raises an AttributeError.
-
-    :return: None
-    :raises AssertionError: If setting an unknown attribute post-instantiation does not raise an AttributeError.
-    """
-    element = Project()
-    with pytest.raises(ValidationError):
-        element.unknown_attribute = "Test Value"
+    with pytest.raises(ValidationError, match="Extra inputs are not permitted"):
+        Project(unknown_arg="Test Value")
 
 
 def test_namedelement_with_single_character_names() -> None:

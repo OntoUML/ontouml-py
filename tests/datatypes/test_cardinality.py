@@ -18,7 +18,7 @@ def test_cardinality_with_invalid_string_bounds() -> None:
 
     :raises: ValueError: If non-integer, non-'*' string values are provided.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound="a", upper_bound="b")
 
 
@@ -35,7 +35,7 @@ def test_cardinality_with_mixed_valid_invalid_bounds() -> None:
 
     :raises: ValueError: If one bound is valid and the other is invalid.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound="1", upper_bound="a")
 
 
@@ -44,7 +44,7 @@ def test_cardinality_with_star_and_integer_bounds() -> None:
 
     :raises: ValueError: If lower bound is higher than upper bound.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="The cardinality's lower bound .* is higher than its upper bound"):
         Cardinality(lower_bound="*", upper_bound="10")
 
 
@@ -61,7 +61,7 @@ def test_cardinality_with_negative_integer_bounds_error() -> None:
 
     :raises: ValueError: If negative integer values are provided.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound="-1", upper_bound="-5")
 
 
@@ -70,7 +70,7 @@ def test_cardinality_with_empty_string_bounds_error() -> None:
 
     :raises: ValueError: If empty string values are provided.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Empty string provided for lower or upper bound"):
         Cardinality(lower_bound="", upper_bound="")
 
 
@@ -79,7 +79,7 @@ def test_cardinality_with_whitespace_string_bounds_error() -> None:
 
     :raises: ValueError: If whitespace string values are provided.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound=" ", upper_bound=" ")
 
 
@@ -110,7 +110,7 @@ def test_cardinality_with_mixed_none_and_invalid_bound() -> None:
 
     :raises: ValueError: If the class does not handle None and invalid bounds correctly.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound=None, upper_bound="a")
 
 
@@ -119,7 +119,7 @@ def test_cardinality_with_non_numeric_string_bounds() -> None:
 
     :raises: ValueError: If non-numeric, non-'*' string values are provided.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError, match="Invalid cardinality bounds"):
         Cardinality(lower_bound="abc", upper_bound="xyz")
 
 
@@ -128,7 +128,7 @@ def test_cardinality_with_invalid_type_for_lower_bound() -> None:
 
     :raises: TypeError: If an invalid type is used for lower_bound.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Cardinality(lower_bound=[1, 2, 3], upper_bound="10")
 
 
@@ -137,7 +137,7 @@ def test_cardinality_with_invalid_type_for_upper_bound() -> None:
 
     :raises: TypeError: If an invalid type is used for upper_bound.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Cardinality(lower_bound="1", upper_bound={"max": 10})
 
 
@@ -147,5 +147,5 @@ def test_cardinality_with_invalid_types_for_both_bounds() -> None:
 
     :raises: TypeError: If invalid types are used for both bounds.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Cardinality(lower_bound=(1, 2), upper_bound=3.14)
