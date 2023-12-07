@@ -17,9 +17,12 @@ Example:
 Dependencies:
     This module requires the 'pydantic' package for data validation.
 """
-from typing import Optional, Union
+from typing import Optional
+from typing import Union
 
-from pydantic import Field, BaseModel, model_validator
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import model_validator
 
 from ontouml_py.classes.utils.error_message import format_error_message
 

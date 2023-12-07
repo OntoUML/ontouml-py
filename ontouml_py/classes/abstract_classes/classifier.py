@@ -8,7 +8,8 @@ classifiers in OntoUML.
 from abc import abstractmethod
 from typing import Any
 
-from pydantic import Field, PrivateAttr
+from pydantic import Field
+from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.abstract_classes.packageable import Packageable

@@ -6,10 +6,12 @@ such as their preferred name, alternative names, descriptions, editorial notes, 
 contributors.
 """
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 from langstring import LangString
-from pydantic import Field, field_validator
+from pydantic import Field
+from pydantic import field_validator
 from pydantic_core.core_schema import ValidationInfo
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement

@@ -830,10 +830,10 @@ a part of the project’s elements. If the validation fails, a ValueError is rai
 <dt class="sig sig-object py" id="ontouml_py.Project.__ensure_non_empty">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__ensure_non_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checked_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checked_field</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.Project.__ensure_non_empty" title="Link to this definition"></a></dt>
 <dd><p>Validate that the provided list does not contain empty strings.</p>
-<p>This method checks each element in the specified list to ensure that it does not contain any empty strings. It is
-applied to various fields in the Project class, such as ‘acronyms’, ‘bibliographic_citations’, ‘keywords’, etc.
-If an empty string is found, a ValueError is raised with a detailed error message indicating the specific field
-affected.</p>
+<p>This method checks each element in the specified list to ensure that it does not contain any empty strings.
+It is applied to various fields in the Project class, such as ‘acronyms’, ‘bibliographic_citations’,
+‘keywords’, etc. If an empty string is found, a ValueError is raised with a detailed error message indicating
+the specific field affected.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -859,10 +859,8 @@ affected.</p>
 <dd><p>Validate if the provided package is a valid root package for the project.</p>
 <p>This method performs two checks:
 1. It verifies that the provided package is of the correct type (Package).
-2. It checks if the specified package is included in the project’s elements set, ensuring it is a valid and integral</p>
-<blockquote>
-<div><p>part of the project’s structure.</p>
-</div></blockquote>
+2. It checks if the specified package is included in the project’s elements set, ensuring it is a valid and
+integral part of the project’s structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>package</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#ontouml_py.Package" title="ontouml_py.Package"><em>Package</em></a><em>]</em>) – The package to be validated as the root package of the project.</p>
@@ -1053,8 +1051,8 @@ along with properties indicating whether the elements are ordered and unique.</p
 <dl class="field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lower_bound</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The lower bound of the cardinality, either an integer as a string or ‘*’. Defaults to None.</p></li>
-<li><p><strong>upper_bound</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The upper bound of the cardinality, either an integer as a string or ‘*’. Defaults to None.</p></li>
+<li><p><strong>lower_bound</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The lower bound of the cardinality, either a non-negative integer as a string or ‘*’.     Defaults to None.</p></li>
+<li><p><strong>upper_bound</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The upper bound of the cardinality, either a non-negative integer as a string or ‘*’.     Defaults to None.</p></li>
 <li><p><strong>is_ordered</strong> (<em>bool</em>) – Flag indicating if the elements are ordered. Defaults to False.</p></li>
 <li><p><strong>is_unique</strong> (<em>bool</em>) – Flag indicating if the elements are unique. Defaults to True.</p></li>
 <li><p><strong>model_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Configuration settings for the Pydantic model.</p></li>

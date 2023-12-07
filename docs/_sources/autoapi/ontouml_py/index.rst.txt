@@ -566,10 +566,10 @@ Classes
 
       Validate that the provided list does not contain empty strings.
 
-      This method checks each element in the specified list to ensure that it does not contain any empty strings. It is
-      applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations', 'keywords', etc.
-      If an empty string is found, a ValueError is raised with a detailed error message indicating the specific field
-      affected.
+      This method checks each element in the specified list to ensure that it does not contain any empty strings.
+      It is applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations',
+      'keywords', etc. If an empty string is found, a ValueError is raised with a detailed error message indicating
+      the specific field affected.
 
       :param checked_values: The list of strings to be validated.
       :type checked_values: set[str]
@@ -586,8 +586,8 @@ Classes
 
       This method performs two checks:
       1. It verifies that the provided package is of the correct type (Package).
-      2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and integral
-         part of the project's structure.
+      2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and
+      integral part of the project's structure.
 
       :param package: The package to be validated as the root package of the project.
       :type package: Optional[Package]
@@ -739,9 +739,9 @@ Classes
    This class allows for the specification and validation of lower and upper bounds of cardinality,
    along with properties indicating whether the elements are ordered and unique.
 
-   :ivar lower_bound: The lower bound of the cardinality, either an integer as a string or '*'. Defaults to None.
+   :ivar lower_bound: The lower bound of the cardinality, either a non-negative integer as a string or '*'.     Defaults to None.
    :vartype lower_bound: Optional[str]
-   :ivar upper_bound: The upper bound of the cardinality, either an integer as a string or '*'. Defaults to None.
+   :ivar upper_bound: The upper bound of the cardinality, either a non-negative integer as a string or '*'.     Defaults to None.
    :vartype upper_bound: Optional[str]
    :ivar is_ordered: Flag indicating if the elements are ordered. Defaults to False.
    :vartype is_ordered: bool

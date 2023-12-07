@@ -6,7 +6,6 @@ It provides functionalities to add and remove contents, ensuring type safety and
 model's structure. The class also includes private attributes to manage its contents and configuration settings for
 validation and assignment.
 """
-
 from typing import Any
 
 from pydantic import PrivateAttr

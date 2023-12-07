@@ -1,6 +1,5 @@
 """This module defines the PropertyStereotype enumeration, a subclass of OntoumlEnum, representing different \
 stereotypes applicable to properties in OntoUML."""
-
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 

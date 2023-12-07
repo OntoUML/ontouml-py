@@ -1,6 +1,5 @@
 """This module defines the RelationStereotype enumeration, a subclass of OntoumlEnum, representing different \
 stereotypes applicable to relations in OntoUML."""
-
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 

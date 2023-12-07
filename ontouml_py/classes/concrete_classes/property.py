@@ -6,9 +6,12 @@ manipulate properties of Classifiers, such as their read-only status, aggregatio
 and relationships with other properties. The module also includes necessary imports and configurations for the Property
 class to function within the broader OntoUML framework.
 """
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
-from pydantic import PrivateAttr, Field, field_validator
+from pydantic import Field
+from pydantic import field_validator
+from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.datatypes.cardinality import Cardinality

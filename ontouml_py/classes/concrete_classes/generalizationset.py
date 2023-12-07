@@ -24,9 +24,12 @@ Dependencies:
 - Class from ontouml_py.classes.concrete_classes.class_py
 - Generalization from ontouml_py.classes.concrete_classes.generalization
 """
-from typing import Optional, Any
+from typing import Any
+from typing import Optional
 
-from pydantic import Field, model_validator, field_validator
+from pydantic import Field
+from pydantic import field_validator
+from pydantic import model_validator
 
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
 from ontouml_py.classes.concrete_classes.class_py import Class

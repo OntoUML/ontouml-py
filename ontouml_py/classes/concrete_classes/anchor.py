@@ -21,7 +21,6 @@ Example:
 This module also includes necessary imports and configurations for the Anchor class to function properly within the
 broader OntoUML framework.
 """
-
 from typing import Any
 
 from pydantic import Field

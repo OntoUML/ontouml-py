@@ -755,21 +755,6 @@ files = [
 more-itertools = {version = ">=8.0.2", markers = "python_version <= \"3.9\""}
 
 [[package]]
-name = "flake8-import-order"
-version = "0.18.2"
-description = "Flake8 and pylama plugin that checks the ordering of import statements."
-optional = false
-python-versions = "*"
-files = [
-    {file = "flake8-import-order-0.18.2.tar.gz", hash = "sha256:e23941f892da3e0c09d711babbb0c73bc735242e9b216b726616758a920d900e"},
-    {file = "flake8_import_order-0.18.2-py2.py3-none-any.whl", hash = "sha256:82ed59f1083b629b030ee9d3928d9e06b6213eb196fe745b3a7d4af2168130df"},
-]
-
-[package.dependencies]
-pycodestyle = "*"
-setuptools = "*"
-
-[[package]]
 name = "flake8-noqa"
 version = "1.3.2"
 description = "Flake8 noqa comment validation"
@@ -2686,4 +2671,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.09"
-content-hash = "15c452c4853d5b5bfeb549cce3b7ec709a1e3e9145ab4a85f9fb8524e2fe6a00"
+content-hash = "5e32282214bbf0dbc5e844589851d005ca6d640116ae3c498dbec28dbd1e3c49"

@@ -6,7 +6,8 @@ such as `BinaryRelation` and `NaryRelation`. It includes validation for these su
 configuration of Pydantic model settings.
 """
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 from pydantic import Field
 

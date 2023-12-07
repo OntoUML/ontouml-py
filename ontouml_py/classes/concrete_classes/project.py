@@ -3,11 +3,13 @@
 The Project class extends NamedElement to include project-specific details such as bibliographic citations, keywords,
 and landing pages, among others, providing a comprehensive representation of a project's metadata.
 """
-
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 from icecream import ic
-from pydantic import Field, PrivateAttr, field_validator
+from pydantic import Field
+from pydantic import field_validator
+from pydantic import PrivateAttr
 from pydantic_core.core_schema import ValidationInfo
 
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
@@ -152,10 +154,10 @@ class Project(NamedElement):
     def __ensure_non_empty(cls, checked_values: set[str], checked_field: ValidationInfo) -> set[str]:
         """Validate that the provided list does not contain empty strings.
 
-        This method checks each element in the specified list to ensure that it does not contain any empty strings. It is
-        applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations', 'keywords', etc.
-        If an empty string is found, a ValueError is raised with a detailed error message indicating the specific field
-        affected.
+        This method checks each element in the specified list to ensure that it does not contain any empty strings.
+        It is applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations',
+        'keywords', etc. If an empty string is found, a ValueError is raised with a detailed error message indicating
+        the specific field affected.
 
         :param checked_values: The list of strings to be validated.
         :type checked_values: set[str]
@@ -181,8 +183,8 @@ class Project(NamedElement):
 
         This method performs two checks:
         1. It verifies that the provided package is of the correct type (Package).
-        2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and integral
-           part of the project's structure.
+        2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and
+        integral part of the project's structure.
 
         :param package: The package to be validated as the root package of the project.
         :type package: Optional[Package]

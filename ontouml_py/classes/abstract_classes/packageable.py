@@ -6,9 +6,9 @@ It includes an abstract method for initialization and a private attribute to tra
 This design ensures that contents in the OntoUML model can be organized and managed within packages, maintaining model
 coherence and structure.
 """
-
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 from pydantic import PrivateAttr
 

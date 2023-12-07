@@ -5,10 +5,9 @@ an OntoUML model. It extends the OntoumlElement class, adding a read-only attrib
 project. The module ensures elements are part of valid subclasses and enforces constraints on attribute initialization
 and management.
 """
-
-
 from abc import abstractmethod
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 from pydantic import PrivateAttr
 

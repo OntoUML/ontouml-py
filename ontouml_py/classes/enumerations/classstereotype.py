@@ -1,6 +1,5 @@
 """This module defines the ClassStereotype enumeration, a subclass of OntoumlEnum, representing different stereotypes \
 applicable to classes in OntoUML."""
-
 from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
 
 

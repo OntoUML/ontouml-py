@@ -18,7 +18,8 @@ module's purpose, while avoiding naming conflicts within the Python language."
 """
 from typing import Any
 
-from pydantic import Field, model_validator
+from pydantic import Field
+from pydantic import model_validator
 
 from ontouml_py.classes.abstract_classes.classifier import Classifier
 from ontouml_py.classes.concrete_classes.literal import Literal

@@ -1,5 +1,4 @@
 import pytest
-
 from pydantic import ValidationError
 
 from ontouml_py import Cardinality
@@ -8,9 +7,8 @@ from ontouml_py import Cardinality
 def test_cardinality_with_valid_integer_bounds() -> None:
     """Test Cardinality with valid integer values for lower_bound and upper_bound."""
     cardinality = Cardinality(lower_bound="1", upper_bound="10")
-    assert (
-        cardinality.lower_bound == "1" and cardinality.upper_bound == "10"
-    ), "Cardinality should accept valid integer bounds."
+    assert cardinality.lower_bound == "1", "Cardinality should accept valid integer lower bound."
+    assert cardinality.upper_bound == "10", "Cardinality should accept valid integer upper bound."
 
 
 def test_cardinality_with_invalid_string_bounds() -> None:
@@ -25,9 +23,8 @@ def test_cardinality_with_invalid_string_bounds() -> None:
 def test_cardinality_with_none_bounds() -> None:
     """Test Cardinality with None for both lower_bound and upper_bound."""
     cardinality = Cardinality(lower_bound=None, upper_bound=None)
-    assert (
-        cardinality.lower_bound is None and cardinality.upper_bound is None
-    ), "Cardinality should allow None as bounds."
+    assert cardinality.lower_bound is None, "Cardinality should allow None as lower bound."
+    assert cardinality.upper_bound is None, "Cardinality should allow None as upper bound."
 
 
 def test_cardinality_with_mixed_valid_invalid_bounds() -> None:
@@ -51,9 +48,8 @@ def test_cardinality_with_star_and_integer_bounds() -> None:
 def test_cardinality_with_integer_and_star_bounds() -> None:
     """Test Cardinality with an integer for lower_bound and '*' for upper_bound."""
     cardinality = Cardinality(lower_bound="1", upper_bound="*")
-    assert (
-        cardinality.lower_bound == "1" and cardinality.upper_bound == "*"
-    ), "Cardinality should allow an integer for lower_bound and '*' for upper_bound."
+    assert cardinality.lower_bound == "1", "Cardinality should allow an integer for lower_bound."
+    assert cardinality.upper_bound == "*", "Cardinality should allow '*' for upper_bound."
 
 
 def test_cardinality_with_negative_integer_bounds_error() -> None:
@@ -89,9 +85,8 @@ def test_cardinality_with_integer_bounds_converted_to_string() -> None:
     :raises: ValueError: If the conversion from integer to string does not occur.
     """
     cardinality = Cardinality(lower_bound=1, upper_bound=10)
-    assert (
-        cardinality.lower_bound == "1" and cardinality.upper_bound == "10"
-    ), "Integer bounds should be converted to strings."
+    assert cardinality.lower_bound == "1", "Integer lower bound should be converted to strings."
+    assert cardinality.upper_bound == "10", "Integer upper bound should be converted to strings."
 
 
 def test_cardinality_with_mixed_none_and_valid_bound() -> None:
@@ -100,9 +95,8 @@ def test_cardinality_with_mixed_none_and_valid_bound() -> None:
     :raises: ValueError: If the class does not handle None and valid bounds correctly.
     """
     cardinality = Cardinality(lower_bound=None, upper_bound="10")
-    assert (
-        cardinality.lower_bound == "10" and cardinality.upper_bound == "10"
-    ), "Cardinality should handle None for lower_bound and a valid integer for upper_bound."
+    assert cardinality.lower_bound == "10", "Cardinality should handle None for lower_bound."
+    assert cardinality.upper_bound == "10", "Cardinality should handle a valid integer for upper_bound."
 
 
 def test_cardinality_with_mixed_none_and_invalid_bound() -> None:

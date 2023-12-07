@@ -374,7 +374,6 @@ def test_invalid_subclass_instantiation() -> None:
         InvalidSubclass()
 
 
-
 def test_direct_instantiation_of_abstract_class() -> None:
     """Test that direct instantiation of the abstract class NamedElement is not allowed.
 
@@ -478,7 +477,6 @@ def test_empty_strings_in_uri_lists() -> None:
     """
     with pytest.raises(ValidationError, match="Empty string found in"):
         Project(creators=[""], contributors=[""])
-
 
 
 # Test with mixed case strings

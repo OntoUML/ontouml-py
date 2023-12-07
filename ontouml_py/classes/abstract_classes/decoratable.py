@@ -5,7 +5,6 @@ decorated with additional properties. It extends the ModelElement class and incl
 whether the element is derived. The class is designed to be subclassed by specific types of model elements that can
 be decorated, such as classifiers and properties.
 """
-
 from abc import abstractmethod
 from typing import Any
 

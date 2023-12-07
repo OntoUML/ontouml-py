@@ -14,8 +14,10 @@ Usage:
     The NonEmptySet class can be used similarly to Python's built-in set, with the added assurance that it will always
     contain at least one element. It supports standard set operations like add, remove, and iterate over elements.
 """
-
-from typing import Generic, TypeVar, Set, Iterator
+from typing import Generic
+from typing import Iterator
+from typing import Set
+from typing import TypeVar
 
 T = TypeVar("T")
 

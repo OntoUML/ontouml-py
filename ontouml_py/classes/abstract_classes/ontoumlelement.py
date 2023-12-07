@@ -16,11 +16,14 @@ providing practical usability in the software environment.
 
 """
 import uuid
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+from pydantic import Field
 
 from ontouml_py.classes.utils.error_message import format_error_message
 
