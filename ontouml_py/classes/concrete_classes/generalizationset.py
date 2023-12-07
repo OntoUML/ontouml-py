@@ -61,7 +61,7 @@ class GeneralizationSet(ModelElement):
     generalizations: set[object] = Field(min_length=1, default_factory=set)
     categorizer: Optional[object] = Field(default=None)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

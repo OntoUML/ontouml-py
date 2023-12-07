@@ -29,7 +29,7 @@ class Relation(Classifier):
 
     stereotype: Optional[RelationStereotype] = Field(default=None)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "validate_default": True,

@@ -182,8 +182,8 @@ Classes
       a part of the project's elements. If the validation fails, a ValueError is raised.
 
       :param key: The name of the attribute to be set.
-      :param value: The value to be assigned to the attribute.
       :type key: str
+      :param value: The value to be assigned to the attribute.
       :type value: Any
       :raises ValueError: If 'root_package' is set to a package not in the project's elements.
 

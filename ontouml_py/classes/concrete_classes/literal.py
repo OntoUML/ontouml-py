@@ -21,7 +21,7 @@ class Literal(ModelElement):
     :vartype model_config: Dict[str, Any]
     """
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "validate_default": True,

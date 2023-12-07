@@ -44,7 +44,7 @@ def test_add_property_invalid_type() -> None:
     Ensures that a TypeError is raised when a non-Property instance is added.
     """
     classifier = Class()
-    with pytest.raises(TypeError):
+    with pytest.raises(TypeError, match="Invalid property type for"):
         classifier.add_property("not_a_property")
 
 
@@ -66,7 +66,7 @@ def test_remove_property_invalid_type() -> None:
     Ensures that a TypeError is raised when attempting to remove a non-Property instance.
     """
     classifier = Class()
-    with pytest.raises(TypeError):
+    with pytest.raises(TypeError, match="Invalid property type for removal"):
         classifier.remove_property("not_a_property")
 
 
@@ -77,7 +77,7 @@ def test_remove_property_not_in_list() -> None:
     """
     classifier = Class()
     prop = Property()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="is not part of the classifier's properties"):
         classifier.remove_property(prop)
 
 

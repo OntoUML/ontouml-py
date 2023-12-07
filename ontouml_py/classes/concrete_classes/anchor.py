@@ -45,7 +45,7 @@ class Anchor(ModelElement):
     note: Note = Field()
     target: ModelElement = Field()
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

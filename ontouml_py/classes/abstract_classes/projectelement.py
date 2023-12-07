@@ -30,7 +30,7 @@ class ProjectElement(OntoumlElement):
 
     _in_project: Optional["Project"] = PrivateAttr(default=None)  # noqa: F821 (flake8)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,

@@ -29,7 +29,7 @@ class Decoratable(ModelElement):
 
     is_derived: bool = Field(default=False)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

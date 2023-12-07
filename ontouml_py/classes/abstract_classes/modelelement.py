@@ -21,7 +21,7 @@ class ModelElement(NamedElement, ProjectElement):
 
     custom_properties: set[tuple[str, Any]] = Field(default_factory=set)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

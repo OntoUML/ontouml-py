@@ -47,7 +47,7 @@ class NamedElement(OntoumlElement):
     creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
     contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

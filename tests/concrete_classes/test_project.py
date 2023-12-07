@@ -168,7 +168,8 @@ def test_project_mutable_update_empty_values() -> None:
     ls2 = {create_langstring("b")}
     project.names = ls1
     project.alt_names = ls2
-    assert project.names == ls1 and project.alt_names == ls2, "Should update to empty values correctly."
+    assert project.names == ls1, "Should update to empty values correctly."
+    assert project.alt_names == ls2, "Should update to empty values correctly."
 
 
 def test_project_invalid_value_in_list_post_init() -> None:
@@ -177,7 +178,10 @@ def test_project_invalid_value_in_list_post_init() -> None:
     :raises ValidationError: If the list accepts an invalid value.
     """
     project = Project(alt_names=[create_langstring("Initial")])
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="Input should be an instance of LangString",
+    ):
         project.alt_names = [create_langstring("Another"), None]  # Reassign with a new list containing an invalid value
 
 
@@ -187,7 +191,7 @@ def test_project_invalid_type_in_list_post_init() -> None:
     :raises ValidationError: If the list accepts an invalid type.
     """
     project = Project(alt_names=[create_langstring("Initial")])
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be an instance of LangString"):
         project.alt_names = [create_langstring("Another"), 123]  # Reassign with a new list containing an invalid type
 
 
@@ -197,7 +201,9 @@ def test_project_none_in_list_post_init() -> None:
     :raises ValueError: If None is assigned to a list attribute.
     """
     project = Project(alt_names=[create_langstring("Initial")])
-    with pytest.raises(ValueError):
+    with pytest.raises(
+        ValueError, match="Input should be a valid set \\[type=set_type, input_value=None, input_type=NoneType\\]"
+    ):
         project.alt_names = None
 
 
@@ -224,7 +230,10 @@ def test_project_update_set_with_mixed_values() -> None:
     :raises ValidationError: If the set incorrectly accepts None values.
     """
     project = Project(acronyms={"AC1"})
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="Input should be a valid string \\[type=string_type, input_value=None, input_type=NoneType\\]",
+    ):
         project.acronyms = {"AC2", None}
 
 
@@ -237,7 +246,9 @@ def test_project_update_set_with_mixed_types() -> None:
     :raises ValidationError: If the set incorrectly accepts elements of invalid types.
     """
     project = Project(acronyms={"AC1"})
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError, match="Input should be a valid string \\[type=string_type, input_value=123, input_type=int\\]"
+    ):
         project.acronyms = {"AC2", 123}
 
 
@@ -334,10 +345,10 @@ def test_project_extreme_string_values() -> None:
 
 def test_project_mixing_types_in_lists() -> None:
     """Test assigning mixed types in list attributes."""
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match=r"(Input should be a valid string|Extra inputs are not permitted)"):
         Project(elements=[123, Package()])  # Mixing int and OntoumlElement in 'elements'
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match=r"(Input should be a valid string|Extra inputs are not permitted)"):
         Project(acronyms=[True, "ACR"])  # Mixing bool and str in 'acronyms'
 
 
@@ -357,11 +368,20 @@ def test_project_empty_values_post_initialization() -> None:
     """Test assigning empty values to attributes post-initialization."""
     project = Project(names=[create_langstring("Test")])
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="String should have at least 1 character \\[type=string_too_short, input_value='', input_type=str\\]",
+    ):
         project.namespace = ""
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="String should have at least 1 character \\[type=string_too_short, input_value='', input_type=str\\]",
+    ):
         project.license = ""
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="String should have at least 1 character \\[type=string_too_short, input_value='', input_type=str\\]",
+    ):
         project.publisher = ""
 
 
@@ -422,20 +442,26 @@ def test_project_empty_and_null_sets() -> None:
 
 def test_project_numerical_values_for_strings() -> None:
     """Test assigning numerical values to string attributes."""
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Project(namespace=123)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Project(license=456)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Project(publisher=789)
 
 
 def test_project_boolean_values_in_lists() -> None:
     """Test assigning boolean values in list attributes."""
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="Input should be a valid string \\[type=string_type, input_value=True, input_type=bool\\]",
+    ):
         Project(acronyms=[True, False])
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(
+        ValidationError,
+        match="Input should be a valid string \\[type=string_type, input_value=False, input_type=bool\\]",
+    ):
         Project(bibliographic_citations=[True, False])

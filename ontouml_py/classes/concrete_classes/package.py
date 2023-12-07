@@ -30,7 +30,7 @@ class Package(Packageable):
     # Private attribute
     _contents: set[Packageable] = PrivateAttr(default_factory=set)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",

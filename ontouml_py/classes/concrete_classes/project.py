@@ -6,7 +6,6 @@ and landing pages, among others, providing a comprehensive representation of a p
 from typing import Any
 from typing import Optional
 
-from icecream import ic
 from pydantic import Field
 from pydantic import field_validator
 from pydantic import PrivateAttr
@@ -85,7 +84,7 @@ class Project(NamedElement):
     root_package: Optional[Package] = Field(default=None)
     representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "extra": "forbid",
@@ -120,15 +119,15 @@ class Project(NamedElement):
         if "root_package" in data:
             self.__validate_root_package(data.get("root_package"))
 
-    def __setattr__(self, key, value):
+    def __setattr__(self, key: str, value: Any) -> None:
         """Override the default attribute setting behavior to include validation for 'root_package'.
 
         This method intercepts the setting of the 'root_package' attribute to ensure that the assigned package is
         a part of the project's elements. If the validation fails, a ValueError is raised.
 
         :param key: The name of the attribute to be set.
-        :param value: The value to be assigned to the attribute.
         :type key: str
+        :param value: The value to be assigned to the attribute.
         :type value: Any
         :raises ValueError: If 'root_package' is set to a package not in the project's elements.
         """
@@ -178,7 +177,7 @@ class Project(NamedElement):
                 raise ValueError(error_message)
         return checked_values
 
-    def __validate_root_package(self, package: Optional[Package]):
+    def __validate_root_package(self, package: Optional[Package]) -> None:
         """Validate if the provided package is a valid root package for the project.
 
         This method performs two checks:

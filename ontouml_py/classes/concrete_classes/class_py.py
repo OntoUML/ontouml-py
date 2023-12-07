@@ -57,7 +57,7 @@ class Class(Classifier):
     stereotype: ClassStereotype = Field()
     literals: set[Literal] = Field(default_factory=set)
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "validate_default": True,

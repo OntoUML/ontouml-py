@@ -14,7 +14,7 @@ def test_abstract_class() -> None:
 
     :raises TypeError: If the instantiation of OntoumlElement occurs.
     """
-    with pytest.raises(TypeError, match="Can't instantiate abstract class"):
+    with pytest.raises(TypeError, match="Can't instantiate abstract class OntoumlElement"):
         OntoumlElement()
 
 
@@ -23,7 +23,9 @@ def test_invalid_modified_argument_type() -> None:
 
     :raises ValidationError: If a non-datetime value is passed for 'modified'.
     """
-    with pytest.raises(ValidationError, match=r"^1 validation error for"):
+    with pytest.raises(
+        ValidationError, match="1 validation error for Project\nmodified\n  Input should be a valid datetime"
+    ):
         Project(modified="not-a-datetime")
 
 
@@ -88,7 +90,10 @@ def test_modified_update_with_invalid_datetime() -> None:
     """
     concrete_ontouml_element = Project()
     earlier_time = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(ValueError):
+    with pytest.raises(
+        ValueError,
+        match=r"\* Error Type: ValueError\.\n\* Description: Invalid modification of 'modified' attribute for instance with ID .*\n\* Cause: 'modified' datetime \(.*\) is set earlier than 'created' datetime \(.*\)\.\n\* Solution: Ensure 'modified' is later than or equal to 'created'\.",
+    ):
         concrete_ontouml_element.modified = earlier_time
 
 
@@ -110,7 +115,7 @@ def test_id_initialization_with_non_uuid() -> None:
 
     :raises ValidationError: If 'id' is not a valid string.
     """
-    with pytest.raises(ValidationError, match=r"Input should be a valid string"):
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
         Project(id=1)
 
 
@@ -163,7 +168,7 @@ def test_modified_update_to_past_datetime() -> None:
     """
     concrete_ontouml_element = Project()
     past_datetime = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute for instance with ID"):
         concrete_ontouml_element.modified = past_datetime
 
 
@@ -172,7 +177,7 @@ def test_modified_initialization_with_invalid_type() -> None:
 
     :raises ValidationError: If 'modified' is not a valid datetime.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid datetime"):
         Project(modified="not-a-datetime")
 
 
@@ -251,9 +256,9 @@ def test_invalid_types_for_created_and_modified() -> None:
 
     :raises ValidationError: If invalid types are passed for 'created' and 'modified'.
     """
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid datetime"):
         Project(created="invalid-type")
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Input should be a valid datetime"):
         Project(modified="invalid-type")
 
 
@@ -263,7 +268,7 @@ def test_error_when_modified_before_created() -> None:
     :raises ValueError: If 'modified' is set earlier than 'created'.
     """
     element = Project()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute for instance with ID"):
         element.modified = element.created - timedelta(days=1)
 
 
@@ -287,7 +292,7 @@ def test_instantiation_allowed_subclass_namedelement() -> None:
 def test_instantiation_allowed_subclass_shape() -> None:
     """Test instantiation of a class allowed in _allowed_subclasses."""
     try:
-        shape = Shape()  # noqa (Vulture)
+        shape = Shape()
     except ValueError:
         pytest.fail("Instantiation of Shape should not raise ValueError.")
 
@@ -300,9 +305,8 @@ def test_instantiation_disallowed_subclass() -> None:
         def __init__(self, **data):
             super().__init__(**data)
 
-    with pytest.raises(ValueError) as exc_info:
-        _ = DisallowedElement()
-    assert "not an allowed subclass" in str(exc_info.value), "ValueError should mention subclass restriction."
+    with pytest.raises(ValueError, match="is not an allowed subclass"):
+        DisallowedElement()
 
 
 # Test deep inheritance chain with allowed subclass
@@ -313,7 +317,7 @@ def test_deep_inheritance_chain_allowed_subclass() -> None:
         pass
 
     try:
-        deep_shape = DeepShape()  # noqa (Vulture)
+        deep_shape = DeepShape()
     except ValueError:
         pytest.fail("Instantiation of DeepShape should not raise ValueError.")
 
@@ -323,7 +327,7 @@ def test_dynamic_class_creation_instantiation() -> None:
     """Test dynamic creation and instantiation of a subclass."""
     dynamic_element = type("dynamic_element", (Project,), {})
     try:
-        dynamic_element = dynamic_element()  # noqa (Vulture)
+        dynamic_element = dynamic_element()
     except ValueError:
         pytest.fail("Instantiation of dynamic_element should not raise ValueError.")
 
@@ -346,10 +350,8 @@ def test_error_message_disallowed_subclass() -> None:
         def __init__(self, **data) -> None:
             super().__init__(**data)
 
-    with pytest.raises(ValueError) as exc_info:
-        _ = DisallowedElement()
-    expected_msg_part = "not an allowed subclass"
-    assert expected_msg_part in str(exc_info.value), "Error message should indicate the subclass is not allowed."
+    with pytest.raises(ValueError, match="is not an allowed subclass"):
+        DisallowedElement()
 
 
 def test_initialization_with_empty_string() -> None:
@@ -357,7 +359,7 @@ def test_initialization_with_empty_string() -> None:
 
     :raises ValidationError: If the object does not handle empty string initialization as expected.
     """
-    with pytest.raises(ValidationError, match="validation error for"):
+    with pytest.raises(ValidationError, match="validation error for Project"):
         Project(name="")
 
 
@@ -366,7 +368,7 @@ def test_initialization_with_empty_list() -> None:
 
     :raises ValidationError: If the object does not handle empty list initialization as expected.
     """
-    with pytest.raises(ValidationError, match="validation error for"):
+    with pytest.raises(ValidationError, match="validation error for Project"):
         Project(some_list_attribute=[])
 
 
@@ -375,7 +377,7 @@ def test_initialization_with_empty_tuple() -> None:
 
     :raises ValidationError: If the object does not handle empty tuple initialization as expected.
     """
-    with pytest.raises(ValidationError, match="validation error for"):
+    with pytest.raises(ValidationError, match="validation error for Project"):
         Project(some_tuple_attribute=())
 
 
@@ -385,8 +387,8 @@ def test_post_initialization_type_validation() -> None:
     :raises ValidationError: If the object allows setting an attribute to an invalid type post-instantiation.
     """
     element = Project()
-    with pytest.raises(ValidationError, match="Object has no attribute"):
-        element.some_attribute = 123  # Assuming 'some_attribute' should be a string # noqa (Vulture)
+    with pytest.raises(ValidationError, match="Object has no attribute 'some_attribute'"):
+        element.some_attribute = 123  # Assuming 'some_attribute' should be a string
 
 
 def test_post_initialization_with_empty_string() -> None:
@@ -395,8 +397,8 @@ def test_post_initialization_with_empty_string() -> None:
     :raises ValidationError: If the object allows setting a string attribute to an empty string post-instantiation.
     """
     element = Project()
-    with pytest.raises(ValidationError, match="Object has no attribute"):
-        element.name = ""  # noqa (Vulture)
+    with pytest.raises(ValidationError, match="Object has no attribute 'name'"):
+        element.name = ""
 
 
 def test_post_initialization_id_with_invalid_uuid() -> None:
@@ -425,7 +427,7 @@ def test_id_with_not_enough_chars() -> None:
     :raises ValueError: If the object allows setting the id with less than 3 chars.
     """
     element = Project()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="1 validation error for Project"):
         element.id = ""
 
 
@@ -463,7 +465,7 @@ def test_ontoumlelement_modification_date_validation() -> None:
     :raises AssertionError: If the modification date is incorrectly set earlier than the creation date.
     """
     element = Project()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute"):
         element.modified = element.created - timedelta(days=1)
 
 
@@ -509,8 +511,5 @@ def test_ontoumlelement_subclass_restriction() -> None:
         def __init__(self, **data):
             super().__init__(**data)
 
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError, match="is not an allowed subclass"):
         UnauthorizedElement()
-    assert "is not an allowed subclass" in str(
-        excinfo.value
-    ), "OntoumlElement should not be instantiated as an unauthorized subclass."

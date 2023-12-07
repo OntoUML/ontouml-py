@@ -32,7 +32,7 @@ class Generalization(ModelElement):
     general: Classifier = Field()
     specific: Classifier = Field()
 
-    model_config = {  # noqa (vulture)
+    model_config = {
         "arbitrary_types_allowed": True,
         "validate_assignment": True,
         "validate_default": True,
@@ -41,7 +41,7 @@ class Generalization(ModelElement):
     }
 
     @model_validator(mode="after")
-    def __ensure_irreflexive(self):
+    def __ensure_irreflexive(self) -> None:
         """Validate that the generalization relationship is irreflexive.
 
         Ensures that the 'general' and 'specific' classifiers are different, as a classifier cannot generalize itself.

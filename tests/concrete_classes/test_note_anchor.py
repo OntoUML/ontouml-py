@@ -100,7 +100,8 @@ def test_anchor_mutability() -> None:
     anchor.note = new_note
     anchor.target = new_target
 
-    assert anchor.note == new_note and anchor.target == new_target, "Failed to update the note or target of Anchor."
+    assert anchor.note == new_note, "Failed to update the note of Anchor."
+    assert anchor.target == new_target, "Failed to update the target of Anchor."
 
 
 def test_anchor_with_null_note() -> None:
