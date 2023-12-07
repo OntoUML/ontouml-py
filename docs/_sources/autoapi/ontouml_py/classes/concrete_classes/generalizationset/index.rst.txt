@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This module defines the GeneralizationSet class, a key construct in ontological modeling within the ontouml_py library.
+   Define the GeneralizationSet class, a key construct in ontological modeling within the ontouml_py library.
 
    The GeneralizationSet class is used to represent a collection of generalizations, encapsulating the notions of
    disjointness and completeness in a model. It extends the ModelElement class, inheriting its core properties and

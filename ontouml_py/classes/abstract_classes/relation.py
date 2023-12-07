@@ -1,5 +1,5 @@
-"""This module provides the `Relation` class, a subclass of `Classifier`, representing relations in an ontological model.
-It supports various relation stereotypes as defined in the `RelationStereotype` enumeration.
+"""Provide the `Relation` class, a subclass of `Classifier`, representing relations in an ontological model. It \
+supports various relation stereotypes as defined in the `RelationStereotype` enumeration.
 
 The `Relation` class is an abstract base class and is intended to be subclassed by specific types of relations,
 such as `BinaryRelation` and `NaryRelation`. It includes validation for these subclasses and allows for the

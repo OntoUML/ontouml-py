@@ -52,7 +52,7 @@ def test_validate_root_package_with_incorrect_type(sample_project: Project) -> N
 
     :param sample_project: A sample Project instance for testing.
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         sample_project.root_package = "NotAPackage"
 
 

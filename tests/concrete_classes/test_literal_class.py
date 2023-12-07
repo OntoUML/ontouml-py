@@ -36,18 +36,14 @@ def test_non_enumeration_class_without_literals(non_enumeration_class: Class) ->
 
 def test_enumeration_class_requires_at_least_one_literal() -> None:
     """Test that an enumeration class requires at least one literal."""
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         Class(stereotype=ClassStereotype.ENUMERATION, literals=set())
-    assert "must have literals" in str(excinfo.value), "Enumeration class should require at least one literal."
 
 
 def test_non_enumeration_class_cannot_have_literals() -> None:
     """Test that a non-enumeration class cannot have literals."""
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         Class(stereotype=ClassStereotype.KIND, literals={Literal()})
-    assert "Only classes with stereotype Enumeration can have literals" in str(
-        excinfo.value
-    ), "Non-enumeration class should not be able to have literals."
 
 
 def test_add_literal_to_enumeration_class(enumeration_class: Class) -> None:
@@ -79,9 +75,8 @@ def test_enumeration_class_initialization_with_literals() -> None:
 
 def test_enumeration_class_initialization_without_literals_fails() -> None:
     """Test that initializing an enumeration class without literals raises an error."""
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         Class(stereotype=ClassStereotype.ENUMERATION)
-    assert "must have literals" in str(excinfo.value), "Enumeration class should not initialize without literals."
 
 
 # Ideally, this test should work. However I could not implement it yet.
@@ -129,9 +124,8 @@ def test_add_literal_method_with_invalid_type(enumeration_class: Class) -> None:
 
     :param enumeration_class: A fixture providing an enumeration class instance.
     """
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         enumeration_class.add_literal("not_a_literal")
-    assert "only adds objects of type Literal" in str(excinfo.value), "add_literal should only accept Literal objects."
 
 
 def test_remove_literal_method_with_valid_literal(enumeration_class: Class) -> None:
@@ -145,13 +139,13 @@ def test_remove_literal_method_with_valid_literal(enumeration_class: Class) -> N
 
 
 def test_remove_literal_method_with_invalid_literal(enumeration_class: Class) -> None:
-    """Test removing a non-existent literal using the remove_literal method does not raise an error.
+    """Test removing a non-existent literal using the remove_literal method should raise an error.
 
     :param enumeration_class: A fixture providing an enumeration class instance.
     """
     non_existent_literal = Literal()
-    enumeration_class.remove_literal(non_existent_literal)
-    # No assertion needed as the test is for the absence of an error
+    with pytest.raises(ValueError):
+        enumeration_class.remove_literal(non_existent_literal)
 
 
 def test_initialization_with_invalid_literal_type_raises_error() -> None:

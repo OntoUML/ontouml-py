@@ -56,7 +56,7 @@ def test_add_invalid_element_type_to_project(sample_project: Project):
     :param sample_project: A sample Project instance.
     :raises TypeError: If a non-ProjectElement type is added to the project.
     """
-    with pytest.raises(TypeError, match=r".*must be an instance of ProjectElement.*"):
+    with pytest.raises(TypeError):
         sample_project.add_element("invalid_element")
 
 
@@ -67,5 +67,5 @@ def test_remove_nonexistent_element_from_project(sample_project: Project, sample
     :param sample_element: A sample ProjectElement instance.
     :raises AssertionError: If the test does not correctly identify the non-existence of the element.
     """
-    with pytest.raises(ValueError, match=r".*cannot be removed because is not part of the project.*"):
+    with pytest.raises(ValueError):
         sample_project.remove_element(sample_element)

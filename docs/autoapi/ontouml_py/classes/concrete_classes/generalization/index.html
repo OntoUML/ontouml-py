@@ -92,10 +92,11 @@
              
   <section id="module-ontouml_py.classes.concrete_classes.generalization">
 <span id="ontouml-py-classes-concrete-classes-generalization"></span><h1><a class="reference internal" href="#module-ontouml_py.classes.concrete_classes.generalization" title="ontouml_py.classes.concrete_classes.generalization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ontouml_py.classes.concrete_classes.generalization</span></code></a><a class="headerlink" href="#module-ontouml_py.classes.concrete_classes.generalization" title="Link to this heading"></a></h1>
-<p>This module defines the <cite>Generalization</cite> class, a component of the ontouml_py library. The <cite>Generalization</cite> class
-represents a generalization relationship in an ontological model, linking two classifiers in a hierarchy where one
-(classifier) is a generalization of the other. This module includes the necessary validations to ensure the integrity
-of the generalization relationship, such as preventing a classifier from being a generalization of itself.</p>
+<p>This module defines the <cite>Generalization</cite> class, a component of the ontouml_py library.</p>
+<p>The <cite>Generalization</cite> class represents a generalization relationship in an ontological model, linking two classifiers in
+a hierarchy where one (classifier) is a generalization of the other. This module includes the necessary validations to
+ensure the integrity of the generalization relationship, such as preventing a classifier from being a generalization
+of itself.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <section id="classes">
@@ -145,7 +146,7 @@ a generalization of another classifier (the specific).</p>
 <dt class="sig sig-object py" id="ontouml_py.classes.concrete_classes.generalization.Generalization.__ensure_irreflexive">
 <span class="sig-name descname"><span class="pre">__ensure_irreflexive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.classes.concrete_classes.generalization.Generalization.__ensure_irreflexive" title="Link to this definition"></a></dt>
 <dd><p>Validate that the generalization relationship is irreflexive.</p>
-<p>Ensures that the ‘general’ and ‘specific’ classifiers are not the same, as a classifier cannot generalize itself.</p>
+<p>Ensures that the ‘general’ and ‘specific’ classifiers are different, as a classifier cannot generalize itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – If ‘general’ and ‘specific’ classifiers are the same.</p>

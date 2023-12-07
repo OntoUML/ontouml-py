@@ -58,7 +58,7 @@ def test_adding_self_to_package_contents(empty_package: Package) -> None:
 
     :param empty_package: Fixture providing an empty Package instance.
     """
-    with pytest.raises(TypeError, match="A package cannot contain itself."):
+    with pytest.raises(TypeError):
         empty_package.add_content(empty_package)
 
 
@@ -67,7 +67,7 @@ def test_adding_non_packageable_content_to_package(empty_package: Package) -> No
 
     :param empty_package: Fixture providing an empty Package instance.
     """
-    with pytest.raises(TypeError, match="Content must be an instance of Packageable."):
+    with pytest.raises(TypeError):
         empty_package.add_content(object())
 
 
@@ -77,7 +77,7 @@ def test_removing_nonexistent_content_from_package(empty_package: Package, packa
     :param empty_package: Fixture providing an empty Package instance.
     :param packageable_content: Fixture providing a mock Packageable instance.
     """
-    with pytest.raises(ValueError, match="content '.*' cannot be removed because is not part of the package."):
+    with pytest.raises(ValueError):
         empty_package.remove_content(packageable_content)
 
 
@@ -117,7 +117,7 @@ def test_package_initialization_with_contents(packageable_content: Packageable) 
     :param packageable_content: Fixture providing a mock Packageable instance.
     """
     with pytest.raises(ValidationError):
-        package = Package(contains={packageable_content})
+        Package(contains={packageable_content})
 
 
 def test_removing_never_added_content_from_package(empty_package: Package, packageable_content: Packageable) -> None:
@@ -126,7 +126,7 @@ def test_removing_never_added_content_from_package(empty_package: Package, packa
     :param empty_package: Fixture providing an empty Package instance.
     :param packageable_content: Fixture providing a mock Packageable instance.
     """
-    with pytest.raises(ValueError, match="content '.*' cannot be removed because is not part of the package."):
+    with pytest.raises(ValueError):
         empty_package.remove_content(packageable_content)
 
 

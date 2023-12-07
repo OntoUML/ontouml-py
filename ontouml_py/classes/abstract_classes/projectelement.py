@@ -29,7 +29,7 @@ class ProjectElement(OntoumlElement):
     :vartype model_config: Dict[str, Any]
     """
 
-    _in_project: Optional["Project"] = PrivateAttr(default=None)
+    _in_project: Optional["Project"] = PrivateAttr(default=None)  # noqa: F821 (flake8)
 
     model_config = {  # noqa (vulture)
         "validate_assignment": True,
@@ -54,7 +54,7 @@ class ProjectElement(OntoumlElement):
         super().__init__(**data)
 
     @property
-    def in_project(self) -> Optional["Project"]:
+    def in_project(self) -> Optional["Project"]:  # noqa: F821 (flake8)
         """Read-only property to access the project this element belongs to.
 
         :return: The project instance to which this element is associated.
@@ -62,7 +62,7 @@ class ProjectElement(OntoumlElement):
         """
         return self._in_project
 
-    def __set_in_project(self, new_project: Optional["Project"]) -> None:
+    def __set_in_project(self, new_project: Optional["Project"]) -> None:  # noqa: F821 (flake8)
         """Protected method to set the project. Not part of the public API.
 
         This method is used internally by the Project class to establish or break the association between this element

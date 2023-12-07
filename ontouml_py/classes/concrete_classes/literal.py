@@ -7,9 +7,7 @@ literals, independent of any class. This feature allows users to define literals
 associate them with a specific class, providing a flexible workflow. These free literals can later be integrated into
 classes as required, enhancing the dynamic interaction between literals and their associated classes.
 """
-from typing import Any, Optional
-
-from pydantic import PrivateAttr
+from typing import Any
 
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
 

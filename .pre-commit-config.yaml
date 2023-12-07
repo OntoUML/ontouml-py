@@ -56,6 +56,9 @@ repos:
     hooks:
       - id: flake8
         args: [ --max-line-length=120 ]
+        language: system
+        types: [ python ]
+        pass_filenames: true
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.3.0
     hooks:

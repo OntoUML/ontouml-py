@@ -9,12 +9,10 @@ from .classes.concrete_classes.note import Note
 from .classes.concrete_classes.package import Package
 from .classes.concrete_classes.project import Project
 from .classes.concrete_classes.property import Property
-
+from .classes.datatypes.cardinality import Cardinality
 from .classes.enumerations.aggregationkind import AggregationKind
 from .classes.enumerations.classstereotype import ClassStereotype
 from .classes.enumerations.ontologicalnature import OntologicalNature
 from .classes.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
 from .classes.enumerations.propertystereotype import PropertyStereotype
 from .classes.enumerations.relationstereotype import RelationStereotype
-
-from .classes.datatypes.cardinality import Cardinality

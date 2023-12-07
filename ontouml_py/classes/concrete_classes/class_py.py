@@ -24,6 +24,7 @@ from ontouml_py.classes.abstract_classes.classifier import Classifier
 from ontouml_py.classes.concrete_classes.literal import Literal
 from ontouml_py.classes.enumerations.classstereotype import ClassStereotype
 from ontouml_py.classes.enumerations.ontologicalnature import OntologicalNature
+from ontouml_py.classes.utils.error_message import format_error_message
 from ontouml_py.classes.utils.nonemptyset import NonEmptySet
 
 
@@ -76,12 +77,26 @@ class Class(Classifier):
         """
         # Check if non-Enumeration classes have literals, which is not allowed
         if len(self.literals) > 0 and (self.stereotype != ClassStereotype.ENUMERATION):
-            raise ValueError("Only classes with stereotype Enumeration can have literals.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid literals for Class with ID {self.id}.",
+                cause=f"Class has literals ({self.literals}) but does not have an Enumeration stereotype, "
+                f"has {self.stereotype}.",
+                solution="Remove literals or change the stereotype to Enumeration.",
+            )
+            raise ValueError(error_message)
 
         # Check if Enumeration classes have at least one literal, as required
         if len(self.literals) == 0 and self.stereotype == ClassStereotype.ENUMERATION:
-            raise ValueError("Classes with stereotype Enumeration must have literals.")
-        elif self.stereotype == ClassStereotype.ENUMERATION and not isinstance(self.literals, NonEmptySet):
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Missing literals for Enumeration Class with ID {self.id}.",
+                cause="Enumeration class must have at least one literal.",
+                solution="Add at least one literal to the class.",
+            )
+            raise ValueError(error_message)
+
+        if self.stereotype == ClassStereotype.ENUMERATION and not isinstance(self.literals, NonEmptySet):
             converted_literals = NonEmptySet.convert_set(self.literals)
             # Workaround necessary to avoid recursively invoking the validation
             self.__dict__["literals"] = converted_literals
@@ -106,7 +121,13 @@ class Class(Classifier):
         :raises ValueError: If the provided object is not of type Literal.
         """
         if not isinstance(literal, Literal):
-            raise ValueError("The method 'add_literal' only adds objects of type Literal.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid literal type for Class with ID {self.id}.",
+                cause=f"Expected Literal instance, got an instance of type {type(literal).__name__}.",
+                solution="Ensure the object to be added is an instance of Literal.",
+            )
+            raise ValueError(error_message)
         self.literals.add(literal)
 
     def remove_literal(self, literal: Literal) -> None:
@@ -115,5 +136,13 @@ class Class(Classifier):
         :param literal: The literal to be removed.
         :type literal: Literal
         """
-        if literal in self.literals:
-            self.literals.remove(literal)
+        if literal not in self.literals:
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Literal not found in Class with ID {self.id}.",
+                cause=f"The literal {literal} to be removed does not exist in the class. "
+                f"Existing ones are {self.literals}.",
+                solution="Ensure the literal exists in the class before attempting to remove it.",
+            )
+            raise ValueError(error_message)
+        self.literals.remove(literal)

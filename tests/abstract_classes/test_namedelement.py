@@ -124,10 +124,9 @@ def test_namedelement_default_values() -> None:
     assert element.contributors == set(), "contributors should default to an empty list"
 
 
-def test_namedelement_custom_initialization(valid_langstring: LangString) -> None:
+def test_namedelement_custom_initialization() -> None:
     """Test custom initialization of NamedElement attributes.
 
-    :param valid_langstring: A valid LangString object.
     :raises AssertionError: If custom initialization does not work as expected.
     """
     custom_names = {LangString("Custom Name")}

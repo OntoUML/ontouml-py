@@ -14,6 +14,7 @@ from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.datatypes.cardinality import Cardinality
 from ontouml_py.classes.enumerations.aggregationkind import AggregationKind
 from ontouml_py.classes.enumerations.propertystereotype import PropertyStereotype
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class Property(Decoratable):
@@ -87,7 +88,13 @@ class Property(Decoratable):
         :raises TypeError: If the cardinality value is not of type Cardinality.
         """
         if not isinstance(checked_value, Cardinality):
-            raise TypeError("A property's cardinality value must be of type Cardinality.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description="Invalid cardinality type.",
+                cause=f"Expected Cardinality instance, got {type(checked_value).__name__} instance.",
+                solution="Ensure the cardinality is set with an instance of the Cardinality class.",
+            )
+            raise TypeError(error_message)
         return checked_value
 
     @property

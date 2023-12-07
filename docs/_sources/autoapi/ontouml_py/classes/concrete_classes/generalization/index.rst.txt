@@ -5,10 +5,12 @@
 
 .. autoapi-nested-parse::
 
-   This module defines the `Generalization` class, a component of the ontouml_py library. The `Generalization` class
-   represents a generalization relationship in an ontological model, linking two classifiers in a hierarchy where one
-   (classifier) is a generalization of the other. This module includes the necessary validations to ensure the integrity
-   of the generalization relationship, such as preventing a classifier from being a generalization of itself.
+   This module defines the `Generalization` class, a component of the ontouml_py library.
+
+   The `Generalization` class represents a generalization relationship in an ontological model, linking two classifiers in
+   a hierarchy where one (classifier) is a generalization of the other. This module includes the necessary validations to
+   ensure the integrity of the generalization relationship, such as preventing a classifier from being a generalization
+   of itself.
 
 
 
@@ -60,7 +62,7 @@ Classes
 
       Validate that the generalization relationship is irreflexive.
 
-      Ensures that the 'general' and 'specific' classifiers are not the same, as a classifier cannot generalize itself.
+      Ensures that the 'general' and 'specific' classifiers are different, as a classifier cannot generalize itself.
 
       :raises ValueError: If 'general' and 'specific' classifiers are the same.
 

@@ -10,8 +10,10 @@ from typing import Any, Optional
 
 from langstring import LangString
 from pydantic import Field, field_validator
+from pydantic_core.core_schema import ValidationInfo
 
 from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class NamedElement(OntoumlElement):
@@ -53,11 +55,17 @@ class NamedElement(OntoumlElement):
 
     @field_validator("creators", "contributors", mode="after")
     @classmethod
-    def __ensure_non_empty(cls, checked_list: set[str]) -> set[str]:
-        for elem in checked_list:
+    def __ensure_non_empty(cls, checked_values: set[str], checked_field: ValidationInfo) -> set[str]:
+        for elem in checked_values:
             if elem == "":
-                raise ValueError("Empty strings are not allowed")
-        return checked_list
+                error_message = format_error_message(
+                    error_type="ValueError.",
+                    description=f"Invalid empty string in {cls.__name__} list.",
+                    cause=f"Empty string found in '{cls.__name__}' field {checked_field.field_name}.",
+                    solution=f"Ensure all elements in the {checked_field.field_name} list are non-empty strings.",
+                )
+                raise ValueError(error_message)
+        return checked_values
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]) -> None:

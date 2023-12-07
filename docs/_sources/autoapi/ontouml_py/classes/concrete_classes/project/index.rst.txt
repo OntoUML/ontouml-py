@@ -188,28 +188,38 @@ Classes
       :raises ValueError: If 'root_package' is set to a package not in the project's elements.
 
 
-   .. py:method:: __ensure_non_empty(checked_list)
+   .. py:method:: __ensure_non_empty(checked_values, checked_field)
       :classmethod:
 
       Validate that the provided list does not contain empty strings.
 
-      :param checked_list: The list to be validated.
-      :type checked_list: set[str]
-      :return: The validated list.
+      This method checks each element in the specified list to ensure that it does not contain any empty strings. It is
+      applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations', 'keywords', etc.
+      If an empty string is found, a ValueError is raised with a detailed error message indicating the specific field
+      affected.
+
+      :param checked_values: The list of strings to be validated.
+      :type checked_values: set[str]
+      :param checked_field: Information about the field being validated, including the field name.
+      :type checked_field: ValidationInfo
+      :return: The validated list, ensuring no empty strings are present.
       :rtype: set[str]
-      :raises ValueError: If any element in the list is an empty string.
+      :raises ValueError: If any element in the list is an empty string, specifying the field where it occurred.
 
 
    .. py:method:: __validate_root_package(package)
 
-      Validate if the provided package is a part of the project's elements.
+      Validate if the provided package is a valid root package for the project.
 
-      This method checks if the specified package is included in the project's elements set. It is used to ensure
-      that the root package is a valid and integral part of the project's structure.
+      This method performs two checks:
+      1. It verifies that the provided package is of the correct type (Package).
+      2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and integral
+         part of the project's structure.
 
-      :param package: The package to be validated as part of the project.
+      :param package: The package to be validated as the root package of the project.
       :type package: Optional[Package]
-      :raises ValueError: If the package is not included in the project's elements.
+      :raises TypeError: If the provided object is not of type Package.
+      :raises ValueError: If the package is not included in the project's elements or is not a valid Package instance.
 
 
    .. py:method:: add_element(element)

@@ -1,4 +1,4 @@
-"""This module defines the GeneralizationSet class, a key construct in ontological modeling within the ontouml_py library.
+"""Define the GeneralizationSet class, a key construct in ontological modeling within the ontouml_py library.
 
 The GeneralizationSet class is used to represent a collection of generalizations, encapsulating the notions of
 disjointness and completeness in a model. It extends the ModelElement class, inheriting its core properties and
@@ -31,6 +31,7 @@ from pydantic import Field, model_validator, field_validator
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
 from ontouml_py.classes.concrete_classes.class_py import Class
 from ontouml_py.classes.concrete_classes.generalization import Generalization
+from ontouml_py.classes.utils.error_message import format_error_message
 from ontouml_py.classes.utils.nonemptyset import NonEmptySet
 
 
@@ -70,18 +71,28 @@ class GeneralizationSet(ModelElement):
     def __ensure_generalizations_type(cls, checked_set: set[object]) -> set[Generalization]:
         for elem in checked_set:
             if not isinstance(elem, Generalization):
-                raise ValueError(
-                    "All elements in a GeneralizationSet's generalization set must be of type " "Generalization."
+                error_message = format_error_message(
+                    error_type="ValueError.",
+                    description="Invalid element type in set of generalizations for GeneralizationSet.",
+                    cause=f"Expected Generalization instance, got {type(elem).__name__} instance.",
+                    solution="Ensure all elements in 'generalizations' are instances of Generalization.",
                 )
+                raise ValueError(error_message)
         return checked_set
 
     @field_validator("categorizer", mode="after")
     @classmethod
     def __ensure_categorizer_type(cls, checked_value: Optional[object]) -> Optional[Class]:
         if checked_value and not isinstance(checked_value, Class):
-            raise ValueError("A GeneralizationSet's categorizer must be of type Class.")
-        else:
-            return checked_value
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description="Invalid categorizer type for GeneralizationSet.",
+                cause=f"Expected Class instance, got {type(checked_value).__name__} instance.",
+                solution="Ensure the 'categorizer' is an instance of Class.",
+            )
+            raise ValueError(error_message)
+
+        return checked_value
 
     @model_validator(mode="after")
     def __validate_generalization_set(self) -> None:

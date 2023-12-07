@@ -28,7 +28,7 @@ class Packageable(ModelElement):
     :vartype model_config: Dict[str, Any]
     """
 
-    _in_package: Optional["Package"] = PrivateAttr(default=None)
+    _in_package: Optional["Package"] = PrivateAttr(default=None)  # noqa: F821 (flake8)
 
     model_config = {  # noqa (vulture)
         "validate_assignment": True,
@@ -52,7 +52,7 @@ class Packageable(ModelElement):
         super().__init__(**data)
 
     @property
-    def in_package(self) -> Optional["Package"]:
+    def in_package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
         """Read-only property to access the package this element is contained in.
 
         :return: The Package instance containing this element, if any.
@@ -60,7 +60,7 @@ class Packageable(ModelElement):
         """
         return self._in_package
 
-    def __set_in_package(self, new_package: "Package") -> None:
+    def __set_in_package(self, new_package: "Package") -> None:  # noqa: F821 (flake8)
         """Set the package this element is contained in. This method is private and should be used internally.
 
         :param new_package: The Package instance to set as the container of this element.

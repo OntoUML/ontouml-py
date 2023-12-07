@@ -21,6 +21,8 @@ from typing import Optional, Union
 
 from pydantic import Field, BaseModel, model_validator
 
+from ontouml_py.classes.utils.error_message import format_error_message
+
 
 class Cardinality(BaseModel):
     """A class representing the cardinality constraints in a data model.
@@ -76,18 +78,28 @@ class Cardinality(BaseModel):
         elif self.upper_bound and not self.lower_bound:
             self.lower_bound = self.upper_bound
 
-        rule01_error = "Forbidden cardinality value received. Allowed values are integers or '*'."
-
         # Ensure minimum string size > 0 (i.e., empty strings are not allowed)
         if (self.lower_bound == "") or (self.upper_bound == ""):
-            raise ValueError(rule01_error)
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description="Invalid cardinality bounds.",
+                cause="Empty string provided for lower or upper bound.",
+                solution="Ensure both bounds are integers or '*'.",
+            )
+            raise ValueError(error_message)
 
         # Verifying invalid digit
         rule1_lb = self.lower_bound and (self.lower_bound != "*" and not self.lower_bound.isdigit())
         rule1_ub = self.upper_bound and (self.upper_bound != "*" and not self.upper_bound.isdigit())
 
         if rule1_lb or rule1_ub:
-            raise ValueError(rule01_error)
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description="Invalid cardinality bounds.",
+                cause="Non-integer and non-'*' value provided for lower or upper bound.",
+                solution="Ensure both bounds are integers or '*'.",
+            )
+            raise ValueError(error_message)
 
         # Verifying if lower bound is greater than the upper bound
         rule2_a = (self.lower_bound == "*") and (self.upper_bound != "*")
@@ -96,7 +108,13 @@ class Cardinality(BaseModel):
             and (self.lower_bound != "*" and self.upper_bound != "*")
             and (int(self.lower_bound) > int(self.upper_bound))
         )
-        rule2_error = "The cardinality's lower bound cannot be higher than its upper bound."
 
         if rule2_a or rule2_b:
-            raise ValueError(rule2_error)
+            error_message = format_error_message(
+                error_type="Value Error",
+                description="Invalid cardinality bounds.",
+                cause=f"The cardinality's lower bound ({self.lower_bound}) "
+                f"is higher than its upper bound ({self.upper_bound}).",
+                solution="Ensure the lower bound is not greater than the upper bound.",
+            )
+            raise ValueError(error_message)

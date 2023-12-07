@@ -1,4 +1,4 @@
-"""This module provides the `NaryRelation` class, a specific implementation of the `Relation` class for representing
+"""This module provides the `NaryRelation` class, a specific implementation of the `Relation` class for representing \
 n-ary relations in an ontological model. An n-ary relation is a relation that involves more than two entities.
 
 The `NaryRelation` class inherits from `Relation` and maintains the same configuration settings, allowing for

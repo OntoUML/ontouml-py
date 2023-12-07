@@ -1,4 +1,4 @@
-"""This module provides the `BinaryRelation` class, a specific implementation of the `Relation` class for representing
+"""This module provides the `BinaryRelation` class, a specific implementation of the `Relation` class for representing \
 binary relations in an ontological model. A binary relation is a relation that involves exactly two distinct entities.
 
 The `BinaryRelation` class inherits from `Relation` and maintains the same configuration settings, allowing for

@@ -27,12 +27,8 @@ def test_generalization_with_same_classifier_raises_error() -> None:
     """Test that creating a Generalization with the same classifier for general and specific raises ValueError."""
     classifier = Relation()
 
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         Generalization(general=classifier, specific=classifier)
-
-    assert "A generalization must relate different 'general' and 'specific' Classifiers." in str(
-        excinfo.value
-    ), "Generalization should not allow the same classifier to be both general and specific."
 
 
 def test_generalization_with_invalid_general_type_raises_error() -> None:

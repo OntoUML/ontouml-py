@@ -22,6 +22,8 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
+from ontouml_py.classes.utils.error_message import format_error_message
+
 
 class OntoumlElement(ABC, BaseModel):
     """Abstract base class representing a generic element within an OntoUML model.
@@ -40,7 +42,7 @@ class OntoumlElement(ABC, BaseModel):
     :vartype model_config: Dict[str, Any]
     """
 
-    # TODO (@pedropaulofb): Create a controller dictionary to store all OntoumlElements available.
+    # TODO (@pedropaulofb): Check necessity to create a controller dictionary to store all OntoumlElements available.
 
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
@@ -70,7 +72,13 @@ class OntoumlElement(ABC, BaseModel):
 
         # Additional validations
         if self.modified is not None and self.modified < self.created:
-            raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid 'modified' timestamp for instance with ID {self.id}.",
+                cause=f"'modified' datetime ({self.modified}) is earlier than 'created' datetime ({self.created}).",
+                solution="Ensure 'modified' is later than or equal to 'created'.",
+            )
+            raise ValueError(error_message)
 
     def __setattr__(self, key: str, value: Any) -> None:
         """Set attribute values. Validates 'modified' against 'created'.
@@ -82,7 +90,13 @@ class OntoumlElement(ABC, BaseModel):
         :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
         """
         if key == "modified" and value is not None and value < self.created:
-            raise ValueError("The 'modified' datetime must be later than the 'created' datetime.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid modification of 'modified' attribute for instance with ID {self.id}.",
+                cause=f"'modified' datetime ({value}) is set earlier than 'created' datetime ({self.created}).",
+                solution="Ensure 'modified' is later than or equal to 'created'.",
+            )
+            raise ValueError(error_message)
         super().__setattr__(key, value)
 
     def __eq__(self, other: object) -> bool:
@@ -130,7 +144,10 @@ class OntoumlElement(ABC, BaseModel):
             current_class = current_class.__bases__[0]
         else:
             allowed = ", ".join(allowed_subclasses)
-
-            raise ValueError(
-                f"'{cls.__name__}' is not an allowed subclass. " f"Only these subclasses are permitted: {allowed}."
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid subclass type for class '{cls.__name__}'.",
+                cause=f"'{cls.__name__}' is not an allowed subclass.",
+                solution=f"Use one of the allowed subclasses: {allowed}.",
             )
+            raise ValueError(error_message)

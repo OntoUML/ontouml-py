@@ -13,9 +13,7 @@ from pydantic import Field, PrivateAttr
 from ontouml_py.classes.abstract_classes.decoratable import Decoratable
 from ontouml_py.classes.abstract_classes.packageable import Packageable
 from ontouml_py.classes.concrete_classes.property import Property
-
-
-# TODO (@pedropaulofb): Substitute [object] to ["Classifier"]
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class Classifier(Decoratable, Packageable):
@@ -70,7 +68,13 @@ class Classifier(Decoratable, Packageable):
         :raises TypeError: If the new_property is not an instance of Property.
         """
         if not isinstance(new_property, Property):
-            raise TypeError("Property to be added must be an instance of Property.")
+            error_message = format_error_message(
+                error_type="TypeError.",
+                description=f"Invalid property type for {self.__class__.__name__} with ID {self.id}.",
+                cause=f"Expected Property instance, got {type(new_property).__name__} instance.",
+                solution="Ensure that the new_property is an instance of Property.",
+            )
+            raise TypeError(error_message)
         self._properties.append(new_property)  # direct relation
         new_property._Property__set_property_of(self)  # inverse relation
 
@@ -83,13 +87,26 @@ class Classifier(Decoratable, Packageable):
         :raises ValueError: If the old_property is not part of the classifier's properties.
         """
         if not isinstance(old_property, Property):
-            raise TypeError(f"Property '{old_property}' cannot be removed as it is not a valid Property.")
+            error_message = format_error_message(
+                error_type="TypeError.",
+                description=f"Invalid property type for removal in {self.__class__.__name__} with ID {self.id}.",
+                cause=f"Expected Property instance, got {type(old_property).__name__} instance.",
+                solution="Ensure that the old_property is an instance of Property.",
+            )
+            raise TypeError(error_message)
 
-        if old_property in self._properties:
-            self._properties.remove(old_property)  # direct relation
-            old_property._Property__set_property_of(None)  # inverse relation
-        else:
-            raise ValueError(f"Property '{old_property}' cannot be removed because is not part of the classifier.")
+        if old_property not in self._properties:
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Property not found in {self.__class__.__name__} with ID {self.id}.",
+                cause=f"Property '{old_property}' is not part of the classifier's properties. "
+                f"Current properties are: {self._properties}.",
+                solution="Ensure that the property exists in the classifier before attempting to remove it.",
+            )
+            raise ValueError(error_message)
+
+        self._properties.remove(old_property)  # direct relation
+        old_property._Property__set_property_of(None)  # inverse relation
 
     @property
     def properties(self) -> list[Property]:

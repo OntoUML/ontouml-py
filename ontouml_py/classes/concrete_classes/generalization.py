@@ -1,7 +1,9 @@
-"""This module defines the `Generalization` class, a component of the ontouml_py library. The `Generalization` class
-represents a generalization relationship in an ontological model, linking two classifiers in a hierarchy where one
-(classifier) is a generalization of the other. This module includes the necessary validations to ensure the integrity
-of the generalization relationship, such as preventing a classifier from being a generalization of itself.
+"""This module defines the `Generalization` class, a component of the ontouml_py library.
+
+The `Generalization` class represents a generalization relationship in an ontological model, linking two classifiers in
+a hierarchy where one (classifier) is a generalization of the other. This module includes the necessary validations to
+ensure the integrity of the generalization relationship, such as preventing a classifier from being a generalization
+of itself.
 """
 from typing import Any
 
@@ -9,6 +11,7 @@ from pydantic import Field, model_validator
 
 from ontouml_py.classes.abstract_classes.classifier import Classifier
 from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class Generalization(ModelElement):
@@ -40,12 +43,18 @@ class Generalization(ModelElement):
     def __ensure_irreflexive(self):
         """Validate that the generalization relationship is irreflexive.
 
-        Ensures that the 'general' and 'specific' classifiers are not the same, as a classifier cannot generalize itself.
+        Ensures that the 'general' and 'specific' classifiers are different, as a classifier cannot generalize itself.
 
         :raises ValueError: If 'general' and 'specific' classifiers are the same.
         """
         if self.general == self.specific:
-            raise ValueError("A generalization must relate different 'general' and 'specific' Classifiers.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Invalid relationship for generalization with ID {self.id}.",
+                cause=f"The 'general' and 'specific' classifiers are the same (same ID {self.general.id}).",
+                solution="Ensure 'general' and 'specific' refer to different Classifiers.",
+            )
+            raise ValueError(error_message)
 
     def __init__(self, **data: dict[str, Any]) -> None:
         """Initialize a new instance of the Generalization class.

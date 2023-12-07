@@ -12,6 +12,7 @@ from typing import Any
 from pydantic import PrivateAttr
 
 from ontouml_py.classes.abstract_classes.packageable import Packageable
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class Package(Packageable):
@@ -53,7 +54,13 @@ class Package(Packageable):
 
         contents = data.get("contains")
         if contents is not None and not isinstance(contents, set):
-            raise TypeError("Expected 'contents' to be a set")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid type for 'contents' in Package with ID {self.id}.",
+                cause=f"Expected 'contents' to be a set, got {type(contents).__name__}.",
+                solution="Ensure 'contents' is provided as a set.",
+            )
+            raise TypeError(error_message)
         self._contents: set[Packageable] = contents if contents is not None else set()
 
     def add_content(self, content: Packageable) -> None:
@@ -68,10 +75,22 @@ class Package(Packageable):
                            contain itself.
         """
         if content == self:
-            raise TypeError("A package cannot contain itself.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description="Package cannot contain itself.",
+                cause=f"Attempted to add the package with ID {self.id} as its own content.",
+                solution="Ensure the content is not the package itself.",
+            )
+            raise TypeError(error_message)
 
         if not isinstance(content, Packageable):
-            raise TypeError("Content must be an instance of Packageable.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid content type in Package with ID {self.id}.",
+                cause=f"Expected Packageable instance, got {type(content).__name__} instance.",
+                solution="Ensure the content is an instance of Packageable.",
+            )
+            raise TypeError(error_message)
 
         self._contents.add(content)  # direct relation
         content._Packageable__set_in_package(self)  # inverse relation
@@ -88,13 +107,25 @@ class Package(Packageable):
         :raises ValueError: If the content is not part of the package.
         """
         if not isinstance(content, Packageable):
-            raise TypeError(f"Content '{content}' cannot be removed as it is not a valid Packageable.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid content type for removal in Package with ID {self.id}.",
+                cause=f"Expected Packageable instance, got {type(content).__name__} instance.",
+                solution="Ensure the content is an instance of Packageable.",
+            )
+            raise TypeError(error_message)
 
-        if content in self._contents:
-            self._contents.remove(content)  # direct relation
-            content._Packageable__set_in_package(None)  # inverse relation
-        else:
-            raise ValueError(f"content '{content}' cannot be removed because is not part of the package.")
+        if content not in self._contents:
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Content not found in Package with ID {self.id}.",
+                cause=f"Content '{content}' is not part of the package's contents. Its contents are: {self._contents}.",
+                solution="Ensure that the content exists in the package before attempting to remove it.",
+            )
+            raise ValueError(error_message)
+
+        self._contents.remove(content)
+        content._Packageable__set_in_package(None)
 
     @property
     def contents(self) -> set[Packageable]:

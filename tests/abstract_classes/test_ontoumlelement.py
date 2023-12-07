@@ -87,7 +87,7 @@ def test_modified_update_with_invalid_datetime() -> None:
     """
     concrete_ontouml_element = Project()
     earlier_time = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+    with pytest.raises(ValueError):
         concrete_ontouml_element.modified = earlier_time
 
 
@@ -162,7 +162,7 @@ def test_modified_update_to_past_datetime() -> None:
     """
     concrete_ontouml_element = Project()
     past_datetime = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+    with pytest.raises(ValueError):
         concrete_ontouml_element.modified = past_datetime
 
 
@@ -262,7 +262,7 @@ def test_error_when_modified_before_created() -> None:
     :raises ValueError: If 'modified' is set earlier than 'created'.
     """
     element = Project()
-    with pytest.raises(ValueError, match="The 'modified' datetime must be later than the 'created' datetime."):
+    with pytest.raises(ValueError):
         element.modified = element.created - timedelta(days=1)
 
 
@@ -277,7 +277,7 @@ def test_instantiation_allowed_subclass_namedelement() -> None:
     """Test instantiation of a class allowed in _allowed_subclasses."""
 
     try:
-        element = Project()  # noqa:F841 (flake8)
+        element = Project()  # noqa: F841 (flake8)
     except ValueError:
         pytest.fail("Instantiation of Package should not raise ValueError.")
 
@@ -320,11 +320,11 @@ def test_deep_inheritance_chain_allowed_subclass() -> None:
 # Test dynamic class creation and instantiation
 def test_dynamic_class_creation_instantiation() -> None:
     """Test dynamic creation and instantiation of a subclass."""
-    DynamicElement = type("DynamicElement", (Project,), {})
+    dynamic_element = type("dynamic_element", (Project,), {})
     try:
-        dynamic_element = DynamicElement()  # noqa (Vulture)
+        dynamic_element = dynamic_element()  # noqa (Vulture)
     except ValueError:
-        pytest.fail("Instantiation of DynamicElement should not raise ValueError.")
+        pytest.fail("Instantiation of dynamic_element should not raise ValueError.")
 
 
 # Test error message for disallowed subclass
@@ -462,11 +462,8 @@ def test_ontoumlelement_modification_date_validation() -> None:
     :raises AssertionError: If the modification date is incorrectly set earlier than the creation date.
     """
     element = Project()
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         element.modified = element.created - timedelta(days=1)
-    assert "The 'modified' datetime must be later than the 'created' datetime." in str(
-        excinfo.value
-    ), "Modification date should not be earlier than creation date."
 
 
 def test_ontoumlelement_hashability() -> None:

@@ -6,7 +6,9 @@ and landing pages, among others, providing a comprehensive representation of a p
 
 from typing import Any, Optional
 
+from icecream import ic
 from pydantic import Field, PrivateAttr, field_validator
+from pydantic_core.core_schema import ValidationInfo
 
 from ontouml_py.classes.abstract_classes.namedelement import NamedElement
 from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
@@ -14,6 +16,7 @@ from ontouml_py.classes.concrete_classes.package import Package
 from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
     OntologyRepresentationStyle,
 )
+from ontouml_py.classes.utils.error_message import format_error_message
 
 
 class Project(NamedElement):
@@ -103,7 +106,13 @@ class Project(NamedElement):
 
         elements = data.get("elements")
         if elements is not None and not isinstance(elements, set):
-            raise TypeError("Expected 'elements' to be a set")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid type for 'elements' in Project with ID {self.id}.",
+                cause=f"Expected 'elements' to be a set, got {type(elements).__name__}.",
+                solution="Ensure 'elements' is provided as a set.",
+            )
+            raise TypeError(error_message)
         self._elements: set[ProjectElement] = elements if elements is not None else set()
 
         if "root_package" in data:
@@ -140,32 +149,63 @@ class Project(NamedElement):
         mode="after",
     )
     @classmethod
-    def __ensure_non_empty(cls, checked_list: set[str]) -> set[str]:
+    def __ensure_non_empty(cls, checked_values: set[str], checked_field: ValidationInfo) -> set[str]:
         """Validate that the provided list does not contain empty strings.
 
-        :param checked_list: The list to be validated.
-        :type checked_list: set[str]
-        :return: The validated list.
+        This method checks each element in the specified list to ensure that it does not contain any empty strings. It is
+        applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations', 'keywords', etc.
+        If an empty string is found, a ValueError is raised with a detailed error message indicating the specific field
+        affected.
+
+        :param checked_values: The list of strings to be validated.
+        :type checked_values: set[str]
+        :param checked_field: Information about the field being validated, including the field name.
+        :type checked_field: ValidationInfo
+        :return: The validated list, ensuring no empty strings are present.
         :rtype: set[str]
-        :raises ValueError: If any element in the list is an empty string.
+        :raises ValueError: If any element in the list is an empty string, specifying the field where it occurred.
         """
-        for elem in checked_list:
+        for elem in checked_values:
             if elem == "":
-                raise ValueError("Empty strings are not allowed")
-        return checked_list
+                error_message = format_error_message(
+                    error_type="ValueError.",
+                    description="Invalid empty string in Project field.",
+                    cause=f"Empty string received for Project field {checked_field.field_name}.",
+                    solution="Ensure all elements in the list are non-empty strings.",
+                )
+                raise ValueError(error_message)
+        return checked_values
 
-    def __validate_root_package(self, package):
-        """Validate if the provided package is a part of the project's elements.
+    def __validate_root_package(self, package: Optional[Package]):
+        """Validate if the provided package is a valid root package for the project.
 
-        This method checks if the specified package is included in the project's elements set. It is used to ensure
-        that the root package is a valid and integral part of the project's structure.
+        This method performs two checks:
+        1. It verifies that the provided package is of the correct type (Package).
+        2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and integral
+           part of the project's structure.
 
-        :param package: The package to be validated as part of the project.
+        :param package: The package to be validated as the root package of the project.
         :type package: Optional[Package]
-        :raises ValueError: If the package is not included in the project's elements.
+        :raises TypeError: If the provided object is not of type Package.
+        :raises ValueError: If the package is not included in the project's elements or is not a valid Package instance.
         """
+        if package and not isinstance(package, Package):
+            error_message = format_error_message(
+                error_type="TypeError.",
+                description=f"Invalid root_package type received for Project with ID {self.id}.",
+                cause=f"The received root_package is not a Package, but a {type(package).__name__}.",
+                solution="Ensure the root_package is of type Package.",
+            )
+            raise TypeError(error_message)
+
         if package is not None and package not in self._elements:
-            raise ValueError("The root_package must be an element of the project.")
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description="Invalid root package for Project.",
+                cause=f"The root_package {package.id} is not an element of the project with ID {self.id}.",
+                solution="Ensure the root_package is included in the project's elements.",
+            )
+            raise ValueError(error_message)
 
     def add_element(self, element: ProjectElement) -> None:
         """Add a new element to the project's collection of elements.
@@ -179,7 +219,13 @@ class Project(NamedElement):
         :raises TypeError: If the provided element is not an instance of ProjectElement.
         """
         if not isinstance(element, ProjectElement):
-            raise TypeError("Element must be an instance of ProjectElement.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid element type in Project with ID {self.id}.",
+                cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
+                solution="Ensure the element is an instance of ProjectElement.",
+            )
+            raise TypeError(error_message)
 
         element._ProjectElement__set_in_project(self)  # direct relation
         self._elements.add(element)  # inverse relation
@@ -196,13 +242,26 @@ class Project(NamedElement):
         :raises ValueError: If the element is not part of the project.
         """
         if not isinstance(element, ProjectElement):
-            raise TypeError(f"Element '{element}' cannot be removed as it is not a valid ProjectElement.")
+            error_message = format_error_message(
+                error_type="Type Error",
+                description=f"Invalid element type for removal in Project with ID {self.id}.",
+                cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
+                solution="Ensure the element is an instance of ProjectElement.",
+            )
+            raise TypeError(error_message)
 
-        if element in self._elements:
-            self._elements.remove(element)  # direct relation
-            element._ProjectElement__set_in_project(None)  # inverse relation
-        else:
-            raise ValueError(f"Element '{element}' cannot be removed because is not part of the project.")
+        if element not in self._elements:
+            error_message = format_error_message(
+                error_type="ValueError.",
+                description=f"Element not found in Project with ID {self.id}.",
+                cause=f"Element with ID {element.id} is not part of the project's elements. "
+                f"Its current elements are: {self._elements}.",
+                solution="Ensure that the element exists in the project before attempting to remove it.",
+            )
+            raise ValueError(error_message)
+
+        self._elements.remove(element)
+        element._ProjectElement__set_in_project(None)
 
     @property
     def elements(self) -> set[ProjectElement]:

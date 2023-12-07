@@ -1,4 +1,8 @@
+import pytest
+
 from pydantic import ValidationError
+
+from ontouml_py import Cardinality
 
 
 def test_cardinality_with_valid_integer_bounds() -> None:
@@ -41,7 +45,7 @@ def test_cardinality_with_star_and_integer_bounds() -> None:
     :raises: ValueError: If lower bound is higher than upper bound.
     """
     with pytest.raises(ValueError):
-        cardinality = Cardinality(lower_bound="*", upper_bound="10")
+        Cardinality(lower_bound="*", upper_bound="10")
 
 
 def test_cardinality_with_integer_and_star_bounds() -> None:
@@ -119,10 +123,6 @@ def test_cardinality_with_non_numeric_string_bounds() -> None:
         Cardinality(lower_bound="abc", upper_bound="xyz")
 
 
-import pytest
-from ontouml_py.classes.datatypes.cardinality import Cardinality
-
-
 def test_cardinality_with_invalid_type_for_lower_bound() -> None:
     """Test Cardinality with an invalid type (e.g., list) for lower_bound, expecting a TypeError.
 
@@ -142,7 +142,8 @@ def test_cardinality_with_invalid_type_for_upper_bound() -> None:
 
 
 def test_cardinality_with_invalid_types_for_both_bounds() -> None:
-    """Test Cardinality with invalid types (e.g., tuple and float) for both lower_bound and upper_bound, expecting a TypeError.
+    """Test Cardinality with invalid types (e.g., tuple and float) for both lower_bound and upper_bound, \
+    expecting a TypeError.
 
     :raises: TypeError: If invalid types are used for both bounds.
     """
