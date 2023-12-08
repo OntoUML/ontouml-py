@@ -119,12 +119,3 @@ class OntoumlElement(ABC, BaseModel):
                 solution=f"Use one of the allowed subclasses: {allowed}.",
             )
             raise ValueError(error_message)
-
-class View(OntoumlElement):
-    def __init__(self, **data: dict[str, Any]) -> None:
-        super().__init__(**data)
-
-# x = View()
-# ic(x)
-# x.modified="a"
-# ic(x)
