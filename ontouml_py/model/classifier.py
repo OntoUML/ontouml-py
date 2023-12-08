@@ -11,10 +11,10 @@ from typing import Any
 from pydantic import Field
 from pydantic import PrivateAttr
 
-from ontouml_py.classes.abstract_classes.decoratable import Decoratable
-from ontouml_py.classes.abstract_classes.packageable import Packageable
-from ontouml_py.classes.concrete_classes.property import Property
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.decoratable import Decoratable
+from ontouml_py.model.packageable import Packageable
+from ontouml_py.model.property import Property
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Classifier(Decoratable, Packageable):

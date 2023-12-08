@@ -1,7 +1,7 @@
 import pytest
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.concrete_classes.property import Property
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.property import Property
 
 
 class Class(Classifier):

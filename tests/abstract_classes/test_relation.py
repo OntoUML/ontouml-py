@@ -1,9 +1,9 @@
 import pytest
 
-from ontouml_py.classes.abstract_classes.relation import Relation
-from ontouml_py.classes.concrete_classes.binaryrelation import BinaryRelation
-from ontouml_py.classes.concrete_classes.naryrelation import NaryRelation
-from ontouml_py.classes.enumerations.relationstereotype import RelationStereotype
+from ontouml_py.model.binaryrelation import BinaryRelation
+from ontouml_py.model.enumerations.relationstereotype import RelationStereotype
+from ontouml_py.model.naryrelation import NaryRelation
+from ontouml_py.model.relation import Relation
 
 
 def test_relation_initialization_with_valid_stereotype() -> None:

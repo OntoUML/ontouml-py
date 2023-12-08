@@ -12,7 +12,7 @@ from typing import Optional
 
 from pydantic import PrivateAttr
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.model.modelelement import ModelElement
 
 
 class Packageable(ModelElement):

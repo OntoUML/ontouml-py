@@ -1,7 +1,7 @@
 import pytest
 
-from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
-from ontouml_py.classes.concrete_classes.project import Project
+from ontouml_py.model.project import Project
+from ontouml_py.model.projectelement import ProjectElement
 
 
 @pytest.fixture

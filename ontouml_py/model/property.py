@@ -13,11 +13,11 @@ from pydantic import Field
 from pydantic import field_validator
 from pydantic import PrivateAttr
 
-from ontouml_py.classes.abstract_classes.decoratable import Decoratable
-from ontouml_py.classes.datatypes.cardinality import Cardinality
-from ontouml_py.classes.enumerations.aggregationkind import AggregationKind
-from ontouml_py.classes.enumerations.propertystereotype import PropertyStereotype
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.cardinality import Cardinality
+from ontouml_py.model.decoratable import Decoratable
+from ontouml_py.model.enumerations.aggregationkind import AggregationKind
+from ontouml_py.model.enumerations.propertystereotype import PropertyStereotype
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Property(Decoratable):

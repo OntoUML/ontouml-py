@@ -3,8 +3,8 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.concrete_classes.generalization import Generalization
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.generalization import Generalization
 
 
 class Relation(Classifier):

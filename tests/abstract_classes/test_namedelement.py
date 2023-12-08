@@ -4,7 +4,7 @@ import pytest
 from langstring import LangString
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.namedelement import NamedElement
+from ontouml_py.model.namedelement import NamedElement
 
 
 # Concrete subclass for testing

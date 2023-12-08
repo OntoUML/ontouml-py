@@ -1,6 +1,6 @@
 import pytest
 
-from ontouml_py.classes.utils.nonemptyset import NonEmptySet
+from ontouml_py.utils.nonemptyset import NonEmptySet
 
 
 def test_nonemptyset_initialization() -> None:

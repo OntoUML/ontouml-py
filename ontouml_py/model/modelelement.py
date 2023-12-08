@@ -5,8 +5,8 @@ from typing import Any
 
 from pydantic import Field
 
-from ontouml_py.classes.abstract_classes.namedelement import NamedElement
-from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
+from ontouml_py.model.namedelement import NamedElement
+from ontouml_py.model.projectelement import ProjectElement
 
 
 class ModelElement(NamedElement, ProjectElement):

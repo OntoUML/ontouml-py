@@ -6,9 +6,9 @@ import pytest
 from langstring import LangString
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from ontouml_py.classes.concrete_classes.project import Project
-from ontouml_py.classes.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
+from ontouml_py.model.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
+from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.model.project import Project
 
 
 def create_langstring(text: str) -> LangString:

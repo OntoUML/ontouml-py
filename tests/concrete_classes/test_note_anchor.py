@@ -4,9 +4,9 @@ import pytest
 from langstring import LangString
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from ontouml_py.classes.concrete_classes.anchor import Anchor
-from ontouml_py.classes.concrete_classes.note import Note
+from ontouml_py.model.anchor import Anchor
+from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.model.note import Note
 
 
 class Package(ModelElement):

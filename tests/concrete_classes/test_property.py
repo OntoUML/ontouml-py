@@ -2,11 +2,11 @@ from typing import Any
 
 import pytest
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.concrete_classes.property import Property
-from ontouml_py.classes.datatypes.cardinality import Cardinality
-from ontouml_py.classes.enumerations.aggregationkind import AggregationKind
-from ontouml_py.classes.enumerations.propertystereotype import PropertyStereotype
+from ontouml_py.model.cardinality import Cardinality
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.enumerations.aggregationkind import AggregationKind
+from ontouml_py.model.enumerations.propertystereotype import PropertyStereotype
+from ontouml_py.model.property import Property
 
 
 @pytest.fixture

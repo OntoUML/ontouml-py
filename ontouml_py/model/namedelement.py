@@ -14,8 +14,8 @@ from pydantic import Field
 from pydantic import field_validator
 from pydantic_core.core_schema import ValidationInfo
 
-from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.ontoumlelement import OntoumlElement
+from ontouml_py.utils.error_message import format_error_message
 
 
 class NamedElement(OntoumlElement):

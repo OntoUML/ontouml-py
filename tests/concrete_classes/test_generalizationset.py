@@ -2,12 +2,12 @@ from typing import Any
 
 import pytest
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from ontouml_py.classes.concrete_classes.class_py import Class
-from ontouml_py.classes.concrete_classes.generalization import Generalization
-from ontouml_py.classes.concrete_classes.generalizationset import GeneralizationSet
-from ontouml_py.classes.enumerations.classstereotype import ClassStereotype
+from ontouml_py.model.class_py import Class
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.enumerations.classstereotype import ClassStereotype
+from ontouml_py.model.generalization import Generalization
+from ontouml_py.model.generalizationset import GeneralizationSet
+from ontouml_py.model.modelelement import ModelElement
 
 
 class Relation(Classifier):

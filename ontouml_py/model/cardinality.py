@@ -24,7 +24,7 @@ from pydantic import BaseModel
 from pydantic import Field
 from pydantic import model_validator
 
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Cardinality(BaseModel):

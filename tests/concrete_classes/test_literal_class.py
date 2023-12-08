@@ -1,9 +1,9 @@
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py.classes.concrete_classes.class_py import Class
-from ontouml_py.classes.concrete_classes.literal import Literal
-from ontouml_py.classes.enumerations.classstereotype import ClassStereotype
+from ontouml_py.model.class_py import Class
+from ontouml_py.model.enumerations.classstereotype import ClassStereotype
+from ontouml_py.model.literal import Literal
 
 
 @pytest.fixture

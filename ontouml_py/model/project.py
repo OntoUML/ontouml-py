@@ -11,13 +11,11 @@ from pydantic import field_validator
 from pydantic import PrivateAttr
 from pydantic_core.core_schema import ValidationInfo
 
-from ontouml_py.classes.abstract_classes.namedelement import NamedElement
-from ontouml_py.classes.abstract_classes.projectelement import ProjectElement
-from ontouml_py.classes.concrete_classes.package import Package
-from ontouml_py.classes.enumerations.ontologyrepresentationstyle import (
-    OntologyRepresentationStyle,
-)
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
+from ontouml_py.model.namedelement import NamedElement
+from ontouml_py.model.package import Package
+from ontouml_py.model.projectelement import ProjectElement
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Project(NamedElement):
@@ -266,7 +264,7 @@ class Project(NamedElement):
 
     @property
     def elements(self) -> set[ProjectElement]:
-        """Provide a read-only view of the project's elements.
+        """Provide a read-only representation of the project's elements.
 
         This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
         use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's

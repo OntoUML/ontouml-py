@@ -6,7 +6,7 @@ customization and validation of attributes specific to n-ary relations.
 """
 from typing import Any
 
-from ontouml_py.classes.abstract_classes.relation import Relation
+from ontouml_py.model.relation import Relation
 
 
 class NaryRelation(Relation):

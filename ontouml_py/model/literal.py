@@ -9,7 +9,7 @@ classes as required, enhancing the dynamic interaction between literals and thei
 """
 from typing import Any
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.model.modelelement import ModelElement
 
 
 class Literal(ModelElement):

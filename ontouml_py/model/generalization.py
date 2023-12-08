@@ -10,9 +10,9 @@ from typing import Any
 from pydantic import Field
 from pydantic import model_validator
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Generalization(ModelElement):

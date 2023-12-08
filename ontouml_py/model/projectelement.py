@@ -11,7 +11,7 @@ from typing import Optional
 
 from pydantic import PrivateAttr
 
-from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
+from ontouml_py.model.ontoumlelement import OntoumlElement
 
 
 class ProjectElement(OntoumlElement):

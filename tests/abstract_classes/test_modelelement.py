@@ -2,7 +2,7 @@ from typing import Any
 
 import pytest
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.model.modelelement import ModelElement
 
 
 class Anchor(ModelElement):

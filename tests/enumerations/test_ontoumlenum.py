@@ -3,7 +3,7 @@ This module contains pytest tests for the OntoumlEnum class.
 
 Tests cover the initialization of enum members and the functionality of the get_members class method.
 """
-from ontouml_py.classes.enumerations.ontouml_enum import OntoumlEnum
+from ontouml_py.model.enumerations.ontouml_enum import OntoumlEnum
 
 
 def test_get_members() -> None:

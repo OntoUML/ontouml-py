@@ -1,7 +1,7 @@
 import pytest
 
-from ontouml_py.classes.concrete_classes.package import Package
-from ontouml_py.classes.concrete_classes.project import Project
+from ontouml_py.model.package import Package
+from ontouml_py.model.project import Project
 
 
 # Fixture for creating a sample project

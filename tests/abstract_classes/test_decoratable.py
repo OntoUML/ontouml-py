@@ -1,6 +1,6 @@
 import pytest
 
-from ontouml_py.classes.abstract_classes.decoratable import Decoratable
+from ontouml_py.model.decoratable import Decoratable
 
 
 class Classifier(Decoratable):

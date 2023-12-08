@@ -10,7 +10,7 @@ from typing import Any
 
 from pydantic import Field
 
-from ontouml_py.classes.abstract_classes.modelelement import ModelElement
+from ontouml_py.model.modelelement import ModelElement
 
 
 class Decoratable(ModelElement):

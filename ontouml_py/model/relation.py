@@ -11,8 +11,8 @@ from typing import Optional
 
 from pydantic import Field
 
-from ontouml_py.classes.abstract_classes.classifier import Classifier
-from ontouml_py.classes.enumerations.relationstereotype import RelationStereotype
+from ontouml_py.model.classifier import Classifier
+from ontouml_py.model.enumerations.relationstereotype import RelationStereotype
 
 
 class Relation(Classifier):

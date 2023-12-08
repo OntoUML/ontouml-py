@@ -10,8 +10,8 @@ from typing import Any
 
 from pydantic import PrivateAttr
 
-from ontouml_py.classes.abstract_classes.packageable import Packageable
-from ontouml_py.classes.utils.error_message import format_error_message
+from ontouml_py.model.packageable import Packageable
+from ontouml_py.utils.error_message import format_error_message
 
 
 class Package(Packageable):
@@ -128,7 +128,7 @@ class Package(Packageable):
 
     @property
     def contents(self) -> set[Packageable]:
-        """Provide a read-only view of the package's contents.
+        """Provide a read-only representation of the package's contents.
 
         This property is a safeguard to prevent direct modification of the 'contents' set. To add or remove contents,
         use the 'add_content' and 'remove_content' methods. This design ensures that the integrity of the package's

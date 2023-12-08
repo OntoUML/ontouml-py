@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py import Cardinality
+from ontouml_py.model.cardinality import Cardinality
 
 
 def test_cardinality_with_valid_integer_bounds() -> None:

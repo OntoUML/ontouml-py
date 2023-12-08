@@ -5,8 +5,8 @@ from datetime import timedelta
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.ontoumlelement import OntoumlElement
-from ontouml_py.classes.concrete_classes.project import Project
+from ontouml_py.model.ontoumlelement import OntoumlElement
+from ontouml_py.model.project import Project
 
 
 def test_abstract_class() -> None:

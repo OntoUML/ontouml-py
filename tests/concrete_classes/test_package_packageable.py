@@ -1,8 +1,8 @@
 import pytest
 from pydantic import ValidationError
 
-from ontouml_py.classes.abstract_classes.packageable import Packageable
-from ontouml_py.classes.concrete_classes.package import Package
+from ontouml_py.model.package import Package
+from ontouml_py.model.packageable import Packageable
 
 
 # Fixtures

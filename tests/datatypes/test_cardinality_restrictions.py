@@ -1,6 +1,6 @@
 import pytest
 
-from ontouml_py.classes.datatypes.cardinality import Cardinality
+from ontouml_py.model.cardinality import Cardinality
 
 
 def test_cardinality_lower_equals_upper() -> None:
