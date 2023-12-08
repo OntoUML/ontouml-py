@@ -83,20 +83,6 @@ def test_modified_initialization_with_none() -> None:
     assert concrete_ontouml_element.modified is None, "The 'modified' attribute should accept None."
 
 
-def test_modified_update_with_invalid_datetime() -> None:
-    """Test updating the 'modified' attribute with a datetime earlier than 'created' in Project.
-
-    :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
-    """
-    concrete_ontouml_element = Project()
-    earlier_time = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(
-        ValueError,
-        match=r"\* Error Type: ValueError\.\n\* Description: Invalid modification of 'modified' attribute for instance with ID .*\n\* Cause: 'modified' datetime \(.*\) is set earlier than 'created' datetime \(.*\)\.\n\* Solution: Ensure 'modified' is later than or equal to 'created'\.",
-    ):
-        concrete_ontouml_element.modified = earlier_time
-
-
 def test_modified_update_with_valid_datetime() -> None:
     """Test updating the 'modified' attribute with a valid datetime greater than 'created' in Project.
 
@@ -159,17 +145,6 @@ def test_modified_update_to_none_post_initialization() -> None:
     assert (
         concrete_ontouml_element.modified is None
     ), "The 'modified' attribute should be settable to None after initialization."
-
-
-def test_modified_update_to_past_datetime() -> None:
-    """Test updating the 'modified' attribute to a past datetime earlier than 'created' in Project.
-
-    :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
-    """
-    concrete_ontouml_element = Project()
-    past_datetime = concrete_ontouml_element.created - timedelta(days=1)
-    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute for instance with ID"):
-        concrete_ontouml_element.modified = past_datetime
 
 
 def test_modified_initialization_with_invalid_type() -> None:
@@ -260,16 +235,6 @@ def test_invalid_types_for_created_and_modified() -> None:
         Project(created="invalid-type")
     with pytest.raises(ValidationError, match="Input should be a valid datetime"):
         Project(modified="invalid-type")
-
-
-def test_error_when_modified_before_created() -> None:
-    """Test an error is raised if 'modified' is set to a datetime before 'created' in Project.
-
-    :raises ValueError: If 'modified' is set earlier than 'created'.
-    """
-    element = Project()
-    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute for instance with ID"):
-        element.modified = element.created - timedelta(days=1)
 
 
 # Example concrete subclass of NamedElement for testing
@@ -456,19 +421,6 @@ def test_ontoumlelement_initialization() -> None:
     assert isinstance(element, OntoumlElement), "OntoumlElement should initialize successfully."
 
 
-def test_ontoumlelement_modification_date_validation() -> None:
-    """Test that the modification date cannot be set earlier than the creation date.
-
-    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
-    :type concrete_ontouml_element: Package
-    :return: None
-    :raises AssertionError: If the modification date is incorrectly set earlier than the creation date.
-    """
-    element = Project()
-    with pytest.raises(ValueError, match="Invalid modification of 'modified' attribute"):
-        element.modified = element.created - timedelta(days=1)
-
-
 def test_ontoumlelement_hashability() -> None:
     """Test that OntoumlElement instances are hashable and their hash is based on the unique identifier.
     :return: None
@@ -488,8 +440,6 @@ def test_ontoumlelement_hashability() -> None:
 def test_ontoumlelement_equality() -> None:
     """Test that OntoumlElement instances are considered equal if they have the same unique identifier.
 
-    :param concrete_ontouml_element: A concrete instance of OntoumlElement for testing.
-    :type concrete_ontouml_element: Package
     :return: None
     :raises AssertionError: If OntoumlElement instances with the same id are not considered equal.
     """

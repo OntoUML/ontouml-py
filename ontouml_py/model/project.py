@@ -62,6 +62,8 @@ class Project(NamedElement):
     :vartype model_config: Dict[str, Any]
     """
 
+    # TODO (@pedropaulofb): Include logic to guarantee that inside a project no two elements have the same ID.
+
     # Private attributes
     _elements: set[ProjectElement] = PrivateAttr(default_factory=set)
     # Public attributes

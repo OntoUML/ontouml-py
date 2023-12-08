@@ -1,20 +1,3 @@
-"""This module defines the OntoumlElement class, an abstract base class for elements in an OntoUML model.
-
-It includes attributes for unique identification, creation, and modification timestamps, ensuring these properties are
-present across all OntoUML elements. The class also incorporates validations to enforce the integrity of these
-attributes and restricts direct modification of certain fields.
-
-Note on Elements and Projects in the Metamodel:
-According to the underlying language metamodel on which this software is based, all elements are conceptually either a
-Project or contained within a Project. In essence, no element exists independently outside the context of a Project.
-However, to facilitate the manipulation and management of these elements in the software, the code allows the creation
-and existence of elements outside a Project. It's important to note that while this flexibility aids in the
-development and testing process, the serialization and output of these elements in the supported formats are
-exclusively handled through the Project class. Consequently, only elements that are part of a Project are considered
-for serialization and included in the final output. This design decision aligns with the metamodel's principles while
-providing practical usability in the software environment.
-
-"""
 import uuid
 from abc import ABC
 from abc import abstractmethod
@@ -45,8 +28,6 @@ class OntoumlElement(ABC, BaseModel):
     :vartype model_config: Dict[str, Any]
     """
 
-    # TODO (@pedropaulofb): Check necessity to create a controller dictionary to store all OntoumlElements available.
-
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)
@@ -73,35 +54,6 @@ class OntoumlElement(ABC, BaseModel):
         # Sets attributes
         super().__init__(**data)
 
-        # Additional validations
-        if self.modified is not None and self.modified < self.created:
-            error_message = format_error_message(
-                error_type="ValueError.",
-                description=f"Invalid 'modified' timestamp for instance with ID {self.id}.",
-                cause=f"'modified' datetime ({self.modified}) is earlier than 'created' datetime ({self.created}).",
-                solution="Ensure 'modified' is later than or equal to 'created'.",
-            )
-            raise ValueError(error_message)
-
-    def __setattr__(self, key: str, value: Any) -> None:
-        """Set attribute values. Validates 'modified' against 'created'.
-
-        :param key: The attribute name to set.
-        :type key: str
-        :param value: The value to set for the attribute.
-        :type value: Any
-        :raises ValueError: If trying to modify read-only fields or if 'modified' is set earlier than 'created'.
-        """
-        if key == "modified" and value is not None and value < self.created:
-            error_message = format_error_message(
-                error_type="ValueError.",
-                description=f"Invalid modification of 'modified' attribute for instance with ID {self.id}.",
-                cause=f"'modified' datetime ({value}) is set earlier than 'created' datetime ({self.created}).",
-                solution="Ensure 'modified' is later than or equal to 'created'.",
-            )
-            raise ValueError(error_message)
-        super().__setattr__(key, value)
-
     def __eq__(self, other: object) -> bool:
         """Determine if two OntoumlElement instances are equal based on their unique identifiers.
 
@@ -118,7 +70,7 @@ class OntoumlElement(ABC, BaseModel):
         """
         if not isinstance(other, OntoumlElement):
             return NotImplemented
-        return self.id == other.id  # Assuming 'id' is a unique identifier for Project instances
+        return self.id == other.id
 
     def __hash__(self) -> int:
         """Compute the hash value of an OntoumlElement instance based on its unique identifier.
@@ -130,7 +82,7 @@ class OntoumlElement(ABC, BaseModel):
         :return: The hash value of the instance, computed using its 'id'.
         :rtype: int
         """
-        return hash(self.id)  # Hash based on a unique identifier
+        return hash(self.id)
 
     @classmethod
     def _validate_subclasses(cls, allowed_subclasses: list[str]) -> None:
