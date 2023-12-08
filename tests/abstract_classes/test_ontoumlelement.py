@@ -463,3 +463,55 @@ def test_ontoumlelement_subclass_restriction() -> None:
 
     with pytest.raises(ValueError, match="is not an allowed subclass"):
         UnauthorizedElement()
+
+def test_abstract_class_instantiation() -> None:
+    """Test if the abstract class OntoumlElement can be instantiated directly.
+
+    :raises TypeError: If direct instantiation of OntoumlElement is attempted.
+    """
+    with pytest.raises(TypeError, match="Can't instantiate abstract class OntoumlElement without an implementation"):
+        OntoumlElement()
+
+
+def test_ontoumlelement_equality_different_objects() -> None:
+    """Test the equality of two different OntoumlElement objects.
+
+    :raises AssertionError: If two different OntoumlElement objects are considered equal.
+    """
+    element1 = Project()
+    element2 = Project()
+    assert element1 != element2, "Different OntoumlElement instances should not be equal."
+
+
+def test_ontoumlelement_hash_collision() -> None:
+    """Test for hash collisions between different OntoumlElement instances.
+
+    :raises AssertionError: If two different OntoumlElement instances have the same hash value.
+    """
+    element1 = Project()
+    element2 = Project()
+    assert hash(element1) != hash(element2), "Different OntoumlElement instances should have different hash values."
+
+
+def test_ontoumlelement_validate_subclasses_invalid_subclass() -> None:
+    """Test the subclass validation mechanism with an invalid subclass.
+
+    :raises ValueError: If an invalid subclass is used.
+    """
+    class InvalidElement(OntoumlElement):
+        pass
+
+    with pytest.raises(TypeError, match="Can't instantiate abstract class InvalidElement without an implementation"):
+        InvalidElement()
+
+
+def test_ontoumlelement_validate_subclasses_valid_subclass() -> None:
+    """Test the subclass validation mechanism with a valid subclass.
+
+    :raises AssertionError: If a valid subclass raises a ValueError.
+    """
+    try:
+        valid_element = Project()
+        assert isinstance(valid_element, OntoumlElement), "Project should be a valid subclass of OntoumlElement."
+    except ValueError:
+        pytest.fail("Valid subclass should not raise ValueError.")
