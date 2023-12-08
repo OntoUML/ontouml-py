@@ -44,8 +44,8 @@ class NamedElement(OntoumlElement):
     alt_names: set[LangString] = Field(default_factory=set)
     description: Optional[LangString] = Field(default=None)
     editorial_notes: set[LangString] = Field(default_factory=set)
-    creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
-    contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the list
+    creators: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the set
+    contributors: set[str] = Field(default_factory=set)  # Empty strings are not allowed in the set
 
     model_config = {
         "arbitrary_types_allowed": True,

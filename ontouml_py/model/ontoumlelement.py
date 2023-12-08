@@ -37,6 +37,7 @@ class OntoumlElement(ABC, BaseModel):
     :cvar model_config: Configuration settings for the Pydantic model.
     :vartype model_config: Dict[str, Any]
     """
+
     id: str = Field(min_length=1, default_factory=lambda: str(uuid.uuid4()))
     created: datetime = Field(default_factory=datetime.now)
     modified: Optional[datetime] = Field(default=None)

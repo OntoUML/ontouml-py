@@ -3,10 +3,11 @@
 The Project class extends NamedElement to include project-specific details such as bibliographic citations, keywords,
 and landing pages, among others, providing a comprehensive representation of a project's metadata.
 """
-from typing import Any
+from typing import Any, ClassVar
 from typing import Optional
 
-from pydantic import Field
+from icecream import ic
+from pydantic import Field, BaseModel, model_validator
 from pydantic import field_validator
 from pydantic import PrivateAttr
 from pydantic_core.core_schema import ValidationInfo
@@ -65,7 +66,25 @@ class Project(NamedElement):
     # TODO (@pedropaulofb): Include logic to guarantee that inside a project no two elements have the same ID.
 
     # Private attributes
-    _elements: set[ProjectElement] = PrivateAttr(default_factory=set)
+    # Dictionary that contains, for each ProjectElement concrete class, a set of the IDs inside the project
+    _elements: dict[str, set[str]] = PrivateAttr(
+        default={
+            "Anchor": set(),
+            "BinaryRelation": set(),
+            "Class": set(),
+            "Diagram": set(),
+            "Generalization": set(),
+            "GeneralizationSet": set(),
+            "Literal": set(),
+            "NaryRelation": set(),
+            "Note": set(),
+            "Package": set(),
+            "Property": set(),
+            "Shape": set(),
+            "View": set(),
+        }
+    )
+
     # Public attributes
     acronyms: set[str] = Field(default_factory=set)
     bibliographic_citations: set[str] = Field(default_factory=set)
@@ -105,17 +124,6 @@ class Project(NamedElement):
         """
         super().__init__(**data)
 
-        elements = data.get("elements")
-        if elements is not None and not isinstance(elements, set):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid type for 'elements' in Project with ID {self.id}.",
-                cause=f"Expected 'elements' to be a set, got {type(elements).__name__}.",
-                solution="Ensure 'elements' is provided as a set.",
-            )
-            raise TypeError(error_message)
-        self._elements: set[ProjectElement] = elements if elements is not None else set()
-
         if "root_package" in data:
             self.__validate_root_package(data.get("root_package"))
 
@@ -134,48 +142,6 @@ class Project(NamedElement):
         if key == "root_package":
             self.__validate_root_package(value)
         super().__setattr__(key, value)
-
-    @field_validator(
-        "acronyms",
-        "bibliographic_citations",
-        "keywords",
-        "landing_pages",
-        "languages",
-        "sources",
-        "access_rights",
-        "ontology_types",
-        "themes",
-        "contexts",
-        "designed_for_task",
-        mode="after",
-    )
-    @classmethod
-    def __ensure_non_empty(cls, checked_values: set[str], checked_field: ValidationInfo) -> set[str]:
-        """Validate that the provided list does not contain empty strings.
-
-        This method checks each element in the specified list to ensure that it does not contain any empty strings.
-        It is applied to various fields in the Project class, such as 'acronyms', 'bibliographic_citations',
-        'keywords', etc. If an empty string is found, a ValueError is raised with a detailed error message indicating
-        the specific field affected.
-
-        :param checked_values: The list of strings to be validated.
-        :type checked_values: set[str]
-        :param checked_field: Information about the field being validated, including the field name.
-        :type checked_field: ValidationInfo
-        :return: The validated list, ensuring no empty strings are present.
-        :rtype: set[str]
-        :raises ValueError: If any element in the list is an empty string, specifying the field where it occurred.
-        """
-        for elem in checked_values:
-            if elem == "":
-                error_message = format_error_message(
-                    error_type="ValueError.",
-                    description="Invalid empty string in Project field.",
-                    cause=f"Empty string received for Project field {checked_field.field_name}.",
-                    solution="Ensure all elements in the list are non-empty strings.",
-                )
-                raise ValueError(error_message)
-        return checked_values
 
     def __validate_root_package(self, package: Optional[Package]) -> None:
         """Validate if the provided package is a valid root package for the project.
@@ -208,64 +174,64 @@ class Project(NamedElement):
             )
             raise ValueError(error_message)
 
-    def add_element(self, element: ProjectElement) -> None:
-        """Add a new element to the project's collection of elements.
+    # def add_element(self, element: ProjectElement) -> None:
+    #     """Add a new element to the project's collection of elements.
+    #
+    #     This method ensures that only instances of ProjectElement or its subclasses are added to the project. It also
+    #     establishes a bidirectional relationship between the project and the element by setting the element's
+    #     'in_project' attribute to this project instance.
+    #
+    #     :param element: The ProjectElement to be added.
+    #     :type element: ProjectElement
+    #     :raises TypeError: If the provided element is not an instance of ProjectElement.
+    #     """
+    #     if not isinstance(element, ProjectElement):
+    #         error_message = format_error_message(
+    #             error_type="Type Error",
+    #             description=f"Invalid element type in Project with ID {self.id}.",
+    #             cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
+    #             solution="Ensure the element is an instance of ProjectElement.",
+    #         )
+    #         raise TypeError(error_message)
+    #
+    #     element._ProjectElement__set_in_project(self)  # direct relation
+    #     self._elements.add(element)  # inverse relation
+    #
+    # def remove_element(self, element: ProjectElement) -> None:
+    #     """Remove an existing element from the project's collection of elements.
+    #
+    #     This method ensures that the element to be removed is actually part of the project. It also updates the
+    #     element's 'in_project' attribute to None, effectively breaking the bidirectional relationship.
+    #
+    #     :param element: The ProjectElement to be removed.
+    #     :type element: ProjectElement
+    #     :raises TypeError: If the element is not a valid ProjectElement.
+    #     :raises ValueError: If the element is not part of the project.
+    #     """
+    #     if not isinstance(element, ProjectElement):
+    #         error_message = format_error_message(
+    #             error_type="Type Error",
+    #             description=f"Invalid element type for removal in Project with ID {self.id}.",
+    #             cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
+    #             solution="Ensure the element is an instance of ProjectElement.",
+    #         )
+    #         raise TypeError(error_message)
+    #
+    #     if element not in self._elements:
+    #         error_message = format_error_message(
+    #             error_type="ValueError.",
+    #             description=f"Element not found in Project with ID {self.id}.",
+    #             cause=f"Element with ID {element.id} is not part of the project's elements. "
+    #             f"Its current elements are: {self._elements}.",
+    #             solution="Ensure that the element exists in the project before attempting to remove it.",
+    #         )
+    #         raise ValueError(error_message)
+    #
+    #     self._elements.remove(element)
+    #     element._ProjectElement__set_in_project(None)
 
-        This method ensures that only instances of ProjectElement or its subclasses are added to the project. It also
-        establishes a bidirectional relationship between the project and the element by setting the element's
-        'in_project' attribute to this project instance.
 
-        :param element: The ProjectElement to be added.
-        :type element: ProjectElement
-        :raises TypeError: If the provided element is not an instance of ProjectElement.
-        """
-        if not isinstance(element, ProjectElement):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid element type in Project with ID {self.id}.",
-                cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
-                solution="Ensure the element is an instance of ProjectElement.",
-            )
-            raise TypeError(error_message)
-
-        element._ProjectElement__set_in_project(self)  # direct relation
-        self._elements.add(element)  # inverse relation
-
-    def remove_element(self, element: ProjectElement) -> None:
-        """Remove an existing element from the project's collection of elements.
-
-        This method ensures that the element to be removed is actually part of the project. It also updates the
-        element's 'in_project' attribute to None, effectively breaking the bidirectional relationship.
-
-        :param element: The ProjectElement to be removed.
-        :type element: ProjectElement
-        :raises TypeError: If the element is not a valid ProjectElement.
-        :raises ValueError: If the element is not part of the project.
-        """
-        if not isinstance(element, ProjectElement):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid element type for removal in Project with ID {self.id}.",
-                cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
-                solution="Ensure the element is an instance of ProjectElement.",
-            )
-            raise TypeError(error_message)
-
-        if element not in self._elements:
-            error_message = format_error_message(
-                error_type="ValueError.",
-                description=f"Element not found in Project with ID {self.id}.",
-                cause=f"Element with ID {element.id} is not part of the project's elements. "
-                f"Its current elements are: {self._elements}.",
-                solution="Ensure that the element exists in the project before attempting to remove it.",
-            )
-            raise ValueError(error_message)
-
-        self._elements.remove(element)
-        element._ProjectElement__set_in_project(None)
-
-    @property
-    def elements(self) -> set[ProjectElement]:
+    def get_contents(self) -> dict:
         """Provide a read-only representation of the project's elements.
 
         This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
@@ -276,3 +242,42 @@ class Project(NamedElement):
         :rtype: set[ProjectElement]
         """
         return self._elements
+
+    def anchors(self) -> set[str]:
+        return self._elements["Anchor"]
+
+    def binary_relations(self) -> set[str]:
+        return self._elements["BinaryRelation"]
+
+    def classes(self) -> set[str]:
+        return self._elements["Class"]
+
+    def diagrams(self) -> set[str]:
+        return self._elements["Diagram"]
+
+    def generalizations(self) -> set[str]:
+        return self._elements["Generalization"]
+
+    def generalization_sets(self) -> set[str]:
+        return self._elements["GeneralizationSet"]
+
+    def literals(self) -> set[str]:
+        return self._elements["Literal"]
+
+    def nary_relations(self) -> set[str]:
+        return self._elements["NaryRelation"]
+
+    def notes(self) -> set[str]:
+        return self._elements["Note"]
+
+    def packages(self) -> set[str]:
+        return self._elements["Package"]
+
+    def propertys(self) -> set[str]:
+        return self._elements["Property"]
+
+    def shapes(self) -> set[str]:
+        return self._elements["Shape"]
+
+    def views(self) -> set[str]:
+        return self._elements["View"]

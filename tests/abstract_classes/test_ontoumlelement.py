@@ -464,6 +464,7 @@ def test_ontoumlelement_subclass_restriction() -> None:
     with pytest.raises(ValueError, match="is not an allowed subclass"):
         UnauthorizedElement()
 
+
 def test_abstract_class_instantiation() -> None:
     """Test if the abstract class OntoumlElement can be instantiated directly.
 
@@ -498,6 +499,7 @@ def test_ontoumlelement_validate_subclasses_invalid_subclass() -> None:
 
     :raises ValueError: If an invalid subclass is used.
     """
+
     class InvalidElement(OntoumlElement):
         pass
 
