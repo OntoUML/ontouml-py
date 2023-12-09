@@ -9,6 +9,7 @@ from abc import abstractmethod
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from langstring import LangString
 from pydantic import Field
 from pydantic import field_validator
@@ -61,7 +62,6 @@ class NamedElement(OntoumlElement):
         for elem in checked_values:
             if elem == "":
                 error_message = format_error_message(
-                    error_type="ValueError.",
                     description=f"Invalid empty string in {cls.__name__} list.",
                     cause=f"Empty string found in '{cls.__name__}' field {checked_field.field_name}.",
                     solution=f"Ensure all elements in the {checked_field.field_name} list are non-empty strings.",
@@ -81,6 +81,8 @@ class NamedElement(OntoumlElement):
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict[str, Any]
         """
+        ic()
+        ic(data)
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
         self._validate_subclasses(["Diagram", "ModelElement", "Project"])
 

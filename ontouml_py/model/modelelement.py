@@ -3,6 +3,7 @@ properties from both NamedElement and ProjectElement, and includes additional fe
 from abc import abstractmethod
 from typing import Any
 
+from icecream import ic
 from pydantic import Field
 
 from ontouml_py.model.namedelement import NamedElement
@@ -30,7 +31,7 @@ class ModelElement(NamedElement, ProjectElement):
     }
 
     @abstractmethod
-    def __init__(self, **data: dict[str, Any]) -> None:
+    def __init__(self, project, **data: dict[str, Any]) -> None:
         """Initialize a new ModelElement instance.
 
         :param data: Fields to be set on the model instance. This includes fields inherited from NamedElement and
@@ -38,6 +39,10 @@ class ModelElement(NamedElement, ProjectElement):
         :type data: Dict[str, Any]
         :raises ValueError: If the instance does not belong to the allowed subclasses.
         """
+        ic()
+        ic(project, data)
+        NamedElement.__init__(self, **data)
+        ProjectElement.__init__(self, project, **data)
         self._validate_subclasses(
             [
                 "Decoratable",
@@ -50,4 +55,3 @@ class ModelElement(NamedElement, ProjectElement):
                 "Packageable",
             ],
         )
-        super().__init__(**data)

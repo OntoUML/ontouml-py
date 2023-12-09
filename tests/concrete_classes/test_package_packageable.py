@@ -99,7 +99,7 @@ def test_packageable_in_package_property(packageable_content: Packageable, empty
     :param empty_package: Fixture providing an empty Package instance.
     """
     empty_package.add_content(packageable_content)
-    assert packageable_content.in_package == empty_package, "'in_package' should reference the containing package."
+    assert packageable_content.package == empty_package, "'in_package' should reference the containing package."
 
 
 def test_packageable_in_package_setter_restriction(packageable_content: Packageable) -> None:

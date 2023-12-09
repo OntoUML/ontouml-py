@@ -8,133 +8,192 @@ validation and assignment.
 """
 from typing import Any
 
+from icecream import ic
 from pydantic import PrivateAttr
 
+from ontouml_py.model.anchor import Anchor
+from ontouml_py.model.binaryrelation import BinaryRelation
+from ontouml_py.model.class_py import Class
+from ontouml_py.model.generalization import Generalization
+from ontouml_py.model.generalizationset import GeneralizationSet
+from ontouml_py.model.naryrelation import NaryRelation
+from ontouml_py.model.note import Note
 from ontouml_py.model.packageable import Packageable
 from ontouml_py.utils.error_message import format_error_message
 
 
 class Package(Packageable):
-    """Represents a package in an OntoUML model, extending Packageable.
-
-    A Package is a container for other Packageable contents, providing a way to group and organize these contents
-    within the OntoUML model. It supports operations to add and remove contents, ensuring the integrity and consistency
-    of the package's contents.
-
-    :ivar _contents: A private set of Packageable contents contained within the package.
-    :vartype _contents: set[Packageable]
-    :cvar model_config: Configuration settings for the Pydantic model.
-    :vartype model_config: Dict[str, Any]
-    """
 
     # Private attribute
-    _contents: set[Packageable] = PrivateAttr(default_factory=set)
+    _contents: dict[str, set[Packageable]] = PrivateAttr(
+        default={
+            "Anchor": set(),
+            "BinaryRelation": set(),
+            "Class": set(),
+            "Generalization": set(),
+            "GeneralizationSet": set(),
+            "NaryRelation": set(),
+            "Note": set(),
+            "Package": set(),
+        }
+    )
 
     model_config = {
         "arbitrary_types_allowed": True,
-        "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
+        "validate_assignment": True,
         "validate_default": True,
     }
 
-    def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Package instance with specified attributes.
+    def __init__(self, project, **data: dict[str, Any]) -> None:
+        ic()
+        ic(project, data)
+        super().__init__(project, **data)
+        project._elements["Package"].add(self)
 
-        This constructor sets up the package with the provided data, ensuring that all package-specific attributes
-        are correctly initialized. It also validates the 'contents' attribute to ensure it is a set, reflecting the
-        package's structure.
-
-        :param data: Fields to be set on the model instance, including package-specific attributes.
-        :type data: dict[str, Any]
-        :raises TypeError: If 'contents' is provided and is not a set, ensuring correct data structure.
-        """
-        super().__init__(**data)
-
-        contents = data.get("contains")
-        if contents is not None and not isinstance(contents, set):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid type for 'contents' in Package with ID {self.id}.",
-                cause=f"Expected 'contents' to be a set, got {type(contents).__name__}.",
-                solution="Ensure 'contents' is provided as a set.",
-            )
-            raise TypeError(error_message)
-        self._contents: set[Packageable] = contents if contents is not None else set()
-
-    def add_content(self, content: Packageable) -> None:
-        """Add a new content to the package's collection of contents.
-
-        This method ensures that only instances of Packageable or its subclasses are added to the package. It also
-        establishes a bidirectional relationship between the package and the content.
-
-        :param content: The Packageable content to be added.
-        :type content: Packageable
-        :raises TypeError: If the provided content is not an instance of Packageable or if a package attempts to
-                           contain itself.
-        """
-        if content == self:
-            error_message = format_error_message(
-                error_type="Type Error",
-                description="Package cannot contain itself.",
-                cause=f"Attempted to add the package with ID {self.id} as its own content.",
-                solution="Ensure the content is not the package itself.",
-            )
-            raise TypeError(error_message)
-
-        if not isinstance(content, Packageable):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid content type in Package with ID {self.id}.",
-                cause=f"Expected Packageable instance, got {type(content).__name__} instance.",
-                solution="Ensure the content is an instance of Packageable.",
-            )
-            raise TypeError(error_message)
-
-        self._contents.add(content)  # direct relation
-        content._Packageable__set_in_package(self)  # inverse relation
-
-    def remove_content(self, content: Packageable) -> None:
-        """Remove an existing content from the package's collection of contents.
-
-        This method ensures that the content to be removed is actually part of the package. It also updates the
-        content's 'in_package' attribute to None, effectively breaking the bidirectional relationship.
-
-        :param content: The Packageable content to be removed.
-        :type content: Packageable
-        :raises TypeError: If the content is not a valid Packageable.
-        :raises ValueError: If the content is not part of the package.
-        """
-        if not isinstance(content, Packageable):
-            error_message = format_error_message(
-                error_type="Type Error",
-                description=f"Invalid content type for removal in Package with ID {self.id}.",
-                cause=f"Expected Packageable instance, got {type(content).__name__} instance.",
-                solution="Ensure the content is an instance of Packageable.",
-            )
-            raise TypeError(error_message)
-
-        if content not in self._contents:
-            error_message = format_error_message(
-                error_type="ValueError.",
-                description=f"Content not found in Package with ID {self.id}.",
-                cause=f"Content '{content}' is not part of the package's contents. Its contents are: {self._contents}.",
-                solution="Ensure that the content exists in the package before attempting to remove it.",
-            )
-            raise ValueError(error_message)
-
-        self._contents.remove(content)
-        content._Packageable__set_in_package(None)
-
-    @property
-    def contents(self) -> set[Packageable]:
-        """Provide a read-only representation of the package's contents.
-
-        This property is a safeguard to prevent direct modification of the 'contents' set. To add or remove contents,
-        use the 'add_content' and 'remove_content' methods. This design ensures that the integrity of the package's
-        contents collection is maintained.
-
-        :return: A set of Packageable objects that are part of the package.
-        :rtype: set[Packageable]
-        """
+    def get_contents(self) -> dict:
         return self._contents
+
+    def get_anchors(self) -> set[str]:
+        return self._contents["Anchor"]
+
+    def get_binary_relations(self) -> set[str]:
+        return self._contents["BinaryRelation"]
+
+    def get_classes(self) -> set[str]:
+        return self._contents["Class"]
+
+    def get_generalizations(self) -> set[str]:
+        return self._contents["Generalization"]
+
+    def get_generalization_sets(self) -> set[str]:
+        return self._contents["GeneralizationSet"]
+
+    def get_nary_relations(self) -> set[str]:
+        return self._contents["NaryRelation"]
+
+    def get_notes(self) -> set[str]:
+        return self._contents["Note"]
+
+    def get_packages(self) -> set[str]:
+        return self._contents["Package"]
+
+
+    def get_content_by_id(self, content_type: str, content_id: str):
+        for internal_content in self._contents[content_type]:
+            if internal_content.id == content_id:
+                return internal_content
+
+    def get_anchor_by_id(self, content_id: str):
+        return self.get_content_by_id("Anchor", content_id)
+
+    def get_binary_relation_by_id(self, content_id: str):
+        return self.get_content_by_id("BinaryRelation", content_id)
+
+    def get_class_by_id(self, content_id: str):
+        return self.get_content_by_id("Class", content_id)
+
+    def get_generalization_by_id(self, content_id: str):
+        return self.get_content_by_id("Generalization", content_id)
+
+    def get_generalization_set_by_id(self, content_id: str):
+        return self.get_content_by_id("GeneralizationSet", content_id)
+
+    def get_nary_relation_by_id(self, content_id: str):
+        return self.get_content_by_id("NaryRelation", content_id)
+
+    def get_note_by_id(self, content_id: str):
+        return self.get_content_by_id("Note", content_id)
+
+    def get_package_by_id(self, content_id: str):
+        return self.get_content_by_id("Package", content_id)
+
+    def add_anchor(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["Anchor"].add(new_content)
+
+    def add_binary_relation(self, new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["BinaryRelation"].add(new_content)
+
+    def add_class(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["Class"].add(new_content)
+
+    def add_generalization(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["Generalization"].add(new_content)
+
+    def add_generalization_set(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["GeneralizationSet"].add(new_content)
+
+    def add_nary_relation(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["NaryRelation"].add(new_content)
+
+    def add_note(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["Note"].add(new_content)
+
+    def add_package(self,new_content):
+        new_content.__Packageable__set_package(self)
+        self._contents["Package"].add(new_content)
+
+    def remove_anchor(self, old_content: Anchor) -> None:
+        if old_content not in self._contents["Anchor"]:
+            raise ValueError(self.__removal_error_message(old_content, "Anchor"))
+        self._contents["Anchor"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_binary_relation(self, old_content: BinaryRelation) -> None:
+        if old_content not in self._contents["BinaryRelation"]:
+            raise ValueError(self.__removal_error_message(old_content, "BinaryRelation"))
+        self._contents["BinaryRelation"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_class(self, old_content: Class) -> None:
+        if old_content not in self._contents["Class"]:
+            raise ValueError(self.__removal_error_message(old_content, "Class"))
+        self._contents["Class"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_generalization(self, old_content: Generalization) -> None:
+        if old_content not in self._contents["Generalization"]:
+            raise ValueError(self.__removal_error_message(old_content, "Generalization"))
+        self._contents["Generalization"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_generalization_set(self, old_content: GeneralizationSet) -> None:
+        if old_content not in self._contents["GeneralizationSet"]:
+            raise ValueError(self.__removal_error_message(old_content, "GeneralizationSet"))
+        self._contents["GeneralizationSet"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_nary_relation(self, old_content: NaryRelation) -> None:
+        if old_content not in self._contents["NaryRelation"]:
+            raise ValueError(self.__removal_error_message(old_content, "NaryRelation"))
+        self._contents["NaryRelation"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_note(self, old_content: Note) -> None:
+        if old_content not in self._contents["Note"]:
+            raise ValueError(self.__removal_error_message(old_content, "Note"))
+        self._contents["Note"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def remove_package(self, old_content) -> None:
+        if old_content not in self._contents["Package"]:
+            raise ValueError(self.__removal_error_message(old_content, "Package"))
+        self._contents["Package"].remove(old_content)
+        old_content.__Packageable__set_package(None)
+
+    def __removal_error_message(self, old_content: Packageable, old_content_type: str) -> str:
+        error_message = format_error_message(
+            description=f"Invalid {old_content_type} content for removal.",
+            cause=f"The content {old_content} is not found in the {old_content_type} contents of the package with ID {self.id}.",
+            solution=f"Ensure the content to be removed is a valid {old_content_type} content in the package.",
+        )
+        return error_message
+

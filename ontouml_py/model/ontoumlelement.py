@@ -13,6 +13,7 @@ from datetime import datetime
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from pydantic import BaseModel
 from pydantic import Field
 
@@ -59,10 +60,12 @@ class OntoumlElement(ABC, BaseModel):
         :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-        self._validate_subclasses(["NamedElement", "Project", "ProjectElement", "Shape", "View"])
-
+        ic()
+        ic(data)
         # Sets attributes
         super().__init__(**data)
+        self._validate_subclasses(["NamedElement", "Project", "ProjectElement", "Shape", "View"])
+
 
     def __eq__(self, other: object) -> bool:
         """
@@ -113,7 +116,6 @@ class OntoumlElement(ABC, BaseModel):
         else:
             allowed = ", ".join(allowed_subclasses)
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Invalid subclass type for class '{cls.__name__}'.",
                 cause=f"'{cls.__name__}' is not an allowed subclass.",
                 solution=f"Use one of the allowed subclasses: {allowed}.",

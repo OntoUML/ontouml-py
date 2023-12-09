@@ -10,6 +10,7 @@ from abc import abstractmethod
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py.model.modelelement import ModelElement
@@ -28,42 +29,35 @@ class Packageable(ModelElement):
     :vartype model_config: Dict[str, Any]
     """
 
-    _in_package: Optional["Package"] = PrivateAttr(default=None)  # noqa: F821 (flake8)
+    _package: Optional["Package"] = PrivateAttr(default=None)
 
     model_config = {
-        "validate_assignment": True,
+        "arbitrary_types_allowed": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
+        "validate_assignment": True,
         "validate_default": True,
     }
 
     @abstractmethod
-    def __init__(self, **data: dict[str, Any]) -> None:
+    def __init__(self,project, **data: dict[str, Any]) -> None:
         """Initialize a new Packageable instance. This method is abstract and should be implemented by subclasses.
 
         Ensures that the element is part of a valid subclass and sets initial attributes. It also enforces that the
-        'in_package' attribute is not directly initialized, as it is a private property managed by the Package class.
+        '_package' attribute is not directly initialized, as it is a private property managed by the Package class.
 
-        :param data: Fields to be set on the model instance, excluding 'in_package'.
+        :param data: Fields to be set on the model instance, excluding '_package'.
         :type data: dict[str, Any]
-        :raises ValueError: If 'in_package' is directly initialized.
+        :raises ValueError: If '_package' is directly initialized.
         """
+        ic()
+        ic(project, data)
+        super().__init__(project,**data)
         self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Anchor"])
-        super().__init__(**data)
 
     @property
-    def in_package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
-        """Read-only property to access the package this element is contained in.
+    def package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
+        return self._package
 
-        :return: The Package instance containing this element, if any.
-        :rtype: Optional[Package]
-        """
-        return self._in_package
-
-    def __set_in_package(self, new_package: "Package") -> None:  # noqa: F821 (flake8)
-        """Set the package this element is contained in. This method is private and should be used internally.
-
-        :param new_package: The Package instance to set as the container of this element.
-        :type new_package: Package
-        """
-        self._in_package = new_package
+    def __set_package(self, owner_package: Optional["Package"]) -> None:  # noqa: F821 (flake8)
+        self._package = owner_package

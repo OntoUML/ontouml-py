@@ -8,6 +8,7 @@ and management.
 from abc import abstractmethod
 from typing import Any
 
+from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py import model
@@ -32,9 +33,9 @@ class ProjectElement(OntoumlElement):
 
     model_config = {
         "arbitrary_types_allowed": True,
-        "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
+        "validate_assignment": True,
         "validate_default": True,
     }
 
@@ -50,6 +51,8 @@ class ProjectElement(OntoumlElement):
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
                             initialized.
         """
+        ic()
+        ic(project, data)
         if not isinstance(project, model.project.Project):
             raise TypeError("unallowed type")
 
