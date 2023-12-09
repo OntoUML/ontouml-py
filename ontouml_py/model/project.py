@@ -1,73 +1,28 @@
-"""Module for the Project class within an OntoUML model.
-
-The Project class extends NamedElement to include project-specific details such as bibliographic citations, keywords,
-and landing pages, among others, providing a comprehensive representation of a project's metadata.
-"""
-from typing import Any, ClassVar
+from typing import Any
 from typing import Optional
 
-from icecream import ic
-from pydantic import Field, BaseModel, model_validator
-from pydantic import field_validator
+from pydantic import Field
 from pydantic import PrivateAttr
-from pydantic_core.core_schema import ValidationInfo
 
+from ontouml_py.model.anchor import Anchor
+from ontouml_py.model.binaryrelation import BinaryRelation
+from ontouml_py.model.class_py import Class
 from ontouml_py.model.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
+from ontouml_py.model.generalization import Generalization
+from ontouml_py.model.generalizationset import GeneralizationSet
 from ontouml_py.model.namedelement import NamedElement
+from ontouml_py.model.naryrelation import NaryRelation
+from ontouml_py.model.note import Note
 from ontouml_py.model.package import Package
 from ontouml_py.model.projectelement import ProjectElement
+from ontouml_py.representation.diagram import Diagram
 from ontouml_py.utils.error_message import format_error_message
 
 
 class Project(NamedElement):
-    """Represent an OntoUML Project, extending NamedElement with additional project-specific metadata.
-
-    This class encapsulates various aspects of a project, such as acronyms, bibliographic citations, keywords,
-    landing pages, and more. It provides a structured way to represent and access these details. The 'elements'
-    attribute, which holds the project elements, is managed through specific methods to ensure integrity and
-    consistency of the project's structure.
-
-    :ivar acronyms: A set of acronyms associated with the project, aiding in its identification and reference.
-    :vartype acronyms: set[str]
-    :ivar bibliographic_citations: A collection of bibliographic citations that reference/are relevant to the project
-    :vartype bibliographic_citations: set[str]
-    :ivar keywords: Descriptive keywords that encapsulate the essence and focus areas of the project.
-    :vartype keywords: set[str]
-    :ivar landing_pages: URLs pointing to web pages that provide an entry point or overview of the project.
-    :vartype landing_pages: set[str]
-    :ivar languages: The set of languages that are used or supported within the scope of the project.
-    :vartype languages: set[str]
-    :ivar namespace: An optional namespace that provides a unique context for the project's elements.
-    :vartype namespace: Optional[str]
-    :ivar sources: A set of sources or references that have contributed information to the project.
-    :vartype sources: set[str]
-    :ivar access_rights: Information detailing the access rights and restrictions associated with the project.
-    :vartype access_rights: set[str]
-    :ivar ontology_types: The types of ontologies that are utilized or represented in the project.
-    :vartype ontology_types: set[str]
-    :ivar themes: Themes or topics that are central or relevant to the project's objectives and content.
-    :vartype themes: set[str]
-    :ivar license: Optional licensing information, specifying the legal usage terms of the project's outputs.
-    :vartype license: Optional[str]
-    :ivar contexts: The contexts or environments for which the project is specifically designed.
-    :vartype contexts: set[str]
-    :ivar designed_for_task: A set of tasks or objectives that the project is intended to address or facilitate.
-    :vartype designed_for_task: set[str]
-    :ivar publisher: The entity responsible for publishing or disseminating the project, optional.
-    :vartype publisher: Optional[str]
-    :ivar root_package: The root package of the project, serving as the entry point for the project's structure.
-    :vartype root_package: Optional[Package]
-    :ivar representation_style: The style or methodology used for representing the ontologies within the project.
-    :vartype representation_style: OntologyRepresentationStyle
-    :cvar model_config: Configuration settings for the Pydantic model.
-    :vartype model_config: Dict[str, Any]
-    """
-
-    # TODO (@pedropaulofb): Include logic to guarantee that inside a project no two elements have the same ID.
-
     # Private attributes
-    # Dictionary that contains, for each ProjectElement concrete class, a set of the IDs inside the project
-    _elements: dict[str, set[str]] = PrivateAttr(
+    # Dictionary that contains, for each ProjectElement concrete class, a set of the elements inside the project
+    _elements: dict[str, set[ProjectElement]] = PrivateAttr(
         default={
             "Anchor": set(),
             "BinaryRelation": set(),
@@ -112,16 +67,6 @@ class Project(NamedElement):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Project instance with specified attributes.
-
-        This constructor sets up the project with the provided data, ensuring that all project-specific attributes
-        are correctly initialized. It also validates the 'elements' attribute to ensure it is a set, reflecting the
-        project's structure.
-
-        :param data: Fields to be set on the model instance, including project-specific attributes.
-        :type data: dict[str, Any]
-        :raises TypeError: If 'elements' is provided and is not a set, ensuring correct data structure.
-        """
         super().__init__(**data)
 
         if "root_package" in data:
@@ -174,110 +119,141 @@ class Project(NamedElement):
             )
             raise ValueError(error_message)
 
-    # def add_element(self, element: ProjectElement) -> None:
-    #     """Add a new element to the project's collection of elements.
-    #
-    #     This method ensures that only instances of ProjectElement or its subclasses are added to the project. It also
-    #     establishes a bidirectional relationship between the project and the element by setting the element's
-    #     'in_project' attribute to this project instance.
-    #
-    #     :param element: The ProjectElement to be added.
-    #     :type element: ProjectElement
-    #     :raises TypeError: If the provided element is not an instance of ProjectElement.
-    #     """
-    #     if not isinstance(element, ProjectElement):
-    #         error_message = format_error_message(
-    #             error_type="Type Error",
-    #             description=f"Invalid element type in Project with ID {self.id}.",
-    #             cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
-    #             solution="Ensure the element is an instance of ProjectElement.",
-    #         )
-    #         raise TypeError(error_message)
-    #
-    #     element._ProjectElement__set_in_project(self)  # direct relation
-    #     self._elements.add(element)  # inverse relation
-    #
-    # def remove_element(self, element: ProjectElement) -> None:
-    #     """Remove an existing element from the project's collection of elements.
-    #
-    #     This method ensures that the element to be removed is actually part of the project. It also updates the
-    #     element's 'in_project' attribute to None, effectively breaking the bidirectional relationship.
-    #
-    #     :param element: The ProjectElement to be removed.
-    #     :type element: ProjectElement
-    #     :raises TypeError: If the element is not a valid ProjectElement.
-    #     :raises ValueError: If the element is not part of the project.
-    #     """
-    #     if not isinstance(element, ProjectElement):
-    #         error_message = format_error_message(
-    #             error_type="Type Error",
-    #             description=f"Invalid element type for removal in Project with ID {self.id}.",
-    #             cause=f"Expected ProjectElement instance, got {type(element).__name__}.",
-    #             solution="Ensure the element is an instance of ProjectElement.",
-    #         )
-    #         raise TypeError(error_message)
-    #
-    #     if element not in self._elements:
-    #         error_message = format_error_message(
-    #             error_type="ValueError.",
-    #             description=f"Element not found in Project with ID {self.id}.",
-    #             cause=f"Element with ID {element.id} is not part of the project's elements. "
-    #             f"Its current elements are: {self._elements}.",
-    #             solution="Ensure that the element exists in the project before attempting to remove it.",
-    #         )
-    #         raise ValueError(error_message)
-    #
-    #     self._elements.remove(element)
-    #     element._ProjectElement__set_in_project(None)
-
-
-    def get_contents(self) -> dict:
-        """Provide a read-only representation of the project's elements.
-
-        This property is a safeguard to prevent direct modification of the 'elements' set. To add or remove elements,
-        use the 'add_element' and 'remove_element' methods. This design ensures that the integrity of the project's
-        elements collection is maintained.
-
-        :return: A set of ProjectElement objects that are part of the project.
-        :rtype: set[ProjectElement]
-        """
+    def get_elements(self) -> dict:
         return self._elements
 
-    def anchors(self) -> set[str]:
+    def get_anchors(self) -> set[str]:
         return self._elements["Anchor"]
 
-    def binary_relations(self) -> set[str]:
+    def get_binary_relations(self) -> set[str]:
         return self._elements["BinaryRelation"]
 
-    def classes(self) -> set[str]:
+    def get_classes(self) -> set[str]:
         return self._elements["Class"]
 
-    def diagrams(self) -> set[str]:
+    def get_diagrams(self) -> set[str]:
         return self._elements["Diagram"]
 
-    def generalizations(self) -> set[str]:
+    def get_generalizations(self) -> set[str]:
         return self._elements["Generalization"]
 
-    def generalization_sets(self) -> set[str]:
+    def get_generalization_sets(self) -> set[str]:
         return self._elements["GeneralizationSet"]
 
-    def literals(self) -> set[str]:
+    def get_literals(self) -> set[str]:
         return self._elements["Literal"]
 
-    def nary_relations(self) -> set[str]:
+    def get_nary_relations(self) -> set[str]:
         return self._elements["NaryRelation"]
 
-    def notes(self) -> set[str]:
+    def get_notes(self) -> set[str]:
         return self._elements["Note"]
 
-    def packages(self) -> set[str]:
+    def get_packages(self) -> set[str]:
         return self._elements["Package"]
 
-    def propertys(self) -> set[str]:
+    def get_propertys(self) -> set[str]:
         return self._elements["Property"]
 
-    def shapes(self) -> set[str]:
+    def get_shapes(self) -> set[str]:
         return self._elements["Shape"]
 
-    def views(self) -> set[str]:
+    def get_views(self) -> set[str]:
         return self._elements["View"]
+
+    def create_anchor(self):
+        new_element = Anchor(self)
+        self._elements["Anchor"].add(new_element)
+
+    def create_binary_relation(self):
+        new_element = BinaryRelation(self)
+        self._elements["BinaryRelation"].add(new_element)
+        return new_element
+
+    def create_class(self):
+        new_element = Class(self)
+        self._elements["Class"].add(new_element)
+        return new_element
+
+    def create_diagram(self, **data: dict[str, Any]):
+        new_element = Diagram(self, **data)
+        self._elements["Diagram"].add(new_element)
+        return new_element
+
+    def create_generalization(self):
+        new_element = Generalization(self)
+        self._elements["Generalization"].add(new_element)
+        return new_element
+
+    def create_generalization_set(self):
+        new_element = GeneralizationSet(self)
+        self._elements["GeneralizationSet"].add(new_element)
+        return new_element
+
+    def create_nary_relation(self):
+        new_element = NaryRelation(self)
+        self._elements["NaryRelation"].add(new_element)
+        return new_element
+
+    def create_note(self):
+        new_element = Note(self)
+        self._elements["Note"].add(new_element)
+        return new_element
+
+    def create_package(self):
+        new_element = Package(self)
+        self._elements["Package"].add(new_element)
+        return new_element
+
+    def delete_anchor(self, old_element: Anchor) -> None:
+        if old_element not in self._elements["Anchor"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Anchor"))
+        self._elements["Anchor"].remove(old_element)
+
+    def delete_binary_relation(self, old_element: BinaryRelation) -> None:
+        if old_element not in self._elements["BinaryRelation"]:
+            raise ValueError(self.__deletion_error_message(old_element, "BinaryRelation"))
+        self._elements["BinaryRelation"].remove(old_element)
+
+    def delete_class(self, old_element: Class) -> None:
+        if old_element not in self._elements["Class"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Class"))
+        self._elements["Class"].remove(old_element)
+
+    def delete_diagram(self, old_element: Diagram) -> None:
+        if old_element not in self._elements["Diagram"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Diagram"))
+        self._elements["Diagram"].remove(old_element)
+
+    def delete_generalization(self, old_element: Generalization) -> None:
+        if old_element not in self._elements["Generalization"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Generalization"))
+        self._elements["Generalization"].remove(old_element)
+
+    def delete_generalization_set(self, old_element: GeneralizationSet) -> None:
+        if old_element not in self._elements["GeneralizationSet"]:
+            raise ValueError(self.__deletion_error_message(old_element, "GeneralizationSet"))
+        self._elements["GeneralizationSet"].remove(old_element)
+
+    def delete_nary_relation(self, old_element: NaryRelation) -> None:
+        if old_element not in self._elements["NaryRelation"]:
+            raise ValueError(self.__deletion_error_message(old_element, "NaryRelation"))
+        self._elements["NaryRelation"].remove(old_element)
+
+    def delete_note(self, old_element: Note) -> None:
+        if old_element not in self._elements["Note"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Note"))
+        self._elements["Note"].remove(old_element)
+
+    def delete_package(self, old_element: Package) -> None:
+        if old_element not in self._elements["Package"]:
+            raise ValueError(self.__deletion_error_message(old_element, "Package"))
+        self._elements["Package"].remove(old_element)
+
+    def __deletion_error_message(self, old_element: ProjectElement, old_element_type: str) -> str:
+        error_message = format_error_message(
+            description=f"Invalid {old_element_type} element for deletion.",
+            cause=f"The element {old_element} is not found in the {old_element_type} elements of the project with ID {self.id}.",
+            solution=f"Ensure the element to be deleted is a valid {old_element_type} element in the project.",
+        )
+        return error_message

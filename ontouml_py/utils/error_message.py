@@ -12,7 +12,6 @@ Functions:
 
 Example:
     format_error_message(
-        error_type="Database Connection Error",
         description="The application failed to connect to the database.",
         cause="Invalid database credentials provided.",
         solution="Check and update the database credentials in the configuration file."
@@ -24,15 +23,13 @@ Note:
 """
 
 
-def format_error_message(error_type: str, description: str, cause: str, solution: str) -> str:
+def format_error_message(description: str, cause: str, solution: str) -> str:
     """Format a detailed error message.
 
     This function takes four string parameters describing various aspects of an error and prints a formatted error
     message to the console. It is designed to provide clear and actionable information to the user about errors
     that occur within the application.
 
-    :param error_type: The type or category of the error. This should be a brief identifier summarizing the error.
-    :type error_type: str
     :param description: A detailed description of what the error is. This should provide specific \
     information about the nature of the error.
     :type description: str
@@ -44,9 +41,8 @@ def format_error_message(error_type: str, description: str, cause: str, solution
     :type solution: str
     :return: Formatted error message.
     """
-    return (
-        f"\n* Error Type: {error_type}"
-        f"\n* Description: {description}"
-        f"\n* Cause: {cause}"
-        f"\n* Solution: {solution}\n"
-    )
+    return f"""
+            \n* Description: {description}
+            \n* Cause: {cause}
+            \n* Solution: {solution}\n
+            """
