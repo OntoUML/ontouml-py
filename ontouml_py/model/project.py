@@ -69,56 +69,6 @@ class Project(NamedElement):
     def __init__(self, **data: dict[str, Any]) -> None:
         super().__init__(**data)
 
-        if "root_package" in data:
-            self.__validate_root_package(data.get("root_package"))
-
-    def __setattr__(self, key: str, value: Any) -> None:
-        """Override the default attribute setting behavior to include validation for 'root_package'.
-
-        This method intercepts the setting of the 'root_package' attribute to ensure that the assigned package is
-        a part of the project's elements. If the validation fails, a ValueError is raised.
-
-        :param key: The name of the attribute to be set.
-        :type key: str
-        :param value: The value to be assigned to the attribute.
-        :type value: Any
-        :raises ValueError: If 'root_package' is set to a package not in the project's elements.
-        """
-        if key == "root_package":
-            self.__validate_root_package(value)
-        super().__setattr__(key, value)
-
-    def __validate_root_package(self, package: Optional[Package]) -> None:
-        """Validate if the provided package is a valid root package for the project.
-
-        This method performs two checks:
-        1. It verifies that the provided package is of the correct type (Package).
-        2. It checks if the specified package is included in the project's elements set, ensuring it is a valid and
-        integral part of the project's structure.
-
-        :param package: The package to be validated as the root package of the project.
-        :type package: Optional[Package]
-        :raises TypeError: If the provided object is not of type Package.
-        :raises ValueError: If the package is not included in the project's elements or is not a valid Package instance.
-        """
-        if package and not isinstance(package, Package):
-            error_message = format_error_message(
-                error_type="TypeError.",
-                description=f"Invalid root_package type received for Project with ID {self.id}.",
-                cause=f"The received root_package is not a Package, but a {type(package).__name__}.",
-                solution="Ensure the root_package is of type Package.",
-            )
-            raise TypeError(error_message)
-
-        if package is not None and package not in self._elements:
-            error_message = format_error_message(
-                error_type="ValueError.",
-                description="Invalid root package for Project.",
-                cause=f"The root_package {package.id} is not an element of the project with ID {self.id}.",
-                solution="Ensure the root_package is included in the project's elements.",
-            )
-            raise ValueError(error_message)
-
     def get_elements(self) -> dict:
         return self._elements
 
@@ -152,7 +102,7 @@ class Project(NamedElement):
     def get_packages(self) -> set[str]:
         return self._elements["Package"]
 
-    def get_propertys(self) -> set[str]:
+    def get_properties(self) -> set[str]:
         return self._elements["Property"]
 
     def get_shapes(self) -> set[str]:
@@ -257,3 +207,47 @@ class Project(NamedElement):
             solution=f"Ensure the element to be deleted is a valid {old_element_type} element in the project.",
         )
         return error_message
+
+    def get_element_by_id(self, element_type: str, element_id: str):
+        for internal_element in self._elements[element_type]:
+            if internal_element.id == element_id:
+                return internal_element
+
+    def get_anchor_by_id(self, element_id: str):
+        return self.get_element_by_id("Anchor", element_id)
+
+    def get_binary_relation_by_id(self, element_id: str):
+        return self.get_element_by_id("BinaryRelation", element_id)
+
+    def get_class_by_id(self, element_id: str):
+        return self.get_element_by_id("Class", element_id)
+
+    def get_diagram_by_id(self, element_id: str):
+        return self.get_element_by_id("Diagram", element_id)
+
+    def get_generalization_by_id(self, element_id: str):
+        return self.get_element_by_id("Generalization", element_id)
+
+    def get_generalization_set_by_id(self, element_id: str):
+        return self.get_element_by_id("GeneralizationSet", element_id)
+
+    def get_literal_by_id(self, element_id: str):
+        return self.get_element_by_id("Literal", element_id)
+
+    def get_nary_relation_by_id(self, element_id: str):
+        return self.get_element_by_id("NaryRelation", element_id)
+
+    def get_note_by_id(self, element_id: str):
+        return self.get_element_by_id("Note", element_id)
+
+    def get_package_by_id(self, element_id: str):
+        return self.get_element_by_id("Package", element_id)
+
+    def get_property_by_id(self, element_id: str):
+        return self.get_element_by_id("Property", element_id)
+
+    def get_shape_by_id(self, element_id: str):
+        return self.get_element_by_id("Shape", element_id)
+
+    def get_view_by_id(self, element_id: str):
+        return self.get_element_by_id("View", element_id)
