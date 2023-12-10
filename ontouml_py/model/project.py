@@ -68,8 +68,6 @@ class Project(NamedElement):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        ic()
-        ic(data)
         super().__init__(**data)
 
     def get_elements(self) -> dict:
@@ -158,7 +156,6 @@ class Project(NamedElement):
     def get_view_by_id(self, element_id: str):
         return self.get_element_by_id("View", element_id)
 
-
     def create_anchor(self, **data: dict[str, Any]):
         new_element = Anchor(self, **data)
         self._elements["Anchor"].add(new_element)
@@ -207,46 +204,63 @@ class Project(NamedElement):
         if old_element not in self._elements["Anchor"]:
             raise ValueError(self.__deletion_error_message(old_element, "Anchor"))
         self._elements["Anchor"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_binary_relation(self, old_element: BinaryRelation) -> None:
         if old_element not in self._elements["BinaryRelation"]:
             raise ValueError(self.__deletion_error_message(old_element, "BinaryRelation"))
         self._elements["BinaryRelation"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_class(self, old_element: Class) -> None:
         if old_element not in self._elements["Class"]:
             raise ValueError(self.__deletion_error_message(old_element, "Class"))
         self._elements["Class"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_diagram(self, old_element: Diagram) -> None:
         if old_element not in self._elements["Diagram"]:
             raise ValueError(self.__deletion_error_message(old_element, "Diagram"))
         self._elements["Diagram"].remove(old_element)
+        del old_element
 
     def delete_generalization(self, old_element: Generalization) -> None:
         if old_element not in self._elements["Generalization"]:
             raise ValueError(self.__deletion_error_message(old_element, "Generalization"))
         self._elements["Generalization"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_generalization_set(self, old_element: GeneralizationSet) -> None:
         if old_element not in self._elements["GeneralizationSet"]:
             raise ValueError(self.__deletion_error_message(old_element, "GeneralizationSet"))
         self._elements["GeneralizationSet"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_nary_relation(self, old_element: NaryRelation) -> None:
         if old_element not in self._elements["NaryRelation"]:
             raise ValueError(self.__deletion_error_message(old_element, "NaryRelation"))
         self._elements["NaryRelation"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_note(self, old_element: Note) -> None:
         if old_element not in self._elements["Note"]:
             raise ValueError(self.__deletion_error_message(old_element, "Note"))
         self._elements["Note"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def delete_package(self, old_element: Package) -> None:
         if old_element not in self._elements["Package"]:
             raise ValueError(self.__deletion_error_message(old_element, "Package"))
         self._elements["Package"].remove(old_element)
+        old_element._remove_from_package()
+        del old_element
 
     def __deletion_error_message(self, old_element: ProjectElement, old_element_type: str) -> str:
         error_message = format_error_message(
@@ -255,4 +269,3 @@ class Project(NamedElement):
             solution=f"Ensure the element to be deleted is a valid {old_element_type} element in the project.",
         )
         return error_message
-

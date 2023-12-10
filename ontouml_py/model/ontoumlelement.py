@@ -60,12 +60,10 @@ class OntoumlElement(ABC, BaseModel):
         :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-        ic()
-        ic(data)
+
         # Sets attributes
         super().__init__(**data)
         self._validate_subclasses(["NamedElement", "Project", "ProjectElement", "Shape", "View"])
-
 
     def __eq__(self, other: object) -> bool:
         """

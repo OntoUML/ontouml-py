@@ -39,8 +39,7 @@ class ModelElement(ProjectElement, NamedElement):
         :type data: Dict[str, Any]
         :raises ValueError: If the instance does not belong to the allowed subclasses.
         """
-        ic()
-        ic(project, data)
+
         NamedElement.__init__(self, **data)
         ProjectElement.__init__(self, project, **data)
         self._validate_subclasses(

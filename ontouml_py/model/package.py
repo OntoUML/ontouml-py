@@ -23,7 +23,6 @@ from ontouml_py.utils.error_message import format_error_message
 
 
 class Package(Packageable):
-
     # Private attribute
     _contents: dict[str, set[Packageable]] = PrivateAttr(
         default={
@@ -47,8 +46,6 @@ class Package(Packageable):
     }
 
     def __init__(self, project, **data: dict[str, Any]) -> None:
-        ic()
-        ic(project, data)
         super().__init__(project, **data)
         project._elements["Package"].add(self)
 
@@ -79,7 +76,6 @@ class Package(Packageable):
     def get_packages(self) -> set[str]:
         return self._contents["Package"]
 
-
     def get_content_by_id(self, content_type: str, content_id: str):
         for internal_content in self._contents[content_type]:
             if internal_content.id == content_id:
@@ -109,7 +105,7 @@ class Package(Packageable):
     def get_package_by_id(self, content_id: str):
         return self.get_content_by_id("Package", content_id)
 
-    def add_anchor(self,new_content):
+    def add_anchor(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["Anchor"].add(new_content)
 
@@ -117,29 +113,35 @@ class Package(Packageable):
         new_content.__Packageable__set_package(self)
         self._contents["BinaryRelation"].add(new_content)
 
-    def add_class(self,new_content):
+    def add_class(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["Class"].add(new_content)
 
-    def add_generalization(self,new_content):
+    def add_generalization(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["Generalization"].add(new_content)
 
-    def add_generalization_set(self,new_content):
+    def add_generalization_set(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["GeneralizationSet"].add(new_content)
 
-    def add_nary_relation(self,new_content):
+    def add_nary_relation(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["NaryRelation"].add(new_content)
 
-    def add_note(self,new_content):
+    def add_note(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["Note"].add(new_content)
 
-    def add_package(self,new_content):
+    def add_package(self, new_content):
         new_content.__Packageable__set_package(self)
         self._contents["Package"].add(new_content)
+
+    def remove_content(self, old_content:Packageable)->None:
+        old_content_type = type(old_content)
+        if old_content not in self._contents[old_content_type]:
+            raise ValueError("Removal by id error")
+        self._contents[old_content_type].remove(old_content)
 
     def remove_anchor(self, old_content: Anchor) -> None:
         if old_content not in self._contents["Anchor"]:
@@ -196,4 +198,3 @@ class Package(Packageable):
             solution=f"Ensure the content to be removed is a valid {old_content_type} content in the package.",
         )
         return error_message
-

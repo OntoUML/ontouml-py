@@ -40,7 +40,7 @@ class Packageable(ModelElement):
     }
 
     @abstractmethod
-    def __init__(self,project, **data: dict[str, Any]) -> None:
+    def __init__(self, project, **data: dict[str, Any]) -> None:
         """Initialize a new Packageable instance. This method is abstract and should be implemented by subclasses.
 
         Ensures that the element is part of a valid subclass and sets initial attributes. It also enforces that the
@@ -50,9 +50,8 @@ class Packageable(ModelElement):
         :type data: dict[str, Any]
         :raises ValueError: If '_package' is directly initialized.
         """
-        ic()
-        ic(project, data)
-        super().__init__(project,**data)
+
+        super().__init__(project, **data)
         self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Anchor"])
 
     @property
@@ -61,3 +60,8 @@ class Packageable(ModelElement):
 
     def __set_package(self, owner_package: Optional["Package"]) -> None:  # noqa: F821 (flake8)
         self._package = owner_package
+
+    def _remove_from_package(self):
+        owner = self._package
+        if owner:
+            owner.remove_content(self)

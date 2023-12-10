@@ -81,8 +81,7 @@ class NamedElement(OntoumlElement):
         :param data: Fields to be set on the model instance, including inherited and class-specific attributes.
         :type data: dict[str, Any]
         """
-        ic()
-        ic(data)
+
         # List of allowed subclasses: NamedElement is a categorizer of a complete generalization set
         self._validate_subclasses(["Diagram", "ModelElement", "Project"])
 

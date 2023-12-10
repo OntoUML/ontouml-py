@@ -51,8 +51,7 @@ class ProjectElement(OntoumlElement):
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created', or if 'in_project' is directly
                             initialized.
         """
-        ic()
-        ic(project, data)
+
         if not isinstance(project, model.project.Project):
             raise TypeError("unallowed type")
 
