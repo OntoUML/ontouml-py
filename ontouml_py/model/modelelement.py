@@ -10,7 +10,7 @@ from ontouml_py.model.namedelement import NamedElement
 from ontouml_py.model.projectelement import ProjectElement
 
 
-class ModelElement(NamedElement, ProjectElement):
+class ModelElement(ProjectElement, NamedElement):
     """Represents a model element, inheriting properties from both NamedElement and ProjectElement.
 
     :ivar custom_properties: A set of custom properties associated with the model element. Each property is a tuple
