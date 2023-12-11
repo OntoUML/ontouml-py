@@ -8,6 +8,7 @@ from pydantic import PrivateAttr
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.class_py import Class
+from ontouml_py.model.enumerations.classstereotype import ClassStereotype
 from ontouml_py.model.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
 from ontouml_py.model.generalization import Generalization
 from ontouml_py.model.generalizationset import GeneralizationSet
@@ -156,6 +157,8 @@ class Project(NamedElement):
     def get_view_by_id(self, element_id: str):
         return self.get_element_by_id("View", element_id)
 
+    ### ELEMENTS' CREATION CREATION METHODS
+
     def create_anchor(self, **data: dict[str, Any]):
         new_element = Anchor(self, **data)
         self._elements["Anchor"].add(new_element)
@@ -165,8 +168,8 @@ class Project(NamedElement):
         self._elements["BinaryRelation"].add(new_element)
         return new_element
 
-    def create_class(self, **data: dict[str, Any]):
-        new_element = Class(self, **data)
+    def create_class(self, stereotype:Optional[ClassStereotype]=None, **data: dict[str, Any]):
+        new_element = Class(self, stereotype, **data)
         self._elements["Class"].add(new_element)
         return new_element
 
@@ -199,6 +202,114 @@ class Project(NamedElement):
         new_element = Package(self, **data)
         self._elements["Package"].add(new_element)
         return new_element
+
+    ### CLASSES'S CREATION METHODS
+
+    def create_class_abstract(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.ABSTRACT
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_category(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.CATEGORY
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_collective(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.COLLECTIVE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_datatype(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.DATATYPE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_enumeration(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.ENUMERATION
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_event(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.EVENT
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_historical_role(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.HISTORICAL_ROLE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_historical_role_mixin(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.HISTORICAL_ROLE_MIXIN
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_kind(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.KIND
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_mixin(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.MIXIN
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_mode(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.MODE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_phase(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.PHASE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_phase_mixin(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.PHASE_MIXIN
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_quality(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.QUALITY
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_quantity(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.QUANTITY
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_relator(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.RELATOR
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_role(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.ROLE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_role_mixin(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.ROLE_MIXIN
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_situation(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.SITUATION
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_subkind(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.SUBKIND
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
+    def create_class_type(self,**data: dict[str, Any]):
+        stereotype = ClassStereotype.TYPE
+        order = 1 # to be substituted
+        restricted_to = None # to be substituted
+        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
 
     def delete_anchor(self, old_element: Anchor) -> None:
         if old_element not in self._elements["Anchor"]:
