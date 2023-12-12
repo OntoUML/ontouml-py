@@ -48,7 +48,5 @@ class Decoratable(ModelElement):
         :type data: dict[str, Any]
         :raises ValueError: If the instance is not a valid subclass of Decoratable.
         """
-        self._validate_subclasses(
-            ["Classifier", "Property"],
-        )
+
         super().__init__(**data)

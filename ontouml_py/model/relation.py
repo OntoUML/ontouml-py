@@ -45,9 +45,7 @@ class Relation(Classifier):
         :type data: Dict[str, Any]
         :raises ValueError: If the subclass is not among the allowed subclasses.
         """
-        self._validate_subclasses(
-            ["BinaryRelation", "NaryRelation"],
-        )
+
         super().__init__(**data)
 
 

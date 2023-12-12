@@ -56,9 +56,7 @@ class Classifier(Decoratable, Packageable):
         :type data: dict[str, Any]
         :raises TypeError: If 'properties' is provided but is not a set.
         """
-        self._validate_subclasses(
-            ["Class", "Relation"],
-        )
+
         super().__init__(**data)
 
     def add_property(self, new_property: Property) -> None:

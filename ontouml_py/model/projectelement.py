@@ -5,16 +5,15 @@ an OntoUML model. It extends the OntoumlElement class, adding a read-only attrib
 project. The module ensures elements are part of valid subclasses and enforces constraints on attribute initialization
 and management.
 """
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any
 
 from pydantic import PrivateAttr
 
 from ontouml_py import model
-from ontouml_py.model.ontoumlelement import OntoumlElement
 
 
-class ProjectElement(OntoumlElement):
+class ProjectElement(ABC):
     """Abstract class representing an element that is part of a project in an OntoUML model.
 
     This class extends OntoumlElement and includes an additional attribute to link the element to a specific project.
@@ -56,7 +55,6 @@ class ProjectElement(OntoumlElement):
 
         super().__init__(**data)
         self._project = project
-        self._validate_subclasses(["ModelElement", "Diagram", "Shape", "View"])
 
     @property
     def project(self) -> "Project":

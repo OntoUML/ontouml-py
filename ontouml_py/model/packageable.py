@@ -51,7 +51,6 @@ class Packageable(ModelElement):
         """
 
         super().__init__(project, **data)
-        self._validate_subclasses(["Package", "Generalization", "GeneralizationSet", "Classifier", "Note", "Anchor"])
 
     @property
     def package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
