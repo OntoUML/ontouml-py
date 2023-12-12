@@ -172,10 +172,13 @@ class Project(NamedElement):
         self,
         stereotype: Optional[ClassStereotype] = None,
         order: int = 1,
-        restricted_to: set[Optional[OntologicalNature]] = set(),
+        restricted_to: Optional[set[Optional[OntologicalNature]]] = None,
         is_abstract: bool = False,
         **data: dict[str, Any],
     ) -> Class:
+        if restricted_to is None:
+            restricted_to = set()
+
         new_element = Class(
             self, stereotype=stereotype, order=order, restricted_to=restricted_to, is_abstract=is_abstract, **data
         )

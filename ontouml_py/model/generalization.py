@@ -11,11 +11,11 @@ from pydantic import Field
 from pydantic import model_validator
 
 from ontouml_py.model.classifier import Classifier
-from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.model.packageable import Packageable
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Generalization(ModelElement):
+class Generalization(Packageable):
     """Represent a generalization relationship between two classifiers in an ontological model.
 
     This class extends `ModelElement` and is used to define a generalization, where one classifier (the general) is

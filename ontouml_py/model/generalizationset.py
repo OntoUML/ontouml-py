@@ -33,12 +33,12 @@ from pydantic import model_validator
 
 from ontouml_py.model.class_py import Class
 from ontouml_py.model.generalization import Generalization
-from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.model.packageable import Packageable
 from ontouml_py.utils.error_message import format_error_message
 from ontouml_py.utils.nonemptyset import NonEmptySet
 
 
-class GeneralizationSet(ModelElement):
+class GeneralizationSet(Packageable):
     """Represent a set of generalizations in an ontological model, extending the ModelElement class.
 
     A GeneralizationSet is a collection of Generalization instances, typically used to represent

@@ -27,9 +27,10 @@ from pydantic import Field
 
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.note import Note
+from ontouml_py.model.packageable import Packageable
 
 
-class Anchor(ModelElement):
+class Anchor(Packageable):
     """Represent an anchor in an OntoUML model.
 
     An anchor is a specialized model element that links a note (note) to another model element (target). It
