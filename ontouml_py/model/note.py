@@ -21,9 +21,10 @@ from langstring import LangString
 from pydantic import Field
 
 from ontouml_py.model.modelelement import ModelElement
+from ontouml_py.model.packageable import Packageable
 
 
-class Note(ModelElement):
+class Note(Packageable):
     """Represents a note in an OntoUML model.
 
     A note is a specialized model element that contains textual information. It extends the ModelElement class,
@@ -45,7 +46,7 @@ class Note(ModelElement):
         "validate_default": True,
     }
 
-    def __init__(self, **data: dict[str, Any]) -> None:
+    def __init__(self, project:object, **data: dict[str, Any]) -> None:
         """Initialize a new Note instance.
 
         Calls the initializer of the superclass (ModelElement) and sets up the Note-specific attributes.
@@ -54,3 +55,4 @@ class Note(ModelElement):
         :type data: dict[str, Any]
         """
         super().__init__(**data)
+        project._elements["Note"].add(self)

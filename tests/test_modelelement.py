@@ -1,5 +1,3 @@
-import pytest
-
 from ontouml_py.model.modelelement import ModelElement
 
 
