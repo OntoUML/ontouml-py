@@ -86,7 +86,6 @@ class Cardinality(BaseModel):
         # Ensure minimum string size > 0 (i.e., empty strings are not allowed)
         if (self.lower_bound == "") or (self.upper_bound == ""):
             error_message = format_error_message(
-                error_type="ValueError.",
                 description="Invalid cardinality bounds.",
                 cause="Empty string provided for lower or upper bound.",
                 solution="Ensure both bounds are integers or '*'.",
@@ -99,7 +98,6 @@ class Cardinality(BaseModel):
 
         if rule1_lb or rule1_ub:
             error_message = format_error_message(
-                error_type="ValueError.",
                 description="Invalid cardinality bounds.",
                 cause="Non-integer and non-'*' value provided for lower or upper bound.",
                 solution="Ensure both bounds are integers or '*'.",
@@ -116,7 +114,6 @@ class Cardinality(BaseModel):
 
         if rule2_a or rule2_b:
             error_message = format_error_message(
-                error_type="Value Error",
                 description="Invalid cardinality bounds.",
                 cause=f"The cardinality's lower bound ({self.lower_bound}) "
                 f"is higher than its upper bound ({self.upper_bound}).",

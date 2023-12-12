@@ -70,7 +70,6 @@ class Classifier(Decoratable, Packageable):
         """
         if not isinstance(new_property, Property):
             error_message = format_error_message(
-                error_type="TypeError.",
                 description=f"Invalid property type for {self.__class__.__name__} with ID {self.id}.",
                 cause=f"Expected Property instance, got {type(new_property).__name__} instance.",
                 solution="Ensure that the new_property is an instance of Property.",
@@ -89,7 +88,6 @@ class Classifier(Decoratable, Packageable):
         """
         if not isinstance(old_property, Property):
             error_message = format_error_message(
-                error_type="TypeError.",
                 description=f"Invalid property type for removal in {self.__class__.__name__} with ID {self.id}.",
                 cause=f"Expected Property instance, got {type(old_property).__name__} instance.",
                 solution="Ensure that the old_property is an instance of Property.",
@@ -98,7 +96,6 @@ class Classifier(Decoratable, Packageable):
 
         if old_property not in self._properties:
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Property not found in {self.__class__.__name__} with ID {self.id}.",
                 cause=f"Property '{old_property}' is not part of the classifier's properties. "
                 f"Current properties are: {self._properties}.",

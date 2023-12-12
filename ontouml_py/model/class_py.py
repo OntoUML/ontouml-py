@@ -16,7 +16,7 @@ The module is named class_py instead of class due to the fact that class is a re
 As reserved keywords cannot be used as module names, class_py was chosen to maintain clarity and consistency with the
 module's purpose, while avoiding naming conflicts within the Python language."
 """
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import Field
 from pydantic import model_validator
@@ -53,9 +53,9 @@ class Class(Classifier):
     # Public attributes
     is_powertype: bool = Field(default=False)
     order: str = Field(min_length=1, default="1")
-    restricted_to: set[OntologicalNature] = Field(default_factory=set)
-    stereotype: ClassStereotype = Field()
-    literals: set[Literal] = Field(default_factory=set)
+    restricted_to: set[Optional[OntologicalNature]] = Field(default_factory=set)
+    stereotype: Optional[ClassStereotype] = Field(default=None)
+    literals: set[Optional[Literal]] = Field(default_factory=set)
 
     model_config = {
         "arbitrary_types_allowed": True,
@@ -79,7 +79,6 @@ class Class(Classifier):
         # Check if non-Enumeration classes have literals, which is not allowed
         if len(self.literals) > 0 and (self.stereotype != ClassStereotype.ENUMERATION):
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Invalid literals for Class with ID {self.id}.",
                 cause=f"Class has literals ({self.literals}) but does not have an Enumeration stereotype, "
                 f"has {self.stereotype}.",
@@ -90,7 +89,6 @@ class Class(Classifier):
         # Check if Enumeration classes have at least one literal, as required
         if len(self.literals) == 0 and self.stereotype == ClassStereotype.ENUMERATION:
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Missing literals for Enumeration Class with ID {self.id}.",
                 cause="Enumeration class must have at least one literal.",
                 solution="Add at least one literal to the class.",
@@ -123,7 +121,6 @@ class Class(Classifier):
         """
         if not isinstance(literal, Literal):
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Invalid literal type for Class with ID {self.id}.",
                 cause=f"Expected Literal instance, got an instance of type {type(literal).__name__}.",
                 solution="Ensure the object to be added is an instance of Literal.",
@@ -139,7 +136,6 @@ class Class(Classifier):
         """
         if literal not in self.literals:
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Literal not found in Class with ID {self.id}.",
                 cause=f"The literal {literal} to be removed does not exist in the class. "
                 f"Existing ones are {self.literals}.",

@@ -75,7 +75,6 @@ class GeneralizationSet(ModelElement):
         for elem in checked_set:
             if not isinstance(elem, Generalization):
                 error_message = format_error_message(
-                    error_type="ValueError.",
                     description="Invalid element type in set of generalizations for GeneralizationSet.",
                     cause=f"Expected Generalization instance, got {type(elem).__name__} instance.",
                     solution="Ensure all elements in 'generalizations' are instances of Generalization.",
@@ -88,7 +87,6 @@ class GeneralizationSet(ModelElement):
     def __ensure_categorizer_type(cls, checked_value: Optional[object]) -> Optional[Class]:
         if checked_value and not isinstance(checked_value, Class):
             error_message = format_error_message(
-                error_type="ValueError.",
                 description="Invalid categorizer type for GeneralizationSet.",
                 cause=f"Expected Class instance, got {type(checked_value).__name__} instance.",
                 solution="Ensure the 'categorizer' is an instance of Class.",

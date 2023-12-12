@@ -3,7 +3,6 @@ properties from both NamedElement and ProjectElement, and includes additional fe
 from abc import abstractmethod
 from typing import Any
 
-from icecream import ic
 from pydantic import Field
 
 from ontouml_py.model.namedelement import NamedElement

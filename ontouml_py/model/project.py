@@ -1,7 +1,6 @@
 from typing import Any
 from typing import Optional
 
-from icecream import ic
 from pydantic import Field
 from pydantic import PrivateAttr
 
@@ -9,6 +8,7 @@ from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.class_py import Class
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
+from ontouml_py.model.enumerations.ontologicalnature import OntologicalNature
 from ontouml_py.model.enumerations.ontologyrepresentationstyle import OntologyRepresentationStyle
 from ontouml_py.model.generalization import Generalization
 from ontouml_py.model.generalizationset import GeneralizationSet
@@ -57,7 +57,7 @@ class Project(NamedElement):
     contexts: set[str] = Field(default_factory=set)
     designed_for_task: set[str] = Field(default_factory=set)
     publisher: Optional[str] = Field(min_length=1, default=None)
-    root_package: Optional[Package] = Field(default=None)
+    rOt_package: Optional[Package] = Field(default=None)
     representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
     model_config = {
@@ -168,8 +168,17 @@ class Project(NamedElement):
         self._elements["BinaryRelation"].add(new_element)
         return new_element
 
-    def create_class(self, stereotype:Optional[ClassStereotype]=None, **data: dict[str, Any]):
-        new_element = Class(self, stereotype, **data)
+    def create_class(
+        self,
+        stereotype: Optional[ClassStereotype] = None,
+        order: int = 1,
+        restricted_to: set[Optional[OntologicalNature]] = set(),
+        is_abstract: bool = False,
+        **data: dict[str, Any],
+    ):
+        new_element = Class(
+            self, stereotype=stereotype, order=order, restricted_to=restricted_to, is_abstract=is_abstract, **data
+        )
         self._elements["Class"].add(new_element)
         return new_element
 
@@ -205,110 +214,121 @@ class Project(NamedElement):
 
     ### CLASSES'S CREATION METHODS
 
-    def create_class_abstract(self,**data: dict[str, Any]):
+    def create_class_abstract(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.ABSTRACT
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.ABSTRACT_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_category(self,**data: dict[str, Any]):
+
+    def create_class_category(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.CATEGORY
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_collective(self,**data: dict[str, Any]):
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
+        is_abstract = True
+        return self.create_class(stereotype=stereotype, restricted_to=restricted_to, is_abstract=is_abstract, **data)
+
+    def create_class_collective(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.COLLECTIVE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.COLLECTIVE_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_datatype(self,**data: dict[str, Any]):
+
+    def create_class_datatype(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.DATATYPE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.ABSTRACT_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_enumeration(self,**data: dict[str, Any]):
+
+    def create_class_enumeration(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.ENUMERATION
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.ABSTRACT_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_event(self,**data: dict[str, Any]):
+
+    def create_class_event(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.EVENT
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.EVENT_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_historical_role(self,**data: dict[str, Any]):
+
+    def create_class_historical_role(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.HISTORICAL_ROLE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_historical_role_mixin(self,**data: dict[str, Any]):
+        return self.create_class(stereotype=stereotype, **data)
+
+    def create_class_historical_role_mixin(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.HISTORICAL_ROLE_MIXIN
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_kind(self,**data: dict[str, Any]):
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
+        is_abstract = True
+        return self.create_class(stereotype=stereotype, restricted_to=restricted_to, is_abstract=is_abstract, **data)
+
+    def create_class_kind(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.KIND
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_mixin(self,**data: dict[str, Any]):
+
+    def create_class_mixin(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.MIXIN
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_mode(self,**data: dict[str, Any]):
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
+        is_abstract = True
+        return self.create_class(stereotype=stereotype, restricted_to=restricted_to, is_abstract=is_abstract, **data)
+
+    def create_class_mode(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.MODE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.INTRINSIC_MODE_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_phase(self,**data: dict[str, Any]):
+
+    def create_class_phase(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.PHASE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_phase_mixin(self,**data: dict[str, Any]):
+        return self.create_class(stereotype=stereotype, **data)
+
+    def create_class_phase_mixin(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.PHASE_MIXIN
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_quality(self,**data: dict[str, Any]):
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
+        is_abstract = True
+        return self.create_class(stereotype=stereotype, restricted_to=restricted_to, is_abstract=is_abstract, **data)
+
+    def create_class_quality(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.QUALITY
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.QUALITY_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_quantity(self,**data: dict[str, Any]):
+
+    def create_class_quantity(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.QUANTITY
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.QUANTITY_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_relator(self,**data: dict[str, Any]):
+
+    def create_class_relator(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.RELATOR
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.RELATOR_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_role(self,**data: dict[str, Any]):
+
+    def create_class_role(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.ROLE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_role_mixin(self,**data: dict[str, Any]):
+        return self.create_class(stereotype=stereotype, **data)
+
+    def create_class_role_mixin(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.ROLE_MIXIN
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_situation(self,**data: dict[str, Any]):
+        restricted_to = {OntologicalNature.FUNCTIONAL_COMPLEX_NATURE}
+        return self.create_class(stereotype=stereotype, restricted_to=restricted_to, **data)
+
+    def create_class_situation(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.SITUATION
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 1
+        restricted_to = {OntologicalNature.SITUATION_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_subkind(self,**data: dict[str, Any]):
+
+    def create_class_subkind(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.SUBKIND
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
-        return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
-    def create_class_type(self,**data: dict[str, Any]):
+        return self.create_class(stereotype=stereotype, **data)
+
+    def create_class_type(self, **data: dict[str, Any]):
         stereotype = ClassStereotype.TYPE
-        order = 1 # to be substituted
-        restricted_to = None # to be substituted
+        order = 2
+        restricted_to = {OntologicalNature.TYPE_NATURE}
         return self.create_class(stereotype=stereotype, order=order, restricted_to=restricted_to, **data)
 
     def delete_anchor(self, old_element: Anchor) -> None:

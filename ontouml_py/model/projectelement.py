@@ -8,7 +8,6 @@ and management.
 from abc import abstractmethod
 from typing import Any
 
-from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py import model

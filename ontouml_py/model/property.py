@@ -10,8 +10,8 @@ from typing import Any
 from typing import Optional
 
 from pydantic import Field
-from pydantic import PrivateAttr
 from pydantic import field_validator
+from pydantic import PrivateAttr
 
 from ontouml_py.model.cardinality import Cardinality
 from ontouml_py.model.decoratable import Decoratable
@@ -92,7 +92,6 @@ class Property(Decoratable):
         """
         if not isinstance(checked_value, Cardinality):
             error_message = format_error_message(
-                error_type="Type Error",
                 description="Invalid cardinality type.",
                 cause=f"Expected Cardinality instance, got {type(checked_value).__name__} instance.",
                 solution="Ensure the cardinality is set with an instance of the Cardinality class.",

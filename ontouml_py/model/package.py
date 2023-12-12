@@ -8,7 +8,6 @@ validation and assignment.
 """
 from typing import Any
 
-from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py.model.anchor import Anchor
@@ -137,7 +136,7 @@ class Package(Packageable):
         new_content.__Packageable__set_package(self)
         self._contents["Package"].add(new_content)
 
-    def remove_content(self, old_content:Packageable)->None:
+    def remove_content(self, old_content: Packageable) -> None:
         old_content_type = type(old_content)
         if old_content not in self._contents[old_content_type]:
             raise ValueError("Removal by id error")

@@ -50,7 +50,6 @@ class Generalization(ModelElement):
         """
         if self.general == self.specific:
             error_message = format_error_message(
-                error_type="ValueError.",
                 description=f"Invalid relationship for generalization with ID {self.id}.",
                 cause=f"The 'general' and 'specific' classifiers are the same (same ID {self.general.id}).",
                 solution="Ensure 'general' and 'specific' refer to different Classifiers.",
