@@ -1,5 +1,6 @@
 from typing import Any
 from typing import Optional
+from typing import Set
 
 from pydantic import Field
 from pydantic import PrivateAttr
@@ -37,8 +38,6 @@ class Project(NamedElement):
             "Note": set(),
             "Package": set(),
             "Property": set(),
-            "Shape": set(),
-            "View": set(),
         }
     )
 
@@ -74,87 +73,88 @@ class Project(NamedElement):
     def get_elements(self) -> dict:
         return self._elements
 
-    def get_anchors(self) -> set[str]:
+    def get_anchors(self) -> set[ProjectElement]:
         return self._elements["Anchor"]
 
-    def get_binary_relations(self) -> set[str]:
+    def get_binary_relations(self) -> set[ProjectElement]:
         return self._elements["BinaryRelation"]
 
-    def get_classes(self) -> set[str]:
+    def get_classes(self) -> set[ProjectElement]:
         return self._elements["Class"]
 
-    def get_diagrams(self) -> set[str]:
+    def get_diagrams(self) -> set[ProjectElement]:
         return self._elements["Diagram"]
 
-    def get_generalizations(self) -> set[str]:
+    def get_generalizations(self) -> set[ProjectElement]:
         return self._elements["Generalization"]
 
-    def get_generalization_sets(self) -> set[str]:
+    def get_generalization_sets(self) -> set[ProjectElement]:
         return self._elements["GeneralizationSet"]
 
-    def get_literals(self) -> set[str]:
+    def get_literals(self) -> set[ProjectElement]:
         return self._elements["Literal"]
 
-    def get_nary_relations(self) -> set[str]:
+    def get_nary_relations(self) -> set[ProjectElement]:
         return self._elements["NaryRelation"]
 
-    def get_notes(self) -> set[str]:
+    def get_notes(self) -> set[ProjectElement]:
         return self._elements["Note"]
 
-    def get_packages(self) -> set[str]:
+    def get_packages(self) -> set[ProjectElement]:
         return self._elements["Package"]
 
-    def get_properties(self) -> set[str]:
+    def get_properties(self) -> set[ProjectElement]:
         return self._elements["Property"]
 
-    def get_shapes(self) -> set[str]:
+    def get_shapes(self) -> set[ProjectElement]:
         return self._elements["Shape"]
 
-    def get_views(self) -> set[str]:
+    def get_views(self) -> set[ProjectElement]:
         return self._elements["View"]
 
-    def get_element_by_id(self, element_type: str, element_id: str):
+    def get_element_by_id(self, element_type: str, element_id: str) -> Optional[ProjectElement]:
         for internal_element in self._elements[element_type]:
             if internal_element.id == element_id:
                 return internal_element
+        return None
 
-    def get_anchor_by_id(self, element_id: str):
+    def get_anchor_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Anchor", element_id)
 
-    def get_binary_relation_by_id(self, element_id: str):
+    def get_binary_relation_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("BinaryRelation", element_id)
 
-    def get_class_by_id(self, element_id: str):
+    def get_class_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Class", element_id)
 
-    def get_diagram_by_id(self, element_id: str):
+    def get_diagram_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Diagram", element_id)
 
-    def get_generalization_by_id(self, element_id: str):
+    def get_generalization_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Generalization", element_id)
 
-    def get_generalization_set_by_id(self, element_id: str):
+    def get_generalization_set_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("GeneralizationSet", element_id)
 
-    def get_literal_by_id(self, element_id: str):
+    def get_literal_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Literal", element_id)
 
-    def get_nary_relation_by_id(self, element_id: str):
+    def get_nary_relation_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("NaryRelation", element_id)
 
-    def get_note_by_id(self, element_id: str):
+    def get_note_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Note", element_id)
 
-    def get_package_by_id(self, element_id: str):
+    def get_package_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Package", element_id)
 
-    def get_property_by_id(self, element_id: str):
+    def get_property_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Property", element_id)
 
-    def get_shape_by_id(self, element_id: str):
+    def get_shape_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Shape", element_id)
 
-    def get_view_by_id(self, element_id: str):
+    def get_view_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("View", element_id)
 
     ### ELEMENTS' CREATION CREATION METHODS
@@ -162,6 +162,7 @@ class Project(NamedElement):
     def create_anchor(self, **data: dict[str, Any]) -> Anchor:
         new_element = Anchor(self, **data)
         self._elements["Anchor"].add(new_element)
+        return new_element
 
     def create_binary_relation(self, **data: dict[str, Any]) -> BinaryRelation:
         new_element = BinaryRelation(self, **data)

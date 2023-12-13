@@ -1,0 +1,151 @@
+:py:mod:`ontouml_py.model.enumerations.relationstereotype`
+==========================================================
+
+.. py:module:: ontouml_py.model.enumerations.relationstereotype
+
+.. autoapi-nested-parse::
+
+   This module defines the RelationStereotype enumeration, a subclass of OntoumlEnum, representing different stereotypes applicable to relations in OntoUML.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.enumerations.relationstereotype.RelationStereotype
+
+
+
+
+.. py:class:: RelationStereotype(*args, **kwds)
+
+
+   Bases: :py:obj:`ontouml_py.model.enumerations.ontouml_enum.OntoumlEnum`
+
+   An enumeration representing different stereotypes applicable to relations in OntoUML.
+
+   This enum classifies various stereotypes that can be assigned to relational elements in an OntoUML model. It extends
+   OntoumlEnum.
+
+   Members:
+       BRINGS_ABOUT: Represents a 'brings about' stereotype.
+       CHARACTERIZATION: Represents a characterization stereotype.
+       COMPARATIVE: Represents a comparative stereotype.
+       COMPONENT_OF: Represents a 'component of' stereotype.
+       CREATION: Represents a creation stereotype.
+       DERIVATION: Represents a derivation stereotype.
+       EXTERNAL_DEPENDENCE: Represents an 'external dependence' stereotype.
+       HISTORICAL_DEPENDENCE: Represents a 'historical dependence' stereotype.
+       INSTANTIATION: Represents an instantiation stereotype.
+       MANIFESTATION: Represents a manifestation stereotype.
+       MATERIAL: Represents a material stereotype.
+       MEDIATION: Represents a mediation stereotype.
+       MEMBER_OF: Represents a 'member of' stereotype.
+       PARTICIPATION: Represents a participation stereotype.
+       PARTICIPATIONAL: Represents a participational stereotype.
+       SUB_COLLECTION_OF: Represents a 'sub-collection of' stereotype.
+       SUB_QUANTITY_OF: Represents a 'sub-quantity of' stereotype.
+       TERMINATION: Represents a termination stereotype.
+       TRIGGERS: Represents a triggers stereotype.
+
+   .. py:attribute:: BRINGS_ABOUT
+      :value: 'bringsAbout'
+
+      
+
+   .. py:attribute:: CHARACTERIZATION
+      :value: 'characterization'
+
+      
+
+   .. py:attribute:: COMPARATIVE
+      :value: 'comparative'
+
+      
+
+   .. py:attribute:: COMPONENT_OF
+      :value: 'componentOf'
+
+      
+
+   .. py:attribute:: CREATION
+      :value: 'creation'
+
+      
+
+   .. py:attribute:: DERIVATION
+      :value: 'derivation'
+
+      
+
+   .. py:attribute:: EXTERNAL_DEPENDENCE
+      :value: 'externalDependence'
+
+      
+
+   .. py:attribute:: HISTORICAL_DEPENDENCE
+      :value: 'historicalDependence'
+
+      
+
+   .. py:attribute:: INSTANTIATION
+      :value: 'instantiation'
+
+      
+
+   .. py:attribute:: MANIFESTATION
+      :value: 'manifestation'
+
+      
+
+   .. py:attribute:: MATERIAL
+      :value: 'material'
+
+      
+
+   .. py:attribute:: MEDIATION
+      :value: 'mediation'
+
+      
+
+   .. py:attribute:: MEMBER_OF
+      :value: 'memberOf'
+
+      
+
+   .. py:attribute:: PARTICIPATION
+      :value: 'participation'
+
+      
+
+   .. py:attribute:: PARTICIPATIONAL
+      :value: 'participational'
+
+      
+
+   .. py:attribute:: SUB_COLLECTION_OF
+      :value: 'subCollectionOf'
+
+      
+
+   .. py:attribute:: SUB_QUANTITY_OF
+      :value: 'subQuantityOf'
+
+      
+
+   .. py:attribute:: TERMINATION
+      :value: 'termination'
+
+      
+
+   .. py:attribute:: TRIGGERS
+      :value: 'triggers'
+
+      
+
+

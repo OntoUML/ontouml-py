@@ -10,44 +10,18 @@ from typing import Any
 from typing import Optional
 
 from pydantic import Field
-from pydantic import PrivateAttr
 from pydantic import field_validator
+from pydantic import PrivateAttr
 
 from ontouml_py.model.cardinality import Cardinality
 from ontouml_py.model.decoratable import Decoratable
 from ontouml_py.model.enumerations.aggregationkind import AggregationKind
 from ontouml_py.model.enumerations.propertystereotype import PropertyStereotype
+from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Property(Decoratable):
-    """Represent a property in an OntoUML model.
-
-    This class extends Decoratable and includes additional attributes to define the characteristics of a property
-    within an OntoUML model. It represents a feature of a Classifier and includes attributes to specify its
-    characteristics such as read-only status, aggregation kind, stereotype, cardinality, type, and relationships with
-    other properties.
-
-    :ivar is_read_only: Indicates if the property is read-only.
-    :vartype is_read_only: bool
-    :ivar aggregation_kind: Specifies the aggregation kind of the property.
-    :vartype aggregation_kind: AggregationKind
-    :ivar stereotype: The stereotype of the property, if any.
-    :vartype stereotype: Optional[PropertyStereotype]
-    :ivar cardinality: The cardinality of the property. Must be set during initialization.
-    :vartype cardinality: Cardinality
-    :ivar property_type: The type of the property, referring to a Classifier.
-    :vartype property_type: Optional[Classifier]
-    :ivar subsetted_by: A set of properties that are subsetted by this property.
-    :vartype subsetted_by: Set[Property]
-    :ivar redefined_by: A set of properties that are redefined by this property.
-    :vartype redefined_by: Set[Property]
-    :ivar property_of: Reference to the Classifier instance that owns this property. This is a private attribute.
-    :vartype property_of: Optional[Classifier]
-    :cvar model_config: Configuration settings for the Pydantic model.
-    :vartype model_config: Dict[str, Any]
-    """
-
+class Property(Decoratable, ProjectElement):
     # Private attributes
     _property_of: Optional[object] = PrivateAttr(default=None)
     # Public attributes
@@ -61,21 +35,15 @@ class Property(Decoratable):
 
     model_config = {
         "arbitrary_types_allowed": True,
-        "validate_assignment": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
+        "validate_assignment": True,
         "validate_default": True,
     }
 
-    def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Property instance.
-
-        Calls the initializer of the superclass (Decoratable) and sets up the Property-specific attributes.
-
-        :param data: Fields to be set on the model instance.
-        :type data: dict[str, Any]
-        """
-        super().__init__(**data)
+    def __init__(self, project: object, **data: dict[str, Any]) -> None:
+        Decoratable.__init__(self, **data)
+        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
 
     @field_validator("cardinality", mode="after")
     @classmethod

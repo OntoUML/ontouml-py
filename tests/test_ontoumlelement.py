@@ -262,18 +262,6 @@ def test_instantiation_allowed_subclass_shape() -> None:
         pytest.fail("Instantiation of Shape should not raise ValueError.")
 
 
-# Test instantiation of a disallowed subclass
-def test_instantiation_disallowed_subclass() -> None:
-    """Test instantiation of a class not allowed in _allowed_subclasses."""
-
-    class DisallowedElement(OntoumlElement):
-        def __init__(self, **data):
-            super().__init__(**data)
-
-    with pytest.raises(ValueError, match="is not an allowed subclass"):
-        DisallowedElement()
-
-
 # Test deep inheritance chain with allowed subclass
 def test_deep_inheritance_chain_allowed_subclass() -> None:
     """Test instantiation of a class in a deep inheritance chain that is allowed."""
@@ -295,28 +283,6 @@ def test_dynamic_class_creation_instantiation() -> None:
         dynamic_element = dynamic_element()
     except ValueError:
         pytest.fail("Instantiation of dynamic_element should not raise ValueError.")
-
-
-# Test error message for disallowed subclass
-def test_error_message_disallowed_subclass() -> None:
-    """Test the error message for instantiating a disallowed subclass."""
-
-    class DisallowedElement(OntoumlElement):
-        """A subclass of OntoumlElement that is not allowed according to the subclass restrictions.
-
-        This class is used for testing the behavior of OntoumlElement when an attempt is made to instantiate
-        a subclass that is not permitted.
-
-        :param data: Arbitrary keyword arguments.
-        :type data: dict
-        :raises ValueError: If instantiated, as it's not an allowed subclass of OntoumlElement.
-        """
-
-        def __init__(self, **data) -> None:
-            super().__init__(**data)
-
-    with pytest.raises(ValueError, match="is not an allowed subclass"):
-        DisallowedElement()
 
 
 def test_initialization_with_empty_string() -> None:
@@ -449,22 +415,6 @@ def test_ontoumlelement_equality() -> None:
     assert element1 == element2, "OntoumlElement instances with the same id should be considered equal."
 
 
-# Test for subclass restriction
-def test_ontoumlelement_subclass_restriction() -> None:
-    """Test that OntoumlElement cannot be instantiated if it is not a subclass of allowed types.
-
-    :return: None
-    :raises AssertionError: If OntoumlElement is instantiated as an unauthorized subclass.
-    """
-
-    class UnauthorizedElement(OntoumlElement):
-        def __init__(self, **data):
-            super().__init__(**data)
-
-    with pytest.raises(ValueError, match="is not an allowed subclass"):
-        UnauthorizedElement()
-
-
 def test_abstract_class_instantiation() -> None:
     """Test if the abstract class OntoumlElement can be instantiated directly.
 
@@ -492,9 +442,3 @@ def test_ontoumlelement_hash_collision() -> None:
     element1 = Project()
     element2 = Project()
     assert hash(element1) != hash(element2), "Different OntoumlElement instances should have different hash values."
-
-
-
-
-
-

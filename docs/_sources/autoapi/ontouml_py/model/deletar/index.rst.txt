@@ -1,0 +1,25 @@
+:py:mod:`ontouml_py.model.deletar`
+==================================
+
+.. py:module:: ontouml_py.model.deletar
+
+
+Module Contents
+---------------
+
+.. py:data:: x
+
+   
+
+.. py:data:: y
+
+   
+
+.. py:data:: a
+
+   
+
+.. py:data:: b
+
+   
+

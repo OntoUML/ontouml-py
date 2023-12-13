@@ -1,0 +1,53 @@
+:py:mod:`ontouml_py.model.relation`
+===================================
+
+.. py:module:: ontouml_py.model.relation
+
+.. autoapi-nested-parse::
+
+   Provide the `Relation` class, a subclass of `Classifier`, representing relations in an ontological model. It supports various relation stereotypes as defined in the `RelationStereotype` enumeration.
+
+   The `Relation` class is an abstract base class and is intended to be subclassed by specific types of relations,
+   such as `BinaryRelation` and `NaryRelation`. It includes validation for these subclasses and allows for the
+   configuration of Pydantic model settings.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.relation.Relation
+
+
+
+
+.. py:class:: Relation(**data)
+
+
+   Bases: :py:obj:`ontouml_py.model.classifier.Classifier`
+
+   Abstract base class for representing different types of relations in an ontological model.
+
+   This class extends `Classifier` and adds support for relation stereotypes. It is designed to be subclassed
+   by more specific relation types, such as binary and n-ary relations.
+
+   :ivar stereotype: The stereotype of the relation, defining its ontological nature.
+   :vartype stereotype: Optional[RelationStereotype]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
+
+   .. py:attribute:: stereotype
+      :type: Optional[ontouml_py.model.enumerations.relationstereotype.RelationStereotype]
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

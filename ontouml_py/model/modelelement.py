@@ -24,4 +24,3 @@ class ModelElement(ProjectElement, NamedElement):
     def __init__(self, project, **data: dict[str, Any]) -> None:
         NamedElement.__init__(self, **data)
         ProjectElement.__init__(self, project, **data)
-

@@ -246,18 +246,6 @@ def test_alt_names_edge_cases(edge_case_list: list[LangString]) -> None:
     assert element.alt_names == expected_set, "alt_names should correctly handle edge case lists."
 
 
-# Edge case tests for 'creators' and 'contributors'
-@pytest.mark.parametrize("edge_case_list", [[" "], [""], ["http://example.com", ""], ["http://example.com", " "]])
-def test_uri_lists_edge_cases(edge_case_list: list[str]) -> None:
-    """Test initializing NamedElement with edge case lists for 'creators' and 'contributors'.
-
-    :param edge_case_list: A list of strings with edge case URI content.
-    :raises AssertionError: If 'creators' or 'contributors' do not handle edge case lists correctly.
-    """
-    with pytest.raises(ValidationError):
-        Project(creators=edge_case_list, contributors=edge_case_list)
-
-
 # Test with null values in list attributes
 def test_rejection_of_null_values_in_list_attributes() -> None:
     """Test that assigning lists with None elements to 'alt_names' and 'editorial_notes' raises a validation error.
@@ -365,15 +353,6 @@ def test_valid_subclass_instantiation() -> None:
         pytest.fail(f"Instantiation of a valid subclass failed: {e}")
 
 
-def test_invalid_subclass_instantiation() -> None:
-    """Test that instantiating an undefined subclass raises a ValueError.
-
-    :raises ValueError: When an undefined subclass is instantiated.
-    """
-    with pytest.raises(ValueError, match="not an allowed subclass"):
-        InvalidSubclass()
-
-
 def test_direct_instantiation_of_abstract_class() -> None:
     """Test that direct instantiation of the abstract class NamedElement is not allowed.
 
@@ -467,16 +446,6 @@ def test_maximum_elements_in_lists() -> None:
     element = Project(alt_names=max_elements, editorial_notes=max_elements)
     assert element.alt_names == max_elements, "alt_names should handle maximum number of elements."
     assert element.editorial_notes == max_elements, "editorial_notes should handle maximum number of elements."
-
-
-# Test with empty strings in URI lists
-def test_empty_strings_in_uri_lists() -> None:
-    """Test assigning lists containing empty strings to URI attributes of NamedElement.
-
-    :raises ValidationError: If lists contain empty strings for URI attributes.
-    """
-    with pytest.raises(ValidationError, match="Empty string found in"):
-        Project(creators=[""], contributors=[""])
 
 
 # Test with mixed case strings

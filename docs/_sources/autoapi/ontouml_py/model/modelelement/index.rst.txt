@@ -1,0 +1,54 @@
+:py:mod:`ontouml_py.model.modelelement`
+=======================================
+
+.. py:module:: ontouml_py.model.modelelement
+
+.. autoapi-nested-parse::
+
+   This module defines the ModelElement class, which represents a model element in an OntoUML model. It inherits properties from both NamedElement and ProjectElement, and includes additional features specific to model elements.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.modelelement.ModelElement
+
+
+
+
+.. py:class:: ModelElement(project, **data)
+
+
+   Bases: :py:obj:`ontouml_py.model.projectelement.ProjectElement`, :py:obj:`ontouml_py.model.namedelement.NamedElement`
+
+   Abstract base class representing a generic element within an OntoUML model.
+
+   This class provides foundational attributes and methods for all OntoUML elements, including unique identification
+   and timestamps for creation and modification. It enforces constraints on certain attributes and includes validation
+   logic to maintain their integrity.
+
+   :ivar id: A unique identifier for the element, automatically generated upon instantiation.
+   :vartype id: str
+   :ivar created: Timestamp when the element was created, defaults to the current time.
+   :vartype created: datetime
+   :ivar modified: Timestamp when the element was last modified, can be None if not modified.
+   :vartype modified: Optional[datetime]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
+
+   .. py:attribute:: custom_properties
+      :type: set[tuple[str, Any]]
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

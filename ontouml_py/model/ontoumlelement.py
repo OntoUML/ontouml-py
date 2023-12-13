@@ -57,8 +57,6 @@ class OntoumlElement(ABC, BaseModel):
         :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-
-        # Sets attributes
         super().__init__(**data)
 
     def __eq__(self, other: object) -> bool:
@@ -92,4 +90,3 @@ class OntoumlElement(ABC, BaseModel):
         :rtype: int
         """
         return hash(self.id)
-

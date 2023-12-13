@@ -7,6 +7,7 @@ model's structure. The class also includes private attributes to manage its cont
 validation and assignment.
 """
 from typing import Any
+from typing import Optional
 
 from pydantic import PrivateAttr
 
@@ -15,13 +16,15 @@ from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.class_py import Class
 from ontouml_py.model.generalization import Generalization
 from ontouml_py.model.generalizationset import GeneralizationSet
+from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.naryrelation import NaryRelation
 from ontouml_py.model.note import Note
 from ontouml_py.model.packageable import Packageable
+from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Package(Packageable):
+class Package(ModelElement, ProjectElement, Packageable):
     # Private attribute
     _contents: dict[str, set[Packageable]] = PrivateAttr(
         default={
@@ -44,95 +47,96 @@ class Package(Packageable):
         "validate_default": True,
     }
 
-    def __init__(self, project, **data: dict[str, Any]) -> None:
-        super().__init__(project, **data)
-        project._elements["Package"].add(self)
+    def __init__(self, project: object, **data: dict[str, Any]) -> None:
+        ModelElement.__init__(self, **data)
+        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
 
     def get_contents(self) -> dict:
         return self._contents
 
-    def get_anchors(self) -> set[str]:
+    def get_anchors(self) -> set[Packageable]:
         return self._contents["Anchor"]
 
-    def get_binary_relations(self) -> set[str]:
+    def get_binary_relations(self) -> set[Packageable]:
         return self._contents["BinaryRelation"]
 
-    def get_classes(self) -> set[str]:
+    def get_classes(self) -> set[Packageable]:
         return self._contents["Class"]
 
-    def get_generalizations(self) -> set[str]:
+    def get_generalizations(self) -> set[Packageable]:
         return self._contents["Generalization"]
 
-    def get_generalization_sets(self) -> set[str]:
+    def get_generalization_sets(self) -> set[Packageable]:
         return self._contents["GeneralizationSet"]
 
-    def get_nary_relations(self) -> set[str]:
+    def get_nary_relations(self) -> set[Packageable]:
         return self._contents["NaryRelation"]
 
-    def get_notes(self) -> set[str]:
+    def get_notes(self) -> set[Packageable]:
         return self._contents["Note"]
 
-    def get_packages(self) -> set[str]:
+    def get_packages(self) -> set[Packageable]:
         return self._contents["Package"]
 
-    def get_content_by_id(self, content_type: str, content_id: str):
+    def get_content_by_id(self, content_type: str, content_id: Packageable) -> Optional[Packageable]:
         for internal_content in self._contents[content_type]:
             if internal_content.id == content_id:
                 return internal_content
+        return None
 
-    def get_anchor_by_id(self, content_id: str):
+    def get_anchor_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("Anchor", content_id)
 
-    def get_binary_relation_by_id(self, content_id: str):
+    def get_binary_relation_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("BinaryRelation", content_id)
 
-    def get_class_by_id(self, content_id: str):
+    def get_class_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("Class", content_id)
 
-    def get_generalization_by_id(self, content_id: str):
+    def get_generalization_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("Generalization", content_id)
 
-    def get_generalization_set_by_id(self, content_id: str):
+    def get_generalization_set_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("GeneralizationSet", content_id)
 
-    def get_nary_relation_by_id(self, content_id: str):
+    def get_nary_relation_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("NaryRelation", content_id)
 
-    def get_note_by_id(self, content_id: str):
+    def get_note_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("Note", content_id)
 
-    def get_package_by_id(self, content_id: str):
+    def get_package_by_id(self, content_id: Packageable) -> Optional[Packageable]:
         return self.get_content_by_id("Package", content_id)
 
-    def add_anchor(self, new_content):
+    def add_anchor(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["Anchor"].add(new_content)
 
-    def add_binary_relation(self, new_content):
+    def add_binary_relation(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["BinaryRelation"].add(new_content)
 
-    def add_class(self, new_content):
+    def add_class(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["Class"].add(new_content)
 
-    def add_generalization(self, new_content):
+    def add_generalization(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["Generalization"].add(new_content)
 
-    def add_generalization_set(self, new_content):
+    def add_generalization_set(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["GeneralizationSet"].add(new_content)
 
-    def add_nary_relation(self, new_content):
+    def add_nary_relation(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["NaryRelation"].add(new_content)
 
-    def add_note(self, new_content):
+    def add_note(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["Note"].add(new_content)
 
-    def add_package(self, new_content):
+    def add_package(self, new_content: Packageable) -> None:
         new_content.__Packageable__set_package(self)
         self._contents["Package"].add(new_content)
 

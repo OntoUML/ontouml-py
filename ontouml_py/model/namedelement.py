@@ -16,7 +16,6 @@ from ontouml_py.model.ontoumlelement import OntoumlElement
 
 
 class NamedElement(OntoumlElement):
-
     names: set[LangString] = Field(default_factory=set)
     alt_names: set[LangString] = Field(default_factory=set)
     description: Optional[LangString] = Field(default=None)
@@ -31,7 +30,6 @@ class NamedElement(OntoumlElement):
         "str_strip_whitespace": True,
         "validate_default": True,
     }
-
 
     @abstractmethod
     def __init__(self, **data: dict[str, Any]) -> None:
