@@ -59,7 +59,7 @@ line-length = 120
 
 [tool.vulture]
 paths = ["."]
-exclude = ["docs/", "sphinx/", "ontouml_py/classes/enumerations/", "venv/"]
+exclude = ["docs/", "sphinx/", "venv/"]
 min_confidence = 61
 
 [tool.mypy]

@@ -7,17 +7,15 @@ from ontouml_py.model.classifier import Classifier
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
 from ontouml_py.model.enumerations.ontologicalnature import OntologicalNature
 from ontouml_py.model.literal import Literal
-from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Class(Classifier, ProjectElement, Packageable):
+class Class(Classifier):
     is_powertype: bool = Field(default=False)
     order: str = Field(min_length=1, default="1")
-    restricted_to: set[Optional[OntologicalNature]] = Field(default_factory=set)
+    restricted_to: set[OntologicalNature] = Field(default_factory=set)
     stereotype: Optional[ClassStereotype] = Field(default=None)
-    literals: set[Optional[Literal]] = Field(default_factory=set)
+    literals: set[Literal] = Field(default_factory=set)
 
     model_config = {
         "arbitrary_types_allowed": True,
@@ -28,8 +26,7 @@ class Class(Classifier, ProjectElement, Packageable):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        Classifier.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        super().__init__(project=project, pe_type=self.__class__.__name__, **data)
 
     def add_literal(self, literal: Literal) -> None:
         """Add a literal to the class.

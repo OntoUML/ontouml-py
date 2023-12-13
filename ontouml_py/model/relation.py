@@ -16,17 +16,6 @@ from ontouml_py.model.enumerations.relationstereotype import RelationStereotype
 
 
 class Relation(Classifier):
-    """Abstract base class for representing different types of relations in an ontological model.
-
-    This class extends `Classifier` and adds support for relation stereotypes. It is designed to be subclassed
-    by more specific relation types, such as binary and n-ary relations.
-
-    :ivar stereotype: The stereotype of the relation, defining its ontological nature.
-    :vartype stereotype: Optional[RelationStereotype]
-    :cvar model_config: Configuration settings for the Pydantic model.
-    :vartype model_config: Dict[str, Any]
-    """
-
     stereotype: Optional[RelationStereotype] = Field(default=None)
 
     model_config = {
@@ -38,15 +27,8 @@ class Relation(Classifier):
     }
 
     @abstractmethod
-    def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new instance of the Relation class.
-
-        :param data: A dictionary of attributes to initialize the Relation instance with.
-        :type data: Dict[str, Any]
-        :raises ValueError: If the subclass is not among the allowed subclasses.
-        """
-
-        super().__init__(**data)
+    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
+        Classifier.__init__(self, project=project, pe_type=pe_type, **data)
 
 
 # TODO (pedropaulofb): Create methods for set relation ends.

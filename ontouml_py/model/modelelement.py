@@ -21,6 +21,6 @@ class ModelElement(ProjectElement, NamedElement):
     }
 
     @abstractmethod
-    def __init__(self, project, **data: dict[str, Any]) -> None:
+    def __init__(self, project, pe_type: str, **data: dict[str, Any]) -> None:
         NamedElement.__init__(self, **data)
-        ProjectElement.__init__(self, project, **data)
+        ProjectElement.__init__(self, project=project, pe_type=pe_type)

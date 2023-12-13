@@ -14,6 +14,12 @@ class Packageable:
         "validate_default": True,
     }
 
+    @classmethod
+    def __new__(cls):
+        if cls is Packageable:
+            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
+        return super().__new__(cls)
+
     @property
     def package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
         return self._package

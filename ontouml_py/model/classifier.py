@@ -18,20 +18,6 @@ from ontouml_py.utils.error_message import format_error_message
 
 
 class Classifier(Decoratable, Packageable):
-    """Abstract base class for classifiers in an OntoUML model.
-
-    Classifier represents a general concept in an OntoUML model. It extends Decoratable and Packageable, inheriting
-    their features. This class maintains a list of properties and an 'is_abstract' flag, defining whether the classifier
-    is abstract.
-
-    :ivar _properties: A list of Property instances associated with this classifier.
-    :vartype _properties: list[Property]
-    :ivar is_abstract: Indicates whether the classifier is abstract.
-    :vartype is_abstract: bool
-    :cvar model_config: Configuration settings for the Pydantic model.
-    :vartype model_config: Dict[str, Any]
-    """
-
     # Private attributes
     _properties: list[Property] = PrivateAttr(default_factory=list)
     # Public attributes
@@ -39,25 +25,15 @@ class Classifier(Decoratable, Packageable):
 
     model_config = {
         "arbitrary_types_allowed": True,
-        "validate_assignment": True,
-        "validate_default": True,
         "extra": "forbid",
         "str_strip_whitespace": True,
+        "validate_assignment": True,
+        "validate_default": True,
     }
 
     @abstractmethod
-    def __init__(self, **data: dict[str, Any]) -> None:
-        """Initialize a new Classifier instance.
-
-        Validates the subclass and sets up the Classifier-specific attributes. It initializes the properties set and
-        sets the 'is_abstract' flag based on the provided data.
-
-        :param data: Fields to be set on the model instance.
-        :type data: dict[str, Any]
-        :raises TypeError: If 'properties' is provided but is not a set.
-        """
-
-        super().__init__(**data)
+    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
+        Decoratable.__init__(self, project=project, pe_type=pe_type, **data)
 
     def add_property(self, new_property: Property) -> None:
         """Add a property to the classifier.

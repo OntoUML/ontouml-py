@@ -1,5 +1,4 @@
-from abc import abstractmethod
-
+from icecream import ic
 from pydantic import PrivateAttr
 
 
@@ -14,7 +13,12 @@ class ProjectElement:
         "validate_default": True,
     }
 
-    @abstractmethod
+    @classmethod
+    def __new__(cls):
+        if cls is ProjectElement:
+            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
+        return super().__new__(cls)
+
     def __init__(self, project: object, pe_type: str) -> None:
         project._elements[pe_type].add(self)
         self._project = project

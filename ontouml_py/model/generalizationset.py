@@ -11,7 +11,7 @@ from ontouml_py.model.projectelement import ProjectElement
 class GeneralizationSet(ModelElement, ProjectElement, Packageable):
     is_disjoint: bool = Field(default=False)
     is_complete: bool = Field(default=False)
-    generalizations: set[object] = Field(min_length=1, default_factory=set)
+    generalizations: set[object] = Field(default_factory=set)
     categorizer: Optional[object] = Field(default=None)
 
     model_config = {

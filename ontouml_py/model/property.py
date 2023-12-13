@@ -17,11 +17,10 @@ from ontouml_py.model.cardinality import Cardinality
 from ontouml_py.model.decoratable import Decoratable
 from ontouml_py.model.enumerations.aggregationkind import AggregationKind
 from ontouml_py.model.enumerations.propertystereotype import PropertyStereotype
-from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Property(Decoratable, ProjectElement):
+class Property(Decoratable):
     # Private attributes
     _property_of: Optional[object] = PrivateAttr(default=None)
     # Public attributes
@@ -42,8 +41,7 @@ class Property(Decoratable, ProjectElement):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        Decoratable.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        super().__init__(project=project, pe_type=self.__class__.__name__, **data)
 
     @field_validator("cardinality", mode="after")
     @classmethod
