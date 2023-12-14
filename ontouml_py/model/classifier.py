@@ -1,7 +1,6 @@
 from abc import abstractmethod
 from typing import Any
 
-from icecream import ic
 from pydantic import Field
 from pydantic import PrivateAttr
 
@@ -27,8 +26,6 @@ class Classifier(Decoratable, Packageable):
 
     @abstractmethod
     def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
-        ic()
-        ic(project, pe_type, data)
         Decoratable.__init__(self, project=project, pe_type=pe_type, **data)
 
     def create_property(self, **data: dict[str, Any]) -> None:

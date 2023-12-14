@@ -8,7 +8,6 @@ be decorated, such as classifiers and properties.
 from abc import abstractmethod
 from typing import Any
 
-from icecream import ic
 from pydantic import Field
 
 from ontouml_py.model.modelelement import ModelElement
@@ -27,6 +26,4 @@ class Decoratable(ModelElement):
 
     @abstractmethod
     def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
-        ic()
-        ic(project, pe_type, data)
         super().__init__(project=project, pe_type=pe_type, **data)

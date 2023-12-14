@@ -11,7 +11,7 @@ from ontouml_py.model.packageable import Packageable
 
 
 class PackageMethodsMixin:
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         if type(self) is PackageMethodsMixin:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 

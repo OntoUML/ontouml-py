@@ -16,7 +16,7 @@ from ontouml_py.representation.diagram import Diagram
 
 
 class ProjectMethodsMixin:
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         if type(self) is ProjectMethodsMixin:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 

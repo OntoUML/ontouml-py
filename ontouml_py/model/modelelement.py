@@ -3,7 +3,6 @@ properties from both NamedElement and ProjectElement, and includes additional fe
 from abc import abstractmethod
 from typing import Any
 
-from icecream import ic
 from pydantic import Field
 
 from ontouml_py.model.namedelement import NamedElement
@@ -23,8 +22,6 @@ class ModelElement(NamedElement, ProjectElement):
 
     @abstractmethod
     def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
-        ic()
-        ic(project, pe_type, data)
         NamedElement.__init__(self, **data)
-        ic()
+
         ProjectElement.__init__(self, project=project, pe_type=pe_type)

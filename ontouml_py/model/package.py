@@ -14,7 +14,6 @@ from pydantic import PrivateAttr
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.package_methods import PackageMethodsMixin
 from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 

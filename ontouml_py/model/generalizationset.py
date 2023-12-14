@@ -5,7 +5,6 @@ from pydantic import Field
 
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 
 
 class GeneralizationSet(ModelElement, Packageable):

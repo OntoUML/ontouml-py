@@ -6,8 +6,8 @@ from pydantic import Field
 
 
 class Cardinality(BaseModel):
-    lower_bound: Optional[Union[str, int]] = Field(default=None)
-    upper_bound: Optional[Union[str, int]] = Field(default=None)
+    lower_bound: Optional[Union[str, int]] = Field(default=1)
+    upper_bound: Optional[Union[str, int]] = Field(default=1)
     is_ordered: bool = Field(default=False)
     is_unique: bool = Field(default=True)
 

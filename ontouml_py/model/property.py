@@ -1,7 +1,6 @@
 from typing import Any
 from typing import Optional
 
-from icecream import ic
 from pydantic import Field
 from pydantic import field_validator
 from pydantic import PrivateAttr
@@ -34,7 +33,6 @@ class Property(Decoratable):
     }
 
     def __init__(self, classifier: object, **data: dict[str, Any]) -> None:
-        ic("Property", classifier, classifier.project, self.__class__.__name__)
         super().__init__(project=classifier.project, pe_type=self.__class__.__name__, **data)
         self._classifier = classifier
 
