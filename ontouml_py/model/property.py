@@ -10,8 +10,8 @@ from typing import Any
 from typing import Optional
 
 from pydantic import Field
-from pydantic import field_validator
 from pydantic import PrivateAttr
+from pydantic import field_validator
 
 from ontouml_py.model.cardinality import Cardinality
 from ontouml_py.model.decoratable import Decoratable

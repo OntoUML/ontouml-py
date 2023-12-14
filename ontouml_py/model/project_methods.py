@@ -1,8 +1,6 @@
 from typing import Any
 from typing import Optional
 
-from icecream import ic
-
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.class_py import Class

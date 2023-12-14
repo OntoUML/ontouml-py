@@ -1,4 +1,3 @@
-from icecream import ic
 from pydantic import PrivateAttr
 
 
@@ -17,6 +16,9 @@ class ProjectElement:
         project._elements[pe_type].add(self)
         self._project = project
 
+        # Ensures abstract
+        if type(self) is ProjectElement:
+            raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 
     @property
     def project(self) -> "Project":
