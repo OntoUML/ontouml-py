@@ -9,7 +9,7 @@ from ontouml_py.model.projectelement import ProjectElement
 
 
 class Note(ModelElement, ProjectElement, Packageable):
-    text: LangString = Field()
+    text: LangString = Field(default=LangString())
 
     model_config = {
         "arbitrary_types_allowed": True,

@@ -11,11 +11,10 @@ from ontouml_py.model.packageable import Packageable
 
 
 class PackageMethodsMixin:
-    @classmethod
-    def __new__(cls):
-        if cls is PackageMethodsMixin:
-            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
-        return super().__new__(cls)
+
+    def __init__(self, *args, **kwargs):
+        if type(self) is PackageMethodsMixin:
+            raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 
     def get_anchors(self) -> set[Packageable]:
         return self._contents["Anchor"]

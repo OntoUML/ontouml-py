@@ -1,6 +1,8 @@
 from typing import Any
 from typing import Optional
 
+from icecream import ic
+
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.class_py import Class
@@ -16,11 +18,10 @@ from ontouml_py.representation.diagram import Diagram
 
 
 class ProjectMethodsMixin:
-    @classmethod
-    def __new__(cls):
-        if cls is ProjectMethodsMixin:
-            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
-        return super().__new__(cls)
+
+    def __init__(self, *args, **kwargs):
+        if type(self) is ProjectMethodsMixin:
+            raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 
     def get_anchors(self) -> set[ProjectElement]:
         return self._elements["Anchor"]

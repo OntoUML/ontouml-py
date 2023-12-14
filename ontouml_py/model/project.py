@@ -1,6 +1,7 @@
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from pydantic import Field
 from pydantic import PrivateAttr
 
@@ -57,7 +58,8 @@ class Project(NamedElement, ProjectMethodsMixin):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        super().__init__(**data)
+        ic(data)
+        NamedElement.__init__(self, **data)
 
     def get_elements(self) -> dict[str, set[ProjectElement]]:
         return self._elements

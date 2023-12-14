@@ -37,8 +37,6 @@ class Class(Classifier):
         """
         if not isinstance(literal, Literal):
             error_message = format_error_message(
-                description=f"Invalid literal type for Class with ID {self.id}.",
-                cause=f"Expected Literal instance, got an instance of type {type(literal).__name__}.",
                 solution="Ensure the object to be added is an instance of Literal.",
             )
             raise ValueError(error_message)
