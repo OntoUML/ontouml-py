@@ -12,7 +12,7 @@ from ontouml_py.utils.error_message import format_error_message
 
 class Class(Classifier):
     is_powertype: bool = Field(default=False)
-    order: str = Field(min_length=1, default="1")
+    order: str = Field(default="1")
     restricted_to: set[OntologicalNature] = Field(default_factory=set)
     stereotype: Optional[ClassStereotype] = Field(default=None)
     literals: set[Literal] = Field(default_factory=set)

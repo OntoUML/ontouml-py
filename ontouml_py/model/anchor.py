@@ -21,5 +21,4 @@ class Anchor(ModelElement, ProjectElement, Packageable):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        ModelElement.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        super().__init__(project=project, pe_type=self.__class__.__name__, **data)

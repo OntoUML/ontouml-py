@@ -18,7 +18,7 @@ from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Package(ModelElement, ProjectElement, Packageable, PackageMethodsMixin):
+class Package(ModelElement, Packageable, PackageMethodsMixin):
     # Private attribute
     _contents: dict[str, set[Packageable]] = PrivateAttr(
         default={
@@ -42,8 +42,7 @@ class Package(ModelElement, ProjectElement, Packageable, PackageMethodsMixin):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        ModelElement.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)
 
     def get_contents(self) -> dict:
         return self._contents

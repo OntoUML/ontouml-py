@@ -15,7 +15,7 @@ from ontouml_py.model.packageable import Packageable
 from ontouml_py.model.projectelement import ProjectElement
 
 
-class Generalization(ModelElement, ProjectElement, Packageable):
+class Generalization(ModelElement, Packageable):
     """Represent a generalization relationship between two classifiers in an ontological model.
 
     This class extends `ModelElement` and is used to define a generalization, where one classifier (the general) is
@@ -41,5 +41,4 @@ class Generalization(ModelElement, ProjectElement, Packageable):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        ModelElement.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)

@@ -22,9 +22,4 @@ class ProjectElement:
 
     @property
     def project(self) -> "Project":
-        """Read-only property to access the project this element belongs to.
-
-        :return: The project instance to which this element is associated.
-        :rtype: Optional[Project]
-        """
         return self._project
