@@ -1,9 +1,10 @@
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from pydantic import Field
-from pydantic import PrivateAttr
 from pydantic import field_validator
+from pydantic import PrivateAttr
 
 from ontouml_py.model.cardinality import Cardinality
 from ontouml_py.model.decoratable import Decoratable
@@ -14,7 +15,7 @@ from ontouml_py.utils.error_message import format_error_message
 
 class Property(Decoratable):
     # Private attributes
-    _classifier: "Classifier" = PrivateAttr(default=None)
+    _classifier: "Classifier" = PrivateAttr()
     # Public attributes
     is_read_only: bool = Field(default=False)
     aggregation_kind: AggregationKind = Field(default=AggregationKind.NONE)
@@ -32,9 +33,10 @@ class Property(Decoratable):
         "validate_default": True,
     }
 
-    def __init__(self, classifier: "Classifier", project: object, **data: dict[str, Any]) -> None:
+    def __init__(self, classifier: object, **data: dict[str, Any]) -> None:
+        ic("Property", classifier, classifier.project, self.__class__.__name__)
+        super().__init__(project=classifier.project, pe_type=self.__class__.__name__, **data)
         self._classifier = classifier
-        super().__init__(project=project, pe_type=self.__class__.__name__, **data)
 
     @field_validator("cardinality", mode="after")
     @classmethod

@@ -3,7 +3,7 @@ from typing import Optional
 
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
-from ontouml_py.model.class_py import Class
+from ontouml_py.model.class_ontouml import Class
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
 from ontouml_py.model.enumerations.ontologicalnature import OntologicalNature
 from ontouml_py.model.generalization import Generalization
@@ -16,7 +16,6 @@ from ontouml_py.representation.diagram import Diagram
 
 
 class ProjectMethodsMixin:
-
     def __init__(self, *args, **kwargs):
         if type(self) is ProjectMethodsMixin:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")

@@ -2,7 +2,7 @@ from typing import Optional
 
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
-from ontouml_py.model.class_py import Class
+from ontouml_py.model.class_ontouml import Class
 from ontouml_py.model.generalization import Generalization
 from ontouml_py.model.generalizationset import GeneralizationSet
 from ontouml_py.model.naryrelation import NaryRelation
@@ -11,7 +11,6 @@ from ontouml_py.model.packageable import Packageable
 
 
 class PackageMethodsMixin:
-
     def __init__(self, *args, **kwargs):
         if type(self) is PackageMethodsMixin:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
