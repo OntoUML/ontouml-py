@@ -10,8 +10,8 @@ from ontouml_py.model.cardinality import Cardinality
 def test_cardinality_initialization():
     """Test successful initialization of a Cardinality instance."""
     cardinality = Cardinality()
-    assert cardinality.lower_bound is 1, "Cardinality should initialize lower_bound as 1"
-    assert cardinality.upper_bound is 1, "Cardinality should initialize upper_bound as 1"
+    assert cardinality.lower_bound == 1, "Cardinality should initialize lower_bound as 1"
+    assert cardinality.upper_bound == 1, "Cardinality should initialize upper_bound as 1"
     assert cardinality.is_ordered is False, "Cardinality should initialize is_ordered as False"
     assert cardinality.is_unique is True, "Cardinality should initialize is_unique as True"
 

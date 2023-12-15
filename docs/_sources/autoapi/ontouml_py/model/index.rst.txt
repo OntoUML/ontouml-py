@@ -25,7 +25,6 @@ Submodules
    class_ontouml/index.rst
    classifier/index.rst
    decoratable/index.rst
-   deletar/index.rst
    generalization/index.rst
    generalizationset/index.rst
    literal/index.rst

@@ -420,7 +420,7 @@ def test_abstract_class_instantiation() -> None:
 
     :raises TypeError: If direct instantiation of OntoumlElement is attempted.
     """
-    with pytest.raises(TypeError, match="Can't instantiate abstract class OntoumlElement without an implementation"):
+    with pytest.raises(TypeError, match="Can't instantiate abstract class OntoumlElement"):
         OntoumlElement()
 
 
