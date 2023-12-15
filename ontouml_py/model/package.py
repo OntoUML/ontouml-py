@@ -1,7 +1,6 @@
 from typing import Any
 from typing import Optional
 
-from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py.model.modelelement import ModelElement

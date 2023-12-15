@@ -1,5 +1,4 @@
 import pytest
-from icecream import ic
 from pydantic import ValidationError
 
 from ontouml_py.model.class_ontouml import Class
@@ -92,11 +91,9 @@ def test_add_literal_valid(valid_class: Class):
     :param valid_literal: A valid instance of Literal.
     """
     test_class = valid_class
-    ic(valid_class)
-    ic(valid_class.literals)
+
     new_literal = test_class.create_literal()
-    ic(valid_class.literals)
-    ic(new_literal)
+
     assert new_literal in test_class._literals, "The literal should be added to the class."
 
 

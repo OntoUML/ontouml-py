@@ -1,5 +1,4 @@
 import pytest
-from icecream import ic
 from pydantic import ValidationError
 
 from ontouml_py.model.literal import Literal

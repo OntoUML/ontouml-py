@@ -1,5 +1,4 @@
 import pytest
-from icecream import ic
 
 
 @pytest.mark.parametrize(
@@ -62,3 +61,72 @@ def test_get_content_by_id_methods(valid_package, content_type, get_by_id_method
     valid_package._contents[content_type].add(content_instance)
     retrieved_content = getattr(valid_package, get_by_id_method)(content_instance.id)
     assert retrieved_content == content_instance, f"Should retrieve the correct {content_type} instance by ID."
+
+
+@pytest.mark.parametrize(
+    "content_type, add_method, fixture_name",
+    [
+        ("Anchor", "add_anchor", "valid_anchor"),
+        ("BinaryRelation", "add_binary_relation", "valid_binary_relation"),
+        ("Class", "add_class", "valid_class"),
+        ("Generalization", "add_generalization", "valid_generalization"),
+        ("GeneralizationSet", "add_generalization_set", "valid_generalization_set"),
+        ("NaryRelation", "add_nary_relation", "valid_nary_relation"),
+        ("Note", "add_note", "valid_note"),
+        ("Package", "add_package", "valid_package"),
+    ],
+)
+def test_add_duplicate_content_methods(valid_package, content_type, add_method, fixture_name, request):
+    """
+    Test adding duplicate content using methods defined in PackageMethodsMixin.
+    """
+    content_instance = request.getfixturevalue(fixture_name)
+    getattr(valid_package, add_method)(content_instance)
+
+    # Construct the correct getter method name
+
+    if content_type in ["BinaryRelation", "NaryRelation"]:
+        lower_content_type = content_type.lower()
+        new_content = lower_content_type.replace("relation", "_relations")
+        getter_method = f"get_{new_content}"
+    elif content_type == "GeneralizationSet":
+        lower_content_type = content_type.lower()
+        new_content = lower_content_type.replace("set", "_sets")
+        getter_method = f"get_{new_content}"
+    elif content_type == "Class":
+        getter_method = "get_classes"
+    else:
+        getter_method = f"get_{content_type.lower()}s"
+
+    # Get the size of the set before attempting to add the duplicate
+    initial_size = len(getattr(valid_package, getter_method)())
+
+    # Attempt to add the same instance again
+    getattr(valid_package, add_method)(content_instance)
+
+    # Check if the size of the set remains the same
+    final_size = len(getattr(valid_package, getter_method)())
+    assert initial_size == final_size, "Adding a duplicate should not increase the size of the set."
+
+
+@pytest.mark.parametrize(
+    "get_by_id_method, invalid_id",
+    [
+        ("get_anchor_by_id", "invalid_id"),
+        # ... other content types with their respective get_by_id methods
+    ],
+)
+def test_get_nonexistent_content_by_id_methods(valid_package, get_by_id_method, invalid_id):
+    """
+    Test retrieving non-existent content by ID using methods defined in PackageMethodsMixin.
+
+    :param valid_package: A valid Package instance.
+    :param get_by_id_method: The method name for retrieving content by ID.
+    :param invalid_id: An invalid ID to test with.
+    :return: None
+    """
+    retrieved_content = getattr(valid_package, get_by_id_method)(invalid_id)
+    assert retrieved_content is None, "Should not retrieve any content with a non-existent ID."
+
+
+# Additional tests for invalid content type and null/invalid ID can be added similarly
