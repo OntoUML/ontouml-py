@@ -53,12 +53,6 @@ class ProjectMethodsMixin:
     def get_properties(self) -> set[ProjectElement]:
         return self._elements["Property"]
 
-    def get_shapes(self) -> set[ProjectElement]:
-        return self._elements["Shape"]
-
-    def get_views(self) -> set[ProjectElement]:
-        return self._elements["View"]
-
     def get_anchor_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Anchor", element_id)
 
@@ -91,12 +85,6 @@ class ProjectMethodsMixin:
 
     def get_property_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Property", element_id)
-
-    def get_shape_by_id(self, element_id: str) -> Optional[ProjectElement]:
-        return self.get_element_by_id("Shape", element_id)
-
-    def get_view_by_id(self, element_id: str) -> Optional[ProjectElement]:
-        return self.get_element_by_id("View", element_id)
 
     ### ELEMENTS' CREATION CREATION METHODS
 

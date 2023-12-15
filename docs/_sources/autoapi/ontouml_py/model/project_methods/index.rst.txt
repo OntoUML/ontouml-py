@@ -53,12 +53,6 @@ Classes
    .. py:method:: get_properties()
 
 
-   .. py:method:: get_shapes()
-
-
-   .. py:method:: get_views()
-
-
    .. py:method:: get_anchor_by_id(element_id)
 
 
@@ -90,12 +84,6 @@ Classes
 
 
    .. py:method:: get_property_by_id(element_id)
-
-
-   .. py:method:: get_shape_by_id(element_id)
-
-
-   .. py:method:: get_view_by_id(element_id)
 
 
    .. py:method:: create_anchor(**data)

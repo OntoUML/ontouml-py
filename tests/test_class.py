@@ -4,7 +4,6 @@ from pydantic import ValidationError
 from ontouml_py.model.class_ontouml import Class
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
 from ontouml_py.model.enumerations.ontologicalnature import OntologicalNature
-from ontouml_py.model.literal import Literal
 from ontouml_py.model.project import Project
 
 
