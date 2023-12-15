@@ -1,0 +1,191 @@
+:py:mod:`ontouml_py.model.project_methods`
+==========================================
+
+.. py:module:: ontouml_py.model.project_methods
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.project_methods.ProjectMethodsMixin
+
+
+
+
+.. py:class:: ProjectMethodsMixin
+
+
+   .. py:method:: get_anchors()
+
+
+   .. py:method:: get_binary_relations()
+
+
+   .. py:method:: get_classes()
+
+
+   .. py:method:: get_diagrams()
+
+
+   .. py:method:: get_generalizations()
+
+
+   .. py:method:: get_generalization_sets()
+
+
+   .. py:method:: get_literals()
+
+
+   .. py:method:: get_nary_relations()
+
+
+   .. py:method:: get_notes()
+
+
+   .. py:method:: get_packages()
+
+
+   .. py:method:: get_properties()
+
+
+   .. py:method:: get_shapes()
+
+
+   .. py:method:: get_views()
+
+
+   .. py:method:: get_anchor_by_id(element_id)
+
+
+   .. py:method:: get_binary_relation_by_id(element_id)
+
+
+   .. py:method:: get_class_by_id(element_id)
+
+
+   .. py:method:: get_diagram_by_id(element_id)
+
+
+   .. py:method:: get_generalization_by_id(element_id)
+
+
+   .. py:method:: get_generalization_set_by_id(element_id)
+
+
+   .. py:method:: get_literal_by_id(element_id)
+
+
+   .. py:method:: get_nary_relation_by_id(element_id)
+
+
+   .. py:method:: get_note_by_id(element_id)
+
+
+   .. py:method:: get_package_by_id(element_id)
+
+
+   .. py:method:: get_property_by_id(element_id)
+
+
+   .. py:method:: get_shape_by_id(element_id)
+
+
+   .. py:method:: get_view_by_id(element_id)
+
+
+   .. py:method:: create_anchor(**data)
+
+
+   .. py:method:: create_binary_relation(**data)
+
+
+   .. py:method:: create_class(stereotype = None, order = 1, restricted_to = None, is_abstract = False, **data)
+
+
+   .. py:method:: create_diagram(**data)
+
+
+   .. py:method:: create_generalization(**data)
+
+
+   .. py:method:: create_generalization_set(**data)
+
+
+   .. py:method:: create_nary_relation(**data)
+
+
+   .. py:method:: create_note(**data)
+
+
+   .. py:method:: create_package(**data)
+
+
+   .. py:method:: create_class_abstract(**data)
+
+
+   .. py:method:: create_class_category(**data)
+
+
+   .. py:method:: create_class_collective(**data)
+
+
+   .. py:method:: create_class_datatype(**data)
+
+
+   .. py:method:: create_class_enumeration(**data)
+
+
+   .. py:method:: create_class_event(**data)
+
+
+   .. py:method:: create_class_historical_role(**data)
+
+
+   .. py:method:: create_class_historical_role_mixin(**data)
+
+
+   .. py:method:: create_class_kind(**data)
+
+
+   .. py:method:: create_class_mixin(**data)
+
+
+   .. py:method:: create_class_mode(**data)
+
+
+   .. py:method:: create_class_phase(**data)
+
+
+   .. py:method:: create_class_phase_mixin(**data)
+
+
+   .. py:method:: create_class_quality(**data)
+
+
+   .. py:method:: create_class_quantity(**data)
+
+
+   .. py:method:: create_class_relator(**data)
+
+
+   .. py:method:: create_class_role(**data)
+
+
+   .. py:method:: create_class_role_mixin(**data)
+
+
+   .. py:method:: create_class_situation(**data)
+
+
+   .. py:method:: create_class_subkind(**data)
+
+
+   .. py:method:: create_class_type(**data)
+
+
+

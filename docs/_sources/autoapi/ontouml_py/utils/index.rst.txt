@@ -11,6 +11,5 @@ Submodules
    :maxdepth: 1
 
    error_message/index.rst
-   nonemptyset/index.rst
 
 
