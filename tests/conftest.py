@@ -1,4 +1,5 @@
 import pytest
+from icecream import ic
 
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation

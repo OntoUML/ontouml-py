@@ -1,7 +1,9 @@
 from typing import Any
 from typing import Optional
+from typing import Union
 
 from pydantic import Field
+from pydantic import PrivateAttr
 
 from ontouml_py.model.classifier import Classifier
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
@@ -11,11 +13,11 @@ from ontouml_py.utils.error_message import format_error_message
 
 
 class Class(Classifier):
+    _literals: set[Literal] = PrivateAttr(default_factory=set)
     is_powertype: bool = Field(default=False)
-    order: str = Field(default="1")
+    order: Union[str, int] = Field(default=1)
     restricted_to: set[OntologicalNature] = Field(default_factory=set)
-    stereotype: Optional[ClassStereotype] = Field(default=None)
-    literals: set[Literal] = Field(default_factory=set)
+    stereotype: Optional[Union[ClassStereotype, str]] = Field(default=None)
 
     model_config = {
         "arbitrary_types_allowed": True,
@@ -28,32 +30,29 @@ class Class(Classifier):
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
         super().__init__(project=project, pe_type=self.__class__.__name__, **data)
 
-    def add_literal(self, literal: Literal) -> None:
-        """Add a literal to the class.
+    def create_literal(self) -> None:
+        """Add a literal to the class."""
+        new_literal = Literal(enumeration=self)
+        self._literals.add(new_literal)
+        return new_literal
 
-        :param literal: The literal to be added.
-        :type literal: Literal
-        :raises ValueError: If the provided object is not of type Literal.
-        """
-        if not isinstance(literal, Literal):
-            error_message = format_error_message(
-                solution="Ensure the object to be added is an instance of Literal.",
-            )
-            raise ValueError(error_message)
-        self.literals.add(literal)
-
-    def remove_literal(self, literal: Literal) -> None:
+    def delete_literal(self, old_literal: Literal) -> None:
         """Remove a literal from the class if it exists.
 
-        :param literal: The literal to be removed.
-        :type literal: Literal
+        :param old_literal: The literal to be removed.
+        :type old_literal: Literal
         """
-        if literal not in self.literals:
+        if old_literal not in self._literals:
             error_message = format_error_message(
                 description=f"Literal not found in Class with ID {self.id}.",
-                cause=f"The literal {literal} to be removed does not exist in the class. "
-                f"Existing ones are {self.literals}.",
+                cause=f"The literal {old_literal} to be removed does not exist in the class. "
+                f"Existing ones are {self._literals}.",
                 solution="Ensure the literal exists in the class before attempting to remove it.",
             )
             raise ValueError(error_message)
-        self.literals.remove(literal)
+        self._literals.remove(old_literal)
+        del old_literal
+
+    @property
+    def literals(self):
+        return self._literals

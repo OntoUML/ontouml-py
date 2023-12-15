@@ -18,8 +18,6 @@ class Literal(ModelElement):
 
     def __init__(self, enumeration: "Class", **data: dict[str, Any]) -> None:
         super().__init__(project=enumeration.project, pe_type=self.__class__.__name__, **data)
-
-        enumeration.add_literal(self)
         self._enumeration = enumeration
 
     @property

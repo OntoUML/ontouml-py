@@ -23,7 +23,7 @@ Note:
 """
 
 
-def format_error_message(description: str, cause: str, solution: str) -> str:
+def format_error_message(description: str = "undefined", cause: str = "undefined", solution: str = "undefined") -> str:
     """Format a detailed error message.
 
     This function takes four string parameters describing various aspects of an error and prints a formatted error
