@@ -1,8 +1,8 @@
 import pytest
+from langstring import LangString
 from pydantic import ValidationError
 
 from ontouml_py.model.note import Note
-from langstring import LangString
 
 
 def test_note_initialization_with_valid_project(valid_project):

@@ -1,14 +1,7 @@
-"""Module for the Package class within an OntoUML model.
-
-This module defines the Package class, a concrete implementation of the Packageable abstract class. The Package class
-represents a container in the OntoUML model, capable of holding other Packageable elements (here called contents).
-It provides functionalities to add and remove contents, ensuring type safety and maintaining the integrity of the
-model's structure. The class also includes private attributes to manage its contents and configuration settings for
-validation and assignment.
-"""
 from typing import Any
 from typing import Optional
 
+from icecream import ic
 from pydantic import PrivateAttr
 
 from ontouml_py.model.modelelement import ModelElement
@@ -53,7 +46,7 @@ class Package(ModelElement, Packageable, PackageMethodsMixin):
         return None
 
     def remove_content(self, old_content: Packageable) -> None:
-        old_content_type = str(type(old_content))
+        old_content_type = type(old_content).__name__
         if old_content not in self._contents[old_content_type]:
             raise ValueError(self._removal_error_message(old_content, old_content_type))
         self._contents[old_content_type].remove(old_content)

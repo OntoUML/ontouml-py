@@ -19,10 +19,10 @@ class Packageable:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be instantiated.")
 
     @property
-    def package(self) -> Optional["Package"]:  # noqa: F821 (flake8)
+    def package(self) -> Optional["Package"]:
         return self._package
 
-    def __set_package(self, owner_package: Optional["Package"]) -> None:  # noqa: F821 (flake8)
+    def __set_package(self, owner_package: Optional["Package"]) -> None:
         self._package = owner_package
 
     def _remove_from_package(self):
