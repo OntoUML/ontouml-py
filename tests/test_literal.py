@@ -34,3 +34,10 @@ def test_literal_enumeration_property(valid_class, valid_literal):
     """
     assert valid_literal.enumeration == valid_class, "The 'enumeration' property should return the associated Class."
 
+
+def test_literal_initialization_with_none_enumeration():
+    """
+    Test the initialization of a Literal with a None value for 'enumeration'.
+    """
+    with pytest.raises(AttributeError, match="'NoneType' object has no attribute 'project'"):
+        Literal(enumeration=None)
