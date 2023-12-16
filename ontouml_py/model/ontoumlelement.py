@@ -90,3 +90,6 @@ class OntoumlElement(ABC, BaseModel):
         :rtype: int
         """
         return hash(self.id)
+
+
+# TODO (@pedropaulofb): Check all classes and verify whether 'arbitrary_types_allowed' is necessary.

@@ -17,10 +17,10 @@ Classes
 
 
 
-.. py:class:: Literal(project, **data)
+.. py:class:: Literal(enumeration, **data)
 
 
-   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.projectelement.ProjectElement`
+   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`
 
    Abstract base class representing a generic element within an OntoUML model.
 
@@ -36,6 +36,15 @@ Classes
    :vartype modified: Optional[datetime]
    :cvar model_config: Configuration settings for the Pydantic model.
    :vartype model_config: Dict[str, Any]
+
+   .. py:property:: enumeration
+      :type: Class
+
+
+   .. py:attribute:: _enumeration
+      :type: Class
+
+      
 
    .. py:attribute:: model_config
 

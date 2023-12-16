@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 from pydantic import ValidationError
 
@@ -55,7 +57,12 @@ def test_nary_relation_attribute_assignment_post_initialization(valid_nary_relat
     :param valid_project: A fixture that provides a valid Project instance.
     """
     new_project = Project()
-    with pytest.raises(AttributeError, match="property 'project' of 'NaryRelation' object has no setter"):
+    python_minor_version = sys.version_info.minor
+    if python_minor_version > 10:
+        match_string = "property 'project' of 'NaryRelation' object has no setter"
+    else:
+        match_string = "can't set attribute"
+    with pytest.raises(AttributeError, match=match_string):
         valid_nary_relation.project = new_project
 
 

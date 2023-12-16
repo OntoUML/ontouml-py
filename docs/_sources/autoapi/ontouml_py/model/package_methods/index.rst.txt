@@ -1,0 +1,95 @@
+:py:mod:`ontouml_py.model.package_methods`
+==========================================
+
+.. py:module:: ontouml_py.model.package_methods
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.package_methods.PackageMethodsMixin
+
+
+
+
+.. py:class:: PackageMethodsMixin
+
+
+   .. py:method:: get_anchors()
+
+
+   .. py:method:: get_binary_relations()
+
+
+   .. py:method:: get_classes()
+
+
+   .. py:method:: get_generalizations()
+
+
+   .. py:method:: get_generalization_sets()
+
+
+   .. py:method:: get_nary_relations()
+
+
+   .. py:method:: get_notes()
+
+
+   .. py:method:: get_packages()
+
+
+   .. py:method:: get_anchor_by_id(content_id)
+
+
+   .. py:method:: get_binary_relation_by_id(content_id)
+
+
+   .. py:method:: get_class_by_id(content_id)
+
+
+   .. py:method:: get_generalization_by_id(content_id)
+
+
+   .. py:method:: get_generalization_set_by_id(content_id)
+
+
+   .. py:method:: get_nary_relation_by_id(content_id)
+
+
+   .. py:method:: get_note_by_id(content_id)
+
+
+   .. py:method:: get_package_by_id(content_id)
+
+
+   .. py:method:: add_anchor(new_content)
+
+
+   .. py:method:: add_binary_relation(new_content)
+
+
+   .. py:method:: add_class(new_content)
+
+
+   .. py:method:: add_generalization(new_content)
+
+
+   .. py:method:: add_generalization_set(new_content)
+
+
+   .. py:method:: add_nary_relation(new_content)
+
+
+   .. py:method:: add_note(new_content)
+
+
+   .. py:method:: add_package(new_content)
+
+
+

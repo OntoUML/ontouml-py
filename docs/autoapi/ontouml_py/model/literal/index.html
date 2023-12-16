@@ -105,8 +105,8 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ontouml_py.model.literal.Literal">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.model.literal.</span></span><span class="sig-name descname"><span class="pre">Literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.model.literal.Literal" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../modelelement/index.html#ontouml_py.model.modelelement.ModelElement" title="ontouml_py.model.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.model.modelelement.ModelElement</span></code></a>, <a class="reference internal" href="../projectelement/index.html#ontouml_py.model.projectelement.ProjectElement" title="ontouml_py.model.projectelement.ProjectElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.model.projectelement.ProjectElement</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ontouml_py.model.literal.</span></span><span class="sig-name descname"><span class="pre">Literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enumeration</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ontouml_py.model.literal.Literal" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../modelelement/index.html#ontouml_py.model.modelelement.ModelElement" title="ontouml_py.model.modelelement.ModelElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ontouml_py.model.modelelement.ModelElement</span></code></a></p>
 <p>Abstract base class representing a generic element within an OntoUML model.</p>
 <p>This class provides foundational attributes and methods for all OntoUML elements, including unique identification
 and timestamps for creation and modification. It enforces constraints on certain attributes and includes validation
@@ -122,11 +122,26 @@ logic to maintain their integrity.</p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>project</strong> (<em>object</em>) – </p></li>
+<li><p><strong>enumeration</strong> (<a class="reference internal" href="../class_ontouml/index.html#ontouml_py.model.class_ontouml.Class" title="ontouml_py.model.class_ontouml.Class"><em>Class</em></a>) – </p></li>
 <li><p><strong>data</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="ontouml_py.model.literal.Literal.enumeration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enumeration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../class_ontouml/index.html#ontouml_py.model.class_ontouml.Class" title="ontouml_py.model.class_ontouml.Class"><span class="pre">Class</span></a></em><a class="headerlink" href="#ontouml_py.model.literal.Literal.enumeration" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../class_ontouml/index.html#ontouml_py.model.class_ontouml.Class" title="ontouml_py.model.class_ontouml.Class">Class</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ontouml_py.model.literal.Literal._enumeration">
+<span class="sig-name descname"><span class="pre">_enumeration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../class_ontouml/index.html#ontouml_py.model.class_ontouml.Class" title="ontouml_py.model.class_ontouml.Class"><span class="pre">Class</span></a></em><a class="headerlink" href="#ontouml_py.model.literal.Literal._enumeration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ontouml_py.model.literal.Literal.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ontouml_py.model.literal.Literal.model_config" title="Link to this definition"></a></dt>
