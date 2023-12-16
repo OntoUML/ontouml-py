@@ -1,5 +1,4 @@
 import pytest
-from icecream import ic
 from pydantic import ValidationError
 from pytest_lazyfixture import lazy_fixture
 
@@ -21,9 +20,7 @@ def test_create_property(classifier_fixture):
 
     :param classifier_fixture: A fixture for a concrete classifier instance.
     """
-    ic(classifier_fixture)
     new_property = classifier_fixture.create_property()
-    ic(new_property)
     assert new_property in classifier_fixture.properties
 
 
