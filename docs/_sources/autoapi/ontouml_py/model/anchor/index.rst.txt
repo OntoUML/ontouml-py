@@ -20,7 +20,7 @@ Classes
 .. py:class:: Anchor(project, **data)
 
 
-   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.projectelement.ProjectElement`, :py:obj:`ontouml_py.model.packageable.Packageable`
+   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.packageable.Packageable`
 
    Abstract base class representing a generic element within an OntoUML model.
 

@@ -2,7 +2,7 @@ from pydantic import PrivateAttr
 
 
 class ProjectElement:
-    _project: "Project" = PrivateAttr()
+    _project: "Project" = PrivateAttr()  # noqa:F821
 
     model_config = {
         "arbitrary_types_allowed": True,
@@ -21,5 +21,5 @@ class ProjectElement:
             raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 
     @property
-    def project(self) -> "Project":
+    def project(self) -> "Project":  # noqa:F821
         return self._project

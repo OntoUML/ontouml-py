@@ -5,10 +5,9 @@ from pydantic import Field
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.note import Note
 from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 
 
-class Anchor(ModelElement, ProjectElement, Packageable):
+class Anchor(ModelElement, Packageable):
     note: Note = Field()
     target: ModelElement = Field()
 

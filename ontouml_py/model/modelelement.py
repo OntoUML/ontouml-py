@@ -1,5 +1,3 @@
-"""This module defines the ModelElement class, which represents a model element in an OntoUML model. It inherits \
-properties from both NamedElement and ProjectElement, and includes additional features specific to model elements."""
 from abc import abstractmethod
 from typing import Any
 

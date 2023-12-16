@@ -14,7 +14,7 @@ from ontouml_py.utils.error_message import format_error_message
 
 class Property(Decoratable):
     # Private attributes
-    _classifier: "Classifier" = PrivateAttr()
+    _classifier: "Classifier" = PrivateAttr()  # noqa:F821
     # Public attributes
     is_read_only: bool = Field(default=False)
     aggregation_kind: AggregationKind = Field(default=AggregationKind.NONE)
@@ -49,7 +49,7 @@ class Property(Decoratable):
         return checked_value
 
     @property
-    def classifier(self) -> "Classifier":
+    def classifier(self) -> "Classifier":  # noqa:F821
         """Get the owning classifier of this property.
 
         :return: The Classifier instance that owns this property, if any.

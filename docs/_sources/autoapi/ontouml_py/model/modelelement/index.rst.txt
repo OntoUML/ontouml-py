@@ -3,11 +3,6 @@
 
 .. py:module:: ontouml_py.model.modelelement
 
-.. autoapi-nested-parse::
-
-   This module defines the ModelElement class, which represents a model element in an OntoUML model. It inherits properties from both NamedElement and ProjectElement, and includes additional features specific to model elements.
-
-
 
 Module Contents
 ---------------

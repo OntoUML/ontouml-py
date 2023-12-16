@@ -24,19 +24,20 @@ def test_generalization_set_initialization_with_parameters(valid_project):
     assert gen_set.is_complete
 
 
-def test_assignment_of_attributes_to_generalization_set(valid_project, valid_generalization):
+def test_assignment_of_attributes_to_generalization_set(valid_project, valid_class, valid_generalization):
     """Test the assignment of different attributes to a GeneralizationSet instance.
 
     :param valid_project: A fixture for a valid Project instance.
+    :param valid_class: A fixture for a valid Class instance.
     :param valid_generalization: A fixture for a valid Generalization instance.
     """
     gen_set = GeneralizationSet(project=valid_project)
     gen_set.is_disjoint = True
     gen_set.is_complete = True
     gen_set.generalizations.add(valid_generalization)
-    gen_set.categorizer = valid_project  # Assuming valid_project can act as a categorizer
+    gen_set.categorizer = valid_class
 
     assert gen_set.is_disjoint
     assert gen_set.is_complete
     assert valid_generalization in gen_set.generalizations
-    assert gen_set.categorizer == valid_project
+    assert gen_set.categorizer == valid_class

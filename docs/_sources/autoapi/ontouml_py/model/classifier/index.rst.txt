@@ -63,7 +63,4 @@ Classes
    .. py:method:: create_property(**data)
 
 
-   .. py:method:: delete_property(old_property)
-
-
 
