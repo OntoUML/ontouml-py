@@ -45,7 +45,7 @@ class Project(NamedElement, ProjectMethodsMixin):
     contexts: set[str] = Field(default_factory=set)
     designed_for_task: set[str] = Field(default_factory=set)
     publisher: Optional[str] = Field(default=None)
-    rOt_package: Optional[Package] = Field(default=None)
+    root_package: Optional[Package] = Field(default=None)
     representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
     model_config = {

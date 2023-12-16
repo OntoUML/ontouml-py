@@ -86,7 +86,7 @@ class ProjectMethodsMixin:
     def get_property_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Property", element_id)
 
-    ### ELEMENTS' CREATION CREATION METHODS
+    # ELEMENTS' CREATION CREATION METHODS
 
     def create_anchor(self, **data: dict[str, Any]) -> Anchor:
         new_element = Anchor(self, **data)
@@ -145,7 +145,7 @@ class ProjectMethodsMixin:
         self._elements["Package"].add(new_element)
         return new_element
 
-    ### CLASSES'S CREATION METHODS
+    # CLASSES'S CREATION METHODS
 
     def create_class_abstract(self, **data: dict[str, Any]) -> Class:
         stereotype = ClassStereotype.ABSTRACT

@@ -51,9 +51,9 @@ class Package(ModelElement, Packageable, PackageMethodsMixin):
         self._contents[old_content_type].remove(old_content)
 
     def _removal_error_message(self, old_content: Packageable, old_content_type: str) -> str:
-        error_message = format_error_message(
+        return format_error_message(
             description=f"Invalid {old_content_type} content for removal.",
-            cause=f"The content {old_content} is not found in the {old_content_type} contents of the package with ID {self.id}.",
+            cause=f"The content {old_content} is not found in the {old_content_type} contents of the "
+                  f"package with ID {self.id}.",
             solution=f"Ensure the content to be removed is a valid {old_content_type} content in the package.",
         )
-        return error_message
