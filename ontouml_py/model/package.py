@@ -32,7 +32,7 @@ class Package(ModelElement, Packageable, PackageMethodsMixin):
         "validate_default": True,
     }
 
-    def __init__(self, project: object, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", **data: dict[str, Any]) -> None:
         ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)
 
     def get_contents(self) -> dict:
@@ -54,6 +54,6 @@ class Package(ModelElement, Packageable, PackageMethodsMixin):
         return format_error_message(
             description=f"Invalid {old_content_type} content for removal.",
             cause=f"The content {old_content} is not found in the {old_content_type} contents of the "
-                  f"package with ID {self.id}.",
+            f"package with ID {self.id}.",
             solution=f"Ensure the content to be removed is a valid {old_content_type} content in the package.",
         )

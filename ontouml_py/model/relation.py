@@ -20,7 +20,7 @@ class Relation(Classifier):
     }
 
     @abstractmethod
-    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", pe_type: str, **data: dict[str, Any]) -> None:
         Classifier.__init__(self, project=project, pe_type=pe_type, **data)
 
 

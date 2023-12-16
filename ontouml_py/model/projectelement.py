@@ -12,7 +12,7 @@ class ProjectElement:
         "validate_default": True,
     }
 
-    def __init__(self, project: object, pe_type: str) -> None:
+    def __init__(self, project: "Project", pe_type: str) -> None:
         project._elements[pe_type].add(self)
         self._project = project
 

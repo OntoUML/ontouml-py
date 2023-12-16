@@ -32,7 +32,7 @@ class Property(Decoratable):
         "validate_default": True,
     }
 
-    def __init__(self, classifier: object, **data: dict[str, Any]) -> None:
+    def __init__(self, classifier: "Classifier", **data: dict[str, Any]) -> None:
         super().__init__(project=classifier.project, pe_type=self.__class__.__name__, **data)
         self._classifier = classifier
 

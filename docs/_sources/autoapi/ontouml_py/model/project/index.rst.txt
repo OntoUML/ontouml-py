@@ -112,7 +112,7 @@ Classes
 
       
 
-   .. py:attribute:: rOt_package
+   .. py:attribute:: root_package
       :type: Optional[ontouml_py.model.package.Package]
 
       

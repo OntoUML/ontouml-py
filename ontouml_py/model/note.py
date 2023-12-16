@@ -18,5 +18,5 @@ class Note(ModelElement, Packageable):
         "validate_default": True,
     }
 
-    def __init__(self, project: object, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", **data: dict[str, Any]) -> None:
         ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)

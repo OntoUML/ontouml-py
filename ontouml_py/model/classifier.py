@@ -24,10 +24,10 @@ class Classifier(Decoratable, Packageable):
     }
 
     @abstractmethod
-    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", pe_type: str, **data: dict[str, Any]) -> None:
         Decoratable.__init__(self, project=project, pe_type=pe_type, **data)
 
-    def create_property(self, **data: dict[str, Any]) -> None:
+    def create_property(self, **data: dict[str, Any]) -> Property:
         new_property = Property(classifier=self, **data)
         self._properties.append(new_property)
         return new_property

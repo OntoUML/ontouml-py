@@ -12,5 +12,5 @@ class NaryRelation(Relation):
         "validate_default": True,
     }
 
-    def __init__(self, project: object, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", **data: dict[str, Any]) -> None:
         super().__init__(project=project, pe_type=self.__class__.__name__, **data)

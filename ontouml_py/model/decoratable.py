@@ -25,5 +25,5 @@ class Decoratable(ModelElement):
     }
 
     @abstractmethod
-    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
+    def __init__(self, project: "Project", pe_type: str, **data: dict[str, Any]) -> None:
         super().__init__(project=project, pe_type=pe_type, **data)
