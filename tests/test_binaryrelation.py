@@ -4,6 +4,7 @@ from pydantic import ValidationError
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.project import Project
 
+import sys
 
 # Assuming the necessary imports are already in place
 
@@ -55,7 +56,12 @@ def test_binary_relation_attribute_assignment_post_initialization(valid_binary_r
     :param valid_project: A fixture that provides a valid Project instance.
     """
     new_project = Project()
-    with pytest.raises(AttributeError, match="property 'project' of 'BinaryRelation' object has no setter"):
+    python_minor_version = sys.version_info.minor
+    if python_minor_version > 10:
+        match_string = "property 'project' of 'BinaryRelation' object has no setter"
+    else:
+        match_string = "can't set attribute 'project'"
+    with pytest.raises(AttributeError, match=match_string):
         valid_binary_relation.project = new_project
 
 
