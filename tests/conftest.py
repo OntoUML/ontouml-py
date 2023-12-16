@@ -40,6 +40,11 @@ def valid_class(valid_project):
 
 
 @pytest.fixture
+def another_valid_class(valid_project):
+    return Class(project=valid_project)
+
+
+@pytest.fixture
 def valid_generalization(valid_project, valid_class):
     return Generalization(project=valid_project, general=valid_class, specific=valid_class)
 
