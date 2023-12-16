@@ -1,10 +1,10 @@
+import sys
+
 import pytest
 from pydantic import ValidationError
 
 from ontouml_py.model.binaryrelation import BinaryRelation
 from ontouml_py.model.project import Project
-
-import sys
 
 # Assuming the necessary imports are already in place
 
