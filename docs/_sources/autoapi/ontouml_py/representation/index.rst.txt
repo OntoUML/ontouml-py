@@ -1,0 +1,16 @@
+:py:mod:`ontouml_py.representation`
+===================================
+
+.. py:module:: ontouml_py.representation
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   diagram/index.rst
+   path/index.rst
+
+

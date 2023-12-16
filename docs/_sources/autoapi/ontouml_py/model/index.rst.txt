@@ -1,0 +1,45 @@
+:py:mod:`ontouml_py.model`
+==========================
+
+.. py:module:: ontouml_py.model
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   enumerations/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   anchor/index.rst
+   binaryrelation/index.rst
+   cardinality/index.rst
+   class_ontouml/index.rst
+   classifier/index.rst
+   decoratable/index.rst
+   generalization/index.rst
+   generalizationset/index.rst
+   literal/index.rst
+   modelelement/index.rst
+   namedelement/index.rst
+   naryrelation/index.rst
+   note/index.rst
+   ontoumlelement/index.rst
+   package/index.rst
+   package_methods/index.rst
+   packageable/index.rst
+   project/index.rst
+   project_methods/index.rst
+   projectelement/index.rst
+   property/index.rst
+   relation/index.rst
+
+

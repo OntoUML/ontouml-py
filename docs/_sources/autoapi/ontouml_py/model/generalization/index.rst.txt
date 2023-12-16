@@ -1,0 +1,61 @@
+:py:mod:`ontouml_py.model.generalization`
+=========================================
+
+.. py:module:: ontouml_py.model.generalization
+
+.. autoapi-nested-parse::
+
+   This module defines the `Generalization` class, a component of the ontouml_py library.
+
+   The `Generalization` class represents a generalization relationship in an ontological model, linking two classifiers in
+   a hierarchy where one (classifier) is a generalization of the other. This module includes the necessary validations to
+   ensure the integrity of the generalization relationship, such as preventing a classifier from being a generalization
+   of itself.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.generalization.Generalization
+
+
+
+
+.. py:class:: Generalization(project, **data)
+
+
+   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.packageable.Packageable`
+
+   Represent a generalization relationship between two classifiers in an ontological model.
+
+   This class extends `ModelElement` and is used to define a generalization, where one classifier (the general) is
+   a generalization of another classifier (the specific).
+
+   :ivar general: The general classifier in the generalization relationship.
+   :vartype general: Classifier
+   :ivar specific: The specific classifier in the generalization relationship.
+   :vartype specific: Classifier
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
+
+   .. py:attribute:: general
+      :type: ontouml_py.model.classifier.Classifier
+
+      
+
+   .. py:attribute:: specific
+      :type: ontouml_py.model.classifier.Classifier
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

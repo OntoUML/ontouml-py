@@ -1,0 +1,42 @@
+:py:mod:`ontouml_py.model.packageable`
+======================================
+
+.. py:module:: ontouml_py.model.packageable
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.packageable.Packageable
+
+
+
+
+.. py:class:: Packageable
+
+
+   .. py:property:: package
+      :type: Optional[Package]
+
+
+   .. py:attribute:: _package
+      :type: Optional[Package]
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+   .. py:method:: __set_package(owner_package)
+
+
+   .. py:method:: _remove_from_package()
+
+
+

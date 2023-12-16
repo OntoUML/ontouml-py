@@ -1,0 +1,36 @@
+:py:mod:`ontouml_py.model.projectelement`
+=========================================
+
+.. py:module:: ontouml_py.model.projectelement
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.projectelement.ProjectElement
+
+
+
+
+.. py:class:: ProjectElement(project, pe_type)
+
+
+   .. py:property:: project
+      :type: Project
+
+
+   .. py:attribute:: _project
+      :type: Project
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+

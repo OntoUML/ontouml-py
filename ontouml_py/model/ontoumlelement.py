@@ -13,11 +13,8 @@ from datetime import datetime
 from typing import Any
 from typing import Optional
 
-from icecream import ic
 from pydantic import BaseModel
 from pydantic import Field
-
-from ontouml_py.utils.error_message import format_error_message
 
 
 class OntoumlElement(ABC, BaseModel):
@@ -60,10 +57,7 @@ class OntoumlElement(ABC, BaseModel):
         :type data: dict[str, Any]
         :raises ValueError: If 'modified' is set to a datetime earlier than 'created'.
         """
-
-        # Sets attributes
         super().__init__(**data)
-        self._validate_subclasses(["NamedElement", "Project", "ProjectElement", "Shape", "View"])
 
     def __eq__(self, other: object) -> bool:
         """
@@ -97,25 +91,5 @@ class OntoumlElement(ABC, BaseModel):
         """
         return hash(self.id)
 
-    @classmethod
-    def _validate_subclasses(cls, allowed_subclasses: list[str]) -> None:
-        """
-        Ensure that the given class is a subclass of one of the allowed subclasses.
 
-        :param allowed_subclasses: A list of allowed subclass names.
-        :type allowed_subclasses: list[str]
-        :raises ValueError: If the analyzed class is not a subclass of any allowed subclasses.
-        """
-        current_class = cls
-        while current_class != object:
-            if current_class.__name__ in allowed_subclasses:
-                return
-            current_class = current_class.__bases__[0]
-        else:
-            allowed = ", ".join(allowed_subclasses)
-            error_message = format_error_message(
-                description=f"Invalid subclass type for class '{cls.__name__}'.",
-                cause=f"'{cls.__name__}' is not an allowed subclass.",
-                solution=f"Use one of the allowed subclasses: {allowed}.",
-            )
-            raise ValueError(error_message)
+# TODO (@pedropaulofb): Check all classes and verify whether 'arbitrary_types_allowed' is necessary.
