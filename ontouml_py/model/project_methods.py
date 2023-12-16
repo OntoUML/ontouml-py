@@ -3,7 +3,7 @@ from typing import Optional
 
 from ontouml_py.model.anchor import Anchor
 from ontouml_py.model.binaryrelation import BinaryRelation
-from ontouml_py.model.class_py import Class
+from ontouml_py.model.class_ontouml import Class
 from ontouml_py.model.enumerations.classstereotype import ClassStereotype
 from ontouml_py.model.enumerations.ontologicalnature import OntologicalNature
 from ontouml_py.model.generalization import Generalization
@@ -16,11 +16,9 @@ from ontouml_py.representation.diagram import Diagram
 
 
 class ProjectMethodsMixin:
-    @classmethod
-    def __new__(cls):
-        if cls is ProjectMethodsMixin:
-            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
-        return super().__new__(cls)
+    def __init__(self):
+        if type(self) is ProjectMethodsMixin:
+            raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
 
     def get_anchors(self) -> set[ProjectElement]:
         return self._elements["Anchor"]
@@ -55,12 +53,6 @@ class ProjectMethodsMixin:
     def get_properties(self) -> set[ProjectElement]:
         return self._elements["Property"]
 
-    def get_shapes(self) -> set[ProjectElement]:
-        return self._elements["Shape"]
-
-    def get_views(self) -> set[ProjectElement]:
-        return self._elements["View"]
-
     def get_anchor_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Anchor", element_id)
 
@@ -93,12 +85,6 @@ class ProjectMethodsMixin:
 
     def get_property_by_id(self, element_id: str) -> Optional[ProjectElement]:
         return self.get_element_by_id("Property", element_id)
-
-    def get_shape_by_id(self, element_id: str) -> Optional[ProjectElement]:
-        return self.get_element_by_id("Shape", element_id)
-
-    def get_view_by_id(self, element_id: str) -> Optional[ProjectElement]:
-        return self.get_element_by_id("View", element_id)
 
     ### ELEMENTS' CREATION CREATION METHODS
 

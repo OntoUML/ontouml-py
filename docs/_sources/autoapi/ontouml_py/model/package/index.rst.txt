@@ -3,17 +3,6 @@
 
 .. py:module:: ontouml_py.model.package
 
-.. autoapi-nested-parse::
-
-   Module for the Package class within an OntoUML model.
-
-   This module defines the Package class, a concrete implementation of the Packageable abstract class. The Package class
-   represents a container in the OntoUML model, capable of holding other Packageable elements (here called contents).
-   It provides functionalities to add and remove contents, ensuring type safety and maintaining the integrity of the
-   model's structure. The class also includes private attributes to manage its contents and configuration settings for
-   validation and assignment.
-
-
 
 Module Contents
 ---------------
@@ -31,7 +20,7 @@ Classes
 .. py:class:: Package(project, **data)
 
 
-   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.projectelement.ProjectElement`, :py:obj:`ontouml_py.model.packageable.Packageable`
+   Bases: :py:obj:`ontouml_py.model.modelelement.ModelElement`, :py:obj:`ontouml_py.model.packageable.Packageable`, :py:obj:`ontouml_py.model.package_methods.PackageMethodsMixin`
 
    Abstract base class representing a generic element within an OntoUML model.
 
@@ -60,109 +49,13 @@ Classes
    .. py:method:: get_contents()
 
 
-   .. py:method:: get_anchors()
-
-
-   .. py:method:: get_binary_relations()
-
-
-   .. py:method:: get_classes()
-
-
-   .. py:method:: get_generalizations()
-
-
-   .. py:method:: get_generalization_sets()
-
-
-   .. py:method:: get_nary_relations()
-
-
-   .. py:method:: get_notes()
-
-
-   .. py:method:: get_packages()
-
-
    .. py:method:: get_content_by_id(content_type, content_id)
-
-
-   .. py:method:: get_anchor_by_id(content_id)
-
-
-   .. py:method:: get_binary_relation_by_id(content_id)
-
-
-   .. py:method:: get_class_by_id(content_id)
-
-
-   .. py:method:: get_generalization_by_id(content_id)
-
-
-   .. py:method:: get_generalization_set_by_id(content_id)
-
-
-   .. py:method:: get_nary_relation_by_id(content_id)
-
-
-   .. py:method:: get_note_by_id(content_id)
-
-
-   .. py:method:: get_package_by_id(content_id)
-
-
-   .. py:method:: add_anchor(new_content)
-
-
-   .. py:method:: add_binary_relation(new_content)
-
-
-   .. py:method:: add_class(new_content)
-
-
-   .. py:method:: add_generalization(new_content)
-
-
-   .. py:method:: add_generalization_set(new_content)
-
-
-   .. py:method:: add_nary_relation(new_content)
-
-
-   .. py:method:: add_note(new_content)
-
-
-   .. py:method:: add_package(new_content)
 
 
    .. py:method:: remove_content(old_content)
 
 
-   .. py:method:: remove_anchor(old_content)
-
-
-   .. py:method:: remove_binary_relation(old_content)
-
-
-   .. py:method:: remove_class(old_content)
-
-
-   .. py:method:: remove_generalization(old_content)
-
-
-   .. py:method:: remove_generalization_set(old_content)
-
-
-   .. py:method:: remove_nary_relation(old_content)
-
-
-   .. py:method:: remove_note(old_content)
-
-
-   .. py:method:: remove_package(old_content)
-
-
-   .. py:method:: __removal_error_message(old_content, old_content_type)
+   .. py:method:: _removal_error_message(old_content, old_content_type)
 
 
 

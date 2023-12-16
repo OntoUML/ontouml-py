@@ -23,11 +23,6 @@ Classes
    .. py:property:: project
       :type: Project
 
-      Read-only property to access the project this element belongs to.
-
-      :return: The project instance to which this element is associated.
-      :rtype: Optional[Project]
-
 
    .. py:attribute:: _project
       :type: Project

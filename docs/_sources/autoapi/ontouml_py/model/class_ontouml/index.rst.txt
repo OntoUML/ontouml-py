@@ -1,0 +1,85 @@
+:py:mod:`ontouml_py.model.class_ontouml`
+========================================
+
+.. py:module:: ontouml_py.model.class_ontouml
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ontouml_py.model.class_ontouml.Class
+
+
+
+
+.. py:class:: Class(project, **data)
+
+
+   Bases: :py:obj:`ontouml_py.model.classifier.Classifier`
+
+   Abstract base class representing a generic element within an OntoUML model.
+
+   This class provides foundational attributes and methods for all OntoUML elements, including unique identification
+   and timestamps for creation and modification. It enforces constraints on certain attributes and includes validation
+   logic to maintain their integrity.
+
+   :ivar id: A unique identifier for the element, automatically generated upon instantiation.
+   :vartype id: str
+   :ivar created: Timestamp when the element was created, defaults to the current time.
+   :vartype created: datetime
+   :ivar modified: Timestamp when the element was last modified, can be None if not modified.
+   :vartype modified: Optional[datetime]
+   :cvar model_config: Configuration settings for the Pydantic model.
+   :vartype model_config: Dict[str, Any]
+
+   .. py:property:: literals
+
+
+   .. py:attribute:: _literals
+      :type: set[ontouml_py.model.literal.Literal]
+
+      
+
+   .. py:attribute:: is_powertype
+      :type: bool
+
+      
+
+   .. py:attribute:: order
+      :type: Union[str, int]
+
+      
+
+   .. py:attribute:: restricted_to
+      :type: set[ontouml_py.model.enumerations.ontologicalnature.OntologicalNature]
+
+      
+
+   .. py:attribute:: stereotype
+      :type: Optional[Union[ontouml_py.model.enumerations.classstereotype.ClassStereotype, str]]
+
+      
+
+   .. py:attribute:: model_config
+
+      
+
+   .. py:method:: create_literal()
+
+      Add a literal to the class.
+
+
+   .. py:method:: delete_literal(old_literal)
+
+      Remove a literal from the class if it exists.
+
+      :param old_literal: The literal to be removed.
+      :type old_literal: Literal
+
+
+

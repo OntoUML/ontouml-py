@@ -17,7 +17,7 @@ repos:
         pass_filenames: false
         stages:
           - pre-push
-      - id: run_tests
+      - id: pytest
         name: run pytest tests
         entry: pytest -p no:warnings ./tests
         language: system
@@ -29,14 +29,11 @@ repos:
         pass_filenames: false
         stages:
           - pre-push
-      - id: update_documentation
-        name: update documentation
-        entry: python update_documentation.py
-        language: system
-        types: [ python ]
-        pass_filenames: false
-        stages:
-          - pre-push
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.1
+    hooks:
+      - id: autoflake
+        args: [ --in-place, --remove-all-unused-imports, --ignore-init-module-imports ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
@@ -91,6 +88,16 @@ repos:
     rev: v2.10
     hooks:
       - id: vulture
+  - repo: local
+    hooks:
+      - id: update_documentation
+        name: update documentation
+        entry: python update_documentation.py
+        language: system
+        types: [ python ]
+        pass_filenames: false
+        stages:
+          - pre-push
   - repo: https://gitlab.com/smop/pre-commit-hooks
     rev: v1.0.0
     hooks:

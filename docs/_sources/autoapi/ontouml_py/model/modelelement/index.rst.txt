@@ -22,10 +22,10 @@ Classes
 
 
 
-.. py:class:: ModelElement(project, **data)
+.. py:class:: ModelElement(project, pe_type, **data)
 
 
-   Bases: :py:obj:`ontouml_py.model.projectelement.ProjectElement`, :py:obj:`ontouml_py.model.namedelement.NamedElement`
+   Bases: :py:obj:`ontouml_py.model.namedelement.NamedElement`, :py:obj:`ontouml_py.model.projectelement.ProjectElement`
 
    Abstract base class representing a generic element within an OntoUML model.
 

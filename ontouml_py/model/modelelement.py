@@ -9,7 +9,7 @@ from ontouml_py.model.namedelement import NamedElement
 from ontouml_py.model.projectelement import ProjectElement
 
 
-class ModelElement(ProjectElement, NamedElement):
+class ModelElement(NamedElement, ProjectElement):
     custom_properties: set[tuple[str, Any]] = Field(default_factory=set)
 
     model_config = {
@@ -21,6 +21,6 @@ class ModelElement(ProjectElement, NamedElement):
     }
 
     @abstractmethod
-    def __init__(self, project, pe_type: str, **data: dict[str, Any]) -> None:
+    def __init__(self, project: object, pe_type: str, **data: dict[str, Any]) -> None:
         NamedElement.__init__(self, **data)
         ProjectElement.__init__(self, project=project, pe_type=pe_type)

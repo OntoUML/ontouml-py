@@ -3,17 +3,6 @@
 
 .. py:module:: ontouml_py.model.property
 
-.. autoapi-nested-parse::
-
-   Module for the Property class within an OntoUML model.
-
-   This module defines the Property class, which extends the Decoratable class from the ontouml_py package. The Property
-   class represents a feature of a Classifier in an OntoUML model. It includes attributes and methods to define and
-   manipulate properties of Classifiers, such as their read-only status, aggregation kind, stereotype, cardinality, type,
-   and relationships with other properties. The module also includes necessary imports and configurations for the Property
-   class to function within the broader OntoUML framework.
-
-
 
 Module Contents
 ---------------
@@ -28,25 +17,28 @@ Classes
 
 
 
-.. py:class:: Property(project, **data)
+.. py:class:: Property(classifier, **data)
 
 
-   Bases: :py:obj:`ontouml_py.model.decoratable.Decoratable`, :py:obj:`ontouml_py.model.projectelement.ProjectElement`
+   Bases: :py:obj:`ontouml_py.model.decoratable.Decoratable`
 
-   Abstract class representing a decoratable element in an OntoUML model.
+   Abstract base class representing a generic element within an OntoUML model.
 
-   This class extends ModelElement to include the capability of being decorated. It introduces an attribute to
-   indicate whether the element is derived. The class is intended to be subclassed by specific model elements that
-   support decoration, such as classifiers and properties.
+   This class provides foundational attributes and methods for all OntoUML elements, including unique identification
+   and timestamps for creation and modification. It enforces constraints on certain attributes and includes validation
+   logic to maintain their integrity.
 
-   :ivar is_derived: Indicates whether the element is derived. Derived elements are typically computed or inferred
-                     from other elements.
-   :vartype is_derived: bool
+   :ivar id: A unique identifier for the element, automatically generated upon instantiation.
+   :vartype id: str
+   :ivar created: Timestamp when the element was created, defaults to the current time.
+   :vartype created: datetime
+   :ivar modified: Timestamp when the element was last modified, can be None if not modified.
+   :vartype modified: Optional[datetime]
    :cvar model_config: Configuration settings for the Pydantic model.
    :vartype model_config: Dict[str, Any]
 
-   .. py:property:: property_of
-      :type: Optional[object]
+   .. py:property:: classifier
+      :type: Classifier
 
       Get the owning classifier of this property.
 
@@ -54,8 +46,8 @@ Classes
       :rtype: Optional[Classifier]
 
 
-   .. py:attribute:: _property_of
-      :type: Optional[object]
+   .. py:attribute:: _classifier
+      :type: Classifier
 
       
 
@@ -75,7 +67,7 @@ Classes
       
 
    .. py:attribute:: cardinality
-      :type: object
+      :type: ontouml_py.model.cardinality.Cardinality
 
       
 
@@ -100,24 +92,6 @@ Classes
 
    .. py:method:: __validate_cardinality_type(checked_value)
       :classmethod:
-
-      Validate the type of the cardinality attribute.
-
-      Ensures that the cardinality attribute is of type Cardinality. Raises a TypeError if the check fails.
-
-      :param checked_value: The value to be checked.
-      :type checked_value: Cardinality
-      :return: The checked value if validation is successful.
-      :rtype: Cardinality
-      :raises TypeError: If the cardinality value is not of type Cardinality.
-
-
-   .. py:method:: __set_property_of(owner)
-
-      Set the owning classifier of this property.
-
-      :param owner: The Classifier instance to be set as the owner of this property.
-      :type owner: Optional[Classifier]
 
 
 

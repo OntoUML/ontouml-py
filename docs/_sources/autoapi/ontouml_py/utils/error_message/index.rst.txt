@@ -38,7 +38,7 @@ Functions
 
 
 
-.. py:function:: format_error_message(description, cause, solution)
+.. py:function:: format_error_message(description = 'undefined', cause = 'undefined', solution = 'undefined')
 
    Format a detailed error message.
 

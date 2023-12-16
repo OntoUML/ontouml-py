@@ -1,11 +1,3 @@
-"""Module for the Package class within an OntoUML model.
-
-This module defines the Package class, a concrete implementation of the Packageable abstract class. The Package class
-represents a container in the OntoUML model, capable of holding other Packageable elements (here called contents).
-It provides functionalities to add and remove contents, ensuring type safety and maintaining the integrity of the
-model's structure. The class also includes private attributes to manage its contents and configuration settings for
-validation and assignment.
-"""
 from typing import Any
 from typing import Optional
 
@@ -14,11 +6,10 @@ from pydantic import PrivateAttr
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.package_methods import PackageMethodsMixin
 from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 from ontouml_py.utils.error_message import format_error_message
 
 
-class Package(ModelElement, ProjectElement, Packageable, PackageMethodsMixin):
+class Package(ModelElement, Packageable, PackageMethodsMixin):
     # Private attribute
     _contents: dict[str, set[Packageable]] = PrivateAttr(
         default={
@@ -42,8 +33,7 @@ class Package(ModelElement, ProjectElement, Packageable, PackageMethodsMixin):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        ModelElement.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)
 
     def get_contents(self) -> dict:
         return self._contents
@@ -55,7 +45,7 @@ class Package(ModelElement, ProjectElement, Packageable, PackageMethodsMixin):
         return None
 
     def remove_content(self, old_content: Packageable) -> None:
-        old_content_type = str(type(old_content))
+        old_content_type = type(old_content).__name__
         if old_content not in self._contents[old_content_type]:
             raise ValueError(self._removal_error_message(old_content, old_content_type))
         self._contents[old_content_type].remove(old_content)

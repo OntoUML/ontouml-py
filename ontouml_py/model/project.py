@@ -36,15 +36,15 @@ class Project(NamedElement, ProjectMethodsMixin):
     keywords: set[str] = Field(default_factory=set)
     landing_pages: set[str] = Field(default_factory=set)
     languages: set[str] = Field(default_factory=set)
-    namespace: Optional[str] = Field(min_length=1, default=None)
+    namespace: Optional[str] = Field(default=None)
     sources: set[str] = Field(default_factory=set)
     access_rights: set[str] = Field(default_factory=set)
     ontology_types: set[str] = Field(default_factory=set)
     themes: set[str] = Field(default_factory=set)
-    license: Optional[str] = Field(min_length=1, default=None)
+    license: Optional[str] = Field(default=None)
     contexts: set[str] = Field(default_factory=set)
     designed_for_task: set[str] = Field(default_factory=set)
-    publisher: Optional[str] = Field(min_length=1, default=None)
+    publisher: Optional[str] = Field(default=None)
     rOt_package: Optional[Package] = Field(default=None)
     representation_style: OntologyRepresentationStyle = Field(default=OntologyRepresentationStyle.ONTOUML_STYLE)
 
@@ -57,7 +57,7 @@ class Project(NamedElement, ProjectMethodsMixin):
     }
 
     def __init__(self, **data: dict[str, Any]) -> None:
-        super().__init__(**data)
+        NamedElement.__init__(self, **data)
 
     def get_elements(self) -> dict[str, set[ProjectElement]]:
         return self._elements

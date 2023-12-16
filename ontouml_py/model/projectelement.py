@@ -1,4 +1,3 @@
-from icecream import ic
 from pydantic import PrivateAttr
 
 
@@ -13,21 +12,14 @@ class ProjectElement:
         "validate_default": True,
     }
 
-    @classmethod
-    def __new__(cls):
-        if cls is ProjectElement:
-            raise TypeError(f"{cls.__name__} is an abstract class and cannot be instantiated.")
-        return super().__new__(cls)
-
     def __init__(self, project: object, pe_type: str) -> None:
         project._elements[pe_type].add(self)
         self._project = project
 
+        # Ensures abstract
+        if type(self) is ProjectElement:
+            raise TypeError(f"{type(self).__name__} is an abstract class and cannot be directly instantiated.")
+
     @property
     def project(self) -> "Project":
-        """Read-only property to access the project this element belongs to.
-
-        :return: The project instance to which this element is associated.
-        :rtype: Optional[Project]
-        """
         return self._project

@@ -5,10 +5,9 @@ from pydantic import Field
 
 from ontouml_py.model.modelelement import ModelElement
 from ontouml_py.model.packageable import Packageable
-from ontouml_py.model.projectelement import ProjectElement
 
 
-class GeneralizationSet(ModelElement, ProjectElement, Packageable):
+class GeneralizationSet(ModelElement, Packageable):
     is_disjoint: bool = Field(default=False)
     is_complete: bool = Field(default=False)
     generalizations: set[object] = Field(default_factory=set)
@@ -23,5 +22,4 @@ class GeneralizationSet(ModelElement, ProjectElement, Packageable):
     }
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
-        ModelElement.__init__(self, **data)
-        ProjectElement.__init__(self, project=project, pe_type=self.__class__.__name__)
+        ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)
