@@ -61,7 +61,7 @@ def test_nary_relation_attribute_assignment_post_initialization(valid_nary_relat
     if python_minor_version > 10:
         match_string = "property 'project' of 'NaryRelation' object has no setter"
     else:
-        match_string = "can't set attribute 'project'"
+        match_string = "can't set attribute"
     with pytest.raises(AttributeError, match=match_string):
         valid_nary_relation.project = new_project
 

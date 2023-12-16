@@ -60,7 +60,7 @@ def test_binary_relation_attribute_assignment_post_initialization(valid_binary_r
     if python_minor_version > 10:
         match_string = "property 'project' of 'BinaryRelation' object has no setter"
     else:
-        match_string = "can't set attribute 'project'"
+        match_string = "can't set attribute"
     with pytest.raises(AttributeError, match=match_string):
         valid_binary_relation.project = new_project
 
