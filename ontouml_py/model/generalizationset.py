@@ -23,3 +23,6 @@ class GeneralizationSet(ModelElement, Packageable):
 
     def __init__(self, project: object, **data: dict[str, Any]) -> None:
         ModelElement.__init__(self, project=project, pe_type=self.__class__.__name__, **data)
+
+
+# TODO (@pedropaulofb): Create add_generalization method and its inverse.
