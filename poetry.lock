@@ -982,18 +982,17 @@ data = ["language-data (>=1.1,<2.0)"]
 
 [[package]]
 name = "langstring"
-version = "1.1.0"
+version = "2.0.0"
 description = "LangString Python Library"
 optional = false
 python-versions = ">=3.09,<4.0"
 files = [
-    {file = "langstring-1.1.0-py3-none-any.whl", hash = "sha256:87f68d245627e84ed5949bc3543fe5749a6e6d492fde7661e287d1881a003944"},
-    {file = "langstring-1.1.0.tar.gz", hash = "sha256:7d344ef2426ac7f100d4743fb78adc333893b92b5db3b774cc862513eae59203"},
+    {file = "langstring-2.0.0-py3-none-any.whl", hash = "sha256:2e62631d6c2e51bbd2c99753ec33ff41877c6d7ccd4fc7e00cdc5fd768eb7dbb"},
+    {file = "langstring-2.0.0.tar.gz", hash = "sha256:fd9d53569af03743f11e076a9d1b2fe8ee6c3d9a7300c8ab2b3c5504c35c1865"},
 ]
 
 [package.dependencies]
 langcodes = ">=3.3.0,<4.0.0"
-loguru = ">=0.7.2,<0.8.0"
 
 [[package]]
 name = "loguru"
@@ -2646,4 +2645,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.09"
-content-hash = "4b1b77440da0e8f96c15ab270cd464617ad71dff7d67a6fad634565100515586"
+content-hash = "f661e4563f80e34f1e6d0235f3d35d41f5c1bf66cf9504877bec8903e11eb9f0"
